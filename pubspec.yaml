@@ -103,7 +103,7 @@ flutter:
 
   assets:
     - assets/images/
-    # - assets/images/logos/
-    # - assets/images/icons/
+    - assets/images/logos/
+    - assets/images/icons/
     # - assets/images/navbar_icons/active/
     # - assets/images/navbar_icons/inactive/

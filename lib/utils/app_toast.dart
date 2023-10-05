@@ -1,3 +1,4 @@
+import 'package:blue_business/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -7,16 +8,17 @@ class AppToast {
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
-        color: Theme.of(context).highlightColor,
+        color: AppColors.primaryColor,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             message,
-            style: const TextStyle(
-                // color: Theme.of(context).backgroundColor, fontSize: 14, fontWeight: FontWeight.w500,
-                ),
+            style: TextStyle(
+                color: AppColors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w500),
             overflow: TextOverflow.fade,
           ),
         ],
@@ -46,9 +48,10 @@ class AppToast {
           ),
           Text(
             message,
-            style: const TextStyle(
-                // color: Theme.of(context).backgroundColor, fontSize: 14, fontWeight: FontWeight.w500
-                ),
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.background,
+                fontSize: 14,
+                fontWeight: FontWeight.w500),
           ),
         ],
       ),
@@ -81,9 +84,10 @@ class AppToast {
           ),
           Text(
             message,
-            style: const TextStyle(
-                // color: Theme.of(context).backgroundColor, fontSize: 14, fontWeight: FontWeight.w500
-                ),
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.background,
+                fontSize: 14,
+                fontWeight: FontWeight.w500),
           ),
           const SizedBox(
             width: 12.0,
