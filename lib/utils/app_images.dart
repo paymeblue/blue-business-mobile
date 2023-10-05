@@ -1,16 +1,13 @@
-class AppAssets{
+class AppAssets {
   AppAssets._();
 
-  /*
-  TODO
-  Declare path to images here
-  For example:
-    static String logo = "assets/images/logo.png";
-    static String warningText (String language){
-      if(language.toLowerCase() == 'english'){
-        return "Warning";
-      }
-      return "M'aider";
-    }
-   */
+  static String imagePath = "assets/images";
+  static String iconPath = "$imagePath/icons";
+
+  static String loader = "$imagePath/loader.svg";
+  static String aboutBlueIcon = "$iconPath/about_blue.png";
+
+  //ICONS
+  static String successIcon = "$iconPath/success.svg";
+  static String warningIcon = "$iconPath/warning.svg";
 }

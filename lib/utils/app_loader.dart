@@ -1,14 +1,13 @@
+import 'package:blue_business/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-
-import 'app_theme.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AppLoader {
   static showOverlay(BuildContext context) {
     return Loader.show(context,
         progressIndicator: const OverlayWidget(),
-        overlayColor: AppColors.black.withOpacity(.1));
+        overlayColor: Colors.black.withOpacity(.2));
   }
 
   static hide() {
@@ -28,7 +27,8 @@ class OverlayWidget extends StatelessWidget {
     return SizedBox(
       height: size.height,
       width: size.width,
-      child: const AnimatedLoader(),
+      child: const Material(
+          type: MaterialType.transparency, child: AnimatedLoader()),
     );
   }
 }
@@ -40,14 +40,34 @@ class AnimatedLoader extends StatefulWidget {
   State<AnimatedLoader> createState() => _AnimatedLoaderState();
 }
 
-class _AnimatedLoaderState extends State<AnimatedLoader> {
+class _AnimatedLoaderState extends State<AnimatedLoader>
+    with TickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+      vsync: this, duration: const Duration(milliseconds: 1500))
+    ..repeat(reverse: true);
+
+  late final Animation<double> animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.linear,
+      reverseCurve: Curves.bounceOut);
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: LoadingAnimationWidget.flickr(
-          leftDotColor: AppColors.white,
-          rightDotColor: AppColors.primaryColor,
-          size: 80),
+      child: RotationTransition(
+        turns: animation,
+        child: SvgPicture.asset(
+          AppAssets.loader,
+          height: 100,
+          width: 100,
+        ),
+      ),
     );
   }
 }

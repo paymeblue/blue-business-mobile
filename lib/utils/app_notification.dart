@@ -1,5 +1,8 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:blue_business/utils/app_images.dart';
+import 'package:blue_business/utils/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AppNotification {
   AppNotification._();
@@ -7,24 +10,28 @@ class AppNotification {
       {required message, required BuildContext context}) {
     Flushbar flush = Flushbar(
       shouldIconPulse: true,
-      titleText: const Text(
-        'Success',
-        // style: TextStyle(fontSize: 12, color: Theme.of(context).backgroundColor, fontWeight: FontWeight.bold),
-      ),
+      isDismissible: true,
+      boxShadows: kElevationToShadow[3],
       messageText: Text(
         message,
-        // style: TextStyle(fontSize: 12, color: Theme.of(context).backgroundColor),
+        style: AppTextStyles.subText
+            .copyWith(fontSize: 14.2, color: AppColors.textcolor),
       ),
-      backgroundColor: Theme.of(context).highlightColor,
+      padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 12),
+      borderColor: const Color(0xFF2FB9AC),
+      backgroundColor: const Color(0xFFE6FCFA),
       flushbarPosition: FlushbarPosition.TOP,
-      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
+      margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
       borderRadius: BorderRadius.circular(6),
-      icon: const Icon(
-        Icons.check,
-        size: 20,
-        color: Colors.green,
-      ),
-      duration: const Duration(milliseconds: 2500),
+      icon: Container(
+          height: 36,
+          width: 36,
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+              color: const Color(0xFF2FB9AC).withOpacity(.2),
+              shape: BoxShape.circle),
+          child: SvgPicture.asset(AppAssets.successIcon)),
+      duration: const Duration(milliseconds: 6000),
       animationDuration: const Duration(milliseconds: 1000),
     );
 
@@ -35,90 +42,142 @@ class AppNotification {
       {required message, required BuildContext context}) {
     Flushbar flush = Flushbar(
       shouldIconPulse: true,
-      titleText: const Text(
-        'Error',
-        style: TextStyle(
-            fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
-      ),
+      isDismissible: true,
       messageText: Text(
-        message ?? 'Something went wrong',
-        style: const TextStyle(fontSize: 11.5, color: Colors.white),
+        message ?? "Something went wrong. Please try again later.",
+        style: AppTextStyles.subText
+            .copyWith(fontSize: 14.2, color: AppColors.textcolor),
       ),
-      backgroundColor: Colors.red,
+      padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 12),
+      borderColor: const Color(0xFFEF2A5A),
+      backgroundColor: const Color(0xFFFEE5E5),
       flushbarPosition: FlushbarPosition.TOP,
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
       borderRadius: BorderRadius.circular(6),
-      icon: const Icon(
-        Icons.cancel,
-        size: 20,
-        color: Colors.white,
-      ),
-      duration: const Duration(milliseconds: 2500),
+      icon: Container(
+          height: 36,
+          width: 36,
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+              color: const Color(0xFFEF2A5A).withOpacity(.2),
+              shape: BoxShape.circle),
+          child: Container(
+            decoration: const BoxDecoration(
+                color: Color(0xFFEF2A5A), shape: BoxShape.circle),
+            child: Icon(
+              Icons.close,
+              color: AppColors.white,
+              size: 20,
+            ),
+          )),
+      duration: const Duration(milliseconds: 6000),
       animationDuration: const Duration(milliseconds: 1000),
     );
 
     return flush.show(context);
   }
 
-  static Future<dynamic> info(
+  static Future<dynamic> warning(
       {required message,
       required BuildContext context,
       String title = 'Info'}) {
     Flushbar flush = Flushbar(
       shouldIconPulse: true,
-      titleText: Text(
-        title,
-        style: const TextStyle(
-            fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
-      ),
+      isDismissible: true,
       messageText: Text(
-        message ?? 'Info',
-        style: const TextStyle(fontSize: 11.5, color: Colors.white),
+        message,
+        style: AppTextStyles.subText
+            .copyWith(fontSize: 14.2, color: AppColors.textcolor),
       ),
-      backgroundColor: Theme.of(context).primaryColor,
+      padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 12),
+      borderColor: const Color(0xFFFF9601),
+      backgroundColor: const Color(0xFFFFF9EC),
       flushbarPosition: FlushbarPosition.TOP,
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
-      borderRadius: BorderRadius.circular(6),
-      icon: const Icon(
-        Icons.info_outline,
-        size: 20,
-        color: Colors.white,
+      borderRadius: BorderRadius.circular(4),
+      icon: SizedBox(
+        height: 36,
+        width: 36,
+        child: SvgPicture.asset(AppAssets.warningIcon),
       ),
-      duration: const Duration(milliseconds: 2500),
-      animationDuration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 6000),
+      animationDuration: const Duration(milliseconds: 1000),
     );
 
     return flush.show(context);
   }
 
   static Future<dynamic> notification(
-      {required message,
-      required BuildContext context,
-      required String title}) {
+      {required title, required message, required BuildContext context}) {
     Flushbar flush = Flushbar(
-      onTap: (flush) {},
       shouldIconPulse: true,
+      isDismissible: true,
+      boxShadows: kElevationToShadow[3],
       titleText: Text(
         title,
-        // style: TextStyle(fontSize: 15, color: Theme.of(context).backgroundColor, fontWeight: FontWeight.bold),
+        style: AppTextStyles.subText.copyWith(
+          color: AppColors.textcolor,
+          fontWeight: FontWeight.w600,
+        ),
       ),
       messageText: Text(
-        message ?? 'Notification',
-        // style: TextStyle(fontSize: 11.5, color: Theme.of(context).backgroundColor),
+        message,
+        style: AppTextStyles.subText
+            .copyWith(fontSize: 14.2, color: AppColors.textcolor),
       ),
-      backgroundColor: Theme.of(context).highlightColor,
+      padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 6),
+      borderColor: AppColors.midGrey,
+      backgroundColor: AppColors.white,
       flushbarPosition: FlushbarPosition.TOP,
-      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
+      margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
       borderRadius: BorderRadius.circular(6),
-      icon: const Icon(
-        Icons.notifications_on_outlined,
-        size: 20,
-        // color: Theme.of(context).backgroundColor,
+      icon: Image.asset(
+        AppAssets.aboutBlueIcon,
+        fit: BoxFit.scaleDown,
+        height: 35,
+        width: 35,
       ),
-      duration: const Duration(milliseconds: 2500),
-      animationDuration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 6000),
+      animationDuration: const Duration(milliseconds: 1000),
     );
 
     return flush.show(context);
   }
+
+  // static Future<dynamic> message(
+  //     {required title, required message, required BuildContext context}) {
+  //   Flushbar flush = Flushbar(
+  //     shouldIconPulse: true,
+  //     isDismissible: true,
+  //     boxShadows: kElevationToShadow[3],
+  //     titleText: Text(
+  //       title,
+  //       style: AppTextStyles.subText.copyWith(
+  //         color: AppColors.textcolor,
+  //         fontWeight: FontWeight.w600,
+  //       ),
+  //     ),
+  //     messageText: Text(
+  //       message,
+  //       style: AppTextStyles.subText
+  //           .copyWith(fontSize: 14.2, color: AppColors.textcolor),
+  //     ),
+  //     padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 6),
+  //     borderColor: AppColors.midGrey,
+  //     backgroundColor: AppColors.white,
+  //     flushbarPosition: FlushbarPosition.TOP,
+  //     margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+  //     borderRadius: BorderRadius.circular(6),
+  //     icon: Image.asset(
+  //       AppAssets.messageNotification,
+  //       fit: BoxFit.scaleDown,
+  //       height: 35,
+  //       width: 35,
+  //     ),
+  //     duration: const Duration(milliseconds: 6000),
+  //     animationDuration: const Duration(milliseconds: 1000),
+  //   );
+
+  //   return flush.show(context);
+  // }
 }
