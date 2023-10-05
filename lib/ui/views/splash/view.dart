@@ -55,7 +55,7 @@ class _SplashViewState extends State<SplashView> {
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 350),
                     height: model.containerHeight,
-                    padding: const EdgeInsets.symmetric(vertical: 35),
+                    padding: const EdgeInsets.only(top: 50),
                     width: size.width,
                     decoration: BoxDecoration(
                         color: AppColors.white,
@@ -77,7 +77,7 @@ class _SplashViewState extends State<SplashView> {
                                   height: 7,
                                   width:
                                       (MediaQuery.of(context).size.width * .8) /
-                                          3,
+                                          model.onboardingSubText.length,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
                                         topLeft: index > 0
@@ -102,19 +102,36 @@ class _SplashViewState extends State<SplashView> {
                           ),
                           const SizedBox(height: 28),
                           Container(
-                            height: 90,
+                            height: 100,
                             width: MediaQuery.of(context).size.width,
                             padding: EdgeInsets.symmetric(
-                                horizontal: size.width / 8),
-                            child: Text(
-                              model.onboardingText[model.index],
-                              style: TextStyle(
-                                  fontFamily: "Gilroy",
-                                  color: AppColors.textcolor,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w600),
-                              textAlign: TextAlign.center,
+                                horizontal: model.index == 0
+                                    ? size.width / 6
+                                    : model.index == 3
+                                        ? size.width / 4.5
+                                        : size.width / 7),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  model.onboardingText[model.index],
+                                  style: TextStyle(
+                                      fontFamily: "Gilroy",
+                                      color: AppColors.textcolor,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  model.onboardingSubText[model.index],
+                                  style: AppTextStyles.subText,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
                             ),
+                          ),
+                          const SizedBox(
+                            height: 20,
                           ),
                           AppButton(
                               onTap: () {}, buttonText: "Create an account"),

@@ -25,9 +25,17 @@ class SplashViewModel extends BaseViewModel {
   }
 
   List<String> onboardingText = [
-    "The easiest way to make payments!",
-    "Send, request and receive money swiftly",
-    "Free charges, No hidden fees!"
+    "Your all-in-one business manager app!",
+    "Add and manage your Team seamlessly",
+    "Boost your business sales with our POS Terminal.",
+    "Simplify your daily settlement tracking"
+  ];
+
+  List<String> onboardingSubText = [
+    "Streamline your business operations with simplicity and efficiency!",
+    "Easily add and oversee your team members for seamless operations.",
+    "Provide your customers with a seamless payment experience at all times.",
+    "Automate and manage your day-to-day transactions with ease."
   ];
 
   init() async {
@@ -36,7 +44,7 @@ class SplashViewModel extends BaseViewModel {
     //     Provider.of<AuthStateManager>(appContext!, listen: false);
 
     Future.delayed(const Duration(milliseconds: 1500), () {
-      containerHeight = 390;
+      containerHeight = 435;
       changeText();
     });
 
