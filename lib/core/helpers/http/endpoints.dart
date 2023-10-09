@@ -1,4 +1,6 @@
 class Endpoints {
+  static Object register;
+
   Endpoints._();
 
   //BASE-URLS

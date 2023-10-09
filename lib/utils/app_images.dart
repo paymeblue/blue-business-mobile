@@ -8,6 +8,7 @@ class AppAssets {
   static String aboutBlueIcon = "$iconPath/about_blue.png";
 
   //ICONS
+  static String searchIcon = "$iconPath/search.svg";
   static String successIcon = "$iconPath/success.svg";
   static String warningIcon = "$iconPath/warning.svg";
 }

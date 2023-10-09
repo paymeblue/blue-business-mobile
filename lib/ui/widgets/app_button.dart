@@ -42,7 +42,7 @@ class _AppButtonState extends State<AppButton> {
         splashColor: AppColors.primaryColor,
         child: Container(
           height: 50,
-          width: widget.width ?? 330,
+          width: widget.width ?? MediaQuery.sizeOf(context).width,
           decoration: BoxDecoration(
               color: widget.isActive && !widget.isLoading
                   ? widget.isPrimary
