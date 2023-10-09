@@ -16,12 +16,14 @@ class AppStateManager extends DisposableProvider {
   }
 
   void goToLogin() {
+    _initialised = true;
     _register = false;
     _login = true;
     notifyListeners();
   }
 
   void goToSignup() {
+    _initialised = true;
     _register = true;
     _login = false;
     notifyListeners();
