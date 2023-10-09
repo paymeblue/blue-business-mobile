@@ -1,5 +1,5 @@
 class Endpoints {
-  static Object register;
+  static String register = "";
 
   Endpoints._();
 

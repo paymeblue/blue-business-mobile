@@ -11,4 +11,6 @@ class AppAssets {
   static String searchIcon = "$iconPath/search.svg";
   static String successIcon = "$iconPath/success.svg";
   static String warningIcon = "$iconPath/warning.svg";
+  static String faceIdIcon = "$iconPath/face_id.svg";
+  static String hideIcon = "$iconPath/hide.svg";
 }

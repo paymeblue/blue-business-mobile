@@ -140,7 +140,7 @@ class _SplashViewState extends State<SplashView> {
                           ),
                           const SizedBox(height: 15),
                           AppButton(
-                            onTap: () {},
+                            onTap: model.appStateManager.goToLogin,
                             buttonText: "Login",
                             isPrimary: false,
                             width: 330,
