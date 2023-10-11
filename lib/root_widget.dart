@@ -1,3 +1,4 @@
+import 'package:blue_business/core/managers/auth_state_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:blue_business/utils/app_theme.dart';
 import 'package:oktoast/oktoast.dart';
@@ -18,6 +19,7 @@ class MobileScaffoldApp extends StatefulWidget {
 
 class _MobileScaffoldAppState extends State<MobileScaffoldApp> {
   final _appStateManager = AppStateManager();
+  final _authStateManager = AuthStateManager();
 
   late AppRouter _appRouter;
 
@@ -38,6 +40,9 @@ class _MobileScaffoldAppState extends State<MobileScaffoldApp> {
       providers: [
         ChangeNotifierProvider(
           create: (context) => _appStateManager,
+        ),
+        ChangeNotifierProvider(
+          create: (context) => _authStateManager,
         ),
         ...providers,
       ],
