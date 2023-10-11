@@ -3,9 +3,12 @@ class AppAssets {
 
   static String imagePath = "assets/images";
   static String iconPath = "$imagePath/icons";
+  static String logoPath = "$imagePath/logos";
 
   static String loader = "$imagePath/loader.svg";
   static String aboutBlueIcon = "$iconPath/about_blue.png";
+  static String blueRegisterIcon = "$logoPath/blue_register_icon.png";
+  static String phoneRegisterIcon = "$logoPath/phone_register_icon.png";
 
   //ICONS
   static String searchIcon = "$iconPath/search.svg";
