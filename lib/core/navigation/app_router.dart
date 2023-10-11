@@ -27,9 +27,9 @@ class AppRouter extends RouterDelegate
       key: navigatorKey,
       onPopPage: _handlePopPage,
       pages: [
-        if (!appStateManager.isInitialised) SplashView.page(),
-        if (appStateManager.isInitialised && appStateManager.login)
-          LoginView.page(),
+        if (appStateManager.splash) SplashView.page(),
+        if (appStateManager.login) LoginView.page(),
+        if (appStateManager.registerMethod) RegisterMethodView.page(),
       ],
     );
   }

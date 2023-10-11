@@ -1,5 +1,6 @@
 class AppPages {
   static String splashPath = '/splash';
 
-  static var loginPath = "/login";
+  static String loginPath = "/login";
+  static String registerMethodPath = "/registerMethod";
 }

@@ -7,14 +7,16 @@ import 'package:provider/provider.dart';
 class AppStateManager extends DisposableProvider {
   bool _initialised = false;
   bool _login = false;
-  bool _register = false;
+  bool _registerMethod = false;
 
   bool get isInitialised => _initialised;
   bool get login => _login;
-  bool get register => _register;
+  bool get registerMethod => _registerMethod;
+
+  bool get splash => !_login && !_registerMethod;
 
   set register(bool v) {
-    _register = v;
+    _registerMethod = v;
     notifyListeners();
   }
 
@@ -30,7 +32,7 @@ class AppStateManager extends DisposableProvider {
 
   void goToLogin() {
     _initialised = true;
-    _register = false;
+    _registerMethod = false;
     _login = true;
     notifyListeners();
   }
@@ -38,7 +40,7 @@ class AppStateManager extends DisposableProvider {
   void openSignup(BuildContext context) {
     AuthStateManager auth =
         Provider.of<AuthStateManager>(context, listen: false);
-    _register = true;
+    _registerMethod = true;
     _login = false;
     auth.setIsRegistration(true);
 
@@ -47,7 +49,7 @@ class AppStateManager extends DisposableProvider {
 
   void goToSignup() {
     _initialised = true;
-    _register = true;
+    _registerMethod = true;
     _login = false;
     notifyListeners();
   }
