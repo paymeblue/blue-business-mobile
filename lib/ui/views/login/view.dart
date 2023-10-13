@@ -35,14 +35,20 @@ class _LoginViewState extends State<LoginView> {
         model: LoginViewModel(),
         onModelReady: (model) => model.init(),
         builder: (context, model, _) {
-          return Scaffold(
-            appBar: BlueAppBar.show(
-              onBackTap: () {
-                model.appStateManager.login = false;
-              },
-            ),
-            body: Consumer<AuthStateManager>(builder: (context, auth, _) {
-              return SingleChildScrollView(
+          return Consumer<AuthStateManager>(builder: (context, auth, _) {
+            return Scaffold(
+              appBar: BlueAppBar.show(
+                onBackTap: () {
+                  if (auth.isRegistration) {
+                    model.appStateManager.goToSignup();
+                  } else {
+                    model.appStateManager.login = false;
+                  }
+                },
+                leadingIcon:
+                    auth.isRegistration ? Icons.arrow_back_ios_new : null,
+              ),
+              body: SingleChildScrollView(
                 child: Container(
                   height: model.size.height - 80,
                   padding: const EdgeInsets.only(
@@ -53,33 +59,39 @@ class _LoginViewState extends State<LoginView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          model.newLogin
-                              ? "Login Credentials"
-                              : "Login to Wallet, ${model.authStateManager.name}",
+                          auth.isRegistration
+                              ? "Signup with Blue Personal"
+                              : model.newLogin
+                                  ? "Login Credentials"
+                                  : "Login to Wallet, ${model.authStateManager.name}",
                           style: AppTextStyles.header,
                         ),
                         const SizedBox(height: 5),
-                        model.newLogin
-                            ? RichText(
-                                text: TextSpan(children: [
-                                  TextSpan(
-                                    text:
-                                        "Enter your phone number and password to  login to your blue account. ",
+                        auth.isRegistration
+                            ? Text(
+                                "Please enter the phone number & password linked to your Blue account.",
+                                style: AppTextStyles.subHeader)
+                            : model.newLogin
+                                ? RichText(
+                                    text: TextSpan(children: [
+                                      TextSpan(
+                                        text:
+                                            "Enter your phone number and password to  login to your blue account. ",
+                                        style: AppTextStyles.subHeader,
+                                      ),
+                                      TextSpan(
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {},
+                                        text: "Lost your number?",
+                                        style: AppTextStyles.subHeader.copyWith(
+                                            color: AppColors.primaryColor),
+                                      )
+                                    ]),
+                                  )
+                                : Text(
+                                    "Please enter your password to securely login to your blue account.",
                                     style: AppTextStyles.subHeader,
                                   ),
-                                  TextSpan(
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {},
-                                    text: "Lost your number?",
-                                    style: AppTextStyles.subHeader.copyWith(
-                                        color: AppColors.primaryColor),
-                                  )
-                                ]),
-                              )
-                            : Text(
-                                "Please enter your password to securely login to your blue account.",
-                                style: AppTextStyles.subHeader,
-                              ),
                         const SizedBox(height: 50),
                         model.newLogin
                             ? const TextFieldHeader(title: "Phone number")
@@ -107,26 +119,46 @@ class _LoginViewState extends State<LoginView> {
                           controller: model.passC,
                           hintText: "Password",
                         ),
-                        Align(
-                            alignment: Alignment.centerRight,
-                            child: AppTextButton(
-                                onTap: () {}, buttonText: "Forgot Password?")),
+                        if (!auth.isRegistration)
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: AppTextButton(
+                                  onTap: () {},
+                                  buttonText: "Forgot Password?")),
                         const SizedBox(height: 36),
-                        RichText(
-                          text: TextSpan(children: [
-                            TextSpan(
-                                text: model.newLogin
-                                    ? "Don't have an account? "
-                                    : "No, I'm not ${model.authStateManager.name}! ",
-                                style: AppTextStyles.subText),
-                            TextSpan(
-                                text: model.newLogin ? "Signup" : "Click here",
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = model.handleSubTextClick,
-                                style: AppTextStyles.subText
-                                    .copyWith(color: AppColors.bodyTextcolor)),
-                          ]),
-                        ),
+                        auth.isRegistration
+                            ? RichText(
+                                text: TextSpan(children: [
+                                  TextSpan(
+                                      text: "Already have an account? ",
+                                      style: AppTextStyles.subText),
+                                  TextSpan(
+                                      text: "Login",
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          auth.setIsRegistration(false);
+                                        },
+                                      style: AppTextStyles.subText.copyWith(
+                                          color: AppColors.bodyTextcolor)),
+                                ]),
+                              )
+                            : RichText(
+                                text: TextSpan(children: [
+                                  TextSpan(
+                                      text: model.newLogin
+                                          ? "Don't have an account? "
+                                          : "No, I'm not ${model.authStateManager.name}! ",
+                                      style: AppTextStyles.subText),
+                                  TextSpan(
+                                      text: model.newLogin
+                                          ? "Signup"
+                                          : "Click here",
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = model.handleSubTextClick,
+                                      style: AppTextStyles.subText.copyWith(
+                                          color: AppColors.bodyTextcolor)),
+                                ]),
+                              ),
                         const Spacer(),
                         Row(
                           children: [
@@ -135,7 +167,8 @@ class _LoginViewState extends State<LoginView> {
                                 onTap: () {},
                                 isActive: model.passC.text.isNotEmpty &&
                                     auth.username.isNotEmpty,
-                                buttonText: "Login",
+                                buttonText:
+                                    auth.isRegistration ? "Proceed" : "Login",
                               ),
                             ),
                             // if (model.authStateManager.useBiometrics)
@@ -161,9 +194,9 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                 ),
-              );
-            }),
-          );
+              ),
+            );
+          });
         });
   }
 }

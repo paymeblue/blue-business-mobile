@@ -8,12 +8,26 @@ class AppStateManager extends DisposableProvider {
   bool _initialised = false;
   bool _login = false;
   bool _registerMethod = false;
+  bool _registerSelf = false;
+  bool _registerBusiness = false;
 
   bool get isInitialised => _initialised;
   bool get login => _login;
   bool get registerMethod => _registerMethod;
+  bool get registerSelf => _registerSelf;
+  bool get registerBusiness => _registerBusiness;
 
   bool get splash => !_login && !_registerMethod;
+
+  set registerBusiness(bool v) {
+    _registerBusiness = v;
+    notifyListeners();
+  }
+
+  set registerSelf(bool v) {
+    _registerSelf = v;
+    notifyListeners();
+  }
 
   set register(bool v) {
     _registerMethod = v;

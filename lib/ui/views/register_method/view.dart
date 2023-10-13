@@ -64,6 +64,7 @@ class _RegisterMethodViewState extends State<RegisterMethodView> {
                     size: model.size,
                     onTap: () {
                       model.selectedMethod = RegisterMethod.blue;
+                      model.appStateManager.goToLogin();
                     },
                     isSelected: model.selectedMethod == RegisterMethod.blue,
                   ),

@@ -28,8 +28,8 @@ class AppRouter extends RouterDelegate
       onPopPage: _handlePopPage,
       pages: [
         if (appStateManager.splash) SplashView.page(),
-        if (appStateManager.login) LoginView.page(),
         if (appStateManager.registerMethod) RegisterMethodView.page(),
+        if (appStateManager.login) LoginView.page(),
       ],
     );
   }
