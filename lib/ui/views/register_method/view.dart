@@ -16,8 +16,8 @@ class RegisterMethodView extends StatefulWidget {
 
   static MaterialPage page() {
     return MaterialPage(
-      name: AppPages.loginPath,
-      key: ValueKey(AppPages.loginPath),
+      name: AppPages.registerMethodPath,
+      key: ValueKey(AppPages.registerMethodPath),
       child: const RegisterMethodView(),
     );
   }
@@ -64,7 +64,7 @@ class _RegisterMethodViewState extends State<RegisterMethodView> {
                     size: model.size,
                     onTap: () {
                       model.selectedMethod = RegisterMethod.blue;
-                      model.appStateManager.goToLogin();
+                      model.appStateManager.login = true;
                     },
                     isSelected: model.selectedMethod == RegisterMethod.blue,
                   ),

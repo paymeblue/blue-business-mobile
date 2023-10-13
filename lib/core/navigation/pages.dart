@@ -3,4 +3,6 @@ class AppPages {
 
   static String loginPath = "/login";
   static String registerMethodPath = "/registerMethod";
+  static String registerSelfPath = "/registerSelf";
+  static String registerBusinessPath = "/registerBusiness";
 }

@@ -39,11 +39,7 @@ class _LoginViewState extends State<LoginView> {
             return Scaffold(
               appBar: BlueAppBar.show(
                 onBackTap: () {
-                  if (auth.isRegistration) {
-                    model.appStateManager.goToSignup();
-                  } else {
-                    model.appStateManager.login = false;
-                  }
+                  model.appStateManager.login = false;
                 },
                 leadingIcon:
                     auth.isRegistration ? Icons.arrow_back_ios_new : null,
