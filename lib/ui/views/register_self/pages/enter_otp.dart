@@ -26,9 +26,12 @@ class _EnterOtpViewState extends State<EnterOtpView> {
               style: AppTextStyles.header,
             ),
             const SizedBox(height: 5),
-            Text(
-              "",
-              style: AppTextStyles.subHeader,
+            Padding(
+              padding: const EdgeInsets.only(right: 50),
+              child: Text(
+                "Please enter the OTP code sent to the number ending in ${model.authStateManager.username.substring(model.authStateManager.username.length - 4)}",
+                style: AppTextStyles.subHeader,
+              ),
             ),
             const SizedBox(height: 50),
             OtpTextField(

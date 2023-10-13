@@ -14,5 +14,7 @@ class SuccessViewModel extends BaseViewModel {
 
   goToRegisterBusiness() {
     appStateManager.registerBusiness = true;
+    appStateManager.success = false;
+    appStateManager.registerSelf = false;
   }
 }

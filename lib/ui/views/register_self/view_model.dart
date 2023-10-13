@@ -7,6 +7,7 @@ import 'package:blue_business/ui/views/register_self/pages/enter_name.dart';
 import 'package:blue_business/ui/views/register_self/pages/enter_otp.dart';
 import 'package:blue_business/ui/views/register_self/pages/enter_password.dart';
 import 'package:blue_business/ui/views/register_self/pages/enter_phone.dart';
+import 'package:blue_business/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -267,7 +268,30 @@ class RegisterSelfViewModel extends BaseViewModel {
     if (authStateManager.signupIndex < pages.length - 1) {
       authStateManager.signupIndex++;
       isActive = false;
-      authStateManager.username = "";
+    } else {
+      goToSuccess();
     }
+  }
+
+  goToSuccess() {
+    appStateManager.successTitle = Center(
+      child: Text(
+        "Welcome, Semira! 🎉",
+        style:
+            AppTextStyles.header.copyWith(fontSize: 24, color: AppColors.white),
+        textAlign: TextAlign.center,
+      ),
+    );
+
+    appStateManager.successTitle = Center(
+      child: Text(
+        "You’ve successfully created an account on Blue Business. Now, let's set up your Business Profile.",
+        style: AppTextStyles.subHeader
+            .copyWith(fontSize: 15, color: AppColors.white),
+        textAlign: TextAlign.center,
+      ),
+    );
+
+    appStateManager.success = true;
   }
 }

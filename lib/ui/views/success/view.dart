@@ -51,23 +51,16 @@ class _SuccessViewState extends State<SuccessView> {
                       const SizedBox(
                         height: 15,
                       ),
-                      Center(
-                        child: Text(
-                          "Welcome, Semira! 🎉",
-                          style: AppTextStyles.header
-                              .copyWith(fontSize: 24, color: AppColors.white),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
+                      model.appStateManager.successTitle,
                       const SizedBox(height: 10),
                       model.appStateManager.successMessage,
                       const Spacer(),
                       AppButton(
-                        onTap: () {},
+                        onTap: model.goToRegisterBusiness,
                         isPrimary: false,
                         hasBorder: false,
                         textColor: AppColors.textcolor,
-                        buttonText: "Share receipt",
+                        buttonText: "Done",
                       ),
                     ],
                   ));

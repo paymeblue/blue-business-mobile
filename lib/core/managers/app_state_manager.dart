@@ -36,7 +36,7 @@ class AppStateManager extends DisposableProvider {
     notifyListeners();
   }
 
-  set successtitle(Widget v) {
+  set successTitle(Widget v) {
     _successTitle = v;
     notifyListeners();
   }

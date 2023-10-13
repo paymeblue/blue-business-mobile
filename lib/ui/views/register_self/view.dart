@@ -61,7 +61,7 @@ class _RegisterSelfViewState extends State<RegisterSelfView> {
                           onTap: () {
                             model.handleTap();
                           },
-                          isActive: model.isActive || auth.username.isNotEmpty,
+                          isActive: model.isActive,
                           isLoading: model.isLoading,
                           buttonText: "Continue");
                     })
