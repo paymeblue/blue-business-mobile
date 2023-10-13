@@ -58,7 +58,9 @@ class _RegisterSelfViewState extends State<RegisterSelfView> {
                     )),
                     Consumer<AuthStateManager>(builder: (context, auth, _) {
                       return AppButton(
-                          onTap: () {},
+                          onTap: () {
+                            model.handleTap();
+                          },
                           isActive: model.isActive || auth.username.isNotEmpty,
                           isLoading: model.isLoading,
                           buttonText: "Continue");

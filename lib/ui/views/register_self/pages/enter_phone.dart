@@ -23,19 +23,23 @@ class _EnterPhoneViewState extends State<EnterPhoneView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Create your blue account",
+              "What’s your phone number?",
               style: AppTextStyles.header,
             ),
             const SizedBox(height: 5),
-            Text(
-              "Please enter your phone number and email. We’ll send an OTP to verify your phone number.",
-              style: AppTextStyles.subHeader,
+            Padding(
+              padding: const EdgeInsets.only(right: 50),
+              child: Text(
+                "Please enter your phone number. We’ll send an OTP to verify it.",
+                style: AppTextStyles.subHeader,
+              ),
             ),
             const SizedBox(height: 50),
             const TextFieldHeader(title: "Phone number"),
             PhoneNumberWithDialCodeTextField(
               onChanged: (n) {
                 model.authStateManager.username = n.number;
+                model.setActive();
               },
               onSaved: (n) {
                 model.authStateManager.username = n!.number;

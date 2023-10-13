@@ -262,4 +262,12 @@ class RegisterSelfViewModel extends BaseViewModel {
   RegExp letters = RegExp((r'[a-zA-Z]+?').toString());
   RegExp numbers = RegExp((r'[0-9]+?').toString());
   RegExp special = RegExp((r"[.,_@\\+$!#%^&*\-=?:;']+?").toString());
+
+  handleTap() {
+    if (authStateManager.signupIndex < pages.length - 1) {
+      authStateManager.signupIndex++;
+      isActive = false;
+      authStateManager.username = "";
+    }
+  }
 }

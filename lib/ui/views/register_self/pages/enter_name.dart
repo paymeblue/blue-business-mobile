@@ -35,8 +35,8 @@ class _EnterNameViewState extends State<EnterNameView> {
             const TextFieldHeader(title: "First name"),
             CustomTextField(
               hintText: "First name",
-              // onChanged: model.onFirstNameChanged,
-              // onSaved: model.onFirstNameSaved,
+              onChanged: model.onFirstNameChanged,
+              onSaved: model.onFirstNameSaved,
               capitalization: TextCapitalization.sentences,
             ),
             const SizedBox(height: 20),
@@ -46,8 +46,8 @@ class _EnterNameViewState extends State<EnterNameView> {
             ),
             CustomTextField(
               hintText: "Middle name",
-              // onChanged: model.onMiddleNameChanged,
-              // onSaved: model.onMiddleNameSaved,
+              onChanged: model.onMiddleNameChanged,
+              onSaved: model.onMiddleNameSaved,
               capitalization: TextCapitalization.sentences,
             ),
             const SizedBox(height: 20),
@@ -56,8 +56,8 @@ class _EnterNameViewState extends State<EnterNameView> {
             ),
             CustomTextField(
               hintText: "Last name",
-              // onChanged: model.onLastNameChanged,
-              // onSaved: model.onLastNameSaved,
+              onChanged: model.onLastNameChanged,
+              onSaved: model.onLastNameSaved,
               capitalization: TextCapitalization.sentences,
             ),
           ],
