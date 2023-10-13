@@ -23,6 +23,10 @@ class RegisterMethodViewModel extends BaseViewModel {
   goBack() {
     appStateManager.register = false;
   }
+
+  goToRegisterSelf() {
+    appStateManager.registerSelf = true;
+  }
 }
 
 enum RegisterMethod { blue, phone }

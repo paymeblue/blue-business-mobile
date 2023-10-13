@@ -30,6 +30,8 @@ class AppRouter extends RouterDelegate
         if (appStateManager.splash) SplashView.page(),
         if (appStateManager.registerMethod) RegisterMethodView.page(),
         if (appStateManager.login) LoginView.page(),
+        if (appStateManager.registerSelf) RegisterSelfView.page(),
+        if (appStateManager.registerBusiness) RegisterBusinessView.page(),
       ],
     );
   }
