@@ -62,7 +62,10 @@ class _RegisterMethodViewState extends State<RegisterMethodView> {
                         "Use your existing Blue personal account to create a Blue Business account",
                     image: AppAssets.blueRegisterIcon,
                     size: model.size,
-                    onTap: () {},
+                    onTap: () {
+                      model.selectedMethod = RegisterMethod.blue;
+                    },
+                    isSelected: model.selectedMethod == RegisterMethod.blue,
                   ),
                   const SizedBox(height: 20),
                   RegisterMethodContainer(
@@ -71,7 +74,10 @@ class _RegisterMethodViewState extends State<RegisterMethodView> {
                         "Create an account on Blue Business with your phone number.",
                     image: AppAssets.phoneRegisterIcon,
                     size: model.size,
-                    onTap: () {},
+                    onTap: () {
+                      model.selectedMethod = RegisterMethod.phone;
+                    },
+                    isSelected: model.selectedMethod == RegisterMethod.phone,
                   ),
                   const SizedBox(height: 35),
                   RichText(
@@ -97,37 +103,35 @@ class _RegisterMethodViewState extends State<RegisterMethodView> {
   }
 }
 
-class RegisterMethodContainer extends StatefulWidget {
-  const RegisterMethodContainer(
-      {super.key,
-      required this.size,
-      required this.title,
-      required this.subtitle,
-      required this.image,
-      required this.onTap});
+class RegisterMethodContainer extends StatelessWidget {
+  const RegisterMethodContainer({
+    super.key,
+    required this.size,
+    required this.title,
+    required this.subtitle,
+    required this.image,
+    required this.onTap,
+    this.isSelected = false,
+  });
 
   final Size size;
   final String title;
   final String subtitle;
   final String image;
   final VoidCallback onTap;
+  final bool isSelected;
 
-  @override
-  State<RegisterMethodContainer> createState() =>
-      _RegisterMethodContainerState();
-}
-
-class _RegisterMethodContainerState extends State<RegisterMethodContainer> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onTap,
+      onTap: onTap,
       child: Container(
-        width: widget.size.width,
+        width: size.width,
         height: 80,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
           color: AppColors.grey,
+          border: isSelected ? Border.all(color: AppColors.primaryColor) : null,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
@@ -138,7 +142,7 @@ class _RegisterMethodContainerState extends State<RegisterMethodContainer> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    widget.image,
+                    image,
                   ),
                 ),
               ),
@@ -154,7 +158,7 @@ class _RegisterMethodContainerState extends State<RegisterMethodContainer> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.title,
+                      title,
                       style: AppTextStyles.header.copyWith(
                         fontSize: 15,
                       ),
@@ -163,7 +167,7 @@ class _RegisterMethodContainerState extends State<RegisterMethodContainer> {
                       height: 4,
                     ),
                     Text(
-                      widget.subtitle,
+                      subtitle,
                       style: AppTextStyles.subHeader.copyWith(
                         fontSize: 13,
                       ),

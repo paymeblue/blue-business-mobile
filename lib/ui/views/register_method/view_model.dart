@@ -13,7 +13,16 @@ class RegisterMethodViewModel extends BaseViewModel {
     size = MediaQuery.of(appContext!).size;
   }
 
+  RegisterMethod? _selectedMethod;
+  RegisterMethod? get selectedMethod => _selectedMethod;
+  set selectedMethod(RegisterMethod? m) {
+    _selectedMethod = m;
+    notifyListeners();
+  }
+
   goBack() {
     appStateManager.register = false;
   }
 }
+
+enum RegisterMethod { blue, phone }

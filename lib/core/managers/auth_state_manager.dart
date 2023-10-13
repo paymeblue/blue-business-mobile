@@ -125,6 +125,18 @@ class AuthStateManager extends DisposableProvider {
 
   @override
   void disposeValues() {
-    // TODO: implement disposeValues
+    _name = "";
+    _otp = "";
+    _newLogin = false;
+    _username = "";
+    _phone = "";
+    _passcode = "";
+    _password = "";
+    _confPassword = "";
+    _newPasscode = false;
+    _isRegistration = false;
+    _onSendOtp = () {};
+    _signupIndex = 0;
+    _useBiometrics = false;
   }
 }

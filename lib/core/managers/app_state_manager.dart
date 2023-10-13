@@ -57,6 +57,7 @@ class AppStateManager extends DisposableProvider {
   void closeApp() {
     _initialised = false;
     _login = false;
+    _registerMethod = false;
 
     SystemNavigator.pop();
     notifyListeners();
@@ -64,6 +65,8 @@ class AppStateManager extends DisposableProvider {
 
   @override
   void disposeValues() {
-    // TODO: implement disposeValues
+    _initialised = false;
+    _login = false;
+    _registerMethod = false;
   }
 }
