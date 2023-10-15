@@ -115,6 +115,14 @@ class AuthStateManager extends DisposableProvider {
     notifyListeners();
   }
 
+  int _registerBusinessIndex = 0;
+  int get registerBusinessIndex => _registerBusinessIndex;
+
+  set registerBusinessIndex(int v) {
+    _registerBusinessIndex = v;
+    notifyListeners();
+  }
+
   bool _useBiometrics = false;
   bool get useBiometrics => _useBiometrics;
 

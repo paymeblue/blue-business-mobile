@@ -293,5 +293,6 @@ class RegisterSelfViewModel extends BaseViewModel {
     );
 
     appStateManager.success = true;
+    authStateManager.signupIndex = 0;
   }
 }
