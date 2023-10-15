@@ -53,14 +53,20 @@ class _SuccessViewState extends State<SuccessView> {
                       ),
                       model.appStateManager.successTitle,
                       const SizedBox(height: 10),
-                      model.appStateManager.successMessage,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 70),
+                        child: model.appStateManager.successMessage,
+                      ),
                       const Spacer(),
-                      AppButton(
-                        onTap: model.goToRegisterBusiness,
-                        isPrimary: false,
-                        hasBorder: false,
-                        textColor: AppColors.textcolor,
-                        buttonText: "Done",
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 17),
+                        child: AppButton(
+                          onTap: model.goToRegisterBusiness,
+                          isPrimary: false,
+                          hasBorder: false,
+                          textColor: AppColors.textcolor,
+                          buttonText: "Done",
+                        ),
                       ),
                     ],
                   ));

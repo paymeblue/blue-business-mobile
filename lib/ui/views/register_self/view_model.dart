@@ -283,7 +283,7 @@ class RegisterSelfViewModel extends BaseViewModel {
       ),
     );
 
-    appStateManager.successTitle = Center(
+    appStateManager.successMessage = Center(
       child: Text(
         "You’ve successfully created an account on Blue Business. Now, let's set up your Business Profile.",
         style: AppTextStyles.subHeader

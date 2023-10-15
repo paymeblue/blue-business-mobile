@@ -41,7 +41,7 @@ class _RegisterSelfViewState extends State<RegisterSelfView> {
               ),
               body: Container(
                 padding: const EdgeInsets.only(
-                    top: 25, bottom: 52, left: 16, right: 16),
+                    top: 25, bottom: 30, left: 16, right: 16),
                 child: Column(
                   children: [
                     StepIndicator(
