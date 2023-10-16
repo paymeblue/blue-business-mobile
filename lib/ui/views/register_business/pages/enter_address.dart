@@ -6,14 +6,14 @@ import 'package:provider/provider.dart';
 
 import '../../../widgets/custom_textfield.dart';
 
-class EnterProfileView extends StatefulWidget {
-  const EnterProfileView({super.key});
+class EnterAddressView extends StatefulWidget {
+  const EnterAddressView({super.key});
 
   @override
-  State<EnterProfileView> createState() => _EnterProfileViewState();
+  State<EnterAddressView> createState() => _EnterAddressViewState();
 }
 
-class _EnterProfileViewState extends State<EnterProfileView> {
+class _EnterAddressViewState extends State<EnterAddressView> {
   @override
   Widget build(BuildContext context) {
     return Consumer<RegisterBusinessViewModel>(builder: (context, model, _) {
@@ -25,7 +25,7 @@ class _EnterProfileViewState extends State<EnterProfileView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Setup business profile",
+                  "Business Address",
                   style: AppTextStyles.header,
                 ),
                 const SizedBox(height: 5),
@@ -37,41 +37,56 @@ class _EnterProfileViewState extends State<EnterProfileView> {
                   ),
                 ),
                 const SizedBox(height: 30),
-                const TextFieldHeader(title: "Business name"),
+                const TextFieldHeader(title: "Business address"),
                 CustomTextField(
-                  hintText: "Business name",
-                  onChanged: model.onNameChanged,
-                  onSaved: model.onNameSaved,
+                  hintText: "Business address",
+                  onChanged: model.onAddressChanged,
+                  onSaved: model.onAddressSaved,
+                  maxLines: 2,
+                  minLines: 1,
+                  capitalization: TextCapitalization.sentences,
+                ),
+                const SizedBox(height: 20),
+                const TextFieldHeader(title: "City/Town"),
+                CustomTextField(
+                  hintText: "City/Town",
+                  onChanged: model.onCityChanged,
+                  onSaved: model.onCitySaved,
                   capitalization: TextCapitalization.sentences,
                 ),
                 const SizedBox(height: 20),
                 const TextFieldHeader(
-                  title: "Business category",
+                  title: "State",
                 ),
                 CustomTextField(
-                  hintText: "-Select a category-",
-                  // onChanged: model.onMiddleNameChanged,
+                  hintText: "-Select a state-",
+                  onChanged: model.onStateChanged,
                   // onSaved: model.onMiddleNameSaved,
-                  controller: model.categoryController,
+                  controller: model.stateController,
                   capitalization: TextCapitalization.sentences,
                   suffixIcon: IconButton(
                     icon: const Icon(Icons.keyboard_arrow_down_rounded),
                     onPressed: () {
-                      model.isExpanded = !model.isExpanded;
+                      model.isStateExpanded = !model.isStateExpanded;
                     },
                   ),
                 ),
                 const SizedBox(height: 20),
                 const TextFieldHeader(
-                  title: "Description",
+                  title: "Local government",
                 ),
                 CustomTextField(
-                  hintText: "",
-                  maxLines: 5,
-                  onChanged: model.onDescChanged,
-                  onSaved: model.onDescSaved,
-                  maxLength: 300,
+                  hintText: "-Select a local government-",
+                  onChanged: model.onLocalGovChanged,
+                  // onSaved: model.onMiddleNameSaved,
+                  controller: model.localGovController,
                   capitalization: TextCapitalization.sentences,
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.keyboard_arrow_down_rounded),
+                    onPressed: () {
+                      model.isLGExpanded = !model.isLGExpanded;
+                    },
+                  ),
                 ),
               ],
             ),

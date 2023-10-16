@@ -11,6 +11,7 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final Key? textFieldKey;
   final int? maxLines;
+  final int? minLines;
   final int? maxLength;
   final TextInputType? keyboardType;
   final Function(String?)? onSaved;
@@ -37,6 +38,7 @@ class CustomTextField extends StatefulWidget {
     this.controller,
     this.isPassword = false,
     this.maxLines,
+    this.minLines,
     this.maxLength,
     this.onSaved,
     this.validator,
@@ -104,6 +106,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 : AppTextStyles.textField),
         cursorColor: Theme.of(context).primaryColor,
         maxLines: widget.isPassword ? 1 : widget.maxLines,
+        minLines: widget.minLines,
         maxLength: widget.maxLength,
         keyboardType: widget.keyboardType ?? TextInputType.text,
         readOnly: widget.readOnly,

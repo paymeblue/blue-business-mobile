@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:blue_business/core/managers/app_state_manager.dart';
 import 'package:blue_business/core/managers/auth_state_manager.dart';
 import 'package:blue_business/ui/base/base_view_model.dart';
+import 'package:blue_business/ui/views/register_business/pages/enter_address.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -42,7 +45,7 @@ class RegisterBusinessViewModel extends BaseViewModel {
   }
 
   set city(String c) {
-    _city = city;
+    _city = c;
     notifyListeners();
   }
 
@@ -74,12 +77,54 @@ class RegisterBusinessViewModel extends BaseViewModel {
     return v;
   }
 
+  String? onAddressChanged(String? v) {
+    address = v ?? "";
+    setActive();
+    return v;
+  }
+
+  String? onAddressSaved(String? v) {
+    address = v ?? "";
+    setActive();
+    return v;
+  }
+
+  String? onCityChanged(String? v) {
+    city = v ?? "";
+    setActive();
+    return v;
+  }
+
+  String? onCitySaved(String? v) {
+    city = v ?? "";
+    setActive();
+    return v;
+  }
+
+  String? onCategoryChanged(String? v) {
+    setActive();
+    return v;
+  }
+
+  String? onStateChanged(String? v) {
+    setActive();
+    log(stateController.text);
+    return v;
+  }
+
+  String? onLocalGovChanged(String? v) {
+    setActive();
+    log(localGovController.text);
+    return v;
+  }
+
   List<GlobalKey<FormState>> formKeys =
       List.generate(4, (index) => GlobalKey<FormState>());
 
   List<Widget> pages = [
     const EnterProfileView(),
     const EnterBrandingView(),
+    const EnterAddressView(),
   ];
 
   List<String> _categories = [];
@@ -129,6 +174,22 @@ class RegisterBusinessViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  bool _isStateExpanded = false;
+  bool get isStateExpanded => _isStateExpanded;
+
+  set isStateExpanded(bool v) {
+    _isStateExpanded = v;
+    notifyListeners();
+  }
+
+  bool _isLGExpanded = false;
+  bool get isLGExpanded => _isLGExpanded;
+
+  set isLGExpanded(bool v) {
+    _isLGExpanded = v;
+    notifyListeners();
+  }
+
   setActive() {
     switch (authStateManager.registerBusinessIndex) {
       case 0:
@@ -138,6 +199,13 @@ class RegisterBusinessViewModel extends BaseViewModel {
         break;
       case 1:
         isActive = selectedSize.isNotEmpty;
+        break;
+      case 2:
+        isActive = address.isNotEmpty &&
+            city.isNotEmpty &&
+            localGovController.text.isNotEmpty &&
+            stateController.text.isNotEmpty;
+        break;
     }
   }
 }
