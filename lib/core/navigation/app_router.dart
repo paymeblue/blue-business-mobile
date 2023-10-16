@@ -32,6 +32,7 @@ class AppRouter extends RouterDelegate
         if (appStateManager.login) LoginView.page(),
         if (appStateManager.registerSelf) RegisterSelfView.page(),
         if (appStateManager.registerBusiness) RegisterBusinessView.page(),
+        if (appStateManager.passcode) PasscodeView.page(),
         if (appStateManager.success &&
             appStateManager.successMessage != const SizedBox() &&
             appStateManager.successTitle != const SizedBox())

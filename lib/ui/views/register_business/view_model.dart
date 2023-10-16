@@ -155,7 +155,12 @@ class RegisterBusinessViewModel extends BaseViewModel {
     if (authStateManager.registerBusinessIndex < pages.length - 1) {
       authStateManager.registerBusinessIndex++;
       isActive = false;
-    } else {}
+    } else {
+      appStateManager.success = false;
+      appStateManager.passcode = true;
+      appStateManager.registerBusiness = false;
+      authStateManager.registerBusinessIndex = 0;
+    }
   }
 
   bool _isActive = false;

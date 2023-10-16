@@ -6,4 +6,5 @@ class AppPages {
   static String registerSelfPath = "/registerSelf";
   static String registerBusinessPath = "/registerBusiness";
   static String successPath = "/success";
+  static String passcodePath = "/passcode";
 }

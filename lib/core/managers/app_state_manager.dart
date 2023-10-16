@@ -11,6 +11,7 @@ class AppStateManager extends DisposableProvider {
   bool _registerSelf = false;
   bool _registerBusiness = false;
   bool _success = false;
+  bool _passcode = false;
 
   Widget _successTitle = const SizedBox();
   Widget _successMessage = const SizedBox();
@@ -21,10 +22,16 @@ class AppStateManager extends DisposableProvider {
   bool get registerSelf => _registerSelf;
   bool get registerBusiness => _registerBusiness;
   bool get success => _success;
+  bool get passcode => _passcode;
 
   bool get splash => !_login && !_registerMethod;
   Widget get successMessage => _successMessage;
   Widget get successTitle => _successTitle;
+
+  set passcode(bool v) {
+    _passcode = v;
+    notifyListeners();
+  }
 
   set success(bool v) {
     _success = v;
