@@ -160,7 +160,7 @@ class _LoginViewState extends State<LoginView> {
                           children: [
                             Expanded(
                               child: AppButton(
-                                onTap: () {},
+                                onTap: model.handleButtonTap,
                                 isActive: model.passC.text.isNotEmpty &&
                                     auth.username.isNotEmpty,
                                 buttonText:

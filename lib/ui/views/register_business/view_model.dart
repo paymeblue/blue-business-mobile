@@ -4,6 +4,7 @@ import 'package:blue_business/ui/base/base_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'pages/enter_branding.dart';
 import 'pages/enter_profile.dart';
 
 class RegisterBusinessViewModel extends BaseViewModel {
@@ -78,6 +79,7 @@ class RegisterBusinessViewModel extends BaseViewModel {
 
   List<Widget> pages = [
     const EnterProfileView(),
+    const EnterBrandingView(),
   ];
 
   List<String> _categories = [];
@@ -93,6 +95,15 @@ class RegisterBusinessViewModel extends BaseViewModel {
     } else {
       authStateManager.registerBusinessIndex--;
     }
+  }
+
+  List<String> sizes = ["Less than 10", "10 - 49", "50 - 249", "250 or more"];
+
+  String _size = "";
+  String get selectedSize => _size;
+  set selectedSize(String s) {
+    _size = s;
+    notifyListeners();
   }
 
   handleTap() {
@@ -125,6 +136,8 @@ class RegisterBusinessViewModel extends BaseViewModel {
             categoryController.text.isNotEmpty &&
             description.isNotEmpty;
         break;
+      case 1:
+        isActive = selectedSize.isNotEmpty;
     }
   }
 }

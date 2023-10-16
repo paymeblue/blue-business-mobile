@@ -81,6 +81,12 @@ class LoginViewModel extends BaseViewModel {
     }
   }
 
+  handleButtonTap() {
+    if (authStateManager.isRegistration) {
+      appStateManager.registerBusiness = true;
+    }
+  }
+
   TextEditingController passC = TextEditingController();
 
   String? onPasswordChanged(String? v) {

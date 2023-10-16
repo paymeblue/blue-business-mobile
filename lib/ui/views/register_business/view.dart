@@ -41,7 +41,7 @@ class _RegisterBusinessViewState extends State<RegisterBusinessView> {
               ),
               body: Container(
                 padding: const EdgeInsets.only(
-                    top: 25, bottom: 30, left: 16, right: 16),
+                    top: 25, bottom: 52, left: 16, right: 16),
                 child: Column(
                   children: [
                     StepIndicator(
@@ -57,7 +57,7 @@ class _RegisterBusinessViewState extends State<RegisterBusinessView> {
                           child: model.pages[auth.registerBusinessIndex]),
                     )),
                     AppButton(
-                        onTap: () {},
+                        onTap: model.handleTap,
                         isActive: model.isActive,
                         buttonText: "Continue")
                   ],

@@ -16,4 +16,5 @@ class AppAssets {
   static String warningIcon = "$iconPath/warning.svg";
   static String faceIdIcon = "$iconPath/face_id.svg";
   static String hideIcon = "$iconPath/hide.svg";
+  static String exportIcon = "$iconPath/export.svg";
 }
