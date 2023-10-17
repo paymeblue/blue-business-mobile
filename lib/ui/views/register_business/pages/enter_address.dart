@@ -21,87 +21,93 @@ class _EnterAddressViewState extends State<EnterAddressView> {
         key: model.formKeys[model.authStateManager.registerBusinessIndex],
         child: Stack(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Business Address",
-                  style: AppTextStyles.header,
-                ),
-                const SizedBox(height: 5),
-                Padding(
-                  padding: const EdgeInsets.only(right: 50),
-                  child: Text(
-                    "Please provide details of your business by filling the information below. ",
-                    style: AppTextStyles.subHeader,
+            GestureDetector(
+              onTap: () {
+                model.isStateExpanded = false;
+                model.isLGExpanded = false;
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Business Address",
+                    style: AppTextStyles.header,
                   ),
-                ),
-                const SizedBox(height: 30),
-                const TextFieldHeader(title: "Business address"),
-                CustomTextField(
-                  hintText: "Business address",
-                  onChanged: model.onAddressChanged,
-                  onSaved: model.onAddressSaved,
-                  maxLines: 2,
-                  minLines: 1,
-                  capitalization: TextCapitalization.sentences,
-                ),
-                const SizedBox(height: 20),
-                const TextFieldHeader(title: "City/Town"),
-                CustomTextField(
-                  hintText: "City/Town",
-                  onChanged: model.onCityChanged,
-                  onSaved: model.onCitySaved,
-                  capitalization: TextCapitalization.sentences,
-                ),
-                const SizedBox(height: 20),
-                const TextFieldHeader(
-                  title: "State",
-                ),
-                CustomTextField(
-                  hintText: "-Select a state-",
-                  onChanged: model.onStateChanged,
-                  // onSaved: model.onMiddleNameSaved,
-                  controller: model.stateController,
-                  capitalization: TextCapitalization.sentences,
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.keyboard_arrow_down_rounded),
-                    onPressed: () {
-                      model.isStateExpanded = !model.isStateExpanded;
-                    },
+                  const SizedBox(height: 5),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 50),
+                    child: Text(
+                      "Please provide details of your business by filling the information below. ",
+                      style: AppTextStyles.subHeader,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                const TextFieldHeader(
-                  title: "Local government",
-                ),
-                CustomTextField(
-                  hintText: "-Select a local government-",
-                  onChanged: model.onLocalGovChanged,
-                  // onSaved: model.onMiddleNameSaved,
-                  controller: model.localGovController,
-                  capitalization: TextCapitalization.sentences,
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.keyboard_arrow_down_rounded),
-                    onPressed: () {
-                      model.isLGExpanded = !model.isLGExpanded;
-                    },
+                  const SizedBox(height: 30),
+                  const TextFieldHeader(title: "Business address"),
+                  CustomTextField(
+                    hintText: "Business address",
+                    onChanged: model.onAddressChanged,
+                    onSaved: model.onAddressSaved,
+                    maxLines: 2,
+                    minLines: 1,
+                    capitalization: TextCapitalization.sentences,
                   ),
-                ),
-              ],
+                  const SizedBox(height: 20),
+                  const TextFieldHeader(title: "City/Town"),
+                  CustomTextField(
+                    hintText: "City/Town",
+                    onChanged: model.onCityChanged,
+                    onSaved: model.onCitySaved,
+                    capitalization: TextCapitalization.sentences,
+                  ),
+                  const SizedBox(height: 20),
+                  const TextFieldHeader(
+                    title: "State",
+                  ),
+                  CustomTextField(
+                    hintText: "-Select a state-",
+                    onChanged: model.onStateChanged,
+                    // onSaved: model.onMiddleNameSaved,
+                    controller: model.stateController,
+                    capitalization: TextCapitalization.sentences,
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.keyboard_arrow_down_rounded),
+                      onPressed: () {
+                        model.isStateExpanded = !model.isStateExpanded;
+                        model.isLGExpanded = false;
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const TextFieldHeader(
+                    title: "Local government",
+                  ),
+                  CustomTextField(
+                    hintText: "-Select a local government-",
+                    onChanged: model.onLocalGovChanged,
+                    // onSaved: model.onMiddleNameSaved,
+                    controller: model.localGovController,
+                    capitalization: TextCapitalization.sentences,
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.keyboard_arrow_down_rounded),
+                      onPressed: () {
+                        model.isLGExpanded = !model.isLGExpanded;
+                        model.isStateExpanded = false;
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
             Positioned(
-              top: 290,
-              child: model.isExpanded
+              bottom: model.isStateExpanded ? 180 : 70,
+              child: model.isStateExpanded || model.isLGExpanded
                   ? model.categories.isNotEmpty
                       ? AnimatedContainer(
                           width: model.size.width,
-                          height: model.categories.isEmpty
-                              ? 55
-                              : model.categories.length * 50 <
-                                      model.size.height / 2.4
-                                  ? model.categories.length * 50
-                                  : model.size.height / 2.4,
+                          height: model.categories.length * 50 <
+                                  model.size.height / 2.4
+                              ? model.categories.length * 50
+                              : model.size.height / 2.4,
                           duration: const Duration(
                             milliseconds: 350,
                           ),
