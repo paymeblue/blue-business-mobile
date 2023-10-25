@@ -17,6 +17,8 @@ class AppStateManager extends DisposableProvider {
   bool _otp = false;
   bool _resetPin = false;
   bool _resetPhone = false;
+  bool _recoveryPhone = false;
+  bool _recoveryCode = false;
 
   Widget _successTitle = const SizedBox();
   Widget _successMessage = const SizedBox();
@@ -33,10 +35,22 @@ class AppStateManager extends DisposableProvider {
   bool get otp => _otp;
   bool get resetPin => _resetPin;
   bool get resetPhone => _resetPhone;
+  bool get recoveryPhone => _recoveryPhone;
+  bool get recoveryCode => _recoveryCode;
 
   bool get splash => !_login && !_registerMethod;
   Widget get successMessage => _successMessage;
   Widget get successTitle => _successTitle;
+
+  set recoveryCode(bool v) {
+    _recoveryCode = v;
+    notifyListeners();
+  }
+
+  set recoveryPhone(bool v) {
+    _recoveryPhone = v;
+    notifyListeners();
+  }
 
   set resetPhone(bool v) {
     _resetPhone = v;

@@ -91,6 +91,10 @@ class LoginViewModel extends BaseViewModel {
     appStateManager.forgotPassword = true;
   }
 
+  goToResetPhone() {
+    appStateManager.recoveryCode = true;
+  }
+
   TextEditingController passC = TextEditingController();
 
   String? onPasswordChanged(String? v) {

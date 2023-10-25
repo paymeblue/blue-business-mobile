@@ -77,7 +77,9 @@ class _LoginViewState extends State<LoginView> {
                                       ),
                                       TextSpan(
                                         recognizer: TapGestureRecognizer()
-                                          ..onTap = () {},
+                                          ..onTap = () {
+                                            model.goToResetPhone();
+                                          },
                                         text: "Lost your number?",
                                         style: AppTextStyles.subHeader.copyWith(
                                             color: AppColors.primaryColor),

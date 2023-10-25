@@ -10,4 +10,6 @@ class AppPages {
   static String forgotPasswordPath = "/forgotPassword";
   static String otpPath = "/otp";
   static String resetPasswordPath = "/resetPassword";
+  static String resetPhonePath = "/resetPhone";
+  static String recoveryCodePath = "/recoveryCode";
 }

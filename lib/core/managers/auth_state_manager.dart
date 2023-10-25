@@ -5,6 +5,8 @@ class AuthStateManager extends DisposableProvider {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   String _name = "";
+
+  TextEditingController phoneCotroller = TextEditingController(text: "+234");
   String get name => _name;
 
   set name(String v) {

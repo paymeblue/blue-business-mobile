@@ -33,6 +33,8 @@ class AppRouter extends RouterDelegate
         if (appStateManager.registerSelf) RegisterSelfView.page(),
         if (appStateManager.registerBusiness) RegisterBusinessView.page(),
         if (appStateManager.forgotPassword) ForgotPasswordView.page(),
+        if (appStateManager.recoveryCode) RecoveryCodeView.page(),
+        if (appStateManager.resetPhone) ResetPhoneView.page(),
         if (appStateManager.otp) SendOtpView.page(),
         if (appStateManager.resetPassword) ResetPasswordView.page(),
         if (appStateManager.passcode) PasscodeView.page(),

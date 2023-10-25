@@ -58,7 +58,9 @@ class _EnterOtpViewState extends State<EnterOtpView> {
                 const SizedBox(width: 10),
                 model.canResend
                     ? AppSmallButton(
-                        onTap: () {},
+                        onTap: () {
+                          model.startCountdown();
+                        },
                         buttonText: "Resend code",
                       )
                     : Text(

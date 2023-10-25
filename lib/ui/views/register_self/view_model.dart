@@ -268,6 +268,9 @@ class RegisterSelfViewModel extends BaseViewModel {
     if (authStateManager.signupIndex < pages.length - 1) {
       authStateManager.signupIndex++;
       isActive = false;
+      if (authStateManager.signupIndex == 1) {
+        startCountdown();
+      }
     } else {
       goToSuccess();
     }
