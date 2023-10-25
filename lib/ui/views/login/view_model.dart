@@ -87,6 +87,10 @@ class LoginViewModel extends BaseViewModel {
     }
   }
 
+  goToForgotPassword() {
+    appStateManager.forgotPassword = true;
+  }
+
   TextEditingController passC = TextEditingController();
 
   String? onPasswordChanged(String? v) {

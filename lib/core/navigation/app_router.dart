@@ -1,3 +1,5 @@
+import 'package:blue_business/ui/views/forgot_pasword/view.dart';
+import 'package:blue_business/ui/views/otp/view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:blue_business/screens.dart';
 import '../managers/app_state_manager.dart';
@@ -32,6 +34,8 @@ class AppRouter extends RouterDelegate
         if (appStateManager.login) LoginView.page(),
         if (appStateManager.registerSelf) RegisterSelfView.page(),
         if (appStateManager.registerBusiness) RegisterBusinessView.page(),
+        if (appStateManager.forgotPassword) ForgotPasswordView.page(),
+        if (appStateManager.otp) SendOtpView.page(),
         if (appStateManager.passcode) PasscodeView.page(),
         if (appStateManager.success &&
             appStateManager.successMessage != const SizedBox() &&

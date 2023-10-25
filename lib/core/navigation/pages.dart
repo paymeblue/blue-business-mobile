@@ -7,4 +7,6 @@ class AppPages {
   static String registerBusinessPath = "/registerBusiness";
   static String successPath = "/success";
   static String passcodePath = "/passcode";
+  static String forgotPasswordPath = "/forgotPassword";
+  static String otpPath = "/otp";
 }

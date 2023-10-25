@@ -12,6 +12,11 @@ class AppStateManager extends DisposableProvider {
   bool _registerBusiness = false;
   bool _success = false;
   bool _passcode = false;
+  bool _forgotPassword = false;
+  bool _resetPassword = false;
+  bool _otp = false;
+  bool _resetPin = false;
+  bool _resetPhone = false;
 
   Widget _successTitle = const SizedBox();
   Widget _successMessage = const SizedBox();
@@ -23,10 +28,40 @@ class AppStateManager extends DisposableProvider {
   bool get registerBusiness => _registerBusiness;
   bool get success => _success;
   bool get passcode => _passcode;
+  bool get forgotPassword => _forgotPassword;
+  bool get resetPassword => _resetPassword;
+  bool get otp => _otp;
+  bool get resetPin => _resetPin;
+  bool get resetPhone => _resetPhone;
 
   bool get splash => !_login && !_registerMethod;
   Widget get successMessage => _successMessage;
   Widget get successTitle => _successTitle;
+
+  set resetPhone(bool v) {
+    _resetPhone = v;
+    notifyListeners();
+  }
+
+  set resetPin(bool v) {
+    _resetPin = v;
+    notifyListeners();
+  }
+
+  set forgotPassword(bool v) {
+    _forgotPassword = v;
+    notifyListeners();
+  }
+
+  set resetPassword(bool v) {
+    _resetPassword = v;
+    notifyListeners();
+  }
+
+  set otp(bool v) {
+    _otp = v;
+    notifyListeners();
+  }
 
   set passcode(bool v) {
     _passcode = v;

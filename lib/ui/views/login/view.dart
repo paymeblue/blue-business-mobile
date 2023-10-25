@@ -119,7 +119,9 @@ class _LoginViewState extends State<LoginView> {
                           Align(
                               alignment: Alignment.centerRight,
                               child: AppTextButton(
-                                  onTap: () {},
+                                  onTap: () {
+                                    model.goToForgotPassword();
+                                  },
                                   buttonText: "Forgot Password?")),
                         const SizedBox(height: 36),
                         auth.isRegistration
