@@ -141,89 +141,92 @@ class _HomeViewState extends State<HomeView> {
                               isKycComplete: true,
                             ),
                           ),
-                          Container(
-                            height: 150,
-                            width: size.width,
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.only(top: 24),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "To-do",
-                                  style: AppTextStyles.subHeader.copyWith(
-                                      color: AppColors.textcolor,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                Expanded(
-                                  child: ListView.separated(
-                                    padding: const EdgeInsets.only(
-                                        top: 10, bottom: 25),
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: model.todos().length,
-                                    itemBuilder: (context, i) {
-                                      Todo todo = model.todos()[i];
-
-                                      return GestureDetector(
-                                        onTap: todo.onTap,
-                                        child: Container(
-                                          height: 75,
-                                          width: 245,
-                                          padding: const EdgeInsets.all(15.5),
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: AppColors.white,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                    offset: const Offset(0, 2),
-                                                    blurRadius: 8,
-                                                    spreadRadius: 8,
-                                                    color: Colors.black
-                                                        .withOpacity(.025))
-                                              ]),
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: Text(
-                                                  todo.text,
-                                                  style: AppTextStyles.subText
-                                                      .copyWith(
-                                                          color: AppColors
-                                                              .textcolor),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 8,
-                                              ),
-                                              Container(
-                                                height: 30,
-                                                width: 30,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    border: Border.all(
-                                                        color: const Color(
-                                                            0xFFE5E6E8))),
-                                                child: Icon(
-                                                  Icons.arrow_forward_ios,
-                                                  color: AppColors.textcolor,
-                                                  size: 14,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    separatorBuilder: (context, i) =>
-                                        const SizedBox(
-                                      width: 15,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          const SizedBox(
+                            height: 25,
                           ),
+                          // Container(
+                          //   height: 150,
+                          //   width: size.width,
+                          //   alignment: Alignment.center,
+                          //   padding: const EdgeInsets.only(top: 24),
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Text(
+                          //         "To-do",
+                          //         style: AppTextStyles.subHeader.copyWith(
+                          //             color: AppColors.textcolor,
+                          //             fontWeight: FontWeight.w600),
+                          //       ),
+                          //       Expanded(
+                          //         child: ListView.separated(
+                          //           padding: const EdgeInsets.only(
+                          //               top: 10, bottom: 25),
+                          //           scrollDirection: Axis.horizontal,
+                          //           itemCount: model.todos().length,
+                          //           itemBuilder: (context, i) {
+                          //             Todo todo = model.todos()[i];
+
+                          //             return GestureDetector(
+                          //               onTap: todo.onTap,
+                          //               child: Container(
+                          //                 height: 75,
+                          //                 width: 245,
+                          //                 padding: const EdgeInsets.all(15.5),
+                          //                 decoration: BoxDecoration(
+                          //                     borderRadius:
+                          //                         BorderRadius.circular(5),
+                          //                     color: AppColors.white,
+                          //                     boxShadow: [
+                          //                       BoxShadow(
+                          //                           offset: const Offset(0, 2),
+                          //                           blurRadius: 8,
+                          //                           spreadRadius: 8,
+                          //                           color: Colors.black
+                          //                               .withOpacity(.025))
+                          //                     ]),
+                          //                 child: Row(
+                          //                   children: [
+                          //                     Expanded(
+                          //                       child: Text(
+                          //                         todo.text,
+                          //                         style: AppTextStyles.subText
+                          //                             .copyWith(
+                          //                                 color: AppColors
+                          //                                     .textcolor),
+                          //                       ),
+                          //                     ),
+                          //                     const SizedBox(
+                          //                       width: 8,
+                          //                     ),
+                          //                     Container(
+                          //                       height: 30,
+                          //                       width: 30,
+                          //                       decoration: BoxDecoration(
+                          //                           shape: BoxShape.circle,
+                          //                           border: Border.all(
+                          //                               color: const Color(
+                          //                                   0xFFE5E6E8))),
+                          //                       child: Icon(
+                          //                         Icons.arrow_forward_ios,
+                          //                         color: AppColors.textcolor,
+                          //                         size: 14,
+                          //                       ),
+                          //                     ),
+                          //                   ],
+                          //                 ),
+                          //               ),
+                          //             );
+                          //           },
+                          //           separatorBuilder: (context, i) =>
+                          //               const SizedBox(
+                          //             width: 15,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                           Padding(
                             padding: const EdgeInsets.only(left: 13, right: 30),
                             child: Row(
@@ -259,33 +262,6 @@ class _HomeViewState extends State<HomeView> {
                                       )),
                             ),
                           ),
-                          const SizedBox(height: 33),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Transactions",
-                                  style: AppTextStyles.header,
-                                ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Text(
-                                    "View all",
-                                    style: AppTextStyles.subHeader.copyWith(
-                                        color: AppColors.primaryColor),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 25),
-                          Expanded(
-                            child: Padding(
-                                padding: const EdgeInsets.only(right: 16),
-                                child: Container()),
-                          )
                         ],
                       ),
                     ),
