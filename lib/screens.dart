@@ -5,3 +5,6 @@ export 'ui/views/register_self/view.dart';
 export 'ui/views/register_business/view.dart';
 export 'ui/views/success/view.dart';
 export 'ui/views/passcode/view.dart';
+export 'ui/views/forgot_pasword/view.dart';
+export 'ui/views/otp/view.dart';
+export 'ui/views/reset_password/view.dart';
