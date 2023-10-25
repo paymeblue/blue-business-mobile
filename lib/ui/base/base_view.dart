@@ -62,3 +62,13 @@ class _BaseViewState<T extends ChangeNotifier> extends State<BaseView<T>> {
     );
   }
 }
+
+class AppDropdown<T> {
+  final T value;
+  final String title;
+
+  AppDropdown({
+    required this.title,
+    required this.value,
+  });
+}

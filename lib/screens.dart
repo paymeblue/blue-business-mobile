@@ -1,1 +1,13 @@
 export "ui/views/splash/view.dart";
+export 'ui/views/login/view.dart';
+export 'ui/views/register_method/view.dart';
+export 'ui/views/register_self/view.dart';
+export 'ui/views/register_business/view.dart';
+export 'ui/views/success/view.dart';
+export 'ui/views/passcode/view.dart';
+export 'ui/views/forgot_pasword/view.dart';
+export 'ui/views/otp/view.dart';
+export 'ui/views/reset_password/view.dart';
+export 'ui/views/reset_phone/view.dart';
+export 'ui/views/recovery_code/view.dart';
+export 'ui/views/dashboard/view.dart';

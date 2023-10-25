@@ -1,4 +1,8 @@
 class AppConstants {
+  static String accessToken = "";
+
+  static String tokenType = "";
+
   AppConstants._();
   static const connectTimeout = 30000;
   static const receiveTimeout = 30000;

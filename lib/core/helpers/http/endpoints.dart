@@ -1,4 +1,6 @@
 class Endpoints {
+  static String register = "";
+
   Endpoints._();
 
   //BASE-URLS

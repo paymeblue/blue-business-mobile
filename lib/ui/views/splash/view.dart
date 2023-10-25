@@ -134,12 +134,21 @@ class _SplashViewState extends State<SplashView> {
                             height: 20,
                           ),
                           AppButton(
-                              onTap: () {}, buttonText: "Create an account"),
+                            onTap: () {
+                              model.appStateManager.openSignup(context);
+                            },
+                            buttonText: "Create an account",
+                            width: 330,
+                          ),
                           const SizedBox(height: 15),
                           AppButton(
-                            onTap: () {},
+                            onTap: () {
+                              model.appStateManager.goToLogin();
+                              model.authStateManager.setIsRegistration(false);
+                            },
                             buttonText: "Login",
                             isPrimary: false,
+                            width: 330,
                           ),
                           const SizedBox(height: 28),
                           SizedBox(

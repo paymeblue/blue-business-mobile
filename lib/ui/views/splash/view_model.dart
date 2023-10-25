@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:blue_business/core/managers/app_state_manager.dart';
+import 'package:blue_business/core/managers/auth_state_manager.dart';
 import 'package:blue_business/ui/base/base_view_model.dart';
 import 'package:provider/provider.dart';
 
 class SplashViewModel extends BaseViewModel {
   late AppStateManager appStateManager;
-  // late AuthStateManager authStateManager;
+  late AuthStateManager authStateManager;
 
   double _height = 0;
   double get containerHeight => _height;
@@ -40,8 +41,8 @@ class SplashViewModel extends BaseViewModel {
 
   init() async {
     appStateManager = Provider.of<AppStateManager>(appContext!, listen: false);
-    // authStateManager =
-    //     Provider.of<AuthStateManager>(appContext!, listen: false);
+    authStateManager =
+        Provider.of<AuthStateManager>(appContext!, listen: false);
 
     Future.delayed(const Duration(milliseconds: 1500), () {
       containerHeight = 435;

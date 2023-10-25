@@ -1,30 +1,44 @@
+import 'package:blue_business/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class CustomAppBar {
+class BlueAppBar {
   static show(
-          {required String title,
+          {Widget? title,
           bool showBack = true,
+          double? elevation,
           double fontSize = 20,
+          VoidCallback? onBackTap,
+          IconData? leadingIcon,
           Key? key,
-          bool automaticallyImplyLeading = false,
           Widget? leading,
           List<Widget>? actions,
           PreferredSizeWidget? bottom}) =>
       AppBar(
-        key: key,
-        leading: leading,
-        title: Text(
-          title,
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.transparent,
-        centerTitle: showBack,
-        iconTheme: const IconThemeData(color: Colors.black, size: 20),
-        automaticallyImplyLeading: automaticallyImplyLeading,
-        elevation: 0,
+        elevation: elevation,
+        leading: leading ??
+            GestureDetector(
+              onTap: () {
+                if (onBackTap != null) {
+                  onBackTap();
+                }
+              },
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 1000),
+                margin: const EdgeInsets.only(left: 16),
+                height: 34,
+                width: 34,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: const Color(0xFFE5E6E8))),
+                child: Icon(
+                  leadingIcon ?? Icons.close,
+                  color: AppColors.textcolor,
+                  size: 16.5,
+                ),
+              ),
+            ),
+        title: title,
+        automaticallyImplyLeading: false,
         actions: actions,
         bottom: bottom,
       );

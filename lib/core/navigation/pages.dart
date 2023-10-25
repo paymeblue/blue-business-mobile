@@ -1,3 +1,16 @@
-class AppPages{
+class AppPages {
   static String splashPath = '/splash';
+
+  static String loginPath = "/login";
+  static String registerMethodPath = "/registerMethod";
+  static String registerSelfPath = "/registerSelf";
+  static String registerBusinessPath = "/registerBusiness";
+  static String successPath = "/success";
+  static String passcodePath = "/passcode";
+  static String forgotPasswordPath = "/forgotPassword";
+  static String otpPath = "/otp";
+  static String resetPasswordPath = "/resetPassword";
+  static String resetPhonePath = "/resetPhone";
+  static String recoveryCodePath = "/recoveryCode";
+  static String dashPath = "/dashboard";
 }
