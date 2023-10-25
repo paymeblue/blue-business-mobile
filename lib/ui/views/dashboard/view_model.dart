@@ -1,6 +1,7 @@
 import 'package:blue_business/core/managers/app_state_manager.dart';
 import 'package:blue_business/ui/base/base_view_model.dart';
 import 'package:blue_business/ui/views/bills/view.dart';
+import 'package:blue_business/ui/views/home/view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +17,7 @@ class DashboardViewModel extends BaseViewModel {
 
   List<Widget> pages() {
     return [
-      Container(),
+      const HomeView(),
       Container(),
       Container(),
       BillsHomeView(onBackTap: () {
@@ -24,7 +25,6 @@ class DashboardViewModel extends BaseViewModel {
         pageController.jumpToPage(appStateManager.dashIndex);
       }),
       Container(),
-      // const HomeView(),
       // Container(),
       // MessageHomeView(onBackTap: () {
       //   onPageChanged(0);

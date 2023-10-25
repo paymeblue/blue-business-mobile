@@ -9,6 +9,13 @@ class AppAssets {
   static String aboutBlueIcon = "$iconPath/about_blue.png";
   static String blueRegisterIcon = "$logoPath/blue_register_icon.png";
   static String phoneRegisterIcon = "$logoPath/phone_register_icon.png";
+  static String launcher = "$imagePath/launcher.png";
+  static String phoneImage = "$imagePath/phone.png";
+  static String watermark = "$imagePath/watermark.png";
+  static String wemaLogo = "$imagePath/wema_logo.png";
+  static String polarisLogo = "$imagePath/polaris_logo.png";
+  static String messageNotification = "$imagePath/notification_message.png";
+  static String avatarPlaceholder = "$imagePath/avatar_placeholder.png";
 
   //ICONS
   static String searchIcon = "$iconPath/search.svg";
@@ -18,6 +25,10 @@ class AppAssets {
   static String hideIcon = "$iconPath/hide.svg";
   static String exportIcon = "$iconPath/export.svg";
   static String comingSoonIcon = "$iconPath/coming_soon.svg";
+  static String userIcon = "$iconPath/user.svg";
+  static String notificationIcon = "$iconPath/notifications.svg";
+  static String copyWhiteIcon = "$iconPath/copy_white.svg";
+  static String copyIcon = "$iconPath/copy.svg";
 
   static String activeNavItemIcon(String item) {
     return "assets/images/navbar_icons/active/$item.svg";
