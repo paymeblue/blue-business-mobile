@@ -111,7 +111,7 @@ class _PasscodeViewState extends State<PasscodeView> {
                         )),
                     const Spacer(flex: 2),
                     AppButton(
-                      onTap: model.goBack,
+                      onTap: model.handleButtonTap,
                       buttonText: "Create PIN",
                       isActive: auth.passcode.length == 4,
                     ),

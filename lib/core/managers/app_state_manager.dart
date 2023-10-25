@@ -19,9 +19,12 @@ class AppStateManager extends DisposableProvider {
   bool _resetPhone = false;
   bool _recoveryPhone = false;
   bool _recoveryCode = false;
+  bool _dashboard = false;
 
   Widget _successTitle = const SizedBox();
   Widget _successMessage = const SizedBox();
+
+  int _index = 0;
 
   bool get isInitialised => _initialised;
   bool get login => _login;
@@ -37,10 +40,25 @@ class AppStateManager extends DisposableProvider {
   bool get resetPhone => _resetPhone;
   bool get recoveryPhone => _recoveryPhone;
   bool get recoveryCode => _recoveryCode;
+  bool get dashboard => _dashboard;
 
   bool get splash => !_login && !_registerMethod;
   Widget get successMessage => _successMessage;
   Widget get successTitle => _successTitle;
+
+  int get dashIndex => _index;
+
+  goToDashboard() {
+    _index = 0;
+    _dashboard = true;
+    _success = false;
+    _login = false;
+    _registerMethod = false;
+    _registerSelf = false;
+    _registerBusiness = false;
+
+    notifyListeners();
+  }
 
   set recoveryCode(bool v) {
     _recoveryCode = v;

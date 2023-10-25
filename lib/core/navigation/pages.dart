@@ -12,4 +12,5 @@ class AppPages {
   static String resetPasswordPath = "/resetPassword";
   static String resetPhonePath = "/resetPhone";
   static String recoveryCodePath = "/recoveryCode";
+  static String dashPath = "/dashboard";
 }

@@ -38,6 +38,7 @@ class AppRouter extends RouterDelegate
         if (appStateManager.otp) SendOtpView.page(),
         if (appStateManager.resetPassword) ResetPasswordView.page(),
         if (appStateManager.passcode) PasscodeView.page(),
+        if (appStateManager.dashboard) DashboardView.page(),
         if (appStateManager.success &&
             appStateManager.successMessage != const SizedBox() &&
             appStateManager.successTitle != const SizedBox())

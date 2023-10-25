@@ -84,6 +84,8 @@ class LoginViewModel extends BaseViewModel {
   handleButtonTap() {
     if (authStateManager.isRegistration) {
       appStateManager.registerBusiness = true;
+    } else {
+      goToDash();
     }
   }
 
@@ -93,6 +95,10 @@ class LoginViewModel extends BaseViewModel {
 
   goToResetPhone() {
     appStateManager.recoveryCode = true;
+  }
+
+  goToDash() {
+    appStateManager.goToDashboard();
   }
 
   TextEditingController passC = TextEditingController();

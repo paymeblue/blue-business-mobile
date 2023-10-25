@@ -10,3 +10,4 @@ export 'ui/views/otp/view.dart';
 export 'ui/views/reset_password/view.dart';
 export 'ui/views/reset_phone/view.dart';
 export 'ui/views/recovery_code/view.dart';
+export 'ui/views/dashboard/view.dart';
