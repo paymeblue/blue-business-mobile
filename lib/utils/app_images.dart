@@ -17,4 +17,13 @@ class AppAssets {
   static String faceIdIcon = "$iconPath/face_id.svg";
   static String hideIcon = "$iconPath/hide.svg";
   static String exportIcon = "$iconPath/export.svg";
+  static String comingSoonIcon = "$iconPath/coming_soon.svg";
+
+  static String activeNavItemIcon(String item) {
+    return "assets/images/navbar_icons/active/$item.svg";
+  }
+
+  static String inactiveNavItemIcon(String item) {
+    return "assets/images/navbar_icons/inactive/$item.svg";
+  }
 }

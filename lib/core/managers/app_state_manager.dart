@@ -48,6 +48,11 @@ class AppStateManager extends DisposableProvider {
 
   int get dashIndex => _index;
 
+  set dashIndex(int v) {
+    _index = v;
+    notifyListeners();
+  }
+
   goToDashboard() {
     _index = 0;
     _dashboard = true;
