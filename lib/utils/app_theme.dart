@@ -55,6 +55,7 @@ class AppColors {
   static Color white = const Color(0xFFFFFFFF);
   static Color offWhite = const Color(0xFFFEFEFE);
   static Color grey = const Color(0xFFF7F7FA);
+  static Color grey2 = const Color(0xFF667085);
   static Color bgGrey = const Color(0xFFEAEAFE);
   static Color midGrey = const Color(0xFFE5E6E8);
   static Color textcolor = const Color(0xFF232949);
@@ -67,6 +68,7 @@ class AppColors {
   static Color brightBlue = const Color(0xFF807FF3);
   static Color accentGreen = const Color(0xFFF6FEFA);
   static Color green = const Color(0xFF039C53);
+  static Color otherGreen = const Color(0xFF009999);
   static Color bg = const Color(0xFFF5F7FD);
   static Color dark = const Color(0xFF181D36);
   static Color accountLogoBg = const Color(0xFFF9E9DC);

@@ -284,7 +284,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                           ),
                           const SizedBox(
-                            height: 8,
+                            height: 15,
                           ),
                           Text(
                             "POS Terminals",
@@ -298,7 +298,149 @@ class _HomeViewState extends State<HomeView> {
                             height: 85,
                             width: model.size.width,
                             decoration: BoxDecoration(
-                                border: Border.all(color: AppColors.bgGrey)),
+                              border: Border.all(color: AppColors.bgGrey),
+                            ),
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "${Platform.isAndroid ? "NGN" : "\u{20a6}"}60,000,000",
+                                        style: AppTextStyles.header2,
+                                      ),
+                                      const SizedBox(
+                                        height: 6,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.arrow_upward,
+                                            color: AppColors.otherGreen,
+                                            size: 20,
+                                          ),
+                                          const SizedBox(
+                                            width: 6,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 3),
+                                            child: RichText(
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text: "40% ",
+                                                    style: AppTextStyles
+                                                        .smallText
+                                                        .copyWith(
+                                                      color:
+                                                          AppColors.otherGreen,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: "vs last month",
+                                                    style: AppTextStyles
+                                                        .smallText
+                                                        .copyWith(
+                                                      color: AppColors.grey2,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "Mobile account",
+                            style:
+                                AppTextStyles.subHeader.copyWith(fontSize: 13),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Container(
+                            height: 85,
+                            width: model.size.width,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: AppColors.bgGrey),
+                            ),
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "${Platform.isAndroid ? "NGN" : "\u{20a6}"}60,000,000.00",
+                                        style: AppTextStyles.header2,
+                                      ),
+                                      const SizedBox(
+                                        height: 6,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.arrow_downward,
+                                            color: AppColors.error,
+                                            size: 20,
+                                          ),
+                                          const SizedBox(
+                                            width: 6,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 3),
+                                            child: RichText(
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text: "40% ",
+                                                    style: AppTextStyles
+                                                        .smallText
+                                                        .copyWith(
+                                                      color: AppColors.error,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: "vs last month",
+                                                    style: AppTextStyles
+                                                        .smallText
+                                                        .copyWith(
+                                                      color: AppColors.grey2,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),
