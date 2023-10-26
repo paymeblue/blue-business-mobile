@@ -50,6 +50,7 @@ dependencies:
   cloud_firestore:
   sqflite:
   path_provider:
+  fl_chart:
   screenshot: ^2.1.0
   change_app_package_name: ^1.1.0
   avatar_view: ^1.0.1

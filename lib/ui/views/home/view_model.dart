@@ -15,6 +15,7 @@ class HomeViewModel extends BaseViewModel {
 
   init(BuildContext context) {
     appStateManager = Provider.of<AppStateManager>(appContext!, listen: false);
+    size = MediaQuery.sizeOf(context);
   }
 
   bool _hideBalance = false;

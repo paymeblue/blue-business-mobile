@@ -262,6 +262,44 @@ class _HomeViewState extends State<HomeView> {
                                       )),
                             ),
                           ),
+                          const SizedBox(height: 25),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Total Sales",
+                                  style: AppTextStyles.header2,
+                                ),
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Text(
+                                    "View all",
+                                    style: AppTextStyles.subHeader.copyWith(
+                                        color: AppColors.primaryColor),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            "POS Terminals",
+                            style:
+                                AppTextStyles.subHeader.copyWith(fontSize: 13),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Container(
+                            height: 85,
+                            width: model.size.width,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.bgGrey)),
+                          )
                         ],
                       ),
                     ),

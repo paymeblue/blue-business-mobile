@@ -77,10 +77,18 @@ class AppTextStyles {
   AppTextStyles._();
 
   static TextStyle header = TextStyle(
-      fontFamily: "Gilroy",
-      fontSize: 23,
-      fontWeight: FontWeight.w600,
-      color: AppColors.textcolor);
+    fontFamily: "Gilroy",
+    fontSize: 23,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textcolor,
+  );
+
+  static TextStyle header2 = TextStyle(
+    fontFamily: "Gilroy",
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textcolor,
+  );
 
   static TextStyle numberButton = TextStyle(
       fontSize: 31,
