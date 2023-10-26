@@ -21,6 +21,7 @@ class AppStateManager extends DisposableProvider {
   bool _recoveryCode = false;
   bool _dashboard = false;
   bool _sendMoney = false;
+  bool _shareQr = false;
 
   Widget _successTitle = const SizedBox();
   Widget _successMessage = const SizedBox();
@@ -43,12 +44,18 @@ class AppStateManager extends DisposableProvider {
   bool get recoveryCode => _recoveryCode;
   bool get dashboard => _dashboard;
   bool get sendMoney => _sendMoney;
+  bool get shareQr => _shareQr;
 
   bool get splash => !_login && !_registerMethod;
   Widget get successMessage => _successMessage;
   Widget get successTitle => _successTitle;
 
   int get dashIndex => _index;
+
+  set shareQr(bool v) {
+    _shareQr = v;
+    notifyListeners();
+  }
 
   set sendMoney(bool v) {
     _sendMoney = v;

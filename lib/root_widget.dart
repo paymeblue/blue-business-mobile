@@ -1,4 +1,5 @@
 import 'package:blue_business/core/managers/auth_state_manager.dart';
+import 'package:blue_business/core/managers/payment_state_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:blue_business/utils/app_theme.dart';
 import 'package:oktoast/oktoast.dart';
@@ -20,6 +21,7 @@ class MobileScaffoldApp extends StatefulWidget {
 class _MobileScaffoldAppState extends State<MobileScaffoldApp> {
   final _appStateManager = AppStateManager();
   final _authStateManager = AuthStateManager();
+  final _paymentStateManager = PaymentStateManager();
 
   late AppRouter _appRouter;
 
@@ -43,6 +45,9 @@ class _MobileScaffoldAppState extends State<MobileScaffoldApp> {
         ),
         ChangeNotifierProvider(
           create: (context) => _authStateManager,
+        ),
+        ChangeNotifierProvider(
+          create: (context) => _paymentStateManager,
         ),
         ...providers,
       ],

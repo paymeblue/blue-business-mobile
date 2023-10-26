@@ -11,3 +11,5 @@ export 'ui/views/reset_password/view.dart';
 export 'ui/views/reset_phone/view.dart';
 export 'ui/views/recovery_code/view.dart';
 export 'ui/views/dashboard/view.dart';
+export 'ui/views/share_qr/view.dart';
+export 'ui/views/payment/view.dart';

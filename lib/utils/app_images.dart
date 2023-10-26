@@ -16,6 +16,7 @@ class AppAssets {
   static String polarisLogo = "$imagePath/polaris_logo.png";
   static String messageNotification = "$imagePath/notification_message.png";
   static String avatarPlaceholder = "$imagePath/avatar_placeholder.png";
+  static String blueBgLogo = "$logoPath/blue_bg_logo.png";
 
   //ICONS
   static String searchIcon = "$iconPath/search.svg";
@@ -29,6 +30,11 @@ class AppAssets {
   static String notificationIcon = "$iconPath/notifications.svg";
   static String copyWhiteIcon = "$iconPath/copy_white.svg";
   static String copyIcon = "$iconPath/copy.svg";
+  static String payBlueIcon = "$iconPath/pay_blue.svg";
+  static String payQrIcon = "$iconPath/pay_qr.svg";
+  static String payPhoneIcon = "$iconPath/pay_phone.svg";
+  static String payOfflineIcon = "$iconPath/pay_offline.svg";
+  static String scanIcon = "$iconPath/scan.svg";
 
   static String activeNavItemIcon(String item) {
     return "assets/images/navbar_icons/active/$item.svg";

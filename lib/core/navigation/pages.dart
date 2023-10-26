@@ -13,4 +13,6 @@ class AppPages {
   static String resetPhonePath = "/resetPhone";
   static String recoveryCodePath = "/recoveryCode";
   static String dashPath = "/dashboard";
+  static String shareQrPath = "/shaeQr";
+  static String paymentPath = "/pay";
 }

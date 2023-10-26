@@ -1,4 +1,5 @@
 import 'package:blue_business/core/managers/app_state_manager.dart';
+import 'package:blue_business/core/managers/payment_state_manager.dart';
 import 'package:blue_business/ui/base/base_view_model.dart';
 import 'package:blue_business/ui/widgets/app_button.dart';
 import 'package:blue_business/utils/app_images.dart';
@@ -11,10 +12,13 @@ import 'package:provider/provider.dart';
 
 class HomeViewModel extends BaseViewModel {
   late AppStateManager appStateManager;
+  late PaymentStateManager paymentStateManager;
   late Size size;
 
   init(BuildContext context) {
     appStateManager = Provider.of<AppStateManager>(appContext!, listen: false);
+    paymentStateManager =
+        Provider.of<PaymentStateManager>(appContext!, listen: false);
     size = MediaQuery.sizeOf(context);
   }
 
@@ -23,6 +27,10 @@ class HomeViewModel extends BaseViewModel {
   set hideBalance(bool v) {
     _hideBalance = v;
     notifyListeners();
+  }
+
+  goToShareQr() {
+    appStateManager.shareQr = true;
   }
 
   onHideStateChanged(bool v) {
@@ -38,7 +46,11 @@ class HomeViewModel extends BaseViewModel {
     return [
       Method(
           header: "Send",
-          onTap: () {},
+          onTap: () {
+            paymentStateManager.method = null;
+            appStateManager.sendMoney = true;
+            appStateManager.dashboard = false;
+          },
           color: AppColors.primaryColor,
           icon: Icon(
             Icons.arrow_outward_rounded,
@@ -47,7 +59,10 @@ class HomeViewModel extends BaseViewModel {
           )),
       Method(
           header: "Receive",
-          onTap: () {},
+          onTap: () {
+            appStateManager.shareQr = true;
+            appStateManager.dashboard = false;
+          },
           color: AppColors.otherBlue,
           icon: RotatedBox(
             quarterTurns: 2,
@@ -70,7 +85,11 @@ class HomeViewModel extends BaseViewModel {
           )),
       Method(
           header: "Withdraw",
-          onTap: () {},
+          onTap: () {
+            paymentStateManager.method = PaymentMethod.bank;
+            appStateManager.sendMoney = true;
+            appStateManager.dashboard = false;
+          },
           color: AppColors.success,
           icon: Align(
             alignment: Alignment.center,
