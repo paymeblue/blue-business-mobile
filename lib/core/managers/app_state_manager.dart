@@ -22,6 +22,13 @@ class AppStateManager extends DisposableProvider {
   bool _dashboard = false;
   bool _sendMoney = false;
   bool _shareQr = false;
+  bool _personalInfo = false;
+  bool _accountRecovery = false;
+  bool _kyc = false;
+  bool _addPayoutAccount = false;
+  bool _fundWallet = false;
+  bool _beneficiaries = false;
+  bool _changePass = false;
 
   Widget _successTitle = const SizedBox();
   Widget _successMessage = const SizedBox();
@@ -45,12 +52,54 @@ class AppStateManager extends DisposableProvider {
   bool get dashboard => _dashboard;
   bool get sendMoney => _sendMoney;
   bool get shareQr => _shareQr;
+  bool get personalInfo => _personalInfo;
+  bool get accountRecovery => _accountRecovery;
+  bool get kyc => _kyc;
+  bool get addPayoutAccount => _addPayoutAccount;
+  bool get fundWallet => _fundWallet;
+  bool get beneficiaries => _beneficiaries;
+  bool get changePass => _changePass;
 
   bool get splash => !_login && !_registerMethod;
   Widget get successMessage => _successMessage;
   Widget get successTitle => _successTitle;
 
   int get dashIndex => _index;
+
+  set addPayoutAccount(bool v) {
+    _addPayoutAccount = v;
+    notifyListeners();
+  }
+
+  set fundWallet(bool v) {
+    _fundWallet = v;
+    notifyListeners();
+  }
+
+  set beneficiaries(bool v) {
+    _beneficiaries = v;
+    notifyListeners();
+  }
+
+  set changePass(bool v) {
+    _changePass = v;
+    notifyListeners();
+  }
+
+  set kyc(bool v) {
+    _kyc = v;
+    notifyListeners();
+  }
+
+  set accountRecovery(bool v) {
+    _accountRecovery = v;
+    notifyListeners();
+  }
+
+  set personalInfo(bool v) {
+    _personalInfo = v;
+    notifyListeners();
+  }
 
   set shareQr(bool v) {
     _shareQr = v;
