@@ -37,18 +37,13 @@ class HomeViewModel extends BaseViewModel {
     hideBalance = v;
   }
 
-  goToPaymentScreen() {
-    appStateManager.sendMoney = true;
-    appStateManager.dashboard = false;
-  }
-
   List<Method> methods() {
     return [
       Method(
           header: "Send",
           onTap: () {
             paymentStateManager.method = null;
-            appStateManager.sendMoney = true;
+            appStateManager.quickPay = true;
             appStateManager.dashboard = false;
           },
           color: AppColors.primaryColor,

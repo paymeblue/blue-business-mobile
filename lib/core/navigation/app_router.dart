@@ -40,7 +40,7 @@ class AppRouter extends RouterDelegate
         if (appStateManager.passcode) PasscodeView.page(),
         if (appStateManager.dashboard) DashboardView.page(),
         if (appStateManager.shareQr) ShareQrView.page(),
-        if (appStateManager.sendMoney) PaymentHomeView.page(),
+        if (appStateManager.quickPay) PaymentHomeView.page(),
         if (appStateManager.success &&
             appStateManager.successMessage != const SizedBox() &&
             appStateManager.successTitle != const SizedBox())

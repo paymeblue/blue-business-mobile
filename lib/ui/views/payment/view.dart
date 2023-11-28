@@ -10,14 +10,11 @@ import 'package:blue_business/ui/widgets/app_button.dart';
 import 'package:blue_business/ui/widgets/custom_app_bar.dart';
 import 'package:blue_business/ui/widgets/custom_textfield.dart';
 import 'package:blue_business/ui/widgets/info_container.dart';
-import 'package:blue_business/utils/app_images.dart';
 import 'package:blue_business/utils/app_theme.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
-import 'widgets/method_widget.dart';
 
 class PaymentHomeView extends StatefulWidget {
   const PaymentHomeView({super.key});
@@ -55,7 +52,7 @@ class _PaymentHomeViewState extends State<PaymentHomeView> {
             appBar: BlueAppBar.show(
               leadingIcon: Icons.arrow_back_ios_new,
               onBackTap: () {
-                model.appStateManager.sendMoney = false;
+                model.appStateManager.quickPay = false;
                 model.paymentStateManager.method = null;
                 model.paymentStateManager.amount = "";
                 model.appStateManager.goToDashboard();
@@ -132,39 +129,6 @@ class _PaymentHomeViewState extends State<PaymentHomeView> {
                           onChanged: model.onReasonChanged,
                           onSaved: model.onReasonSaved,
                         ),
-                      if (model.appStateManager.sendMoney)
-                        const SizedBox(
-                          height: 20,
-                        ),
-                      if (model.appStateManager.sendMoney &&
-                          (model.paymentStateManager.method !=
-                              PaymentMethod.bank))
-                        Consumer<PaymentStateManager>(
-                            builder: (context, payment, _) {
-                          return Row(
-                            children: [
-                              MethodWidget(
-                                asset: AppAssets.launcher,
-                                isSelected:
-                                    payment.method == PaymentMethod.blue,
-                                title: "Blue user",
-                                onTap: () {
-                                  payment.method = PaymentMethod.blue;
-                                },
-                              ),
-                              const SizedBox(width: 20),
-                              MethodWidget(
-                                asset: AppAssets.phoneImage,
-                                isSelected:
-                                    payment.method == PaymentMethod.phone,
-                                title: "Contact",
-                                onTap: () {
-                                  payment.method = PaymentMethod.phone;
-                                },
-                              )
-                            ],
-                          );
-                        }),
                       const Spacer(),
                       Consumer<PaymentStateManager>(builder: (context, pay, _) {
                         return Center(
@@ -180,7 +144,7 @@ class _PaymentHomeViewState extends State<PaymentHomeView> {
                               //       message:
                               //           "You have not setup a withdrawal account. Please set one up and try again",
                               //       context: context);
-                              // model.appStateManager.addPayoutAccount = true;
+                              //   // model.appStateManager.addPayoutAccount = true;
                               // } else {
                               model.initiateTransaction(context);
                               // }
