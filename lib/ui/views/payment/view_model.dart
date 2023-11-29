@@ -44,7 +44,7 @@ class QuickPayHomeViewModel extends BaseViewModel {
     paymentStateManager.reference = "iiiiiiiii";
     paymentStateManager.id = 9;
 
-    // appStateManager.paymentMethod = true;
+    appStateManager.paymentMethod = true;
   }
 
   List<QuickPayMethod> methods(BuildContext context) {
@@ -82,7 +82,7 @@ class QuickPayHomeViewModel extends BaseViewModel {
           onTap: () {
             paymentStateManager.method = PaymentMethod.offline;
             Navigator.pop(appContext!);
-            // appStateManager.paymentMethod = true;
+            appStateManager.paymentMethod = true;
           },
           icon: SvgPicture.asset(AppAssets.payOfflineIcon)),
     ];
