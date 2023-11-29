@@ -16,4 +16,5 @@ class AppPages {
   static String shareQrPath = "/shaeQr";
   static String paymentPath = "/pay";
   static String paymentMethodPath = "/paymentMethod";
+  static String confirmPaymentPath = "/confirmPayment";
 }

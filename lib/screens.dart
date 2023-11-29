@@ -14,3 +14,4 @@ export 'ui/views/dashboard/view.dart';
 export 'ui/views/share_qr/view.dart';
 export 'ui/views/payment/view.dart';
 export 'ui/views/payment_method/view.dart';
+export 'ui/views/confirm_payment/view.dart';
