@@ -25,3 +25,4 @@ export 'ui/views/virtual_bank/view.dart';
 export 'ui/views/manage_beneficiaries/view.dart';
 export 'ui/views/conversations/view.dart';
 export 'ui/views/start_chat/view.dart';
+export 'ui/views/wallet_id/view.dart';

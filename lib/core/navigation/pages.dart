@@ -27,4 +27,5 @@ class AppPages {
   static String manageBeneficiariesPath = "/manageBeneficiaries";
   static String startChatPath = "/startChat";
   static String conversationPath = "/conversation";
+  static String walletIdPath = "/walletId";
 }
