@@ -25,4 +25,5 @@ class AppPages {
   static String addPayoutAccountPath = "/addPayoutAccount";
   static String virtualBankPath = "/virtualBank";
   static String manageBeneficiariesPath = "/manageBeneficiaries";
+  static String startChatPath = "/startChat";
 }

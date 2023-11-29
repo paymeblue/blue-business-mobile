@@ -1,6 +1,7 @@
 import 'package:blue_business/core/managers/auth_state_manager.dart';
 import 'package:blue_business/core/managers/beneficiaries_state_manager.dart';
 import 'package:blue_business/core/managers/kyc_state_manager.dart';
+import 'package:blue_business/core/managers/messaging_state_manager.dart';
 import 'package:blue_business/core/managers/payment_state_manager.dart';
 import 'package:blue_business/core/managers/recovery_state_manager.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class _MobileScaffoldAppState extends State<MobileScaffoldApp> {
   final _kycStateManager = KycStateManager();
   final _recoveryStateManager = RecoveryStateManager();
   final _beneficiaryStateManager = BeneficiariesStateManager();
+  final _messagingStateManager = MessagingStateManager();
 
   late AppRouter _appRouter;
 
@@ -63,6 +65,9 @@ class _MobileScaffoldAppState extends State<MobileScaffoldApp> {
         ),
         ChangeNotifierProvider(
           create: (context) => _beneficiaryStateManager,
+        ),
+        ChangeNotifierProvider(
+          create: (context) => _messagingStateManager,
         ),
         ...providers,
       ],

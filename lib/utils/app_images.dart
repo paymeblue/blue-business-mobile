@@ -53,6 +53,7 @@ class AppAssets {
   static String fundWalletIcon = "$iconPath/fund_wallet.svg";
   static String cameraWhiteIcon = "$iconPath/camera_white.svg";
   static String calendarIcon = "$iconPath/calendar.svg";
+  static String newMessageIcon = "$iconPath/new_message.svg";
 
   static String activeNavItemIcon(String item) {
     return "assets/images/navbar_icons/active/$item.svg";

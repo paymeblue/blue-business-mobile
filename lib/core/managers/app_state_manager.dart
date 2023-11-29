@@ -34,6 +34,8 @@ class AppStateManager extends DisposableProvider {
   bool _canSaveBeneficiary = true;
   bool _isKycComplete = false;
   bool _changePin = false;
+  bool _conversation = false;
+  bool _startChat = false;
 
   Widget _successTitle = const SizedBox();
   Widget _successMessage = const SizedBox();
@@ -69,12 +71,24 @@ class AppStateManager extends DisposableProvider {
   bool get canSaveBeneficiary => _canSaveBeneficiary;
   bool get isKycComplete => _isKycComplete;
   bool get changePin => _changePin;
+  bool get conversation => _conversation;
+  bool get startChat => _startChat;
 
   bool get splash => !_login && !_registerMethod;
   Widget get successMessage => _successMessage;
   Widget get successTitle => _successTitle;
 
   int get dashIndex => _index;
+
+  set startChat(bool v) {
+    _startChat = v;
+    notifyListeners();
+  }
+
+  set conversation(bool v) {
+    _conversation = v;
+    notifyListeners();
+  }
 
   set changePin(bool v) {
     _changePin = v;
