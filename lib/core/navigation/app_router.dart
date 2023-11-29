@@ -41,6 +41,8 @@ class AppRouter extends RouterDelegate
         if (appStateManager.dashboard) DashboardView.page(),
         if (appStateManager.shareQr) ShareQrView.page(),
         if (appStateManager.quickPay) PaymentHomeView.page(),
+        if (appStateManager.paymentMethod) PaymentMethodView.page(),
+        // if (appStateManager.confirmPayment) ConfirmPaymentView.page(),
         if (appStateManager.success &&
             appStateManager.successMessage != const SizedBox() &&
             appStateManager.successTitle != const SizedBox())

@@ -130,20 +130,11 @@ class _PaymentHomeViewState extends State<PaymentHomeView> {
                         return Center(
                           child: AppButton(
                             onTap: () {
-                              // if (pay.method == null) {
-                              //   model.showOptionBottomSheet();
-                              // } else if (pay.method == PaymentMethod.bank &&
-                              //     model.appStateManager.currentUser!
-                              //             .withdrawalAccountData ==
-                              //         null) {
-                              //   AppNotification.error(
-                              //       message:
-                              //           "You have not setup a withdrawal account. Please set one up and try again",
-                              //       context: context);
-                              //   // model.appStateManager.addPayoutAccount = true;
-                              // } else {
-                              model.initiateTransaction(context);
-                              // }
+                              if (pay.method == null) {
+                                model.showOptionBottomSheet();
+                              } else {
+                                model.initiateTransaction(context);
+                              }
                             },
                             buttonText: "Continue",
                             isActive: (model.appStateManager.quickPay &&

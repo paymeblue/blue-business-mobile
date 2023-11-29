@@ -13,3 +13,4 @@ export 'ui/views/recovery_code/view.dart';
 export 'ui/views/dashboard/view.dart';
 export 'ui/views/share_qr/view.dart';
 export 'ui/views/payment/view.dart';
+export 'ui/views/payment_method/view.dart';

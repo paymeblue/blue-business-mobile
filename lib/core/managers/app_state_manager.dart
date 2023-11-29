@@ -29,6 +29,8 @@ class AppStateManager extends DisposableProvider {
   bool _beneficiaries = false;
   bool _changePass = false;
   bool _quickPay = false;
+  bool _paymentMethod = false;
+  bool _confirmPayment = false;
 
   Widget _successTitle = const SizedBox();
   Widget _successMessage = const SizedBox();
@@ -59,12 +61,24 @@ class AppStateManager extends DisposableProvider {
   bool get beneficiaries => _beneficiaries;
   bool get changePass => _changePass;
   bool get quickPay => _quickPay;
+  bool get paymentMethod => _paymentMethod;
+  bool get confirmPayment => _confirmPayment;
 
   bool get splash => !_login && !_registerMethod;
   Widget get successMessage => _successMessage;
   Widget get successTitle => _successTitle;
 
   int get dashIndex => _index;
+
+  set confirmPayment(bool v) {
+    _confirmPayment = v;
+    notifyListeners();
+  }
+
+  set paymentMethod(bool v) {
+    _paymentMethod = v;
+    notifyListeners();
+  }
 
   set quickPay(bool v) {
     _quickPay = v;
