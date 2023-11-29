@@ -43,8 +43,11 @@ class QuickPayHomeViewModel extends BaseViewModel {
   initiateTransaction(BuildContext context) async {
     paymentStateManager.reference = "iiiiiiiii";
     paymentStateManager.id = 9;
-
-    appStateManager.paymentMethod = true;
+    if (paymentStateManager.method == PaymentMethod.bank) {
+      appStateManager.confirmPayment = true;
+    } else {
+      appStateManager.paymentMethod = true;
+    }
   }
 
   List<QuickPayMethod> methods(BuildContext context) {
