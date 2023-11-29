@@ -43,7 +43,11 @@ class _SettingsViewState extends State<SettingsView> {
                   child: Column(
                     children: [
                       ProfileHeader(
-                        user: User(id: 0, phone: "0011223344"),
+                        user: User(
+                            id: 0,
+                            phone: "0011223344",
+                            lastName: "Yesufu",
+                            firstName: "Semira"),
                         onImageTap: () => model.pickImage(context),
                         onLogoutTap: () => model.showLogoutDialog(context),
                       ),

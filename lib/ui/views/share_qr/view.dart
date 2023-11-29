@@ -1,4 +1,3 @@
-import 'package:avatar_view/avatar_view.dart';
 import 'package:blue_business/core/helpers/auth/timeout.dart';
 import 'package:blue_business/core/navigation/pages.dart';
 import 'package:blue_business/ui/base/base_view.dart';
@@ -97,37 +96,51 @@ class _ShareQrViewState extends State<ShareQrView> {
                           top: 25,
                           left: 106,
                           right: 106,
-                          child: AvatarView(
-                            radius: 21.5,
-                            avatarType: AvatarType.CIRCLE,
-                            imagePath: "",
-                            errorWidget: Container(
-                              width: 43,
-                              height: 43,
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                  color: AppColors.bgGrey,
-                                  border: Border.all(
-                                      color: AppColors.white, width: 1.5),
-                                  shape: BoxShape.circle),
-                              child: SvgPicture.asset(
-                                AppAssets.userIcon,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            placeHolder: Container(
-                              width: 43,
-                              height: 43,
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                  color: AppColors.bgGrey,
-                                  border: Border.all(
-                                      color: AppColors.white, width: 1.5),
-                                  shape: BoxShape.circle),
-                              child: SvgPicture.asset(
-                                AppAssets.userIcon,
-                                fit: BoxFit.cover,
-                              ),
+                          // child: AvatarView(
+                          //   radius: 21.5,
+                          //   avatarType: AvatarType.CIRCLE,
+                          //   imagePath: null,
+                          //   errorWidget: Container(
+                          //     width: 43,
+                          //     height: 43,
+                          //     padding: const EdgeInsets.all(8),
+                          //     decoration: BoxDecoration(
+                          //         color: AppColors.bgGrey,
+                          //         border: Border.all(
+                          //             color: AppColors.white, width: 1.5),
+                          //         shape: BoxShape.circle),
+                          //     child: SvgPicture.asset(
+                          //       AppAssets.userIcon,
+                          //       fit: BoxFit.cover,
+                          //     ),
+                          //   ),
+                          //   placeHolder: Container(
+                          //     width: 43,
+                          //     height: 43,
+                          //     padding: const EdgeInsets.all(8),
+                          //     decoration: BoxDecoration(
+                          //         color: AppColors.bgGrey,
+                          //         border: Border.all(
+                          //             color: AppColors.white, width: 1.5),
+                          //         shape: BoxShape.circle),
+                          //     child: SvgPicture.asset(
+                          //       AppAssets.userIcon,
+                          //       fit: BoxFit.cover,
+                          //     ),
+                          //   ),
+                          // ),
+                          child: Container(
+                            width: 43,
+                            height: 43,
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: AppColors.bgGrey,
+                                border: Border.all(
+                                    color: AppColors.white, width: 1.5),
+                                shape: BoxShape.circle),
+                            child: SvgPicture.asset(
+                              AppAssets.userIcon,
+                              fit: BoxFit.cover,
                             ),
                           ))
                     ],
