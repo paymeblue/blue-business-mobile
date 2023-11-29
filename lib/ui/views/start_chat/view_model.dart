@@ -5,6 +5,7 @@ import 'package:blue_business/core/managers/payment_state_manager.dart';
 import 'package:blue_business/core/models/nessages.dart';
 import 'package:blue_business/ui/base/base_view_model.dart';
 import 'package:blue_business/ui/views/login/view.dart';
+import 'package:blue_business/ui/views/message/view_model.dart';
 // import 'package:blue_business/ui/views/message/view_model.dart';
 import 'package:blue_business/ui/widgets/app_button.dart';
 import 'package:blue_business/ui/widgets/custom_textfield.dart';
@@ -78,7 +79,11 @@ class StartChatViewModel extends BaseViewModel {
   }
 
   goToConversation(Chat v) {
-    messagingStateManager.current = v;
+    messagingStateManager.current = Conversation(
+        firstName: v.peerfirstName,
+        lastName: v.peerlastName,
+        message: v.lastMessage,
+        dateTime: v.timeStamp);
     appStateManager.conversation = true;
     messagingStateManager.peer = "";
     appStateManager.startChat = false;

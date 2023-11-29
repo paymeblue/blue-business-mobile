@@ -1,10 +1,11 @@
 import 'package:blue_business/core/managers/disposable_provider.dart';
 import 'package:blue_business/core/models/nessages.dart';
+import 'package:blue_business/ui/views/message/view_model.dart';
 
 class MessagingStateManager extends DisposableProvider {
-  Chat? _current;
-  Chat? get current => _current;
-  set current(Chat? v) {
+  Conversation? _current;
+  Conversation? get current => _current;
+  set current(Conversation? v) {
     _current = v;
     notifyListeners();
   }
@@ -40,6 +41,44 @@ class MessagingStateManager extends DisposableProvider {
     _peer = v;
     notifyListeners();
   }
+
+  List<Conversation> conversations = [
+    Conversation(
+        firstName: "Michael",
+        lastName: "Olamide",
+        message: "Thank you very much...",
+        unreadCount: 3,
+        dateTime: DateTime(2023, 5, 1, 18, 4, 58).toUtc().toString()),
+    Conversation(
+        firstName: "Favour",
+        lastName: "Momoh",
+        message: "08053930590",
+        unreadCount: 5,
+        dateTime: DateTime(2023, 5, 1, 18, 4, 54).toUtc().toString()),
+    Conversation(
+        firstName: "Sharon",
+        lastName: "Onoja",
+        message: "Thank you very much...",
+        unreadCount: 2,
+        dateTime: DateTime(2023, 5, 1, 18, 4, 50).toUtc().toString()),
+    Conversation(
+        firstName: "Mary",
+        lastName: "Adebanjo",
+        message: "Okay, I'll send it now",
+        unreadCount: 1,
+        dateTime: DateTime(2023, 5, 1, 18, 4, 46).toUtc().toString()),
+    Conversation(
+        firstName: "Semira",
+        lastName: "Yesufu",
+        message: "Please send me money",
+        dateTime: DateTime(2023, 5, 1, 18, 4, 42).toUtc().toString()),
+    Conversation(
+        firstName: "Aondo",
+        lastName: "Terwase",
+        message: "Hello",
+        unreadCount: 1,
+        dateTime: DateTime(2023, 5, 1, 18, 4, 38).toUtc().toString()),
+  ];
 
   @override
   void disposeValues() {}

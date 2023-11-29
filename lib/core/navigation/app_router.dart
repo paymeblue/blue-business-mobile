@@ -54,8 +54,8 @@ class AppRouter extends RouterDelegate
         if (appStateManager.changePass) ChangePasswordView.page(),
         if (appStateManager.accountRecovery) AccountRecoveryView.page(),
         if (appStateManager.beneficiaries) ManageBeneficiariesView.page(),
-        // // if (appStateManager.conversation) ConversationView.page(),
-        // if (appStateManager.walletId) WalletIdView.page(),
+        if (appStateManager.conversation) ConversationView.page(),
+        if (appStateManager.walletId) WalletIdView.page(),
         if (appStateManager.addPayoutAccount) AddWithdrawalAccountView.page(),
       ],
     );

@@ -2,6 +2,7 @@ import 'package:blue_business/core/managers/app_state_manager.dart';
 import 'package:blue_business/ui/base/base_view_model.dart';
 import 'package:blue_business/ui/views/bills/view.dart';
 import 'package:blue_business/ui/views/home/view.dart';
+import 'package:blue_business/ui/views/message/view.dart';
 import 'package:blue_business/ui/views/settings/view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,16 +21,15 @@ class DashboardViewModel extends BaseViewModel {
     return [
       const HomeView(),
       Container(),
-      Container(),
+      MessageHomeView(onBackTap: () {
+        onPageChanged(0);
+        pageController.jumpToPage(appStateManager.dashIndex);
+      }),
       BillsHomeView(onBackTap: () {
         onPageChanged(0);
         pageController.jumpToPage(appStateManager.dashIndex);
       }),
       // Container(),
-      // MessageHomeView(onBackTap: () {
-      //   onPageChanged(0);
-      //   pageController.jumpToPage(appStateManager.homeIndex);
-      // }),
       // BillsHomeView(onBackTap: () {
       //   onPageChanged(0);
       //   pageController.jumpToPage(appStateManager.homeIndex);

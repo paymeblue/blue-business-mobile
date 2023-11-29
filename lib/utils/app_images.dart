@@ -54,6 +54,15 @@ class AppAssets {
   static String cameraWhiteIcon = "$iconPath/camera_white.svg";
   static String calendarIcon = "$iconPath/calendar.svg";
   static String newMessageIcon = "$iconPath/new_message.svg";
+  static String scanBlueIcon = "$iconPath/scan_blue.svg";
+  static String cameraBlueIcon = "$iconPath/camera_blue.svg";
+  static String documentIcon = "$iconPath/document.svg";
+  static String photoLibraryIcon = "$iconPath/photo_library.svg";
+  static String sendIcon = "$iconPath/send.svg";
+  static String downloadIcon = "$iconPath/download.svg";
+  static String filterIcon = "$iconPath/filter.svg";
+  static String alertIcon = "$iconPath/alert.svg";
+  static String cameraIcon = "$iconPath/camera.svg";
 
   static String activeNavItemIcon(String item) {
     return "assets/images/navbar_icons/active/$item.svg";
