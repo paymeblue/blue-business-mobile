@@ -2,6 +2,7 @@ import 'package:blue_business/core/helpers/storage/functions.dart';
 import 'package:blue_business/core/helpers/storage/keys.dart';
 import 'package:blue_business/core/managers/app_state_manager.dart';
 import 'package:blue_business/core/managers/auth_state_manager.dart';
+import 'package:blue_business/core/managers/payment_state_manager.dart';
 import 'package:blue_business/ui/base/base_view_model.dart';
 import 'package:blue_business/ui/widgets/app_button.dart';
 import 'package:blue_business/utils/app_images.dart';
@@ -13,6 +14,7 @@ import 'package:provider/provider.dart';
 
 class PasscodeViewModel extends BaseViewModel {
   late AppStateManager appStateManager;
+  late PaymentStateManager paymentStateManager;
   late AuthStateManager authStateManager;
   late Size size;
 
@@ -20,13 +22,51 @@ class PasscodeViewModel extends BaseViewModel {
     appStateManager = Provider.of<AppStateManager>(appContext!, listen: false);
     authStateManager =
         Provider.of<AuthStateManager>(appContext!, listen: false);
+    paymentStateManager =
+        Provider.of<PaymentStateManager>(appContext!, listen: false);
     size = MediaQuery.sizeOf(appContext!);
   }
 
   handleButtonTap() {
     if (authStateManager.isRegistration) {
       goToDash();
+    } else if (appStateManager.quickPay) {
+      goToSuccess();
     }
+  }
+
+  String name = "Favour Momoh";
+
+  goToSuccess() {
+    appStateManager.paymentMethod = false;
+    paymentStateManager.resetPayViaPhone();
+    paymentStateManager.recipient = null;
+    paymentStateManager.saveBeneficiary = false;
+    appStateManager.quickPay = false;
+    appStateManager.passcode = false;
+    appStateManager.confirmPayment = false;
+    authStateManager.passcode = "";
+    paymentStateManager.walletId = "";
+    paymentStateManager.phone = "";
+    appStateManager.quickPay = false;
+    appStateManager.success = true;
+    // authStateManager.canUsePin = true;
+    // paymentStateManager.receiverName = name;
+    appStateManager.successMessage = RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(children: [
+          TextSpan(
+              text: "You sent ",
+              style: AppTextStyles.subHeader.copyWith(color: AppColors.white)),
+          TextSpan(
+              text: paymentStateManager.amount,
+              style: AppTextStyles.header
+                  .copyWith(fontSize: 15, color: AppColors.white)),
+          TextSpan(
+              text:
+                  " to $name${paymentStateManager.reason.isNotEmpty ? " for ${paymentStateManager.reason}" : ""}.",
+              style: AppTextStyles.subHeader.copyWith(color: AppColors.white))
+        ]));
   }
 
   goBack() {

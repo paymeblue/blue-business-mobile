@@ -58,16 +58,67 @@ class _SuccessViewState extends State<SuccessView> {
                         child: model.appStateManager.successMessage,
                       ),
                       const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 17),
-                        child: AppButton(
-                          onTap: model.goToRegisterBusiness,
+                      if (!model.appStateManager.kyc)
+                        AppButton(
+                          onTap: () {},
+                          isPrimary: false,
+                          hasBorder: false,
+                          textColor: AppColors.textcolor,
+                          icon: Icon(
+                            Icons.file_upload_outlined,
+                            color: AppColors.textcolor,
+                          ),
+                          buttonText: "Share receipt",
+                          width: 330,
+                        ),
+                      const SizedBox(height: 10),
+                      if (!model.appStateManager.kyc &&
+                          !model.appStateManager.registerBusiness)
+                        AppBorderButton(
+                          onTap: () {
+                            model.appStateManager.success = false;
+                            model.paymentStateManager.amount = "";
+                            model.paymentStateManager.walletId = "";
+                            model.appStateManager.shareQr = false;
+                            model.paymentStateManager.method = null;
+                            model.paymentStateManager.phone = "";
+                            model.appStateManager.canSaveBeneficiary = true;
+                            model.appStateManager.goToDashboard();
+                          },
+                          textColor: AppColors.white,
+                          buttonText: "Done",
+                          width: 330,
+                        )
+                      else if (model.appStateManager.kyc)
+                        AppButton(
+                          onTap: () {
+                            model.appStateManager.success = false;
+                            model.kycStateManager.kycIndex = 0;
+                            model.kycStateManager.isActive = false;
+                            model.appStateManager.isKycComplete = true;
+                            model.appStateManager.shareQr = false;
+                            model.appStateManager.kyc = false;
+                            if (model.appStateManager.dashboard) {
+                              model.appStateManager.goToDashboard();
+                            }
+                          },
                           isPrimary: false,
                           hasBorder: false,
                           textColor: AppColors.textcolor,
                           buttonText: "Done",
+                          width: 330,
+                        )
+                      else
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 17),
+                          child: AppButton(
+                            onTap: model.goToRegisterBusiness,
+                            isPrimary: false,
+                            hasBorder: false,
+                            textColor: AppColors.textcolor,
+                            buttonText: "Done",
+                          ),
                         ),
-                      ),
                     ],
                   ));
             }),

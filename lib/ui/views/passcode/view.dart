@@ -46,7 +46,9 @@ class _PasscodeViewState extends State<PasscodeView> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Create your transaction PIN",
+                        model.appStateManager.quickPay
+                            ? "Enter your PIN"
+                            : "Create your transaction PIN",
                         style: AppTextStyles.header,
                       ),
                     ),
@@ -54,7 +56,9 @@ class _PasscodeViewState extends State<PasscodeView> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Create a PIN to authorise transactions. Please do not  share this PIN with anyone.",
+                        model.appStateManager.quickPay
+                            ? "Please enter your PIN to confirm transaction. Never share your PIN to anyone."
+                            : "Create a PIN to authorise transactions. Please do not  share this PIN with anyone.",
                         style: AppTextStyles.subHeader,
                       ),
                     ),
@@ -112,7 +116,9 @@ class _PasscodeViewState extends State<PasscodeView> {
                     const Spacer(flex: 2),
                     AppButton(
                       onTap: model.handleButtonTap,
-                      buttonText: "Create PIN",
+                      buttonText: model.appStateManager.quickPay
+                          ? "Confirm tramsaction"
+                          : "Create PIN",
                       isActive: auth.passcode.length == 4,
                     ),
                   ]));
