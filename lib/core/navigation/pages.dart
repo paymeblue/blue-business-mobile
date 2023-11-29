@@ -20,4 +20,6 @@ class AppPages {
   static String accountRecoveryPath = "/accountRecovery";
   static String updateKycPath = "/updateKyc";
   static String personalInfoPath = "/personalDetails";
+  static String changePinPath = "/changePin";
+  static String changePassPath = "/changePassword";
 }

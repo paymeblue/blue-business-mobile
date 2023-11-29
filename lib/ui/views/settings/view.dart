@@ -127,26 +127,21 @@ class _SettingsViewState extends State<SettingsView> {
                                             true;
                                       }),
                                 ),
-                                // if (model.appStateManager.currentUser!
-                                //         .walletData!.accountNumber.isNotEmpty &&
-                                //     model.appStateManager.currentUser!
-                                //         .walletData!.bankName.isNotEmpty)
-                                //   SettingsListTile(
-                                //     item: SettingsListItem(
-                                //         icon: SvgPicture.asset(
-                                //             AppAssets.fundWalletIcon,
-                                //             fit: BoxFit.scaleDown),
-                                //         title: "Fund your wallet",
-                                //         trailing: Icon(
-                                //           Icons.arrow_forward_ios,
-                                //           color: AppColors.textcolor,
-                                //           size: 18,
-                                //         ),
-                                //         onTap: () {
-                                //           model.appStateManager.fundWallet =
-                                //               true;
-                                //         }),
-                                //   ),
+                                SettingsListTile(
+                                  item: SettingsListItem(
+                                      icon: SvgPicture.asset(
+                                          AppAssets.fundWalletIcon,
+                                          fit: BoxFit.scaleDown),
+                                      title: "Fund your wallet",
+                                      trailing: Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: AppColors.textcolor,
+                                        size: 18,
+                                      ),
+                                      onTap: () {
+                                        model.appStateManager.fundWallet = true;
+                                      }),
+                                ),
                                 SettingsListTile(
                                   item: SettingsListItem(
                                       icon: SvgPicture.asset(
@@ -226,9 +221,9 @@ class _SettingsViewState extends State<SettingsView> {
                                         size: 18,
                                       ),
                                       onTap: () {
-                                        // model.authStateManager.newPasscode =
-                                        //     true;
-                                        // model.appStateManager.changePin = true;
+                                        model.authStateManager.newPasscode =
+                                            true;
+                                        model.appStateManager.changePin = true;
                                       }),
                                 ),
                                 SettingsListTile(

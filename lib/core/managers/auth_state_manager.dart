@@ -93,6 +93,14 @@ class AuthStateManager extends DisposableProvider {
     notifyListeners();
   }
 
+  bool _canUsePin = false;
+  bool get canUsePin => _canUsePin;
+
+  set canUsePin(bool b) {
+    _canUsePin = b;
+    notifyListeners();
+  }
+
   bool _isRegistration = false;
   bool get isRegistration => _isRegistration;
 

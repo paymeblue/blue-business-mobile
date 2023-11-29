@@ -18,3 +18,5 @@ export 'ui/views/confirm_payment/view.dart';
 export 'ui/views/account_recovery/view.dart';
 export 'ui/views/kyc/view.dart';
 export 'ui/views/personal_details/view.dart';
+export 'ui/views/change_password/view.dart';
+export 'ui/views/change_pin/view.dart';

@@ -89,8 +89,8 @@ class NumPad extends StatelessWidget {
             children: [
               FaceIdButton(
                 onTap: onUsebiometrics,
-                // useBiometrics:
-                // auth.canUsePin && !auth.newPasscode && auth.useBiometrics,
+                useBiometrics:
+                    auth.canUsePin && !auth.newPasscode && auth.useBiometrics,
               ),
               NumberButton(
                 number: 0,

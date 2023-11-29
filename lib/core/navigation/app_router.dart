@@ -50,8 +50,8 @@ class AppRouter extends RouterDelegate
             appStateManager.successTitle != const SizedBox())
           SuccessView.page(),
         // if (appStateManager.fundWallet) VirtualBankView.page(),
-        // if (appStateManager.changePin) ChangePinView.page(),
-        // if (appStateManager.changePass) ChangePasswordView.page(),
+        if (appStateManager.changePin) ChangePinView.page(),
+        if (appStateManager.changePass) ChangePasswordView.page(),
         if (appStateManager.accountRecovery) AccountRecoveryView.page(),
         // if (appStateManager.beneficiaries) ManageBeneficiariesView.page(),
         // // if (appStateManager.conversation) ConversationView.page(),
