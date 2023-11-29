@@ -17,4 +17,5 @@ class AppPages {
   static String paymentPath = "/pay";
   static String paymentMethodPath = "/paymentMethod";
   static String confirmPaymentPath = "/confirmPayment";
+  static String accountRecoveryPath = "/accountRecovery";
 }
