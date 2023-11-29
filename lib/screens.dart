@@ -16,3 +16,5 @@ export 'ui/views/payment/view.dart';
 export 'ui/views/payment_method/view.dart';
 export 'ui/views/confirm_payment/view.dart';
 export 'ui/views/account_recovery/view.dart';
+export 'ui/views/kyc/view.dart';
+export 'ui/views/personal_details/view.dart';

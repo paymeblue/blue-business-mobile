@@ -18,4 +18,6 @@ class AppPages {
   static String paymentMethodPath = "/paymentMethod";
   static String confirmPaymentPath = "/confirmPayment";
   static String accountRecoveryPath = "/accountRecovery";
+  static String updateKycPath = "/updateKyc";
+  static String personalInfoPath = "/personalDetails";
 }
