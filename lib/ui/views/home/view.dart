@@ -300,8 +300,10 @@ class _HomeViewState extends State<HomeView> {
                             decoration: BoxDecoration(
                               border: Border.all(color: AppColors.bgGrey),
                             ),
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            margin: const EdgeInsets.only(right: 14),
+                            padding: const EdgeInsets.only(left: 16, right: 12),
                             child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
                                   child: Column(
@@ -359,7 +361,20 @@ class _HomeViewState extends State<HomeView> {
                                       )
                                     ],
                                   ),
-                                )
+                                ),
+                                AspectRatio(
+                                  aspectRatio: 1.2,
+                                  child: Image.asset(AppAssets.profitChart),
+                                ),
+                                const SizedBox(width: 8),
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 6),
+                                  child: Icon(
+                                    Icons.arrow_outward_rounded,
+                                    weight: .8,
+                                    size: 18,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -377,11 +392,13 @@ class _HomeViewState extends State<HomeView> {
                           Container(
                             height: 85,
                             width: model.size.width,
+                            margin: const EdgeInsets.only(right: 14),
                             decoration: BoxDecoration(
                               border: Border.all(color: AppColors.bgGrey),
                             ),
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            padding: const EdgeInsets.only(left: 16, right: 12),
                             child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
                                   child: Column(
@@ -438,7 +455,20 @@ class _HomeViewState extends State<HomeView> {
                                       )
                                     ],
                                   ),
-                                )
+                                ),
+                                AspectRatio(
+                                  aspectRatio: 1.2,
+                                  child: Image.asset(AppAssets.lossChart),
+                                ),
+                                const SizedBox(width: 8),
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 6),
+                                  child: Icon(
+                                    Icons.arrow_outward_rounded,
+                                    weight: .8,
+                                    size: 18,
+                                  ),
+                                ),
                               ],
                             ),
                           )

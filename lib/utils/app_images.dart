@@ -17,6 +17,8 @@ class AppAssets {
   static String messageNotification = "$imagePath/notification_message.png";
   static String avatarPlaceholder = "$imagePath/avatar_placeholder.png";
   static String blueBgLogo = "$logoPath/blue_bg_logo.png";
+  static String profitChart = "$imagePath/profit.png";
+  static String lossChart = "$imagePath/loss.png";
 
   //ICONS
   static String searchIcon = "$iconPath/search.svg";
