@@ -22,4 +22,6 @@ class AppPages {
   static String personalInfoPath = "/personalDetails";
   static String changePinPath = "/changePin";
   static String changePassPath = "/changePassword";
+  static String addPayoutAccountPath = "/addPayoutAccount";
+  static String virtualBankPath = "/virtualBank";
 }
