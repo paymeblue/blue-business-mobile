@@ -67,26 +67,22 @@ class _PaymentHomeViewState extends State<PaymentHomeView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        model.appStateManager.sendMoney
-                            ? model.paymentStateManager.method != null &&
-                                    model.paymentStateManager.method ==
-                                        PaymentMethod.bank
-                                ? "Withdraw Funds"
-                                : "Send Money"
-                            : "Make Payment",
+                        model.paymentStateManager.method != null &&
+                                model.paymentStateManager.method ==
+                                    PaymentMethod.bank
+                            ? "Withdraw Funds"
+                            : "Send Money",
                         style: AppTextStyles.header,
                       ),
                       const SizedBox(height: 5),
                       Padding(
                         padding: const EdgeInsets.only(right: 55),
                         child: Text(
-                          model.appStateManager.sendMoney
-                              ? model.paymentStateManager.method != null &&
-                                      model.paymentStateManager.method ==
-                                          PaymentMethod.bank
-                                  ? "Enter the amount you wish to withdraw from your Blue wallet."
-                                  : "Send & receive money quickly and easier with your Blue account."
-                              : "Enter the amount below to initiate payment from your wallet.",
+                          model.paymentStateManager.method != null &&
+                                  model.paymentStateManager.method ==
+                                      PaymentMethod.bank
+                              ? "Enter the amount you wish to withdraw from your Blue wallet."
+                              : "Send & receive money quickly and easier with your Blue account.",
                           style: AppTextStyles.subHeader,
                         ),
                       ),
@@ -150,7 +146,7 @@ class _PaymentHomeViewState extends State<PaymentHomeView> {
                               // }
                             },
                             buttonText: "Continue",
-                            isActive: (model.appStateManager.sendMoney &&
+                            isActive: (model.appStateManager.quickPay &&
                                     pay.method != null &&
                                     pay.amount.isNotEmpty &&
                                     double.parse(pay.amount
@@ -161,8 +157,7 @@ class _PaymentHomeViewState extends State<PaymentHomeView> {
                                                     : "\u{20a6}",
                                                 "")) >=
                                         100.0) ||
-                                !model.appStateManager.sendMoney &&
-                                    pay.amount.isNotEmpty &&
+                                pay.amount.isNotEmpty &&
                                     double.parse(pay.amount
                                             .replaceAll(",", "")
                                             .replaceAll(

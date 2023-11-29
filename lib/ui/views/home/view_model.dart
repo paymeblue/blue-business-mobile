@@ -82,7 +82,7 @@ class HomeViewModel extends BaseViewModel {
           header: "Withdraw",
           onTap: () {
             paymentStateManager.method = PaymentMethod.bank;
-            appStateManager.sendMoney = true;
+            appStateManager.quickPay = true;
             appStateManager.dashboard = false;
           },
           color: AppColors.success,
