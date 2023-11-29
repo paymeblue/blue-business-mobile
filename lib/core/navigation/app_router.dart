@@ -38,6 +38,7 @@ class AppRouter extends RouterDelegate
         if (appStateManager.otp) SendOtpView.page(),
         if (appStateManager.resetPassword) ResetPasswordView.page(),
         if (appStateManager.dashboard) DashboardView.page(),
+        if (appStateManager.startChat) StartChatView.page(),
         if (appStateManager.shareQr) ShareQrView.page(),
         if (appStateManager.quickPay) PaymentHomeView.page(),
         if (appStateManager.paymentMethod) PaymentMethodView.page(),
@@ -55,7 +56,7 @@ class AppRouter extends RouterDelegate
         if (appStateManager.accountRecovery) AccountRecoveryView.page(),
         if (appStateManager.beneficiaries) ManageBeneficiariesView.page(),
         if (appStateManager.conversation) ConversationView.page(),
-        if (appStateManager.walletId) WalletIdView.page(),
+        // if (appStateManager.walletId) WalletIdView.page(),
         if (appStateManager.addPayoutAccount) AddWithdrawalAccountView.page(),
       ],
     );

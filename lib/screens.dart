@@ -23,3 +23,5 @@ export 'ui/views/change_pin/view.dart';
 export 'ui/views/add_payout_account/view.dart';
 export 'ui/views/virtual_bank/view.dart';
 export 'ui/views/manage_beneficiaries/view.dart';
+export 'ui/views/conversations/view.dart';
+export 'ui/views/start_chat/view.dart';
