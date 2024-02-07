@@ -6,54 +6,70 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.3 <4.0.0'
+  sdk: '>=3.1.2 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
-
+  #UI
   cupertino_icons: ^1.0.2
-  oktoast:
-  provider:
-  shared_preferences:
-  flutter_secure_storage:
-  http:
-  flutter_launcher_icons:
-  flutter_native_splash:
-  another_flushbar:
-  flutter_svg:
-  flutter_overlay_loader:
-  url_launcher:
-  get_it:
-  intl_phone_field:
-  flutter_otp_text_field:
-  currency_text_input_formatter:
-  contacts_service:
-  mobile_scanner:
-  intl:
-  country_list:
-  dotted_border:
-  file_picker:
-  image_picker:
-  syncfusion_flutter_pdfviewer:
-  share_plus:
-  permission_handler:
-  qr_flutter:
-  local_auth:
-  infinite_scroll_pagination:
-  dio:
-  pretty_dio_logger:
-  path:
-  firebase_core:
-  firebase_messaging:
-  cloud_firestore:
-  sqflite:
-  path_provider:
-  fl_chart:
-  screenshot: ^2.1.0
-  change_app_package_name: ^1.1.0
+  flutter_svg: ^2.0.9
+  country_flags: ^2.2.0
+  flutter_otp_text_field: ^1.1.1
   avatar_view: ^1.0.1
+  loading_animation_widget: ^1.2.0+4
+  overlay_kit: ^1.0.8
+  shimmer: ^3.0.0
+  infinite_scroll_pagination: ^4.0.0
+  oktoast: ^3.4.0
+  another_flushbar: ^1.12.30
+
+  #MEDIA UTILS
+  qr_flutter: ^4.1.0
+  screenshot: ^2.1.0
+  share_plus: ^7.2.1
+  file_picker: ^6.1.1
+  local_auth: ^2.1.8
+  mobile_scanner: ^3.4.1
+
+  #API
+  retrofit: ^4.0.3
+  dio: ^5.4.0
+  http_parser: ^4.0.2
+  permission_handler: ^11.2.0
+  contacts_service: ^0.6.3
+
+  # MESSAGING
+  firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.10
+  flutter_local_notifications: ^16.3.2
+
+  #DEPENDENCY INJECTION
+  get_it: ^7.6.4
+  provider: ^6.1.1
+
+  #ANNOTATION AND MODELLING
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+  
+  #NAVIGATION
+  go_router: 12.1.3
+
+  #LOGGING
+  logger: ^1.4.0
+
+  #URL
+  url_launcher: ^6.2.2 
+
+  #SECURE STORAGE
+  flutter_secure_storage: ^9.0.0
+
+  #FORMATTING
+  intl: ^0.18.0
+  currency_text_input_formatter: ^2.1.11
+  cloud_firestore: ^4.14.0
+  
 
 dev_dependencies:
   flutter_test:
@@ -61,15 +77,40 @@ dev_dependencies:
 
   flutter_lints: ^2.0.0
 
+  #ANNOTATION
+  build_runner: ^2.4.7
+  flutter_gen_runner:
+  freezed: ^2.4.6
+  json_serializable: ^6.7.1
+  retrofit_generator: ^8.0.6
 
 flutter_icons:
- ios: true
- android: true
- image_path_android: 'assets/images/blue_launcher.png'
- image_path_ios: 'assets/images/blue_launcher.png'
+  ios: true
+  android: true
+  image_path_android: 'assets/images/blue_launcher.png'
+  image_path_ios: 'assets/images/blue_launcher.png'
+
+
+flutter_gen:
+  output: lib/core/gen/
+  assets:
+    enabled: true
+    outputs:
+      class_name: AppAssets
+      package_parameter_enabled: false
+  fonts:
+    outputs:
+      class_name: AppFonts
+      package_parameter_enabled: true
+  colors:
+    outputs:
+      class_name: AppColors
+    inputs:
+      - assets/color/colors.xml
+  integrations:
+    flutter_svg: true
 
 flutter:
-
   uses-material-design: true
 
   fonts:

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary" type="material">#4341CD</color>
+    <color name="white" type="material">#FFFFFF</color>
+    <color name="offWhite">#FEFEFE</color>
+    <color name="grey">#F7F7FA</color>
+    <color name="bgGrey">#EAEAFE</color>
+    <color name="midGrey">#E5E6E8</color>
+    <color name="textColor" type="material">#232949</color>
+    <color name="bodyTextColor">#32374E</color>
+    <color name="promptTextColor">#2FB9AC</color>
+    <color name="success">#2FB9AC</color>
+    <color name="error">#EF2A5A</color>
+    <color name="info">#F6FAFE</color>
+    <color name="brightBlue">#807FF3</color>
+    <color name="accentGreen">#F6FEFA</color>
+    <color name="green" type="material">#039C53</color>
+    <color name="bg">#F5F7FD</color>
+    <color name="dark">#181D36</color>
+    <color name="accountLogoBg">#F9E9DC</color>
+    <color name="otherBlue">#3095F7</color>
+    <color name="paleBlue">#ECECEC</color>
+    <color name="lightBlue">#FF5F8FF</color>
+    <color name="otherGreen">#009999</color>
+    <color name="warning">#FF9601</color>
+    <color name="inputField">#F8F8FA</color>
+</resources>
