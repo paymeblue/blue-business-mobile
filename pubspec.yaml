@@ -114,51 +114,32 @@ flutter:
   uses-material-design: true
 
   fonts:
-    - family: Gilroy
+    - family: Satoshi
       fonts:
-        - asset: assets/fonts/Gilroy/Gilroy-Bold.ttf
+        - asset: assets/fonts/Satoshi/Satoshi-Black.otf
           weight: 700
-        - asset: assets/fonts/Gilroy/Gilroy-BoldItalic.ttf
+        - asset: assets/fonts/Satoshi/Satoshi-BlackItalic.otf
           weight: 700
           style: italic
-        - asset: assets/fonts/Gilroy/Gilroy-Extrabold.ttf
-          weight: 800
-        - asset: assets/fonts/Gilroy/Gilroy-ExtraboldItalic.ttf
-          weight: 800
-          style: italic
-        - asset: assets/fonts/Gilroy/Gilroy-Heavy.ttf
-          weight: 300
-        - asset: assets/fonts/Gilroy/Gilroy-HeavyItalic.ttf
-          weight: 300
-          style: italic
-        - asset: assets/fonts/Gilroy/Gilroy-Medium.ttf
-          weight: 100
-        - asset: assets/fonts/Gilroy/Gilroy-MediumItalic.ttf
-          weight: 100
-        - asset: assets/fonts/Gilroy/Gilroy-Light.ttf
-          weight: 400
-        - asset: assets/fonts/Gilroy/Gilroy-LightItalic.ttf
-          weight: 400
-          style: italic
-        - asset: assets/fonts/Gilroy/Gilroy-Regular.ttf
-          weight: 500
-        - asset: assets/fonts/Gilroy/Gilroy-RegularItalic.ttf
-          weight: 500
-          style: italic
-        - asset: assets/fonts/Gilroy/Gilroy-Semibold.ttf
+        - asset: assets/fonts/Satoshi/Satoshi-Bold.otf
           weight: 600
-        - asset: assets/fonts/Gilroy/Gilroy-SemiboldItalic.ttf
+        - asset: assets/fonts/Satoshi/Satoshi-BoldItalic.otf
           weight: 600
           style: italic
-        - asset: assets/fonts/Gilroy/Gilroy-Thin.ttf
-          weight: 200
-        - asset: assets/fonts/Gilroy/Gilroy-ThinItalic.ttf
-          weight: 200
+        - asset: assets/fonts/Satoshi/Satoshi-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Satoshi/Satoshi-MediumItalic.otf
+          weight: 500
           style: italic
-        - asset: assets/fonts/Gilroy/Gilroy-UltraLight.ttf
-          weight: 100
-        - asset: assets/fonts/Gilroy/Gilroy-UltraLightItalic.ttf
-          weight: 100
+        - asset: assets/fonts/Satoshi/Satoshi-Regular.otf
+          weight: 400
+        - asset: assets/fonts/Satoshi/Satoshi-Italic.otf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Satoshi/Satoshi-Light.otf
+          weight: 300
+        - asset: assets/fonts/Satoshi/Satoshi-LightItalic.otf
+          weight: 300
           style: italic
 
   assets:

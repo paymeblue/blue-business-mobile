@@ -32,7 +32,7 @@ export '../../modules/transaction_pages/blue_payment/presentation/view.dart';
 export '../../modules/transaction_pages/phone_payment/presentation/view.dart';
 export '../../modules/transaction_pages/confirm_payment/presentation/view.dart';
 export '../../modules/transaction_pages/pin/presentation/view.dart';
-export '../../modules/success/presentation/view.dart';
+export '../../modules/transaction_pages/success/presentation/view.dart';
 export '../../modules/transaction_pages/qr_payment/view.dart';
 export '../../modules/add_withdrawal_details/presentation/view.dart';
 export '../../modules/personal_info/presentation/view.dart';

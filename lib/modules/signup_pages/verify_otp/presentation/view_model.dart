@@ -1,27 +1,14 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
-import 'package:blue_business/core/io/storage/keys.dart';
-import 'package:blue_business/core/models/signup/response/signup_response.dart';
 import 'package:blue_business/core/models/signup/user/signup_user_data.dart';
-import 'package:blue_business/core/models/signup_otp/response/signup_otp_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
-import 'package:blue_business/core/services/locator.dart';
-import 'package:blue_business/core/utils/app_loader.dart';
-import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/error_handler.dart';
-import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class VerifyRegistrationOtpViewModel extends BaseViewModel {
   late Size size;
-  AuthService authService =
-      AuthService(DioConfig.dio(locator<AppStateValues>().accessToken));
 
   init(BuildContext context, String p) {
     size = context.mediaQuery.size;
@@ -88,42 +75,15 @@ class VerifyRegistrationOtpViewModel extends BaseViewModel {
 
   late String phone;
 
-  resendOtp() async {
-    AppLoader.start();
-
-    SignupOtpResponse resp =
-        await authService.resendOtp(phone).onError((error, stackTrace) {
-      return SignupOtpResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      AppNotification.success(message: resp.message);
-      startCountdown();
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    AppLoader.stop();
-  }
+  resendOtp() async {}
 
   verifyOtp(BuildContext context) async {
-    AppLoader.start();
-
-    SignupResponse resp =
-        await authService.verifyOtp(pin, phone).onError((error, stackTrace) {
-      return SignupResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      AppNotification.success(message: resp.message);
-      StorageValues.username = phone;
-      log(StorageValues.username);
-      if (context.mounted) goToNext(context, resp.data!.user);
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    AppLoader.stop();
+    SignupUserData user = SignupUserData(
+        id: 0,
+        phone: phone,
+        level: 2,
+        createdAt: DateTime.now().toIso8601String());
+    goToNext(context, user);
   }
 
   stopTimer() {

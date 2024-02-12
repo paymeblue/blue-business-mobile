@@ -7,7 +7,7 @@ import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/modules/success/widgets/receipt.dart';
+import 'package:blue_business/modules/transaction_pages/success/widgets/receipt.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

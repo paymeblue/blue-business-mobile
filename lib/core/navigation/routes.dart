@@ -10,6 +10,8 @@ import 'package:blue_business/core/navigation/screens.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/modules/signup_pages/confirm_password/presentation/view.dart';
+import 'package:blue_business/modules/signup_pages/success/presentation/view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -70,7 +72,10 @@ GoRouter router = GoRouter(
             .endsWith(RoutePaths.addPersonalInfoPath)) {
           index = 2;
         } else if (state.matchedLocation
-            .endsWith(RoutePaths.createPasswordPath)) {
+                .endsWith(RoutePaths.createPasswordPath) ||
+            state.matchedLocation.endsWith(
+              RoutePaths.confirmPasswordPath,
+            )) {
           index = 3;
         }
         return SignupShellView(
@@ -99,6 +104,12 @@ GoRouter router = GoRouter(
           },
         ),
         GoRoute(
+          path: RoutePaths.confirmPasswordPath,
+          builder: (context, state) {
+            return const ConfirmPasswordView();
+          },
+        ),
+        GoRoute(
           path: "/:id${RoutePaths.addPersonalInfoPath}",
           name: "Add Personal Info",
           builder: (context, state) {
@@ -121,6 +132,12 @@ GoRouter router = GoRouter(
           },
         ),
       ],
+    ),
+    GoRoute(
+      path: RoutePaths.registerSuccessPath,
+      builder: (context, state) {
+        return const RegisterSuccessView();
+      },
     ),
     ShellRoute(
         builder: (context, state, child) {

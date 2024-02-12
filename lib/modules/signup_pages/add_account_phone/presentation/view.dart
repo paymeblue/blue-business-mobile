@@ -47,6 +47,11 @@ class _EnterAccountPhoneViewState extends State<EnterAccountPhoneView> {
                 model.signup(context);
               },
             ),
+            AppButton.ghostPrimary(
+                title: "Old user",
+                onTap: () {
+                  model.goToPassword(context);
+                })
           ],
         );
       },
