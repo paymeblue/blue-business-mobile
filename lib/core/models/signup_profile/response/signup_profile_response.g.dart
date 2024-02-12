@@ -14,17 +14,8 @@ _$SignupProfileResponseImpl _$$SignupProfileResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$SignupProfileResponseImplToJson(
-    _$SignupProfileResponseImpl instance) {
-  final val = <String, dynamic>{
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('message', instance.message);
-  return val;
-}
+        _$SignupProfileResponseImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+    };

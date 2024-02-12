@@ -9,7 +9,10 @@ part of 'dash_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _DashService implements DashService {
-  _DashService(this._dio) {
+  _DashService(
+    this._dio, {
+    this.baseUrl,
+  }) {
     baseUrl ??= 'https://blue-api-backend.herokuapp.com/api';
   }
 
@@ -19,7 +22,7 @@ class _DashService implements DashService {
 
   @override
   Future<WalletResponse> getWalletBalance() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -46,7 +49,7 @@ class _DashService implements DashService {
 
   @override
   Future<KycStatusResponse> getKycStatus() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -73,7 +76,7 @@ class _DashService implements DashService {
 
   @override
   Future<TodoResponse> getTodos() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -100,7 +103,7 @@ class _DashService implements DashService {
 
   @override
   Future<TopupResponse> getTopupAccount() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -127,7 +130,7 @@ class _DashService implements DashService {
 
   @override
   Future<WithdrawalAccountResponse> getWithdrawalAccount() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -154,7 +157,7 @@ class _DashService implements DashService {
 
   @override
   Future<ChatReceiverResponse> getReceiver(String identifier) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'identifier': identifier};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;

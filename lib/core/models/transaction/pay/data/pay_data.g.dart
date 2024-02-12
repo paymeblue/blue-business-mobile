@@ -8,22 +8,22 @@ part of 'pay_data.dart';
 
 _$PayDataImpl _$$PayDataImplFromJson(Map<String, dynamic> json) =>
     _$PayDataImpl(
-      transactionId: json['transaction_id'] as String,
+      transactionId: json['transactionId'] as String,
       amount: json['amount'] as String,
-      receiverName: json['receiver_name'] as String,
-      receiverWallet: json['receiver_wallet'] as String,
+      receiverName: json['receiverName'] as String,
+      receiverWallet: json['receiverWallet'] as String,
       reference: json['reference'] as String,
       status: json['status'] as String,
-      createdAt: json['created_at'] as String,
+      createdAt: json['createdAt'] as String,
     );
 
 Map<String, dynamic> _$$PayDataImplToJson(_$PayDataImpl instance) =>
     <String, dynamic>{
-      'transaction_id': instance.transactionId,
+      'transactionId': instance.transactionId,
       'amount': instance.amount,
-      'receiver_name': instance.receiverName,
-      'receiver_wallet': instance.receiverWallet,
+      'receiverName': instance.receiverName,
+      'receiverWallet': instance.receiverWallet,
       'reference': instance.reference,
       'status': instance.status,
-      'created_at': instance.createdAt,
+      'createdAt': instance.createdAt,
     };

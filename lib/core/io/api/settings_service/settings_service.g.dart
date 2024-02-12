@@ -9,7 +9,10 @@ part of 'settings_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _SettingsService implements SettingsService {
-  _SettingsService(this._dio) {
+  _SettingsService(
+    this._dio, {
+    this.baseUrl,
+  }) {
     baseUrl ??= 'https://blue-api-backend.herokuapp.com/api';
   }
 
@@ -19,7 +22,7 @@ class _SettingsService implements SettingsService {
 
   @override
   Future<NotificationResponse> toggleNotifications(int status) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'status': status};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -46,7 +49,7 @@ class _SettingsService implements SettingsService {
 
   @override
   Future<UploadAvatarResponse> uploadDisplayPicture(File displayPic) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = FormData();

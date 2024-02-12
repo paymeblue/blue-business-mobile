@@ -8,14 +8,14 @@ part of 'country_code.dart';
 
 _$CountryCodeImpl _$$CountryCodeImplFromJson(Map<String, dynamic> json) =>
     _$CountryCodeImpl(
-      countryCode: json['country_code'] as String,
+      countryCode: json['countryCode'] as String,
       name: json['name'] as String,
-      dialCode: json['dial_code'] as String,
+      dialCode: json['dialCode'] as String,
     );
 
 Map<String, dynamic> _$$CountryCodeImplToJson(_$CountryCodeImpl instance) =>
     <String, dynamic>{
-      'country_code': instance.countryCode,
+      'countryCode': instance.countryCode,
       'name': instance.name,
-      'dial_code': instance.dialCode,
+      'dialCode': instance.dialCode,
     };

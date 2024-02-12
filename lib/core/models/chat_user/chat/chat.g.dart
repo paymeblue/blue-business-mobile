@@ -7,37 +7,28 @@ part of 'chat.dart';
 // **************************************************************************
 
 _$ChatImpl _$$ChatImplFromJson(Map<String, dynamic> json) => _$ChatImpl(
-      channelId: json['channel_id'] as String,
+      channelId: json['channelId'] as String,
       sender: json['sender'] as String,
       receiver: json['receiver'] as String,
-      timeStamp: json['time_stamp'] as String,
-      fcmToken: json['fcm_token'] as String,
-      senderName: json['sender_name'] as String,
-      peerToken: json['peer_token'] as String,
-      updateType: json['update_type'] as String? ?? "message",
+      timeStamp: json['timeStamp'] as String,
+      fcmToken: json['fcmToken'] as String,
+      senderName: json['senderName'] as String,
+      peerToken: json['peerToken'] as String,
+      updateType: json['updateType'] as String? ?? "message",
       message: json['message'] as String?,
-      unreadCount: json['unread_count'] as int? ?? 0,
+      unreadCount: json['unreadCount'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$$ChatImplToJson(_$ChatImpl instance) {
-  final val = <String, dynamic>{
-    'channel_id': instance.channelId,
-    'sender': instance.sender,
-    'receiver': instance.receiver,
-    'time_stamp': instance.timeStamp,
-    'fcm_token': instance.fcmToken,
-    'sender_name': instance.senderName,
-    'peer_token': instance.peerToken,
-    'update_type': instance.updateType,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('message', instance.message);
-  val['unread_count'] = instance.unreadCount;
-  return val;
-}
+Map<String, dynamic> _$$ChatImplToJson(_$ChatImpl instance) =>
+    <String, dynamic>{
+      'channelId': instance.channelId,
+      'sender': instance.sender,
+      'receiver': instance.receiver,
+      'timeStamp': instance.timeStamp,
+      'fcmToken': instance.fcmToken,
+      'senderName': instance.senderName,
+      'peerToken': instance.peerToken,
+      'updateType': instance.updateType,
+      'message': instance.message,
+      'unreadCount': instance.unreadCount,
+    };

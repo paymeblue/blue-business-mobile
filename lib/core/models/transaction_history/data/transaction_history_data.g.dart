@@ -17,7 +17,7 @@ _$TransactionDataImpl _$$TransactionDataImplFromJson(
                   (e) => TransactionHistory.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      loadMore: json['load_more'] as bool? ?? false,
+      loadMore: json['loadMore'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$TransactionDataImplToJson(
@@ -27,5 +27,5 @@ Map<String, dynamic> _$$TransactionDataImplToJson(
       'limit': instance.limit,
       'page': instance.page,
       'data': instance.data,
-      'load_more': instance.loadMore,
+      'loadMore': instance.loadMore,
     };

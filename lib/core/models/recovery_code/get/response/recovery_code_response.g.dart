@@ -17,18 +17,9 @@ _$GetRecoveryCodeResponseImpl _$$GetRecoveryCodeResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$GetRecoveryCodeResponseImplToJson(
-    _$GetRecoveryCodeResponseImpl instance) {
-  final val = <String, dynamic>{
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('message', instance.message);
-  writeNotNull('data', instance.data);
-  return val;
-}
+        _$GetRecoveryCodeResponseImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.data,
+    };

@@ -101,6 +101,9 @@ class $AssetsImagesIconsGen {
   SvgGenImage get cameraWhite =>
       const SvgGenImage('assets/images/icons/camera_white.svg');
 
+  /// File path: assets/images/icons/cancel.svg
+  SvgGenImage get cancel => const SvgGenImage('assets/images/icons/cancel.svg');
+
   /// File path: assets/images/icons/coming_soon.svg
   SvgGenImage get comingSoon =>
       const SvgGenImage('assets/images/icons/coming_soon.svg');
@@ -126,6 +129,10 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/download.svg
   SvgGenImage get download =>
       const SvgGenImage('assets/images/icons/download.svg');
+
+  /// File path: assets/images/icons/download_new.svg
+  SvgGenImage get downloadNew =>
+      const SvgGenImage('assets/images/icons/download_new.svg');
 
   /// File path: assets/images/icons/edit_info.svg
   SvgGenImage get editInfo =>
@@ -201,6 +208,9 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/pin.svg
   SvgGenImage get pin => const SvgGenImage('assets/images/icons/pin.svg');
 
+  /// File path: assets/images/icons/print.svg
+  SvgGenImage get print => const SvgGenImage('assets/images/icons/print.svg');
+
   /// File path: assets/images/icons/recover_account.svg
   SvgGenImage get recoverAccount =>
       const SvgGenImage('assets/images/icons/recover_account.svg');
@@ -270,6 +280,7 @@ class $AssetsImagesIconsGen {
         camera,
         cameraBlue,
         cameraWhite,
+        cancel,
         comingSoon,
         copy,
         copyWhite,
@@ -277,6 +288,7 @@ class $AssetsImagesIconsGen {
         deleteAccount,
         document,
         download,
+        downloadNew,
         editInfo,
         error,
         export,
@@ -297,6 +309,7 @@ class $AssetsImagesIconsGen {
         paymentLink,
         photoLibrary,
         pin,
+        print,
         recoverAccount,
         recoveryCode,
         recoveryPhone,

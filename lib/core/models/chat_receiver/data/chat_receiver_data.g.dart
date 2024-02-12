@@ -9,28 +9,19 @@ part of 'chat_receiver_data.dart';
 _$ChatResponseDataImpl _$$ChatResponseDataImplFromJson(
         Map<String, dynamic> json) =>
     _$ChatResponseDataImpl(
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      displayPic: json['display_pic'] as String?,
-      walletCode: json['wallet_code'] as String,
-      fcmToken: json['fcm_token'] as String,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+      displayPic: json['displayPic'] as String?,
+      walletCode: json['walletCode'] as String,
+      fcmToken: json['fcmToken'] as String,
     );
 
 Map<String, dynamic> _$$ChatResponseDataImplToJson(
-    _$ChatResponseDataImpl instance) {
-  final val = <String, dynamic>{
-    'first_name': instance.firstName,
-    'last_name': instance.lastName,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('display_pic', instance.displayPic);
-  val['wallet_code'] = instance.walletCode;
-  val['fcm_token'] = instance.fcmToken;
-  return val;
-}
+        _$ChatResponseDataImpl instance) =>
+    <String, dynamic>{
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'displayPic': instance.displayPic,
+      'walletCode': instance.walletCode,
+      'fcmToken': instance.fcmToken,
+    };

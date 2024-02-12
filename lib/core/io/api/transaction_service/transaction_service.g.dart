@@ -9,7 +9,10 @@ part of 'transaction_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _TransactionService implements TransactionService {
-  _TransactionService(this._dio) {
+  _TransactionService(
+    this._dio, {
+    this.baseUrl,
+  }) {
     baseUrl ??= 'https://blue-api-backend.herokuapp.com/api';
   }
 
@@ -25,7 +28,7 @@ class _TransactionService implements TransactionService {
     String? date,
     String? type,
   }) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
       r'limit': limit,
@@ -63,7 +66,7 @@ class _TransactionService implements TransactionService {
     int limit,
     String? query,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
       r'limit': limit,
@@ -95,7 +98,7 @@ class _TransactionService implements TransactionService {
 
   @override
   Future<dynamic> deleteBeneficiary(int id) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -122,7 +125,7 @@ class _TransactionService implements TransactionService {
   @override
   Future<SetBeneficiaryResponse> addBeneficiary(
       SetBeneficiaryRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -153,7 +156,7 @@ class _TransactionService implements TransactionService {
     int limit,
     String status,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
       r'limit': limit,
@@ -184,7 +187,7 @@ class _TransactionService implements TransactionService {
 
   @override
   Future<RecentlyPaidResponse> getRecentlyPaid() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -212,7 +215,7 @@ class _TransactionService implements TransactionService {
   @override
   Future<InitiateTransactionResponse> initiateTransaction(
       InitiateTransactionRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -242,7 +245,7 @@ class _TransactionService implements TransactionService {
     int id,
     VerifiedReceiverRequest request,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -269,7 +272,7 @@ class _TransactionService implements TransactionService {
 
   @override
   Future<PayResponse> withdraw(WithdrawRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -296,7 +299,7 @@ class _TransactionService implements TransactionService {
 
   @override
   Future<PayResponse> pay(CreditRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -323,7 +326,7 @@ class _TransactionService implements TransactionService {
 
   @override
   Future<ReceiptResponse> getReceipt(String transactionId) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'transaction_id': transactionId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -351,7 +354,7 @@ class _TransactionService implements TransactionService {
   @override
   Future<PaymentLinkReceiptResponse> getPaymentLinkReceipt(
       String transactionId) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'transaction_id': transactionId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -378,7 +381,7 @@ class _TransactionService implements TransactionService {
 
   @override
   Future<BankResponse> getBanks() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -406,7 +409,7 @@ class _TransactionService implements TransactionService {
   @override
   Future<VerifyPayoutResponse> verifyAccount(
       VerifyPayoutRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -433,7 +436,7 @@ class _TransactionService implements TransactionService {
 
   @override
   Future<SetPayoutResponse> addPayout(SetPayoutRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -460,7 +463,7 @@ class _TransactionService implements TransactionService {
 
   @override
   Future<GetQuestionResponse> getSecurityQuestion(String phone) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'phone': phone};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -488,7 +491,7 @@ class _TransactionService implements TransactionService {
   @override
   Future<SendQuestionResponse> sendSecurityAnswer(
       SendQuestionRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -516,7 +519,7 @@ class _TransactionService implements TransactionService {
   @override
   Future<SendQuestionResponse> createSecurityQuestion(
       CreateQuestionRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -543,7 +546,7 @@ class _TransactionService implements TransactionService {
 
   @override
   Future<SendQuestionResponse> resetPin(ResetPinRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;

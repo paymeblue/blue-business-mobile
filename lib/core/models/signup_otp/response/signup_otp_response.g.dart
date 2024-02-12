@@ -14,17 +14,8 @@ _$SignupOtpResponseImpl _$$SignupOtpResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$SignupOtpResponseImplToJson(
-    _$SignupOtpResponseImpl instance) {
-  final val = <String, dynamic>{
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('message', instance.message);
-  return val;
-}
+        _$SignupOtpResponseImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+    };

@@ -9,7 +9,10 @@ part of 'auth_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _AuthService implements AuthService {
-  _AuthService(this._dio) {
+  _AuthService(
+    this._dio, {
+    this.baseUrl,
+  }) {
     baseUrl ??= 'https://blue-api-backend.herokuapp.com/api';
   }
 
@@ -19,7 +22,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<LoginResponse> login(LoginRequest loginRequest) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = loginRequest;
@@ -46,7 +49,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<RefreshTokenResponse> refresh(RefreshTokenRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -73,7 +76,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<ChangePinResponse> changePin(ChangePinRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -101,7 +104,7 @@ class _AuthService implements AuthService {
   @override
   Future<ChangePasswordResponse> changePassword(
       ChangePasswordRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -128,7 +131,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<GetReasonResponse> getReasons() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -155,7 +158,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<DeleteResponse> deleteAccount(DeleteRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -182,7 +185,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<LogoutResponse> logout(LogoutRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -209,7 +212,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<SignupResponse> signup(SignupRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -236,7 +239,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<SignupOtpResponse> resendOtp(String phone) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'phone': phone};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -266,7 +269,7 @@ class _AuthService implements AuthService {
     String otp,
     String phone,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'otp': otp,
       r'phone': phone,
@@ -299,7 +302,7 @@ class _AuthService implements AuthService {
     SignupProfileRequest request,
     String id,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -327,7 +330,7 @@ class _AuthService implements AuthService {
   @override
   Future<SendRecoveryCodeResponse> verifyRecoveryCode(
       SendRecoveryCodeRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -354,7 +357,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<GetRecoveryCodeResponse> getRecoveryCode() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -381,7 +384,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<ResetRecoveryCodeResponse> resetRecoveryCode() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -411,7 +414,7 @@ class _AuthService implements AuthService {
     String id,
     SendNewPhoneRequest request,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -438,7 +441,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<SendNewPhoneResponse> resendPhoneRecoveryOtp(String phone) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'phone': phone};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -468,7 +471,7 @@ class _AuthService implements AuthService {
     String otp,
     String phone,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'otp': otp,
       r'phone': phone,
@@ -499,7 +502,7 @@ class _AuthService implements AuthService {
   @override
   Future<SetRecoveryPhoneResponse> updateRecoveryPhone(
       SetRecoveryPhoneRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -527,7 +530,7 @@ class _AuthService implements AuthService {
   @override
   Future<SendNewPhoneResponse> forgotPassword(
       SendNewPhoneRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -555,7 +558,7 @@ class _AuthService implements AuthService {
   @override
   Future<SendNewPhoneResponse> forgotPinWithPhone(
       SendNewPhoneRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -583,7 +586,7 @@ class _AuthService implements AuthService {
   @override
   Future<SendNewPhoneResponse> resetPassword(
       ResetPasswordRequest request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;

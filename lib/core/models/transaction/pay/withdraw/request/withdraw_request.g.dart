@@ -9,7 +9,7 @@ part of 'withdraw_request.dart';
 _$WithdrawRequestImpl _$$WithdrawRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$WithdrawRequestImpl(
-      paymentMode: json['payment_mode'] as String? ?? "withdrawal",
+      paymentMode: json['paymentMode'] as String? ?? "withdrawal",
       amount: json['amount'] as String,
       passcode: json['passcode'] as String,
     );
@@ -17,7 +17,7 @@ _$WithdrawRequestImpl _$$WithdrawRequestImplFromJson(
 Map<String, dynamic> _$$WithdrawRequestImplToJson(
         _$WithdrawRequestImpl instance) =>
     <String, dynamic>{
-      'payment_mode': instance.paymentMode,
+      'paymentMode': instance.paymentMode,
       'amount': instance.amount,
       'passcode': instance.passcode,
     };
