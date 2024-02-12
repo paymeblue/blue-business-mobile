@@ -9,10 +9,7 @@ part of 'settings_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _SettingsService implements SettingsService {
-  _SettingsService(
-    this._dio, {
-    this.baseUrl,
-  }) {
+  _SettingsService(this._dio) {
     baseUrl ??= 'https://blue-api-backend.herokuapp.com/api';
   }
 
