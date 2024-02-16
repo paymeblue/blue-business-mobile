@@ -221,7 +221,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/users/signup',
+              '/auth/register',
               queryParameters: queryParameters,
               data: _data,
             )

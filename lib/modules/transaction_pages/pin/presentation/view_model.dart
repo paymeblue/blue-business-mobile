@@ -1,5 +1,4 @@
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
@@ -27,8 +26,7 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
   late Size size;
   late String id;
   AppStateValues stateValues = locator<AppStateValues>();
-  late TransactionService transactionService =
-      TransactionService(DioConfig.dio(stateValues.accessToken));
+  late TransactionService transactionService = TransactionService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;

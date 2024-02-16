@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/logout/request/logout_request.dart';
 import 'package:blue_business/core/models/logout/response/logout_response.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
@@ -43,11 +42,10 @@ class RefreshTimer {
   }
 
   _refreshToken() async {
-    RefreshTokenResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .refresh(RefreshTokenRequest(
-                refreshToken: locator<AppStateValues>().refreshToken))
-            .onError((error, stackTrace) {
+    RefreshTokenResponse resp = await AuthService()
+        .refresh(RefreshTokenRequest(
+            refreshToken: locator<AppStateValues>().refreshToken))
+        .onError((error, stackTrace) {
       return RefreshTokenResponse(
           status: "fail", message: AppErrorHandler.getErrorMessage(error));
     });
@@ -72,9 +70,7 @@ class RefreshTimer {
         LogoutRequest(refreshToken: locator<AppStateValues>().refreshToken);
 
     LogoutResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .logout(request)
-            .onError((error, stackTrace) {
+        await AuthService().logout(request).onError((error, stackTrace) {
       return LogoutResponse(message: AppErrorHandler.getErrorMessage(error));
     });
     log(resp.toString());

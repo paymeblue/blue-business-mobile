@@ -1,5 +1,4 @@
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/banks/item/bank.dart';
 import 'package:blue_business/core/models/banks/response/bank_response.dart';
@@ -20,8 +19,7 @@ import 'package:go_router/go_router.dart';
 class AddWithdrawalDetailsViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
-  late TransactionService transactionService =
-      TransactionService(DioConfig.dio(stateValues.accessToken));
+  late TransactionService transactionService = TransactionService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;

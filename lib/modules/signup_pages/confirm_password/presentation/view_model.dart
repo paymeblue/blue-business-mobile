@@ -1,6 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
@@ -46,9 +45,8 @@ class ConfirmPasswordViewModel extends BaseViewModel {
       fcmToken: locator<AppStateValues>().fcmToken,
     );
 
-    LoginResponse resp = await AuthService(DioConfig.dio())
-        .login(request)
-        .onError((error, stackTrace) {
+    LoginResponse resp =
+        await AuthService().login(request).onError((error, stackTrace) {
       return LoginResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 

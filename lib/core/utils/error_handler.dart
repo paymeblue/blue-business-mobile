@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/models/logout/request/logout_request.dart';
 import 'package:blue_business/core/models/logout/response/logout_response.dart';
@@ -61,9 +60,7 @@ class AppErrorHandler {
         LogoutRequest(refreshToken: locator<AppStateValues>().refreshToken);
 
     LogoutResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .logout(request)
-            .onError((error, stackTrace) {
+        await AuthService().logout(request).onError((error, stackTrace) {
       return LogoutResponse(message: AppErrorHandler.getErrorMessage(error));
     });
     log(resp.toString());

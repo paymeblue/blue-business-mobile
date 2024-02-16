@@ -5,14 +5,12 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/chat_service/chat_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/chat_receiver/data/chat_receiver_data.dart';
 import 'package:blue_business/core/models/chat_receiver/response/chat_receiver_response.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
-import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
@@ -26,8 +24,7 @@ import 'package:provider/provider.dart';
 
 class StartConversationViewModel extends BaseViewModel {
   late Size size;
-  DashService dashService =
-      DashService(DioConfig.dio(locator<AppStateValues>().accessToken));
+  DashService dashService = DashService();
   ChatService chatService = ChatService();
 
   init(BuildContext context) {

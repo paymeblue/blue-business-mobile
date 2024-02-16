@@ -2,7 +2,6 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/recovery_code/get/response/recovery_code_response.dart';
@@ -27,10 +26,8 @@ import 'package:go_router/go_router.dart';
 class AccountRecoveryViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
-  late AuthService authService =
-      AuthService(DioConfig.dio(stateValues.accessToken));
-  late TransactionService transactionService =
-      TransactionService(DioConfig.dio(stateValues.accessToken));
+  late AuthService authService = AuthService();
+  late TransactionService transactionService = TransactionService();
 
   init(BuildContext context, String? type) {
     size = context.mediaQuery.size;

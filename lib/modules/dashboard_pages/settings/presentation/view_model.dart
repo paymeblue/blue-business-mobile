@@ -6,7 +6,6 @@ import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/settings_service/settings_service.dart';
 import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
@@ -39,10 +38,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class SettingsViewModel extends BaseViewModel {
   late Size size;
-  DashService dashService =
-      DashService(DioConfig.dio(locator<AppStateValues>().accessToken));
-  AuthService authService =
-      AuthService(DioConfig.dio(locator<AppStateValues>().accessToken));
+  DashService dashService = DashService();
+  AuthService authService = AuthService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -93,8 +90,7 @@ class SettingsViewModel extends BaseViewModel {
   uploadImage(File file) async {
     AppLoader.start();
 
-    UploadAvatarResponse resp = await SettingsService(
-            DioConfig.dio(locator<AppStateValues>().accessToken))
+    UploadAvatarResponse resp = await SettingsService()
         .uploadDisplayPicture(file)
         .onError((error, stackTrace) => UploadAvatarResponse(
             message: AppErrorHandler.getErrorMessage(error)));
@@ -404,8 +400,7 @@ class SettingsViewModel extends BaseViewModel {
   toggleNotifications(bool v) async {
     AppLoader.start();
 
-    NotificationResponse resp = await SettingsService(
-            DioConfig.dio(locator<AppStateValues>().accessToken))
+    NotificationResponse resp = await SettingsService()
         .toggleNotifications(v ? 1 : 0)
         .onError((error, stackTrace) {
       return NotificationResponse(
@@ -436,9 +431,7 @@ class SettingsViewModel extends BaseViewModel {
     AppLoader.start();
 
     KycStatusResponse resp =
-        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .getKycStatus()
-            .onError((error, stackTrace) {
+        await DashService().getKycStatus().onError((error, stackTrace) {
       return KycStatusResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 

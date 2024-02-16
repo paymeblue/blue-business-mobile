@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 class DioConfig {
   DioConfig._();
 
-  static Dio dio([String jwt = ""]) {
+  static Dio dio() {
     AppStateValues stateValues = locator<AppStateValues>();
     Map<String, dynamic> headers = {
       "Accept": "*/*",
@@ -30,13 +30,18 @@ class DioConfig {
       responseBody: true,
       responseHeader: true,
     ));
-    return Dio(BaseOptions(
-      baseUrl: "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api",
-      connectTimeout: const Duration(seconds: 30),
-      headers: headers,
-      validateStatus: (status) {
-        return true;
+    dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        return handler.next(options);
+      },
+      onResponse: (response, handler) {
+        return handler.next(response);
+      },
+      onError: (DioException e, handler) {
+        return handler.next(e);
       },
     ));
+
+    return dio;
   }
 }

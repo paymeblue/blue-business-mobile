@@ -1,15 +1,12 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/change_password/request/change_password_request.dart';
 import 'package:blue_business/core/models/change_password/response/change_password_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
-import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
-import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
@@ -69,14 +66,13 @@ class ChangePasswordViewModel extends BaseViewModel {
   changePassword(BuildContext context) async {
     AppLoader.start();
 
-    ChangePasswordResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .changePassword(ChangePasswordRequest(
+    ChangePasswordResponse resp = await AuthService()
+        .changePassword(ChangePasswordRequest(
       oldPassword: passwordController.text,
       newPassword: newPasswordController.text,
       passwordConfirmation: confirmPasswordController.text,
     ))
-            .onError((error, stackTrace) {
+        .onError((error, stackTrace) {
       return ChangePasswordResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });

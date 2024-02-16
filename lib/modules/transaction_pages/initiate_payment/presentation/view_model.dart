@@ -1,6 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/payment_option/payment_option.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
@@ -21,10 +20,8 @@ import 'package:go_router/go_router.dart';
 class InitiatePaymentViewModel extends BaseViewModel {
   late Size size;
 
-  TransactionService transactionService =
-      TransactionService(DioConfig.dio(locator<AppStateValues>().accessToken));
-  DashService dashService =
-      DashService(DioConfig.dio(locator<AppStateValues>().accessToken));
+  TransactionService transactionService = TransactionService();
+  DashService dashService = DashService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
@@ -19,8 +18,7 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
   late Size size;
   late String phone;
   AppStateValues stateValues = locator<AppStateValues>();
-  late AuthService authService =
-      AuthService(DioConfig.dio(stateValues.accessToken));
+  late AuthService authService = AuthService();
 
   init(BuildContext context, String p) {
     size = context.mediaQuery.size;

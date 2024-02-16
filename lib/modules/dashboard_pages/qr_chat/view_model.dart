@@ -1,12 +1,10 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/chat_receiver/data/chat_receiver_data.dart';
 import 'package:blue_business/core/models/chat_receiver/response/chat_receiver_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
-import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
@@ -18,10 +16,8 @@ import 'package:provider/provider.dart';
 
 class QrChatViewModel extends BaseViewModel {
   late Size size;
-  TransactionService transactionService =
-      TransactionService(DioConfig.dio(locator<AppStateValues>().accessToken));
-  late DashService dashService =
-      DashService(DioConfig.dio(locator<AppStateValues>().accessToken));
+  TransactionService transactionService = TransactionService();
+  late DashService dashService = DashService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;

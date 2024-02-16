@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/recover_phone/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
@@ -20,10 +19,8 @@ class VerifyPinRecoveryOtpViewModel extends BaseViewModel {
   late Size size;
   late String phone;
   AppStateValues stateValues = locator<AppStateValues>();
-  late TransactionService transactionService =
-      TransactionService(DioConfig.dio(stateValues.accessToken));
-  late AuthService authService =
-      AuthService(DioConfig.dio(stateValues.accessToken));
+  late TransactionService transactionService = TransactionService();
+  late AuthService authService = AuthService();
 
   init(BuildContext context, String p) {
     size = context.mediaQuery.size;

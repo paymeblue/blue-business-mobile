@@ -1,5 +1,4 @@
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/reset/pin/request/reset_pin_request.dart';
 import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
@@ -18,8 +17,7 @@ import 'package:go_router/go_router.dart';
 class NewPinViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
-  late TransactionService transactionService =
-      TransactionService(DioConfig.dio(stateValues.accessToken));
+  late TransactionService transactionService = TransactionService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;

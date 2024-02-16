@@ -1,3 +1,4 @@
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/change_password/request/change_password_request.dart';
 import 'package:blue_business/core/models/change_password/response/change_password_response.dart';
 import 'package:blue_business/core/models/change_pin/request/change_pin_request.dart';
@@ -33,7 +34,9 @@ part 'auth_service.g.dart';
 @RestApi(
     baseUrl: "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api")
 abstract class AuthService {
-  factory AuthService(Dio dio) = _AuthService;
+  factory AuthService() {
+    return _AuthService(DioConfig.dio());
+  }
 
   @POST("/auth/login")
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);
@@ -57,7 +60,7 @@ abstract class AuthService {
   @POST("/users/logout")
   Future<LogoutResponse> logout(@Body() LogoutRequest request);
 
-  @POST("/users/signup")
+  @POST("/auth/register")
   Future<SignupResponse> signup(@Body() SignupRequest request);
 
   @GET("/otps/resend")

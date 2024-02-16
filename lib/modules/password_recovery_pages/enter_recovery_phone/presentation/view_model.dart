@@ -1,7 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/recover_phone/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
@@ -18,8 +17,7 @@ import 'package:go_router/go_router.dart';
 class EnterPasswordRecoveryPhoneViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
-  late AuthService authService =
-      AuthService(DioConfig.dio(stateValues.accessToken));
+  late AuthService authService = AuthService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;

@@ -1,6 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/recovery_code/send/request/recovery_code_request.dart';
 import 'package:blue_business/core/models/recovery_code/send/response/recovery_code_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
@@ -16,8 +15,7 @@ import 'package:go_router/go_router.dart';
 class EnterRecoveryCodeViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
-  late AuthService authService =
-      AuthService(DioConfig.dio(stateValues.accessToken));
+  late AuthService authService = AuthService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;

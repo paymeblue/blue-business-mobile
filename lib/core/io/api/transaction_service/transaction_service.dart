@@ -1,3 +1,4 @@
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/banks/response/bank_response.dart';
 import 'package:blue_business/core/models/beneficiary/get/response/get_beneficiary_response.dart';
 import 'package:blue_business/core/models/beneficiary/set/request/set_beneficiary_request.dart';
@@ -31,7 +32,9 @@ part 'transaction_service.g.dart';
 @RestApi(
     baseUrl: "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api")
 abstract class TransactionService {
-  factory TransactionService(Dio dio) = _TransactionService;
+  factory TransactionService() {
+    return _TransactionService(DioConfig.dio());
+  }
 
   @GET('/transactions')
   Future<TransactionResponse> getTransactions(
