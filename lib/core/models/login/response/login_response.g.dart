@@ -8,7 +8,7 @@ part of 'login_response.dart';
 
 _$LoginResponseImpl _$$LoginResponseImplFromJson(Map<String, dynamic> json) =>
     _$LoginResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -17,7 +17,7 @@ _$LoginResponseImpl _$$LoginResponseImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$LoginResponseImplToJson(_$LoginResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

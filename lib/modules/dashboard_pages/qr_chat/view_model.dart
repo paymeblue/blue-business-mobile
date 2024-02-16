@@ -38,7 +38,7 @@ class QrChatViewModel extends BaseViewModel {
     mobileScannerController.stop();
 
     getPeer(val).then((value) {
-      if (value.status == "success") {
+      if (value.success) {
         ChatResponseData recipient = value.data!;
         context.go(RoutePaths.chatDetailsPath,
             extra: {"peer": recipient, "unread": 0});

@@ -7,7 +7,7 @@ part 'withdrawal_account_response.g.dart';
 @freezed
 class WithdrawalAccountResponse with _$WithdrawalAccountResponse {
   const factory WithdrawalAccountResponse({
-    @Default("fail") String status,
+    @Default(false) bool success,
     String? message,
     WithdrawalAccount? data,
   }) = _WithdrawalAccountResponse;

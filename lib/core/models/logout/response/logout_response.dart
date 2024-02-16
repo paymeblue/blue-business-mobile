@@ -6,7 +6,7 @@ part 'logout_response.g.dart';
 @freezed
 class LogoutResponse with _$LogoutResponse {
   const factory LogoutResponse({
-    @Default("fail") String status,
+    @Default(false) bool success,
     String? message,
   }) = _LogoutResponse;
 

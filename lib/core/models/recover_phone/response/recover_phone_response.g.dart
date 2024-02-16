@@ -9,14 +9,14 @@ part of 'recover_phone_response.dart';
 _$SendNewPhoneResponseImpl _$$SendNewPhoneResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$SendNewPhoneResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$$SendNewPhoneResponseImplToJson(
     _$SendNewPhoneResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

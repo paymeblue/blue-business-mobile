@@ -9,7 +9,7 @@ part of 'initiate_transaction_response.dart';
 _$InitiateTransactionResponseImpl _$$InitiateTransactionResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$InitiateTransactionResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -20,7 +20,7 @@ _$InitiateTransactionResponseImpl _$$InitiateTransactionResponseImplFromJson(
 Map<String, dynamic> _$$InitiateTransactionResponseImplToJson(
     _$InitiateTransactionResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

@@ -7,7 +7,7 @@ part 'receipt_response.g.dart';
 @freezed
 class ReceiptResponse with _$ReceiptResponse {
   const factory ReceiptResponse({
-    @Default("fail") String status,
+    @Default(false) bool success,
     String? message,
     ReceiptData? data,
   }) = _ReceiptResponse;

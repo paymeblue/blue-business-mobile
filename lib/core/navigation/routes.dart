@@ -73,7 +73,7 @@ GoRouter router = GoRouter(
           index = 2;
         } else if (state.matchedLocation
                 .endsWith(RoutePaths.createPasswordPath) ||
-            state.matchedLocation.endsWith(
+            state.matchedLocation.startsWith(
               RoutePaths.confirmPasswordPath,
             )) {
           index = 3;

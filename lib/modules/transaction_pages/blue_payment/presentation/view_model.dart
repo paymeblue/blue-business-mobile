@@ -91,7 +91,7 @@ class BluePaymentViewModel extends BaseViewModel {
         return GetBeneficiaryResponse(
             message: AppErrorHandler.getErrorMessage(error));
       });
-      if (resp.status == "success") {
+      if (resp.success) {
         List<BlueBeneficiary> t = resp.data!.data;
 
         if (resp.data!.loadMore) {
@@ -115,7 +115,7 @@ class BluePaymentViewModel extends BaseViewModel {
       return RecentlyPaidResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });
-    if (resp.status == "success") {
+    if (resp.success) {
       recentlyPaidItems = resp.data!.beneficiaries;
     } else {
       AppNotification.error(message: resp.message);
@@ -125,7 +125,7 @@ class BluePaymentViewModel extends BaseViewModel {
 
   onButtonTap(BuildContext context) {
     verify().then((value) {
-      if (value.status == "success") {
+      if (value.success) {
         context.go(
             "${RoutePaths.confirmPaymentPath}/blue-user/${data.transactionId}",
             extra: value.data);

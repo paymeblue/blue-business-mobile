@@ -9,7 +9,7 @@ part of 'recovery_code_response.dart';
 _$GetRecoveryCodeResponseImpl _$$GetRecoveryCodeResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$GetRecoveryCodeResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -19,7 +19,7 @@ _$GetRecoveryCodeResponseImpl _$$GetRecoveryCodeResponseImplFromJson(
 Map<String, dynamic> _$$GetRecoveryCodeResponseImplToJson(
     _$GetRecoveryCodeResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

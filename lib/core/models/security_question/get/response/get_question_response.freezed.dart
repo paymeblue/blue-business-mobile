@@ -20,7 +20,7 @@ GetQuestionResponse _$GetQuestionResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GetQuestionResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   GetQuestionData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $GetQuestionResponseCopyWith<$Res> {
           GetQuestionResponse value, $Res Function(GetQuestionResponse) then) =
       _$GetQuestionResponseCopyWithImpl<$Res, GetQuestionResponse>;
   @useResult
-  $Res call({String status, String? message, GetQuestionData? data});
+  $Res call({bool success, String? message, GetQuestionData? data});
 
   $GetQuestionDataCopyWith<$Res>? get data;
 }
@@ -54,15 +54,15 @@ class _$GetQuestionResponseCopyWithImpl<$Res, $Val extends GetQuestionResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$GetQuestionResponseImplCopyWith<$Res>
       __$$GetQuestionResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, GetQuestionData? data});
+  $Res call({bool success, String? message, GetQuestionData? data});
 
   @override
   $GetQuestionDataCopyWith<$Res>? get data;
@@ -112,15 +112,15 @@ class __$$GetQuestionResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$GetQuestionResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -137,14 +137,14 @@ class __$$GetQuestionResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GetQuestionResponseImpl implements _GetQuestionResponse {
   const _$GetQuestionResponseImpl(
-      {this.status = "fail", this.message, this.data});
+      {this.success = false, this.message, this.data});
 
   factory _$GetQuestionResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetQuestionResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
   @override
@@ -152,7 +152,7 @@ class _$GetQuestionResponseImpl implements _GetQuestionResponse {
 
   @override
   String toString() {
-    return 'GetQuestionResponse(status: $status, message: $message, data: $data)';
+    return 'GetQuestionResponse(success: $success, message: $message, data: $data)';
   }
 
   @override
@@ -160,14 +160,14 @@ class _$GetQuestionResponseImpl implements _GetQuestionResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetQuestionResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(runtimeType, success, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -186,7 +186,7 @@ class _$GetQuestionResponseImpl implements _GetQuestionResponse {
 
 abstract class _GetQuestionResponse implements GetQuestionResponse {
   const factory _GetQuestionResponse(
-      {final String status,
+      {final bool success,
       final String? message,
       final GetQuestionData? data}) = _$GetQuestionResponseImpl;
 
@@ -194,7 +194,7 @@ abstract class _GetQuestionResponse implements GetQuestionResponse {
       _$GetQuestionResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

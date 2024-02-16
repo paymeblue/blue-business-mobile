@@ -26,9 +26,9 @@ class DioConfig {
     dio.interceptors.add(LogInterceptor(
       request: true,
       requestBody: true,
-      requestHeader: true,
+      requestHeader: false,
       responseBody: true,
-      responseHeader: true,
+      responseHeader: false,
     ));
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {

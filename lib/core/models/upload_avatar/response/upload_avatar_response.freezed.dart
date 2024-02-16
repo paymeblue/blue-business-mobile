@@ -20,7 +20,7 @@ UploadAvatarResponse _$UploadAvatarResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UploadAvatarResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   UploadAvatarResponseData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $UploadAvatarResponseCopyWith<$Res> {
           $Res Function(UploadAvatarResponse) then) =
       _$UploadAvatarResponseCopyWithImpl<$Res, UploadAvatarResponse>;
   @useResult
-  $Res call({String status, String? message, UploadAvatarResponseData? data});
+  $Res call({bool success, String? message, UploadAvatarResponseData? data});
 
   $UploadAvatarResponseDataCopyWith<$Res>? get data;
 }
@@ -55,15 +55,15 @@ class _$UploadAvatarResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -96,7 +96,7 @@ abstract class _$$UploadAvatarResponseImplCopyWith<$Res>
       __$$UploadAvatarResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, UploadAvatarResponseData? data});
+  $Res call({bool success, String? message, UploadAvatarResponseData? data});
 
   @override
   $UploadAvatarResponseDataCopyWith<$Res>? get data;
@@ -113,15 +113,15 @@ class __$$UploadAvatarResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$UploadAvatarResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -138,14 +138,14 @@ class __$$UploadAvatarResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UploadAvatarResponseImpl implements _UploadAvatarResponse {
   const _$UploadAvatarResponseImpl(
-      {this.status = "fail", this.message, this.data});
+      {this.success = false, this.message, this.data});
 
   factory _$UploadAvatarResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$UploadAvatarResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
   @override
@@ -153,7 +153,7 @@ class _$UploadAvatarResponseImpl implements _UploadAvatarResponse {
 
   @override
   String toString() {
-    return 'UploadAvatarResponse(status: $status, message: $message, data: $data)';
+    return 'UploadAvatarResponse(success: $success, message: $message, data: $data)';
   }
 
   @override
@@ -161,14 +161,14 @@ class _$UploadAvatarResponseImpl implements _UploadAvatarResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UploadAvatarResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(runtimeType, success, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +188,7 @@ class _$UploadAvatarResponseImpl implements _UploadAvatarResponse {
 
 abstract class _UploadAvatarResponse implements UploadAvatarResponse {
   const factory _UploadAvatarResponse(
-      {final String status,
+      {final bool success,
       final String? message,
       final UploadAvatarResponseData? data}) = _$UploadAvatarResponseImpl;
 
@@ -196,7 +196,7 @@ abstract class _UploadAvatarResponse implements UploadAvatarResponse {
       _$UploadAvatarResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

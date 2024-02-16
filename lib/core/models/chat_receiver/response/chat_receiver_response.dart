@@ -7,7 +7,7 @@ part 'chat_receiver_response.g.dart';
 @freezed
 class ChatReceiverResponse with _$ChatReceiverResponse {
   const factory ChatReceiverResponse({
-    @Default("fail") String status,
+    @Default(false) bool success,
     String? message,
     ChatResponseData? data,
   }) = _ChatReceiverResponse;

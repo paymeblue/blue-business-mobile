@@ -44,7 +44,7 @@ class SuccessViewModel extends BaseViewModel {
       return ReceiptResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       receipt = resp.data!.record;
       await Future.delayed(const Duration(milliseconds: 350), () {
         downloadAndShareQr(data);

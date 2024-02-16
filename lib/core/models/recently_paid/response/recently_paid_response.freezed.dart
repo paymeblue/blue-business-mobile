@@ -20,7 +20,7 @@ RecentlyPaidResponse _$RecentlyPaidResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RecentlyPaidResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   RecentlyPaidData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $RecentlyPaidResponseCopyWith<$Res> {
           $Res Function(RecentlyPaidResponse) then) =
       _$RecentlyPaidResponseCopyWithImpl<$Res, RecentlyPaidResponse>;
   @useResult
-  $Res call({String status, String? message, RecentlyPaidData? data});
+  $Res call({bool success, String? message, RecentlyPaidData? data});
 
   $RecentlyPaidDataCopyWith<$Res>? get data;
 }
@@ -55,15 +55,15 @@ class _$RecentlyPaidResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -96,7 +96,7 @@ abstract class _$$RecentlyPaidResponseImplCopyWith<$Res>
       __$$RecentlyPaidResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, RecentlyPaidData? data});
+  $Res call({bool success, String? message, RecentlyPaidData? data});
 
   @override
   $RecentlyPaidDataCopyWith<$Res>? get data;
@@ -113,15 +113,15 @@ class __$$RecentlyPaidResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$RecentlyPaidResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -138,14 +138,14 @@ class __$$RecentlyPaidResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RecentlyPaidResponseImpl implements _RecentlyPaidResponse {
   const _$RecentlyPaidResponseImpl(
-      {this.status = "fail", this.message, this.data});
+      {this.success = false, this.message, this.data});
 
   factory _$RecentlyPaidResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$RecentlyPaidResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
   @override
@@ -153,7 +153,7 @@ class _$RecentlyPaidResponseImpl implements _RecentlyPaidResponse {
 
   @override
   String toString() {
-    return 'RecentlyPaidResponse(status: $status, message: $message, data: $data)';
+    return 'RecentlyPaidResponse(success: $success, message: $message, data: $data)';
   }
 
   @override
@@ -161,14 +161,14 @@ class _$RecentlyPaidResponseImpl implements _RecentlyPaidResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecentlyPaidResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(runtimeType, success, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +188,7 @@ class _$RecentlyPaidResponseImpl implements _RecentlyPaidResponse {
 
 abstract class _RecentlyPaidResponse implements RecentlyPaidResponse {
   const factory _RecentlyPaidResponse(
-      {final String status,
+      {final bool success,
       final String? message,
       final RecentlyPaidData? data}) = _$RecentlyPaidResponseImpl;
 
@@ -196,7 +196,7 @@ abstract class _RecentlyPaidResponse implements RecentlyPaidResponse {
       _$RecentlyPaidResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

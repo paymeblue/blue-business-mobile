@@ -9,14 +9,14 @@ part of 'set_beneficiary_response.dart';
 _$SetBeneficiaryResponseImpl _$$SetBeneficiaryResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$SetBeneficiaryResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$$SetBeneficiaryResponseImplToJson(
     _$SetBeneficiaryResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

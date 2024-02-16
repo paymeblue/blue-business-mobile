@@ -21,7 +21,7 @@ VerifiedReceiverResponse _$VerifiedReceiverResponseFromJson(
 
 /// @nodoc
 mixin _$VerifiedReceiverResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   VerifiedReceiverData? get data => throw _privateConstructorUsedError;
 
@@ -37,7 +37,7 @@ abstract class $VerifiedReceiverResponseCopyWith<$Res> {
           $Res Function(VerifiedReceiverResponse) then) =
       _$VerifiedReceiverResponseCopyWithImpl<$Res, VerifiedReceiverResponse>;
   @useResult
-  $Res call({String status, String? message, VerifiedReceiverData? data});
+  $Res call({bool success, String? message, VerifiedReceiverData? data});
 
   $VerifiedReceiverDataCopyWith<$Res>? get data;
 }
@@ -56,15 +56,15 @@ class _$VerifiedReceiverResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -98,7 +98,7 @@ abstract class _$$VerifiedReceiverResponseImplCopyWith<$Res>
       __$$VerifiedReceiverResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, VerifiedReceiverData? data});
+  $Res call({bool success, String? message, VerifiedReceiverData? data});
 
   @override
   $VerifiedReceiverDataCopyWith<$Res>? get data;
@@ -117,15 +117,15 @@ class __$$VerifiedReceiverResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$VerifiedReceiverResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -142,14 +142,14 @@ class __$$VerifiedReceiverResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$VerifiedReceiverResponseImpl implements _VerifiedReceiverResponse {
   const _$VerifiedReceiverResponseImpl(
-      {this.status = "fail", this.message, this.data});
+      {this.success = false, this.message, this.data});
 
   factory _$VerifiedReceiverResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$VerifiedReceiverResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
   @override
@@ -157,7 +157,7 @@ class _$VerifiedReceiverResponseImpl implements _VerifiedReceiverResponse {
 
   @override
   String toString() {
-    return 'VerifiedReceiverResponse(status: $status, message: $message, data: $data)';
+    return 'VerifiedReceiverResponse(success: $success, message: $message, data: $data)';
   }
 
   @override
@@ -165,14 +165,14 @@ class _$VerifiedReceiverResponseImpl implements _VerifiedReceiverResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VerifiedReceiverResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(runtimeType, success, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -191,7 +191,7 @@ class _$VerifiedReceiverResponseImpl implements _VerifiedReceiverResponse {
 
 abstract class _VerifiedReceiverResponse implements VerifiedReceiverResponse {
   const factory _VerifiedReceiverResponse(
-      {final String status,
+      {final bool success,
       final String? message,
       final VerifiedReceiverData? data}) = _$VerifiedReceiverResponseImpl;
 
@@ -199,7 +199,7 @@ abstract class _VerifiedReceiverResponse implements VerifiedReceiverResponse {
       _$VerifiedReceiverResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

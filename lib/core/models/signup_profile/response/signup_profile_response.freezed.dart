@@ -21,7 +21,7 @@ SignupProfileResponse _$SignupProfileResponseFromJson(
 
 /// @nodoc
 mixin _$SignupProfileResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $SignupProfileResponseCopyWith<$Res> {
           $Res Function(SignupProfileResponse) then) =
       _$SignupProfileResponseCopyWithImpl<$Res, SignupProfileResponse>;
   @useResult
-  $Res call({String status, String? message});
+  $Res call({bool success, String? message});
 }
 
 /// @nodoc
@@ -53,14 +53,14 @@ class _$SignupProfileResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$SignupProfileResponseImplCopyWith<$Res>
       __$$SignupProfileResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message});
+  $Res call({bool success, String? message});
 }
 
 /// @nodoc
@@ -93,14 +93,14 @@ class __$$SignupProfileResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
   }) {
     return _then(_$SignupProfileResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -112,20 +112,20 @@ class __$$SignupProfileResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SignupProfileResponseImpl implements _SignupProfileResponse {
-  const _$SignupProfileResponseImpl({this.status = "fail", this.message});
+  const _$SignupProfileResponseImpl({this.success = false, this.message});
 
   factory _$SignupProfileResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignupProfileResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'SignupProfileResponse(status: $status, message: $message)';
+    return 'SignupProfileResponse(success: $success, message: $message)';
   }
 
   @override
@@ -133,13 +133,13 @@ class _$SignupProfileResponseImpl implements _SignupProfileResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignupProfileResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message);
+  int get hashCode => Object.hash(runtimeType, success, message);
 
   @JsonKey(ignore: true)
   @override
@@ -158,14 +158,14 @@ class _$SignupProfileResponseImpl implements _SignupProfileResponse {
 
 abstract class _SignupProfileResponse implements SignupProfileResponse {
   const factory _SignupProfileResponse(
-      {final String status,
+      {final bool success,
       final String? message}) = _$SignupProfileResponseImpl;
 
   factory _SignupProfileResponse.fromJson(Map<String, dynamic> json) =
       _$SignupProfileResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

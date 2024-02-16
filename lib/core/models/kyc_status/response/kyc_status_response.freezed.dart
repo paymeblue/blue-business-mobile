@@ -20,7 +20,7 @@ KycStatusResponse _$KycStatusResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$KycStatusResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   KycStatusData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $KycStatusResponseCopyWith<$Res> {
           KycStatusResponse value, $Res Function(KycStatusResponse) then) =
       _$KycStatusResponseCopyWithImpl<$Res, KycStatusResponse>;
   @useResult
-  $Res call({String status, String? message, KycStatusData? data});
+  $Res call({bool success, String? message, KycStatusData? data});
 
   $KycStatusDataCopyWith<$Res>? get data;
 }
@@ -54,15 +54,15 @@ class _$KycStatusResponseCopyWithImpl<$Res, $Val extends KycStatusResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$KycStatusResponseImplCopyWith<$Res>
       __$$KycStatusResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, KycStatusData? data});
+  $Res call({bool success, String? message, KycStatusData? data});
 
   @override
   $KycStatusDataCopyWith<$Res>? get data;
@@ -112,15 +112,15 @@ class __$$KycStatusResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$KycStatusResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -137,14 +137,14 @@ class __$$KycStatusResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$KycStatusResponseImpl implements _KycStatusResponse {
   const _$KycStatusResponseImpl(
-      {this.status = "fail", this.message, this.data});
+      {this.success = false, this.message, this.data});
 
   factory _$KycStatusResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$KycStatusResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
   @override
@@ -152,7 +152,7 @@ class _$KycStatusResponseImpl implements _KycStatusResponse {
 
   @override
   String toString() {
-    return 'KycStatusResponse(status: $status, message: $message, data: $data)';
+    return 'KycStatusResponse(success: $success, message: $message, data: $data)';
   }
 
   @override
@@ -160,14 +160,14 @@ class _$KycStatusResponseImpl implements _KycStatusResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$KycStatusResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(runtimeType, success, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -186,7 +186,7 @@ class _$KycStatusResponseImpl implements _KycStatusResponse {
 
 abstract class _KycStatusResponse implements KycStatusResponse {
   const factory _KycStatusResponse(
-      {final String status,
+      {final bool success,
       final String? message,
       final KycStatusData? data}) = _$KycStatusResponseImpl;
 
@@ -194,7 +194,7 @@ abstract class _KycStatusResponse implements KycStatusResponse {
       _$KycStatusResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

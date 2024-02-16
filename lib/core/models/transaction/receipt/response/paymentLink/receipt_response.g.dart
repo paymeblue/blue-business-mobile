@@ -9,7 +9,7 @@ part of 'receipt_response.dart';
 _$PaymentLinkReceiptResponseImpl _$$PaymentLinkReceiptResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$PaymentLinkReceiptResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -20,7 +20,7 @@ _$PaymentLinkReceiptResponseImpl _$$PaymentLinkReceiptResponseImplFromJson(
 Map<String, dynamic> _$$PaymentLinkReceiptResponseImplToJson(
     _$PaymentLinkReceiptResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

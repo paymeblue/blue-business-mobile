@@ -20,7 +20,7 @@ WalletResponse _$WalletResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WalletResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   WalletData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $WalletResponseCopyWith<$Res> {
           WalletResponse value, $Res Function(WalletResponse) then) =
       _$WalletResponseCopyWithImpl<$Res, WalletResponse>;
   @useResult
-  $Res call({String status, String? message, WalletData? data});
+  $Res call({bool success, String? message, WalletData? data});
 
   $WalletDataCopyWith<$Res>? get data;
 }
@@ -54,15 +54,15 @@ class _$WalletResponseCopyWithImpl<$Res, $Val extends WalletResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$WalletResponseImplCopyWith<$Res>
       __$$WalletResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, WalletData? data});
+  $Res call({bool success, String? message, WalletData? data});
 
   @override
   $WalletDataCopyWith<$Res>? get data;
@@ -112,15 +112,15 @@ class __$$WalletResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$WalletResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -136,14 +136,14 @@ class __$$WalletResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$WalletResponseImpl implements _WalletResponse {
-  const _$WalletResponseImpl({this.status = "fail", this.message, this.data});
+  const _$WalletResponseImpl({this.success = false, this.message, this.data});
 
   factory _$WalletResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$WalletResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
   @override
@@ -151,7 +151,7 @@ class _$WalletResponseImpl implements _WalletResponse {
 
   @override
   String toString() {
-    return 'WalletResponse(status: $status, message: $message, data: $data)';
+    return 'WalletResponse(success: $success, message: $message, data: $data)';
   }
 
   @override
@@ -159,14 +159,14 @@ class _$WalletResponseImpl implements _WalletResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WalletResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(runtimeType, success, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -185,7 +185,7 @@ class _$WalletResponseImpl implements _WalletResponse {
 
 abstract class _WalletResponse implements WalletResponse {
   const factory _WalletResponse(
-      {final String status,
+      {final bool success,
       final String? message,
       final WalletData? data}) = _$WalletResponseImpl;
 
@@ -193,7 +193,7 @@ abstract class _WalletResponse implements WalletResponse {
       _$WalletResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

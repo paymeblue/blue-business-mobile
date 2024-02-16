@@ -9,7 +9,7 @@ part of 'chat_receiver_response.dart';
 _$ChatReceiverResponseImpl _$$ChatReceiverResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$ChatReceiverResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -19,7 +19,7 @@ _$ChatReceiverResponseImpl _$$ChatReceiverResponseImplFromJson(
 Map<String, dynamic> _$$ChatReceiverResponseImplToJson(
     _$ChatReceiverResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

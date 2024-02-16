@@ -20,7 +20,7 @@ BankResponse _$BankResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BankResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   BankData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $BankResponseCopyWith<$Res> {
           BankResponse value, $Res Function(BankResponse) then) =
       _$BankResponseCopyWithImpl<$Res, BankResponse>;
   @useResult
-  $Res call({String status, String? message, BankData? data});
+  $Res call({bool success, String? message, BankData? data});
 
   $BankDataCopyWith<$Res>? get data;
 }
@@ -54,15 +54,15 @@ class _$BankResponseCopyWithImpl<$Res, $Val extends BankResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$BankResponseImplCopyWith<$Res>
       __$$BankResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, BankData? data});
+  $Res call({bool success, String? message, BankData? data});
 
   @override
   $BankDataCopyWith<$Res>? get data;
@@ -112,15 +112,15 @@ class __$$BankResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$BankResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -136,14 +136,14 @@ class __$$BankResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BankResponseImpl implements _BankResponse {
-  const _$BankResponseImpl({this.status = "fail", this.message, this.data});
+  const _$BankResponseImpl({this.success = false, this.message, this.data});
 
   factory _$BankResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$BankResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
   @override
@@ -151,7 +151,7 @@ class _$BankResponseImpl implements _BankResponse {
 
   @override
   String toString() {
-    return 'BankResponse(status: $status, message: $message, data: $data)';
+    return 'BankResponse(success: $success, message: $message, data: $data)';
   }
 
   @override
@@ -159,14 +159,14 @@ class _$BankResponseImpl implements _BankResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BankResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(runtimeType, success, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +184,7 @@ class _$BankResponseImpl implements _BankResponse {
 
 abstract class _BankResponse implements BankResponse {
   const factory _BankResponse(
-      {final String status,
+      {final bool success,
       final String? message,
       final BankData? data}) = _$BankResponseImpl;
 
@@ -192,7 +192,7 @@ abstract class _BankResponse implements BankResponse {
       _$BankResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

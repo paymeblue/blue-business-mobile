@@ -89,7 +89,7 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
         return GetBeneficiaryResponse(
             message: AppErrorHandler.getErrorMessage(error));
       });
-      if (resp.status == "success") {
+      if (resp.success) {
         List<BlueBeneficiary> t = resp.data!.data;
 
         if (resp.data!.loadMore) {

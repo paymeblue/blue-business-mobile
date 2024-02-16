@@ -24,6 +24,7 @@ mixin _$SignupUserData {
   String get phone => throw _privateConstructorUsedError;
   int get level => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,7 @@ abstract class $SignupUserDataCopyWith<$Res> {
           SignupUserData value, $Res Function(SignupUserData) then) =
       _$SignupUserDataCopyWithImpl<$Res, SignupUserData>;
   @useResult
-  $Res call({int id, String phone, int level, String createdAt});
+  $Res call({int id, String phone, int level, String createdAt, String type});
 }
 
 /// @nodoc
@@ -57,6 +58,7 @@ class _$SignupUserDataCopyWithImpl<$Res, $Val extends SignupUserData>
     Object? phone = null,
     Object? level = null,
     Object? createdAt = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -75,6 +77,10 @@ class _$SignupUserDataCopyWithImpl<$Res, $Val extends SignupUserData>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -87,7 +93,7 @@ abstract class _$$SignupUserDataImplCopyWith<$Res>
       __$$SignupUserDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String phone, int level, String createdAt});
+  $Res call({int id, String phone, int level, String createdAt, String type});
 }
 
 /// @nodoc
@@ -105,6 +111,7 @@ class __$$SignupUserDataImplCopyWithImpl<$Res>
     Object? phone = null,
     Object? level = null,
     Object? createdAt = null,
+    Object? type = null,
   }) {
     return _then(_$SignupUserDataImpl(
       id: null == id
@@ -123,6 +130,10 @@ class __$$SignupUserDataImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -134,7 +145,8 @@ class _$SignupUserDataImpl implements _SignupUserData {
       {required this.id,
       required this.phone,
       required this.level,
-      required this.createdAt});
+      required this.createdAt,
+      required this.type});
 
   factory _$SignupUserDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignupUserDataImplFromJson(json);
@@ -147,10 +159,12 @@ class _$SignupUserDataImpl implements _SignupUserData {
   final int level;
   @override
   final String createdAt;
+  @override
+  final String type;
 
   @override
   String toString() {
-    return 'SignupUserData(id: $id, phone: $phone, level: $level, createdAt: $createdAt)';
+    return 'SignupUserData(id: $id, phone: $phone, level: $level, createdAt: $createdAt, type: $type)';
   }
 
   @override
@@ -162,12 +176,14 @@ class _$SignupUserDataImpl implements _SignupUserData {
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.level, level) || other.level == level) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, phone, level, createdAt);
+  int get hashCode =>
+      Object.hash(runtimeType, id, phone, level, createdAt, type);
 
   @JsonKey(ignore: true)
   @override
@@ -189,7 +205,8 @@ abstract class _SignupUserData implements SignupUserData {
       {required final int id,
       required final String phone,
       required final int level,
-      required final String createdAt}) = _$SignupUserDataImpl;
+      required final String createdAt,
+      required final String type}) = _$SignupUserDataImpl;
 
   factory _SignupUserData.fromJson(Map<String, dynamic> json) =
       _$SignupUserDataImpl.fromJson;
@@ -202,6 +219,8 @@ abstract class _SignupUserData implements SignupUserData {
   int get level;
   @override
   String get createdAt;
+  @override
+  String get type;
   @override
   @JsonKey(ignore: true)
   _$$SignupUserDataImplCopyWith<_$SignupUserDataImpl> get copyWith =>

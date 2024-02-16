@@ -20,7 +20,7 @@ ChatReceiverResponse _$ChatReceiverResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChatReceiverResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   ChatResponseData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $ChatReceiverResponseCopyWith<$Res> {
           $Res Function(ChatReceiverResponse) then) =
       _$ChatReceiverResponseCopyWithImpl<$Res, ChatReceiverResponse>;
   @useResult
-  $Res call({String status, String? message, ChatResponseData? data});
+  $Res call({bool success, String? message, ChatResponseData? data});
 
   $ChatResponseDataCopyWith<$Res>? get data;
 }
@@ -55,15 +55,15 @@ class _$ChatReceiverResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -96,7 +96,7 @@ abstract class _$$ChatReceiverResponseImplCopyWith<$Res>
       __$$ChatReceiverResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, ChatResponseData? data});
+  $Res call({bool success, String? message, ChatResponseData? data});
 
   @override
   $ChatResponseDataCopyWith<$Res>? get data;
@@ -113,15 +113,15 @@ class __$$ChatReceiverResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$ChatReceiverResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -138,14 +138,14 @@ class __$$ChatReceiverResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatReceiverResponseImpl implements _ChatReceiverResponse {
   const _$ChatReceiverResponseImpl(
-      {this.status = "fail", this.message, this.data});
+      {this.success = false, this.message, this.data});
 
   factory _$ChatReceiverResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatReceiverResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
   @override
@@ -153,7 +153,7 @@ class _$ChatReceiverResponseImpl implements _ChatReceiverResponse {
 
   @override
   String toString() {
-    return 'ChatReceiverResponse(status: $status, message: $message, data: $data)';
+    return 'ChatReceiverResponse(success: $success, message: $message, data: $data)';
   }
 
   @override
@@ -161,14 +161,14 @@ class _$ChatReceiverResponseImpl implements _ChatReceiverResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatReceiverResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(runtimeType, success, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +188,7 @@ class _$ChatReceiverResponseImpl implements _ChatReceiverResponse {
 
 abstract class _ChatReceiverResponse implements ChatReceiverResponse {
   const factory _ChatReceiverResponse(
-      {final String status,
+      {final bool success,
       final String? message,
       final ChatResponseData? data}) = _$ChatReceiverResponseImpl;
 
@@ -196,7 +196,7 @@ abstract class _ChatReceiverResponse implements ChatReceiverResponse {
       _$ChatReceiverResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

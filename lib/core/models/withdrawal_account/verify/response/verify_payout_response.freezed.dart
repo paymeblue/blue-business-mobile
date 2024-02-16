@@ -20,7 +20,7 @@ VerifyPayoutResponse _$VerifyPayoutResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$VerifyPayoutResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   VerifyPayoutData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $VerifyPayoutResponseCopyWith<$Res> {
           $Res Function(VerifyPayoutResponse) then) =
       _$VerifyPayoutResponseCopyWithImpl<$Res, VerifyPayoutResponse>;
   @useResult
-  $Res call({String status, String? message, VerifyPayoutData? data});
+  $Res call({bool success, String? message, VerifyPayoutData? data});
 
   $VerifyPayoutDataCopyWith<$Res>? get data;
 }
@@ -55,15 +55,15 @@ class _$VerifyPayoutResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -96,7 +96,7 @@ abstract class _$$VerifyPayoutResponseImplCopyWith<$Res>
       __$$VerifyPayoutResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, VerifyPayoutData? data});
+  $Res call({bool success, String? message, VerifyPayoutData? data});
 
   @override
   $VerifyPayoutDataCopyWith<$Res>? get data;
@@ -113,15 +113,15 @@ class __$$VerifyPayoutResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$VerifyPayoutResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -138,14 +138,14 @@ class __$$VerifyPayoutResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$VerifyPayoutResponseImpl implements _VerifyPayoutResponse {
   const _$VerifyPayoutResponseImpl(
-      {this.status = "fail", this.message, this.data});
+      {this.success = false, this.message, this.data});
 
   factory _$VerifyPayoutResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$VerifyPayoutResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
   @override
@@ -153,7 +153,7 @@ class _$VerifyPayoutResponseImpl implements _VerifyPayoutResponse {
 
   @override
   String toString() {
-    return 'VerifyPayoutResponse(status: $status, message: $message, data: $data)';
+    return 'VerifyPayoutResponse(success: $success, message: $message, data: $data)';
   }
 
   @override
@@ -161,14 +161,14 @@ class _$VerifyPayoutResponseImpl implements _VerifyPayoutResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VerifyPayoutResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(runtimeType, success, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +188,7 @@ class _$VerifyPayoutResponseImpl implements _VerifyPayoutResponse {
 
 abstract class _VerifyPayoutResponse implements VerifyPayoutResponse {
   const factory _VerifyPayoutResponse(
-      {final String status,
+      {final bool success,
       final String? message,
       final VerifyPayoutData? data}) = _$VerifyPayoutResponseImpl;
 
@@ -196,7 +196,7 @@ abstract class _VerifyPayoutResponse implements VerifyPayoutResponse {
       _$VerifyPayoutResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

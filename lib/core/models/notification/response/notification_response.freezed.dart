@@ -20,7 +20,7 @@ NotificationResponse _$NotificationResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NotificationResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $NotificationResponseCopyWith<$Res> {
           $Res Function(NotificationResponse) then) =
       _$NotificationResponseCopyWithImpl<$Res, NotificationResponse>;
   @useResult
-  $Res call({String status, String? message});
+  $Res call({bool success, String? message});
 }
 
 /// @nodoc
@@ -52,14 +52,14 @@ class _$NotificationResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -76,7 +76,7 @@ abstract class _$$NotificationResponseImplCopyWith<$Res>
       __$$NotificationResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message});
+  $Res call({bool success, String? message});
 }
 
 /// @nodoc
@@ -90,14 +90,14 @@ class __$$NotificationResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
   }) {
     return _then(_$NotificationResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -109,20 +109,20 @@ class __$$NotificationResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NotificationResponseImpl implements _NotificationResponse {
-  const _$NotificationResponseImpl({this.status = "fail", this.message});
+  const _$NotificationResponseImpl({this.success = false, this.message});
 
   factory _$NotificationResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$NotificationResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'NotificationResponse(status: $status, message: $message)';
+    return 'NotificationResponse(success: $success, message: $message)';
   }
 
   @override
@@ -130,13 +130,13 @@ class _$NotificationResponseImpl implements _NotificationResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NotificationResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message);
+  int get hashCode => Object.hash(runtimeType, success, message);
 
   @JsonKey(ignore: true)
   @override
@@ -156,14 +156,13 @@ class _$NotificationResponseImpl implements _NotificationResponse {
 
 abstract class _NotificationResponse implements NotificationResponse {
   const factory _NotificationResponse(
-      {final String status,
-      final String? message}) = _$NotificationResponseImpl;
+      {final bool success, final String? message}) = _$NotificationResponseImpl;
 
   factory _NotificationResponse.fromJson(Map<String, dynamic> json) =
       _$NotificationResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

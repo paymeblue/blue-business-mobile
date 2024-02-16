@@ -9,7 +9,7 @@ part of 'verify_payout_response.dart';
 _$VerifyPayoutResponseImpl _$$VerifyPayoutResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$VerifyPayoutResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -19,7 +19,7 @@ _$VerifyPayoutResponseImpl _$$VerifyPayoutResponseImplFromJson(
 Map<String, dynamic> _$$VerifyPayoutResponseImplToJson(
     _$VerifyPayoutResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

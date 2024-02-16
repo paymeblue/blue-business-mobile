@@ -20,7 +20,7 @@ ReceiptResponse _$ReceiptResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ReceiptResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   ReceiptData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $ReceiptResponseCopyWith<$Res> {
           ReceiptResponse value, $Res Function(ReceiptResponse) then) =
       _$ReceiptResponseCopyWithImpl<$Res, ReceiptResponse>;
   @useResult
-  $Res call({String status, String? message, ReceiptData? data});
+  $Res call({bool success, String? message, ReceiptData? data});
 
   $ReceiptDataCopyWith<$Res>? get data;
 }
@@ -54,15 +54,15 @@ class _$ReceiptResponseCopyWithImpl<$Res, $Val extends ReceiptResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$ReceiptResponseImplCopyWith<$Res>
       __$$ReceiptResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, ReceiptData? data});
+  $Res call({bool success, String? message, ReceiptData? data});
 
   @override
   $ReceiptDataCopyWith<$Res>? get data;
@@ -112,15 +112,15 @@ class __$$ReceiptResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$ReceiptResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -136,14 +136,14 @@ class __$$ReceiptResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ReceiptResponseImpl implements _ReceiptResponse {
-  const _$ReceiptResponseImpl({this.status = "fail", this.message, this.data});
+  const _$ReceiptResponseImpl({this.success = false, this.message, this.data});
 
   factory _$ReceiptResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReceiptResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
   @override
@@ -151,7 +151,7 @@ class _$ReceiptResponseImpl implements _ReceiptResponse {
 
   @override
   String toString() {
-    return 'ReceiptResponse(status: $status, message: $message, data: $data)';
+    return 'ReceiptResponse(success: $success, message: $message, data: $data)';
   }
 
   @override
@@ -159,14 +159,14 @@ class _$ReceiptResponseImpl implements _ReceiptResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReceiptResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(runtimeType, success, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -185,7 +185,7 @@ class _$ReceiptResponseImpl implements _ReceiptResponse {
 
 abstract class _ReceiptResponse implements ReceiptResponse {
   const factory _ReceiptResponse(
-      {final String status,
+      {final bool success,
       final String? message,
       final ReceiptData? data}) = _$ReceiptResponseImpl;
 
@@ -193,7 +193,7 @@ abstract class _ReceiptResponse implements ReceiptResponse {
       _$ReceiptResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

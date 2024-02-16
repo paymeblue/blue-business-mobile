@@ -64,9 +64,9 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
       return SignupResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       AppNotification.success(message: resp.message);
-      if (context.mounted) goToNext(context, phone, resp.data!.user);
+      if (context.mounted) goToNext(context, phone, resp.data!);
     } else {
       AppNotification.error(message: resp.message);
     }
@@ -78,6 +78,8 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
       context.go("${RoutePaths.registerOtpPath}/$phone");
     } else if (user.level == 2) {
       context.go("/${user.id}${RoutePaths.addPersonalInfoPath}");
+    } else if (user.level == 3) {
+      context.go("${RoutePaths.confirmPasswordPath}/$phone");
     }
   }
 }

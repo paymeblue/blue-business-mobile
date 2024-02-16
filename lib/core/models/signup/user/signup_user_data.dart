@@ -10,6 +10,7 @@ class SignupUserData with _$SignupUserData {
     required String phone,
     required int level,
     required String createdAt,
+    required String type,
   }) = _SignupUserData;
 
   factory SignupUserData.fromJson(Map<String, dynamic> json) =>

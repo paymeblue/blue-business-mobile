@@ -7,7 +7,7 @@ part 'transaction_history_response.g.dart';
 @freezed
 class TransactionResponse with _$TransactionResponse {
   const factory TransactionResponse({
-    @Default("fail") String status,
+    @Default(false) bool success,
     String? message,
     TransactionData? data,
   }) = _TransactionResponse;

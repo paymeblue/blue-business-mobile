@@ -61,7 +61,7 @@ class PinViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       String phone = StorageValues.username;
       StorageValues.name = request.firstName;
       await StorageHelpers.deleteAll();
@@ -87,7 +87,7 @@ class PinViewModel extends BaseViewModel {
     });
 
     AppLoader.stop();
-    if (resp.status == "success") {
+    if (resp.success) {
       await setNameInStorage(resp.data!.user.firstName, StorageValues.username);
       saveTokens(resp.data!.token);
       locator<AppStateValues>().currentUser = resp.data!.user;

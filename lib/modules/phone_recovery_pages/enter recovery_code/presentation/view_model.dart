@@ -44,7 +44,7 @@ class EnterRecoveryCodeViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       if (context.mounted) goToNext(context, resp.data!.userId);
     } else {
       AppNotification.error(message: resp.message);

@@ -110,7 +110,7 @@ class ChangePinViewModel extends BaseViewModel {
       return ChangePinResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       if (StorageValues.pin.isNotEmpty) {
         await saveInStorage();
       }

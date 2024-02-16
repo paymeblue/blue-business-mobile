@@ -20,7 +20,7 @@ SignupOtpResponse _$SignupOtpResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SignupOtpResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $SignupOtpResponseCopyWith<$Res> {
           SignupOtpResponse value, $Res Function(SignupOtpResponse) then) =
       _$SignupOtpResponseCopyWithImpl<$Res, SignupOtpResponse>;
   @useResult
-  $Res call({String status, String? message});
+  $Res call({bool success, String? message});
 }
 
 /// @nodoc
@@ -51,14 +51,14 @@ class _$SignupOtpResponseCopyWithImpl<$Res, $Val extends SignupOtpResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -75,7 +75,7 @@ abstract class _$$SignupOtpResponseImplCopyWith<$Res>
       __$$SignupOtpResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message});
+  $Res call({bool success, String? message});
 }
 
 /// @nodoc
@@ -89,14 +89,14 @@ class __$$SignupOtpResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
   }) {
     return _then(_$SignupOtpResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -108,20 +108,20 @@ class __$$SignupOtpResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SignupOtpResponseImpl implements _SignupOtpResponse {
-  const _$SignupOtpResponseImpl({this.status = "fail", this.message});
+  const _$SignupOtpResponseImpl({this.success = false, this.message});
 
   factory _$SignupOtpResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignupOtpResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'SignupOtpResponse(status: $status, message: $message)';
+    return 'SignupOtpResponse(success: $success, message: $message)';
   }
 
   @override
@@ -129,13 +129,13 @@ class _$SignupOtpResponseImpl implements _SignupOtpResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignupOtpResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message);
+  int get hashCode => Object.hash(runtimeType, success, message);
 
   @JsonKey(ignore: true)
   @override
@@ -154,13 +154,13 @@ class _$SignupOtpResponseImpl implements _SignupOtpResponse {
 
 abstract class _SignupOtpResponse implements SignupOtpResponse {
   const factory _SignupOtpResponse(
-      {final String status, final String? message}) = _$SignupOtpResponseImpl;
+      {final bool success, final String? message}) = _$SignupOtpResponseImpl;
 
   factory _SignupOtpResponse.fromJson(Map<String, dynamic> json) =
       _$SignupOtpResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

@@ -140,7 +140,7 @@ class PhonePaymentViewModel extends BaseViewModel {
   onButtonTap(BuildContext context) {
     verify().then((value) {
       log(value.toString());
-      if (value.status == "success") {
+      if (value.success) {
         context.go(
             "${RoutePaths.confirmPaymentPath}/phone/${data.transactionId}",
             extra: value.data);

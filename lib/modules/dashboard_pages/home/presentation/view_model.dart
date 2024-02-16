@@ -102,7 +102,7 @@ class HomeViewModel extends BaseViewModel {
       return WalletResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       locator<AppStateValues>().wallet = resp.data!.wallet;
     } else {
       AppNotification.error(message: resp.message);
@@ -118,7 +118,7 @@ class HomeViewModel extends BaseViewModel {
       return TodoResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       locator<AppStateValues>().todos = resp.data!.todos;
       locator<AppStateValues>().loadedTodo = true;
     } else {
@@ -136,7 +136,7 @@ class HomeViewModel extends BaseViewModel {
     try {
       TransactionResponse resp =
           await TransactionService().getTransactions(page, limit);
-      if (resp.status == "success") {
+      if (resp.success) {
         List<TransactionHistory> t = resp.data!.data;
 
         transactionController.appendLastPage(t);
@@ -156,7 +156,7 @@ class HomeViewModel extends BaseViewModel {
       return KycStatusResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       locator<AppStateValues>().isKycComplete = resp.data!.kycStatus == 1;
     } else {
       AppNotification.error(message: resp.message);
@@ -172,7 +172,7 @@ class HomeViewModel extends BaseViewModel {
       return TopupResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       locator<AppStateValues>().account = resp.data!.account;
       BlueBottomSheet.topup();
     } else {

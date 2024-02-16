@@ -47,10 +47,10 @@ class RefreshTimer {
             refreshToken: locator<AppStateValues>().refreshToken))
         .onError((error, stackTrace) {
       return RefreshTokenResponse(
-          status: "fail", message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       locator<AppStateValues>().accessToken = resp.data!.accessToken;
       _refreshTimer = null;
     } else {

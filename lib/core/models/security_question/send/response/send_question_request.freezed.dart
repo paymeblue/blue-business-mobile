@@ -20,7 +20,7 @@ SendQuestionResponse _$SendQuestionResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SendQuestionResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $SendQuestionResponseCopyWith<$Res> {
           $Res Function(SendQuestionResponse) then) =
       _$SendQuestionResponseCopyWithImpl<$Res, SendQuestionResponse>;
   @useResult
-  $Res call({String status, String? message});
+  $Res call({bool success, String? message});
 }
 
 /// @nodoc
@@ -52,14 +52,14 @@ class _$SendQuestionResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -76,7 +76,7 @@ abstract class _$$SendQuestionResponseImplCopyWith<$Res>
       __$$SendQuestionResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message});
+  $Res call({bool success, String? message});
 }
 
 /// @nodoc
@@ -90,14 +90,14 @@ class __$$SendQuestionResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
   }) {
     return _then(_$SendQuestionResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -109,20 +109,20 @@ class __$$SendQuestionResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SendQuestionResponseImpl implements _SendQuestionResponse {
-  const _$SendQuestionResponseImpl({this.status = "fail", this.message});
+  const _$SendQuestionResponseImpl({this.success = false, this.message});
 
   factory _$SendQuestionResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$SendQuestionResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'SendQuestionResponse(status: $status, message: $message)';
+    return 'SendQuestionResponse(success: $success, message: $message)';
   }
 
   @override
@@ -130,13 +130,13 @@ class _$SendQuestionResponseImpl implements _SendQuestionResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SendQuestionResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message);
+  int get hashCode => Object.hash(runtimeType, success, message);
 
   @JsonKey(ignore: true)
   @override
@@ -156,14 +156,13 @@ class _$SendQuestionResponseImpl implements _SendQuestionResponse {
 
 abstract class _SendQuestionResponse implements SendQuestionResponse {
   const factory _SendQuestionResponse(
-      {final String status,
-      final String? message}) = _$SendQuestionResponseImpl;
+      {final bool success, final String? message}) = _$SendQuestionResponseImpl;
 
   factory _SendQuestionResponse.fromJson(Map<String, dynamic> json) =
       _$SendQuestionResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override

@@ -145,7 +145,7 @@ class AccountRecoveryViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       AppLoader.stop();
       locator<AppStateValues>().recoveryCode = resp.data!.code;
       await BlueBottomSheet.recoveryCode(
@@ -170,7 +170,7 @@ class AccountRecoveryViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       AppNotification.success(message: resp.message);
       phoneController.clear();
       passwordController.clear();
@@ -205,7 +205,7 @@ class AccountRecoveryViewModel extends BaseViewModel {
         .onError((error, stackTrace) => SendQuestionResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
-    if (resp.status == "success") {
+    if (resp.success) {
       passwordController.clear();
       answerController.clear();
       question = "";
@@ -226,7 +226,7 @@ class AccountRecoveryViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       AppLoader.stop();
       return resp.data!.code;
     } else {

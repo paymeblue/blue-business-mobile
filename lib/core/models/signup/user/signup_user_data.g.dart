@@ -12,6 +12,7 @@ _$SignupUserDataImpl _$$SignupUserDataImplFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] as String,
       level: json['level'] as int,
       createdAt: json['created_at'] as String,
+      type: json['type'] as String,
     );
 
 Map<String, dynamic> _$$SignupUserDataImplToJson(
@@ -21,4 +22,5 @@ Map<String, dynamic> _$$SignupUserDataImplToJson(
       'phone': instance.phone,
       'level': instance.level,
       'created_at': instance.createdAt,
+      'type': instance.type,
     };

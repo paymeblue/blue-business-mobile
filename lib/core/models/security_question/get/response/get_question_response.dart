@@ -7,7 +7,7 @@ part 'get_question_response.g.dart';
 @freezed
 class GetQuestionResponse with _$GetQuestionResponse {
   const factory GetQuestionResponse({
-    @Default("fail") String status,
+    @Default(false) bool success,
     String? message,
     GetQuestionData? data,
   }) = _GetQuestionResponse;

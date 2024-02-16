@@ -8,17 +8,17 @@ part of 'signup_response.dart';
 
 _$SignupResponseImpl _$$SignupResponseImplFromJson(Map<String, dynamic> json) =>
     _$SignupResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
-          : SignupData.fromJson(json['data'] as Map<String, dynamic>),
+          : SignupUserData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$SignupResponseImplToJson(
     _$SignupResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

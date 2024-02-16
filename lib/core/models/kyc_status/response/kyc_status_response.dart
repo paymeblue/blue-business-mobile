@@ -7,7 +7,7 @@ part 'kyc_status_response.g.dart';
 @freezed
 class KycStatusResponse with _$KycStatusResponse {
   const factory KycStatusResponse({
-    @Default("fail") String status,
+    @Default(false) bool success,
     String? message,
     KycStatusData? data,
   }) = _KycStatusResponse;

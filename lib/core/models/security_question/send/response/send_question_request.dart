@@ -6,7 +6,7 @@ part 'send_question_request.g.dart';
 @freezed
 class SendQuestionResponse with _$SendQuestionResponse {
   const factory SendQuestionResponse({
-    @Default("fail") String status,
+    @Default(false) bool success,
     String? message,
   }) = _SendQuestionResponse;
 

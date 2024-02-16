@@ -102,7 +102,7 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
       return BankResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       banks = resp.data!.banks;
     } else {
       AppNotification.error(message: resp.message);
@@ -128,7 +128,7 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       accountNameController.text = resp.data!.account.accountName;
       reference = resp.data!.account.reference;
     } else {
@@ -148,7 +148,7 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
       return SetPayoutResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       reference = "";
       locator<AppStateValues>().withdrawalAccount =
           resp.data!.withdrawalAccount;

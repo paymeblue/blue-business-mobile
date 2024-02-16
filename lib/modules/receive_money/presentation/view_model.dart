@@ -37,7 +37,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
       return WalletResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.success) {
       locator<AppStateValues>().wallet = resp.data!.wallet;
     } else {
       AppNotification.error(message: resp.message);
@@ -89,7 +89,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     isAccountLoading = true;
     TopupResponse resp = await DashService().getTopupAccount();
 
-    if (resp.status == "success") {
+    if (resp.success) {
       locator<AppStateValues>().account = resp.data!.account;
     } else {}
     isAccountLoading = false;

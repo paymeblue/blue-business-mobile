@@ -7,7 +7,7 @@ part 'login_response.g.dart';
 @freezed
 class LoginResponse with _$LoginResponse {
   const factory LoginResponse({
-    @Default("fail") String status,
+    @Default(false) bool success,
     String? message,
     LoginData? data,
   }) = _LoginResponse;

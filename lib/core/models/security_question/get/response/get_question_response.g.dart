@@ -9,7 +9,7 @@ part of 'get_question_response.dart';
 _$GetQuestionResponseImpl _$$GetQuestionResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$GetQuestionResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -19,7 +19,7 @@ _$GetQuestionResponseImpl _$$GetQuestionResponseImplFromJson(
 Map<String, dynamic> _$$GetQuestionResponseImplToJson(
     _$GetQuestionResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

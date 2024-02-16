@@ -8,14 +8,14 @@ part of 'delete_response.dart';
 
 _$DeleteResponseImpl _$$DeleteResponseImplFromJson(Map<String, dynamic> json) =>
     _$DeleteResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$$DeleteResponseImplToJson(
     _$DeleteResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

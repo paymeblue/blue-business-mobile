@@ -9,7 +9,7 @@ part of 'refresh_token_response.dart';
 _$RefreshTokenResponseImpl _$$RefreshTokenResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$RefreshTokenResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -19,7 +19,7 @@ _$RefreshTokenResponseImpl _$$RefreshTokenResponseImplFromJson(
 Map<String, dynamic> _$$RefreshTokenResponseImplToJson(
     _$RefreshTokenResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

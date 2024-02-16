@@ -7,7 +7,7 @@ part 'refresh_token_response.g.dart';
 @freezed
 class RefreshTokenResponse with _$RefreshTokenResponse {
   const factory RefreshTokenResponse({
-    @Default("fail") String status,
+    @Default(false) bool success,
     String? message,
     RefreshTokenData? data,
   }) = _RefreshTokenResponse;

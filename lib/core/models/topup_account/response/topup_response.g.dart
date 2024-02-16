@@ -8,7 +8,7 @@ part of 'topup_response.dart';
 
 _$TopupResponseImpl _$$TopupResponseImplFromJson(Map<String, dynamic> json) =>
     _$TopupResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -17,7 +17,7 @@ _$TopupResponseImpl _$$TopupResponseImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$TopupResponseImplToJson(_$TopupResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

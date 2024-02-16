@@ -9,7 +9,7 @@ part of 'recovery_code_response.dart';
 _$ResetRecoveryCodeResponseImpl _$$ResetRecoveryCodeResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$ResetRecoveryCodeResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -19,7 +19,7 @@ _$ResetRecoveryCodeResponseImpl _$$ResetRecoveryCodeResponseImplFromJson(
 Map<String, dynamic> _$$ResetRecoveryCodeResponseImplToJson(
     _$ResetRecoveryCodeResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

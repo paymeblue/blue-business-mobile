@@ -9,14 +9,14 @@ part of 'signup_profile_response.dart';
 _$SignupProfileResponseImpl _$$SignupProfileResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$SignupProfileResponseImpl(
-      status: json['status'] as String? ?? "fail",
+      success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$$SignupProfileResponseImplToJson(
     _$SignupProfileResponseImpl instance) {
   final val = <String, dynamic>{
-    'status': instance.status,
+    'success': instance.success,
   };
 
   void writeNotNull(String key, dynamic value) {

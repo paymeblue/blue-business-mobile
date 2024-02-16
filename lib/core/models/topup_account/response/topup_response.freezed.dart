@@ -20,7 +20,7 @@ TopupResponse _$TopupResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TopupResponse {
-  String get status => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   TopupAccountData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $TopupResponseCopyWith<$Res> {
           TopupResponse value, $Res Function(TopupResponse) then) =
       _$TopupResponseCopyWithImpl<$Res, TopupResponse>;
   @useResult
-  $Res call({String status, String? message, TopupAccountData? data});
+  $Res call({bool success, String? message, TopupAccountData? data});
 
   $TopupAccountDataCopyWith<$Res>? get data;
 }
@@ -54,15 +54,15 @@ class _$TopupResponseCopyWithImpl<$Res, $Val extends TopupResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$TopupResponseImplCopyWith<$Res>
       __$$TopupResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, TopupAccountData? data});
+  $Res call({bool success, String? message, TopupAccountData? data});
 
   @override
   $TopupAccountDataCopyWith<$Res>? get data;
@@ -112,15 +112,15 @@ class __$$TopupResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? success = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$TopupResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -136,14 +136,14 @@ class __$$TopupResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TopupResponseImpl implements _TopupResponse {
-  const _$TopupResponseImpl({this.status = "fail", this.message, this.data});
+  const _$TopupResponseImpl({this.success = false, this.message, this.data});
 
   factory _$TopupResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$TopupResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final String status;
+  final bool success;
   @override
   final String? message;
   @override
@@ -151,7 +151,7 @@ class _$TopupResponseImpl implements _TopupResponse {
 
   @override
   String toString() {
-    return 'TopupResponse(status: $status, message: $message, data: $data)';
+    return 'TopupResponse(success: $success, message: $message, data: $data)';
   }
 
   @override
@@ -159,14 +159,14 @@ class _$TopupResponseImpl implements _TopupResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TopupResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(runtimeType, success, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +184,7 @@ class _$TopupResponseImpl implements _TopupResponse {
 
 abstract class _TopupResponse implements TopupResponse {
   const factory _TopupResponse(
-      {final String status,
+      {final bool success,
       final String? message,
       final TopupAccountData? data}) = _$TopupResponseImpl;
 
@@ -192,7 +192,7 @@ abstract class _TopupResponse implements TopupResponse {
       _$TopupResponseImpl.fromJson;
 
   @override
-  String get status;
+  bool get success;
   @override
   String? get message;
   @override
