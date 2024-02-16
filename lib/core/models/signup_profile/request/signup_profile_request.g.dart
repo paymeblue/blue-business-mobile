@@ -9,23 +9,32 @@ part of 'signup_profile_request.dart';
 _$SignupProfileRequestImpl _$$SignupProfileRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$SignupProfileRequestImpl(
-      userId: json['userId'] as int? ?? 0,
-      firstName: json['firstName'] as String? ?? "",
-      lastName: json['lastName'] as String? ?? "",
-      middleName: json['middleName'] as String?,
+      userId: json['user_id'] as int? ?? 0,
+      firstName: json['first_name'] as String? ?? "",
+      lastName: json['last_name'] as String? ?? "",
+      middleName: json['middle_name'] as String?,
       password: json['password'] as String? ?? "",
-      passwordConfirmation: json['passwordConfirmation'] as String? ?? "",
+      passwordConfirmation: json['password_confirmation'] as String? ?? "",
       passcode: json['passcode'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$SignupProfileRequestImplToJson(
-        _$SignupProfileRequestImpl instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-      'middleName': instance.middleName,
-      'password': instance.password,
-      'passwordConfirmation': instance.passwordConfirmation,
-      'passcode': instance.passcode,
-    };
+    _$SignupProfileRequestImpl instance) {
+  final val = <String, dynamic>{
+    'user_id': instance.userId,
+    'first_name': instance.firstName,
+    'last_name': instance.lastName,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('middle_name', instance.middleName);
+  val['password'] = instance.password;
+  val['password_confirmation'] = instance.passwordConfirmation;
+  val['passcode'] = instance.passcode;
+  return val;
+}

@@ -11,13 +11,22 @@ _$InitiateTransactionRequestImpl _$$InitiateTransactionRequestImplFromJson(
     _$InitiateTransactionRequestImpl(
       amount: json['amount'] as String,
       narration: json['narration'] as String?,
-      paymentMode: json['paymentMode'] as String,
+      paymentMode: json['payment_mode'] as String,
     );
 
 Map<String, dynamic> _$$InitiateTransactionRequestImplToJson(
-        _$InitiateTransactionRequestImpl instance) =>
-    <String, dynamic>{
-      'amount': instance.amount,
-      'narration': instance.narration,
-      'paymentMode': instance.paymentMode,
-    };
+    _$InitiateTransactionRequestImpl instance) {
+  final val = <String, dynamic>{
+    'amount': instance.amount,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('narration', instance.narration);
+  val['payment_mode'] = instance.paymentMode;
+  return val;
+}

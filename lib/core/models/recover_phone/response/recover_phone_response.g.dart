@@ -14,8 +14,17 @@ _$SendNewPhoneResponseImpl _$$SendNewPhoneResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$SendNewPhoneResponseImplToJson(
-        _$SendNewPhoneResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-    };
+    _$SendNewPhoneResponseImpl instance) {
+  final val = <String, dynamic>{
+    'status': instance.status,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('message', instance.message);
+  return val;
+}

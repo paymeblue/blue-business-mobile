@@ -16,7 +16,7 @@ _$PaymentLinkDataImpl _$$PaymentLinkDataImplFromJson(
               ?.map((e) => PaymentLinkItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      loadMore: json['loadMore'] as bool? ?? false,
+      loadMore: json['load_more'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$PaymentLinkDataImplToJson(
@@ -26,5 +26,5 @@ Map<String, dynamic> _$$PaymentLinkDataImplToJson(
       'limit': instance.limit,
       'page': instance.page,
       'data': instance.data,
-      'loadMore': instance.loadMore,
+      'load_more': instance.loadMore,
     };

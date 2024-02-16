@@ -10,12 +10,12 @@ _$ResetPinRequestImpl _$$ResetPinRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$ResetPinRequestImpl(
       phone: json['phone'] as String,
-      newPasscode: json['newPasscode'] as String,
+      newPasscode: json['new_passcode'] as String,
     );
 
 Map<String, dynamic> _$$ResetPinRequestImplToJson(
         _$ResetPinRequestImpl instance) =>
     <String, dynamic>{
       'phone': instance.phone,
-      'newPasscode': instance.newPasscode,
+      'new_passcode': instance.newPasscode,
     };

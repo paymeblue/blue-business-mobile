@@ -15,9 +15,18 @@ _$TopupResponseImpl _$$TopupResponseImplFromJson(Map<String, dynamic> json) =>
           : TopupAccountData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$TopupResponseImplToJson(_$TopupResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-      'data': instance.data,
-    };
+Map<String, dynamic> _$$TopupResponseImplToJson(_$TopupResponseImpl instance) {
+  final val = <String, dynamic>{
+    'status': instance.status,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('message', instance.message);
+  writeNotNull('data', instance.data);
+  return val;
+}

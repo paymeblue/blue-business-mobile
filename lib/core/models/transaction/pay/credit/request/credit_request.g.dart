@@ -8,12 +8,12 @@ part of 'credit_request.dart';
 
 _$CreditRequestImpl _$$CreditRequestImplFromJson(Map<String, dynamic> json) =>
     _$CreditRequestImpl(
-      transactionId: json['transactionId'] as String,
+      transactionId: json['transaction_id'] as String,
       passcode: json['passcode'] as String,
     );
 
 Map<String, dynamic> _$$CreditRequestImplToJson(_$CreditRequestImpl instance) =>
     <String, dynamic>{
-      'transactionId': instance.transactionId,
+      'transaction_id': instance.transactionId,
       'passcode': instance.passcode,
     };

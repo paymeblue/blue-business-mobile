@@ -17,9 +17,18 @@ _$TransactionResponseImpl _$$TransactionResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$TransactionResponseImplToJson(
-        _$TransactionResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-      'data': instance.data,
-    };
+    _$TransactionResponseImpl instance) {
+  final val = <String, dynamic>{
+    'status': instance.status,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('message', instance.message);
+  writeNotNull('data', instance.data);
+  return val;
+}

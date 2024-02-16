@@ -10,24 +10,24 @@ _$PaymentLinkItemImpl _$$PaymentLinkItemImplFromJson(
         Map<String, dynamic> json) =>
     _$PaymentLinkItemImpl(
       id: json['id'] as int,
-      transactionId: json['transactionId'] as int,
+      transactionId: json['transaction_id'] as int,
       amount: json['amount'] as String,
       phone: json['phone'] as String,
-      receiverName: json['receiverName'] as String,
+      receiverName: json['receiver_name'] as String,
       status: json['status'] as String,
-      originalUrl: json['originalUrl'] as String,
-      createdAt: json['createdAt'] as String,
+      originalUrl: json['original_url'] as String,
+      createdAt: json['created_at'] as String,
     );
 
 Map<String, dynamic> _$$PaymentLinkItemImplToJson(
         _$PaymentLinkItemImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'transactionId': instance.transactionId,
+      'transaction_id': instance.transactionId,
       'amount': instance.amount,
       'phone': instance.phone,
-      'receiverName': instance.receiverName,
+      'receiver_name': instance.receiverName,
       'status': instance.status,
-      'originalUrl': instance.originalUrl,
-      'createdAt': instance.createdAt,
+      'original_url': instance.originalUrl,
+      'created_at': instance.createdAt,
     };

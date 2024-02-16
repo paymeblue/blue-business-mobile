@@ -59,6 +59,7 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
       number.replaceFirst("0", "");
     }
     String phone = selectedCountry!.dialCode + number;
+
     AppLoader.start();
 
     SignupRequest request = SignupRequest(phone: phone);
@@ -69,13 +70,7 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
-      if (context.mounted) {
-        if (resp.data!.user.level == 3) {
-          goToPassword(context, phone);
-        } else {
-          goToNext(context, phone, resp.data!.user);
-        }
-      }
+      if (context.mounted) goToNext(context, phone, resp.data!.user);
     } else {
       AppNotification.error(message: resp.message);
     }
@@ -83,10 +78,10 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, String phone, SignupUserData user) {
-    context.go("${RoutePaths.registerOtpPath}/$phone");
-  }
-
-  goToPassword(BuildContext context, String phone) {
-    context.go("${RoutePaths.confirmPasswordPath}/$phone");
+    if (user.level == 1) {
+      context.go("${RoutePaths.registerOtpPath}/$phone");
+    } else if (user.level == 2) {
+      context.go("/${user.id}${RoutePaths.addPersonalInfoPath}");
+    }
   }
 }

@@ -9,13 +9,13 @@ part of 'verify_payout_request.dart';
 _$VerifyPayoutRequestImpl _$$VerifyPayoutRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$VerifyPayoutRequestImpl(
-      bankId: json['bankId'] as int,
-      accountNumber: json['accountNumber'] as String,
+      bankId: json['bank_id'] as int,
+      accountNumber: json['account_number'] as String,
     );
 
 Map<String, dynamic> _$$VerifyPayoutRequestImplToJson(
         _$VerifyPayoutRequestImpl instance) =>
     <String, dynamic>{
-      'bankId': instance.bankId,
-      'accountNumber': instance.accountNumber,
+      'bank_id': instance.bankId,
+      'account_number': instance.accountNumber,
     };

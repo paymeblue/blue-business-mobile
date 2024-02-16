@@ -14,8 +14,17 @@ _$ChangePinResponseImpl _$$ChangePinResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$ChangePinResponseImplToJson(
-        _$ChangePinResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-    };
+    _$ChangePinResponseImpl instance) {
+  final val = <String, dynamic>{
+    'status': instance.status,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('message', instance.message);
+  return val;
+}

@@ -9,10 +9,10 @@ part of 'set_payout_data.dart';
 _$SetPayoutDataImpl _$$SetPayoutDataImplFromJson(Map<String, dynamic> json) =>
     _$SetPayoutDataImpl(
       withdrawalAccount: WithdrawalAccount.fromJson(
-          json['withdrawalAccount'] as Map<String, dynamic>),
+          json['withdrawal_account'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$SetPayoutDataImplToJson(_$SetPayoutDataImpl instance) =>
     <String, dynamic>{
-      'withdrawalAccount': instance.withdrawalAccount,
+      'withdrawal_account': instance.withdrawalAccount,
     };

@@ -11,11 +11,11 @@ _$VerifyPayoutAccountImpl _$$VerifyPayoutAccountImplFromJson(
     _$VerifyPayoutAccountImpl(
       id: json['id'] as int,
       reference: json['reference'] as String,
-      accountNumber: json['accountNumber'] as String,
-      accountName: json['accountName'] as String,
-      bankId: json['bankId'] as String,
+      accountNumber: json['account_number'] as String,
+      accountName: json['account_name'] as String,
+      bankId: json['bank_id'] as String,
       name: json['name'] as String,
-      createdAt: json['createdAt'] as String,
+      createdAt: json['created_at'] as String,
     );
 
 Map<String, dynamic> _$$VerifyPayoutAccountImplToJson(
@@ -23,9 +23,9 @@ Map<String, dynamic> _$$VerifyPayoutAccountImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'reference': instance.reference,
-      'accountNumber': instance.accountNumber,
-      'accountName': instance.accountName,
-      'bankId': instance.bankId,
+      'account_number': instance.accountNumber,
+      'account_name': instance.accountName,
+      'bank_id': instance.bankId,
       'name': instance.name,
-      'createdAt': instance.createdAt,
+      'created_at': instance.createdAt,
     };

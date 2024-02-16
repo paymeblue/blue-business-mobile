@@ -16,9 +16,18 @@ _$WalletResponseImpl _$$WalletResponseImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$WalletResponseImplToJson(
-        _$WalletResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-      'data': instance.data,
-    };
+    _$WalletResponseImpl instance) {
+  final val = <String, dynamic>{
+    'status': instance.status,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('message', instance.message);
+  writeNotNull('data', instance.data);
+  return val;
+}

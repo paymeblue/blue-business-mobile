@@ -10,22 +10,31 @@ _$VerifiedReceiverImpl _$$VerifiedReceiverImplFromJson(
         Map<String, dynamic> json) =>
     _$VerifiedReceiverImpl(
       id: json['id'] as int,
-      userId: json['userId'] as int?,
-      walletCode: json['walletCode'] as String?,
-      receiverName: json['receiverName'] as String,
+      userId: json['user_id'] as int?,
+      walletCode: json['wallet_code'] as String?,
+      receiverName: json['receiver_name'] as String,
       phone: json['phone'] as String,
       amount: json['amount'] as String,
       charge: json['charge'] as int,
     );
 
 Map<String, dynamic> _$$VerifiedReceiverImplToJson(
-        _$VerifiedReceiverImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'userId': instance.userId,
-      'walletCode': instance.walletCode,
-      'receiverName': instance.receiverName,
-      'phone': instance.phone,
-      'amount': instance.amount,
-      'charge': instance.charge,
-    };
+    _$VerifiedReceiverImpl instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('user_id', instance.userId);
+  writeNotNull('wallet_code', instance.walletCode);
+  val['receiver_name'] = instance.receiverName;
+  val['phone'] = instance.phone;
+  val['amount'] = instance.amount;
+  val['charge'] = instance.charge;
+  return val;
+}

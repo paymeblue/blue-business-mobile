@@ -14,8 +14,17 @@ _$SetBeneficiaryResponseImpl _$$SetBeneficiaryResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$SetBeneficiaryResponseImplToJson(
-        _$SetBeneficiaryResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-    };
+    _$SetBeneficiaryResponseImpl instance) {
+  final val = <String, dynamic>{
+    'status': instance.status,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('message', instance.message);
+  return val;
+}

@@ -16,7 +16,7 @@ _$GetBeneficiaryDataImpl _$$GetBeneficiaryDataImplFromJson(
               ?.map((e) => BlueBeneficiary.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      loadMore: json['loadMore'] as bool? ?? false,
+      loadMore: json['load_more'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$GetBeneficiaryDataImplToJson(
@@ -26,5 +26,5 @@ Map<String, dynamic> _$$GetBeneficiaryDataImplToJson(
       'limit': instance.limit,
       'page': instance.page,
       'data': instance.data,
-      'loadMore': instance.loadMore,
+      'load_more': instance.loadMore,
     };

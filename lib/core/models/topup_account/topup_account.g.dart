@@ -9,15 +9,15 @@ part of 'topup_account.dart';
 _$TopupAccountImpl _$$TopupAccountImplFromJson(Map<String, dynamic> json) =>
     _$TopupAccountImpl(
       id: json['id'] as int,
-      accountName: json['accountName'] as String,
-      bankName: json['bankName'] as String,
-      accountNumber: json['accountNumber'] as String,
+      accountName: json['account_name'] as String,
+      bankName: json['bank_name'] as String,
+      accountNumber: json['account_number'] as String,
     );
 
 Map<String, dynamic> _$$TopupAccountImplToJson(_$TopupAccountImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'accountName': instance.accountName,
-      'bankName': instance.bankName,
-      'accountNumber': instance.accountNumber,
+      'account_name': instance.accountName,
+      'bank_name': instance.bankName,
+      'account_number': instance.accountNumber,
     };

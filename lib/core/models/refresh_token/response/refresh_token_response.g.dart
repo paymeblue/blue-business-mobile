@@ -17,9 +17,18 @@ _$RefreshTokenResponseImpl _$$RefreshTokenResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$RefreshTokenResponseImplToJson(
-        _$RefreshTokenResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-      'data': instance.data,
-    };
+    _$RefreshTokenResponseImpl instance) {
+  final val = <String, dynamic>{
+    'status': instance.status,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('message', instance.message);
+  writeNotNull('data', instance.data);
+  return val;
+}

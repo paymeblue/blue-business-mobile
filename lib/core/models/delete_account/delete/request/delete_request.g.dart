@@ -8,10 +8,10 @@ part of 'delete_request.dart';
 
 _$DeleteRequestImpl _$$DeleteRequestImplFromJson(Map<String, dynamic> json) =>
     _$DeleteRequestImpl(
-      reasonId: json['reasonId'] as String,
+      reasonId: json['reason_id'] as String,
     );
 
 Map<String, dynamic> _$$DeleteRequestImplToJson(_$DeleteRequestImpl instance) =>
     <String, dynamic>{
-      'reasonId': instance.reasonId,
+      'reason_id': instance.reasonId,
     };
