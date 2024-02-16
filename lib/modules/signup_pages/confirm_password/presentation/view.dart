@@ -8,8 +8,10 @@ import 'package:flutter/material.dart';
 import 'view_model.dart';
 
 class ConfirmPasswordView extends StatefulWidget {
+  final String phone;
   const ConfirmPasswordView({
     super.key,
+    required this.phone,
   });
 
   @override
@@ -43,7 +45,7 @@ class _ConfirmPasswordViewState extends State<ConfirmPasswordView> {
             AppButton.primary(
               title: "Continue",
               onTap: () {
-                model.goToSuccess(context);
+                model.login(context, widget.phone);
               },
             )
           ],

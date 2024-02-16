@@ -67,10 +67,9 @@ abstract class AuthService {
   Future<SignupResponse> verifyOtp(
       @Query("otp") String otp, @Query("phone") String phone);
 
-  @PATCH("/users/{id}/profile")
+  @PATCH("/users/update-profile")
   Future<SignupProfileResponse> setupProfile(
     @Body() SignupProfileRequest request,
-    @Path("id") String id,
   );
 
   @POST("/recovery-code/account")

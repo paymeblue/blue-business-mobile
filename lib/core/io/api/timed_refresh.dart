@@ -53,7 +53,7 @@ class RefreshTimer {
     });
 
     if (resp.status == "success") {
-      locator<AppStateValues>().accessToken = resp.data!.token.accessToken;
+      locator<AppStateValues>().accessToken = resp.data!.accessToken;
       _refreshTimer = null;
     } else {
       if (_count <= 2) {

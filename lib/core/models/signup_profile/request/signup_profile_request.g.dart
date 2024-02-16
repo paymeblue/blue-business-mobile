@@ -9,6 +9,7 @@ part of 'signup_profile_request.dart';
 _$SignupProfileRequestImpl _$$SignupProfileRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$SignupProfileRequestImpl(
+      userId: json['userId'] as int? ?? 0,
       firstName: json['firstName'] as String? ?? "",
       lastName: json['lastName'] as String? ?? "",
       middleName: json['middleName'] as String?,
@@ -20,6 +21,7 @@ _$SignupProfileRequestImpl _$$SignupProfileRequestImplFromJson(
 Map<String, dynamic> _$$SignupProfileRequestImplToJson(
         _$SignupProfileRequestImpl instance) =>
     <String, dynamic>{
+      'userId': instance.userId,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'middleName': instance.middleName,

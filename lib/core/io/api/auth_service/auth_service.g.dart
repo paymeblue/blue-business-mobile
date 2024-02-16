@@ -34,7 +34,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/users/auth',
+              '/auth/login',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -299,9 +299,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<SignupProfileResponse> setupProfile(
-    SignupProfileRequest request,
-    String id,
-  ) async {
+      SignupProfileRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -314,7 +312,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/users/${id}/profile',
+              '/users/update-profile',
               queryParameters: queryParameters,
               data: _data,
             )

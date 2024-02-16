@@ -20,6 +20,7 @@ SignupProfileRequest _$SignupProfileRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SignupProfileRequest {
+  int get userId => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String? get middleName => throw _privateConstructorUsedError;
@@ -40,7 +41,8 @@ abstract class $SignupProfileRequestCopyWith<$Res> {
       _$SignupProfileRequestCopyWithImpl<$Res, SignupProfileRequest>;
   @useResult
   $Res call(
-      {String firstName,
+      {int userId,
+      String firstName,
       String lastName,
       String? middleName,
       String password,
@@ -62,6 +64,7 @@ class _$SignupProfileRequestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? userId = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? middleName = freezed,
@@ -70,6 +73,10 @@ class _$SignupProfileRequestCopyWithImpl<$Res,
     Object? passcode = null,
   }) {
     return _then(_value.copyWith(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -107,7 +114,8 @@ abstract class _$$SignupProfileRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String firstName,
+      {int userId,
+      String firstName,
       String lastName,
       String? middleName,
       String password,
@@ -126,6 +134,7 @@ class __$$SignupProfileRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? userId = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? middleName = freezed,
@@ -134,6 +143,10 @@ class __$$SignupProfileRequestImplCopyWithImpl<$Res>
     Object? passcode = null,
   }) {
     return _then(_$SignupProfileRequestImpl(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -166,7 +179,8 @@ class __$$SignupProfileRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SignupProfileRequestImpl implements _SignupProfileRequest {
   const _$SignupProfileRequestImpl(
-      {this.firstName = "",
+      {this.userId = 0,
+      this.firstName = "",
       this.lastName = "",
       this.middleName,
       this.password = "",
@@ -176,6 +190,9 @@ class _$SignupProfileRequestImpl implements _SignupProfileRequest {
   factory _$SignupProfileRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignupProfileRequestImplFromJson(json);
 
+  @override
+  @JsonKey()
+  final int userId;
   @override
   @JsonKey()
   final String firstName;
@@ -196,7 +213,7 @@ class _$SignupProfileRequestImpl implements _SignupProfileRequest {
 
   @override
   String toString() {
-    return 'SignupProfileRequest(firstName: $firstName, lastName: $lastName, middleName: $middleName, password: $password, passwordConfirmation: $passwordConfirmation, passcode: $passcode)';
+    return 'SignupProfileRequest(userId: $userId, firstName: $firstName, lastName: $lastName, middleName: $middleName, password: $password, passwordConfirmation: $passwordConfirmation, passcode: $passcode)';
   }
 
   @override
@@ -204,6 +221,7 @@ class _$SignupProfileRequestImpl implements _SignupProfileRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignupProfileRequestImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -220,8 +238,8 @@ class _$SignupProfileRequestImpl implements _SignupProfileRequest {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, firstName, lastName, middleName,
-      password, passwordConfirmation, passcode);
+  int get hashCode => Object.hash(runtimeType, userId, firstName, lastName,
+      middleName, password, passwordConfirmation, passcode);
 
   @JsonKey(ignore: true)
   @override
@@ -241,7 +259,8 @@ class _$SignupProfileRequestImpl implements _SignupProfileRequest {
 
 abstract class _SignupProfileRequest implements SignupProfileRequest {
   const factory _SignupProfileRequest(
-      {final String firstName,
+      {final int userId,
+      final String firstName,
       final String lastName,
       final String? middleName,
       final String password,
@@ -251,6 +270,8 @@ abstract class _SignupProfileRequest implements SignupProfileRequest {
   factory _SignupProfileRequest.fromJson(Map<String, dynamic> json) =
       _$SignupProfileRequestImpl.fromJson;
 
+  @override
+  int get userId;
   @override
   String get firstName;
   @override

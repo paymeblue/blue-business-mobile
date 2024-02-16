@@ -144,7 +144,9 @@ class LoginViewModel extends BaseViewModel {
       saveTokens(resp.data!.token);
       locator<AppStateValues>().currentUser = resp.data!.user;
 
-      if (context.mounted) await checkBiometric(context);
+      if (context.mounted) {
+        await checkBiometric(context, onComplete: onComplete);
+      }
     } else {
       AppNotification.error(message: resp.message);
     }

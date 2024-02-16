@@ -6,6 +6,7 @@ part 'signup_profile_request.g.dart';
 @freezed
 class SignupProfileRequest with _$SignupProfileRequest {
   const factory SignupProfileRequest({
+    @Default(0) int userId,
     @Default("") String firstName,
     @Default("") String lastName,
     String? middleName,

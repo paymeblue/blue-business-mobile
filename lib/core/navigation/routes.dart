@@ -104,9 +104,12 @@ GoRouter router = GoRouter(
           },
         ),
         GoRoute(
-          path: RoutePaths.confirmPasswordPath,
+          path: "${RoutePaths.confirmPasswordPath}/:phone",
           builder: (context, state) {
-            return const ConfirmPasswordView();
+            String phone = state.pathParameters["phone"] as String;
+            return ConfirmPasswordView(
+              phone: phone,
+            );
           },
         ),
         GoRoute(
