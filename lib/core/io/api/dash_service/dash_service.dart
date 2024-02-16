@@ -9,7 +9,8 @@ import 'package:retrofit/http.dart';
 
 part 'dash_service.g.dart';
 
-@RestApi(baseUrl: "https://blue-api-backend.herokuapp.com/api")
+@RestApi(
+    baseUrl: "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api")
 abstract class DashService {
   factory DashService(Dio dio) = _DashService;
 

@@ -9,11 +9,13 @@ part of 'refresh_token_data.dart';
 _$RefreshTokenDataImpl _$$RefreshTokenDataImplFromJson(
         Map<String, dynamic> json) =>
     _$RefreshTokenDataImpl(
-      token: RefreshToken.fromJson(json['token'] as Map<String, dynamic>),
+      type: json['type'] as String? ?? "Bearer",
+      accessToken: json['accessToken'] as String,
     );
 
 Map<String, dynamic> _$$RefreshTokenDataImplToJson(
         _$RefreshTokenDataImpl instance) =>
     <String, dynamic>{
-      'token': instance.token,
+      'type': instance.type,
+      'accessToken': instance.accessToken,
     };

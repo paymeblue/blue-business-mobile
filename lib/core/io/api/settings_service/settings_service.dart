@@ -8,7 +8,8 @@ import 'package:retrofit/retrofit.dart';
 
 part 'settings_service.g.dart';
 
-@RestApi(baseUrl: "https://blue-api-backend.herokuapp.com/api")
+@RestApi(
+    baseUrl: "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api")
 abstract class SettingsService {
   factory SettingsService(Dio dio) = _SettingsService;
 

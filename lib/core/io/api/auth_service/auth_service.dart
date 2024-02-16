@@ -30,11 +30,12 @@ import 'package:retrofit/retrofit.dart';
 
 part 'auth_service.g.dart';
 
-@RestApi(baseUrl: "https://blue-api-backend.herokuapp.com/api")
+@RestApi(
+    baseUrl: "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api")
 abstract class AuthService {
   factory AuthService(Dio dio) = _AuthService;
 
-  @POST("/users/auth")
+  @POST("/auth/login")
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);
 
   @POST("/users/refreshtoken")

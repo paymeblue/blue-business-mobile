@@ -12,7 +12,7 @@ class DioConfig {
       headers["Authorization"] = "Bearer $jwt";
     }
     return Dio(BaseOptions(
-      baseUrl: "https://blue-api-backend.herokuapp.com/api",
+      baseUrl: "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api",
       connectTimeout: const Duration(seconds: 30),
       headers: headers,
       validateStatus: (status) {
