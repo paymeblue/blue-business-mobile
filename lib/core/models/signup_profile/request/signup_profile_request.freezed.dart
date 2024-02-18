@@ -20,7 +20,7 @@ SignupProfileRequest _$SignupProfileRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SignupProfileRequest {
-  int get userId => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String? get middleName => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $SignupProfileRequestCopyWith<$Res> {
       _$SignupProfileRequestCopyWithImpl<$Res, SignupProfileRequest>;
   @useResult
   $Res call(
-      {int userId,
+      {String userId,
       String firstName,
       String lastName,
       String? middleName,
@@ -76,7 +76,7 @@ class _$SignupProfileRequestCopyWithImpl<$Res,
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -114,7 +114,7 @@ abstract class _$$SignupProfileRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int userId,
+      {String userId,
       String firstName,
       String lastName,
       String? middleName,
@@ -146,7 +146,7 @@ class __$$SignupProfileRequestImplCopyWithImpl<$Res>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ class __$$SignupProfileRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SignupProfileRequestImpl implements _SignupProfileRequest {
   const _$SignupProfileRequestImpl(
-      {this.userId = 0,
+      {this.userId = "0",
       this.firstName = "",
       this.lastName = "",
       this.middleName,
@@ -192,7 +192,7 @@ class _$SignupProfileRequestImpl implements _SignupProfileRequest {
 
   @override
   @JsonKey()
-  final int userId;
+  final String userId;
   @override
   @JsonKey()
   final String firstName;
@@ -259,7 +259,7 @@ class _$SignupProfileRequestImpl implements _SignupProfileRequest {
 
 abstract class _SignupProfileRequest implements SignupProfileRequest {
   const factory _SignupProfileRequest(
-      {final int userId,
+      {final String userId,
       final String firstName,
       final String lastName,
       final String? middleName,
@@ -271,7 +271,7 @@ abstract class _SignupProfileRequest implements SignupProfileRequest {
       _$SignupProfileRequestImpl.fromJson;
 
   @override
-  int get userId;
+  String get userId;
   @override
   String get firstName;
   @override

@@ -9,7 +9,7 @@ part of 'signup_profile_request.dart';
 _$SignupProfileRequestImpl _$$SignupProfileRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$SignupProfileRequestImpl(
-      userId: json['user_id'] as int? ?? 0,
+      userId: json['user_id'] as String? ?? "0",
       firstName: json['first_name'] as String? ?? "",
       lastName: json['last_name'] as String? ?? "",
       middleName: json['middle_name'] as String?,

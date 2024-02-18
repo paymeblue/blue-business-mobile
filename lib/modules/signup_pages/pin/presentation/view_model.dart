@@ -48,7 +48,7 @@ class PinViewModel extends BaseViewModel {
   }
 
   setupProfile(BuildContext context) async {
-    request = request.copyWith(passcode: pin, userId: int.parse(id));
+    request = request.copyWith(passcode: pin, userId: id);
     AppLoader.start();
     SignupProfileResponse resp = await authService
         .setupProfile(
