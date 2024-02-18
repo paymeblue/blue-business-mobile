@@ -24,6 +24,8 @@ dependencies:
   infinite_scroll_pagination: ^4.0.0
   oktoast: ^3.4.0
   another_flushbar: ^1.12.30
+  dotted_border: ^2.1.0
+  nigerian_states_and_lga: ^1.0.0
 
   #MEDIA UTILS
   qr_flutter: ^4.1.0

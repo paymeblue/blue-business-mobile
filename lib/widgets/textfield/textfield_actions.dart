@@ -56,6 +56,22 @@ class BlueDropdown {
       searchController: searchController,
     );
   }
+
+  static Widget show({
+    required List<String> banks,
+    required ValueChanged<String?> onChanged,
+    required TextEditingController? searchController,
+    String? value,
+    required String title,
+  }) {
+    return _BlueStringDropdown(
+      items: banks,
+      onChanged: onChanged,
+      value: value,
+      searchController: searchController,
+      title: title,
+    );
+  }
 }
 
 class _BlueCountryDropdown extends StatelessWidget {
@@ -359,6 +375,112 @@ class _BlueBusinessCategoryDropdown extends StatelessWidget {
         children: [
           Text(
             value?.title ?? "--Select a category--",
+            style: value == null
+                ? AppTextStyles.textField
+                    .copyWith(color: AppColors.textColor.withOpacity(.3))
+                : AppTextStyles.textField,
+          ),
+          const Spacer(),
+          const Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: AppColors.textColor,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _BlueStringDropdown extends StatelessWidget {
+  const _BlueStringDropdown({
+    required this.items,
+    required this.onChanged,
+    this.value,
+    required this.searchController,
+    required this.title,
+  });
+
+  final List<String> items;
+  final ValueChanged<String?> onChanged;
+  final String? value;
+  final TextEditingController? searchController;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: context.mediaQuery.size.width,
+      height: 85,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          textFieldHeader(),
+          _$BlueDropdown<String>(
+            items: items.map((e) => DropdownType(label: e, value: e)).toList(),
+            selectedValue: value,
+            canSearch: true,
+            selectedItemBuilder: selectedItem(),
+            itemBuilder: itemBuilder,
+            onChanged: onChanged,
+            onSearchChanged: onSearchChanged,
+            searchController: searchController,
+            searchHint: "Search List",
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget textFieldHeader() {
+    return Text(
+      title,
+      style: AppTextStyles.subHeader.copyWith(color: AppColors.textColor),
+    );
+  }
+
+  Widget itemBuilder(String item) {
+    return Container(
+      height: 45,
+      decoration: const BoxDecoration(),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              item,
+              style: AppTextStyles.textField.copyWith(height: 1),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<String> onSearchChanged(String? v) {
+    List<String> temp = [];
+    if (v != null && v.isNotEmpty) {
+      for (String item in items) {
+        if (item.toLowerCase().contains(v.toLowerCase())) {
+          temp.add(item);
+        }
+      }
+    } else {
+      temp = items;
+    }
+
+    return temp;
+  }
+
+  Widget selectedItem() {
+    return Container(
+      height: 50,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(color: AppColors.grey)),
+      child: Row(
+        children: [
+          Text(
+            value ?? "--Select from the options below--",
             style: value == null
                 ? AppTextStyles.textField
                     .copyWith(color: AppColors.textColor.withOpacity(.3))

@@ -133,8 +133,9 @@ abstract class AuthService {
     @Body() BusinessSizeRequest request,
   );
 
-  @PATCH("/business-profiles/address")
+  @PATCH("/business-profiles/{id}/address")
   Future<BusinessNameResponse> addBusinessAddress(
+    @Path('id') String id,
     @Body() BusinessLocationRequest request,
   );
 }

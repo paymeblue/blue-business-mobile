@@ -1,17 +1,17 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
+import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:flutter/material.dart';
 
 import 'view_model.dart';
 
 class RegisterSuccessView extends StatefulWidget {
-  final User user;
-  const RegisterSuccessView({super.key, required this.user});
+  const RegisterSuccessView({super.key});
 
   @override
   State<RegisterSuccessView> createState() => _RegisterSuccessViewState();
@@ -74,7 +74,7 @@ class _RegisterSuccessViewState extends State<RegisterSuccessView> {
 
   Widget successTitle() {
     return Text(
-      "Welcome, ${widget.user.firstName}! 🎉",
+      "Welcome, ${locator<AppStateValues>().currentUser!.firstName}! 🎉",
       style: AppTextStyles.header.copyWith(
         color: AppColors.white,
       ),

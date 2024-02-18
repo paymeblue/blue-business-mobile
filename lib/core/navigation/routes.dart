@@ -5,7 +5,6 @@ import 'package:blue_business/core/models/signup_profile/request/signup_profile_
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
 import 'package:blue_business/core/models/transaction/verify/data/verified_receiver_data.dart';
-import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/navigation/screens.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -142,7 +141,7 @@ GoRouter router = GoRouter(
         if (state.matchedLocation.startsWith(RoutePaths.businessSizePath)) {
           index = 1;
         } else if (state.matchedLocation
-            .endsWith(RoutePaths.businessLocation)) {
+            .startsWith(RoutePaths.businessLocation)) {
           index = 2;
         }
         return SetupBusinessShellView(
@@ -171,10 +170,14 @@ GoRouter router = GoRouter(
           },
         ),
         GoRoute(
-          path: RoutePaths.businessLocation,
+          path: "${RoutePaths.businessLocation}/:id",
           name: "Add Business Location",
           builder: (context, state) {
-            return const AddLocationView();
+            String id = state.pathParameters["id"] as String;
+            log(state.matchedLocation);
+            return AddLocationView(
+              id: int.parse(id),
+            );
           },
         ),
       ],
@@ -182,9 +185,7 @@ GoRouter router = GoRouter(
     GoRoute(
       path: RoutePaths.registerSuccessPath,
       builder: (context, state) {
-        return RegisterSuccessView(
-          user: state.extra as User,
-        );
+        return const RegisterSuccessView();
       },
     ),
     ShellRoute(

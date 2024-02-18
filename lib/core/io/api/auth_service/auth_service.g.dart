@@ -9,10 +9,7 @@ part of 'auth_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _AuthService implements AuthService {
-  _AuthService(
-    this._dio, {
-    this.baseUrl,
-  }) {
+  _AuthService(this._dio) {
     baseUrl ??= 'https://blue-business-backend-8c46f2828f9e.herokuapp.com/api';
   }
 
@@ -696,7 +693,9 @@ class _AuthService implements AuthService {
 
   @override
   Future<BusinessNameResponse> addBusinessAddress(
-      BusinessLocationRequest request) async {
+    String id,
+    BusinessLocationRequest request,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -709,7 +708,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/business-profiles/address',
+              '/business-profiles/${id}/address',
               queryParameters: queryParameters,
               data: _data,
             )
