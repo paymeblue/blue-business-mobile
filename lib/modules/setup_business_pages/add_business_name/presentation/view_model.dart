@@ -95,6 +95,7 @@ class AddBusinessNameViewModel extends BaseViewModel {
     } else {
       AppNotification.error(message: resp.message);
     }
+
     AppLoader.stop();
   }
 }

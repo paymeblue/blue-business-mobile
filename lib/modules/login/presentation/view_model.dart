@@ -225,7 +225,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, User user) {
-    if (user.businessProfileLevel == 0) {
+    if (user.businessProfileLevel != 3) {
       context.go(RoutePaths.registerSuccessPath, extra: user);
     } else {
       context.go(RoutePaths.homePath);
