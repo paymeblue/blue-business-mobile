@@ -42,7 +42,9 @@ class _RegisterSuccessViewState extends State<RegisterSuccessView> {
                 successMessage(),
                 const Spacer(),
                 setupProfileButton(
-                  onTap: () {},
+                  onTap: () {
+                    model.goToNext(context);
+                  },
                 ),
               ],
             ),

@@ -1,4 +1,5 @@
 import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/models/business_category/response/business_category_response.dart';
 import 'package:blue_business/core/models/change_password/request/change_password_request.dart';
 import 'package:blue_business/core/models/change_password/response/change_password_response.dart';
 import 'package:blue_business/core/models/change_pin/request/change_pin_request.dart';
@@ -114,4 +115,7 @@ abstract class AuthService {
   @PATCH("/users/reset-password")
   Future<SendNewPhoneResponse> resetPassword(
       @Body() ResetPasswordRequest request);
+
+  @GET("/business-categories")
+  Future<BusinessCategoryResponse> getCategories();
 }
