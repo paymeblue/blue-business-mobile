@@ -20,7 +20,7 @@ DeleteResponse _$DeleteResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DeleteResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $DeleteResponseCopyWith<$Res> {
           DeleteResponse value, $Res Function(DeleteResponse) then) =
       _$DeleteResponseCopyWithImpl<$Res, DeleteResponse>;
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -51,14 +51,14 @@ class _$DeleteResponseCopyWithImpl<$Res, $Val extends DeleteResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -75,7 +75,7 @@ abstract class _$$DeleteResponseImplCopyWith<$Res>
       __$$DeleteResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -89,14 +89,14 @@ class __$$DeleteResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_$DeleteResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -108,20 +108,20 @@ class __$$DeleteResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeleteResponseImpl implements _DeleteResponse {
-  const _$DeleteResponseImpl({this.success = false, this.message});
+  const _$DeleteResponseImpl({this.status = "fail", this.message});
 
   factory _$DeleteResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$DeleteResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'DeleteResponse(success: $success, message: $message)';
+    return 'DeleteResponse(status: $status, message: $message)';
   }
 
   @override
@@ -129,13 +129,13 @@ class _$DeleteResponseImpl implements _DeleteResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DeleteResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message);
+  int get hashCode => Object.hash(runtimeType, status, message);
 
   @JsonKey(ignore: true)
   @override
@@ -153,14 +153,14 @@ class _$DeleteResponseImpl implements _DeleteResponse {
 }
 
 abstract class _DeleteResponse implements DeleteResponse {
-  const factory _DeleteResponse({final bool success, final String? message}) =
+  const factory _DeleteResponse({final String status, final String? message}) =
       _$DeleteResponseImpl;
 
   factory _DeleteResponse.fromJson(Map<String, dynamic> json) =
       _$DeleteResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

@@ -21,7 +21,7 @@ SetRecoveryPhoneResponse _$SetRecoveryPhoneResponseFromJson(
 
 /// @nodoc
 mixin _$SetRecoveryPhoneResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $SetRecoveryPhoneResponseCopyWith<$Res> {
           $Res Function(SetRecoveryPhoneResponse) then) =
       _$SetRecoveryPhoneResponseCopyWithImpl<$Res, SetRecoveryPhoneResponse>;
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -53,14 +53,14 @@ class _$SetRecoveryPhoneResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$SetRecoveryPhoneResponseImplCopyWith<$Res>
       __$$SetRecoveryPhoneResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -94,14 +94,14 @@ class __$$SetRecoveryPhoneResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_$SetRecoveryPhoneResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -113,20 +113,20 @@ class __$$SetRecoveryPhoneResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SetRecoveryPhoneResponseImpl implements _SetRecoveryPhoneResponse {
-  const _$SetRecoveryPhoneResponseImpl({this.success = false, this.message});
+  const _$SetRecoveryPhoneResponseImpl({this.status = "fail", this.message});
 
   factory _$SetRecoveryPhoneResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$SetRecoveryPhoneResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'SetRecoveryPhoneResponse(success: $success, message: $message)';
+    return 'SetRecoveryPhoneResponse(status: $status, message: $message)';
   }
 
   @override
@@ -134,13 +134,13 @@ class _$SetRecoveryPhoneResponseImpl implements _SetRecoveryPhoneResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SetRecoveryPhoneResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message);
+  int get hashCode => Object.hash(runtimeType, status, message);
 
   @JsonKey(ignore: true)
   @override
@@ -159,14 +159,14 @@ class _$SetRecoveryPhoneResponseImpl implements _SetRecoveryPhoneResponse {
 
 abstract class _SetRecoveryPhoneResponse implements SetRecoveryPhoneResponse {
   const factory _SetRecoveryPhoneResponse(
-      {final bool success,
+      {final String status,
       final String? message}) = _$SetRecoveryPhoneResponseImpl;
 
   factory _SetRecoveryPhoneResponse.fromJson(Map<String, dynamic> json) =
       _$SetRecoveryPhoneResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

@@ -8,7 +8,7 @@ part of 'signup_response.dart';
 
 _$SignupResponseImpl _$$SignupResponseImplFromJson(Map<String, dynamic> json) =>
     _$SignupResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -18,7 +18,7 @@ _$SignupResponseImpl _$$SignupResponseImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$SignupResponseImplToJson(
     _$SignupResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {

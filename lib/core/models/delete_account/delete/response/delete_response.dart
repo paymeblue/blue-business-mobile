@@ -6,7 +6,7 @@ part 'delete_response.g.dart';
 @freezed
 class DeleteResponse with _$DeleteResponse {
   const factory DeleteResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
   }) = _DeleteResponse;
 

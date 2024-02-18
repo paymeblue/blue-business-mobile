@@ -137,42 +137,43 @@ class LoginViewModel extends BaseViewModel {
     });
 
     AppLoader.stop();
-    if (resp.success) {
+    if (resp.status == "success") {
       await setNameInStorage(resp.data!.user.firstName, p);
       saveTokens(resp.data!.token);
       locator<AppStateValues>().currentUser = resp.data!.user;
 
       if (context.mounted) {
-        await checkBiometric(context, onComplete: onComplete);
+        await checkBiometric(context, 0, onComplete: onComplete);
       }
     } else {
       AppNotification.error(message: resp.message);
     }
   }
 
-  checkBiometric(BuildContext context, {VoidCallback? onComplete}) async {
+  checkBiometric(BuildContext context, int level,
+      {VoidCallback? onComplete}) async {
     if (StorageValues.hasRequestedBiometrics != "true") {
       await BlueBottomSheet.biometrics(
         onContinue: () async {
           await allowBiometrics();
           if (context.mounted) {
-            onComplete ?? goToNext(context);
+            onComplete ?? goToNext(context, level);
           }
         },
         onCancel: () async {
           await denyBiometrics();
           if (context.mounted) {
-            onComplete ?? goToNext(context);
+            onComplete ?? goToNext(context, level);
           }
         },
       );
     } else if (StorageValues.enableBiometrics == "true") {
       await allowBiometrics();
       if (context.mounted) {
-        onComplete ?? goToNext(context);
+        onComplete ?? goToNext(context, level);
       }
     } else if (context.mounted) {
-      onComplete ?? goToNext(context);
+      onComplete ?? goToNext(context, level);
     }
   }
 
@@ -222,8 +223,12 @@ class LoginViewModel extends BaseViewModel {
     return selectedCountry!.dialCode + number;
   }
 
-  goToNext(BuildContext context) {
-    context.go(RoutePaths.homePath);
+  goToNext(BuildContext context, int level) {
+    if (level == 0) {
+      context.go(RoutePaths.registerSuccessPath);
+    } else {
+      context.go(RoutePaths.homePath);
+    }
   }
 
   deleteStorageItems() async {

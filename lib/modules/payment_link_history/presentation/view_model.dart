@@ -103,7 +103,7 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
             message: AppErrorHandler.getErrorMessage(error));
       });
 
-      if (resp.success) {
+      if (resp.status == "success") {
         paymentLinkController.error = resp.message;
       } else {
         List<PaymentLinkItem> i = resp.data!.data;
@@ -143,7 +143,7 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       receipt = resp.data!;
       receipt = receipt!.copyWith(
         status: data.status,

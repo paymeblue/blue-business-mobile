@@ -20,7 +20,7 @@ LogoutResponse _$LogoutResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LogoutResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $LogoutResponseCopyWith<$Res> {
           LogoutResponse value, $Res Function(LogoutResponse) then) =
       _$LogoutResponseCopyWithImpl<$Res, LogoutResponse>;
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -51,14 +51,14 @@ class _$LogoutResponseCopyWithImpl<$Res, $Val extends LogoutResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -75,7 +75,7 @@ abstract class _$$LogoutResponseImplCopyWith<$Res>
       __$$LogoutResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -89,14 +89,14 @@ class __$$LogoutResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_$LogoutResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -108,20 +108,20 @@ class __$$LogoutResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LogoutResponseImpl implements _LogoutResponse {
-  const _$LogoutResponseImpl({this.success = false, this.message});
+  const _$LogoutResponseImpl({this.status = "fail", this.message});
 
   factory _$LogoutResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$LogoutResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'LogoutResponse(success: $success, message: $message)';
+    return 'LogoutResponse(status: $status, message: $message)';
   }
 
   @override
@@ -129,13 +129,13 @@ class _$LogoutResponseImpl implements _LogoutResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LogoutResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message);
+  int get hashCode => Object.hash(runtimeType, status, message);
 
   @JsonKey(ignore: true)
   @override
@@ -153,14 +153,14 @@ class _$LogoutResponseImpl implements _LogoutResponse {
 }
 
 abstract class _LogoutResponse implements LogoutResponse {
-  const factory _LogoutResponse({final bool success, final String? message}) =
+  const factory _LogoutResponse({final String status, final String? message}) =
       _$LogoutResponseImpl;
 
   factory _LogoutResponse.fromJson(Map<String, dynamic> json) =
       _$LogoutResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

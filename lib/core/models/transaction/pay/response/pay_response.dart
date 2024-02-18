@@ -7,7 +7,7 @@ part 'pay_response.g.dart';
 @freezed
 class PayResponse with _$PayResponse {
   const factory PayResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     PayData? data,
   }) = _PayResponse;

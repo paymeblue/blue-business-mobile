@@ -7,7 +7,7 @@ part 'payment_link_response.g.dart';
 @freezed
 class PaymentLinkResponse with _$PaymentLinkResponse {
   const factory PaymentLinkResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     PaymentLinkData? data,
   }) = _PaymentLinkResponse;

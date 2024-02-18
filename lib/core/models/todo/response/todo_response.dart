@@ -7,7 +7,7 @@ part 'todo_response.g.dart';
 @freezed
 class TodoResponse with _$TodoResponse {
   const factory TodoResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     TodoData? data,
   }) = _TodoResponse;

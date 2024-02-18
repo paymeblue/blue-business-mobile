@@ -7,7 +7,7 @@ part 'recovery_code_response.g.dart';
 @freezed
 class GetRecoveryCodeResponse with _$GetRecoveryCodeResponse {
   const factory GetRecoveryCodeResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     GetRecoveryCodeData? data,
   }) = _GetRecoveryCodeResponse;

@@ -7,7 +7,7 @@ part 'verify_payout_response.g.dart';
 @freezed
 class VerifyPayoutResponse with _$VerifyPayoutResponse {
   const factory VerifyPayoutResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     VerifyPayoutData? data,
   }) = _VerifyPayoutResponse;

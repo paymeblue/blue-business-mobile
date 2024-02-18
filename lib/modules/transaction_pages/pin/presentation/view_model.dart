@@ -86,7 +86,7 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
       return PayResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       AppNotification.error(message: resp.message);
     }
 
@@ -106,11 +106,12 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
         await transactionService.pay(request).onError((error, stackTrace) {
       return PayResponse(message: AppErrorHandler.getErrorMessage(error));
     });
-    if (!locator<AppStateValues>().hasSavedBeneficiary && resp.success) {
+    if (!locator<AppStateValues>().hasSavedBeneficiary &&
+        resp.status == "success") {
       await saveBeneficiary(data);
     }
 
-    if (resp.success) {
+    if (resp.status == "success") {
       AppNotification.error(message: resp.message);
     }
     AppLoader.stop();
@@ -152,7 +153,7 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       AppNotification.success(message: resp.message);
     } else {
       AppNotification.error(message: resp.message);

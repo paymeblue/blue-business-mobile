@@ -9,14 +9,14 @@ part of 'change_pin_response.dart';
 _$ChangePinResponseImpl _$$ChangePinResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$ChangePinResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$$ChangePinResponseImplToJson(
     _$ChangePinResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {

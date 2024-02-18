@@ -20,7 +20,7 @@ SendNewPhoneResponse _$SendNewPhoneResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SendNewPhoneResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $SendNewPhoneResponseCopyWith<$Res> {
           $Res Function(SendNewPhoneResponse) then) =
       _$SendNewPhoneResponseCopyWithImpl<$Res, SendNewPhoneResponse>;
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -52,14 +52,14 @@ class _$SendNewPhoneResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -76,7 +76,7 @@ abstract class _$$SendNewPhoneResponseImplCopyWith<$Res>
       __$$SendNewPhoneResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -90,14 +90,14 @@ class __$$SendNewPhoneResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_$SendNewPhoneResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -109,20 +109,20 @@ class __$$SendNewPhoneResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SendNewPhoneResponseImpl implements _SendNewPhoneResponse {
-  const _$SendNewPhoneResponseImpl({this.success = false, this.message});
+  const _$SendNewPhoneResponseImpl({this.status = "fail", this.message});
 
   factory _$SendNewPhoneResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$SendNewPhoneResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'SendNewPhoneResponse(success: $success, message: $message)';
+    return 'SendNewPhoneResponse(status: $status, message: $message)';
   }
 
   @override
@@ -130,13 +130,13 @@ class _$SendNewPhoneResponseImpl implements _SendNewPhoneResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SendNewPhoneResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message);
+  int get hashCode => Object.hash(runtimeType, status, message);
 
   @JsonKey(ignore: true)
   @override
@@ -156,13 +156,14 @@ class _$SendNewPhoneResponseImpl implements _SendNewPhoneResponse {
 
 abstract class _SendNewPhoneResponse implements SendNewPhoneResponse {
   const factory _SendNewPhoneResponse(
-      {final bool success, final String? message}) = _$SendNewPhoneResponseImpl;
+      {final String status,
+      final String? message}) = _$SendNewPhoneResponseImpl;
 
   factory _SendNewPhoneResponse.fromJson(Map<String, dynamic> json) =
       _$SendNewPhoneResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

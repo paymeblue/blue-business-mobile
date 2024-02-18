@@ -20,7 +20,7 @@ ChangePinResponse _$ChangePinResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChangePinResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $ChangePinResponseCopyWith<$Res> {
           ChangePinResponse value, $Res Function(ChangePinResponse) then) =
       _$ChangePinResponseCopyWithImpl<$Res, ChangePinResponse>;
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -51,14 +51,14 @@ class _$ChangePinResponseCopyWithImpl<$Res, $Val extends ChangePinResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -75,7 +75,7 @@ abstract class _$$ChangePinResponseImplCopyWith<$Res>
       __$$ChangePinResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -89,14 +89,14 @@ class __$$ChangePinResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_$ChangePinResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -108,20 +108,20 @@ class __$$ChangePinResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ChangePinResponseImpl implements _ChangePinResponse {
-  const _$ChangePinResponseImpl({this.success = false, this.message});
+  const _$ChangePinResponseImpl({this.status = "fail", this.message});
 
   factory _$ChangePinResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChangePinResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'ChangePinResponse(success: $success, message: $message)';
+    return 'ChangePinResponse(status: $status, message: $message)';
   }
 
   @override
@@ -129,13 +129,13 @@ class _$ChangePinResponseImpl implements _ChangePinResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChangePinResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message);
+  int get hashCode => Object.hash(runtimeType, status, message);
 
   @JsonKey(ignore: true)
   @override
@@ -154,13 +154,13 @@ class _$ChangePinResponseImpl implements _ChangePinResponse {
 
 abstract class _ChangePinResponse implements ChangePinResponse {
   const factory _ChangePinResponse(
-      {final bool success, final String? message}) = _$ChangePinResponseImpl;
+      {final String status, final String? message}) = _$ChangePinResponseImpl;
 
   factory _ChangePinResponse.fromJson(Map<String, dynamic> json) =
       _$ChangePinResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

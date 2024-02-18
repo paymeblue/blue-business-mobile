@@ -9,7 +9,7 @@ part of 'recently_paid_response.dart';
 _$RecentlyPaidResponseImpl _$$RecentlyPaidResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$RecentlyPaidResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -19,7 +19,7 @@ _$RecentlyPaidResponseImpl _$$RecentlyPaidResponseImplFromJson(
 Map<String, dynamic> _$$RecentlyPaidResponseImplToJson(
     _$RecentlyPaidResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {

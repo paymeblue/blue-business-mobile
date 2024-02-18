@@ -20,7 +20,7 @@ TodoResponse _$TodoResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TodoResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   TodoData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $TodoResponseCopyWith<$Res> {
           TodoResponse value, $Res Function(TodoResponse) then) =
       _$TodoResponseCopyWithImpl<$Res, TodoResponse>;
   @useResult
-  $Res call({bool success, String? message, TodoData? data});
+  $Res call({String status, String? message, TodoData? data});
 
   $TodoDataCopyWith<$Res>? get data;
 }
@@ -54,15 +54,15 @@ class _$TodoResponseCopyWithImpl<$Res, $Val extends TodoResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$TodoResponseImplCopyWith<$Res>
       __$$TodoResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message, TodoData? data});
+  $Res call({String status, String? message, TodoData? data});
 
   @override
   $TodoDataCopyWith<$Res>? get data;
@@ -112,15 +112,15 @@ class __$$TodoResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$TodoResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -136,14 +136,14 @@ class __$$TodoResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TodoResponseImpl implements _TodoResponse {
-  const _$TodoResponseImpl({this.success = false, this.message, this.data});
+  const _$TodoResponseImpl({this.status = "fail", this.message, this.data});
 
   factory _$TodoResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$TodoResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
   @override
@@ -151,7 +151,7 @@ class _$TodoResponseImpl implements _TodoResponse {
 
   @override
   String toString() {
-    return 'TodoResponse(success: $success, message: $message, data: $data)';
+    return 'TodoResponse(status: $status, message: $message, data: $data)';
   }
 
   @override
@@ -159,14 +159,14 @@ class _$TodoResponseImpl implements _TodoResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TodoResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message, data);
+  int get hashCode => Object.hash(runtimeType, status, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +184,7 @@ class _$TodoResponseImpl implements _TodoResponse {
 
 abstract class _TodoResponse implements TodoResponse {
   const factory _TodoResponse(
-      {final bool success,
+      {final String status,
       final String? message,
       final TodoData? data}) = _$TodoResponseImpl;
 
@@ -192,7 +192,7 @@ abstract class _TodoResponse implements TodoResponse {
       _$TodoResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

@@ -7,7 +7,7 @@ part 'signup_response.g.dart';
 @freezed
 class SignupResponse with _$SignupResponse {
   const factory SignupResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     SignupUserData? data,
   }) = _SignupResponse;

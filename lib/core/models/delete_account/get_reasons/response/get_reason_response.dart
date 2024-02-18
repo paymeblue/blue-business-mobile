@@ -7,7 +7,7 @@ part 'get_reason_response.g.dart';
 @freezed
 class GetReasonResponse with _$GetReasonResponse {
   const factory GetReasonResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     List<Reason>? data,
   }) = _GetReasonResponse;

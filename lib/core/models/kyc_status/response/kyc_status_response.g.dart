@@ -9,7 +9,7 @@ part of 'kyc_status_response.dart';
 _$KycStatusResponseImpl _$$KycStatusResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$KycStatusResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -19,7 +19,7 @@ _$KycStatusResponseImpl _$$KycStatusResponseImplFromJson(
 Map<String, dynamic> _$$KycStatusResponseImplToJson(
     _$KycStatusResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {

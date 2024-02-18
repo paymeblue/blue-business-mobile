@@ -153,7 +153,7 @@ class StartConversationViewModel extends BaseViewModel {
       return ChatReceiverResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });
-    if (resp.success) {
+    if (resp.status == "success") {
       ChatResponseData recipient = resp.data!;
       if (context.mounted) {
         context.go(RoutePaths.chatDetailsPath,

@@ -56,7 +56,7 @@ class EnterPasswordRecoveryPhoneViewModel extends BaseViewModel {
         .onError((error, stackTrace) => SendNewPhoneResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
-    if (resp.success) {
+    if (resp.status == "success") {
       AppNotification.success(message: resp.message);
       if (context.mounted) goToOtp(context);
     } else {

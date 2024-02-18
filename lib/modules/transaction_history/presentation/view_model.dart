@@ -79,7 +79,7 @@ class TransactionHistoryViewModel extends BaseViewModel {
         return TransactionResponse(
             message: AppErrorHandler.getErrorMessage(error));
       });
-      if (resp.success) {
+      if (resp.status == "success") {
         List<TransactionHistory> t = resp.data!.data;
 
         if (resp.data!.loadMore) {

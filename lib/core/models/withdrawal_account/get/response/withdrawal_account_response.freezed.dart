@@ -21,7 +21,7 @@ WithdrawalAccountResponse _$WithdrawalAccountResponseFromJson(
 
 /// @nodoc
 mixin _$WithdrawalAccountResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   WithdrawalAccount? get data => throw _privateConstructorUsedError;
 
@@ -37,7 +37,7 @@ abstract class $WithdrawalAccountResponseCopyWith<$Res> {
           $Res Function(WithdrawalAccountResponse) then) =
       _$WithdrawalAccountResponseCopyWithImpl<$Res, WithdrawalAccountResponse>;
   @useResult
-  $Res call({bool success, String? message, WithdrawalAccount? data});
+  $Res call({String status, String? message, WithdrawalAccount? data});
 
   $WithdrawalAccountCopyWith<$Res>? get data;
 }
@@ -56,15 +56,15 @@ class _$WithdrawalAccountResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -98,7 +98,7 @@ abstract class _$$WithdrawalAccountResponseImplCopyWith<$Res>
       __$$WithdrawalAccountResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message, WithdrawalAccount? data});
+  $Res call({String status, String? message, WithdrawalAccount? data});
 
   @override
   $WithdrawalAccountCopyWith<$Res>? get data;
@@ -117,15 +117,15 @@ class __$$WithdrawalAccountResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$WithdrawalAccountResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -142,14 +142,14 @@ class __$$WithdrawalAccountResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WithdrawalAccountResponseImpl implements _WithdrawalAccountResponse {
   const _$WithdrawalAccountResponseImpl(
-      {this.success = false, this.message, this.data});
+      {this.status = "fail", this.message, this.data});
 
   factory _$WithdrawalAccountResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$WithdrawalAccountResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
   @override
@@ -157,7 +157,7 @@ class _$WithdrawalAccountResponseImpl implements _WithdrawalAccountResponse {
 
   @override
   String toString() {
-    return 'WithdrawalAccountResponse(success: $success, message: $message, data: $data)';
+    return 'WithdrawalAccountResponse(status: $status, message: $message, data: $data)';
   }
 
   @override
@@ -165,14 +165,14 @@ class _$WithdrawalAccountResponseImpl implements _WithdrawalAccountResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WithdrawalAccountResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message, data);
+  int get hashCode => Object.hash(runtimeType, status, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -191,7 +191,7 @@ class _$WithdrawalAccountResponseImpl implements _WithdrawalAccountResponse {
 
 abstract class _WithdrawalAccountResponse implements WithdrawalAccountResponse {
   const factory _WithdrawalAccountResponse(
-      {final bool success,
+      {final String status,
       final String? message,
       final WithdrawalAccount? data}) = _$WithdrawalAccountResponseImpl;
 
@@ -199,7 +199,7 @@ abstract class _WithdrawalAccountResponse implements WithdrawalAccountResponse {
       _$WithdrawalAccountResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

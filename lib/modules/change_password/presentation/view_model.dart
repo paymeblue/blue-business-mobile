@@ -77,7 +77,7 @@ class ChangePasswordViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       if (StorageValues.password.isNotEmpty) {
         await saveInStorage();
       }

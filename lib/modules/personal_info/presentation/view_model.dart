@@ -85,7 +85,7 @@ class PersonalInfoViewModel extends BaseViewModel {
         .onError((error, stackTrace) => UploadAvatarResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
-    if (resp.success) {
+    if (resp.status == "success") {
       locator<AppStateValues>().currentUser = locator<AppStateValues>()
           .currentUser!
           .copyWith(displayPic: resp.data!.user.displayPic);

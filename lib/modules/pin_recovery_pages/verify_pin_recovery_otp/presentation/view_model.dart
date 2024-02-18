@@ -102,7 +102,7 @@ class VerifyPinRecoveryOtpViewModel extends BaseViewModel {
         .onError((error, stackTrace) => SendNewPhoneResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
-    if (resp.success) {
+    if (resp.status == "success") {
       AppNotification.success(message: resp.message);
       startCountdown();
     } else {
@@ -118,7 +118,7 @@ class VerifyPinRecoveryOtpViewModel extends BaseViewModel {
         .onError((error, stackTrace) => SendNewPhoneResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
-    if (resp.success) {
+    if (resp.status == "success") {
       AppNotification.success(message: resp.message);
       if (context.mounted) goToNext(context);
     } else {

@@ -91,7 +91,7 @@ class VerifyRegistrationOtpViewModel extends BaseViewModel {
       return SignupOtpResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       AppNotification.success(message: resp.message);
       startCountdown();
     } else {
@@ -109,7 +109,7 @@ class VerifyRegistrationOtpViewModel extends BaseViewModel {
       return SignupResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       AppNotification.success(message: resp.message);
       StorageValues.username = phone;
       if (context.mounted) goToNext(context, resp.data!);

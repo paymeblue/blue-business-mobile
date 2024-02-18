@@ -86,7 +86,7 @@ class InitiatePaymentViewModel extends BaseViewModel {
           : descriptionController.text,
       paymentMode: paymentMode == "qr" ? "blue-user" : paymentMode,
     ));
-    if (resp.success) {
+    if (resp.status == "success") {
       AppNotification.error(message: resp.message);
     }
     AppLoader.stop();
@@ -103,7 +103,7 @@ class InitiatePaymentViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       if (resp.data != null) {
         locator<AppStateValues>().withdrawalAccount = resp.data;
       } else {

@@ -7,7 +7,7 @@ part 'upload_avatar_response.g.dart';
 @freezed
 class UploadAvatarResponse with _$UploadAvatarResponse {
   const factory UploadAvatarResponse(
-      {@Default(false) bool success,
+      {@Default("fail") String status,
       String? message,
       UploadAvatarResponseData? data}) = _UploadAvatarResponse;
 

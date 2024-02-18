@@ -51,7 +51,7 @@ class ConfirmPasswordViewModel extends BaseViewModel {
     });
 
     AppLoader.stop();
-    if (resp.success) {
+    if (resp.status == "success") {
       await setNameInStorage(resp.data!.user.firstName, phone);
       saveTokens(resp.data!.token);
       locator<AppStateValues>().currentUser = resp.data!.user;

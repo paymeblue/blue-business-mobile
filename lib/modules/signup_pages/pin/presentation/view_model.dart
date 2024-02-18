@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
@@ -61,7 +59,7 @@ class PinViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       String phone = StorageValues.username;
       StorageValues.name = request.firstName;
       await StorageHelpers.deleteAll();
@@ -74,7 +72,6 @@ class PinViewModel extends BaseViewModel {
   }
 
   login(BuildContext context, String phone) async {
-    log(StorageValues.username);
     LoginRequest loginRequest = LoginRequest(
       phone: phone,
       password: request.password,
@@ -87,7 +84,7 @@ class PinViewModel extends BaseViewModel {
     });
 
     AppLoader.stop();
-    if (resp.success) {
+    if (resp.status == "success") {
       await setNameInStorage(resp.data!.user.firstName, StorageValues.username);
       saveTokens(resp.data!.token);
       locator<AppStateValues>().currentUser = resp.data!.user;
@@ -156,6 +153,6 @@ class PinViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.go(RoutePaths.homePath);
+    context.go(RoutePaths.registerSuccessPath);
   }
 }

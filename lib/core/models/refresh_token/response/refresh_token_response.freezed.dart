@@ -20,7 +20,7 @@ RefreshTokenResponse _$RefreshTokenResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RefreshTokenResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   RefreshTokenData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $RefreshTokenResponseCopyWith<$Res> {
           $Res Function(RefreshTokenResponse) then) =
       _$RefreshTokenResponseCopyWithImpl<$Res, RefreshTokenResponse>;
   @useResult
-  $Res call({bool success, String? message, RefreshTokenData? data});
+  $Res call({String status, String? message, RefreshTokenData? data});
 
   $RefreshTokenDataCopyWith<$Res>? get data;
 }
@@ -55,15 +55,15 @@ class _$RefreshTokenResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -96,7 +96,7 @@ abstract class _$$RefreshTokenResponseImplCopyWith<$Res>
       __$$RefreshTokenResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message, RefreshTokenData? data});
+  $Res call({String status, String? message, RefreshTokenData? data});
 
   @override
   $RefreshTokenDataCopyWith<$Res>? get data;
@@ -113,15 +113,15 @@ class __$$RefreshTokenResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$RefreshTokenResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -138,14 +138,14 @@ class __$$RefreshTokenResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RefreshTokenResponseImpl implements _RefreshTokenResponse {
   const _$RefreshTokenResponseImpl(
-      {this.success = false, this.message, this.data});
+      {this.status = "fail", this.message, this.data});
 
   factory _$RefreshTokenResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$RefreshTokenResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
   @override
@@ -153,7 +153,7 @@ class _$RefreshTokenResponseImpl implements _RefreshTokenResponse {
 
   @override
   String toString() {
-    return 'RefreshTokenResponse(success: $success, message: $message, data: $data)';
+    return 'RefreshTokenResponse(status: $status, message: $message, data: $data)';
   }
 
   @override
@@ -161,14 +161,14 @@ class _$RefreshTokenResponseImpl implements _RefreshTokenResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RefreshTokenResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message, data);
+  int get hashCode => Object.hash(runtimeType, status, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +188,7 @@ class _$RefreshTokenResponseImpl implements _RefreshTokenResponse {
 
 abstract class _RefreshTokenResponse implements RefreshTokenResponse {
   const factory _RefreshTokenResponse(
-      {final bool success,
+      {final String status,
       final String? message,
       final RefreshTokenData? data}) = _$RefreshTokenResponseImpl;
 
@@ -196,7 +196,7 @@ abstract class _RefreshTokenResponse implements RefreshTokenResponse {
       _$RefreshTokenResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

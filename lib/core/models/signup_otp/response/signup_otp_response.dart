@@ -6,7 +6,7 @@ part 'signup_otp_response.g.dart';
 @freezed
 class SignupOtpResponse with _$SignupOtpResponse {
   const factory SignupOtpResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
   }) = _SignupOtpResponse;
 

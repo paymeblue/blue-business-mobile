@@ -7,7 +7,7 @@ part 'initiate_transaction_response.g.dart';
 @freezed
 class InitiateTransactionResponse with _$InitiateTransactionResponse {
   const factory InitiateTransactionResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     InitiateTransactionData? data,
   }) = _InitiateTransactionResponse;

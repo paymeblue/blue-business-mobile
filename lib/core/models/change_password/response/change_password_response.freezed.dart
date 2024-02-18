@@ -21,7 +21,7 @@ ChangePasswordResponse _$ChangePasswordResponseFromJson(
 
 /// @nodoc
 mixin _$ChangePasswordResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $ChangePasswordResponseCopyWith<$Res> {
           $Res Function(ChangePasswordResponse) then) =
       _$ChangePasswordResponseCopyWithImpl<$Res, ChangePasswordResponse>;
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -53,14 +53,14 @@ class _$ChangePasswordResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$ChangePasswordResponseImplCopyWith<$Res>
       __$$ChangePasswordResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -94,14 +94,14 @@ class __$$ChangePasswordResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_$ChangePasswordResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -113,20 +113,20 @@ class __$$ChangePasswordResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ChangePasswordResponseImpl implements _ChangePasswordResponse {
-  const _$ChangePasswordResponseImpl({this.success = false, this.message});
+  const _$ChangePasswordResponseImpl({this.status = "fail", this.message});
 
   factory _$ChangePasswordResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChangePasswordResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'ChangePasswordResponse(success: $success, message: $message)';
+    return 'ChangePasswordResponse(status: $status, message: $message)';
   }
 
   @override
@@ -134,13 +134,13 @@ class _$ChangePasswordResponseImpl implements _ChangePasswordResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChangePasswordResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message);
+  int get hashCode => Object.hash(runtimeType, status, message);
 
   @JsonKey(ignore: true)
   @override
@@ -159,14 +159,14 @@ class _$ChangePasswordResponseImpl implements _ChangePasswordResponse {
 
 abstract class _ChangePasswordResponse implements ChangePasswordResponse {
   const factory _ChangePasswordResponse(
-      {final bool success,
+      {final String status,
       final String? message}) = _$ChangePasswordResponseImpl;
 
   factory _ChangePasswordResponse.fromJson(Map<String, dynamic> json) =
       _$ChangePasswordResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

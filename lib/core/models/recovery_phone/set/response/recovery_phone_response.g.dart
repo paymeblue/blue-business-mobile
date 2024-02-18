@@ -9,14 +9,14 @@ part of 'recovery_phone_response.dart';
 _$SetRecoveryPhoneResponseImpl _$$SetRecoveryPhoneResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$SetRecoveryPhoneResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$$SetRecoveryPhoneResponseImplToJson(
     _$SetRecoveryPhoneResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {

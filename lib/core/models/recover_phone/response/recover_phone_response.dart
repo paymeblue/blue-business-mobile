@@ -6,7 +6,7 @@ part 'recover_phone_response.g.dart';
 @freezed
 class SendNewPhoneResponse with _$SendNewPhoneResponse {
   const factory SendNewPhoneResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
   }) = _SendNewPhoneResponse;
 

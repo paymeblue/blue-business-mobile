@@ -21,7 +21,7 @@ GetBeneficiaryResponse _$GetBeneficiaryResponseFromJson(
 
 /// @nodoc
 mixin _$GetBeneficiaryResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   GetBeneficiaryData? get data => throw _privateConstructorUsedError;
 
@@ -37,7 +37,7 @@ abstract class $GetBeneficiaryResponseCopyWith<$Res> {
           $Res Function(GetBeneficiaryResponse) then) =
       _$GetBeneficiaryResponseCopyWithImpl<$Res, GetBeneficiaryResponse>;
   @useResult
-  $Res call({bool success, String? message, GetBeneficiaryData? data});
+  $Res call({String status, String? message, GetBeneficiaryData? data});
 
   $GetBeneficiaryDataCopyWith<$Res>? get data;
 }
@@ -56,15 +56,15 @@ class _$GetBeneficiaryResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -98,7 +98,7 @@ abstract class _$$GetBeneficiaryResponseImplCopyWith<$Res>
       __$$GetBeneficiaryResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message, GetBeneficiaryData? data});
+  $Res call({String status, String? message, GetBeneficiaryData? data});
 
   @override
   $GetBeneficiaryDataCopyWith<$Res>? get data;
@@ -117,15 +117,15 @@ class __$$GetBeneficiaryResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$GetBeneficiaryResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -142,14 +142,14 @@ class __$$GetBeneficiaryResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GetBeneficiaryResponseImpl implements _GetBeneficiaryResponse {
   const _$GetBeneficiaryResponseImpl(
-      {this.success = false, this.message, this.data});
+      {this.status = "fail", this.message, this.data});
 
   factory _$GetBeneficiaryResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetBeneficiaryResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
   @override
@@ -157,7 +157,7 @@ class _$GetBeneficiaryResponseImpl implements _GetBeneficiaryResponse {
 
   @override
   String toString() {
-    return 'GetBeneficiaryResponse(success: $success, message: $message, data: $data)';
+    return 'GetBeneficiaryResponse(status: $status, message: $message, data: $data)';
   }
 
   @override
@@ -165,14 +165,14 @@ class _$GetBeneficiaryResponseImpl implements _GetBeneficiaryResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetBeneficiaryResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message, data);
+  int get hashCode => Object.hash(runtimeType, status, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -191,7 +191,7 @@ class _$GetBeneficiaryResponseImpl implements _GetBeneficiaryResponse {
 
 abstract class _GetBeneficiaryResponse implements GetBeneficiaryResponse {
   const factory _GetBeneficiaryResponse(
-      {final bool success,
+      {final String status,
       final String? message,
       final GetBeneficiaryData? data}) = _$GetBeneficiaryResponseImpl;
 
@@ -199,7 +199,7 @@ abstract class _GetBeneficiaryResponse implements GetBeneficiaryResponse {
       _$GetBeneficiaryResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

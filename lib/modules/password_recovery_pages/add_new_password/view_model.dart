@@ -74,7 +74,7 @@ class AddNewPasswordViewModel extends BaseViewModel {
         .onError((error, stackTrace) => SendNewPhoneResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
-    if (resp.success) {
+    if (resp.status == "success") {
       AppNotification.success(message: resp.message);
       Future.delayed(const Duration(milliseconds: 3500), () {
         if (context.mounted) {

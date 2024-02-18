@@ -21,7 +21,7 @@ PaymentLinkReceiptResponse _$PaymentLinkReceiptResponseFromJson(
 
 /// @nodoc
 mixin _$PaymentLinkReceiptResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   PaymentLinkReceiptRecord? get data => throw _privateConstructorUsedError;
 
@@ -38,7 +38,7 @@ abstract class $PaymentLinkReceiptResponseCopyWith<$Res> {
       _$PaymentLinkReceiptResponseCopyWithImpl<$Res,
           PaymentLinkReceiptResponse>;
   @useResult
-  $Res call({bool success, String? message, PaymentLinkReceiptRecord? data});
+  $Res call({String status, String? message, PaymentLinkReceiptRecord? data});
 
   $PaymentLinkReceiptRecordCopyWith<$Res>? get data;
 }
@@ -57,15 +57,15 @@ class _$PaymentLinkReceiptResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -99,7 +99,7 @@ abstract class _$$PaymentLinkReceiptResponseImplCopyWith<$Res>
       __$$PaymentLinkReceiptResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message, PaymentLinkReceiptRecord? data});
+  $Res call({String status, String? message, PaymentLinkReceiptRecord? data});
 
   @override
   $PaymentLinkReceiptRecordCopyWith<$Res>? get data;
@@ -118,15 +118,15 @@ class __$$PaymentLinkReceiptResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$PaymentLinkReceiptResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -143,7 +143,7 @@ class __$$PaymentLinkReceiptResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PaymentLinkReceiptResponseImpl implements _PaymentLinkReceiptResponse {
   const _$PaymentLinkReceiptResponseImpl(
-      {this.success = false, this.message, this.data});
+      {this.status = "fail", this.message, this.data});
 
   factory _$PaymentLinkReceiptResponseImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -151,7 +151,7 @@ class _$PaymentLinkReceiptResponseImpl implements _PaymentLinkReceiptResponse {
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
   @override
@@ -159,7 +159,7 @@ class _$PaymentLinkReceiptResponseImpl implements _PaymentLinkReceiptResponse {
 
   @override
   String toString() {
-    return 'PaymentLinkReceiptResponse(success: $success, message: $message, data: $data)';
+    return 'PaymentLinkReceiptResponse(status: $status, message: $message, data: $data)';
   }
 
   @override
@@ -167,14 +167,14 @@ class _$PaymentLinkReceiptResponseImpl implements _PaymentLinkReceiptResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PaymentLinkReceiptResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message, data);
+  int get hashCode => Object.hash(runtimeType, status, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -194,7 +194,7 @@ class _$PaymentLinkReceiptResponseImpl implements _PaymentLinkReceiptResponse {
 abstract class _PaymentLinkReceiptResponse
     implements PaymentLinkReceiptResponse {
   const factory _PaymentLinkReceiptResponse(
-      {final bool success,
+      {final String status,
       final String? message,
       final PaymentLinkReceiptRecord? data}) = _$PaymentLinkReceiptResponseImpl;
 
@@ -202,7 +202,7 @@ abstract class _PaymentLinkReceiptResponse
       _$PaymentLinkReceiptResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

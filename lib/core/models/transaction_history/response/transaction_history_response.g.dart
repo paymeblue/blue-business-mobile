@@ -9,7 +9,7 @@ part of 'transaction_history_response.dart';
 _$TransactionResponseImpl _$$TransactionResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$TransactionResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -19,7 +19,7 @@ _$TransactionResponseImpl _$$TransactionResponseImplFromJson(
 Map<String, dynamic> _$$TransactionResponseImplToJson(
     _$TransactionResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {

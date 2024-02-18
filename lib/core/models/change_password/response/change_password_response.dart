@@ -6,7 +6,7 @@ part 'change_password_response.g.dart';
 @freezed
 class ChangePasswordResponse with _$ChangePasswordResponse {
   const factory ChangePasswordResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
   }) = _ChangePasswordResponse;
 

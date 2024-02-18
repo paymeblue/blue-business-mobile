@@ -20,7 +20,7 @@ SignupResponse _$SignupResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SignupResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   SignupUserData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $SignupResponseCopyWith<$Res> {
           SignupResponse value, $Res Function(SignupResponse) then) =
       _$SignupResponseCopyWithImpl<$Res, SignupResponse>;
   @useResult
-  $Res call({bool success, String? message, SignupUserData? data});
+  $Res call({String status, String? message, SignupUserData? data});
 
   $SignupUserDataCopyWith<$Res>? get data;
 }
@@ -54,15 +54,15 @@ class _$SignupResponseCopyWithImpl<$Res, $Val extends SignupResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$SignupResponseImplCopyWith<$Res>
       __$$SignupResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message, SignupUserData? data});
+  $Res call({String status, String? message, SignupUserData? data});
 
   @override
   $SignupUserDataCopyWith<$Res>? get data;
@@ -112,15 +112,15 @@ class __$$SignupResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$SignupResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -136,14 +136,14 @@ class __$$SignupResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SignupResponseImpl implements _SignupResponse {
-  const _$SignupResponseImpl({this.success = false, this.message, this.data});
+  const _$SignupResponseImpl({this.status = "fail", this.message, this.data});
 
   factory _$SignupResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignupResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
   @override
@@ -151,7 +151,7 @@ class _$SignupResponseImpl implements _SignupResponse {
 
   @override
   String toString() {
-    return 'SignupResponse(success: $success, message: $message, data: $data)';
+    return 'SignupResponse(status: $status, message: $message, data: $data)';
   }
 
   @override
@@ -159,14 +159,14 @@ class _$SignupResponseImpl implements _SignupResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignupResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message, data);
+  int get hashCode => Object.hash(runtimeType, status, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -185,7 +185,7 @@ class _$SignupResponseImpl implements _SignupResponse {
 
 abstract class _SignupResponse implements SignupResponse {
   const factory _SignupResponse(
-      {final bool success,
+      {final String status,
       final String? message,
       final SignupUserData? data}) = _$SignupResponseImpl;
 
@@ -193,7 +193,7 @@ abstract class _SignupResponse implements SignupResponse {
       _$SignupResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

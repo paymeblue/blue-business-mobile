@@ -7,7 +7,7 @@ part 'receipt_response.g.dart';
 @freezed
 class PaymentLinkReceiptResponse with _$PaymentLinkReceiptResponse {
   const factory PaymentLinkReceiptResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     PaymentLinkReceiptRecord? data,
   }) = _PaymentLinkReceiptResponse;

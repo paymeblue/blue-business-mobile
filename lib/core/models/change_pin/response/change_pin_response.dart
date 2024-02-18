@@ -6,7 +6,7 @@ part 'change_pin_response.g.dart';
 @freezed
 class ChangePinResponse with _$ChangePinResponse {
   const factory ChangePinResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
   }) = _ChangePinResponse;
 

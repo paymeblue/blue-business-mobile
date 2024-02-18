@@ -9,7 +9,7 @@ part of 'verified_receiver_response.dart';
 _$VerifiedReceiverResponseImpl _$$VerifiedReceiverResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$VerifiedReceiverResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -19,7 +19,7 @@ _$VerifiedReceiverResponseImpl _$$VerifiedReceiverResponseImplFromJson(
 Map<String, dynamic> _$$VerifiedReceiverResponseImplToJson(
     _$VerifiedReceiverResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {

@@ -20,7 +20,7 @@ SetPayoutResponse _$SetPayoutResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SetPayoutResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   SetPayoutData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $SetPayoutResponseCopyWith<$Res> {
           SetPayoutResponse value, $Res Function(SetPayoutResponse) then) =
       _$SetPayoutResponseCopyWithImpl<$Res, SetPayoutResponse>;
   @useResult
-  $Res call({bool success, String? message, SetPayoutData? data});
+  $Res call({String status, String? message, SetPayoutData? data});
 
   $SetPayoutDataCopyWith<$Res>? get data;
 }
@@ -54,15 +54,15 @@ class _$SetPayoutResponseCopyWithImpl<$Res, $Val extends SetPayoutResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$SetPayoutResponseImplCopyWith<$Res>
       __$$SetPayoutResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message, SetPayoutData? data});
+  $Res call({String status, String? message, SetPayoutData? data});
 
   @override
   $SetPayoutDataCopyWith<$Res>? get data;
@@ -112,15 +112,15 @@ class __$$SetPayoutResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$SetPayoutResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -137,14 +137,14 @@ class __$$SetPayoutResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SetPayoutResponseImpl implements _SetPayoutResponse {
   const _$SetPayoutResponseImpl(
-      {this.success = false, this.message, this.data});
+      {this.status = "fail", this.message, this.data});
 
   factory _$SetPayoutResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$SetPayoutResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
   @override
@@ -152,7 +152,7 @@ class _$SetPayoutResponseImpl implements _SetPayoutResponse {
 
   @override
   String toString() {
-    return 'SetPayoutResponse(success: $success, message: $message, data: $data)';
+    return 'SetPayoutResponse(status: $status, message: $message, data: $data)';
   }
 
   @override
@@ -160,14 +160,14 @@ class _$SetPayoutResponseImpl implements _SetPayoutResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SetPayoutResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message, data);
+  int get hashCode => Object.hash(runtimeType, status, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -186,7 +186,7 @@ class _$SetPayoutResponseImpl implements _SetPayoutResponse {
 
 abstract class _SetPayoutResponse implements SetPayoutResponse {
   const factory _SetPayoutResponse(
-      {final bool success,
+      {final String status,
       final String? message,
       final SetPayoutData? data}) = _$SetPayoutResponseImpl;
 
@@ -194,7 +194,7 @@ abstract class _SetPayoutResponse implements SetPayoutResponse {
       _$SetPayoutResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

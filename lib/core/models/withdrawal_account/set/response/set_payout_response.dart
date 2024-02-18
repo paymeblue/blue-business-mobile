@@ -7,7 +7,7 @@ part 'set_payout_response.g.dart';
 @freezed
 class SetPayoutResponse with _$SetPayoutResponse {
   const factory SetPayoutResponse(
-      {@Default(false) bool success,
+      {@Default("fail") String status,
       String? message,
       SetPayoutData? data}) = _SetPayoutResponse;
 

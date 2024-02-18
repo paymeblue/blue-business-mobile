@@ -47,7 +47,7 @@ class NewPinViewModel extends BaseViewModel {
         .onError((error, stackTrace) => SendQuestionResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
-    if (resp.success) {
+    if (resp.status == "success") {
       AppNotification.success(message: resp.message);
       if (context.mounted) {
         context.go(stateValues.resetPath, extra: stateValues.extra);

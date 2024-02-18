@@ -7,7 +7,7 @@ part 'wallet_response.g.dart';
 @freezed
 class WalletResponse with _$WalletResponse {
   const factory WalletResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     WalletData? data,
   }) = _WalletResponse;

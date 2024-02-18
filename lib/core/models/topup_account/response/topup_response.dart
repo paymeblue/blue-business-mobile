@@ -7,7 +7,7 @@ part 'topup_response.g.dart';
 @freezed
 class TopupResponse with _$TopupResponse {
   const factory TopupResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     TopupAccountData? data,
   }) = _TopupResponse;

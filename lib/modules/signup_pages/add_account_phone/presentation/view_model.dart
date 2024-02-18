@@ -47,14 +47,7 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
   }
 
   signup(BuildContext context) async {
-    String number = phoneController.text;
-    if (number.startsWith(selectedCountry!.dialCode)) {
-      number.replaceFirst(selectedCountry!.dialCode, "");
-    }
-    if (number.startsWith("0")) {
-      number.replaceFirst("0", "");
-    }
-    String phone = selectedCountry!.dialCode + number;
+    String phone = formatPhone();
 
     AppLoader.start();
 
@@ -64,7 +57,7 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
       return SignupResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       AppNotification.success(message: resp.message);
       if (context.mounted) goToNext(context, phone, resp.data!);
     } else {
@@ -75,11 +68,24 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
 
   goToNext(BuildContext context, String phone, SignupUserData user) {
     if (user.level == 1) {
-      context.go("${RoutePaths.registerOtpPath}/$phone");
+      context.go("${RoutePaths.registerOtpPath}/$phone", extra: user);
     } else if (user.level == 2) {
       context.go("/${user.id}${RoutePaths.addPersonalInfoPath}");
     } else if (user.level == 3) {
       context.go("${RoutePaths.confirmPasswordPath}/$phone");
     }
+  }
+
+  String formatPhone() {
+    String number = phoneController.text.replaceAll(" ", "");
+
+    if (number.startsWith("0")) {
+      number = number.replaceFirst("0", "");
+    }
+    if (number.startsWith(selectedCountry!.dialCode)) {
+      number = number.replaceFirst(selectedCountry!.dialCode, "");
+    }
+
+    return selectedCountry!.dialCode + number;
   }
 }

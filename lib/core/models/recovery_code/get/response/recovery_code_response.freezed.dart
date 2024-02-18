@@ -21,7 +21,7 @@ GetRecoveryCodeResponse _$GetRecoveryCodeResponseFromJson(
 
 /// @nodoc
 mixin _$GetRecoveryCodeResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   GetRecoveryCodeData? get data => throw _privateConstructorUsedError;
 
@@ -37,7 +37,7 @@ abstract class $GetRecoveryCodeResponseCopyWith<$Res> {
           $Res Function(GetRecoveryCodeResponse) then) =
       _$GetRecoveryCodeResponseCopyWithImpl<$Res, GetRecoveryCodeResponse>;
   @useResult
-  $Res call({bool success, String? message, GetRecoveryCodeData? data});
+  $Res call({String status, String? message, GetRecoveryCodeData? data});
 
   $GetRecoveryCodeDataCopyWith<$Res>? get data;
 }
@@ -56,15 +56,15 @@ class _$GetRecoveryCodeResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -98,7 +98,7 @@ abstract class _$$GetRecoveryCodeResponseImplCopyWith<$Res>
       __$$GetRecoveryCodeResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message, GetRecoveryCodeData? data});
+  $Res call({String status, String? message, GetRecoveryCodeData? data});
 
   @override
   $GetRecoveryCodeDataCopyWith<$Res>? get data;
@@ -117,15 +117,15 @@ class __$$GetRecoveryCodeResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$GetRecoveryCodeResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -142,14 +142,14 @@ class __$$GetRecoveryCodeResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GetRecoveryCodeResponseImpl implements _GetRecoveryCodeResponse {
   const _$GetRecoveryCodeResponseImpl(
-      {this.success = false, this.message, this.data});
+      {this.status = "fail", this.message, this.data});
 
   factory _$GetRecoveryCodeResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetRecoveryCodeResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
   @override
@@ -157,7 +157,7 @@ class _$GetRecoveryCodeResponseImpl implements _GetRecoveryCodeResponse {
 
   @override
   String toString() {
-    return 'GetRecoveryCodeResponse(success: $success, message: $message, data: $data)';
+    return 'GetRecoveryCodeResponse(status: $status, message: $message, data: $data)';
   }
 
   @override
@@ -165,14 +165,14 @@ class _$GetRecoveryCodeResponseImpl implements _GetRecoveryCodeResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetRecoveryCodeResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message, data);
+  int get hashCode => Object.hash(runtimeType, status, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -191,7 +191,7 @@ class _$GetRecoveryCodeResponseImpl implements _GetRecoveryCodeResponse {
 
 abstract class _GetRecoveryCodeResponse implements GetRecoveryCodeResponse {
   const factory _GetRecoveryCodeResponse(
-      {final bool success,
+      {final String status,
       final String? message,
       final GetRecoveryCodeData? data}) = _$GetRecoveryCodeResponseImpl;
 
@@ -199,7 +199,7 @@ abstract class _GetRecoveryCodeResponse implements GetRecoveryCodeResponse {
       _$GetRecoveryCodeResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

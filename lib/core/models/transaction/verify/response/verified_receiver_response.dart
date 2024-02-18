@@ -7,7 +7,7 @@ part 'verified_receiver_response.g.dart';
 @freezed
 class VerifiedReceiverResponse with _$VerifiedReceiverResponse {
   const factory VerifiedReceiverResponse(
-      {@Default(false) bool success,
+      {@Default("fail") String status,
       String? message,
       VerifiedReceiverData? data}) = _VerifiedReceiverResponse;
 

@@ -7,7 +7,7 @@ part 'recently_paid_response.g.dart';
 @freezed
 class RecentlyPaidResponse with _$RecentlyPaidResponse {
   const factory RecentlyPaidResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     RecentlyPaidData? data,
   }) = _RecentlyPaidResponse;

@@ -9,14 +9,14 @@ part of 'change_password_response.dart';
 _$ChangePasswordResponseImpl _$$ChangePasswordResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$ChangePasswordResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$$ChangePasswordResponseImplToJson(
     _$ChangePasswordResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {

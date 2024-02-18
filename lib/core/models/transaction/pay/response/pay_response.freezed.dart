@@ -20,7 +20,7 @@ PayResponse _$PayResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PayResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   PayData? get data => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $PayResponseCopyWith<$Res> {
           PayResponse value, $Res Function(PayResponse) then) =
       _$PayResponseCopyWithImpl<$Res, PayResponse>;
   @useResult
-  $Res call({bool success, String? message, PayData? data});
+  $Res call({String status, String? message, PayData? data});
 
   $PayDataCopyWith<$Res>? get data;
 }
@@ -54,15 +54,15 @@ class _$PayResponseCopyWithImpl<$Res, $Val extends PayResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$PayResponseImplCopyWith<$Res>
       __$$PayResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message, PayData? data});
+  $Res call({String status, String? message, PayData? data});
 
   @override
   $PayDataCopyWith<$Res>? get data;
@@ -112,15 +112,15 @@ class __$$PayResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(_$PayResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -136,14 +136,14 @@ class __$$PayResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PayResponseImpl implements _PayResponse {
-  const _$PayResponseImpl({this.success = false, this.message, this.data});
+  const _$PayResponseImpl({this.status = "fail", this.message, this.data});
 
   factory _$PayResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$PayResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
   @override
@@ -151,7 +151,7 @@ class _$PayResponseImpl implements _PayResponse {
 
   @override
   String toString() {
-    return 'PayResponse(success: $success, message: $message, data: $data)';
+    return 'PayResponse(status: $status, message: $message, data: $data)';
   }
 
   @override
@@ -159,14 +159,14 @@ class _$PayResponseImpl implements _PayResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PayResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message, data);
+  int get hashCode => Object.hash(runtimeType, status, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +184,7 @@ class _$PayResponseImpl implements _PayResponse {
 
 abstract class _PayResponse implements PayResponse {
   const factory _PayResponse(
-      {final bool success,
+      {final String status,
       final String? message,
       final PayData? data}) = _$PayResponseImpl;
 
@@ -192,7 +192,7 @@ abstract class _PayResponse implements PayResponse {
       _$PayResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

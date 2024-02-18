@@ -6,7 +6,7 @@ part 'notification_response.g.dart';
 @freezed
 class NotificationResponse with _$NotificationResponse {
   const factory NotificationResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
   }) = _NotificationResponse;
 

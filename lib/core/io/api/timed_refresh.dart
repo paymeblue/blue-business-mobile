@@ -50,7 +50,7 @@ class RefreshTimer {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       locator<AppStateValues>().accessToken = resp.data!.accessToken;
       _refreshTimer = null;
     } else {

@@ -8,7 +8,7 @@ part of 'bank_response.dart';
 
 _$BankResponseImpl _$$BankResponseImplFromJson(Map<String, dynamic> json) =>
     _$BankResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -17,7 +17,7 @@ _$BankResponseImpl _$$BankResponseImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$BankResponseImplToJson(_$BankResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {

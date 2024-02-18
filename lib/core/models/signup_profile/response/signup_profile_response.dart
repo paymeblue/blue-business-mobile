@@ -6,7 +6,7 @@ part 'signup_profile_response.g.dart';
 @freezed
 class SignupProfileResponse with _$SignupProfileResponse {
   const factory SignupProfileResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
   }) = _SignupProfileResponse;
 

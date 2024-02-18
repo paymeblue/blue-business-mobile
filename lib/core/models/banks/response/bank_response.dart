@@ -7,7 +7,7 @@ part 'bank_response.g.dart';
 @freezed
 class BankResponse with _$BankResponse {
   const factory BankResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
     BankData? data,
   }) = _BankResponse;

@@ -6,7 +6,7 @@ part 'recovery_phone_response.g.dart';
 @freezed
 class SetRecoveryPhoneResponse with _$SetRecoveryPhoneResponse {
   const factory SetRecoveryPhoneResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
   }) = _SetRecoveryPhoneResponse;
 

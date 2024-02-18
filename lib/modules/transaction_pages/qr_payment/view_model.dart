@@ -32,7 +32,7 @@ class QrPaymentViewModel extends BaseViewModel {
     mobileScannerController.stop();
 
     verify(val).then((value) {
-      if (value.success) {
+      if (value.status == "success") {
         context.go(
             "${RoutePaths.confirmPaymentPath}/blue-user/${data.transactionId}",
             extra: value.data);

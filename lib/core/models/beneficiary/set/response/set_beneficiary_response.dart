@@ -6,7 +6,7 @@ part 'set_beneficiary_response.g.dart';
 @freezed
 class SetBeneficiaryResponse with _$SetBeneficiaryResponse {
   const factory SetBeneficiaryResponse({
-    @Default(false) bool success,
+    @Default("fail") String status,
     String? message,
   }) = _SetBeneficiaryResponse;
 

@@ -21,7 +21,7 @@ SetBeneficiaryResponse _$SetBeneficiaryResponseFromJson(
 
 /// @nodoc
 mixin _$SetBeneficiaryResponse {
-  bool get success => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $SetBeneficiaryResponseCopyWith<$Res> {
           $Res Function(SetBeneficiaryResponse) then) =
       _$SetBeneficiaryResponseCopyWithImpl<$Res, SetBeneficiaryResponse>;
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -53,14 +53,14 @@ class _$SetBeneficiaryResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$SetBeneficiaryResponseImplCopyWith<$Res>
       __$$SetBeneficiaryResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String? message});
+  $Res call({String status, String? message});
 }
 
 /// @nodoc
@@ -94,14 +94,14 @@ class __$$SetBeneficiaryResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = null,
+    Object? status = null,
     Object? message = freezed,
   }) {
     return _then(_$SetBeneficiaryResponseImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -113,20 +113,20 @@ class __$$SetBeneficiaryResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SetBeneficiaryResponseImpl implements _SetBeneficiaryResponse {
-  const _$SetBeneficiaryResponseImpl({this.success = false, this.message});
+  const _$SetBeneficiaryResponseImpl({this.status = "fail", this.message});
 
   factory _$SetBeneficiaryResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$SetBeneficiaryResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool success;
+  final String status;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'SetBeneficiaryResponse(success: $success, message: $message)';
+    return 'SetBeneficiaryResponse(status: $status, message: $message)';
   }
 
   @override
@@ -134,13 +134,13 @@ class _$SetBeneficiaryResponseImpl implements _SetBeneficiaryResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SetBeneficiaryResponseImpl &&
-            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message);
+  int get hashCode => Object.hash(runtimeType, status, message);
 
   @JsonKey(ignore: true)
   @override
@@ -159,14 +159,14 @@ class _$SetBeneficiaryResponseImpl implements _SetBeneficiaryResponse {
 
 abstract class _SetBeneficiaryResponse implements SetBeneficiaryResponse {
   const factory _SetBeneficiaryResponse(
-      {final bool success,
+      {final String status,
       final String? message}) = _$SetBeneficiaryResponseImpl;
 
   factory _SetBeneficiaryResponse.fromJson(Map<String, dynamic> json) =
       _$SetBeneficiaryResponseImpl.fromJson;
 
   @override
-  bool get success;
+  String get status;
   @override
   String? get message;
   @override

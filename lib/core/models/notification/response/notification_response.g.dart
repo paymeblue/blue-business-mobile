@@ -9,14 +9,14 @@ part of 'notification_response.dart';
 _$NotificationResponseImpl _$$NotificationResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$NotificationResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$$NotificationResponseImplToJson(
     _$NotificationResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {

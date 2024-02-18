@@ -9,7 +9,7 @@ part of 'withdrawal_account_response.dart';
 _$WithdrawalAccountResponseImpl _$$WithdrawalAccountResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$WithdrawalAccountResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
@@ -19,7 +19,7 @@ _$WithdrawalAccountResponseImpl _$$WithdrawalAccountResponseImplFromJson(
 Map<String, dynamic> _$$WithdrawalAccountResponseImplToJson(
     _$WithdrawalAccountResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {

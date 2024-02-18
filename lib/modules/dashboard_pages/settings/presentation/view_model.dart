@@ -95,7 +95,7 @@ class SettingsViewModel extends BaseViewModel {
         .onError((error, stackTrace) => UploadAvatarResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
-    if (resp.success) {
+    if (resp.status == "success") {
       locator<AppStateValues>().currentUser = locator<AppStateValues>()
           .currentUser!
           .copyWith(displayPic: resp.data!.user.displayPic);
@@ -175,7 +175,7 @@ class SettingsViewModel extends BaseViewModel {
     });
 
     AppLoader.stop();
-    if (resp.success) {
+    if (resp.status == "success") {
       BlueDialog.reason(reasons: resp.data!).then((value) {
         if (value != null) {
           BlueDialog.deleteAccount(onDelete: () {
@@ -197,7 +197,7 @@ class SettingsViewModel extends BaseViewModel {
       return DeleteResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       if (context.mounted) {
         await logout(context);
 
@@ -407,7 +407,7 @@ class SettingsViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       notificationStatus = v;
       AppNotification.success(message: resp.message);
     } else {
@@ -435,7 +435,7 @@ class SettingsViewModel extends BaseViewModel {
       return KycStatusResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       locator<AppStateValues>().isKycComplete = resp.data!.kycStatus == 1;
     } else {
       AppNotification.error(message: resp.message);
@@ -453,7 +453,7 @@ class SettingsViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.success) {
+    if (resp.status == "success") {
       if (resp.data != null) {
         locator<AppStateValues>().withdrawalAccount = resp.data;
       }

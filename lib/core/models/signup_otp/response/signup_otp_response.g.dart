@@ -9,14 +9,14 @@ part of 'signup_otp_response.dart';
 _$SignupOtpResponseImpl _$$SignupOtpResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$SignupOtpResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$$SignupOtpResponseImplToJson(
     _$SignupOtpResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {

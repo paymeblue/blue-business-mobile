@@ -9,14 +9,14 @@ part of 'send_question_request.dart';
 _$SendQuestionResponseImpl _$$SendQuestionResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$SendQuestionResponseImpl(
-      success: json['success'] as bool? ?? false,
+      status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$$SendQuestionResponseImplToJson(
     _$SendQuestionResponseImpl instance) {
   final val = <String, dynamic>{
-    'success': instance.success,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {
