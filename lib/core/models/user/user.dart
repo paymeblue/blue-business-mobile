@@ -13,6 +13,8 @@ class User with _$User {
     @Default(0) int notificationStatus,
     String? middleName,
     String? displayPic,
+    @Default("business") String type,
+    @Default(0) int businessProfileLevel,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserImpl.fromJson(json);

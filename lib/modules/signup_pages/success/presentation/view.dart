@@ -1,6 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
@@ -9,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'view_model.dart';
 
 class RegisterSuccessView extends StatefulWidget {
-  const RegisterSuccessView({super.key});
+  final User user;
+  const RegisterSuccessView({super.key, required this.user});
 
   @override
   State<RegisterSuccessView> createState() => _RegisterSuccessViewState();

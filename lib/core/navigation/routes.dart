@@ -5,6 +5,7 @@ import 'package:blue_business/core/models/signup_profile/request/signup_profile_
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
 import 'package:blue_business/core/models/transaction/verify/data/verified_receiver_data.dart';
+import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/navigation/screens.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -139,7 +140,9 @@ GoRouter router = GoRouter(
     GoRoute(
       path: RoutePaths.registerSuccessPath,
       builder: (context, state) {
-        return const RegisterSuccessView();
+        return RegisterSuccessView(
+          user: state.extra as User,
+        );
       },
     ),
     ShellRoute(

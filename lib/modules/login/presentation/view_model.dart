@@ -9,6 +9,7 @@ import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
 import 'package:blue_business/core/models/token/token.dart';
+import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -143,37 +144,37 @@ class LoginViewModel extends BaseViewModel {
       locator<AppStateValues>().currentUser = resp.data!.user;
 
       if (context.mounted) {
-        await checkBiometric(context, 0, onComplete: onComplete);
+        await checkBiometric(context, resp.data!.user, onComplete: onComplete);
       }
     } else {
       AppNotification.error(message: resp.message);
     }
   }
 
-  checkBiometric(BuildContext context, int level,
+  checkBiometric(BuildContext context, User user,
       {VoidCallback? onComplete}) async {
     if (StorageValues.hasRequestedBiometrics != "true") {
       await BlueBottomSheet.biometrics(
         onContinue: () async {
           await allowBiometrics();
           if (context.mounted) {
-            onComplete ?? goToNext(context, level);
+            onComplete ?? goToNext(context, user);
           }
         },
         onCancel: () async {
           await denyBiometrics();
           if (context.mounted) {
-            onComplete ?? goToNext(context, level);
+            onComplete ?? goToNext(context, user);
           }
         },
       );
     } else if (StorageValues.enableBiometrics == "true") {
       await allowBiometrics();
       if (context.mounted) {
-        onComplete ?? goToNext(context, level);
+        onComplete ?? goToNext(context, user);
       }
     } else if (context.mounted) {
-      onComplete ?? goToNext(context, level);
+      onComplete ?? goToNext(context, user);
     }
   }
 
@@ -223,9 +224,9 @@ class LoginViewModel extends BaseViewModel {
     return selectedCountry!.dialCode + number;
   }
 
-  goToNext(BuildContext context, int level) {
-    if (level == 0) {
-      context.go(RoutePaths.registerSuccessPath);
+  goToNext(BuildContext context, User user) {
+    if (user.businessProfileLevel == 0) {
+      context.go(RoutePaths.registerSuccessPath, extra: user);
     } else {
       context.go(RoutePaths.homePath);
     }

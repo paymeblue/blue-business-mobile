@@ -7,6 +7,7 @@ import 'package:blue_business/core/models/login/response/login_response.dart';
 import 'package:blue_business/core/models/signup_profile/request/signup_profile_request.dart';
 import 'package:blue_business/core/models/signup_profile/response/signup_profile_response.dart';
 import 'package:blue_business/core/models/token/token.dart';
+import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -88,32 +89,32 @@ class PinViewModel extends BaseViewModel {
       await setNameInStorage(resp.data!.user.firstName, StorageValues.username);
       saveTokens(resp.data!.token);
       locator<AppStateValues>().currentUser = resp.data!.user;
-      if (context.mounted) await checkBiometric(context);
+      if (context.mounted) await checkBiometric(context, resp.data!.user);
     } else {
       if (context.mounted) context.go(RoutePaths.loginPath);
     }
   }
 
-  checkBiometric(BuildContext context) async {
+  checkBiometric(BuildContext context, User user) async {
     if (StorageValues.hasRequestedBiometrics != "true") {
       await BlueBottomSheet.biometrics(onContinue: () async {
         await allowBiometrics();
         if (context.mounted) {
-          goToNext(context);
+          goToNext(context, user);
         }
       }, onCancel: () async {
         await denyBiometrics();
         if (context.mounted) {
-          goToNext(context);
+          goToNext(context, user);
         }
       });
     } else if (StorageValues.enableBiometrics == "true") {
       await allowBiometrics();
       if (context.mounted) {
-        goToNext(context);
+        goToNext(context, user);
       }
     } else if (context.mounted) {
-      goToNext(context);
+      goToNext(context, user);
     }
   }
 
@@ -152,7 +153,11 @@ class PinViewModel extends BaseViewModel {
     locator<AppStateValues>().refreshToken = token.refreshToken;
   }
 
-  goToNext(BuildContext context) {
-    context.go(RoutePaths.registerSuccessPath);
+  goToNext(BuildContext context, User user) {
+    if (user.businessProfileLevel == 0) {
+      context.go(RoutePaths.registerSuccessPath, extra: user);
+    } else {
+      context.go(RoutePaths.homePath);
+    }
   }
 }

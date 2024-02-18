@@ -5,6 +5,7 @@ import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
 import 'package:blue_business/core/models/token/token.dart';
+import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -56,37 +57,35 @@ class ConfirmPasswordViewModel extends BaseViewModel {
       saveTokens(resp.data!.token);
       locator<AppStateValues>().currentUser = resp.data!.user;
 
-      if (context.mounted) await checkBiometric(context);
+      if (context.mounted) await checkBiometric(context, resp.data!.user);
     } else {
       AppNotification.error(message: resp.message);
     }
   }
 
-  checkBiometric(
-    BuildContext context,
-  ) async {
+  checkBiometric(BuildContext context, User user) async {
     if (StorageValues.hasRequestedBiometrics != "true") {
       await BlueBottomSheet.biometrics(
         onContinue: () async {
           await allowBiometrics();
           if (context.mounted) {
-            goToNext(context);
+            goToNext(context, user);
           }
         },
         onCancel: () async {
           await denyBiometrics();
           if (context.mounted) {
-            goToNext(context);
+            goToNext(context, user);
           }
         },
       );
     } else if (StorageValues.enableBiometrics == "true") {
       await allowBiometrics();
       if (context.mounted) {
-        goToNext(context);
+        goToNext(context, user);
       }
     } else if (context.mounted) {
-      goToNext(context);
+      goToNext(context, user);
     }
   }
 
@@ -130,7 +129,11 @@ class ConfirmPasswordViewModel extends BaseViewModel {
     StorageValues.username = phone;
   }
 
-  goToNext(BuildContext context) {
-    context.go(RoutePaths.registerSuccessPath);
+  goToNext(BuildContext context, User user) {
+    if (user.businessProfileLevel == 0) {
+      context.go(RoutePaths.registerSuccessPath, extra: user);
+    } else {
+      context.go(RoutePaths.homePath);
+    }
   }
 }
