@@ -1,7 +1,9 @@
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/business_category/response/business_category_response.dart';
+import 'package:blue_business/core/models/business_profile/location/request/busines_location_request.dart';
 import 'package:blue_business/core/models/business_profile/name/request/busines_name_request.dart';
 import 'package:blue_business/core/models/business_profile/name/response/busines_name_response.dart';
+import 'package:blue_business/core/models/business_profile/size/request/busines_size_request.dart';
 import 'package:blue_business/core/models/change_password/request/change_password_request.dart';
 import 'package:blue_business/core/models/change_password/response/change_password_response.dart';
 import 'package:blue_business/core/models/change_pin/request/change_pin_request.dart';
@@ -124,4 +126,15 @@ abstract class AuthService {
   @POST("/business-profiles")
   Future<BusinessNameResponse> addBusinessName(
       @Body() BusinessNameRequest request);
+
+  @PATCH("/business-profiles/{id}")
+  Future<BusinessNameResponse> addBusinessSize(
+    @Path('id') String id,
+    @Body() BusinessSizeRequest request,
+  );
+
+  @PATCH("/business-profiles/address")
+  Future<BusinessNameResponse> addBusinessAddress(
+    @Body() BusinessLocationRequest request,
+  );
 }
