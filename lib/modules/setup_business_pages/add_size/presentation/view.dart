@@ -1,4 +1,8 @@
+import 'package:blue_business/core/module_config/base_screen.dart';
+import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:flutter/material.dart';
+
+import 'view_model.dart';
 
 class AddSizeView extends StatefulWidget {
   final int id;
@@ -11,6 +15,18 @@ class AddSizeView extends StatefulWidget {
 class _AddSizeViewState extends State<AddSizeView> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return BaseView<AddBusinessSizeViewModel>(
+        model: AddBusinessSizeViewModel(),
+        onModelReady: (model) => model.init(context),
+        builder: (context, model, _) {
+          return Column(
+            children: [
+              AppButton.primary(
+                title: "Continue",
+                onTap: () {},
+              )
+            ],
+          );
+        });
   }
 }
