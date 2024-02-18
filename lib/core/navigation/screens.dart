@@ -46,3 +46,9 @@ export '../../modules/pin_recovery_pages/verify_pin_recovery_otp/presentation/vi
 export '../../modules/pin_recovery_shell/presentation/view.dart';
 export '../../modules/dashboard_pages/qr_chat/view.dart';
 export '../../modules/transaction_pages/offline_payment/presentation/view.dart';
+export 'package:blue_business/modules/setup_business_pages/add_business_name/presentation/view.dart';
+export 'package:blue_business/modules/setup_business_pages/add_location/presentation/view.dart';
+export 'package:blue_business/modules/setup_business_pages/add_size/presentation/view.dart';
+export 'package:blue_business/modules/setup_business_shell/presentation/view.dart';
+export 'package:blue_business/modules/signup_pages/confirm_password/presentation/view.dart';
+export 'package:blue_business/modules/signup_pages/success/presentation/view.dart';

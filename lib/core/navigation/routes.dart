@@ -11,8 +11,6 @@ import 'package:blue_business/core/navigation/screens.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/modules/signup_pages/confirm_password/presentation/view.dart';
-import 'package:blue_business/modules/signup_pages/success/presentation/view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -133,6 +131,50 @@ GoRouter router = GoRouter(
               id: state.pathParameters["id"].toString(),
               request: r,
             );
+          },
+        ),
+      ],
+    ),
+    ShellRoute(
+      navigatorKey: locator<NavigationService>().shellKey,
+      builder: (context, state, child) {
+        int index = 0;
+        if (state.matchedLocation.startsWith(RoutePaths.businessSizePath)) {
+          index = 1;
+        } else if (state.matchedLocation
+            .endsWith(RoutePaths.businessLocation)) {
+          index = 2;
+        }
+        return SetupBusinessShellView(
+          currentIndex: index,
+          child: child,
+        );
+      },
+      routes: [
+        GoRoute(
+          path: RoutePaths.businessNamePath,
+          name: "Add Business Name",
+          builder: (context, state) {
+            log(state.fullPath.toString());
+            return const AddBusinessNameView();
+          },
+        ),
+        GoRoute(
+          path: "${RoutePaths.businessSizePath}/:id",
+          name: "Add Business Size and Branding",
+          builder: (context, state) {
+            String id = state.pathParameters["id"] as String;
+            log(state.matchedLocation);
+            return AddSizeView(
+              id: int.parse(id),
+            );
+          },
+        ),
+        GoRoute(
+          path: RoutePaths.businessLocation,
+          name: "Add Business Location",
+          builder: (context, state) {
+            return const AddLocationView();
           },
         ),
       ],

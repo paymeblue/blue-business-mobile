@@ -72,7 +72,7 @@ class _RegisterSuccessViewState extends State<RegisterSuccessView> {
 
   Widget successTitle() {
     return Text(
-      "Welcome, Semira! 🎉",
+      "Welcome, ${widget.user.firstName}! 🎉",
       style: AppTextStyles.header.copyWith(
         color: AppColors.white,
       ),

@@ -48,4 +48,9 @@ class RoutePaths {
   static String startConversationPath = "/dash/conversation/start";
   static String chatDetailsPath = "/dash/converstaion/chat";
   static String chatQrPath = "$messagePath/qr";
+
+  static String businessProfilePath = "/business-profile";
+  static String businessNamePath = "$businessProfilePath/name";
+  static String businessSizePath = "$businessProfilePath/size";
+  static String businessLocation = "$businessProfilePath/location";
 }
