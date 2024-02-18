@@ -30,14 +30,25 @@ class _AddBusinessNameViewState extends State<AddBusinessNameView> {
                 children: [
                   ...titleAndSubtitle(),
                   50.verticalGap,
-                  ...phoneFieldAndGap(model),
+                  ...nameFieldAndGap(model),
                   ...dropdownAndGap(model),
+                  BlueTextField.plaintext(
+                    title: "Description",
+                    hint: "Tell us more about ${model.nameController.text}",
+                    onChanged: model.onChanged,
+                    controller: model.descriptionController,
+                    minLines: 1,
+                    maxLines: 5,
+                  ),
                 ],
               ),
             ),
             AppButton.primary(
               title: "Continue",
-              onTap: () {},
+              isEnabled: model.isActive(),
+              onTap: () {
+                model.sendName(context);
+              },
             ),
           ],
         );
@@ -63,12 +74,13 @@ class _AddBusinessNameViewState extends State<AddBusinessNameView> {
     ];
   }
 
-  List<Widget> phoneFieldAndGap(AddBusinessNameViewModel model) {
+  List<Widget> nameFieldAndGap(AddBusinessNameViewModel model) {
     return [
       BlueTextField.plaintext(
-        title: "Business name",
-        hint: "Dev Factory",
-      ),
+          title: "Business name",
+          hint: "Dev Factory",
+          controller: model.nameController,
+          onChanged: model.onChanged),
       20.verticalGap,
     ];
   }
