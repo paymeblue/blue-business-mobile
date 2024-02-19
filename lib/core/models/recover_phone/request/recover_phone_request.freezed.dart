@@ -21,6 +21,7 @@ SendNewPhoneRequest _$SendNewPhoneRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SendNewPhoneRequest {
   String get phone => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $SendNewPhoneRequestCopyWith<$Res> {
           SendNewPhoneRequest value, $Res Function(SendNewPhoneRequest) then) =
       _$SendNewPhoneRequestCopyWithImpl<$Res, SendNewPhoneRequest>;
   @useResult
-  $Res call({String phone});
+  $Res call({String phone, String userId});
 }
 
 /// @nodoc
@@ -51,11 +52,16 @@ class _$SendNewPhoneRequestCopyWithImpl<$Res, $Val extends SendNewPhoneRequest>
   @override
   $Res call({
     Object? phone = null,
+    Object? userId = null,
   }) {
     return _then(_value.copyWith(
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -69,7 +75,7 @@ abstract class _$$SendNewPhoneRequestImplCopyWith<$Res>
       __$$SendNewPhoneRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String phone});
+  $Res call({String phone, String userId});
 }
 
 /// @nodoc
@@ -84,11 +90,16 @@ class __$$SendNewPhoneRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phone = null,
+    Object? userId = null,
   }) {
     return _then(_$SendNewPhoneRequestImpl(
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -97,17 +108,19 @@ class __$$SendNewPhoneRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SendNewPhoneRequestImpl implements _SendNewPhoneRequest {
-  const _$SendNewPhoneRequestImpl({required this.phone});
+  const _$SendNewPhoneRequestImpl({required this.phone, required this.userId});
 
   factory _$SendNewPhoneRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$SendNewPhoneRequestImplFromJson(json);
 
   @override
   final String phone;
+  @override
+  final String userId;
 
   @override
   String toString() {
-    return 'SendNewPhoneRequest(phone: $phone)';
+    return 'SendNewPhoneRequest(phone: $phone, userId: $userId)';
   }
 
   @override
@@ -115,12 +128,13 @@ class _$SendNewPhoneRequestImpl implements _SendNewPhoneRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SendNewPhoneRequestImpl &&
-            (identical(other.phone, phone) || other.phone == phone));
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, phone);
+  int get hashCode => Object.hash(runtimeType, phone, userId);
 
   @JsonKey(ignore: true)
   @override
@@ -138,14 +152,17 @@ class _$SendNewPhoneRequestImpl implements _SendNewPhoneRequest {
 }
 
 abstract class _SendNewPhoneRequest implements SendNewPhoneRequest {
-  const factory _SendNewPhoneRequest({required final String phone}) =
-      _$SendNewPhoneRequestImpl;
+  const factory _SendNewPhoneRequest(
+      {required final String phone,
+      required final String userId}) = _$SendNewPhoneRequestImpl;
 
   factory _SendNewPhoneRequest.fromJson(Map<String, dynamic> json) =
       _$SendNewPhoneRequestImpl.fromJson;
 
   @override
   String get phone;
+  @override
+  String get userId;
   @override
   @JsonKey(ignore: true)
   _$$SendNewPhoneRequestImplCopyWith<_$SendNewPhoneRequestImpl> get copyWith =>

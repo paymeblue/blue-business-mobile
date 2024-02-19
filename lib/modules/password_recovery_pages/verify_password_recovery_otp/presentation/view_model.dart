@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/models/recover_phone/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -89,11 +88,9 @@ class VerifyPasswordRecoveryOtpViewModel extends BaseViewModel {
 
   resendOtp() async {
     AppLoader.start();
-    SendNewPhoneRequest request = SendNewPhoneRequest(phone: phone);
 
-    SendNewPhoneResponse resp = await authService
-        .forgotPassword(request)
-        .onError((error, stackTrace) => SendNewPhoneResponse(
+    SendNewPhoneResponse resp = await authService.forgotPassword(phone).onError(
+        (error, stackTrace) => SendNewPhoneResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
     if (resp.status == "success") {

@@ -9,7 +9,10 @@ part of 'dash_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _DashService implements DashService {
-  _DashService(this._dio) {
+  _DashService(
+    this._dio, {
+    this.baseUrl,
+  }) {
     baseUrl ??= 'https://blue-business-backend-8c46f2828f9e.herokuapp.com/api';
   }
 

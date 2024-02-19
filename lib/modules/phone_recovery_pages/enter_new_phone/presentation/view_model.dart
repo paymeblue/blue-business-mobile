@@ -53,11 +53,11 @@ class EnterNewPhoneViewModel extends BaseViewModel {
   sendNewPhone(BuildContext context) async {
     AppLoader.start();
 
-    SendNewPhoneRequest request = SendNewPhoneRequest(phone: formatPhone());
+    SendNewPhoneRequest request =
+        SendNewPhoneRequest(phone: formatPhone(), userId: id.toString());
 
-    SendNewPhoneResponse resp = await authService
-        .updatePhone(id.toString(), request)
-        .onError((error, stackTrace) => SendNewPhoneResponse(
+    SendNewPhoneResponse resp = await authService.updatePhone(request).onError(
+        (error, stackTrace) => SendNewPhoneResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
     if (resp.status == "success") {

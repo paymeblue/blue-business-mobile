@@ -66,7 +66,7 @@ class AddNewPasswordViewModel extends BaseViewModel {
 
     ResetPasswordRequest request = ResetPasswordRequest(
       phone: phone,
-      newPassword: passwordController.text,
+      password: passwordController.text,
       passwordConfirmation: confirmPasswordController.text,
     );
     SendNewPhoneResponse resp = await authService

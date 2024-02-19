@@ -19,7 +19,6 @@ import 'package:blue_business/core/models/recover_phone/request/recover_phone_re
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/recovery_code/get/response/recovery_code_response.dart';
 import 'package:blue_business/core/models/recovery_code/reset/response/recovery_code_response.dart';
-import 'package:blue_business/core/models/recovery_code/send/request/recovery_code_request.dart';
 import 'package:blue_business/core/models/recovery_code/send/response/recovery_code_response.dart';
 import 'package:blue_business/core/models/recovery_phone/set/request/recovery_phone_request.dart';
 import 'package:blue_business/core/models/recovery_phone/set/response/recovery_phone_response.dart';
@@ -80,9 +79,9 @@ abstract class AuthService {
     @Body() SignupProfileRequest request,
   );
 
-  @POST("/recovery-code/account")
+  @POST("/recovery-codes/verify")
   Future<SendRecoveryCodeResponse> verifyRecoveryCode(
-      @Body() SendRecoveryCodeRequest request);
+      @Query("code") String code);
 
   @GET("/recovery-code")
   Future<GetRecoveryCodeResponse> getRecoveryCode();
@@ -90,11 +89,12 @@ abstract class AuthService {
   @GET("/recovery-code/reset")
   Future<ResetRecoveryCodeResponse> resetRecoveryCode();
 
-  @PATCH("/users/{id}/phone")
+  @PATCH("/users/update-phone")
   Future<SendNewPhoneResponse> updatePhone(
-      @Path("id") String id, @Body() SendNewPhoneRequest request);
+    @Body() SendNewPhoneRequest request,
+  );
 
-  @GET("/otps/resend-otp")
+  @GET("/otps/resend")
   Future<SendNewPhoneResponse> resendPhoneRecoveryOtp(
       @Query("phone") String phone);
 
@@ -109,8 +109,7 @@ abstract class AuthService {
       @Body() SetRecoveryPhoneRequest request);
 
   @POST("/users/forgot-password")
-  Future<SendNewPhoneResponse> forgotPassword(
-      @Body() SendNewPhoneRequest request);
+  Future<SendNewPhoneResponse> forgotPassword(@Query("phone") String phone);
 
   @PATCH("/pins/forgot")
   Future<SendNewPhoneResponse> forgotPinWithPhone(

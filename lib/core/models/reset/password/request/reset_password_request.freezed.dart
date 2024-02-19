@@ -21,7 +21,7 @@ ResetPasswordRequest _$ResetPasswordRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ResetPasswordRequest {
   String get phone => throw _privateConstructorUsedError;
-  String get newPassword => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   String get passwordConfirmation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $ResetPasswordRequestCopyWith<$Res> {
           $Res Function(ResetPasswordRequest) then) =
       _$ResetPasswordRequestCopyWithImpl<$Res, ResetPasswordRequest>;
   @useResult
-  $Res call({String phone, String newPassword, String passwordConfirmation});
+  $Res call({String phone, String password, String passwordConfirmation});
 }
 
 /// @nodoc
@@ -54,7 +54,7 @@ class _$ResetPasswordRequestCopyWithImpl<$Res,
   @override
   $Res call({
     Object? phone = null,
-    Object? newPassword = null,
+    Object? password = null,
     Object? passwordConfirmation = null,
   }) {
     return _then(_value.copyWith(
@@ -62,9 +62,9 @@ class _$ResetPasswordRequestCopyWithImpl<$Res,
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      newPassword: null == newPassword
-          ? _value.newPassword
-          : newPassword // ignore: cast_nullable_to_non_nullable
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as String,
       passwordConfirmation: null == passwordConfirmation
           ? _value.passwordConfirmation
@@ -82,7 +82,7 @@ abstract class _$$ResetPasswordRequestImplCopyWith<$Res>
       __$$ResetPasswordRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String phone, String newPassword, String passwordConfirmation});
+  $Res call({String phone, String password, String passwordConfirmation});
 }
 
 /// @nodoc
@@ -97,7 +97,7 @@ class __$$ResetPasswordRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phone = null,
-    Object? newPassword = null,
+    Object? password = null,
     Object? passwordConfirmation = null,
   }) {
     return _then(_$ResetPasswordRequestImpl(
@@ -105,9 +105,9 @@ class __$$ResetPasswordRequestImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      newPassword: null == newPassword
-          ? _value.newPassword
-          : newPassword // ignore: cast_nullable_to_non_nullable
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as String,
       passwordConfirmation: null == passwordConfirmation
           ? _value.passwordConfirmation
@@ -122,7 +122,7 @@ class __$$ResetPasswordRequestImplCopyWithImpl<$Res>
 class _$ResetPasswordRequestImpl implements _ResetPasswordRequest {
   const _$ResetPasswordRequestImpl(
       {required this.phone,
-      required this.newPassword,
+      required this.password,
       required this.passwordConfirmation});
 
   factory _$ResetPasswordRequestImpl.fromJson(Map<String, dynamic> json) =>
@@ -131,13 +131,13 @@ class _$ResetPasswordRequestImpl implements _ResetPasswordRequest {
   @override
   final String phone;
   @override
-  final String newPassword;
+  final String password;
   @override
   final String passwordConfirmation;
 
   @override
   String toString() {
-    return 'ResetPasswordRequest(phone: $phone, newPassword: $newPassword, passwordConfirmation: $passwordConfirmation)';
+    return 'ResetPasswordRequest(phone: $phone, password: $password, passwordConfirmation: $passwordConfirmation)';
   }
 
   @override
@@ -146,8 +146,8 @@ class _$ResetPasswordRequestImpl implements _ResetPasswordRequest {
         (other.runtimeType == runtimeType &&
             other is _$ResetPasswordRequestImpl &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.newPassword, newPassword) ||
-                other.newPassword == newPassword) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
             (identical(other.passwordConfirmation, passwordConfirmation) ||
                 other.passwordConfirmation == passwordConfirmation));
   }
@@ -155,7 +155,7 @@ class _$ResetPasswordRequestImpl implements _ResetPasswordRequest {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, phone, newPassword, passwordConfirmation);
+      Object.hash(runtimeType, phone, password, passwordConfirmation);
 
   @JsonKey(ignore: true)
   @override
@@ -176,7 +176,7 @@ class _$ResetPasswordRequestImpl implements _ResetPasswordRequest {
 abstract class _ResetPasswordRequest implements ResetPasswordRequest {
   const factory _ResetPasswordRequest(
       {required final String phone,
-      required final String newPassword,
+      required final String password,
       required final String passwordConfirmation}) = _$ResetPasswordRequestImpl;
 
   factory _ResetPasswordRequest.fromJson(Map<String, dynamic> json) =
@@ -185,7 +185,7 @@ abstract class _ResetPasswordRequest implements ResetPasswordRequest {
   @override
   String get phone;
   @override
-  String get newPassword;
+  String get password;
   @override
   String get passwordConfirmation;
   @override

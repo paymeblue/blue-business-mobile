@@ -7,7 +7,7 @@ part 'reset_password_request.g.dart';
 class ResetPasswordRequest with _$ResetPasswordRequest {
   const factory ResetPasswordRequest({
     required String phone,
-    required String newPassword,
+    required String password,
     required String passwordConfirmation,
   }) = _ResetPasswordRequest;
 

@@ -95,20 +95,20 @@ class VerifyPinRecoveryOtpViewModel extends BaseViewModel {
 
   resendOtp() async {
     AppLoader.start();
-    SendNewPhoneRequest request = SendNewPhoneRequest(phone: phone);
+    // SendNewPhoneRequest request = SendNewPhoneRequest(phone: phone);
 
-    SendNewPhoneResponse resp = await authService
-        .forgotPinWithPhone(request)
-        .onError((error, stackTrace) => SendNewPhoneResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+    // SendNewPhoneResponse resp = await authService
+    //     .forgotPinWithPhone(request)
+    //     .onError((error, stackTrace) => SendNewPhoneResponse(
+    //         message: AppErrorHandler.getErrorMessage(error)));
 
-    if (resp.status == "success") {
-      AppNotification.success(message: resp.message);
-      startCountdown();
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-    AppLoader.stop();
+    // if (resp.status == "success") {
+    //   AppNotification.success(message: resp.message);
+    //   startCountdown();
+    // } else {
+    //   AppNotification.error(message: resp.message);
+    // }
+    // AppLoader.stop();
   }
 
   verifyOtp(BuildContext context) async {

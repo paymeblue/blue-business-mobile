@@ -9,7 +9,10 @@ part of 'auth_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _AuthService implements AuthService {
-  _AuthService(this._dio) {
+  _AuthService(
+    this._dio, {
+    this.baseUrl,
+  }) {
     baseUrl ??= 'https://blue-business-backend-8c46f2828f9e.herokuapp.com/api';
   }
 
@@ -323,12 +326,11 @@ class _AuthService implements AuthService {
   }
 
   @override
-  Future<SendRecoveryCodeResponse> verifyRecoveryCode(
-      SendRecoveryCodeRequest request) async {
+  Future<SendRecoveryCodeResponse> verifyRecoveryCode(String code) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'code': code};
     final _headers = <String, dynamic>{};
-    final _data = request;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SendRecoveryCodeResponse>(Options(
       method: 'POST',
@@ -337,7 +339,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/recovery-code/account',
+              '/recovery-codes/verify',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -405,10 +407,7 @@ class _AuthService implements AuthService {
   }
 
   @override
-  Future<SendNewPhoneResponse> updatePhone(
-    String id,
-    SendNewPhoneRequest request,
-  ) async {
+  Future<SendNewPhoneResponse> updatePhone(SendNewPhoneRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -421,7 +420,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/users/${id}/phone',
+              '/users/update-phone',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -448,7 +447,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/otps/resend-otp',
+              '/otps/resend',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -523,12 +522,11 @@ class _AuthService implements AuthService {
   }
 
   @override
-  Future<SendNewPhoneResponse> forgotPassword(
-      SendNewPhoneRequest request) async {
+  Future<SendNewPhoneResponse> forgotPassword(String phone) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'phone': phone};
     final _headers = <String, dynamic>{};
-    final _data = request;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SendNewPhoneResponse>(Options(
       method: 'POST',

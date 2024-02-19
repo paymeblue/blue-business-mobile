@@ -1,6 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/models/recovery_code/send/request/recovery_code_request.dart';
 import 'package:blue_business/core/models/recovery_code/send/response/recovery_code_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -34,11 +33,8 @@ class EnterRecoveryCodeViewModel extends BaseViewModel {
   sendRecoveryCode(BuildContext context) async {
     AppLoader.start();
 
-    SendRecoveryCodeRequest request =
-        SendRecoveryCodeRequest(code: recoveryCodeController.text);
-
     SendRecoveryCodeResponse resp = await authService
-        .verifyRecoveryCode(request)
+        .verifyRecoveryCode(recoveryCodeController.text)
         .onError((error, stackTrace) {
       return SendRecoveryCodeResponse(
           message: AppErrorHandler.getErrorMessage(error));
