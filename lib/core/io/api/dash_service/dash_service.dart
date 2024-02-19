@@ -17,7 +17,7 @@ abstract class DashService {
     return _DashService(DioConfig.dio());
   }
 
-  @GET("/wallets/balance")
+  @GET("/wallets")
   Future<WalletResponse> getWalletBalance();
 
   @GET('/kycs/status')

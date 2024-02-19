@@ -38,7 +38,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     });
 
     if (resp.status == "success") {
-      locator<AppStateValues>().wallet = resp.data!.wallet;
+      locator<AppStateValues>().wallet = resp.data!;
     } else {
       AppNotification.error(message: resp.message);
     }

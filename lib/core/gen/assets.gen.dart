@@ -364,6 +364,10 @@ class $AssetsImagesNavbarIconsActiveGen {
   SvgGenImage get home =>
       const SvgGenImage('assets/images/navbar_icons/active/home.svg');
 
+  /// File path: assets/images/navbar_icons/active/insights.svg
+  SvgGenImage get insights =>
+      const SvgGenImage('assets/images/navbar_icons/active/insights.svg');
+
   /// File path: assets/images/navbar_icons/active/message.svg
   SvgGenImage get message =>
       const SvgGenImage('assets/images/navbar_icons/active/message.svg');
@@ -373,7 +377,7 @@ class $AssetsImagesNavbarIconsActiveGen {
       const SvgGenImage('assets/images/navbar_icons/active/settings.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [bills, home, message, settings];
+  List<SvgGenImage> get values => [bills, home, insights, message, settings];
 }
 
 class $AssetsImagesNavbarIconsInactiveGen {
@@ -387,6 +391,10 @@ class $AssetsImagesNavbarIconsInactiveGen {
   SvgGenImage get home =>
       const SvgGenImage('assets/images/navbar_icons/inactive/home.svg');
 
+  /// File path: assets/images/navbar_icons/inactive/insights.svg
+  SvgGenImage get insights =>
+      const SvgGenImage('assets/images/navbar_icons/inactive/insights.svg');
+
   /// File path: assets/images/navbar_icons/inactive/message.svg
   SvgGenImage get message =>
       const SvgGenImage('assets/images/navbar_icons/inactive/message.svg');
@@ -396,7 +404,7 @@ class $AssetsImagesNavbarIconsInactiveGen {
       const SvgGenImage('assets/images/navbar_icons/inactive/settings.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [bills, home, message, settings];
+  List<SvgGenImage> get values => [bills, home, insights, message, settings];
 }
 
 class AppAssets {

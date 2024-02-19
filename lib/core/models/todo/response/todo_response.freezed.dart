@@ -22,7 +22,7 @@ TodoResponse _$TodoResponseFromJson(Map<String, dynamic> json) {
 mixin _$TodoResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  TodoData? get data => throw _privateConstructorUsedError;
+  List<TodoOption>? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +36,7 @@ abstract class $TodoResponseCopyWith<$Res> {
           TodoResponse value, $Res Function(TodoResponse) then) =
       _$TodoResponseCopyWithImpl<$Res, TodoResponse>;
   @useResult
-  $Res call({String status, String? message, TodoData? data});
-
-  $TodoDataCopyWith<$Res>? get data;
+  $Res call({String status, String? message, List<TodoOption>? data});
 }
 
 /// @nodoc
@@ -70,20 +68,8 @@ class _$TodoResponseCopyWithImpl<$Res, $Val extends TodoResponse>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as TodoData?,
+              as List<TodoOption>?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TodoDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $TodoDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
   }
 }
 
@@ -95,10 +81,7 @@ abstract class _$$TodoResponseImplCopyWith<$Res>
       __$$TodoResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, TodoData? data});
-
-  @override
-  $TodoDataCopyWith<$Res>? get data;
+  $Res call({String status, String? message, List<TodoOption>? data});
 }
 
 /// @nodoc
@@ -126,9 +109,9 @@ class __$$TodoResponseImplCopyWithImpl<$Res>
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
       data: freezed == data
-          ? _value.data
+          ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as TodoData?,
+              as List<TodoOption>?,
     ));
   }
 }
@@ -136,7 +119,9 @@ class __$$TodoResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TodoResponseImpl implements _TodoResponse {
-  const _$TodoResponseImpl({this.status = "fail", this.message, this.data});
+  const _$TodoResponseImpl(
+      {this.status = "fail", this.message, final List<TodoOption>? data})
+      : _data = data;
 
   factory _$TodoResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$TodoResponseImplFromJson(json);
@@ -146,8 +131,15 @@ class _$TodoResponseImpl implements _TodoResponse {
   final String status;
   @override
   final String? message;
+  final List<TodoOption>? _data;
   @override
-  final TodoData? data;
+  List<TodoOption>? get data {
+    final value = _data;
+    if (value == null) return null;
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -161,12 +153,13 @@ class _$TodoResponseImpl implements _TodoResponse {
             other is _$TodoResponseImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(
+      runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
@@ -186,7 +179,7 @@ abstract class _TodoResponse implements TodoResponse {
   const factory _TodoResponse(
       {final String status,
       final String? message,
-      final TodoData? data}) = _$TodoResponseImpl;
+      final List<TodoOption>? data}) = _$TodoResponseImpl;
 
   factory _TodoResponse.fromJson(Map<String, dynamic> json) =
       _$TodoResponseImpl.fromJson;
@@ -196,7 +189,7 @@ abstract class _TodoResponse implements TodoResponse {
   @override
   String? get message;
   @override
-  TodoData? get data;
+  List<TodoOption>? get data;
   @override
   @JsonKey(ignore: true)
   _$$TodoResponseImplCopyWith<_$TodoResponseImpl> get copyWith =>

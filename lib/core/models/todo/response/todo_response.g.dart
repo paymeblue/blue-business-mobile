@@ -10,9 +10,9 @@ _$TodoResponseImpl _$$TodoResponseImplFromJson(Map<String, dynamic> json) =>
     _$TodoResponseImpl(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
-      data: json['data'] == null
-          ? null
-          : TodoData.fromJson(json['data'] as Map<String, dynamic>),
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => TodoOption.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$TodoResponseImplToJson(_$TodoResponseImpl instance) {

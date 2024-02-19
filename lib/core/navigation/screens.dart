@@ -52,3 +52,4 @@ export 'package:blue_business/modules/setup_business_pages/add_size/presentation
 export 'package:blue_business/modules/setup_business_shell/presentation/view.dart';
 export 'package:blue_business/modules/signup_pages/confirm_password/presentation/view.dart';
 export 'package:blue_business/modules/signup_pages/success/presentation/view.dart';
+export 'package:blue_business/modules/dashboard_pages/insights/presentation/view.dart';

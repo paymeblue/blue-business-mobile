@@ -12,7 +12,7 @@ _$WalletResponseImpl _$$WalletResponseImplFromJson(Map<String, dynamic> json) =>
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
-          : WalletData.fromJson(json['data'] as Map<String, dynamic>),
+          : Wallet.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$WalletResponseImplToJson(

@@ -103,7 +103,7 @@ class HomeViewModel extends BaseViewModel {
     });
 
     if (resp.status == "success") {
-      locator<AppStateValues>().wallet = resp.data!.wallet;
+      locator<AppStateValues>().wallet = resp.data!;
     } else {
       AppNotification.error(message: resp.message);
     }
@@ -119,7 +119,7 @@ class HomeViewModel extends BaseViewModel {
     });
 
     if (resp.status == "success") {
-      locator<AppStateValues>().todos = resp.data!.todos;
+      locator<AppStateValues>().todos = resp.data!;
       locator<AppStateValues>().loadedTodo = true;
     } else {
       AppNotification.error(message: resp.message);

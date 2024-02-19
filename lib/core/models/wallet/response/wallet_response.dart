@@ -1,4 +1,4 @@
-import 'package:blue_business/core/models/wallet/data/wallet_data.dart';
+import 'package:blue_business/core/models/wallet/wallet.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'wallet_response.freezed.dart';
@@ -9,7 +9,7 @@ class WalletResponse with _$WalletResponse {
   const factory WalletResponse({
     @Default("fail") String status,
     String? message,
-    WalletData? data,
+    Wallet? data,
   }) = _WalletResponse;
 
   factory WalletResponse.fromJson(Map<String, dynamic> json) =>

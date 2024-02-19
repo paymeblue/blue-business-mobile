@@ -34,7 +34,7 @@ class _DashService implements DashService {
     )
             .compose(
               _dio.options,
-              '/wallets/balance',
+              '/wallets',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -329,6 +329,18 @@ GoRouter router = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
+              path: RoutePaths.insightsPAth,
+              name: "Insights",
+              builder: (context, state) {
+                log(state.fullPath.toString());
+                return const InsightsView();
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
               path: RoutePaths.messagePath,
               name: "Message",
               builder: (context, state) {

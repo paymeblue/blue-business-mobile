@@ -22,7 +22,7 @@ WalletResponse _$WalletResponseFromJson(Map<String, dynamic> json) {
 mixin _$WalletResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  WalletData? get data => throw _privateConstructorUsedError;
+  Wallet? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +36,9 @@ abstract class $WalletResponseCopyWith<$Res> {
           WalletResponse value, $Res Function(WalletResponse) then) =
       _$WalletResponseCopyWithImpl<$Res, WalletResponse>;
   @useResult
-  $Res call({String status, String? message, WalletData? data});
+  $Res call({String status, String? message, Wallet? data});
 
-  $WalletDataCopyWith<$Res>? get data;
+  $WalletCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -70,18 +70,18 @@ class _$WalletResponseCopyWithImpl<$Res, $Val extends WalletResponse>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as WalletData?,
+              as Wallet?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $WalletDataCopyWith<$Res>? get data {
+  $WalletCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
-    return $WalletDataCopyWith<$Res>(_value.data!, (value) {
+    return $WalletCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -95,10 +95,10 @@ abstract class _$$WalletResponseImplCopyWith<$Res>
       __$$WalletResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, WalletData? data});
+  $Res call({String status, String? message, Wallet? data});
 
   @override
-  $WalletDataCopyWith<$Res>? get data;
+  $WalletCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -128,7 +128,7 @@ class __$$WalletResponseImplCopyWithImpl<$Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as WalletData?,
+              as Wallet?,
     ));
   }
 }
@@ -147,7 +147,7 @@ class _$WalletResponseImpl implements _WalletResponse {
   @override
   final String? message;
   @override
-  final WalletData? data;
+  final Wallet? data;
 
   @override
   String toString() {
@@ -187,7 +187,7 @@ abstract class _WalletResponse implements WalletResponse {
   const factory _WalletResponse(
       {final String status,
       final String? message,
-      final WalletData? data}) = _$WalletResponseImpl;
+      final Wallet? data}) = _$WalletResponseImpl;
 
   factory _WalletResponse.fromJson(Map<String, dynamic> json) =
       _$WalletResponseImpl.fromJson;
@@ -197,7 +197,7 @@ abstract class _WalletResponse implements WalletResponse {
   @override
   String? get message;
   @override
-  WalletData? get data;
+  Wallet? get data;
   @override
   @JsonKey(ignore: true)
   _$$WalletResponseImplCopyWith<_$WalletResponseImpl> get copyWith =>

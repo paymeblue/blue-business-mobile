@@ -30,6 +30,16 @@ class NavBarItem extends StatelessWidget {
           ),
         );
       case 1:
+        return Container(
+          height: 28,
+          width: 28,
+          alignment: Alignment.center,
+          child: AppAssets.images.navbarIcons.inactive.insights.svg(
+            height: 20,
+            width: 20,
+          ),
+        );
+      case 2:
         return Consumer<AppStateValues>(builder: (context, stateValues, _) {
           return Stack(
             children: [
@@ -63,7 +73,7 @@ class NavBarItem extends StatelessWidget {
             ],
           );
         });
-      case 2:
+      case 3:
         return Container(
           height: 28,
           width: 28,
@@ -73,7 +83,7 @@ class NavBarItem extends StatelessWidget {
             width: 20,
           ),
         );
-      case 3:
+      case 4:
         return Container(
           height: 28,
           width: 28,
@@ -113,7 +123,7 @@ class NavBarItem extends StatelessWidget {
           height: 28,
           width: 28,
           alignment: Alignment.center,
-          child: AppAssets.images.navbarIcons.active.message.svg(
+          child: AppAssets.images.navbarIcons.active.insights.svg(
             height: 20,
             width: 20,
           ),
@@ -123,12 +133,22 @@ class NavBarItem extends StatelessWidget {
           height: 28,
           width: 28,
           alignment: Alignment.center,
-          child: AppAssets.images.navbarIcons.active.bills.svg(
+          child: AppAssets.images.navbarIcons.active.message.svg(
             height: 20,
             width: 20,
           ),
         );
       case 3:
+        return Container(
+          height: 28,
+          width: 28,
+          alignment: Alignment.center,
+          child: AppAssets.images.navbarIcons.active.bills.svg(
+            height: 20,
+            width: 20,
+          ),
+        );
+      case 4:
         return Container(
           height: 28,
           width: 28,
@@ -156,10 +176,12 @@ class NavBarItem extends StatelessWidget {
       case 0:
         return "Home";
       case 1:
-        return "Message";
+        return "Insights";
       case 2:
-        return "Bills";
+        return "Message";
       case 3:
+        return "Bills";
+      case 4:
         return "Settings";
       default:
         return "Home";

@@ -20,6 +20,7 @@ class RoutePaths {
   static String messagePath = "/dash/message";
   static String billsPath = "/dash/bills";
   static String settingsPath = "/dash/settings";
+  static String insightsPAth = "/dash/insights";
   static String enterRecoveryCodePath = "/recover-phone/recovery-code";
   static String recoverPhoneNumberPath = "/recover-phone$accountPhonePath";
   static String phoneRecoveryOtpPath = "/recover-phone/otp";

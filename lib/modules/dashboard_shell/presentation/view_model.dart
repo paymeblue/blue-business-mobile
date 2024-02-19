@@ -35,6 +35,8 @@ class DashboardShellViewModel extends BaseViewModel {
       case 0:
         context.push(RoutePaths.homePath);
       case 1:
+        context.push(RoutePaths.insightsPAth);
+      case 2:
         if (locator<AppStateValues>().wallet == null) {
           AppNotification.warning(message: "Getting wallet data...");
         } else {
@@ -42,9 +44,9 @@ class DashboardShellViewModel extends BaseViewModel {
               false;
           context.push(RoutePaths.messagePath);
         }
-      case 2:
-        context.push(RoutePaths.billsPath);
       case 3:
+        context.push(RoutePaths.billsPath);
+      case 4:
         context.push(RoutePaths.settingsPath);
     }
     currentIndex = index;
