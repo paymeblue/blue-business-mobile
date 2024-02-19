@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
-import 'package:blue_business/core/models/recover_phone/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -114,7 +113,7 @@ class VerifyPinRecoveryOtpViewModel extends BaseViewModel {
   verifyOtp(BuildContext context) async {
     AppLoader.start();
     SendNewPhoneResponse resp = await authService
-        .verifyRecoveryOtp(pin, phone)
+        .verifyRecoveryOtp(pin, phone.replaceFirst("+", ""))
         .onError((error, stackTrace) => SendNewPhoneResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 

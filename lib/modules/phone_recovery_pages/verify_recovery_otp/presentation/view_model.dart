@@ -87,7 +87,7 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
     AppLoader.start();
 
     SendNewPhoneResponse resp = await authService
-        .resendPhoneRecoveryOtp(phone)
+        .resendPhoneRecoveryOtp(phone.replaceFirst("+", ""))
         .onError((error, stackTrace) {
       return SendNewPhoneResponse(
           message: AppErrorHandler.getErrorMessage(error));
@@ -107,7 +107,7 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
     AppLoader.start();
 
     SendNewPhoneResponse resp = await authService
-        .verifyRecoveryOtp(pin, phone)
+        .verifyRecoveryOtp(pin, phone.replaceFirst("+", ""))
         .onError((error, stackTrace) {
       return SendNewPhoneResponse(
           message: AppErrorHandler.getErrorMessage(error));

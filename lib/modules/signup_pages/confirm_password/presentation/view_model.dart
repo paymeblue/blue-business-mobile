@@ -130,8 +130,12 @@ class ConfirmPasswordViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, User user) {
-    if (user.businessProfileLevel != 3) {
+    if (user.businessProfileLevel == 0) {
       context.go(RoutePaths.registerSuccessPath);
+    } else if (user.businessProfileLevel == 1) {
+      context.go("${RoutePaths.businessSizePath}/${user.businessProfileId}");
+    } else if (user.businessProfileLevel == 2) {
+      context.go("${RoutePaths.businessLocation}/${user.businessProfileId}");
     } else {
       context.go(RoutePaths.homePath);
     }

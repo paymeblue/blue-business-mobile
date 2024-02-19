@@ -15,6 +15,7 @@ class User with _$User {
     String? displayPic,
     @Default("business") String type,
     @Default(0) int businessProfileLevel,
+    required int businessProfileId,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserImpl.fromJson(json);

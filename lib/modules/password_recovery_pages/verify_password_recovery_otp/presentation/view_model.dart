@@ -105,7 +105,7 @@ class VerifyPasswordRecoveryOtpViewModel extends BaseViewModel {
   verifyOtp(BuildContext context) async {
     AppLoader.start();
     SendNewPhoneResponse resp = await authService
-        .verifyRecoveryOtp(pin, phone)
+        .verifyRecoveryOtp(pin, phone.replaceFirst("+", ""))
         .onError((error, stackTrace) => SendNewPhoneResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 

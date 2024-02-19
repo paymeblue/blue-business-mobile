@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
@@ -14,7 +13,6 @@ class SplashViewModel extends BaseViewModel {
   init() {
     Future.delayed(const Duration(milliseconds: 1500), () async {
       await StorageValues.getLoginValues();
-      log(StorageValues.pin);
       containerHeight = 390;
       changeText();
     });
@@ -38,9 +36,16 @@ class SplashViewModel extends BaseViewModel {
   }
 
   List<String> onboardingText = [
-    "The easiest way to make payments!",
-    "Send, request and receive money swiftly",
-    "Free charges, No hidden fees!"
+    "Your all-in-one business manager app!",
+    "Add and manage your Team seamlessly",
+    "Boost your business sales with data driven insights.",
+    "Simplify your daily settlement tracking"
+  ];
+  List<String> onboardingSubtext = [
+    "Streamline your business operations with simplicity and efficiency!",
+    "Easily add and oversee your team members for seamless operations.",
+    "Improve your revenue generating strategies with data driven insights.",
+    "Automate and manage your day-to-day transactions with ease."
   ];
 
   changeText() {

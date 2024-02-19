@@ -17,6 +17,7 @@ import 'package:blue_business/core/models/logout/request/logout_request.dart';
 import 'package:blue_business/core/models/logout/response/logout_response.dart';
 import 'package:blue_business/core/models/recover_phone/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/recovery_code/get/response/recovery_code_response.dart';
 import 'package:blue_business/core/models/recovery_code/reset/response/recovery_code_response.dart';
 import 'package:blue_business/core/models/recovery_code/send/response/recovery_code_response.dart';
@@ -108,12 +109,12 @@ abstract class AuthService {
   Future<SetRecoveryPhoneResponse> updateRecoveryPhone(
       @Body() SetRecoveryPhoneRequest request);
 
-  @POST("/users/forgot-password")
+  @GET("/users/forgot-password")
   Future<SendNewPhoneResponse> forgotPassword(@Query("phone") String phone);
 
   @PATCH("/pins/forgot")
   Future<SendNewPhoneResponse> forgotPinWithPhone(
-      @Body() SendNewPhoneRequest request);
+      @Body() SendPhoneRecoverPinRequest request);
 
   @PATCH("/users/reset-password")
   Future<SendNewPhoneResponse> resetPassword(

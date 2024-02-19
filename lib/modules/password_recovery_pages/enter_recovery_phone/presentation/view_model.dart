@@ -77,6 +77,6 @@ class EnterPasswordRecoveryPhoneViewModel extends BaseViewModel {
       number = number.replaceFirst(selectedCountry!.dialCode, "");
     }
 
-    return selectedCountry!.dialCode + number;
+    return (selectedCountry!.dialCode + number).replaceFirst("+", "");
   }
 }

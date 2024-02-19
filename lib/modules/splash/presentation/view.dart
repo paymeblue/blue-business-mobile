@@ -85,7 +85,7 @@ class _SplashViewState extends State<SplashView> {
                     model.goToLogin(context);
                   }),
             ),
-            35.verticalGap,
+            16.verticalGap,
             onboardingLegalText(model)
           ],
         ),
@@ -130,17 +130,32 @@ class _SplashViewState extends State<SplashView> {
 
   Container onboardingText(SplashViewModel model) {
     return Container(
-      height: 90,
+      height: 110,
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.symmetric(horizontal: model.size.width / 8),
-      child: Text(
-        model.onboardingText[model.index],
-        style: const TextStyle(
-            fontFamily: AppFonts.satoshi,
-            color: AppColors.textColor,
-            fontSize: 24.5,
-            fontWeight: FontWeight.w600),
-        textAlign: TextAlign.center,
+      child: Column(
+        children: [
+          Text(
+            model.onboardingText[model.index],
+            style: const TextStyle(
+                fontFamily: AppFonts.satoshi,
+                color: AppColors.textColor,
+                fontSize: 24,
+                height: 1.2,
+                fontWeight: FontWeight.w500),
+            textAlign: TextAlign.center,
+          ),
+          6.verticalGap,
+          Text(
+            model.onboardingSubtext[model.index],
+            style: const TextStyle(
+                fontFamily: AppFonts.satoshi,
+                color: AppColors.bodyTextColor,
+                fontSize: 15,
+                fontWeight: FontWeight.w400),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
@@ -154,7 +169,7 @@ class _SplashViewState extends State<SplashView> {
           return AnimatedContainer(
             duration: const Duration(milliseconds: 350),
             height: 7,
-            width: (MediaQuery.of(context).size.width * .8) / 3,
+            width: (MediaQuery.of(context).size.width * .8) / 4,
             decoration: containerDecoration(index, model),
           );
         }),

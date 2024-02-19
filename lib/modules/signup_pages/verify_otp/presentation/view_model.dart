@@ -104,8 +104,9 @@ class VerifyRegistrationOtpViewModel extends BaseViewModel {
   verifyOtp(BuildContext context) async {
     AppLoader.start();
 
-    SignupResponse resp =
-        await authService.verifyOtp(pin, phone).onError((error, stackTrace) {
+    SignupResponse resp = await authService
+        .verifyOtp(pin, phone.replaceFirst("+", ""))
+        .onError((error, stackTrace) {
       return SignupResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
