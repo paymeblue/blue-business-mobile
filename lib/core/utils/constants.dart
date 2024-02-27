@@ -15,7 +15,7 @@ class AppStateValues extends ChangeNotifier {
   String _recoveryCode = "";
   String _path = RoutePaths.homePath;
   bool _loadedTodo = false;
-  bool _isKycComplete = false;
+  String _kycLevel = "basic";
   bool _hasSavedBeneficiary = true;
   int _count = 0;
   bool _newMessage = false;
@@ -35,7 +35,7 @@ class AppStateValues extends ChangeNotifier {
   String get recoveryCode => _recoveryCode;
   List<TodoOption> get todos => _todos;
   bool get loadedTodo => _loadedTodo;
-  bool get isKycComplete => _isKycComplete;
+  String get kycLevel => _kycLevel;
   bool get hasSavedBeneficiary => _hasSavedBeneficiary;
   String get resetPath => _path;
   int get unreadCount => _count;
@@ -85,8 +85,8 @@ class AppStateValues extends ChangeNotifier {
     notifyListeners();
   }
 
-  set isKycComplete(bool v) {
-    _isKycComplete = v;
+  set kycLevel(String v) {
+    _kycLevel = v;
     notifyListeners();
   }
 
@@ -146,7 +146,7 @@ class AppStateValues extends ChangeNotifier {
     narration = "";
     todos = [];
     loadedTodo = false;
-    isKycComplete = false;
+    kycLevel = "basic";
     hasSavedBeneficiary = true;
     resetPath = RoutePaths.homePath;
     unreadCount = 0;

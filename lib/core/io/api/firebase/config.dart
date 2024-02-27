@@ -42,7 +42,7 @@ Future handleForegroundMessages(RemoteMessage message) async {
           title: data['sender_name'], message: data["message"]);
     }
   } else {
-    stateValues.isKycComplete = data["kyc_status"].toString() == "1";
+    // stateValues.isKycComplete = data["kyc_status"].toString() == "1";
 
     AppNotification.notification(
       title: message.notification!.title,

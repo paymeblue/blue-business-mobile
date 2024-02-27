@@ -7,6 +7,7 @@ import 'package:blue_business/core/models/recover_phone/response/recover_phone_r
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
@@ -112,6 +113,7 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
       return SendNewPhoneResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });
+    AppLoader.stop();
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
@@ -120,8 +122,6 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
     } else {
       AppNotification.error(message: resp.message);
     }
-
-    AppLoader.stop();
   }
 
   stopTimer() {
@@ -133,6 +133,9 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.go(RoutePaths.loginPath);
+    locator<NavigationService>()
+        .navigatorKey
+        .currentContext!
+        .go(RoutePaths.loginPath);
   }
 }

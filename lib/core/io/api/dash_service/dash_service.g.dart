@@ -61,7 +61,7 @@ class _DashService implements DashService {
     )
             .compose(
               _dio.options,
-              '/kycs/status',
+              '/kycs',
               queryParameters: queryParameters,
               data: _data,
             )

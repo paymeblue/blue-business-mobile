@@ -360,8 +360,7 @@ class _HomeViewState extends State<HomeView> {
                       model.isKycLoading
                           ? walletTypeShimmer()
                           : walletTypeContainer(
-                              isVerified:
-                                  locator<AppStateValues>().isKycComplete),
+                              kycLevel: locator<AppStateValues>().kycLevel),
                       AppAssets.images.launcher.image(height: 23, width: 23),
                     ],
                   ),
@@ -541,7 +540,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           FittedBox(
             child: Text(
-              "${nairaSymbol()}${model.hideBalance ? locator<AppStateValues>().wallet!.balance.replaceAll(RegExp(r"[0-9]"), "*") : locator<AppStateValues>().wallet!.balance}",
+              "${nairaSymbol()}${model.hideBalance ? locator<AppStateValues>().wallet!.balance.toString().replaceAll(RegExp(r"[0-9]"), "*") : locator<AppStateValues>().wallet!.balance}",
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
                 fontSize: 22,
@@ -553,21 +552,21 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget walletTypeContainer({bool isVerified = false}) {
+  Widget walletTypeContainer({String kycLevel = "basic"}) {
     return Container(
       height: 23,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-        color: isVerified ? AppColors.promptTextColor : AppColors.white,
+        color: kycLevel != "pro" ? AppColors.promptTextColor : AppColors.white,
         borderRadius: BorderRadius.circular(25),
       ),
       alignment: Alignment.center,
       child: Text(
-        isVerified ? "Pro wallet" : "Basic wallet",
+        "${kycLevel[0].toUpperCase()}${kycLevel.substring(1)} wallet",
         style: AppTextStyles.smallText.copyWith(
           fontSize: 12.5,
           fontWeight: FontWeight.w500,
-          color: isVerified ? AppColors.white : const Color(0xFFFF9601),
+          color: kycLevel != "pro" ? AppColors.white : const Color(0xFFFF9601),
         ),
       ),
     );

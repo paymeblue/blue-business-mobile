@@ -147,7 +147,7 @@ class AccountRecoveryViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       AppLoader.stop();
-      locator<AppStateValues>().recoveryCode = resp.data!.code;
+      locator<AppStateValues>().recoveryCode = resp.data!.recoveryCode;
       await BlueBottomSheet.recoveryCode(
         onTap: regenerateRecoveryCode,
       );
@@ -228,7 +228,7 @@ class AccountRecoveryViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       AppLoader.stop();
-      return resp.data!.code;
+      return resp.data!.code.recoveryCode;
     } else {
       AppLoader.stop();
       AppNotification.error(message: resp.message);

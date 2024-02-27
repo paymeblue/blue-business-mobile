@@ -6,7 +6,8 @@ part 'kyc_status_data.g.dart';
 @freezed
 class KycStatusData with _$KycStatusData {
   const factory KycStatusData({
-    @Default(0) int kycStatus,
+    String? type,
+    required String kyc,
   }) = _KycStatusData;
 
   factory KycStatusData.fromJson(Map<String, dynamic> json) =>

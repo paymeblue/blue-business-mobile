@@ -333,7 +333,7 @@ class _AuthService implements AuthService {
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SendRecoveryCodeResponse>(Options(
-      method: 'POST',
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
@@ -366,7 +366,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/recovery-code',
+              '/recovery-codes',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -393,7 +393,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/recovery-code/reset',
+              '/recovery-codes/reset',
               queryParameters: queryParameters,
               data: _data,
             )

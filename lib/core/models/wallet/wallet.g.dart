@@ -8,7 +8,7 @@ part of 'wallet.dart';
 
 _$WalletImpl _$$WalletImplFromJson(Map<String, dynamic> json) => _$WalletImpl(
       id: json['id'] as int,
-      balance: json['balance'] as String,
+      balance: json['balance'] as int,
       walletCode: json['wallet_code'] as String,
     );
 

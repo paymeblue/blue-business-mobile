@@ -436,7 +436,7 @@ class SettingsViewModel extends BaseViewModel {
     });
 
     if (resp.status == "success") {
-      locator<AppStateValues>().isKycComplete = resp.data!.kycStatus == 1;
+      locator<AppStateValues>().kycLevel = resp.data!.kyc;
     } else {
       AppNotification.error(message: resp.message);
     }

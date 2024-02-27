@@ -20,7 +20,7 @@ abstract class DashService {
   @GET("/wallets")
   Future<WalletResponse> getWalletBalance();
 
-  @GET('/kycs/status')
+  @GET('/kycs')
   Future<KycStatusResponse> getKycStatus();
 
   @GET('/todos')

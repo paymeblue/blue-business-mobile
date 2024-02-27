@@ -20,7 +20,8 @@ KycStatusData _$KycStatusDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$KycStatusData {
-  int get kycStatus => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
+  String get kyc => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $KycStatusDataCopyWith<$Res> {
           KycStatusData value, $Res Function(KycStatusData) then) =
       _$KycStatusDataCopyWithImpl<$Res, KycStatusData>;
   @useResult
-  $Res call({int kycStatus});
+  $Res call({String? type, String kyc});
 }
 
 /// @nodoc
@@ -50,13 +51,18 @@ class _$KycStatusDataCopyWithImpl<$Res, $Val extends KycStatusData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? kycStatus = null,
+    Object? type = freezed,
+    Object? kyc = null,
   }) {
     return _then(_value.copyWith(
-      kycStatus: null == kycStatus
-          ? _value.kycStatus
-          : kycStatus // ignore: cast_nullable_to_non_nullable
-              as int,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      kyc: null == kyc
+          ? _value.kyc
+          : kyc // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -69,7 +75,7 @@ abstract class _$$KycStatusDataImplCopyWith<$Res>
       __$$KycStatusDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int kycStatus});
+  $Res call({String? type, String kyc});
 }
 
 /// @nodoc
@@ -83,13 +89,18 @@ class __$$KycStatusDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? kycStatus = null,
+    Object? type = freezed,
+    Object? kyc = null,
   }) {
     return _then(_$KycStatusDataImpl(
-      kycStatus: null == kycStatus
-          ? _value.kycStatus
-          : kycStatus // ignore: cast_nullable_to_non_nullable
-              as int,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      kyc: null == kyc
+          ? _value.kyc
+          : kyc // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -97,18 +108,19 @@ class __$$KycStatusDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$KycStatusDataImpl implements _KycStatusData {
-  const _$KycStatusDataImpl({this.kycStatus = 0});
+  const _$KycStatusDataImpl({this.type, required this.kyc});
 
   factory _$KycStatusDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$KycStatusDataImplFromJson(json);
 
   @override
-  @JsonKey()
-  final int kycStatus;
+  final String? type;
+  @override
+  final String kyc;
 
   @override
   String toString() {
-    return 'KycStatusData(kycStatus: $kycStatus)';
+    return 'KycStatusData(type: $type, kyc: $kyc)';
   }
 
   @override
@@ -116,13 +128,13 @@ class _$KycStatusDataImpl implements _KycStatusData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$KycStatusDataImpl &&
-            (identical(other.kycStatus, kycStatus) ||
-                other.kycStatus == kycStatus));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.kyc, kyc) || other.kyc == kyc));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, kycStatus);
+  int get hashCode => Object.hash(runtimeType, type, kyc);
 
   @JsonKey(ignore: true)
   @override
@@ -139,13 +151,16 @@ class _$KycStatusDataImpl implements _KycStatusData {
 }
 
 abstract class _KycStatusData implements KycStatusData {
-  const factory _KycStatusData({final int kycStatus}) = _$KycStatusDataImpl;
+  const factory _KycStatusData(
+      {final String? type, required final String kyc}) = _$KycStatusDataImpl;
 
   factory _KycStatusData.fromJson(Map<String, dynamic> json) =
       _$KycStatusDataImpl.fromJson;
 
   @override
-  int get kycStatus;
+  String? get type;
+  @override
+  String get kyc;
   @override
   @JsonKey(ignore: true)
   _$$KycStatusDataImplCopyWith<_$KycStatusDataImpl> get copyWith =>

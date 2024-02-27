@@ -80,14 +80,14 @@ abstract class AuthService {
     @Body() SignupProfileRequest request,
   );
 
-  @POST("/recovery-codes/verify")
+  @GET("/recovery-codes/verify")
   Future<SendRecoveryCodeResponse> verifyRecoveryCode(
       @Query("code") String code);
 
-  @GET("/recovery-code")
+  @GET("/recovery-codes")
   Future<GetRecoveryCodeResponse> getRecoveryCode();
 
-  @GET("/recovery-code/reset")
+  @GET("/recovery-codes/reset")
   Future<ResetRecoveryCodeResponse> resetRecoveryCode();
 
   @PATCH("/users/update-phone")
