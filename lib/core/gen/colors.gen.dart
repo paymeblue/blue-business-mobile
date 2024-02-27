@@ -28,6 +28,9 @@ class AppColors {
   /// Color: #32374E
   static const Color bodyTextColor = Color(0xFF32374E);
 
+  /// Color: #9291A5
+  static const Color bodyTextColor2 = Color(0xFF9291A5);
+
   /// Color: #807FF3
   static const Color brightBlue = Color(0xFF807FF3);
 
@@ -73,6 +76,9 @@ class AppColors {
   /// Color: #F8F8FA
   static const Color inputField = Color(0xFFF8F8FA);
 
+  /// Color: #F2F0FF
+  static const Color interMediateBg = Color(0xFFF2F0FF);
+
   /// Color: #FF5F8FF
   static const Color lightBlue = Color(0xFF5F8FF);
 
@@ -117,6 +123,9 @@ class AppColors {
       900: Color(0xFF1E1CAE),
     },
   );
+
+  /// Color: #EDFFFD
+  static const Color proBg = Color(0xFFEDFFFD);
 
   /// Color: #2FB9AC
   static const Color promptTextColor = Color(0xFF2FB9AC);

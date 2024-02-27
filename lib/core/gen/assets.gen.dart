@@ -170,6 +170,14 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/kyc.svg
   SvgGenImage get kyc => const SvgGenImage('assets/images/icons/kyc.svg');
 
+  /// File path: assets/images/icons/kyc_grey.svg
+  SvgGenImage get kycGrey =>
+      const SvgGenImage('assets/images/icons/kyc_grey.svg');
+
+  /// File path: assets/images/icons/kyc_outline.svg
+  SvgGenImage get kycOutline =>
+      const SvgGenImage('assets/images/icons/kyc_outline.svg');
+
   /// File path: assets/images/icons/new_message.svg
   SvgGenImage get newMessage =>
       const SvgGenImage('assets/images/icons/new_message.svg');
@@ -299,6 +307,8 @@ class $AssetsImagesIconsGen {
         hideBalance,
         history,
         kyc,
+        kycGrey,
+        kycOutline,
         newMessage,
         notifications,
         password,

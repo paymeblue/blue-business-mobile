@@ -8,6 +8,7 @@
     <color name="midGrey">#E5E6E8</color>
     <color name="textColor" type="material">#232949</color>
     <color name="bodyTextColor">#32374E</color>
+    <color name="bodyTextColor2">#9291A5</color>
     <color name="promptTextColor">#2FB9AC</color>
     <color name="success">#2FB9AC</color>
     <color name="error">#EF2A5A</color>
@@ -24,4 +25,6 @@
     <color name="otherGreen">#009999</color>
     <color name="warning">#FF9601</color>
     <color name="inputField">#F8F8FA</color>
+    <color name="proBg">#EDFFFD</color>
+    <color name="interMediateBg">#F2F0FF</color>
 </resources>

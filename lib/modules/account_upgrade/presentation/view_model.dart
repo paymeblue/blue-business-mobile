@@ -23,10 +23,17 @@ class UpdateKycViewModel extends BaseViewModel {
     }
   }
 
+  List<String> basicRequirements = [
+    "Verify your BVN",
+    "Name, Place and Date of Birth",
+    "Gender, Address, and Phone number",
+    "Upload media",
+  ];
+
   late String url =
       "https://paymeblue.com/kyc?token=${stateValues.accessToken}";
 
-  goToKycWeb(BuildContext context) async {
+  goToBasicKycWeb(BuildContext context) async {
     var uri = Uri.parse(url);
     await launchUrl(
       uri,

@@ -557,7 +557,7 @@ class _HomeViewState extends State<HomeView> {
       height: 23,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-        color: kycLevel != "pro" ? AppColors.promptTextColor : AppColors.white,
+        color: kycLevel == "pro" ? AppColors.promptTextColor : AppColors.white,
         borderRadius: BorderRadius.circular(25),
       ),
       alignment: Alignment.center,
@@ -566,7 +566,7 @@ class _HomeViewState extends State<HomeView> {
         style: AppTextStyles.smallText.copyWith(
           fontSize: 12.5,
           fontWeight: FontWeight.w500,
-          color: kycLevel != "pro" ? AppColors.white : const Color(0xFFFF9601),
+          color: kycLevel == "pro" ? AppColors.white : const Color(0xFFFF9601),
         ),
       ),
     );
