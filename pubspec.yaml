@@ -26,6 +26,7 @@ dependencies:
   another_flushbar: ^1.12.30
   dotted_border: ^2.1.0
   nigerian_states_and_lga: ^1.0.0
+  fl_chart: ^0.66.2
 
   #MEDIA UTILS
   qr_flutter: ^4.1.0

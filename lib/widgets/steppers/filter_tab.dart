@@ -25,6 +25,7 @@ class FilterTab extends StatelessWidget {
         border: Border.all(color: AppColors.bgGrey),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(
           tabs.length,
           (index) => Row(

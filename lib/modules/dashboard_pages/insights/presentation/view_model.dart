@@ -9,9 +9,24 @@ class InsightsViewModel extends BaseViewModel {
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
+
+    selectedType = types[0];
   }
 
   goBack(BuildContext context) {
     context.go(RoutePaths.homePath);
+  }
+
+  List<String> types = ["Weekly", "Monthly", "Yearly"];
+
+  late String _type;
+  String get selectedType => _type;
+  set selectedType(String v) {
+    _type = v;
+    notifyListeners();
+  }
+
+  onTypeChanged(String t) {
+    selectedType = t;
   }
 }
