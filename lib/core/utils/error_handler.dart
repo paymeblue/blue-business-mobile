@@ -1,9 +1,6 @@
 import 'dart:developer';
 
-import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/timed_refresh.dart';
-import 'package:blue_business/core/models/logout/request/logout_request.dart';
-import 'package:blue_business/core/models/logout/response/logout_response.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
@@ -56,14 +53,6 @@ class AppErrorHandler {
 
   static _logout() async {
     log("<====================LOGGING OUT====================>");
-    LogoutRequest request =
-        LogoutRequest(refreshToken: locator<AppStateValues>().refreshToken);
-
-    LogoutResponse resp =
-        await AuthService().logout(request).onError((error, stackTrace) {
-      return LogoutResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-    log(resp.toString());
 
     BuildContext context =
         locator<NavigationService>().navigatorKey.currentContext!;

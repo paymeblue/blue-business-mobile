@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:blue_business/core/extensions.dart';
@@ -15,8 +14,6 @@ import 'package:blue_business/core/models/delete_account/delete/response/delete_
 import 'package:blue_business/core/models/delete_account/get_reasons/reason/reason.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/response/get_reason_response.dart';
 import 'package:blue_business/core/models/kyc_status/response/kyc_status_response.dart';
-import 'package:blue_business/core/models/logout/request/logout_request.dart';
-import 'package:blue_business/core/models/logout/response/logout_response.dart';
 import 'package:blue_business/core/models/notification/response/notification_response.dart';
 import 'package:blue_business/core/models/upload_avatar/response/upload_avatar_response.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/response/withdrawal_account_response.dart';
@@ -199,8 +196,6 @@ class SettingsViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       if (context.mounted) {
-        await logout(context);
-
         if (context.mounted) context.go(RoutePaths.welcomePath);
       }
       StorageHelpers.deleteAll();
@@ -225,24 +220,15 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   logout(BuildContext context, [bool logout = false]) async {
-    if (logout) AppLoader.start();
-    LogoutRequest request =
-        LogoutRequest(refreshToken: locator<AppStateValues>().refreshToken);
+    AppLoader.start();
 
-    LogoutResponse resp =
-        await authService.logout(request).onError((error, stackTrace) {
-      return LogoutResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-    log(resp.toString());
-    if (logout) {
-      if (context.mounted) {
-        context.go(RoutePaths.loginPath);
-      }
-      locator<AppStateValues>().notificationState = NotificationState.success;
-      RefreshTimer().cancelTimer();
+    if (context.mounted) {
+      context.go(RoutePaths.loginPath);
     }
+    locator<AppStateValues>().notificationState = NotificationState.success;
+    RefreshTimer().cancelTimer();
 
-    if (logout) AppLoader.stop();
+    AppLoader.stop();
   }
 
   List<SettingsOption> identityOption(BuildContext context) => [

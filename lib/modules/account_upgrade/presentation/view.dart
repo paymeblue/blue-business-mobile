@@ -71,6 +71,8 @@ class _UpdateKycViewState extends State<UpdateKycView> {
             onTap: () {
               if (model.stateValues.kycLevel == "basic") {
                 model.goToBasicKycWeb(context);
+              } else {
+                model.goToProKycWeb(context);
               }
             },
           )
@@ -99,8 +101,12 @@ class _UpdateKycViewState extends State<UpdateKycView> {
           ),
           15.verticalGap,
           ...List.generate(
-            model.basicRequirements.length,
-            (index) => bulletItem(model.basicRequirements[index]),
+            level == "intermediate"
+                ? model.basicRequirements.length
+                : model.proRequirements.length,
+            (index) => bulletItem(level == "intermediate"
+                ? model.basicRequirements[index]
+                : model.proRequirements[index]),
           ),
           15.verticalGap,
           Text(
@@ -122,7 +128,8 @@ class _UpdateKycViewState extends State<UpdateKycView> {
                       color: AppColors.bodyTextColor,
                     )),
                 TextSpan(
-                    text: "₦5,000,000.00",
+                    text:
+                        level == "intermediate" ? "₦5,000,000.00" : "No limit",
                     style: AppTextStyles.header.copyWith(
                       fontSize: 15,
                       color: AppColors.primary,

@@ -13,8 +13,6 @@ import 'package:blue_business/core/models/delete_account/delete/response/delete_
 import 'package:blue_business/core/models/delete_account/get_reasons/response/get_reason_response.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
-import 'package:blue_business/core/models/logout/request/logout_request.dart';
-import 'package:blue_business/core/models/logout/response/logout_response.dart';
 import 'package:blue_business/core/models/recover_phone/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
@@ -61,9 +59,6 @@ abstract class AuthService {
 
   @POST("/users/delete")
   Future<DeleteResponse> deleteAccount(@Body() DeleteRequest request);
-
-  @POST("/users/logout")
-  Future<LogoutResponse> logout(@Body() LogoutRequest request);
 
   @POST("/auth/register")
   Future<SignupResponse> signup(@Body() SignupRequest request);

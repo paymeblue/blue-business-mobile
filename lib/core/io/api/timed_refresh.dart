@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/models/logout/request/logout_request.dart';
-import 'package:blue_business/core/models/logout/response/logout_response.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -66,14 +64,6 @@ class RefreshTimer {
 
   _logout() async {
     log("<====================LOGGING OUT====================>");
-    LogoutRequest request =
-        LogoutRequest(refreshToken: locator<AppStateValues>().refreshToken);
-
-    LogoutResponse resp =
-        await AuthService().logout(request).onError((error, stackTrace) {
-      return LogoutResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-    log(resp.toString());
 
     BuildContext context =
         locator<NavigationService>().navigatorKey.currentContext!;

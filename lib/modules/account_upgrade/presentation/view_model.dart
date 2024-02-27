@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -23,6 +25,12 @@ class UpdateKycViewModel extends BaseViewModel {
     }
   }
 
+  List<String> proRequirements = [
+    "Business name",
+    "Business address",
+    "Business registration license",
+  ];
+
   List<String> basicRequirements = [
     "Verify your BVN",
     "Name, Place and Date of Birth",
@@ -30,11 +38,22 @@ class UpdateKycViewModel extends BaseViewModel {
     "Upload media",
   ];
 
-  late String url =
-      "https://paymeblue.com/kyc?token=${stateValues.accessToken}";
+  String url(String level) =>
+      "https://paymeblue.com/kyc/business/$level?token=${stateValues.accessToken}";
 
   goToBasicKycWeb(BuildContext context) async {
-    var uri = Uri.parse(url);
+    var uri = Uri.parse(url("intermediate"));
+    log(url("intermediate"));
+    await launchUrl(
+      uri,
+      mode: LaunchMode.inAppWebView,
+    ).whenComplete(() {
+      context.go(RoutePaths.settingsPath);
+    });
+  }
+
+  goToProKycWeb(BuildContext context) async {
+    var uri = Uri.parse(url("pro"));
     await launchUrl(
       uri,
       mode: LaunchMode.inAppWebView,
