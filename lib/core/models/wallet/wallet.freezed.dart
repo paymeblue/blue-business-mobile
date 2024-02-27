@@ -21,7 +21,7 @@ Wallet _$WalletFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Wallet {
   int get id => throw _privateConstructorUsedError;
-  int get balance => throw _privateConstructorUsedError;
+  String get balance => throw _privateConstructorUsedError;
   String get walletCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $WalletCopyWith<$Res> {
   factory $WalletCopyWith(Wallet value, $Res Function(Wallet) then) =
       _$WalletCopyWithImpl<$Res, Wallet>;
   @useResult
-  $Res call({int id, int balance, String walletCode});
+  $Res call({int id, String balance, String walletCode});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$WalletCopyWithImpl<$Res, $Val extends Wallet>
       balance: null == balance
           ? _value.balance
           : balance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       walletCode: null == walletCode
           ? _value.walletCode
           : walletCode // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$WalletImplCopyWith<$Res> implements $WalletCopyWith<$Res> {
       __$$WalletImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, int balance, String walletCode});
+  $Res call({int id, String balance, String walletCode});
 }
 
 /// @nodoc
@@ -104,7 +104,7 @@ class __$$WalletImplCopyWithImpl<$Res>
       balance: null == balance
           ? _value.balance
           : balance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       walletCode: null == walletCode
           ? _value.walletCode
           : walletCode // ignore: cast_nullable_to_non_nullable
@@ -125,7 +125,7 @@ class _$WalletImpl implements _Wallet {
   @override
   final int id;
   @override
-  final int balance;
+  final String balance;
   @override
   final String walletCode;
 
@@ -166,7 +166,7 @@ class _$WalletImpl implements _Wallet {
 abstract class _Wallet implements Wallet {
   const factory _Wallet(
       {required final int id,
-      required final int balance,
+      required final String balance,
       required final String walletCode}) = _$WalletImpl;
 
   factory _Wallet.fromJson(Map<String, dynamic> json) = _$WalletImpl.fromJson;
@@ -174,7 +174,7 @@ abstract class _Wallet implements Wallet {
   @override
   int get id;
   @override
-  int get balance;
+  String get balance;
   @override
   String get walletCode;
   @override

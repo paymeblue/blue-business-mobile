@@ -7,7 +7,7 @@ part 'wallet.g.dart';
 class Wallet with _$Wallet {
   const factory Wallet({
     required int id,
-    required int balance,
+    required String balance,
     required String walletCode,
   }) = _Wallet;
 

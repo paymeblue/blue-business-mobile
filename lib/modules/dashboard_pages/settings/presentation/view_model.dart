@@ -95,7 +95,7 @@ class SettingsViewModel extends BaseViewModel {
     if (resp.status == "success") {
       locator<AppStateValues>().currentUser = locator<AppStateValues>()
           .currentUser!
-          .copyWith(displayPic: resp.data!.user.displayPic);
+          .copyWith(displayPic: resp.data!.displayPic);
       notifyListeners();
     } else {
       AppNotification.error(message: resp.message);

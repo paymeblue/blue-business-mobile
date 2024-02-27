@@ -22,7 +22,7 @@ UploadAvatarResponse _$UploadAvatarResponseFromJson(Map<String, dynamic> json) {
 mixin _$UploadAvatarResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  UploadAvatarResponseData? get data => throw _privateConstructorUsedError;
+  UserImage? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +36,9 @@ abstract class $UploadAvatarResponseCopyWith<$Res> {
           $Res Function(UploadAvatarResponse) then) =
       _$UploadAvatarResponseCopyWithImpl<$Res, UploadAvatarResponse>;
   @useResult
-  $Res call({String status, String? message, UploadAvatarResponseData? data});
+  $Res call({String status, String? message, UserImage? data});
 
-  $UploadAvatarResponseDataCopyWith<$Res>? get data;
+  $UserImageCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -71,18 +71,18 @@ class _$UploadAvatarResponseCopyWithImpl<$Res,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as UploadAvatarResponseData?,
+              as UserImage?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UploadAvatarResponseDataCopyWith<$Res>? get data {
+  $UserImageCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
-    return $UploadAvatarResponseDataCopyWith<$Res>(_value.data!, (value) {
+    return $UserImageCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -96,10 +96,10 @@ abstract class _$$UploadAvatarResponseImplCopyWith<$Res>
       __$$UploadAvatarResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, UploadAvatarResponseData? data});
+  $Res call({String status, String? message, UserImage? data});
 
   @override
-  $UploadAvatarResponseDataCopyWith<$Res>? get data;
+  $UserImageCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -129,7 +129,7 @@ class __$$UploadAvatarResponseImplCopyWithImpl<$Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as UploadAvatarResponseData?,
+              as UserImage?,
     ));
   }
 }
@@ -149,7 +149,7 @@ class _$UploadAvatarResponseImpl implements _UploadAvatarResponse {
   @override
   final String? message;
   @override
-  final UploadAvatarResponseData? data;
+  final UserImage? data;
 
   @override
   String toString() {
@@ -190,7 +190,7 @@ abstract class _UploadAvatarResponse implements UploadAvatarResponse {
   const factory _UploadAvatarResponse(
       {final String status,
       final String? message,
-      final UploadAvatarResponseData? data}) = _$UploadAvatarResponseImpl;
+      final UserImage? data}) = _$UploadAvatarResponseImpl;
 
   factory _UploadAvatarResponse.fromJson(Map<String, dynamic> json) =
       _$UploadAvatarResponseImpl.fromJson;
@@ -200,7 +200,7 @@ abstract class _UploadAvatarResponse implements UploadAvatarResponse {
   @override
   String? get message;
   @override
-  UploadAvatarResponseData? get data;
+  UserImage? get data;
   @override
   @JsonKey(ignore: true)
   _$$UploadAvatarResponseImplCopyWith<_$UploadAvatarResponseImpl>

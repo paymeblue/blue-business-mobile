@@ -13,8 +13,7 @@ _$UploadAvatarResponseImpl _$$UploadAvatarResponseImplFromJson(
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
-          : UploadAvatarResponseData.fromJson(
-              json['data'] as Map<String, dynamic>),
+          : UserImage.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$UploadAvatarResponseImplToJson(
