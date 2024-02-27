@@ -27,4 +27,7 @@
     <color name="inputField">#F8F8FA</color>
     <color name="proBg">#EDFFFD</color>
     <color name="interMediateBg">#F2F0FF</color>
+    <color name="neutralTextGrey">#615E83</color>
+    <color name="neutralColor400">#9291A5</color>
+    <color name="neutralColorBlack">#1E1B39</color>
 </resources>

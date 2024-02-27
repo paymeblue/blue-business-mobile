@@ -85,6 +85,15 @@ class AppColors {
   /// Color: #E5E6E8
   static const Color midGrey = Color(0xFFE5E6E8);
 
+  /// Color: #9291A5
+  static const Color neutralColor400 = Color(0xFF9291A5);
+
+  /// Color: #1E1B39
+  static const Color neutralColorBlack = Color(0xFF1E1B39);
+
+  /// Color: #615E83
+  static const Color neutralTextGrey = Color(0xFF615E83);
+
   /// Color: #FEFEFE
   static const Color offWhite = Color(0xFFFEFEFE);
 

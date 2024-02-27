@@ -1,8 +1,12 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
+import 'package:blue_business/widgets/charts/pie_chart.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
+import 'package:fl_chart/fl_chart.dart' as fl;
 import 'package:flutter/material.dart';
 
 import 'view_model.dart';
@@ -40,11 +44,199 @@ class _InsightsViewState extends State<InsightsView> {
                   tabs: model.types,
                   onChanged: model.onTypeChanged,
                 ),
+                25.verticalGap,
+                Expanded(
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
+                      salesStatsContainer(model),
+                      15.verticalGap,
+                      spendingStatsContainer(model),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
         );
       },
+    );
+  }
+
+  Widget salesStatsContainer(InsightsViewModel model) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+      decoration: BoxDecoration(
+          border: Border.all(color: AppColors.midGrey),
+          borderRadius: BorderRadius.circular(7)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Sales Statistics",
+            style: AppTextStyles.smallText.copyWith(
+              color: AppColors.neutralColor400,
+            ),
+          ),
+          Text(
+            "${model.selectedType} Sales",
+            style: AppTextStyles.smallText.copyWith(
+                color: AppColors.neutralColorBlack,
+                fontSize: 14,
+                fontWeight: FontWeight.w500),
+          ),
+          const Divider(
+            color: AppColors.grey,
+          ),
+          12.verticalGap,
+          pieChart(),
+          6.verticalGap,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [...posKey(), 12.horizontalGap, ...mobileKey()],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget lineChart(InsightsViewModel model) {
+    return fl.LineChart(
+      fl.LineChartData(),
+    );
+  }
+
+  Widget spendingStatsContainer(InsightsViewModel model) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+      decoration: BoxDecoration(
+          border: Border.all(color: AppColors.midGrey),
+          borderRadius: BorderRadius.circular(7)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Spending Statistics",
+            style: AppTextStyles.smallText.copyWith(
+              color: AppColors.neutralColor400,
+            ),
+          ),
+          Text(
+            "${model.selectedType} Spending",
+            style: AppTextStyles.smallText.copyWith(
+                color: AppColors.neutralColorBlack,
+                fontSize: 14,
+                fontWeight: FontWeight.w500),
+          ),
+          const Divider(
+            color: AppColors.grey,
+          ),
+          12.verticalGap,
+          pieChart(),
+          6.verticalGap,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [...posKey(), 12.horizontalGap, ...mobileKey()],
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> posKey() {
+    return [
+      Container(
+        height: 9,
+        width: 9,
+        decoration: const BoxDecoration(
+          color: AppColors.primary,
+          shape: BoxShape.circle,
+        ),
+      ),
+      4.horizontalGap,
+      Text(
+        "Point of Sales",
+        style: AppTextStyles.smallText.copyWith(
+          color: AppColors.neutralColor400,
+        ),
+      ),
+      4.horizontalGap,
+      Text(
+        "65%",
+        style: AppTextStyles.smallText.copyWith(
+            color: AppColors.neutralColorBlack, fontWeight: FontWeight.w500),
+      ),
+    ];
+  }
+
+  List<Widget> mobileKey() {
+    return [
+      Container(
+        height: 9,
+        width: 9,
+        decoration: const BoxDecoration(
+          color: AppColors.bgGrey,
+          shape: BoxShape.circle,
+        ),
+      ),
+      4.horizontalGap,
+      Text(
+        "Mobile app",
+        style: AppTextStyles.smallText.copyWith(
+          color: AppColors.neutralColor400,
+        ),
+      ),
+      4.horizontalGap,
+      Text(
+        "35%",
+        style: AppTextStyles.smallText.copyWith(
+            color: AppColors.neutralColorBlack, fontWeight: FontWeight.w500),
+      ),
+    ];
+  }
+
+  Center pieChart() {
+    return Center(
+      child: PieChart(
+        strokeWidth: 18,
+        data: const [
+          PieChartData(
+            AppColors.primary,
+            .65 * 85,
+          ),
+          PieChartData(
+            AppColors.bgGrey,
+            .35 * 85,
+          ),
+          PieChartData(Colors.transparent, 15)
+        ],
+        radius: 108,
+        child: totalSalesTextColumn(),
+      ),
+    );
+  }
+
+  Widget totalSalesTextColumn() {
+    return SizedBox(
+      width: 130,
+      child: FittedBox(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Total Expenses",
+              style: AppTextStyles.smallText.copyWith(
+                color: AppColors.neutralTextGrey,
+                fontSize: 12,
+              ),
+            ),
+            Text(
+              "${nairaSymbol()}230,000.00",
+              style: AppTextStyles.header.copyWith(fontSize: 20),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -8,9 +8,7 @@ import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
-import 'package:blue_business/firebase_options.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -114,8 +112,8 @@ class FirebaseConfig {
 
   static init() async {
     AppStateValues stateValues = locator<AppStateValues>();
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
+    // await Firebase.initializeApp(
+    //     options: DefaultFirebaseOptions.currentPlatform);
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
     await messaging.requestPermission();
