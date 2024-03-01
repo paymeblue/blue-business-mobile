@@ -22,7 +22,7 @@ TopupResponse _$TopupResponseFromJson(Map<String, dynamic> json) {
 mixin _$TopupResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  TopupAccountData? get data => throw _privateConstructorUsedError;
+  TopupAccount? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +36,9 @@ abstract class $TopupResponseCopyWith<$Res> {
           TopupResponse value, $Res Function(TopupResponse) then) =
       _$TopupResponseCopyWithImpl<$Res, TopupResponse>;
   @useResult
-  $Res call({String status, String? message, TopupAccountData? data});
+  $Res call({String status, String? message, TopupAccount? data});
 
-  $TopupAccountDataCopyWith<$Res>? get data;
+  $TopupAccountCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -70,18 +70,18 @@ class _$TopupResponseCopyWithImpl<$Res, $Val extends TopupResponse>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as TopupAccountData?,
+              as TopupAccount?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TopupAccountDataCopyWith<$Res>? get data {
+  $TopupAccountCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
-    return $TopupAccountDataCopyWith<$Res>(_value.data!, (value) {
+    return $TopupAccountCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -95,10 +95,10 @@ abstract class _$$TopupResponseImplCopyWith<$Res>
       __$$TopupResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, TopupAccountData? data});
+  $Res call({String status, String? message, TopupAccount? data});
 
   @override
-  $TopupAccountDataCopyWith<$Res>? get data;
+  $TopupAccountCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -128,7 +128,7 @@ class __$$TopupResponseImplCopyWithImpl<$Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as TopupAccountData?,
+              as TopupAccount?,
     ));
   }
 }
@@ -147,7 +147,7 @@ class _$TopupResponseImpl implements _TopupResponse {
   @override
   final String? message;
   @override
-  final TopupAccountData? data;
+  final TopupAccount? data;
 
   @override
   String toString() {
@@ -186,7 +186,7 @@ abstract class _TopupResponse implements TopupResponse {
   const factory _TopupResponse(
       {final String status,
       final String? message,
-      final TopupAccountData? data}) = _$TopupResponseImpl;
+      final TopupAccount? data}) = _$TopupResponseImpl;
 
   factory _TopupResponse.fromJson(Map<String, dynamic> json) =
       _$TopupResponseImpl.fromJson;
@@ -196,7 +196,7 @@ abstract class _TopupResponse implements TopupResponse {
   @override
   String? get message;
   @override
-  TopupAccountData? get data;
+  TopupAccount? get data;
   @override
   @JsonKey(ignore: true)
   _$$TopupResponseImplCopyWith<_$TopupResponseImpl> get copyWith =>

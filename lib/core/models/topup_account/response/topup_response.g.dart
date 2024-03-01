@@ -12,7 +12,7 @@ _$TopupResponseImpl _$$TopupResponseImplFromJson(Map<String, dynamic> json) =>
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
-          : TopupAccountData.fromJson(json['data'] as Map<String, dynamic>),
+          : TopupAccount.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TopupResponseImplToJson(_$TopupResponseImpl instance) {

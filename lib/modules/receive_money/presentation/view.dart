@@ -1,6 +1,8 @@
+import 'package:barcode/barcode.dart';
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/gen/fonts.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
@@ -10,6 +12,7 @@ import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:shimmer/shimmer.dart';
@@ -39,7 +42,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
           ),
           body: SingleChildScrollView(
             child: SizedBox(
-              height: model.size.height,
+              height: model.size.height + 50,
               width: model.size.width,
               child: Column(
                 children: [
@@ -49,6 +52,8 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
                       children: [
                         title(),
                         35.verticalGap,
+                        barcodeImage(),
+                        25.verticalGap,
                         qrImageContainer(model),
                         36.verticalGap,
                         Padding(
@@ -329,6 +334,39 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
           ),
           size: 120),
     );
+  }
+
+  Shimmer barcodeImage() {
+    return Shimmer.fromColors(
+      loop: 2,
+      direction: ShimmerDirection.ltr,
+      period: const Duration(milliseconds: 500),
+      baseColor: AppColors.primary,
+      highlightColor: AppColors.paleBlue,
+      child: buildBarcode(
+          Barcode.code128(), locator<AppStateValues>().wallet!.walletCode),
+    );
+  }
+
+  Widget buildBarcode(
+    Barcode bc,
+    String data, {
+    String? filename,
+    double? width,
+    double? height,
+    double? fontHeight,
+  }) {
+    /// Create the Barcode
+    final svg = bc.toSvg(
+      data,
+      width: width ?? 200,
+      height: height ?? 80,
+      fontFamily: AppFonts.satoshi,
+      color: AppColors.primary.value,
+      fontHeight: fontHeight,
+      drawText: false,
+    );
+    return SvgPicture.string(svg);
   }
 
   Shimmer qrLoadingShimmer() {

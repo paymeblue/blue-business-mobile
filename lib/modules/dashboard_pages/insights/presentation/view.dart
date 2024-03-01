@@ -3,10 +3,10 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/modules/dashboard_pages/insights/widgets/line_chart.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/charts/pie_chart.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
-import 'package:fl_chart/fl_chart.dart' as fl;
 import 'package:flutter/material.dart';
 
 import 'view_model.dart';
@@ -89,7 +89,7 @@ class _InsightsViewState extends State<InsightsView> {
             color: AppColors.grey,
           ),
           12.verticalGap,
-          pieChart(),
+          lineChart(model),
           6.verticalGap,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -101,9 +101,7 @@ class _InsightsViewState extends State<InsightsView> {
   }
 
   Widget lineChart(InsightsViewModel model) {
-    return fl.LineChart(
-      fl.LineChartData(),
-    );
+    return const LineChartSample2();
   }
 
   Widget spendingStatsContainer(InsightsViewModel model) {

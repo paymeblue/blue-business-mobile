@@ -90,7 +90,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     TopupResponse resp = await DashService().getTopupAccount();
 
     if (resp.status == "success") {
-      locator<AppStateValues>().account = resp.data!.account;
+      locator<AppStateValues>().account = resp.data!;
     } else {}
     isAccountLoading = false;
   }

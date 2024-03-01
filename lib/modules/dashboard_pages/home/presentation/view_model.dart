@@ -173,7 +173,7 @@ class HomeViewModel extends BaseViewModel {
     });
 
     if (resp.status == "success") {
-      locator<AppStateValues>().account = resp.data!.account;
+      locator<AppStateValues>().account = resp.data!;
       BlueBottomSheet.topup();
     } else {
       AppNotification.error(message: resp.message);
