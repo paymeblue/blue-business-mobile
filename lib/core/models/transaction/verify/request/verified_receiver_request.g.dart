@@ -9,6 +9,7 @@ part of 'verified_receiver_request.dart';
 _$VerifiedReceiverRequestImpl _$$VerifiedReceiverRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$VerifiedReceiverRequestImpl(
+      transactionId: json['transaction_id'] as int,
       receiver: json['receiver'] as String,
       receiverName: json['receiver_name'] as String?,
     );
@@ -16,6 +17,7 @@ _$VerifiedReceiverRequestImpl _$$VerifiedReceiverRequestImplFromJson(
 Map<String, dynamic> _$$VerifiedReceiverRequestImplToJson(
     _$VerifiedReceiverRequestImpl instance) {
   final val = <String, dynamic>{
+    'transaction_id': instance.transactionId,
     'receiver': instance.receiver,
   };
 

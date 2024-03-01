@@ -242,22 +242,20 @@ class _TransactionService implements TransactionService {
 
   @override
   Future<VerifiedReceiverResponse> verifyReceiver(
-    int id,
-    VerifiedReceiverRequest request,
-  ) async {
+      VerifiedReceiverRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<VerifiedReceiverResponse>(Options(
-      method: 'POST',
+      method: 'PATCH',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/transactions/${id}/verify',
+              '/transactions/verify',
               queryParameters: queryParameters,
               data: _data,
             )

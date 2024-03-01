@@ -76,9 +76,8 @@ abstract class TransactionService {
   Future<InitiateTransactionResponse> initiateTransaction(
       @Body() InitiateTransactionRequest request);
 
-  @POST("/transactions/{id}/verify")
+  @PATCH("/transactions/verify")
   Future<VerifiedReceiverResponse> verifyReceiver(
-    @Path("id") int id,
     @Body() VerifiedReceiverRequest request,
   );
 

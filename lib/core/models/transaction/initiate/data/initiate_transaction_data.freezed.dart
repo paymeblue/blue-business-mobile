@@ -22,7 +22,6 @@ InitiateTransactionData _$InitiateTransactionDataFromJson(
 /// @nodoc
 mixin _$InitiateTransactionData {
   int get id => throw _privateConstructorUsedError;
-  int get transactionId => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
@@ -39,12 +38,7 @@ abstract class $InitiateTransactionDataCopyWith<$Res> {
           $Res Function(InitiateTransactionData) then) =
       _$InitiateTransactionDataCopyWithImpl<$Res, InitiateTransactionData>;
   @useResult
-  $Res call(
-      {int id,
-      int transactionId,
-      String amount,
-      String status,
-      String createdAt});
+  $Res call({int id, String amount, String status, String createdAt});
 }
 
 /// @nodoc
@@ -62,7 +56,6 @@ class _$InitiateTransactionDataCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = null,
-    Object? transactionId = null,
     Object? amount = null,
     Object? status = null,
     Object? createdAt = null,
@@ -71,10 +64,6 @@ class _$InitiateTransactionDataCopyWithImpl<$Res,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      transactionId: null == transactionId
-          ? _value.transactionId
-          : transactionId // ignore: cast_nullable_to_non_nullable
               as int,
       amount: null == amount
           ? _value.amount
@@ -101,12 +90,7 @@ abstract class _$$InitiateTransactionDataImplCopyWith<$Res>
       __$$InitiateTransactionDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id,
-      int transactionId,
-      String amount,
-      String status,
-      String createdAt});
+  $Res call({int id, String amount, String status, String createdAt});
 }
 
 /// @nodoc
@@ -123,7 +107,6 @@ class __$$InitiateTransactionDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? transactionId = null,
     Object? amount = null,
     Object? status = null,
     Object? createdAt = null,
@@ -132,10 +115,6 @@ class __$$InitiateTransactionDataImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      transactionId: null == transactionId
-          ? _value.transactionId
-          : transactionId // ignore: cast_nullable_to_non_nullable
               as int,
       amount: null == amount
           ? _value.amount
@@ -158,7 +137,6 @@ class __$$InitiateTransactionDataImplCopyWithImpl<$Res>
 class _$InitiateTransactionDataImpl implements _InitiateTransactionData {
   const _$InitiateTransactionDataImpl(
       {required this.id,
-      required this.transactionId,
       required this.amount,
       required this.status,
       required this.createdAt});
@@ -169,8 +147,6 @@ class _$InitiateTransactionDataImpl implements _InitiateTransactionData {
   @override
   final int id;
   @override
-  final int transactionId;
-  @override
   final String amount;
   @override
   final String status;
@@ -179,7 +155,7 @@ class _$InitiateTransactionDataImpl implements _InitiateTransactionData {
 
   @override
   String toString() {
-    return 'InitiateTransactionData(id: $id, transactionId: $transactionId, amount: $amount, status: $status, createdAt: $createdAt)';
+    return 'InitiateTransactionData(id: $id, amount: $amount, status: $status, createdAt: $createdAt)';
   }
 
   @override
@@ -188,8 +164,6 @@ class _$InitiateTransactionDataImpl implements _InitiateTransactionData {
         (other.runtimeType == runtimeType &&
             other is _$InitiateTransactionDataImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.transactionId, transactionId) ||
-                other.transactionId == transactionId) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.createdAt, createdAt) ||
@@ -198,8 +172,7 @@ class _$InitiateTransactionDataImpl implements _InitiateTransactionData {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, transactionId, amount, status, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, amount, status, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -219,7 +192,6 @@ class _$InitiateTransactionDataImpl implements _InitiateTransactionData {
 abstract class _InitiateTransactionData implements InitiateTransactionData {
   const factory _InitiateTransactionData(
       {required final int id,
-      required final int transactionId,
       required final String amount,
       required final String status,
       required final String createdAt}) = _$InitiateTransactionDataImpl;
@@ -229,8 +201,6 @@ abstract class _InitiateTransactionData implements InitiateTransactionData {
 
   @override
   int get id;
-  @override
-  int get transactionId;
   @override
   String get amount;
   @override

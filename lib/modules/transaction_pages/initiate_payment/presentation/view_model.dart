@@ -86,7 +86,7 @@ class InitiatePaymentViewModel extends BaseViewModel {
           : descriptionController.text,
       paymentMode: paymentMode == "qr" ? "blue-user" : paymentMode,
     ));
-    if (resp.status == "success") {
+    if (resp.status != "success") {
       AppNotification.error(message: resp.message);
     }
     AppLoader.stop();

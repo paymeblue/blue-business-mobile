@@ -6,6 +6,7 @@ part 'verified_receiver_request.g.dart';
 @freezed
 class VerifiedReceiverRequest with _$VerifiedReceiverRequest {
   const factory VerifiedReceiverRequest({
+    required int transactionId,
     required String receiver,
     String? receiverName,
   }) = _VerifiedReceiverRequest;

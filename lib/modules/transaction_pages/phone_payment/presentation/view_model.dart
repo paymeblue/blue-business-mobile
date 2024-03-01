@@ -141,8 +141,7 @@ class PhonePaymentViewModel extends BaseViewModel {
     verify().then((value) {
       log(value.toString());
       if (value.status == "success") {
-        context.go(
-            "${RoutePaths.confirmPaymentPath}/phone/${data.transactionId}",
+        context.go("${RoutePaths.confirmPaymentPath}/phone/${data.id}",
             extra: value.data);
       } else {
         AppNotification.error(message: value.message);
@@ -155,11 +154,12 @@ class PhonePaymentViewModel extends BaseViewModel {
 
     VerifiedReceiverRequest request = VerifiedReceiverRequest(
       receiver: formatPhone(),
+      transactionId: data.id,
       receiverName: recipientController.text,
     );
 
     VerifiedReceiverResponse resp = await transactionService
-        .verifyReceiver(data.id, request)
+        .verifyReceiver(request)
         .onError((error, stackTrace) {
       return VerifiedReceiverResponse(
           message: AppErrorHandler.getErrorMessage(error));

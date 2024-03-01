@@ -13,7 +13,7 @@ _$ChatResponseDataImpl _$$ChatResponseDataImplFromJson(
       lastName: json['last_name'] as String,
       displayPic: json['display_pic'] as String?,
       walletCode: json['wallet_code'] as String,
-      fcmToken: json['fcmToken'] as String,
+      fcmToken: json['fcm_token'] as String,
     );
 
 Map<String, dynamic> _$$ChatResponseDataImplToJson(
@@ -31,6 +31,6 @@ Map<String, dynamic> _$$ChatResponseDataImplToJson(
 
   writeNotNull('display_pic', instance.displayPic);
   val['wallet_code'] = instance.walletCode;
-  val['fcmToken'] = instance.fcmToken;
+  val['fcm_token'] = instance.fcmToken;
   return val;
 }
