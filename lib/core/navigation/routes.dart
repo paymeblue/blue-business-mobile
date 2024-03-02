@@ -4,7 +4,7 @@ import 'package:blue_business/core/models/security_question/get/question/securit
 import 'package:blue_business/core/models/signup_profile/request/signup_profile_request.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
-import 'package:blue_business/core/models/transaction/verify/data/verified_receiver_data.dart';
+import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/navigation/screens.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -504,11 +504,11 @@ GoRouter router = GoRouter(
           builder: (context, state) {
             log(state.matchedLocation.toString());
             int? amount;
-            VerifiedReceiverData? data;
+            VerifiedReceiver? data;
             if (state.pathParameters["action"] == "withdraw") {
               amount = state.extra as int;
             } else {
-              data = state.extra as VerifiedReceiverData;
+              data = state.extra as VerifiedReceiver;
             }
             return ConfirmPaymentView(
               mode: state.pathParameters["action"] as String,
@@ -524,11 +524,11 @@ GoRouter router = GoRouter(
           builder: (context, state) {
             log(state.matchedLocation.toString());
             int? amount;
-            VerifiedReceiverData? data;
+            VerifiedReceiver? data;
             if (state.pathParameters["action"] == "withdraw") {
               amount = state.extra as int;
             } else {
-              data = state.extra as VerifiedReceiverData;
+              data = state.extra as VerifiedReceiver;
             }
             return ConfirmTransactionPinView(
               mode: state.pathParameters["action"] as String,

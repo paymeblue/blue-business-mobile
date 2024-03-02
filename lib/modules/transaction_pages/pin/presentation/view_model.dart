@@ -10,7 +10,7 @@ import 'package:blue_business/core/models/transaction/pay/credit/request/credit_
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
 import 'package:blue_business/core/models/transaction/pay/response/pay_response.dart';
 import 'package:blue_business/core/models/transaction/pay/withdraw/request/withdraw_request.dart';
-import 'package:blue_business/core/models/transaction/verify/data/verified_receiver_data.dart';
+import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -40,7 +40,7 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
   }
 
   onButtonTap(BuildContext context, String mode, int? amount,
-      String? transactionId, VerifiedReceiverData? data) async {
+      String? transactionId, VerifiedReceiver? data) async {
     if (mode == "withdraw") {
       withdraw(amount!, context).then((value) {
         if (value != null) {
@@ -65,7 +65,7 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
   }
 
   completeWithBiometrics(BuildContext context, String mode, int? amount,
-      String? transactionId, VerifiedReceiverData? data) async {
+      String? transactionId, VerifiedReceiver? data) async {
     bool canContinue = await Biometrics.biometrics();
     if (canContinue) {
       pin = StorageValues.pin;
@@ -86,7 +86,7 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
       return PayResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
-    if (resp.status == "success") {
+    if (resp.status != "success") {
       AppNotification.error(message: resp.message);
     }
 
@@ -95,8 +95,8 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
     return resp.data;
   }
 
-  Future<PayData?> completeTransaction(String transactionId,
-      BuildContext context, VerifiedReceiverData data) async {
+  Future<PayData?> completeTransaction(
+      String transactionId, BuildContext context, VerifiedReceiver data) async {
     AppLoader.start();
 
     CreditRequest request =
@@ -107,11 +107,12 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
       return PayResponse(message: AppErrorHandler.getErrorMessage(error));
     });
     if (!locator<AppStateValues>().hasSavedBeneficiary &&
-        resp.status == "success") {
+        resp.status == "success" &&
+        data.walletCode != null) {
       await saveBeneficiary(data);
     }
 
-    if (resp.status == "success") {
+    if (resp.status != "success") {
       AppNotification.error(message: resp.message);
     }
     AppLoader.stop();
@@ -142,9 +143,9 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
     StorageHelpers.setVal(StorageKeys.pinKey, pin);
   }
 
-  saveBeneficiary(VerifiedReceiverData data) async {
+  saveBeneficiary(VerifiedReceiver data) async {
     SetBeneficiaryRequest request =
-        SetBeneficiaryRequest(identifier: data.receiver.walletCode!);
+        SetBeneficiaryRequest(identifier: data.walletCode!);
 
     SetBeneficiaryResponse resp = await transactionService
         .addBeneficiary(request)

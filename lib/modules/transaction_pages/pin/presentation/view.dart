@@ -1,7 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
-import 'package:blue_business/core/models/transaction/verify/data/verified_receiver_data.dart';
+import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
@@ -15,7 +15,7 @@ class ConfirmTransactionPinView extends StatefulWidget {
   final int? amount;
   final String mode;
   final String? transactionId;
-  final VerifiedReceiverData? data;
+  final VerifiedReceiver? data;
   const ConfirmTransactionPinView({
     super.key,
     this.id,

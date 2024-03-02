@@ -309,7 +309,7 @@ class _TransactionService implements TransactionService {
     )
             .compose(
               _dio.options,
-              '/transactions/credit',
+              '/transactions/send-fund',
               queryParameters: queryParameters,
               data: _data,
             )

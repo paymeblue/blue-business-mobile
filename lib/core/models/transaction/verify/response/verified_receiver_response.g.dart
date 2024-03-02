@@ -13,7 +13,7 @@ _$VerifiedReceiverResponseImpl _$$VerifiedReceiverResponseImplFromJson(
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
-          : VerifiedReceiverData.fromJson(json['data'] as Map<String, dynamic>),
+          : VerifiedReceiver.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$VerifiedReceiverResponseImplToJson(

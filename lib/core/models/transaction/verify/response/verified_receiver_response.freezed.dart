@@ -23,7 +23,7 @@ VerifiedReceiverResponse _$VerifiedReceiverResponseFromJson(
 mixin _$VerifiedReceiverResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  VerifiedReceiverData? get data => throw _privateConstructorUsedError;
+  VerifiedReceiver? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,9 +37,9 @@ abstract class $VerifiedReceiverResponseCopyWith<$Res> {
           $Res Function(VerifiedReceiverResponse) then) =
       _$VerifiedReceiverResponseCopyWithImpl<$Res, VerifiedReceiverResponse>;
   @useResult
-  $Res call({String status, String? message, VerifiedReceiverData? data});
+  $Res call({String status, String? message, VerifiedReceiver? data});
 
-  $VerifiedReceiverDataCopyWith<$Res>? get data;
+  $VerifiedReceiverCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -72,18 +72,18 @@ class _$VerifiedReceiverResponseCopyWithImpl<$Res,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as VerifiedReceiverData?,
+              as VerifiedReceiver?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $VerifiedReceiverDataCopyWith<$Res>? get data {
+  $VerifiedReceiverCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
-    return $VerifiedReceiverDataCopyWith<$Res>(_value.data!, (value) {
+    return $VerifiedReceiverCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -98,10 +98,10 @@ abstract class _$$VerifiedReceiverResponseImplCopyWith<$Res>
       __$$VerifiedReceiverResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, VerifiedReceiverData? data});
+  $Res call({String status, String? message, VerifiedReceiver? data});
 
   @override
-  $VerifiedReceiverDataCopyWith<$Res>? get data;
+  $VerifiedReceiverCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -133,7 +133,7 @@ class __$$VerifiedReceiverResponseImplCopyWithImpl<$Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as VerifiedReceiverData?,
+              as VerifiedReceiver?,
     ));
   }
 }
@@ -153,7 +153,7 @@ class _$VerifiedReceiverResponseImpl implements _VerifiedReceiverResponse {
   @override
   final String? message;
   @override
-  final VerifiedReceiverData? data;
+  final VerifiedReceiver? data;
 
   @override
   String toString() {
@@ -193,7 +193,7 @@ abstract class _VerifiedReceiverResponse implements VerifiedReceiverResponse {
   const factory _VerifiedReceiverResponse(
       {final String status,
       final String? message,
-      final VerifiedReceiverData? data}) = _$VerifiedReceiverResponseImpl;
+      final VerifiedReceiver? data}) = _$VerifiedReceiverResponseImpl;
 
   factory _VerifiedReceiverResponse.fromJson(Map<String, dynamic> json) =
       _$VerifiedReceiverResponseImpl.fromJson;
@@ -203,7 +203,7 @@ abstract class _VerifiedReceiverResponse implements VerifiedReceiverResponse {
   @override
   String? get message;
   @override
-  VerifiedReceiverData? get data;
+  VerifiedReceiver? get data;
   @override
   @JsonKey(ignore: true)
   _$$VerifiedReceiverResponseImplCopyWith<_$VerifiedReceiverResponseImpl>

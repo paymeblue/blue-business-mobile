@@ -2,7 +2,7 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
-import 'package:blue_business/core/models/transaction/verify/data/verified_receiver_data.dart';
+import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
@@ -17,7 +17,7 @@ class ConfirmPaymentView extends StatefulWidget {
   final String mode;
   final int? amount;
   final String? transactionId;
-  final VerifiedReceiverData? data;
+  final VerifiedReceiver? data;
   const ConfirmPaymentView({
     super.key,
     required this.mode,
@@ -53,12 +53,12 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
             4.verticalGap,
             recipientContainer(model),
             8.verticalGap,
-            if (widget.data != null && widget.data!.receiver.walletCode != null)
+            if (widget.data != null && widget.data!.walletCode != null)
               saveBeneficiaryRow(model),
             4.verticalGap,
             InfoContainer(
               text:
-                  "You will be charged ${nairaSymbol()}${widget.data != null ? (widget.data!.receiver.charge.toDouble()).toStringAsFixed(2) : "20.00"} for this ${tText()}",
+                  "You will be charged ${nairaSymbol()}${widget.data != null ? (widget.data!.charge.toDouble()).toStringAsFixed(2) : "20.00"} for this ${tText()}",
             ),
             const Spacer(),
             AppButton.primary(
@@ -111,10 +111,9 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          widget.data!.receiver.receiverName,
+          widget.data!.receiverName,
           style: AppTextStyles.header.copyWith(fontSize: 15.5),
         ),
-        4.verticalGap,
         Text(
           modeSubString(),
           style: AppTextStyles.smallText
@@ -186,14 +185,14 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
   List<Widget> paymentTitleAndSubtitle() {
     return [
       Text(
-        "Send ${nairaSymbol()}${double.parse(widget.data!.receiver.amount).toStringAsFixed(2)}",
+        "Send ${nairaSymbol()}${double.parse(widget.data!.amount).toStringAsFixed(2)}",
         style: AppTextStyles.header,
       ),
       8.verticalGap,
       SizedBox(
         width: 330,
         child: Text(
-          "You are about to send ${nairaSymbol()}${double.parse(widget.data!.receiver.amount).toStringAsFixed(2)} to the following ${modeString()}.",
+          "You are about to send ${nairaSymbol()}${double.parse(widget.data!.amount).toStringAsFixed(2)} to the following ${modeString()}.",
           style: AppTextStyles.subHeader,
           textAlign: TextAlign.start,
         ),
@@ -216,10 +215,10 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
       case "withdraw":
         return locator<AppStateValues>().withdrawalAccount!.accountNumber;
       case "phone":
-        return "+${widget.data!.receiver.phone}";
+        return widget.data!.phone;
       case "blue-user":
       default:
-        return widget.data!.receiver.walletCode!;
+        return widget.data!.walletCode!;
     }
   }
 
@@ -241,7 +240,7 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
           decoration: const BoxDecoration(
               shape: BoxShape.circle, color: AppColors.primary),
           child: Text(
-            widget.data!.receiver.receiverName[0],
+            widget.data!.receiverName[0],
             style: AppTextStyles.header
                 .copyWith(color: AppColors.white, fontSize: 18.5),
           ),

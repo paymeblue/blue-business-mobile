@@ -28,7 +28,7 @@ class DioConfig {
       requestBody: true,
       requestHeader: false,
       responseBody: true,
-      responseHeader: false,
+      responseHeader: true,
     ));
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
