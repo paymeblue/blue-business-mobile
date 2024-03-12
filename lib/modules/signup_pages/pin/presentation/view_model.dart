@@ -149,7 +149,7 @@ class PinViewModel extends BaseViewModel {
   }
 
   saveTokens(Token token) {
-    locator<AppStateValues>().accessToken = token.accessToken;
+    AppConstants.accessToken = token.accessToken;
     locator<AppStateValues>().refreshToken = token.refreshToken;
   }
 

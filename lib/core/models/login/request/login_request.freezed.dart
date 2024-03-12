@@ -21,7 +21,6 @@ LoginRequest _$LoginRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$LoginRequest {
   String? get fcmToken => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
@@ -37,7 +36,7 @@ abstract class $LoginRequestCopyWith<$Res> {
           LoginRequest value, $Res Function(LoginRequest) then) =
       _$LoginRequestCopyWithImpl<$Res, LoginRequest>;
   @useResult
-  $Res call({String? fcmToken, String type, String phone, String password});
+  $Res call({String? fcmToken, String phone, String password});
 }
 
 /// @nodoc
@@ -54,7 +53,6 @@ class _$LoginRequestCopyWithImpl<$Res, $Val extends LoginRequest>
   @override
   $Res call({
     Object? fcmToken = freezed,
-    Object? type = null,
     Object? phone = null,
     Object? password = null,
   }) {
@@ -63,10 +61,6 @@ class _$LoginRequestCopyWithImpl<$Res, $Val extends LoginRequest>
           ? _value.fcmToken
           : fcmToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -87,7 +81,7 @@ abstract class _$$LoginRequestImplCopyWith<$Res>
       __$$LoginRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? fcmToken, String type, String phone, String password});
+  $Res call({String? fcmToken, String phone, String password});
 }
 
 /// @nodoc
@@ -102,7 +96,6 @@ class __$$LoginRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? fcmToken = freezed,
-    Object? type = null,
     Object? phone = null,
     Object? password = null,
   }) {
@@ -111,10 +104,6 @@ class __$$LoginRequestImplCopyWithImpl<$Res>
           ? _value.fcmToken
           : fcmToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -131,10 +120,7 @@ class __$$LoginRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LoginRequestImpl implements _LoginRequest {
   const _$LoginRequestImpl(
-      {this.fcmToken,
-      this.type = "mobile",
-      required this.phone,
-      required this.password});
+      {this.fcmToken, required this.phone, required this.password});
 
   factory _$LoginRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginRequestImplFromJson(json);
@@ -142,16 +128,13 @@ class _$LoginRequestImpl implements _LoginRequest {
   @override
   final String? fcmToken;
   @override
-  @JsonKey()
-  final String type;
-  @override
   final String phone;
   @override
   final String password;
 
   @override
   String toString() {
-    return 'LoginRequest(fcmToken: $fcmToken, type: $type, phone: $phone, password: $password)';
+    return 'LoginRequest(fcmToken: $fcmToken, phone: $phone, password: $password)';
   }
 
   @override
@@ -161,7 +144,6 @@ class _$LoginRequestImpl implements _LoginRequest {
             other is _$LoginRequestImpl &&
             (identical(other.fcmToken, fcmToken) ||
                 other.fcmToken == fcmToken) &&
-            (identical(other.type, type) || other.type == type) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
                 other.password == password));
@@ -169,7 +151,7 @@ class _$LoginRequestImpl implements _LoginRequest {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, fcmToken, type, phone, password);
+  int get hashCode => Object.hash(runtimeType, fcmToken, phone, password);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +170,6 @@ class _$LoginRequestImpl implements _LoginRequest {
 abstract class _LoginRequest implements LoginRequest {
   const factory _LoginRequest(
       {final String? fcmToken,
-      final String type,
       required final String phone,
       required final String password}) = _$LoginRequestImpl;
 
@@ -197,8 +178,6 @@ abstract class _LoginRequest implements LoginRequest {
 
   @override
   String? get fcmToken;
-  @override
-  String get type;
   @override
   String get phone;
   @override

@@ -66,7 +66,7 @@ class FirebaseConfig {
         ChatResponseData sender =
             ChatResponseData.fromJson(message.data["sender"]);
 
-        if (stateValues.accessToken.isEmpty) {
+        if (AppConstants.accessToken.isEmpty) {
           context.go(RoutePaths.loginPath, extra: () {
             context.go(RoutePaths.chatDetailsPath,
                 extra: {"peer": sender, "unread": 0});

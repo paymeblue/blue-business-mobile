@@ -1,4 +1,3 @@
-import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
 
@@ -6,13 +5,12 @@ class DioConfig {
   DioConfig._();
 
   static Dio dio() {
-    AppStateValues stateValues = locator<AppStateValues>();
     Map<String, dynamic> headers = {
       "Accept": "*/*",
       "Content-Type": "application/json"
     };
-    if (stateValues.accessToken.isNotEmpty) {
-      headers["Authorization"] = "Bearer ${stateValues.accessToken}";
+    if (AppConstants.accessToken.isNotEmpty) {
+      headers["Authorization"] = "Bearer ${AppConstants.accessToken}";
     }
 
     Dio dio = Dio();

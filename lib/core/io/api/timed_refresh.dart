@@ -49,7 +49,7 @@ class RefreshTimer {
     });
 
     if (resp.status == "success") {
-      locator<AppStateValues>().accessToken = resp.data!.accessToken;
+      AppConstants.accessToken = resp.data!.accessToken;
       _refreshTimer = null;
     } else {
       if (_count <= 2) {

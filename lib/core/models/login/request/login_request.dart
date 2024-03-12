@@ -7,7 +7,6 @@ part 'login_request.g.dart';
 class LoginRequest with _$LoginRequest {
   const factory LoginRequest({
     String? fcmToken,
-    @Default("mobile") String type,
     required String phone,
     required String password,
   }) = _LoginRequest;

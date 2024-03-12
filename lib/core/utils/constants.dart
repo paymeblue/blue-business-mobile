@@ -8,7 +8,6 @@ import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 
 class AppStateValues extends ChangeNotifier {
-  String _accessToken = "";
   String _refreshToken = "";
   String _fcmToken = "";
   String _narration = "";
@@ -28,7 +27,6 @@ class AppStateValues extends ChangeNotifier {
   WithdrawalAccount? _withdrawalAccount;
   Object? _extra;
 
-  String get accessToken => _accessToken;
   String get refreshToken => _refreshToken;
   String get fcmToken => _fcmToken;
   String get narration => _narration;
@@ -49,11 +47,6 @@ class AppStateValues extends ChangeNotifier {
   Object? get extra => _extra;
 
   NotificationState? notificationState;
-
-  set accessToken(String v) {
-    _accessToken = v;
-    notifyListeners();
-  }
 
   set refreshToken(String v) {
     _refreshToken = v;
@@ -141,7 +134,7 @@ class AppStateValues extends ChangeNotifier {
   }
 
   clear() {
-    accessToken = "";
+    AppConstants.accessToken = "";
     refreshToken = "";
     narration = "";
     todos = [];
@@ -158,4 +151,10 @@ class AppStateValues extends ChangeNotifier {
     withdrawalAccount = null;
     extra = null;
   }
+}
+
+class AppConstants {
+  AppConstants._();
+
+  static String accessToken = "";
 }
