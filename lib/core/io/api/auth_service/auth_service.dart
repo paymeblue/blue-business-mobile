@@ -1,13 +1,13 @@
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/business_category/response/business_category_response.dart';
-import 'package:blue_business/core/models/business_profile/location/request/busines_location_request.dart';
-import 'package:blue_business/core/models/business_profile/name/request/busines_name_request.dart';
-import 'package:blue_business/core/models/business_profile/name/response/busines_name_response.dart';
-import 'package:blue_business/core/models/business_profile/size/request/busines_size_request.dart';
 import 'package:blue_business/core/models/change_password/request/change_password_request.dart';
 import 'package:blue_business/core/models/change_password/response/change_password_response.dart';
 import 'package:blue_business/core/models/change_pin/request/change_pin_request.dart';
 import 'package:blue_business/core/models/change_pin/response/change_pin_response.dart';
+import 'package:blue_business/core/models/create_business_profile/location/request/busines_location_request.dart';
+import 'package:blue_business/core/models/create_business_profile/name/request/busines_name_request.dart';
+import 'package:blue_business/core/models/create_business_profile/name/response/busines_name_response.dart';
+import 'package:blue_business/core/models/create_business_profile/size/request/busines_size_request.dart';
 import 'package:blue_business/core/models/delete_account/delete/request/delete_request.dart';
 import 'package:blue_business/core/models/delete_account/delete/response/delete_response.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/response/get_reason_response.dart';

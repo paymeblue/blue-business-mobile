@@ -11,12 +11,13 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       firstName: json['first_name'] as String,
       lastName: json['last_name'] as String,
       phone: json['phone'] as String,
+      businessProfile: BusinessProfile.fromJson(
+          json['business_profile'] as Map<String, dynamic>),
+      role: json['role'] as String? ?? "role",
       notificationStatus: json['notification_status'] as int? ?? 0,
       middleName: json['middle_name'] as String?,
       displayPic: json['display_pic'] as String?,
       type: json['type'] as String? ?? "business",
-      businessProfileLevel: json['business_profile_level'] as int? ?? 0,
-      businessProfileId: json['business_profile_id'] as int,
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) {
@@ -25,6 +26,8 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) {
     'first_name': instance.firstName,
     'last_name': instance.lastName,
     'phone': instance.phone,
+    'business_profile': instance.businessProfile,
+    'role': instance.role,
     'notification_status': instance.notificationStatus,
   };
 
@@ -37,7 +40,5 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) {
   writeNotNull('middle_name', instance.middleName);
   writeNotNull('display_pic', instance.displayPic);
   val['type'] = instance.type;
-  val['business_profile_level'] = instance.businessProfileLevel;
-  val['business_profile_id'] = instance.businessProfileId;
   return val;
 }

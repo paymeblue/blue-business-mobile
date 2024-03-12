@@ -1,7 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/models/business_profile/location/request/busines_location_request.dart';
-import 'package:blue_business/core/models/business_profile/name/response/busines_name_response.dart';
+import 'package:blue_business/core/models/create_business_profile/location/request/busines_location_request.dart';
+import 'package:blue_business/core/models/create_business_profile/name/response/busines_name_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/utils/app_loader.dart';

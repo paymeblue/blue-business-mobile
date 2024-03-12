@@ -1,4 +1,4 @@
-import 'package:blue_business/core/models/business_profile/name/data/busines_name_data.dart';
+import 'package:blue_business/core/models/create_business_profile/name/data/busines_name_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'busines_name_response.freezed.dart';

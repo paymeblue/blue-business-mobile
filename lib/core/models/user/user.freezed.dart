@@ -24,12 +24,12 @@ mixin _$User {
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  BusinessProfile get businessProfile => throw _privateConstructorUsedError;
+  String get role => throw _privateConstructorUsedError;
   int get notificationStatus => throw _privateConstructorUsedError;
   String? get middleName => throw _privateConstructorUsedError;
   String? get displayPic => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
-  int get businessProfileLevel => throw _privateConstructorUsedError;
-  int get businessProfileId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,12 +46,14 @@ abstract class $UserCopyWith<$Res> {
       String firstName,
       String lastName,
       String phone,
+      BusinessProfile businessProfile,
+      String role,
       int notificationStatus,
       String? middleName,
       String? displayPic,
-      String type,
-      int businessProfileLevel,
-      int businessProfileId});
+      String type});
+
+  $BusinessProfileCopyWith<$Res> get businessProfile;
 }
 
 /// @nodoc
@@ -71,12 +73,12 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? firstName = null,
     Object? lastName = null,
     Object? phone = null,
+    Object? businessProfile = null,
+    Object? role = null,
     Object? notificationStatus = null,
     Object? middleName = freezed,
     Object? displayPic = freezed,
     Object? type = null,
-    Object? businessProfileLevel = null,
-    Object? businessProfileId = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -95,6 +97,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      businessProfile: null == businessProfile
+          ? _value.businessProfile
+          : businessProfile // ignore: cast_nullable_to_non_nullable
+              as BusinessProfile,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String,
       notificationStatus: null == notificationStatus
           ? _value.notificationStatus
           : notificationStatus // ignore: cast_nullable_to_non_nullable
@@ -111,15 +121,15 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      businessProfileLevel: null == businessProfileLevel
-          ? _value.businessProfileLevel
-          : businessProfileLevel // ignore: cast_nullable_to_non_nullable
-              as int,
-      businessProfileId: null == businessProfileId
-          ? _value.businessProfileId
-          : businessProfileId // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BusinessProfileCopyWith<$Res> get businessProfile {
+    return $BusinessProfileCopyWith<$Res>(_value.businessProfile, (value) {
+      return _then(_value.copyWith(businessProfile: value) as $Val);
+    });
   }
 }
 
@@ -135,12 +145,15 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String firstName,
       String lastName,
       String phone,
+      BusinessProfile businessProfile,
+      String role,
       int notificationStatus,
       String? middleName,
       String? displayPic,
-      String type,
-      int businessProfileLevel,
-      int businessProfileId});
+      String type});
+
+  @override
+  $BusinessProfileCopyWith<$Res> get businessProfile;
 }
 
 /// @nodoc
@@ -157,12 +170,12 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? firstName = null,
     Object? lastName = null,
     Object? phone = null,
+    Object? businessProfile = null,
+    Object? role = null,
     Object? notificationStatus = null,
     Object? middleName = freezed,
     Object? displayPic = freezed,
     Object? type = null,
-    Object? businessProfileLevel = null,
-    Object? businessProfileId = null,
   }) {
     return _then(_$UserImpl(
       id: null == id
@@ -181,6 +194,14 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      businessProfile: null == businessProfile
+          ? _value.businessProfile
+          : businessProfile // ignore: cast_nullable_to_non_nullable
+              as BusinessProfile,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String,
       notificationStatus: null == notificationStatus
           ? _value.notificationStatus
           : notificationStatus // ignore: cast_nullable_to_non_nullable
@@ -197,14 +218,6 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      businessProfileLevel: null == businessProfileLevel
-          ? _value.businessProfileLevel
-          : businessProfileLevel // ignore: cast_nullable_to_non_nullable
-              as int,
-      businessProfileId: null == businessProfileId
-          ? _value.businessProfileId
-          : businessProfileId // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -217,12 +230,12 @@ class _$UserImpl implements _User {
       required this.firstName,
       required this.lastName,
       required this.phone,
+      required this.businessProfile,
+      this.role = "role",
       this.notificationStatus = 0,
       this.middleName,
       this.displayPic,
-      this.type = "business",
-      this.businessProfileLevel = 0,
-      required this.businessProfileId});
+      this.type = "business"});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -236,6 +249,11 @@ class _$UserImpl implements _User {
   @override
   final String phone;
   @override
+  final BusinessProfile businessProfile;
+  @override
+  @JsonKey()
+  final String role;
+  @override
   @JsonKey()
   final int notificationStatus;
   @override
@@ -245,15 +263,10 @@ class _$UserImpl implements _User {
   @override
   @JsonKey()
   final String type;
-  @override
-  @JsonKey()
-  final int businessProfileLevel;
-  @override
-  final int businessProfileId;
 
   @override
   String toString() {
-    return 'User(id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, notificationStatus: $notificationStatus, middleName: $middleName, displayPic: $displayPic, type: $type, businessProfileLevel: $businessProfileLevel, businessProfileId: $businessProfileId)';
+    return 'User(id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, businessProfile: $businessProfile, role: $role, notificationStatus: $notificationStatus, middleName: $middleName, displayPic: $displayPic, type: $type)';
   }
 
   @override
@@ -267,33 +280,22 @@ class _$UserImpl implements _User {
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.businessProfile, businessProfile) ||
+                other.businessProfile == businessProfile) &&
+            (identical(other.role, role) || other.role == role) &&
             (identical(other.notificationStatus, notificationStatus) ||
                 other.notificationStatus == notificationStatus) &&
             (identical(other.middleName, middleName) ||
                 other.middleName == middleName) &&
             (identical(other.displayPic, displayPic) ||
                 other.displayPic == displayPic) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.businessProfileLevel, businessProfileLevel) ||
-                other.businessProfileLevel == businessProfileLevel) &&
-            (identical(other.businessProfileId, businessProfileId) ||
-                other.businessProfileId == businessProfileId));
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      firstName,
-      lastName,
-      phone,
-      notificationStatus,
-      middleName,
-      displayPic,
-      type,
-      businessProfileLevel,
-      businessProfileId);
+  int get hashCode => Object.hash(runtimeType, id, firstName, lastName, phone,
+      businessProfile, role, notificationStatus, middleName, displayPic, type);
 
   @JsonKey(ignore: true)
   @override
@@ -315,12 +317,12 @@ abstract class _User implements User {
       required final String firstName,
       required final String lastName,
       required final String phone,
+      required final BusinessProfile businessProfile,
+      final String role,
       final int notificationStatus,
       final String? middleName,
       final String? displayPic,
-      final String type,
-      final int businessProfileLevel,
-      required final int businessProfileId}) = _$UserImpl;
+      final String type}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -333,6 +335,10 @@ abstract class _User implements User {
   @override
   String get phone;
   @override
+  BusinessProfile get businessProfile;
+  @override
+  String get role;
+  @override
   int get notificationStatus;
   @override
   String? get middleName;
@@ -340,10 +346,6 @@ abstract class _User implements User {
   String? get displayPic;
   @override
   String get type;
-  @override
-  int get businessProfileLevel;
-  @override
-  int get businessProfileId;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
