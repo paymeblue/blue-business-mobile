@@ -22,7 +22,7 @@ BankResponse _$BankResponseFromJson(Map<String, dynamic> json) {
 mixin _$BankResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  BankData? get data => throw _privateConstructorUsedError;
+  List<BankItem>? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +36,7 @@ abstract class $BankResponseCopyWith<$Res> {
           BankResponse value, $Res Function(BankResponse) then) =
       _$BankResponseCopyWithImpl<$Res, BankResponse>;
   @useResult
-  $Res call({String status, String? message, BankData? data});
-
-  $BankDataCopyWith<$Res>? get data;
+  $Res call({String status, String? message, List<BankItem>? data});
 }
 
 /// @nodoc
@@ -70,20 +68,8 @@ class _$BankResponseCopyWithImpl<$Res, $Val extends BankResponse>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as BankData?,
+              as List<BankItem>?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $BankDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $BankDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
   }
 }
 
@@ -95,10 +81,7 @@ abstract class _$$BankResponseImplCopyWith<$Res>
       __$$BankResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, BankData? data});
-
-  @override
-  $BankDataCopyWith<$Res>? get data;
+  $Res call({String status, String? message, List<BankItem>? data});
 }
 
 /// @nodoc
@@ -126,9 +109,9 @@ class __$$BankResponseImplCopyWithImpl<$Res>
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
       data: freezed == data
-          ? _value.data
+          ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as BankData?,
+              as List<BankItem>?,
     ));
   }
 }
@@ -136,7 +119,9 @@ class __$$BankResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BankResponseImpl implements _BankResponse {
-  const _$BankResponseImpl({this.status = "fail", this.message, this.data});
+  const _$BankResponseImpl(
+      {this.status = "fail", this.message, final List<BankItem>? data})
+      : _data = data;
 
   factory _$BankResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$BankResponseImplFromJson(json);
@@ -146,8 +131,15 @@ class _$BankResponseImpl implements _BankResponse {
   final String status;
   @override
   final String? message;
+  final List<BankItem>? _data;
   @override
-  final BankData? data;
+  List<BankItem>? get data {
+    final value = _data;
+    if (value == null) return null;
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -161,12 +153,13 @@ class _$BankResponseImpl implements _BankResponse {
             other is _$BankResponseImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(
+      runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
@@ -186,7 +179,7 @@ abstract class _BankResponse implements BankResponse {
   const factory _BankResponse(
       {final String status,
       final String? message,
-      final BankData? data}) = _$BankResponseImpl;
+      final List<BankItem>? data}) = _$BankResponseImpl;
 
   factory _BankResponse.fromJson(Map<String, dynamic> json) =
       _$BankResponseImpl.fromJson;
@@ -196,7 +189,7 @@ abstract class _BankResponse implements BankResponse {
   @override
   String? get message;
   @override
-  BankData? get data;
+  List<BankItem>? get data;
   @override
   @JsonKey(ignore: true)
   _$$BankResponseImplCopyWith<_$BankResponseImpl> get copyWith =>

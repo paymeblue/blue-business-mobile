@@ -24,7 +24,7 @@ mixin _$User {
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-  BusinessProfile get businessProfile => throw _privateConstructorUsedError;
+  BusinessProfile? get businessProfile => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
   int get notificationStatus => throw _privateConstructorUsedError;
   String? get middleName => throw _privateConstructorUsedError;
@@ -46,14 +46,14 @@ abstract class $UserCopyWith<$Res> {
       String firstName,
       String lastName,
       String phone,
-      BusinessProfile businessProfile,
+      BusinessProfile? businessProfile,
       String role,
       int notificationStatus,
       String? middleName,
       String? displayPic,
       String type});
 
-  $BusinessProfileCopyWith<$Res> get businessProfile;
+  $BusinessProfileCopyWith<$Res>? get businessProfile;
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? firstName = null,
     Object? lastName = null,
     Object? phone = null,
-    Object? businessProfile = null,
+    Object? businessProfile = freezed,
     Object? role = null,
     Object? notificationStatus = null,
     Object? middleName = freezed,
@@ -97,10 +97,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      businessProfile: null == businessProfile
+      businessProfile: freezed == businessProfile
           ? _value.businessProfile
           : businessProfile // ignore: cast_nullable_to_non_nullable
-              as BusinessProfile,
+              as BusinessProfile?,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -126,8 +126,12 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
 
   @override
   @pragma('vm:prefer-inline')
-  $BusinessProfileCopyWith<$Res> get businessProfile {
-    return $BusinessProfileCopyWith<$Res>(_value.businessProfile, (value) {
+  $BusinessProfileCopyWith<$Res>? get businessProfile {
+    if (_value.businessProfile == null) {
+      return null;
+    }
+
+    return $BusinessProfileCopyWith<$Res>(_value.businessProfile!, (value) {
       return _then(_value.copyWith(businessProfile: value) as $Val);
     });
   }
@@ -145,7 +149,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String firstName,
       String lastName,
       String phone,
-      BusinessProfile businessProfile,
+      BusinessProfile? businessProfile,
       String role,
       int notificationStatus,
       String? middleName,
@@ -153,7 +157,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String type});
 
   @override
-  $BusinessProfileCopyWith<$Res> get businessProfile;
+  $BusinessProfileCopyWith<$Res>? get businessProfile;
 }
 
 /// @nodoc
@@ -170,7 +174,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? firstName = null,
     Object? lastName = null,
     Object? phone = null,
-    Object? businessProfile = null,
+    Object? businessProfile = freezed,
     Object? role = null,
     Object? notificationStatus = null,
     Object? middleName = freezed,
@@ -194,10 +198,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      businessProfile: null == businessProfile
+      businessProfile: freezed == businessProfile
           ? _value.businessProfile
           : businessProfile // ignore: cast_nullable_to_non_nullable
-              as BusinessProfile,
+              as BusinessProfile?,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -230,7 +234,7 @@ class _$UserImpl implements _User {
       required this.firstName,
       required this.lastName,
       required this.phone,
-      required this.businessProfile,
+      this.businessProfile,
       this.role = "role",
       this.notificationStatus = 0,
       this.middleName,
@@ -249,7 +253,7 @@ class _$UserImpl implements _User {
   @override
   final String phone;
   @override
-  final BusinessProfile businessProfile;
+  final BusinessProfile? businessProfile;
   @override
   @JsonKey()
   final String role;
@@ -317,7 +321,7 @@ abstract class _User implements User {
       required final String firstName,
       required final String lastName,
       required final String phone,
-      required final BusinessProfile businessProfile,
+      final BusinessProfile? businessProfile,
       final String role,
       final int notificationStatus,
       final String? middleName,
@@ -335,7 +339,7 @@ abstract class _User implements User {
   @override
   String get phone;
   @override
-  BusinessProfile get businessProfile;
+  BusinessProfile? get businessProfile;
   @override
   String get role;
   @override

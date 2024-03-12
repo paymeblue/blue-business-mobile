@@ -1,4 +1,4 @@
-import 'package:blue_business/core/models/banks/data/data.dart';
+import 'package:blue_business/core/models/banks/item/bank.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bank_response.freezed.dart';
@@ -9,7 +9,7 @@ class BankResponse with _$BankResponse {
   const factory BankResponse({
     @Default("fail") String status,
     String? message,
-    BankData? data,
+    List<BankItem>? data,
   }) = _BankResponse;
 
   factory BankResponse.fromJson(Map<String, dynamic> json) =>

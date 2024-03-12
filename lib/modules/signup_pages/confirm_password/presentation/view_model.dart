@@ -43,7 +43,7 @@ class ConfirmPasswordViewModel extends BaseViewModel {
     LoginRequest request = LoginRequest(
       phone: phone,
       password: passwordController.text,
-      fcmToken: locator<AppStateValues>().fcmToken,
+      // fcmToken: locator<AppStateValues>().fcmToken,
     );
 
     LoginResponse resp =
@@ -130,12 +130,12 @@ class ConfirmPasswordViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, User user) {
-    if (user.businessProfile.level == 0) {
+    if (user.businessProfile == null || user.businessProfile!.level == 0) {
       context.go(RoutePaths.registerSuccessPath);
-    } else if (user.businessProfile.level == 1) {
-      context.go("${RoutePaths.businessSizePath}/${user.businessProfile.id}");
-    } else if (user.businessProfile.level == 2) {
-      context.go("${RoutePaths.businessLocation}/${user.businessProfile.id}");
+    } else if (user.businessProfile!.level == 1) {
+      context.go("${RoutePaths.businessSizePath}/${user.businessProfile!.id}");
+    } else if (user.businessProfile!.level == 2) {
+      context.go("${RoutePaths.businessLocation}/${user.businessProfile!.id}");
     } else {
       context.go(RoutePaths.homePath);
     }

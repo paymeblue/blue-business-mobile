@@ -103,7 +103,7 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
     });
 
     if (resp.status == "success") {
-      banks = resp.data!.banks;
+      banks = resp.data!;
     } else {
       AppNotification.error(message: resp.message);
     }

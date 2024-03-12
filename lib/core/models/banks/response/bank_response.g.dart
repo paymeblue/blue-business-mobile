@@ -10,9 +10,9 @@ _$BankResponseImpl _$$BankResponseImplFromJson(Map<String, dynamic> json) =>
     _$BankResponseImpl(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
-      data: json['data'] == null
-          ? null
-          : BankData.fromJson(json['data'] as Map<String, dynamic>),
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => BankItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$BankResponseImplToJson(_$BankResponseImpl instance) {

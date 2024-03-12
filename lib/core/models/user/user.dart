@@ -11,7 +11,7 @@ class User with _$User {
     required String firstName,
     required String lastName,
     required String phone,
-    required BusinessProfile businessProfile,
+    BusinessProfile? businessProfile,
     @Default("role") String role,
     @Default(0) int notificationStatus,
     String? middleName,
