@@ -7,6 +7,7 @@ import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/payment_option/payment_option.dart';
+import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
@@ -18,6 +19,7 @@ import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BlueBottomSheet {
@@ -1148,5 +1150,94 @@ class BlueBottomSheet {
         );
       },
     );
+  }
+
+  static Future<bool> paymentRequest(PushPayment payment) async {
+    bool res = false;
+
+    NumberFormat format = NumberFormat("#,##0.00");
+    await showModalBottomSheet(
+      context: locator<NavigationService>().navigatorKey.currentContext!,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      // isDismissible: false,
+      useSafeArea: true,
+      builder: (ctx) {
+        return StatefulBuilder(builder: (context, setState) {
+          return GestureDetector(
+            onTap: () {
+              RefreshTimer().resetTimer();
+            },
+            onPanDown: (details) {
+              RefreshTimer().resetTimer();
+            },
+            child: Container(
+              height: 270,
+              width: context.mediaQuery.size.width,
+              margin: const EdgeInsets.only(left: 17, right: 17, bottom: 35),
+              padding: const EdgeInsets.only(
+                  left: 20, right: 20, top: 20, bottom: 15),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Text(
+                  //   "From semira yesufu @semiraventure.com",
+                  //   style: AppTextStyles.smallText.copyWith(
+                  //       color: AppColors.bodyTextColor,
+                  //       fontStyle: FontStyle.italic),
+                  // ),
+                  Text(
+                    "${payment.businessName} ${payment.lga} is requesting a payment",
+                    style: AppTextStyles.header
+                        .copyWith(fontSize: 18, height: 1.4),
+                  ),
+                  20.verticalGap,
+                  Container(
+                    height: 75,
+                    width: context.mediaQuery.size.width,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 12),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: AppColors.inputField,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${nairaSymbol()}${format.format(double.parse(payment.amount))}",
+                          style: AppTextStyles.midHeader.copyWith(
+                            height: 1.4,
+                          ),
+                        ),
+                        Text(
+                          payment.dueDate,
+                          style: AppTextStyles.smallText
+                              .copyWith(color: AppColors.bodyTextColor2),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Spacer(),
+                  AppButton.primary(
+                    title: "Make payment",
+                    onTap: () {
+                      res = true;
+                      context.pop();
+                    },
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+      },
+    );
+
+    return res;
   }
 }

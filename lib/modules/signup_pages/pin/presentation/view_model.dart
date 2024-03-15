@@ -76,7 +76,7 @@ class PinViewModel extends BaseViewModel {
     LoginRequest loginRequest = LoginRequest(
       phone: phone,
       password: request.password,
-      // fcmToken: locator<AppStateValues>().fcmToken,
+      fcmToken: locator<AppStateValues>().fcmToken,
     );
 
     LoginResponse resp =
