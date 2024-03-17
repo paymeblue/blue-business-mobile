@@ -9,8 +9,16 @@
         "firebase-debug.log",
         "firebase-debug.*.log"
       ]
-      
+    },
+    {
+      "source": "chat",
+      "codebase": "functions",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
     }
-    
   ]
 }

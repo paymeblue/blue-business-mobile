@@ -10,12 +10,12 @@ _$RefreshTokenDataImpl _$$RefreshTokenDataImplFromJson(
         Map<String, dynamic> json) =>
     _$RefreshTokenDataImpl(
       type: json['type'] as String? ?? "Bearer",
-      accessToken: json['accessToken'] as String,
+      accessToken: json['access_token'] as String,
     );
 
 Map<String, dynamic> _$$RefreshTokenDataImplToJson(
         _$RefreshTokenDataImpl instance) =>
     <String, dynamic>{
       'type': instance.type,
-      'accessToken': instance.accessToken,
+      'access_token': instance.accessToken,
     };

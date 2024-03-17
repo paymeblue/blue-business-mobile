@@ -11,9 +11,9 @@ _$ChatImpl _$$ChatImplFromJson(Map<String, dynamic> json) => _$ChatImpl(
       sender: json['sender'] as String,
       receiver: json['receiver'] as String,
       timeStamp: json['time_stamp'] as String,
-      fcmToken: json['fcmToken'] as String,
+      fcmToken: json['fcm_token'] as String,
       senderName: json['sender_name'] as String,
-      peerToken: json['peerToken'] as String,
+      peerToken: json['peer_token'] as String,
       updateType: json['update_type'] as String? ?? "message",
       message: json['message'] as String?,
       unreadCount: json['unread_count'] as int? ?? 0,
@@ -25,9 +25,9 @@ Map<String, dynamic> _$$ChatImplToJson(_$ChatImpl instance) {
     'sender': instance.sender,
     'receiver': instance.receiver,
     'time_stamp': instance.timeStamp,
-    'fcmToken': instance.fcmToken,
+    'fcm_token': instance.fcmToken,
     'sender_name': instance.senderName,
-    'peerToken': instance.peerToken,
+    'peer_token': instance.peerToken,
     'update_type': instance.updateType,
   };
 
