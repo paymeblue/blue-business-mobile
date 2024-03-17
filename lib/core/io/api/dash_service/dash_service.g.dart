@@ -142,7 +142,7 @@ class _DashService implements DashService {
     )
             .compose(
               _dio.options,
-              '/accounts',
+              '/with-drawal-accounts',
               queryParameters: queryParameters,
               data: _data,
             )

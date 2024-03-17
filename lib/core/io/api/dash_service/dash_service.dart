@@ -29,7 +29,7 @@ abstract class DashService {
   @GET('/wallets/account')
   Future<TopupResponse> getTopupAccount();
 
-  @GET("/accounts")
+  @GET("/with-drawal-accounts")
   Future<WithdrawalAccountResponse> getWithdrawalAccount();
 
   @GET("/connections/details")
