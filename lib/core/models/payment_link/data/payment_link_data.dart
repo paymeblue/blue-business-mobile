@@ -7,9 +7,9 @@ part 'payment_link_data.g.dart';
 @freezed
 class PaymentLinkData with _$PaymentLinkData {
   const factory PaymentLinkData({
-    required int total,
-    required int limit,
-    required int page,
+    required String total,
+    required String limit,
+    required String page,
     @Default([]) List<PaymentLinkItem> data,
     @Default(false) bool loadMore,
   }) = _PaymentLinkData;

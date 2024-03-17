@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
-import 'package:blue_business/core/models/transaction/receipt/record/receipt_record.dart';
+import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
 import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -28,9 +28,9 @@ class SuccessViewModel extends BaseViewModel {
     context.go(RoutePaths.homePath);
   }
 
-  ReceiptRecord? _r;
-  ReceiptRecord? get receipt => _r;
-  set receipt(ReceiptRecord? r) {
+  ReceiptData? _r;
+  ReceiptData? get receipt => _r;
+  set receipt(ReceiptData? r) {
     _r = r;
     notifyListeners();
   }
@@ -45,7 +45,7 @@ class SuccessViewModel extends BaseViewModel {
     });
 
     if (resp.status == "success") {
-      receipt = resp.data!.record;
+      receipt = resp.data!;
       await Future.delayed(const Duration(milliseconds: 350), () {
         downloadAndShareQr(data);
       });

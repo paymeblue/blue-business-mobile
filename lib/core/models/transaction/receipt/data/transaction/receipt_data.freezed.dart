@@ -20,7 +20,16 @@ ReceiptData _$ReceiptDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ReceiptData {
-  ReceiptRecord get record => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get amount => throw _privateConstructorUsedError;
+  String get orderReference => throw _privateConstructorUsedError;
+  String get receiverName => throw _privateConstructorUsedError;
+  String get receivedBy => throw _privateConstructorUsedError;
+  String get paymentMode => throw _privateConstructorUsedError;
+  String get createdAt => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  String? get senderName => throw _privateConstructorUsedError;
+  String? get narration => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +43,17 @@ abstract class $ReceiptDataCopyWith<$Res> {
           ReceiptData value, $Res Function(ReceiptData) then) =
       _$ReceiptDataCopyWithImpl<$Res, ReceiptData>;
   @useResult
-  $Res call({ReceiptRecord record});
-
-  $ReceiptRecordCopyWith<$Res> get record;
+  $Res call(
+      {int id,
+      String amount,
+      String orderReference,
+      String receiverName,
+      String receivedBy,
+      String paymentMode,
+      String createdAt,
+      String status,
+      String? senderName,
+      String? narration});
 }
 
 /// @nodoc
@@ -52,22 +69,59 @@ class _$ReceiptDataCopyWithImpl<$Res, $Val extends ReceiptData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? record = null,
+    Object? id = null,
+    Object? amount = null,
+    Object? orderReference = null,
+    Object? receiverName = null,
+    Object? receivedBy = null,
+    Object? paymentMode = null,
+    Object? createdAt = null,
+    Object? status = null,
+    Object? senderName = freezed,
+    Object? narration = freezed,
   }) {
     return _then(_value.copyWith(
-      record: null == record
-          ? _value.record
-          : record // ignore: cast_nullable_to_non_nullable
-              as ReceiptRecord,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderReference: null == orderReference
+          ? _value.orderReference
+          : orderReference // ignore: cast_nullable_to_non_nullable
+              as String,
+      receiverName: null == receiverName
+          ? _value.receiverName
+          : receiverName // ignore: cast_nullable_to_non_nullable
+              as String,
+      receivedBy: null == receivedBy
+          ? _value.receivedBy
+          : receivedBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      paymentMode: null == paymentMode
+          ? _value.paymentMode
+          : paymentMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      senderName: freezed == senderName
+          ? _value.senderName
+          : senderName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      narration: freezed == narration
+          ? _value.narration
+          : narration // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ReceiptRecordCopyWith<$Res> get record {
-    return $ReceiptRecordCopyWith<$Res>(_value.record, (value) {
-      return _then(_value.copyWith(record: value) as $Val);
-    });
   }
 }
 
@@ -79,10 +133,17 @@ abstract class _$$ReceiptDataImplCopyWith<$Res>
       __$$ReceiptDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ReceiptRecord record});
-
-  @override
-  $ReceiptRecordCopyWith<$Res> get record;
+  $Res call(
+      {int id,
+      String amount,
+      String orderReference,
+      String receiverName,
+      String receivedBy,
+      String paymentMode,
+      String createdAt,
+      String status,
+      String? senderName,
+      String? narration});
 }
 
 /// @nodoc
@@ -96,13 +157,58 @@ class __$$ReceiptDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? record = null,
+    Object? id = null,
+    Object? amount = null,
+    Object? orderReference = null,
+    Object? receiverName = null,
+    Object? receivedBy = null,
+    Object? paymentMode = null,
+    Object? createdAt = null,
+    Object? status = null,
+    Object? senderName = freezed,
+    Object? narration = freezed,
   }) {
     return _then(_$ReceiptDataImpl(
-      record: null == record
-          ? _value.record
-          : record // ignore: cast_nullable_to_non_nullable
-              as ReceiptRecord,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderReference: null == orderReference
+          ? _value.orderReference
+          : orderReference // ignore: cast_nullable_to_non_nullable
+              as String,
+      receiverName: null == receiverName
+          ? _value.receiverName
+          : receiverName // ignore: cast_nullable_to_non_nullable
+              as String,
+      receivedBy: null == receivedBy
+          ? _value.receivedBy
+          : receivedBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      paymentMode: null == paymentMode
+          ? _value.paymentMode
+          : paymentMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      senderName: freezed == senderName
+          ? _value.senderName
+          : senderName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      narration: freezed == narration
+          ? _value.narration
+          : narration // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -110,17 +216,46 @@ class __$$ReceiptDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ReceiptDataImpl implements _ReceiptData {
-  const _$ReceiptDataImpl({required this.record});
+  const _$ReceiptDataImpl(
+      {required this.id,
+      required this.amount,
+      required this.orderReference,
+      required this.receiverName,
+      required this.receivedBy,
+      required this.paymentMode,
+      required this.createdAt,
+      this.status = "pending",
+      this.senderName,
+      this.narration});
 
   factory _$ReceiptDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReceiptDataImplFromJson(json);
 
   @override
-  final ReceiptRecord record;
+  final int id;
+  @override
+  final String amount;
+  @override
+  final String orderReference;
+  @override
+  final String receiverName;
+  @override
+  final String receivedBy;
+  @override
+  final String paymentMode;
+  @override
+  final String createdAt;
+  @override
+  @JsonKey()
+  final String status;
+  @override
+  final String? senderName;
+  @override
+  final String? narration;
 
   @override
   String toString() {
-    return 'ReceiptData(record: $record)';
+    return 'ReceiptData(id: $id, amount: $amount, orderReference: $orderReference, receiverName: $receiverName, receivedBy: $receivedBy, paymentMode: $paymentMode, createdAt: $createdAt, status: $status, senderName: $senderName, narration: $narration)';
   }
 
   @override
@@ -128,12 +263,39 @@ class _$ReceiptDataImpl implements _ReceiptData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReceiptDataImpl &&
-            (identical(other.record, record) || other.record == record));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.orderReference, orderReference) ||
+                other.orderReference == orderReference) &&
+            (identical(other.receiverName, receiverName) ||
+                other.receiverName == receiverName) &&
+            (identical(other.receivedBy, receivedBy) ||
+                other.receivedBy == receivedBy) &&
+            (identical(other.paymentMode, paymentMode) ||
+                other.paymentMode == paymentMode) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.senderName, senderName) ||
+                other.senderName == senderName) &&
+            (identical(other.narration, narration) ||
+                other.narration == narration));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, record);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      amount,
+      orderReference,
+      receiverName,
+      receivedBy,
+      paymentMode,
+      createdAt,
+      status,
+      senderName,
+      narration);
 
   @JsonKey(ignore: true)
   @override
@@ -150,14 +312,41 @@ class _$ReceiptDataImpl implements _ReceiptData {
 }
 
 abstract class _ReceiptData implements ReceiptData {
-  const factory _ReceiptData({required final ReceiptRecord record}) =
-      _$ReceiptDataImpl;
+  const factory _ReceiptData(
+      {required final int id,
+      required final String amount,
+      required final String orderReference,
+      required final String receiverName,
+      required final String receivedBy,
+      required final String paymentMode,
+      required final String createdAt,
+      final String status,
+      final String? senderName,
+      final String? narration}) = _$ReceiptDataImpl;
 
   factory _ReceiptData.fromJson(Map<String, dynamic> json) =
       _$ReceiptDataImpl.fromJson;
 
   @override
-  ReceiptRecord get record;
+  int get id;
+  @override
+  String get amount;
+  @override
+  String get orderReference;
+  @override
+  String get receiverName;
+  @override
+  String get receivedBy;
+  @override
+  String get paymentMode;
+  @override
+  String get createdAt;
+  @override
+  String get status;
+  @override
+  String? get senderName;
+  @override
+  String? get narration;
   @override
   @JsonKey(ignore: true)
   _$$ReceiptDataImplCopyWith<_$ReceiptDataImpl> get copyWith =>

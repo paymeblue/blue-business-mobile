@@ -21,7 +21,7 @@ PaymentLinkItem _$PaymentLinkItemFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PaymentLinkItem {
   int get id => throw _privateConstructorUsedError;
-  int get transactionId => throw _privateConstructorUsedError;
+  String get transactionId => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get receiverName => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $PaymentLinkItemCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      int transactionId,
+      String transactionId,
       String amount,
       String phone,
       String receiverName,
@@ -82,7 +82,7 @@ class _$PaymentLinkItemCopyWithImpl<$Res, $Val extends PaymentLinkItem>
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -121,7 +121,7 @@ abstract class _$$PaymentLinkItemImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      int transactionId,
+      String transactionId,
       String amount,
       String phone,
       String receiverName,
@@ -158,7 +158,7 @@ class __$$PaymentLinkItemImplCopyWithImpl<$Res>
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -206,7 +206,7 @@ class _$PaymentLinkItemImpl implements _PaymentLinkItem {
   @override
   final int id;
   @override
-  final int transactionId;
+  final String transactionId;
   @override
   final String amount;
   @override
@@ -267,7 +267,7 @@ class _$PaymentLinkItemImpl implements _PaymentLinkItem {
 abstract class _PaymentLinkItem implements PaymentLinkItem {
   const factory _PaymentLinkItem(
       {required final int id,
-      required final int transactionId,
+      required final String transactionId,
       required final String amount,
       required final String phone,
       required final String receiverName,
@@ -281,7 +281,7 @@ abstract class _PaymentLinkItem implements PaymentLinkItem {
   @override
   int get id;
   @override
-  int get transactionId;
+  String get transactionId;
   @override
   String get amount;
   @override

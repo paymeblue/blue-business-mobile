@@ -7,7 +7,7 @@ part 'payment_link.g.dart';
 class PaymentLinkItem with _$PaymentLinkItem {
   const factory PaymentLinkItem({
     required int id,
-    required int transactionId,
+    required String transactionId,
     required String amount,
     required String phone,
     required String receiverName,

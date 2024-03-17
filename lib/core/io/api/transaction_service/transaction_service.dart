@@ -62,7 +62,7 @@ abstract class TransactionService {
     @Body() SetBeneficiaryRequest request,
   );
 
-  @GET("/payment-link/history")
+  @GET("/payment-links")
   Future<PaymentLinkResponse> getPaymentLinkHistory(
     @Query("page") int page,
     @Query("limit") int limit,

@@ -10,7 +10,7 @@ _$PaymentLinkItemImpl _$$PaymentLinkItemImplFromJson(
         Map<String, dynamic> json) =>
     _$PaymentLinkItemImpl(
       id: json['id'] as int,
-      transactionId: json['transaction_id'] as int,
+      transactionId: json['transaction_id'] as String,
       amount: json['amount'] as String,
       phone: json['phone'] as String,
       receiverName: json['receiver_name'] as String,

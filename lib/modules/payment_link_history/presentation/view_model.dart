@@ -6,8 +6,8 @@ import 'package:blue_business/core/io/api/transaction_service/transaction_servic
 import 'package:blue_business/core/models/payment_link/payment_link.dart';
 import 'package:blue_business/core/models/payment_link/response/payment_link_response.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
-import 'package:blue_business/core/models/transaction/receipt/data/payment_link/receipt_record.dart';
-import 'package:blue_business/core/models/transaction/receipt/response/paymentLink/receipt_response.dart';
+import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
+import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
@@ -103,7 +103,7 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
             message: AppErrorHandler.getErrorMessage(error));
       });
 
-      if (resp.status == "success") {
+      if (resp.status != "success") {
         paymentLinkController.error = resp.message;
       } else {
         List<PaymentLinkItem> i = resp.data!.data;
@@ -126,9 +126,9 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
     return v.toLowerCase();
   }
 
-  PaymentLinkReceiptRecord? _r;
-  PaymentLinkReceiptRecord? get receipt => _r;
-  set receipt(PaymentLinkReceiptRecord? r) {
+  ReceiptData? _r;
+  ReceiptData? get receipt => _r;
+  set receipt(ReceiptData? r) {
     _r = r;
     notifyListeners();
   }
@@ -136,19 +136,14 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
   getTransactionReceipt(PaymentLinkItem data) async {
     AppLoader.start();
 
-    PaymentLinkReceiptResponse resp = await transactionService
-        .getPaymentLinkReceipt(data.transactionId.toString())
+    ReceiptResponse resp = await transactionService
+        .getReceipt(data.transactionId.toString())
         .onError((error, stackTrace) {
-      return PaymentLinkReceiptResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+      return ReceiptResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
     if (resp.status == "success") {
       receipt = resp.data!;
-      receipt = receipt!.copyWith(
-        status: data.status,
-        receivedBy: "+${receipt!.receivedBy}",
-      );
       await Future.delayed(const Duration(milliseconds: 350), () {
         downloadAndShareQr(data);
       });

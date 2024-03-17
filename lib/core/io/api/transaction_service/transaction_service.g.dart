@@ -172,7 +172,7 @@ class _TransactionService implements TransactionService {
     )
             .compose(
               _dio.options,
-              '/payment-link/history',
+              '/payment-links',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -20,9 +20,9 @@ PaymentLinkData _$PaymentLinkDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PaymentLinkData {
-  int get total => throw _privateConstructorUsedError;
-  int get limit => throw _privateConstructorUsedError;
-  int get page => throw _privateConstructorUsedError;
+  String get total => throw _privateConstructorUsedError;
+  String get limit => throw _privateConstructorUsedError;
+  String get page => throw _privateConstructorUsedError;
   List<PaymentLinkItem> get data => throw _privateConstructorUsedError;
   bool get loadMore => throw _privateConstructorUsedError;
 
@@ -39,9 +39,9 @@ abstract class $PaymentLinkDataCopyWith<$Res> {
       _$PaymentLinkDataCopyWithImpl<$Res, PaymentLinkData>;
   @useResult
   $Res call(
-      {int total,
-      int limit,
-      int page,
+      {String total,
+      String limit,
+      String page,
       List<PaymentLinkItem> data,
       bool loadMore});
 }
@@ -69,15 +69,15 @@ class _$PaymentLinkDataCopyWithImpl<$Res, $Val extends PaymentLinkData>
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -99,9 +99,9 @@ abstract class _$$PaymentLinkDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int total,
-      int limit,
-      int page,
+      {String total,
+      String limit,
+      String page,
       List<PaymentLinkItem> data,
       bool loadMore});
 }
@@ -127,15 +127,15 @@ class __$$PaymentLinkDataImplCopyWithImpl<$Res>
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -163,11 +163,11 @@ class _$PaymentLinkDataImpl implements _PaymentLinkData {
       _$$PaymentLinkDataImplFromJson(json);
 
   @override
-  final int total;
+  final String total;
   @override
-  final int limit;
+  final String limit;
   @override
-  final int page;
+  final String page;
   final List<PaymentLinkItem> _data;
   @override
   @JsonKey()
@@ -221,9 +221,9 @@ class _$PaymentLinkDataImpl implements _PaymentLinkData {
 
 abstract class _PaymentLinkData implements PaymentLinkData {
   const factory _PaymentLinkData(
-      {required final int total,
-      required final int limit,
-      required final int page,
+      {required final String total,
+      required final String limit,
+      required final String page,
       final List<PaymentLinkItem> data,
       final bool loadMore}) = _$PaymentLinkDataImpl;
 
@@ -231,11 +231,11 @@ abstract class _PaymentLinkData implements PaymentLinkData {
       _$PaymentLinkDataImpl.fromJson;
 
   @override
-  int get total;
+  String get total;
   @override
-  int get limit;
+  String get limit;
   @override
-  int get page;
+  String get page;
   @override
   List<PaymentLinkItem> get data;
   @override
