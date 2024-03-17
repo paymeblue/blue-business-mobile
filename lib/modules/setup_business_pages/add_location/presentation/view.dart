@@ -43,7 +43,7 @@ class _AddLocationViewState extends State<AddLocationView> {
                 title: "Continue",
                 isEnabled: model.isActive(),
                 onTap: () {
-                  model.sendAddress(context, 1);
+                  model.sendAddress(context, widget.id);
                 },
               )
             ],
