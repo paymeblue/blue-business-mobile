@@ -9,18 +9,18 @@ part of 'recently_paid_item.dart';
 _$RecentlyPaidItemImpl _$$RecentlyPaidItemImplFromJson(
         Map<String, dynamic> json) =>
     _$RecentlyPaidItemImpl(
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
-      walletCode: json['wallet_code'] as String,
-      middleName: json['middle_name'] as String?,
+      uFirstName: json['u_first_name'] as String,
+      uLastName: json['u_last_name'] as String,
+      wWalletCode: json['w_wallet_code'] as String,
+      uMiddleName: json['u_middle_name'] as String?,
     );
 
 Map<String, dynamic> _$$RecentlyPaidItemImplToJson(
     _$RecentlyPaidItemImpl instance) {
   final val = <String, dynamic>{
-    'first_name': instance.firstName,
-    'last_name': instance.lastName,
-    'wallet_code': instance.walletCode,
+    'u_first_name': instance.uFirstName,
+    'u_last_name': instance.uLastName,
+    'w_wallet_code': instance.wWalletCode,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -29,6 +29,6 @@ Map<String, dynamic> _$$RecentlyPaidItemImplToJson(
     }
   }
 
-  writeNotNull('middle_name', instance.middleName);
+  writeNotNull('u_middle_name', instance.uMiddleName);
   return val;
 }

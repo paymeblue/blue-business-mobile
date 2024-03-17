@@ -20,10 +20,10 @@ RecentlyPaidItem _$RecentlyPaidItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RecentlyPaidItem {
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
-  String get walletCode => throw _privateConstructorUsedError;
-  String? get middleName => throw _privateConstructorUsedError;
+  String get uFirstName => throw _privateConstructorUsedError;
+  String get uLastName => throw _privateConstructorUsedError;
+  String get wWalletCode => throw _privateConstructorUsedError;
+  String? get uMiddleName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,10 +38,10 @@ abstract class $RecentlyPaidItemCopyWith<$Res> {
       _$RecentlyPaidItemCopyWithImpl<$Res, RecentlyPaidItem>;
   @useResult
   $Res call(
-      {String firstName,
-      String lastName,
-      String walletCode,
-      String? middleName});
+      {String uFirstName,
+      String uLastName,
+      String wWalletCode,
+      String? uMiddleName});
 }
 
 /// @nodoc
@@ -57,27 +57,27 @@ class _$RecentlyPaidItemCopyWithImpl<$Res, $Val extends RecentlyPaidItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? walletCode = null,
-    Object? middleName = freezed,
+    Object? uFirstName = null,
+    Object? uLastName = null,
+    Object? wWalletCode = null,
+    Object? uMiddleName = freezed,
   }) {
     return _then(_value.copyWith(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      uFirstName: null == uFirstName
+          ? _value.uFirstName
+          : uFirstName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      uLastName: null == uLastName
+          ? _value.uLastName
+          : uLastName // ignore: cast_nullable_to_non_nullable
               as String,
-      walletCode: null == walletCode
-          ? _value.walletCode
-          : walletCode // ignore: cast_nullable_to_non_nullable
+      wWalletCode: null == wWalletCode
+          ? _value.wWalletCode
+          : wWalletCode // ignore: cast_nullable_to_non_nullable
               as String,
-      middleName: freezed == middleName
-          ? _value.middleName
-          : middleName // ignore: cast_nullable_to_non_nullable
+      uMiddleName: freezed == uMiddleName
+          ? _value.uMiddleName
+          : uMiddleName // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -92,10 +92,10 @@ abstract class _$$RecentlyPaidItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String firstName,
-      String lastName,
-      String walletCode,
-      String? middleName});
+      {String uFirstName,
+      String uLastName,
+      String wWalletCode,
+      String? uMiddleName});
 }
 
 /// @nodoc
@@ -109,27 +109,27 @@ class __$$RecentlyPaidItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? walletCode = null,
-    Object? middleName = freezed,
+    Object? uFirstName = null,
+    Object? uLastName = null,
+    Object? wWalletCode = null,
+    Object? uMiddleName = freezed,
   }) {
     return _then(_$RecentlyPaidItemImpl(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      uFirstName: null == uFirstName
+          ? _value.uFirstName
+          : uFirstName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      uLastName: null == uLastName
+          ? _value.uLastName
+          : uLastName // ignore: cast_nullable_to_non_nullable
               as String,
-      walletCode: null == walletCode
-          ? _value.walletCode
-          : walletCode // ignore: cast_nullable_to_non_nullable
+      wWalletCode: null == wWalletCode
+          ? _value.wWalletCode
+          : wWalletCode // ignore: cast_nullable_to_non_nullable
               as String,
-      middleName: freezed == middleName
-          ? _value.middleName
-          : middleName // ignore: cast_nullable_to_non_nullable
+      uMiddleName: freezed == uMiddleName
+          ? _value.uMiddleName
+          : uMiddleName // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -139,26 +139,26 @@ class __$$RecentlyPaidItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RecentlyPaidItemImpl implements _RecentlyPaidItem {
   const _$RecentlyPaidItemImpl(
-      {required this.firstName,
-      required this.lastName,
-      required this.walletCode,
-      this.middleName});
+      {required this.uFirstName,
+      required this.uLastName,
+      required this.wWalletCode,
+      this.uMiddleName});
 
   factory _$RecentlyPaidItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$RecentlyPaidItemImplFromJson(json);
 
   @override
-  final String firstName;
+  final String uFirstName;
   @override
-  final String lastName;
+  final String uLastName;
   @override
-  final String walletCode;
+  final String wWalletCode;
   @override
-  final String? middleName;
+  final String? uMiddleName;
 
   @override
   String toString() {
-    return 'RecentlyPaidItem(firstName: $firstName, lastName: $lastName, walletCode: $walletCode, middleName: $middleName)';
+    return 'RecentlyPaidItem(uFirstName: $uFirstName, uLastName: $uLastName, wWalletCode: $wWalletCode, uMiddleName: $uMiddleName)';
   }
 
   @override
@@ -166,20 +166,20 @@ class _$RecentlyPaidItemImpl implements _RecentlyPaidItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecentlyPaidItemImpl &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.walletCode, walletCode) ||
-                other.walletCode == walletCode) &&
-            (identical(other.middleName, middleName) ||
-                other.middleName == middleName));
+            (identical(other.uFirstName, uFirstName) ||
+                other.uFirstName == uFirstName) &&
+            (identical(other.uLastName, uLastName) ||
+                other.uLastName == uLastName) &&
+            (identical(other.wWalletCode, wWalletCode) ||
+                other.wWalletCode == wWalletCode) &&
+            (identical(other.uMiddleName, uMiddleName) ||
+                other.uMiddleName == uMiddleName));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, firstName, lastName, walletCode, middleName);
+      Object.hash(runtimeType, uFirstName, uLastName, wWalletCode, uMiddleName);
 
   @JsonKey(ignore: true)
   @override
@@ -198,22 +198,22 @@ class _$RecentlyPaidItemImpl implements _RecentlyPaidItem {
 
 abstract class _RecentlyPaidItem implements RecentlyPaidItem {
   const factory _RecentlyPaidItem(
-      {required final String firstName,
-      required final String lastName,
-      required final String walletCode,
-      final String? middleName}) = _$RecentlyPaidItemImpl;
+      {required final String uFirstName,
+      required final String uLastName,
+      required final String wWalletCode,
+      final String? uMiddleName}) = _$RecentlyPaidItemImpl;
 
   factory _RecentlyPaidItem.fromJson(Map<String, dynamic> json) =
       _$RecentlyPaidItemImpl.fromJson;
 
   @override
-  String get firstName;
+  String get uFirstName;
   @override
-  String get lastName;
+  String get uLastName;
   @override
-  String get walletCode;
+  String get wWalletCode;
   @override
-  String? get middleName;
+  String? get uMiddleName;
   @override
   @JsonKey(ignore: true)
   _$$RecentlyPaidItemImplCopyWith<_$RecentlyPaidItemImpl> get copyWith =>

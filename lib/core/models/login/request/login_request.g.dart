@@ -8,7 +8,7 @@ part of 'login_request.dart';
 
 _$LoginRequestImpl _$$LoginRequestImplFromJson(Map<String, dynamic> json) =>
     _$LoginRequestImpl(
-      fcmToken: json['fcmToken'] as String?,
+      fcmToken: json['fcm_token'] as String?,
       phone: json['phone'] as String,
       password: json['password'] as String,
     );
@@ -22,7 +22,7 @@ Map<String, dynamic> _$$LoginRequestImplToJson(_$LoginRequestImpl instance) {
     }
   }
 
-  writeNotNull('fcmToken', instance.fcmToken);
+  writeNotNull('fcm_token', instance.fcmToken);
   val['phone'] = instance.phone;
   val['password'] = instance.password;
   return val;

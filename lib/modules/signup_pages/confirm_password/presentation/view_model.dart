@@ -43,7 +43,7 @@ class ConfirmPasswordViewModel extends BaseViewModel {
     LoginRequest request = LoginRequest(
       phone: phone,
       password: passwordController.text,
-      // fcmToken: locator<AppStateValues>().fcmToken,
+      fcmToken: locator<AppStateValues>().fcmToken,
     );
 
     LoginResponse resp =

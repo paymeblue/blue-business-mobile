@@ -194,13 +194,13 @@ class _BluePaymentViewState extends State<BluePaymentView> {
             ),
             10.verticalGap,
             Text(
-              "${item.firstName} ${item.lastName}",
+              "${item.uFirstName} ${item.uLastName}",
               overflow: TextOverflow.ellipsis,
               style: AppTextStyles.header.copyWith(fontSize: 15.5),
             ),
             FittedBox(
               child: Text(
-                item.walletCode,
+                item.wWalletCode,
                 style: AppTextStyles.smallText
                     .copyWith(color: AppColors.bodyTextColor, fontSize: 14.5),
               ),

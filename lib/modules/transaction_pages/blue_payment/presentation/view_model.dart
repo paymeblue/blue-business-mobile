@@ -116,7 +116,7 @@ class BluePaymentViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(error));
     });
     if (resp.status == "success") {
-      recentlyPaidItems = resp.data!.beneficiaries;
+      recentlyPaidItems = resp.data!;
     } else {
       AppNotification.error(message: resp.message);
     }
@@ -164,8 +164,8 @@ class BluePaymentViewModel extends BaseViewModel {
   }
 
   onTapRecentlyPaid(RecentlyPaidItem item) {
-    identifierController.text = item.walletCode;
-    name = "${item.firstName} ${item.lastName}";
+    identifierController.text = item.wWalletCode;
+    name = "${item.uFirstName} ${item.uLastName}";
     notifyListeners();
   }
 
