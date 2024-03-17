@@ -17,12 +17,6 @@ class AppTextStyles {
       fontWeight: FontWeight.w700,
       color: AppColors.textColor);
 
-  static TextStyle midHeader = const TextStyle(
-      fontFamily: AppFonts.satoshi,
-      fontSize: 18,
-      fontWeight: FontWeight.w500,
-      color: AppColors.bodyTextColor);
-
   static TextStyle subHeader = const TextStyle(
     fontSize: 16.5,
     fontFamily: AppFonts.satoshi,

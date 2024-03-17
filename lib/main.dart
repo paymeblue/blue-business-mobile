@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:blue_business/core/io/api/firebase/config.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/root_widget.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setUpLocator();
   registerErrorHandlers();
-  await FirebaseConfig.init();
 
   runApp(const BlueApp());
 }

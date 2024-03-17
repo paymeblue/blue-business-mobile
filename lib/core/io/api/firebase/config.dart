@@ -1,19 +1,14 @@
 import 'dart:developer';
 
 import 'package:blue_business/core/io/api/chat_service/chat_service.dart';
-import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/chat_receiver/data/chat_receiver_data.dart';
 import 'package:blue_business/core/models/chat_user/chat/chat.dart';
-import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
-import 'package:blue_business/firebase_options.dart';
-import 'package:blue_business/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -44,22 +39,8 @@ Future handleForegroundMessages(RemoteMessage message) async {
       AppNotification.message(
           title: data['sender_name'], message: data["message"]);
     }
-  } else if (data["type"] == "payment") {
-    if (AppConstants.accessToken.isNotEmpty) {
-      PushPayment payment = PushPayment.fromJson(data);
-      BlueBottomSheet.paymentRequest(payment).then((value) {
-        if (value) {
-          context.go("/${payment.transactionId}${RoutePaths.pushPaymentPin}");
-        }
-      });
-    } else {
-      AppNotification.notification(
-          title: "Payment Request",
-          message:
-              "${data["business_name"]}${data["lga"]} is requesting ${nairaSymbol()}${data["amount"]}");
-    }
   } else {
-    stateValues.kycLevel = data["kyc_level"].toString();
+    // stateValues.isKycComplete = data["kyc_status"].toString() == "1";
 
     AppNotification.notification(
       title: message.notification!.title,
@@ -100,9 +81,9 @@ class FirebaseConfig {
               sender: message.data["sender"],
               receiver: message.data["receiver"],
               timeStamp: message.data["time_tamp"],
-              fcmToken: message.data["fcm_token"],
+              fcmToken: message.data["fcmToken"],
               senderName: message.data["sender_name"],
-              peerToken: message.data["peer_token"],
+              peerToken: message.data["peerToken"],
               updateType: message.data["update_type"],
               message: message.data["message"],
               unreadCount: 0,
@@ -131,8 +112,8 @@ class FirebaseConfig {
 
   static init() async {
     AppStateValues stateValues = locator<AppStateValues>();
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
+    // await Firebase.initializeApp(
+    //     options: DefaultFirebaseOptions.currentPlatform);
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
     await messaging.requestPermission();

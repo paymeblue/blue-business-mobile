@@ -129,7 +129,7 @@ class LoginViewModel extends BaseViewModel {
     LoginRequest request = LoginRequest(
       phone: p,
       password: passwordController.text,
-      fcmToken: locator<AppStateValues>().fcmToken,
+      // fcmToken: locator<AppStateValues>().fcmToken,
     );
 
     LoginResponse resp =

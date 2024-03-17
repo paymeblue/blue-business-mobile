@@ -1,4 +1,4 @@
-package com.roman_dev.blue_business
+package com.example.blue_business
 
 import io.flutter.embedding.android.FlutterActivity
 
