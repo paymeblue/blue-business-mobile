@@ -54,6 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:959053324627:android:3f1ab51cbc6a4dfed6c1a6',
     messagingSenderId: '959053324627',
     projectId: 'blue-business-24696',
+    databaseURL: 'https://blue-business-24696-default-rtdb.firebaseio.com',
     storageBucket: 'blue-business-24696.appspot.com',
   );
 
@@ -62,6 +63,7 @@ class DefaultFirebaseOptions {
     appId: '1:959053324627:ios:63e8e06dd22abda8d6c1a6',
     messagingSenderId: '959053324627',
     projectId: 'blue-business-24696',
+    databaseURL: 'https://blue-business-24696-default-rtdb.firebaseio.com',
     storageBucket: 'blue-business-24696.appspot.com',
     iosBundleId: 'com.example.blueBusiness.RunnerTests',
   );
