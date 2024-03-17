@@ -60,11 +60,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCVQo27kk8SK0B67MtL8VsixZhqt23Xqok',
-    appId: '1:959053324627:ios:63e8e06dd22abda8d6c1a6',
+    appId: '1:959053324627:ios:a32f9cf21ddf4f12d6c1a6',
     messagingSenderId: '959053324627',
     projectId: 'blue-business-24696',
     databaseURL: 'https://blue-business-24696-default-rtdb.firebaseio.com',
     storageBucket: 'blue-business-24696.appspot.com',
-    iosBundleId: 'com.example.blueBusiness.RunnerTests',
+    iosBundleId: 'com.example.blueBusiness',
   );
 }
