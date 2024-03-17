@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "959053324627",
+    "firebase_url": "https://blue-business-24696-default-rtdb.firebaseio.com",
+    "project_id": "blue-business-24696",
+    "storage_bucket": "blue-business-24696.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959053324627:android:3f1ab51cbc6a4dfed6c1a6",
+        "android_client_info": {
+          "package_name": "com.roman_dev.blue_business"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN6lTFBKWeJZouKrFCrlVSmherIAywbs4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
