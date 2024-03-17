@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCN6lTFBKWeJZouKrFCrlVSmherIAywbs4',
-    appId: '1:959053324627:android:d59d185c39f2265bd6c1a6',
+    appId: '1:959053324627:android:3f1ab51cbc6a4dfed6c1a6',
     messagingSenderId: '959053324627',
     projectId: 'blue-business-24696',
     storageBucket: 'blue-business-24696.appspot.com',
@@ -59,10 +59,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCVQo27kk8SK0B67MtL8VsixZhqt23Xqok',
-    appId: '1:959053324627:ios:2fd87e7cfaa8f5c4d6c1a6',
+    appId: '1:959053324627:ios:63e8e06dd22abda8d6c1a6',
     messagingSenderId: '959053324627',
     projectId: 'blue-business-24696',
     storageBucket: 'blue-business-24696.appspot.com',
-    iosBundleId: 'com.example.blueBusiness',
+    iosBundleId: 'com.example.blueBusiness.RunnerTests',
   );
 }
