@@ -146,6 +146,10 @@ class SettingsViewModel extends BaseViewModel {
           options: profileOption(context),
         ),
         SettingsSection(
+          sectionTitle: "STAFF MANAGEMENT",
+          options: staffManagementOption(context),
+        ),
+        SettingsSection(
           sectionTitle: "FINANCES AND CONTACT",
           options: financeOption(context),
         ),
@@ -240,6 +244,15 @@ class SettingsViewModel extends BaseViewModel {
               if (context.mounted) context.go(RoutePaths.updateKycPath);
             },
             subtitle: "Increase your account limit"),
+      ];
+
+  List<SettingsOption> staffManagementOption(BuildContext context) => [
+        SettingsOption(
+          icon: AppAssets.images.icons.staffManagement.svg(),
+          title: "Manage your team",
+          subtitle: "Invite staff, set roles and access",
+          onTap: () {},
+        ),
       ];
 
   List<SettingsOption> profileOption(BuildContext context) => [

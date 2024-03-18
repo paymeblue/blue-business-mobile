@@ -325,7 +325,7 @@ class _TransactionService implements TransactionService {
   @override
   Future<ReceiptResponse> getReceipt(String transactionId) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'transaction_id': transactionId};
+    final queryParameters = <String, dynamic>{r't_id': transactionId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
@@ -346,34 +346,6 @@ class _TransactionService implements TransactionService {
               baseUrl,
             ))));
     final value = ReceiptResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<PaymentLinkReceiptResponse> getPaymentLinkReceipt(
-      String transactionId) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'transaction_id': transactionId};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<PaymentLinkReceiptResponse>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/payment-link/receipt',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = PaymentLinkReceiptResponse.fromJson(_result.data!);
     return value;
   }
 

@@ -259,6 +259,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get showBalance =>
       const SvgGenImage('assets/images/icons/show_balance.svg');
 
+  /// File path: assets/images/icons/staff_management.svg
+  SvgGenImage get staffManagement =>
+      const SvgGenImage('assets/images/icons/staff_management.svg');
+
   /// File path: assets/images/icons/success.svg
   SvgGenImage get success =>
       const SvgGenImage('assets/images/icons/success.svg');
@@ -331,6 +335,7 @@ class $AssetsImagesIconsGen {
         send,
         share,
         showBalance,
+        staffManagement,
         success,
         support,
         user,

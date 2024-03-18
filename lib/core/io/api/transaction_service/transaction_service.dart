@@ -15,7 +15,6 @@ import 'package:blue_business/core/models/transaction/initiate/response/initiate
 import 'package:blue_business/core/models/transaction/pay/credit/request/credit_request.dart';
 import 'package:blue_business/core/models/transaction/pay/response/pay_response.dart';
 import 'package:blue_business/core/models/transaction/pay/withdraw/request/withdraw_request.dart';
-import 'package:blue_business/core/models/transaction/receipt/response/paymentLink/receipt_response.dart';
 import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
 import 'package:blue_business/core/models/transaction/verify/request/verified_receiver_request.dart';
 import 'package:blue_business/core/models/transaction/verify/response/verified_receiver_response.dart';
@@ -88,12 +87,7 @@ abstract class TransactionService {
   Future<PayResponse> pay(@Body() CreditRequest request);
 
   @GET("/transactions/receipt")
-  Future<ReceiptResponse> getReceipt(
-      @Query("transaction_id") String transactionId);
-
-  @GET("/payment-link/receipt")
-  Future<PaymentLinkReceiptResponse> getPaymentLinkReceipt(
-      @Query("transaction_id") String transactionId);
+  Future<ReceiptResponse> getReceipt(@Query("t_id") String transactionId);
 
   @GET("/banks")
   Future<BankResponse> getBanks();

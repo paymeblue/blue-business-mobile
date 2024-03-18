@@ -115,7 +115,9 @@ class ChangePinViewModel extends BaseViewModel {
         await saveInStorage();
       }
       AppNotification.success(message: resp.message);
-      if (context.mounted) context.go(RoutePaths.settingsPath);
+      Future.delayed(const Duration(seconds: 3), () {
+        context.go(RoutePaths.settingsPath);
+      });
     } else {
       AppNotification.error(message: resp.message);
     }
