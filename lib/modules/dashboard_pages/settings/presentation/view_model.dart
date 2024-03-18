@@ -251,7 +251,9 @@ class SettingsViewModel extends BaseViewModel {
           icon: AppAssets.images.icons.staffManagement.svg(),
           title: "Manage your team",
           subtitle: "Invite staff, set roles and access",
-          onTap: () {},
+          onTap: () {
+            goToStaffManagementHome(context);
+          },
         ),
       ];
 
@@ -418,6 +420,10 @@ class SettingsViewModel extends BaseViewModel {
 
   goToManageBeneficiaries(BuildContext context) {
     context.go(RoutePaths.manageBeneficiaryPath);
+  }
+
+  goToStaffManagementHome(BuildContext context) {
+    context.go(RoutePaths.staffManagementPath);
   }
 
   goToBlueWeb() async {

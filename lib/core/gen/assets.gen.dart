@@ -138,6 +138,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get editInfo =>
       const SvgGenImage('assets/images/icons/edit_info.svg');
 
+  /// File path: assets/images/icons/empty_staff.png
+  AssetGenImage get emptyStaff =>
+      const AssetGenImage('assets/images/icons/empty_staff.png');
+
   /// File path: assets/images/icons/error.png
   AssetGenImage get error =>
       const AssetGenImage('assets/images/icons/error.png');
@@ -302,6 +306,7 @@ class $AssetsImagesIconsGen {
         download,
         downloadNew,
         editInfo,
+        emptyStaff,
         error,
         export,
         faceId,
