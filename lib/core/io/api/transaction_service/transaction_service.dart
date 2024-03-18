@@ -4,6 +4,7 @@ import 'package:blue_business/core/models/beneficiary/get/response/get_beneficia
 import 'package:blue_business/core/models/beneficiary/set/request/set_beneficiary_request.dart';
 import 'package:blue_business/core/models/beneficiary/set/response/set_beneficiary_response.dart';
 import 'package:blue_business/core/models/payment_link/response/payment_link_response.dart';
+import 'package:blue_business/core/models/push_response/push_pay_response.dart';
 import 'package:blue_business/core/models/recently_paid/response/recently_paid_response.dart';
 import 'package:blue_business/core/models/reset/pin/request/reset_pin_request.dart';
 import 'package:blue_business/core/models/security_question/create/request/create_question_request.dart';
@@ -112,4 +113,7 @@ abstract class TransactionService {
 
   @PATCH("/pins/reset")
   Future<SendQuestionResponse> resetPin(@Body() ResetPinRequest request);
+
+  @POST("/transactions/accept-payment")
+  Future<PushPayResponse> acceptPayment(@Body() CreditRequest request);
 }

@@ -38,7 +38,7 @@ class _StaffHomeViewState extends State<StaffHomeView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ...titleAndSubtitle(),
+                  ...titleAndSubtitle(model),
                   12.verticalGap,
                   Expanded(
                     child: staffList(model),
@@ -83,28 +83,36 @@ class _StaffHomeViewState extends State<StaffHomeView> {
             newPageProgressIndicatorBuilder: (context) =>
                 BlueLoadingTile.withImage(),
             itemBuilder: (context, item, i) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    if (i == 0)
-                      Container(
-                        decoration: const BoxDecoration(),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            const Icon(
-                              Icons.add,
-                              size: 15,
-                              color: AppColors.primary,
-                            ),
-                            Text(
-                              "Add staff",
-                              style: AppTextStyles.subText.copyWith(
+                    if (i == 0) ...[
+                      GestureDetector(
+                        onTap: () {
+                          model.goToAddStaff(context);
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              const Icon(
+                                Icons.add,
+                                size: 15,
                                 color: AppColors.primary,
                               ),
-                            )
-                          ],
+                              Text(
+                                "Add staff",
+                                style: AppTextStyles.subText.copyWith(
+                                  color: AppColors.primary,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
+                      8.verticalGap
+                    ],
                     SizedBox(
                       height: 50,
                       width: model.size.width,
@@ -113,16 +121,17 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                           AppAssets.images.icons.staff.svg(),
                           10.horizontalGap,
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 item.name,
-                                style: AppTextStyles.header.copyWith(
-                                  fontSize: 15,
-                                ),
+                                style: AppTextStyles.subHeader,
                               ),
                               Text(
                                 item.phone,
-                                style: AppTextStyles.subText,
+                                style: AppTextStyles.smallText.copyWith(
+                                  color: AppColors.bodyTextColor2,
+                                ),
                               )
                             ],
                           ),
@@ -173,17 +182,21 @@ class _StaffHomeViewState extends State<StaffHomeView> {
     );
   }
 
-  List<Widget> titleAndSubtitle() {
+  List<Widget> titleAndSubtitle(StaffHomeViewModel model) {
     return [
       Text(
-        "Add Staff",
+        model.staffPagingController.itemList?.isEmpty ?? true
+            ? "Add Staff"
+            : "Staff listing",
         style: AppTextStyles.header,
       ),
       4.verticalGap,
       SizedBox(
         width: 350,
         child: Text(
-          "Grant access to your staff to make sales on BlueBusiness. ",
+          model.staffPagingController.itemList?.isEmpty ?? true
+              ? "Grant access to your staff to make sales on BlueBusiness."
+              : "Below are a list of staff(s) with access to your BlueBusiness. You can always edit their access.",
           style: AppTextStyles.subHeader,
           textAlign: TextAlign.start,
         ),

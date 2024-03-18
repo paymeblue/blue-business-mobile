@@ -33,7 +33,9 @@ class StaffHomeViewModel extends BaseViewModel {
               );
 
       if (response.status == "success") {
-        staffPagingController.appendPage(response.data!, page + 1);
+        staffPagingController.appendLastPage(response.data!);
+
+        notifyListeners();
       } else {
         staffPagingController.error = response.message;
       }

@@ -3,12 +3,14 @@ import 'dart:developer';
 import 'package:blue_business/core/io/api/chat_service/chat_service.dart';
 import 'package:blue_business/core/models/chat_receiver/data/chat_receiver_data.dart';
 import 'package:blue_business/core/models/chat_user/chat/chat.dart';
+import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/firebase_options.dart';
+import 'package:blue_business/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -40,6 +42,15 @@ Future handleForegroundMessages(RemoteMessage message) async {
       stateValues.hasNewMessage = true;
       AppNotification.message(
           title: data['sender_name'], message: data["message"]);
+    }
+  } else if (data["type"] == "payment") {
+    if (AppConstants.accessToken.isNotEmpty) {
+      PushPayment payment = PushPayment.fromJson(data);
+      BlueBottomSheet.paymentRequest(payment).then((value) {
+        if (value) {
+          context.go("/${payment.transactionId}${RoutePaths.pushPaymentPin}");
+        }
+      });
     }
   } else {
     // stateValues.isKycComplete = data["kyc_status"].toString() == "1";

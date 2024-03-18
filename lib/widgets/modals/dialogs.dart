@@ -16,6 +16,7 @@ class BlueDialog {
     required String subtitle,
     required VoidCallback onDelete,
     String confirmText = "Delete",
+    Color? confirmColor,
   }) {
     return showDialog(
         context: locator<NavigationService>().navigatorKey.currentContext!,
@@ -81,8 +82,8 @@ class BlueDialog {
                                     bottomLeft: Radius.circular(5))),
                             child: Text(
                               confirmText,
-                              style: AppTextStyles.largeButtonText
-                                  .copyWith(color: AppColors.error),
+                              style: AppTextStyles.largeButtonText.copyWith(
+                                  color: confirmColor ?? AppColors.error),
                             )),
                       )
                     ]),

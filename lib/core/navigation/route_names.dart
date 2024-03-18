@@ -49,6 +49,7 @@ class RoutePaths {
   static String startConversationPath = "/dash/conversation/start";
   static String chatDetailsPath = "/dash/converstaion/chat";
   static String chatQrPath = "$messagePath/qr";
+  static String pushPaymentPin = "$transactionPath/push-payment/pin";
 
   static String businessProfilePath = "/dash/business-profile";
   static String businessNamePath = "$businessProfilePath/name";

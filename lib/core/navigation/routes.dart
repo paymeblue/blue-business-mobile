@@ -620,5 +620,14 @@ GoRouter router = GoRouter(
         return const AddStaffView();
       },
     ),
+    GoRoute(
+      path: "/:id${RoutePaths.pushPaymentPin}",
+      builder: (context, state) {
+        String id = state.pathParameters["id"] as String;
+        return PushPaymentPinView(
+          transactionId: id,
+        );
+      },
+    ),
   ],
 );

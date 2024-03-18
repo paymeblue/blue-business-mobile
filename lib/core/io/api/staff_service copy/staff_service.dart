@@ -1,5 +1,6 @@
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/staff/create/request/create_staff_request.dart';
+import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
@@ -21,18 +22,18 @@ abstract class StaffService {
   });
 
   @POST("")
-  Future<GetStaffResponse> createStaff({
+  Future<CreateStaffResponse> createStaff({
     @Body() required CreateStaffRequest request,
   });
 
   @PATCH("/{staffId}")
-  Future<GetStaffResponse> updateStaff({
+  Future<CreateStaffResponse> updateStaff({
     @Path('staffId') required int staffId,
     @Body() required CreateStaffRequest request,
   });
 
   @DELETE("/{staffId}")
-  Future<GetStaffResponse> deleteStaff({
+  Future<CreateStaffResponse> deleteStaff({
     @Path('staffId') required int staffId,
   });
 }

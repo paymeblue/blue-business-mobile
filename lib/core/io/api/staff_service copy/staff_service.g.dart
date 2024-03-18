@@ -55,14 +55,14 @@ class _StaffService implements StaffService {
   }
 
   @override
-  Future<GetStaffResponse> createStaff(
+  Future<CreateStaffResponse> createStaff(
       {required CreateStaffRequest request}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<GetStaffResponse>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CreateStaffResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -78,12 +78,12 @@ class _StaffService implements StaffService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = GetStaffResponse.fromJson(_result.data!);
+    final value = CreateStaffResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<GetStaffResponse> updateStaff({
+  Future<CreateStaffResponse> updateStaff({
     required int staffId,
     required CreateStaffRequest request,
   }) async {
@@ -91,8 +91,8 @@ class _StaffService implements StaffService {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<GetStaffResponse>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CreateStaffResponse>(Options(
       method: 'PATCH',
       headers: _headers,
       extra: _extra,
@@ -108,18 +108,18 @@ class _StaffService implements StaffService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = GetStaffResponse.fromJson(_result.data!);
+    final value = CreateStaffResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<GetStaffResponse> deleteStaff({required int staffId}) async {
+  Future<CreateStaffResponse> deleteStaff({required int staffId}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<GetStaffResponse>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CreateStaffResponse>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -135,7 +135,7 @@ class _StaffService implements StaffService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = GetStaffResponse.fromJson(_result.data!);
+    final value = CreateStaffResponse.fromJson(_result.data!);
     return value;
   }
 
