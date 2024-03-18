@@ -282,7 +282,7 @@ class _TransactionService implements TransactionService {
     )
             .compose(
               _dio.options,
-              '/withdraws',
+              '/withdraw',
               queryParameters: queryParameters,
               data: _data,
             )

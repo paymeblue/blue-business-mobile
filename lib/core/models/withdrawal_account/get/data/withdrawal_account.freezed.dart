@@ -22,7 +22,7 @@ WithdrawalAccount _$WithdrawalAccountFromJson(Map<String, dynamic> json) {
 mixin _$WithdrawalAccount {
   int get id => throw _privateConstructorUsedError;
   int get bankId => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get bankName => throw _privateConstructorUsedError;
   String get accountName => throw _privateConstructorUsedError;
   String get accountNumber => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $WithdrawalAccountCopyWith<$Res> {
   $Res call(
       {int id,
       int bankId,
-      String name,
+      String bankName,
       String accountName,
       String accountNumber,
       String createdAt});
@@ -63,7 +63,7 @@ class _$WithdrawalAccountCopyWithImpl<$Res, $Val extends WithdrawalAccount>
   $Res call({
     Object? id = null,
     Object? bankId = null,
-    Object? name = null,
+    Object? bankName = null,
     Object? accountName = null,
     Object? accountNumber = null,
     Object? createdAt = null,
@@ -77,9 +77,9 @@ class _$WithdrawalAccountCopyWithImpl<$Res, $Val extends WithdrawalAccount>
           ? _value.bankId
           : bankId // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      bankName: null == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
               as String,
       accountName: null == accountName
           ? _value.accountName
@@ -108,7 +108,7 @@ abstract class _$$WithdrawalAccountImplCopyWith<$Res>
   $Res call(
       {int id,
       int bankId,
-      String name,
+      String bankName,
       String accountName,
       String accountNumber,
       String createdAt});
@@ -127,7 +127,7 @@ class __$$WithdrawalAccountImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? bankId = null,
-    Object? name = null,
+    Object? bankName = null,
     Object? accountName = null,
     Object? accountNumber = null,
     Object? createdAt = null,
@@ -141,9 +141,9 @@ class __$$WithdrawalAccountImplCopyWithImpl<$Res>
           ? _value.bankId
           : bankId // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      bankName: null == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
               as String,
       accountName: null == accountName
           ? _value.accountName
@@ -167,7 +167,7 @@ class _$WithdrawalAccountImpl implements _WithdrawalAccount {
   const _$WithdrawalAccountImpl(
       {required this.id,
       required this.bankId,
-      required this.name,
+      required this.bankName,
       required this.accountName,
       required this.accountNumber,
       required this.createdAt});
@@ -180,7 +180,7 @@ class _$WithdrawalAccountImpl implements _WithdrawalAccount {
   @override
   final int bankId;
   @override
-  final String name;
+  final String bankName;
   @override
   final String accountName;
   @override
@@ -190,7 +190,7 @@ class _$WithdrawalAccountImpl implements _WithdrawalAccount {
 
   @override
   String toString() {
-    return 'WithdrawalAccount(id: $id, bankId: $bankId, name: $name, accountName: $accountName, accountNumber: $accountNumber, createdAt: $createdAt)';
+    return 'WithdrawalAccount(id: $id, bankId: $bankId, bankName: $bankName, accountName: $accountName, accountNumber: $accountNumber, createdAt: $createdAt)';
   }
 
   @override
@@ -200,7 +200,8 @@ class _$WithdrawalAccountImpl implements _WithdrawalAccount {
             other is _$WithdrawalAccountImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.bankId, bankId) || other.bankId == bankId) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.bankName, bankName) ||
+                other.bankName == bankName) &&
             (identical(other.accountName, accountName) ||
                 other.accountName == accountName) &&
             (identical(other.accountNumber, accountNumber) ||
@@ -212,7 +213,7 @@ class _$WithdrawalAccountImpl implements _WithdrawalAccount {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, bankId, name, accountName, accountNumber, createdAt);
+      runtimeType, id, bankId, bankName, accountName, accountNumber, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -233,7 +234,7 @@ abstract class _WithdrawalAccount implements WithdrawalAccount {
   const factory _WithdrawalAccount(
       {required final int id,
       required final int bankId,
-      required final String name,
+      required final String bankName,
       required final String accountName,
       required final String accountNumber,
       required final String createdAt}) = _$WithdrawalAccountImpl;
@@ -246,7 +247,7 @@ abstract class _WithdrawalAccount implements WithdrawalAccount {
   @override
   int get bankId;
   @override
-  String get name;
+  String get bankName;
   @override
   String get accountName;
   @override

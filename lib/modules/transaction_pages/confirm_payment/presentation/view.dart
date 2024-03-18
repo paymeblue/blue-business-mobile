@@ -132,7 +132,6 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
           locator<AppStateValues>().withdrawalAccount!.accountName,
           style: AppTextStyles.header.copyWith(fontSize: 15.5),
         ),
-        4.verticalGap,
         Text(
           modeSubString(),
           style: AppTextStyles.smallText

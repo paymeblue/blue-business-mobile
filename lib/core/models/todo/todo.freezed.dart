@@ -23,6 +23,7 @@ mixin _$TodoOption {
   String get title => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String? get route => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,8 @@ abstract class $TodoOptionCopyWith<$Res> {
           TodoOption value, $Res Function(TodoOption) then) =
       _$TodoOptionCopyWithImpl<$Res, TodoOption>;
   @useResult
-  $Res call({String title, String status, String? route});
+  $Res call(
+      {String title, String status, String? route, Map<String, dynamic>? data});
 }
 
 /// @nodoc
@@ -55,6 +57,7 @@ class _$TodoOptionCopyWithImpl<$Res, $Val extends TodoOption>
     Object? title = null,
     Object? status = null,
     Object? route = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -69,6 +72,10 @@ class _$TodoOptionCopyWithImpl<$Res, $Val extends TodoOption>
           ? _value.route
           : route // ignore: cast_nullable_to_non_nullable
               as String?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ) as $Val);
   }
 }
@@ -81,7 +88,8 @@ abstract class _$$TodoOptionImplCopyWith<$Res>
       __$$TodoOptionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String status, String? route});
+  $Res call(
+      {String title, String status, String? route, Map<String, dynamic>? data});
 }
 
 /// @nodoc
@@ -98,6 +106,7 @@ class __$$TodoOptionImplCopyWithImpl<$Res>
     Object? title = null,
     Object? status = null,
     Object? route = freezed,
+    Object? data = freezed,
   }) {
     return _then(_$TodoOptionImpl(
       title: null == title
@@ -112,6 +121,10 @@ class __$$TodoOptionImplCopyWithImpl<$Res>
           ? _value.route
           : route // ignore: cast_nullable_to_non_nullable
               as String?,
+      data: freezed == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -120,7 +133,11 @@ class __$$TodoOptionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TodoOptionImpl implements _TodoOption {
   const _$TodoOptionImpl(
-      {required this.title, this.status = "incomplete", this.route});
+      {required this.title,
+      this.status = "incomplete",
+      this.route,
+      final Map<String, dynamic>? data})
+      : _data = data;
 
   factory _$TodoOptionImpl.fromJson(Map<String, dynamic> json) =>
       _$$TodoOptionImplFromJson(json);
@@ -132,10 +149,19 @@ class _$TodoOptionImpl implements _TodoOption {
   final String status;
   @override
   final String? route;
+  final Map<String, dynamic>? _data;
+  @override
+  Map<String, dynamic>? get data {
+    final value = _data;
+    if (value == null) return null;
+    if (_data is EqualUnmodifiableMapView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
-    return 'TodoOption(title: $title, status: $status, route: $route)';
+    return 'TodoOption(title: $title, status: $status, route: $route, data: $data)';
   }
 
   @override
@@ -145,12 +171,14 @@ class _$TodoOptionImpl implements _TodoOption {
             other is _$TodoOptionImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.route, route) || other.route == route));
+            (identical(other.route, route) || other.route == route) &&
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, status, route);
+  int get hashCode => Object.hash(runtimeType, title, status, route,
+      const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
@@ -170,7 +198,8 @@ abstract class _TodoOption implements TodoOption {
   const factory _TodoOption(
       {required final String title,
       final String status,
-      final String? route}) = _$TodoOptionImpl;
+      final String? route,
+      final Map<String, dynamic>? data}) = _$TodoOptionImpl;
 
   factory _TodoOption.fromJson(Map<String, dynamic> json) =
       _$TodoOptionImpl.fromJson;
@@ -181,6 +210,8 @@ abstract class _TodoOption implements TodoOption {
   String get status;
   @override
   String? get route;
+  @override
+  Map<String, dynamic>? get data;
   @override
   @JsonKey(ignore: true)
   _$$TodoOptionImplCopyWith<_$TodoOptionImpl> get copyWith =>

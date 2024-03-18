@@ -37,6 +37,8 @@ abstract class $PushPayResponseCopyWith<$Res> {
       _$PushPayResponseCopyWithImpl<$Res, PushPayResponse>;
   @useResult
   $Res call({String status, String? message, PushPayData? data});
+
+  $PushPayDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -71,6 +73,18 @@ class _$PushPayResponseCopyWithImpl<$Res, $Val extends PushPayResponse>
               as PushPayData?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PushPayDataCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $PushPayDataCopyWith<$Res>(_value.data!, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -82,6 +96,9 @@ abstract class _$$PushPayResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({String status, String? message, PushPayData? data});
+
+  @override
+  $PushPayDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -144,13 +161,12 @@ class _$PushPayResponseImpl implements _PushPayResponse {
             other is _$PushPayResponseImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality().equals(other.data, data));
+            (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, status, message, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, status, message, data);
 
   @JsonKey(ignore: true)
   @override

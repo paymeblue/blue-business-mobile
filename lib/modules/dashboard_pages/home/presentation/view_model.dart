@@ -3,7 +3,9 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/kyc_status/response/kyc_status_response.dart';
+import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/models/todo/response/todo_response.dart';
+import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/topup_account/response/topup_response.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
@@ -125,6 +127,21 @@ class HomeViewModel extends BaseViewModel {
       AppNotification.error(message: resp.message);
     }
     isTodoLoading = false;
+  }
+
+  onTapTodo(TodoOption todo, BuildContext context) {
+    if (todo.route != null) {
+      context.go("${RoutePaths.settingsPath}/${todo.route}");
+    } else if (todo.data != null) {
+      if (todo.data!["type"] == "payment") {
+        PushPayment payment = PushPayment.fromJson(todo.data!);
+        BlueBottomSheet.paymentRequest(payment).then((value) {
+          if (value) {
+            context.go("/${payment.transactionId}${RoutePaths.pushPaymentPin}");
+          }
+        });
+      }
+    }
   }
 
   int limit = 6;

@@ -5,7 +5,6 @@ import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
-import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -16,7 +15,6 @@ import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/tiles/transaction_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shimmer/shimmer.dart';
@@ -267,7 +265,8 @@ class _HomeViewState extends State<HomeView> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (constex, i) {
-                  return todoContainer(locator<AppStateValues>().todos[i]);
+                  return todoContainer(
+                      locator<AppStateValues>().todos[i], model);
                 },
                 separatorBuilder: (constex, i) {
                   return 10.horizontalGap;
@@ -281,10 +280,10 @@ class _HomeViewState extends State<HomeView> {
     }
   }
 
-  Widget todoContainer(TodoOption todo) {
+  Widget todoContainer(TodoOption todo, HomeViewModel model) {
     return InkWell(
       onTap: () {
-        context.go("${RoutePaths.settingsPath}/${todo.route}");
+        model.onTapTodo(todo, context);
       },
       child: Container(
         height: 75,

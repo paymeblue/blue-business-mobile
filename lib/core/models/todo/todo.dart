@@ -9,6 +9,7 @@ class TodoOption with _$TodoOption {
     required String title,
     @Default("incomplete") String status,
     String? route,
+    Map<String, dynamic>? data,
   }) = _TodoOption;
 
   factory TodoOption.fromJson(Map<String, dynamic> json) =>

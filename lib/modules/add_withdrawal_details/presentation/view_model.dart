@@ -33,7 +33,7 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
   setBankDetails() {
     selectedBank = BankItem(
         id: locator<AppStateValues>().withdrawalAccount!.bankId,
-        name: locator<AppStateValues>().withdrawalAccount!.name);
+        name: locator<AppStateValues>().withdrawalAccount!.bankName);
 
     accountNumberController.text =
         locator<AppStateValues>().withdrawalAccount!.accountNumber;

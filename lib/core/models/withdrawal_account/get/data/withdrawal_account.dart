@@ -8,7 +8,7 @@ class WithdrawalAccount with _$WithdrawalAccount {
   const factory WithdrawalAccount({
     required int id,
     required int bankId,
-    required String name,
+    required String bankName,
     required String accountName,
     required String accountNumber,
     required String createdAt,

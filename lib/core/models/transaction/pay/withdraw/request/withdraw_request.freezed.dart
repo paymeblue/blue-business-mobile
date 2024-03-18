@@ -20,7 +20,6 @@ WithdrawRequest _$WithdrawRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WithdrawRequest {
-  String get paymentMode => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get passcode => throw _privateConstructorUsedError;
 
@@ -36,7 +35,7 @@ abstract class $WithdrawRequestCopyWith<$Res> {
           WithdrawRequest value, $Res Function(WithdrawRequest) then) =
       _$WithdrawRequestCopyWithImpl<$Res, WithdrawRequest>;
   @useResult
-  $Res call({String paymentMode, String amount, String passcode});
+  $Res call({String amount, String passcode});
 }
 
 /// @nodoc
@@ -52,15 +51,10 @@ class _$WithdrawRequestCopyWithImpl<$Res, $Val extends WithdrawRequest>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? paymentMode = null,
     Object? amount = null,
     Object? passcode = null,
   }) {
     return _then(_value.copyWith(
-      paymentMode: null == paymentMode
-          ? _value.paymentMode
-          : paymentMode // ignore: cast_nullable_to_non_nullable
-              as String,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -81,7 +75,7 @@ abstract class _$$WithdrawRequestImplCopyWith<$Res>
       __$$WithdrawRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String paymentMode, String amount, String passcode});
+  $Res call({String amount, String passcode});
 }
 
 /// @nodoc
@@ -95,15 +89,10 @@ class __$$WithdrawRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? paymentMode = null,
     Object? amount = null,
     Object? passcode = null,
   }) {
     return _then(_$WithdrawRequestImpl(
-      paymentMode: null == paymentMode
-          ? _value.paymentMode
-          : paymentMode // ignore: cast_nullable_to_non_nullable
-              as String,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -119,17 +108,11 @@ class __$$WithdrawRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$WithdrawRequestImpl implements _WithdrawRequest {
-  const _$WithdrawRequestImpl(
-      {this.paymentMode = "withdrawal",
-      required this.amount,
-      required this.passcode});
+  const _$WithdrawRequestImpl({required this.amount, required this.passcode});
 
   factory _$WithdrawRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$WithdrawRequestImplFromJson(json);
 
-  @override
-  @JsonKey()
-  final String paymentMode;
   @override
   final String amount;
   @override
@@ -137,7 +120,7 @@ class _$WithdrawRequestImpl implements _WithdrawRequest {
 
   @override
   String toString() {
-    return 'WithdrawRequest(paymentMode: $paymentMode, amount: $amount, passcode: $passcode)';
+    return 'WithdrawRequest(amount: $amount, passcode: $passcode)';
   }
 
   @override
@@ -145,8 +128,6 @@ class _$WithdrawRequestImpl implements _WithdrawRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WithdrawRequestImpl &&
-            (identical(other.paymentMode, paymentMode) ||
-                other.paymentMode == paymentMode) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.passcode, passcode) ||
                 other.passcode == passcode));
@@ -154,7 +135,7 @@ class _$WithdrawRequestImpl implements _WithdrawRequest {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, paymentMode, amount, passcode);
+  int get hashCode => Object.hash(runtimeType, amount, passcode);
 
   @JsonKey(ignore: true)
   @override
@@ -173,15 +154,12 @@ class _$WithdrawRequestImpl implements _WithdrawRequest {
 
 abstract class _WithdrawRequest implements WithdrawRequest {
   const factory _WithdrawRequest(
-      {final String paymentMode,
-      required final String amount,
+      {required final String amount,
       required final String passcode}) = _$WithdrawRequestImpl;
 
   factory _WithdrawRequest.fromJson(Map<String, dynamic> json) =
       _$WithdrawRequestImpl.fromJson;
 
-  @override
-  String get paymentMode;
   @override
   String get amount;
   @override

@@ -81,7 +81,7 @@ abstract class TransactionService {
     @Body() VerifiedReceiverRequest request,
   );
 
-  @POST("/withdraws")
+  @POST("/withdraw")
   Future<PayResponse> withdraw(@Body() WithdrawRequest request);
 
   @PATCH("/transactions/send-fund")

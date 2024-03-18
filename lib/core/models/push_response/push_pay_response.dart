@@ -1,4 +1,4 @@
-import 'package:blue_mobile/core/models/transaction/pay/push_data/push_pay_data.dart';
+import 'package:blue_business/core/models/push_data/push_pay_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'push_pay_response.freezed.dart';

@@ -11,7 +11,7 @@ _$WithdrawalAccountImpl _$$WithdrawalAccountImplFromJson(
     _$WithdrawalAccountImpl(
       id: json['id'] as int,
       bankId: json['bank_id'] as int,
-      name: json['name'] as String,
+      bankName: json['bank_name'] as String,
       accountName: json['account_name'] as String,
       accountNumber: json['account_number'] as String,
       createdAt: json['created_at'] as String,
@@ -22,7 +22,7 @@ Map<String, dynamic> _$$WithdrawalAccountImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'bank_id': instance.bankId,
-      'name': instance.name,
+      'bank_name': instance.bankName,
       'account_name': instance.accountName,
       'account_number': instance.accountNumber,
       'created_at': instance.createdAt,
