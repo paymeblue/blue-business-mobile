@@ -1,9 +1,15 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
+import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
+import 'package:blue_business/widgets/buttons/app_buttons.dart';
+import 'package:blue_business/widgets/paging/error.dart';
+import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'view_model.dart';
 
@@ -22,7 +28,9 @@ class _StaffHomeViewState extends State<StaffHomeView> {
         onModelReady: (model) => model.init(context),
         builder: (context, model, _) {
           return Scaffold(
-            appBar: BlueAppBar.primary(),
+            appBar: BlueAppBar.primary(
+              onBackTap: () => model.goBack(context),
+            ),
             body: Container(
               height: MediaQuery.sizeOf(context).height,
               width: double.infinity,
@@ -32,7 +40,9 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                 children: [
                   ...titleAndSubtitle(),
                   12.verticalGap,
-                  Expanded(child: emptyPage()),
+                  Expanded(
+                    child: staffList(model),
+                  ),
                 ],
               ),
             ),
@@ -40,9 +50,93 @@ class _StaffHomeViewState extends State<StaffHomeView> {
         });
   }
 
-  staffList() {}
+  Widget staffList(StaffHomeViewModel model) {
+    return RefreshIndicator(
+      onRefresh: () async => model.staffPagingController.refresh(),
+      child: PagedListView<int, Staff>.separated(
+        pagingController: model.staffPagingController,
+        builderDelegate: PagedChildBuilderDelegate(
+            noItemsFoundIndicatorBuilder: (context) => emptyPage(model),
+            firstPageProgressIndicatorBuilder: (context) => Column(
+                  children: List.generate(
+                    4,
+                    (index) => Column(
+                      children: [
+                        BlueLoadingTile.withImage(),
+                        if (index < 3) 6.verticalGap,
+                      ],
+                    ),
+                  ),
+                ),
+            firstPageErrorIndicatorBuilder: (ctx) => Column(
+                  children: [
+                    PagingError.firstPage(
+                      model.staffPagingController.error.toString(),
+                      model.staffPagingController.refresh,
+                    ),
+                  ],
+                ),
+            newPageErrorIndicatorBuilder: (ctx) => PagingError.firstPage(
+                  model.staffPagingController.error.toString(),
+                  model.staffPagingController.refresh,
+                ),
+            newPageProgressIndicatorBuilder: (context) =>
+                BlueLoadingTile.withImage(),
+            itemBuilder: (context, item, i) => Column(
+                  children: [
+                    if (i == 0)
+                      Container(
+                        decoration: const BoxDecoration(),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Icon(
+                              Icons.add,
+                              size: 15,
+                              color: AppColors.primary,
+                            ),
+                            Text(
+                              "Add staff",
+                              style: AppTextStyles.subText.copyWith(
+                                color: AppColors.primary,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    SizedBox(
+                      height: 50,
+                      width: model.size.width,
+                      child: Row(
+                        children: [
+                          AppAssets.images.icons.staff.svg(),
+                          10.horizontalGap,
+                          Column(
+                            children: [
+                              Text(
+                                item.name,
+                                style: AppTextStyles.header.copyWith(
+                                  fontSize: 15,
+                                ),
+                              ),
+                              Text(
+                                item.phone,
+                                style: AppTextStyles.subText,
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
+        separatorBuilder: (context, i) => 10.verticalGap,
+      ),
+    );
+  }
 
-  Widget emptyPage() {
+  Widget emptyPage(StaffHomeViewModel model) {
     return Container(
       alignment: Alignment.center,
       child: Column(
@@ -58,6 +152,20 @@ class _StaffHomeViewState extends State<StaffHomeView> {
               "You have not added any staff yet",
               style: AppTextStyles.subHeader,
               textAlign: TextAlign.center,
+            ),
+          ),
+          20.verticalGap,
+          SizedBox(
+            width: 300,
+            child: AppButton.primaryWithIcon(
+              title: "Add Staff",
+              icon: const Icon(
+                Icons.add,
+                color: AppColors.white,
+              ),
+              onTap: () {
+                model.goToAddStaff(context);
+              },
             ),
           )
         ],
