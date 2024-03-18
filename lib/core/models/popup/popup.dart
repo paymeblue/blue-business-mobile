@@ -7,7 +7,7 @@ part 'popup.freezed.dart';
 class PopupModel with _$PopupModel {
   const factory PopupModel({
     required String title,
-    required Widget icon,
+    Widget? icon,
     required Function onTap,
   }) = _PopupModel;
 }

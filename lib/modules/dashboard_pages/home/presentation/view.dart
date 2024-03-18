@@ -10,6 +10,7 @@ import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/modules/dashboard_pages/home/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
+import 'package:blue_business/widgets/modals/popup_menu.dart';
 import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
@@ -36,32 +37,34 @@ class _HomeViewState extends State<HomeView> {
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
         return SafeArea(
-          child: Container(
-            height: model.size.height + 180,
-            width: model.size.width,
-            color: AppColors.offWhite,
-            padding: const EdgeInsets.only(top: 15),
-            child: Column(
-              children: [
-                firstRow(() {
-                  model.goToTransactionHistory(context);
-                }),
-                12.verticalGap,
-                walletSection(model),
-                if (model.isTodoLoading ||
-                    locator<AppStateValues>().todos.isNotEmpty) ...[
-                  15.verticalGap,
-                  todoSection(model),
+          child: SingleChildScrollView(
+            child: Container(
+              height: model.size.height + 180,
+              width: model.size.width,
+              color: AppColors.offWhite,
+              padding: const EdgeInsets.only(top: 15),
+              child: Column(
+                children: [
+                  firstRow(() {
+                    model.goToTransactionHistory(context);
+                  }),
+                  12.verticalGap,
+                  walletSection(model),
+                  if (model.isTodoLoading ||
+                      locator<AppStateValues>().todos.isNotEmpty) ...[
+                    15.verticalGap,
+                    todoSection(model),
+                  ],
+                  20.verticalGap,
+                  transactionOptionSection(model, context),
+                  12.verticalGap,
+                  totalSalesSection(model),
+                  12.verticalGap,
+                  Expanded(
+                    child: transactionSection(model),
+                  ),
                 ],
-                20.verticalGap,
-                transactionOptionSection(model, context),
-                12.verticalGap,
-                totalSalesSection(model),
-                12.verticalGap,
-                Expanded(
-                  child: transactionSection(model),
-                ),
-              ],
+              ),
             ),
           ),
         );
@@ -191,10 +194,39 @@ class _HomeViewState extends State<HomeView> {
           14.verticalGap,
           Container(
             width: model.size.width,
+            height: 250,
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 17),
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.midGrey),
               borderRadius: BorderRadius.circular(6),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: AppColors.bgGrey,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        model.popupItem,
+                        style: AppTextStyles.subHeader,
+                      ),
+                      8.horizontalGap,
+                      BluePopupMenu(
+                        icon: const Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                        ),
+                        popupItems: model.popupItems(),
+                      )
+                    ],
+                  ),
+                )
+              ],
             ),
           )
         ],

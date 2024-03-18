@@ -133,7 +133,7 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
         height: 35,
         child: Row(
           children: [
-            e.icon,
+            if (e.icon != null) e.icon!,
             const SizedBox(
               width: 8,
             ),

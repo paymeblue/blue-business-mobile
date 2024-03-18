@@ -3,6 +3,7 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/kyc_status/response/kyc_status_response.dart';
+import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/models/todo/response/todo_response.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
@@ -38,6 +39,7 @@ class HomeViewModel extends BaseViewModel {
   getDashData() async {
     getWalletBalance();
     getKyc();
+    popupItem = popupItems()[0].title;
     if (!locator<AppStateValues>().loadedTodo) {
       getTodos();
     }
@@ -280,4 +282,32 @@ class HomeViewModel extends BaseViewModel {
   goToInitiateWithdrawal(BuildContext context) {
     context.go("${RoutePaths.initiateTransactionPath}/withdraw");
   }
+
+  late String _popupItem;
+  String get popupItem => _popupItem;
+  set popupItem(String v) {
+    _popupItem = v;
+    notifyListeners();
+  }
+
+  List<PopupModel> popupItems() => [
+        PopupModel(
+          title: "This week",
+          onTap: () {
+            popupItem = "This week";
+          },
+        ),
+        PopupModel(
+          title: "This month",
+          onTap: () {
+            popupItem = "This month";
+          },
+        ),
+        PopupModel(
+          title: "This year",
+          onTap: () {
+            popupItem = "This year";
+          },
+        ),
+      ];
 }

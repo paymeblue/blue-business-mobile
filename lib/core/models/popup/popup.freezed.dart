@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PopupModel {
   String get title => throw _privateConstructorUsedError;
-  Widget get icon => throw _privateConstructorUsedError;
+  Widget? get icon => throw _privateConstructorUsedError;
   Function get onTap => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +31,7 @@ abstract class $PopupModelCopyWith<$Res> {
           PopupModel value, $Res Function(PopupModel) then) =
       _$PopupModelCopyWithImpl<$Res, PopupModel>;
   @useResult
-  $Res call({String title, Widget icon, Function onTap});
+  $Res call({String title, Widget? icon, Function onTap});
 }
 
 /// @nodoc
@@ -48,7 +48,7 @@ class _$PopupModelCopyWithImpl<$Res, $Val extends PopupModel>
   @override
   $Res call({
     Object? title = null,
-    Object? icon = null,
+    Object? icon = freezed,
     Object? onTap = null,
   }) {
     return _then(_value.copyWith(
@@ -56,10 +56,10 @@ class _$PopupModelCopyWithImpl<$Res, $Val extends PopupModel>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      icon: null == icon
+      icon: freezed == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
-              as Widget,
+              as Widget?,
       onTap: null == onTap
           ? _value.onTap
           : onTap // ignore: cast_nullable_to_non_nullable
@@ -76,7 +76,7 @@ abstract class _$$PopupModelImplCopyWith<$Res>
       __$$PopupModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, Widget icon, Function onTap});
+  $Res call({String title, Widget? icon, Function onTap});
 }
 
 /// @nodoc
@@ -91,7 +91,7 @@ class __$$PopupModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = null,
-    Object? icon = null,
+    Object? icon = freezed,
     Object? onTap = null,
   }) {
     return _then(_$PopupModelImpl(
@@ -99,10 +99,10 @@ class __$$PopupModelImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      icon: null == icon
+      icon: freezed == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
-              as Widget,
+              as Widget?,
       onTap: null == onTap
           ? _value.onTap
           : onTap // ignore: cast_nullable_to_non_nullable
@@ -114,13 +114,12 @@ class __$$PopupModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PopupModelImpl implements _PopupModel {
-  const _$PopupModelImpl(
-      {required this.title, required this.icon, required this.onTap});
+  const _$PopupModelImpl({required this.title, this.icon, required this.onTap});
 
   @override
   final String title;
   @override
-  final Widget icon;
+  final Widget? icon;
   @override
   final Function onTap;
 
@@ -152,13 +151,13 @@ class _$PopupModelImpl implements _PopupModel {
 abstract class _PopupModel implements PopupModel {
   const factory _PopupModel(
       {required final String title,
-      required final Widget icon,
+      final Widget? icon,
       required final Function onTap}) = _$PopupModelImpl;
 
   @override
   String get title;
   @override
-  Widget get icon;
+  Widget? get icon;
   @override
   Function get onTap;
   @override
