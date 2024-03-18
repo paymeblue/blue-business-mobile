@@ -10,6 +10,8 @@ import 'package:blue_business/core/navigation/screens.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/modules/staff_management_pages/add/presentation/view.dart';
+import 'package:blue_business/modules/staff_management_pages/home/presentation/view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -604,6 +606,18 @@ GoRouter router = GoRouter(
       builder: (context, state) {
         log(state.matchedLocation.toString());
         return const QrChatView();
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.staffManagementPath,
+      builder: (context, state) {
+        return const StaffHomeView();
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.addStaffPath,
+      builder: (context, state) {
+        return const AddStaffView();
       },
     ),
   ],

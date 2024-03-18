@@ -54,4 +54,7 @@ class RoutePaths {
   static String businessNamePath = "$businessProfilePath/name";
   static String businessSizePath = "$businessProfilePath/size";
   static String businessLocation = "$businessProfilePath/location";
+
+  static String staffManagementPath = "$settingsPath/staff-management";
+  static String addStaffPath = "$staffManagementPath/add";
 }
