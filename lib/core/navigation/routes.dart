@@ -332,7 +332,7 @@ GoRouter router = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: RoutePaths.insightsPAth,
+              path: RoutePaths.insightsPath,
               name: "Insights",
               builder: (context, state) {
                 log(state.fullPath.toString());

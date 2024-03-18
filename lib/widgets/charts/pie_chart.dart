@@ -66,7 +66,8 @@ class _Painter extends CustomPainter {
                 ..strokeWidth = strokeWidth
                 ..strokeCap = StrokeCap.round,
               // remove padding from stroke
-              (e.percent - _padding) * _percentInRadians),
+              (e.percent >= _padding ? (e.percent - _padding) : (0)) *
+                  _percentInRadians),
         )
         .toList();
   }

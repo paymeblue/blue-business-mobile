@@ -10,6 +10,7 @@ import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
+import 'package:blue_business/widgets/modals/info_container.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -53,7 +54,11 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
                         title(),
                         35.verticalGap,
                         barcodeImage(),
-                        25.verticalGap,
+                        10.verticalGap,
+                        const InfoContainer(
+                            text:
+                                "Please remain logged in while paying with barcode"),
+                        15.verticalGap,
                         qrImageContainer(model),
                         36.verticalGap,
                         Padding(
@@ -67,9 +72,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
                     ),
                   ),
                   35.verticalGap,
-                  Expanded(
-                    child: walletDataContainer(model),
-                  ),
+                  walletDataContainer(model),
                 ],
               ),
             ),
@@ -82,6 +85,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
   Container walletDataContainer(ReceiveMoneyViewModel model) {
     return Container(
       width: context.mediaQuery.size.width,
+      height: 300,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -359,8 +363,8 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
     /// Create the Barcode
     final svg = bc.toSvg(
       data,
-      width: width ?? 200,
-      height: height ?? 80,
+      width: width ?? 250,
+      height: height ?? 120,
       fontFamily: AppFonts.satoshi,
       color: AppColors.primary.value,
       fontHeight: fontHeight,

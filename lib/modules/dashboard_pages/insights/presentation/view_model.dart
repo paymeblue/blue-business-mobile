@@ -29,4 +29,6 @@ class InsightsViewModel extends BaseViewModel {
   onTypeChanged(String t) {
     selectedType = t;
   }
+
+  List<double> pieValues = [.65, .35];
 }

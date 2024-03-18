@@ -37,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
       builder: (context, model, _) {
         return SafeArea(
           child: Container(
-            height: model.size.height,
+            height: model.size.height + 180,
             width: model.size.width,
             color: AppColors.offWhite,
             padding: const EdgeInsets.only(top: 15),
@@ -55,6 +55,8 @@ class _HomeViewState extends State<HomeView> {
                 ],
                 20.verticalGap,
                 transactionOptionSection(model, context),
+                12.verticalGap,
+                totalSalesSection(model),
                 12.verticalGap,
                 Expanded(
                   child: transactionSection(model),
@@ -176,6 +178,40 @@ class _HomeViewState extends State<HomeView> {
           ),
         ),
         viewAllButton(onTap)
+      ],
+    );
+  }
+
+  Widget totalSalesSection(HomeViewModel model) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          totalSalesHeader(),
+          14.verticalGap,
+          Container(
+            width: model.size.width,
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 17),
+            decoration: BoxDecoration(
+              border: Border.all(color: AppColors.midGrey),
+              borderRadius: BorderRadius.circular(6),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget totalSalesHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          "Total Sales",
+          style: AppTextStyles.header.copyWith(
+            fontSize: 18.5,
+          ),
+        ),
       ],
     );
   }

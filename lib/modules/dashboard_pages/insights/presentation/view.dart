@@ -90,18 +90,13 @@ class _InsightsViewState extends State<InsightsView> {
           ),
           12.verticalGap,
           lineChart(model),
-          6.verticalGap,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [...posKey(), 12.horizontalGap, ...mobileKey()],
-          ),
         ],
       ),
     );
   }
 
   Widget lineChart(InsightsViewModel model) {
-    return const LineChartSample2();
+    return const BlueLineChart();
   }
 
   Widget spendingStatsContainer(InsightsViewModel model) {
@@ -130,7 +125,7 @@ class _InsightsViewState extends State<InsightsView> {
             color: AppColors.grey,
           ),
           12.verticalGap,
-          pieChart(),
+          pieChart(model),
           6.verticalGap,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -193,20 +188,21 @@ class _InsightsViewState extends State<InsightsView> {
     ];
   }
 
-  Center pieChart() {
+  Center pieChart(InsightsViewModel model) {
     return Center(
       child: PieChart(
         strokeWidth: 18,
-        data: const [
-          PieChartData(
-            AppColors.primary,
-            .65 * 85,
+        data: [
+          ...List.generate(
+            model.pieValues.length,
+            (i) {
+              return PieChartData(
+                i == 1 ? AppColors.bgGrey : AppColors.primary,
+                model.pieValues[i] * 85,
+              );
+            },
           ),
-          PieChartData(
-            AppColors.bgGrey,
-            .35 * 85,
-          ),
-          PieChartData(Colors.transparent, 15)
+          const PieChartData(Colors.transparent, 15)
         ],
         radius: 108,
         child: totalSalesTextColumn(),

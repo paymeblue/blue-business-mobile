@@ -35,7 +35,7 @@ class DashboardShellViewModel extends BaseViewModel {
       case 0:
         context.push(RoutePaths.homePath);
       case 1:
-        context.push(RoutePaths.insightsPAth);
+        context.push(RoutePaths.insightsPath);
       case 2:
         if (locator<AppStateValues>().wallet == null) {
           AppNotification.warning(message: "Getting wallet data...");
