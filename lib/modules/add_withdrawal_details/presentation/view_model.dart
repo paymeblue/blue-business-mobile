@@ -120,7 +120,8 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
   verifyAccount() async {
     verifyingAccount = true;
     VerifyPayoutRequest request = VerifyPayoutRequest(
-        bankId: selectedBank!.id, accountNumber: accountNumberController.text);
+        bankId: selectedBank!.id.toString(),
+        accountNumber: accountNumberController.text);
     VerifyPayoutResponse resp = await transactionService
         .verifyAccount(request)
         .onError((error, stackTrace) {

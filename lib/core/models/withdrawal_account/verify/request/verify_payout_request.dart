@@ -6,7 +6,7 @@ part 'verify_payout_request.g.dart';
 @freezed
 class VerifyPayoutRequest with _$VerifyPayoutRequest {
   const factory VerifyPayoutRequest({
-    required int bankId,
+    required String bankId,
     required String accountNumber,
   }) = _VerifyPayoutRequest;
 

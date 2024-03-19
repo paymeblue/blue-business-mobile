@@ -1,4 +1,5 @@
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -23,31 +24,31 @@ class _BlueLineChartState extends State<BlueLineChart> {
     return Stack(
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 1.70,
+          aspectRatio: 2.3,
           child: LineChart(
             showAvg ? avgData() : mainData(),
           ),
         ),
-        // SizedBox(
-        //   width: 75,
-        //   height: 34,
-        //   child: TextButton(
-        //     onPressed: () {
-        //       setState(() {
-        //         showAvg = !showAvg;
-        //       });
-        //     },
-        //     child: Text(
-        //       'Average',
-        //       style: TextStyle(
-        //         fontSize: 12,
-        //         color: showAvg
-        //             ? AppColors.primary.withOpacity(0.5)
-        //             : AppColors.primary,
-        //       ),
-        //     ),
-        //   ),
-        // ),
+        SizedBox(
+          width: 75,
+          height: 34,
+          child: TextButton(
+            onPressed: () {
+              setState(() {
+                showAvg = !showAvg;
+              });
+            },
+            child: Text(
+              'Average',
+              style: TextStyle(
+                fontSize: 12,
+                color: showAvg
+                    ? AppColors.primary.withOpacity(0.5)
+                    : AppColors.primary,
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -79,23 +80,8 @@ class _BlueLineChartState extends State<BlueLineChart> {
 
   LineChartData mainData() {
     return LineChartData(
-      gridData: FlGridData(
-        show: true,
-        drawVerticalLine: true,
-        horizontalInterval: 1,
-        verticalInterval: 1,
-        getDrawingHorizontalLine: (value) {
-          return const FlLine(
-            color: AppColors.white,
-            strokeWidth: 1,
-          );
-        },
-        getDrawingVerticalLine: (value) {
-          return const FlLine(
-            color: AppColors.white,
-            strokeWidth: 1,
-          );
-        },
+      gridData: const FlGridData(
+        show: false,
       ),
       titlesData: FlTitlesData(
         show: true,
@@ -120,6 +106,18 @@ class _BlueLineChartState extends State<BlueLineChart> {
       borderData: FlBorderData(
         show: false,
       ),
+      lineTouchData: LineTouchData(
+        touchTooltipData: LineTouchTooltipData(
+          tooltipBgColor: AppColors.textColor,
+          getTooltipItems: (touchedSpots) => List.generate(
+            touchedSpots.length,
+            (i) => LineTooltipItem(
+              "${nairaSymbol()}3.00",
+              AppTextStyles.smallText,
+            ),
+          ),
+        ),
+      ),
       minX: 0,
       maxX: 11,
       minY: 0,
@@ -137,7 +135,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
           ],
           isCurved: true,
           barWidth: 3,
-          isStrokeCapRound: true,
+          isStrokeCapRound: false,
           dotData: const FlDotData(
             show: false,
           ),

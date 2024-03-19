@@ -20,7 +20,7 @@ VerifyPayoutRequest _$VerifyPayoutRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$VerifyPayoutRequest {
-  int get bankId => throw _privateConstructorUsedError;
+  String get bankId => throw _privateConstructorUsedError;
   String get accountNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $VerifyPayoutRequestCopyWith<$Res> {
           VerifyPayoutRequest value, $Res Function(VerifyPayoutRequest) then) =
       _$VerifyPayoutRequestCopyWithImpl<$Res, VerifyPayoutRequest>;
   @useResult
-  $Res call({int bankId, String accountNumber});
+  $Res call({String bankId, String accountNumber});
 }
 
 /// @nodoc
@@ -58,7 +58,7 @@ class _$VerifyPayoutRequestCopyWithImpl<$Res, $Val extends VerifyPayoutRequest>
       bankId: null == bankId
           ? _value.bankId
           : bankId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       accountNumber: null == accountNumber
           ? _value.accountNumber
           : accountNumber // ignore: cast_nullable_to_non_nullable
@@ -75,7 +75,7 @@ abstract class _$$VerifyPayoutRequestImplCopyWith<$Res>
       __$$VerifyPayoutRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int bankId, String accountNumber});
+  $Res call({String bankId, String accountNumber});
 }
 
 /// @nodoc
@@ -96,7 +96,7 @@ class __$$VerifyPayoutRequestImplCopyWithImpl<$Res>
       bankId: null == bankId
           ? _value.bankId
           : bankId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       accountNumber: null == accountNumber
           ? _value.accountNumber
           : accountNumber // ignore: cast_nullable_to_non_nullable
@@ -115,7 +115,7 @@ class _$VerifyPayoutRequestImpl implements _VerifyPayoutRequest {
       _$$VerifyPayoutRequestImplFromJson(json);
 
   @override
-  final int bankId;
+  final String bankId;
   @override
   final String accountNumber;
 
@@ -155,14 +155,14 @@ class _$VerifyPayoutRequestImpl implements _VerifyPayoutRequest {
 
 abstract class _VerifyPayoutRequest implements VerifyPayoutRequest {
   const factory _VerifyPayoutRequest(
-      {required final int bankId,
+      {required final String bankId,
       required final String accountNumber}) = _$VerifyPayoutRequestImpl;
 
   factory _VerifyPayoutRequest.fromJson(Map<String, dynamic> json) =
       _$VerifyPayoutRequestImpl.fromJson;
 
   @override
-  int get bankId;
+  String get bankId;
   @override
   String get accountNumber;
   @override
