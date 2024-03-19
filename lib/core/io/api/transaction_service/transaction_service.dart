@@ -54,7 +54,7 @@ abstract class TransactionService {
 
   @DELETE("/beneficiaries/{id}")
   Future deleteBeneficiary(
-    @Path() int id,
+    @Path() String id,
   );
 
   @POST("/beneficiaries")

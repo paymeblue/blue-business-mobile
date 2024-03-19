@@ -97,7 +97,7 @@ class _TransactionService implements TransactionService {
   }
 
   @override
-  Future<dynamic> deleteBeneficiary(int id) async {
+  Future<dynamic> deleteBeneficiary(String id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

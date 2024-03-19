@@ -20,9 +20,9 @@ GetBeneficiaryData _$GetBeneficiaryDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GetBeneficiaryData {
-  int get total => throw _privateConstructorUsedError;
-  int get limit => throw _privateConstructorUsedError;
-  int get page => throw _privateConstructorUsedError;
+  String get total => throw _privateConstructorUsedError;
+  String get limit => throw _privateConstructorUsedError;
+  String get page => throw _privateConstructorUsedError;
   List<BlueBeneficiary> get data => throw _privateConstructorUsedError;
   bool get loadMore => throw _privateConstructorUsedError;
 
@@ -39,9 +39,9 @@ abstract class $GetBeneficiaryDataCopyWith<$Res> {
       _$GetBeneficiaryDataCopyWithImpl<$Res, GetBeneficiaryData>;
   @useResult
   $Res call(
-      {int total,
-      int limit,
-      int page,
+      {String total,
+      String limit,
+      String page,
       List<BlueBeneficiary> data,
       bool loadMore});
 }
@@ -69,15 +69,15 @@ class _$GetBeneficiaryDataCopyWithImpl<$Res, $Val extends GetBeneficiaryData>
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -99,9 +99,9 @@ abstract class _$$GetBeneficiaryDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int total,
-      int limit,
-      int page,
+      {String total,
+      String limit,
+      String page,
       List<BlueBeneficiary> data,
       bool loadMore});
 }
@@ -127,15 +127,15 @@ class __$$GetBeneficiaryDataImplCopyWithImpl<$Res>
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -163,11 +163,11 @@ class _$GetBeneficiaryDataImpl implements _GetBeneficiaryData {
       _$$GetBeneficiaryDataImplFromJson(json);
 
   @override
-  final int total;
+  final String total;
   @override
-  final int limit;
+  final String limit;
   @override
-  final int page;
+  final String page;
   final List<BlueBeneficiary> _data;
   @override
   @JsonKey()
@@ -221,9 +221,9 @@ class _$GetBeneficiaryDataImpl implements _GetBeneficiaryData {
 
 abstract class _GetBeneficiaryData implements GetBeneficiaryData {
   const factory _GetBeneficiaryData(
-      {required final int total,
-      required final int limit,
-      required final int page,
+      {required final String total,
+      required final String limit,
+      required final String page,
       final List<BlueBeneficiary> data,
       final bool loadMore}) = _$GetBeneficiaryDataImpl;
 
@@ -231,11 +231,11 @@ abstract class _GetBeneficiaryData implements GetBeneficiaryData {
       _$GetBeneficiaryDataImpl.fromJson;
 
   @override
-  int get total;
+  String get total;
   @override
-  int get limit;
+  String get limit;
   @override
-  int get page;
+  String get page;
   @override
   List<BlueBeneficiary> get data;
   @override

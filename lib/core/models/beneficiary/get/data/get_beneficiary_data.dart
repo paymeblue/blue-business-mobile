@@ -7,9 +7,9 @@ part 'get_beneficiary_data.g.dart';
 @freezed
 class GetBeneficiaryData with _$GetBeneficiaryData {
   const factory GetBeneficiaryData({
-    required int total,
-    required int limit,
-    required int page,
+    required String total,
+    required String limit,
+    required String page,
     @Default([]) List<BlueBeneficiary> data,
     @Default(false) bool loadMore,
   }) = _GetBeneficiaryData;

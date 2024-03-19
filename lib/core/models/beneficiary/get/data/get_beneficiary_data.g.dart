@@ -9,9 +9,9 @@ part of 'get_beneficiary_data.dart';
 _$GetBeneficiaryDataImpl _$$GetBeneficiaryDataImplFromJson(
         Map<String, dynamic> json) =>
     _$GetBeneficiaryDataImpl(
-      total: json['total'] as int,
-      limit: json['limit'] as int,
-      page: json['page'] as int,
+      total: json['total'] as String,
+      limit: json['limit'] as String,
+      page: json['page'] as String,
       data: (json['data'] as List<dynamic>?)
               ?.map((e) => BlueBeneficiary.fromJson(e as Map<String, dynamic>))
               .toList() ??

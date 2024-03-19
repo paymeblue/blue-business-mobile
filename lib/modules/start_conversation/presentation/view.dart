@@ -43,6 +43,7 @@ class _StartConversationState extends State<StartConversationView> {
                 children: [
                   BlueTextField.search(
                     onSearchChanged: model.onSearchContactsChanged,
+                    hint: "Search Contacts",
                   ),
                   newContactButton(model),
                   12.verticalGap,

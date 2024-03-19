@@ -105,7 +105,7 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
     }
   }
 
-  deleteBeneficiary(int id) async {
+  deleteBeneficiary(String id) async {
     AppLoader.start();
     String resp = await TransactionService()
         .deleteBeneficiary(id)

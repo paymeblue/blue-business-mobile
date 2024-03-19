@@ -20,7 +20,7 @@ BlueBeneficiary _$BlueBeneficiaryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BlueBeneficiary {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get identifier => throw _privateConstructorUsedError;
@@ -37,7 +37,7 @@ abstract class $BlueBeneficiaryCopyWith<$Res> {
           BlueBeneficiary value, $Res Function(BlueBeneficiary) then) =
       _$BlueBeneficiaryCopyWithImpl<$Res, BlueBeneficiary>;
   @useResult
-  $Res call({int id, String firstName, String lastName, String identifier});
+  $Res call({String id, String firstName, String lastName, String identifier});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$BlueBeneficiaryCopyWithImpl<$Res, $Val extends BlueBeneficiary>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -87,7 +87,7 @@ abstract class _$$BlueBeneficiaryImplCopyWith<$Res>
       __$$BlueBeneficiaryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String firstName, String lastName, String identifier});
+  $Res call({String id, String firstName, String lastName, String identifier});
 }
 
 /// @nodoc
@@ -110,7 +110,7 @@ class __$$BlueBeneficiaryImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -140,7 +140,7 @@ class _$BlueBeneficiaryImpl implements _BlueBeneficiary {
       _$$BlueBeneficiaryImplFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final String firstName;
   @override
@@ -189,7 +189,7 @@ class _$BlueBeneficiaryImpl implements _BlueBeneficiary {
 
 abstract class _BlueBeneficiary implements BlueBeneficiary {
   const factory _BlueBeneficiary(
-      {required final int id,
+      {required final String id,
       required final String firstName,
       required final String lastName,
       required final String identifier}) = _$BlueBeneficiaryImpl;
@@ -198,7 +198,7 @@ abstract class _BlueBeneficiary implements BlueBeneficiary {
       _$BlueBeneficiaryImpl.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
   String get firstName;
   @override
