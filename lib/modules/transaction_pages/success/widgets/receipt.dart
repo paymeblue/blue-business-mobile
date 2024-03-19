@@ -127,7 +127,7 @@ class Receipt extends StatelessWidget {
       16.verticalGap,
       receiptField(
         title: "Credit Account",
-        data: record.receivedBy,
+        data: record.receiverWallet,
       ),
       16.verticalGap,
       receiptField(
@@ -137,8 +137,8 @@ class Receipt extends StatelessWidget {
       if (record.narration != null) ...[
         16.verticalGap,
         receiptField(
-          title: "Credit Account",
-          data: record.receivedBy,
+          title: "Narration",
+          data: record.narration!,
         ),
       ],
       16.verticalGap,
