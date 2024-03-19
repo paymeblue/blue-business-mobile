@@ -113,34 +113,46 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                       ),
                       8.verticalGap
                     ],
-                    SizedBox(
-                      height: 50,
-                      width: model.size.width,
-                      child: Row(
-                        children: [
-                          AppAssets.images.icons.staff.svg(),
-                          10.horizontalGap,
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                item.name,
-                                style: AppTextStyles.subHeader,
-                              ),
-                              Text(
-                                item.phone,
-                                style: AppTextStyles.smallText.copyWith(
-                                  color: AppColors.bodyTextColor2,
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+                    staffTile(model, item),
                   ],
                 )),
         separatorBuilder: (context, i) => 10.verticalGap,
+      ),
+    );
+  }
+
+  SizedBox staffTile(StaffHomeViewModel model, Staff item) {
+    return SizedBox(
+      height: 50,
+      width: model.size.width,
+      child: Row(
+        children: [
+          AppAssets.images.icons.staff.svg(),
+          10.horizontalGap,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.name,
+                  style: AppTextStyles.subHeader,
+                ),
+                Text(
+                  item.phone,
+                  style: AppTextStyles.smallText.copyWith(
+                    color: AppColors.bodyTextColor2,
+                  ),
+                )
+              ],
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              model.onDeleteStaff(item);
+            },
+            icon: AppAssets.images.icons.delete.svg(),
+          )
+        ],
       ),
     );
   }

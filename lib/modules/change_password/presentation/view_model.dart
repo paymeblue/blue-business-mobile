@@ -82,7 +82,9 @@ class ChangePasswordViewModel extends BaseViewModel {
         await saveInStorage();
       }
       AppNotification.success(message: resp.message);
-      if (context.mounted) goToNext(context);
+      Future.delayed(const Duration(seconds: 3), () {
+        goToNext(context);
+      });
     } else {
       AppNotification.error(message: resp.message);
     }
