@@ -9,23 +9,29 @@ part of 'transaction_history.dart';
 _$TransactionHistoryImpl _$$TransactionHistoryImplFromJson(
         Map<String, dynamic> json) =>
     _$TransactionHistoryImpl(
+      id: json['id'] as int,
+      userId: json['user_id'] as int,
       transactionId: json['transaction_id'] as int,
-      otherPartyName: json['other_party_name'] as String,
-      createdAt: json['created_at'] as String,
-      transactionAmount: json['transaction_amount'] as String,
+      receiverName: json['receiver_name'] as String,
+      senderName: json['sender_name'] as String,
+      amount: json['amount'] as String,
       paymentMode: json['payment_mode'] as String,
-      transactionType: json['transaction_type'] as String,
-      initals: json['initals'] as String? ?? "N/A",
+      type: json['type'] as String,
+      createdAt: json['created_at'] as String,
+      status: json['status'] as String? ?? "pending",
     );
 
 Map<String, dynamic> _$$TransactionHistoryImplToJson(
         _$TransactionHistoryImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
+      'user_id': instance.userId,
       'transaction_id': instance.transactionId,
-      'other_party_name': instance.otherPartyName,
-      'created_at': instance.createdAt,
-      'transaction_amount': instance.transactionAmount,
+      'receiver_name': instance.receiverName,
+      'sender_name': instance.senderName,
+      'amount': instance.amount,
       'payment_mode': instance.paymentMode,
-      'transaction_type': instance.transactionType,
-      'initals': instance.initals,
+      'type': instance.type,
+      'created_at': instance.createdAt,
+      'status': instance.status,
     };

@@ -41,7 +41,7 @@ class TransationTile extends StatelessWidget {
       height: 20,
       child: FittedBox(
         child: Text(
-          "${typeSymbol()}${transaction.transactionAmount}",
+          "${typeSymbol()}${transaction.amount}",
           style: AppTextStyles.subHeader.copyWith(
             color: typeColor(),
           ),
@@ -55,10 +55,10 @@ class TransationTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          "${transaction.paymentMode == "phone" && transaction.otherPartyName.startsWith(RegExp(r"[0-9]")) ? "+" : ""}${transaction.otherPartyName}",
-          style: AppTextStyles.header.copyWith(fontSize: 15.5),
-        ),
+        // Text(
+        //   "${transaction.paymentMode == "phone" && transaction.otherPartyName.startsWith(RegExp(r"[0-9]")) ? "+" : ""}${transaction.otherPartyName}",
+        //   style: AppTextStyles.header.copyWith(fontSize: 15.5),
+        // ),
         Text(
           "${methodString()}, ${timeString()}",
           style: AppTextStyles.smallText
@@ -83,7 +83,7 @@ class TransationTile extends StatelessWidget {
   }
 
   TransactionType getTransactionType() {
-    switch (transaction.transactionType.toLowerCase()) {
+    switch (transaction.type.toLowerCase()) {
       case "credit":
         return TransactionType.credit;
       case "debit":
@@ -115,10 +115,10 @@ class TransationTile extends StatelessWidget {
         color: AppColors.success,
       ),
       alignment: Alignment.center,
-      child: Text(
-        transaction.initals,
-        style: AppTextStyles.smallButtonText.copyWith(color: AppColors.white),
-      ),
+      // child: Text(
+      //   transaction.initals,
+      //   style: AppTextStyles.smallButtonText.copyWith(color: AppColors.white),
+      // ),
     );
   }
 
@@ -153,7 +153,7 @@ class TransationTile extends StatelessWidget {
   String amountString() {
     final formatCurrency = NumberFormat.simpleCurrency(name: nairaSymbol());
 
-    return formatCurrency.format(transaction.transactionAmount);
+    return formatCurrency.format(transaction.amount);
   }
 
   String typeSymbol() {

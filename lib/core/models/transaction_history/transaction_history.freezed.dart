@@ -20,13 +20,16 @@ TransactionHistory _$TransactionHistoryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TransactionHistory {
+  int get id => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
   int get transactionId => throw _privateConstructorUsedError;
-  String get otherPartyName => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get transactionAmount => throw _privateConstructorUsedError;
+  String get receiverName => throw _privateConstructorUsedError;
+  String get senderName => throw _privateConstructorUsedError;
+  String get amount => throw _privateConstructorUsedError;
   String get paymentMode => throw _privateConstructorUsedError;
-  String get transactionType => throw _privateConstructorUsedError;
-  String get initals => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  String get createdAt => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,13 +44,16 @@ abstract class $TransactionHistoryCopyWith<$Res> {
       _$TransactionHistoryCopyWithImpl<$Res, TransactionHistory>;
   @useResult
   $Res call(
-      {int transactionId,
-      String otherPartyName,
-      String createdAt,
-      String transactionAmount,
+      {int id,
+      int userId,
+      int transactionId,
+      String receiverName,
+      String senderName,
+      String amount,
       String paymentMode,
-      String transactionType,
-      String initals});
+      String type,
+      String createdAt,
+      String status});
 }
 
 /// @nodoc
@@ -63,42 +69,57 @@ class _$TransactionHistoryCopyWithImpl<$Res, $Val extends TransactionHistory>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? userId = null,
     Object? transactionId = null,
-    Object? otherPartyName = null,
-    Object? createdAt = null,
-    Object? transactionAmount = null,
+    Object? receiverName = null,
+    Object? senderName = null,
+    Object? amount = null,
     Object? paymentMode = null,
-    Object? transactionType = null,
-    Object? initals = null,
+    Object? type = null,
+    Object? createdAt = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
               as int,
-      otherPartyName: null == otherPartyName
-          ? _value.otherPartyName
-          : otherPartyName // ignore: cast_nullable_to_non_nullable
+      receiverName: null == receiverName
+          ? _value.receiverName
+          : receiverName // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      senderName: null == senderName
+          ? _value.senderName
+          : senderName // ignore: cast_nullable_to_non_nullable
               as String,
-      transactionAmount: null == transactionAmount
-          ? _value.transactionAmount
-          : transactionAmount // ignore: cast_nullable_to_non_nullable
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
               as String,
       paymentMode: null == paymentMode
           ? _value.paymentMode
           : paymentMode // ignore: cast_nullable_to_non_nullable
               as String,
-      transactionType: null == transactionType
-          ? _value.transactionType
-          : transactionType // ignore: cast_nullable_to_non_nullable
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
-      initals: null == initals
-          ? _value.initals
-          : initals // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -113,13 +134,16 @@ abstract class _$$TransactionHistoryImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int transactionId,
-      String otherPartyName,
-      String createdAt,
-      String transactionAmount,
+      {int id,
+      int userId,
+      int transactionId,
+      String receiverName,
+      String senderName,
+      String amount,
       String paymentMode,
-      String transactionType,
-      String initals});
+      String type,
+      String createdAt,
+      String status});
 }
 
 /// @nodoc
@@ -133,42 +157,57 @@ class __$$TransactionHistoryImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? userId = null,
     Object? transactionId = null,
-    Object? otherPartyName = null,
-    Object? createdAt = null,
-    Object? transactionAmount = null,
+    Object? receiverName = null,
+    Object? senderName = null,
+    Object? amount = null,
     Object? paymentMode = null,
-    Object? transactionType = null,
-    Object? initals = null,
+    Object? type = null,
+    Object? createdAt = null,
+    Object? status = null,
   }) {
     return _then(_$TransactionHistoryImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
               as int,
-      otherPartyName: null == otherPartyName
-          ? _value.otherPartyName
-          : otherPartyName // ignore: cast_nullable_to_non_nullable
+      receiverName: null == receiverName
+          ? _value.receiverName
+          : receiverName // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      senderName: null == senderName
+          ? _value.senderName
+          : senderName // ignore: cast_nullable_to_non_nullable
               as String,
-      transactionAmount: null == transactionAmount
-          ? _value.transactionAmount
-          : transactionAmount // ignore: cast_nullable_to_non_nullable
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
               as String,
       paymentMode: null == paymentMode
           ? _value.paymentMode
           : paymentMode // ignore: cast_nullable_to_non_nullable
               as String,
-      transactionType: null == transactionType
-          ? _value.transactionType
-          : transactionType // ignore: cast_nullable_to_non_nullable
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
-      initals: null == initals
-          ? _value.initals
-          : initals // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -178,36 +217,45 @@ class __$$TransactionHistoryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TransactionHistoryImpl implements _TransactionHistory {
   const _$TransactionHistoryImpl(
-      {required this.transactionId,
-      required this.otherPartyName,
-      required this.createdAt,
-      required this.transactionAmount,
+      {required this.id,
+      required this.userId,
+      required this.transactionId,
+      required this.receiverName,
+      required this.senderName,
+      required this.amount,
       required this.paymentMode,
-      required this.transactionType,
-      this.initals = "N/A"});
+      required this.type,
+      required this.createdAt,
+      this.status = "pending"});
 
   factory _$TransactionHistoryImpl.fromJson(Map<String, dynamic> json) =>
       _$$TransactionHistoryImplFromJson(json);
 
   @override
+  final int id;
+  @override
+  final int userId;
+  @override
   final int transactionId;
   @override
-  final String otherPartyName;
+  final String receiverName;
   @override
-  final String createdAt;
+  final String senderName;
   @override
-  final String transactionAmount;
+  final String amount;
   @override
   final String paymentMode;
   @override
-  final String transactionType;
+  final String type;
+  @override
+  final String createdAt;
   @override
   @JsonKey()
-  final String initals;
+  final String status;
 
   @override
   String toString() {
-    return 'TransactionHistory(transactionId: $transactionId, otherPartyName: $otherPartyName, createdAt: $createdAt, transactionAmount: $transactionAmount, paymentMode: $paymentMode, transactionType: $transactionType, initals: $initals)';
+    return 'TransactionHistory(id: $id, userId: $userId, transactionId: $transactionId, receiverName: $receiverName, senderName: $senderName, amount: $amount, paymentMode: $paymentMode, type: $type, createdAt: $createdAt, status: $status)';
   }
 
   @override
@@ -215,25 +263,27 @@ class _$TransactionHistoryImpl implements _TransactionHistory {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TransactionHistoryImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.transactionId, transactionId) ||
                 other.transactionId == transactionId) &&
-            (identical(other.otherPartyName, otherPartyName) ||
-                other.otherPartyName == otherPartyName) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.transactionAmount, transactionAmount) ||
-                other.transactionAmount == transactionAmount) &&
+            (identical(other.receiverName, receiverName) ||
+                other.receiverName == receiverName) &&
+            (identical(other.senderName, senderName) ||
+                other.senderName == senderName) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.paymentMode, paymentMode) ||
                 other.paymentMode == paymentMode) &&
-            (identical(other.transactionType, transactionType) ||
-                other.transactionType == transactionType) &&
-            (identical(other.initals, initals) || other.initals == initals));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, transactionId, otherPartyName,
-      createdAt, transactionAmount, paymentMode, transactionType, initals);
+  int get hashCode => Object.hash(runtimeType, id, userId, transactionId,
+      receiverName, senderName, amount, paymentMode, type, createdAt, status);
 
   @JsonKey(ignore: true)
   @override
@@ -252,31 +302,40 @@ class _$TransactionHistoryImpl implements _TransactionHistory {
 
 abstract class _TransactionHistory implements TransactionHistory {
   const factory _TransactionHistory(
-      {required final int transactionId,
-      required final String otherPartyName,
-      required final String createdAt,
-      required final String transactionAmount,
+      {required final int id,
+      required final int userId,
+      required final int transactionId,
+      required final String receiverName,
+      required final String senderName,
+      required final String amount,
       required final String paymentMode,
-      required final String transactionType,
-      final String initals}) = _$TransactionHistoryImpl;
+      required final String type,
+      required final String createdAt,
+      final String status}) = _$TransactionHistoryImpl;
 
   factory _TransactionHistory.fromJson(Map<String, dynamic> json) =
       _$TransactionHistoryImpl.fromJson;
 
   @override
+  int get id;
+  @override
+  int get userId;
+  @override
   int get transactionId;
   @override
-  String get otherPartyName;
+  String get receiverName;
   @override
-  String get createdAt;
+  String get senderName;
   @override
-  String get transactionAmount;
+  String get amount;
   @override
   String get paymentMode;
   @override
-  String get transactionType;
+  String get type;
   @override
-  String get initals;
+  String get createdAt;
+  @override
+  String get status;
   @override
   @JsonKey(ignore: true)
   _$$TransactionHistoryImplCopyWith<_$TransactionHistoryImpl> get copyWith =>
