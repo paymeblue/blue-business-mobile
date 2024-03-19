@@ -64,7 +64,7 @@ class Receipt extends StatelessWidget {
                 color: AppColors.bodyTextColor, fontSize: 14, height: 1.5),
           ),
           TextSpan(
-            text: "+2347077655432",
+            text: "+2349075561565",
             style: AppTextStyles.receiptFieldTitle.copyWith(
                 color: AppColors.primary,
                 fontSize: 14.5,

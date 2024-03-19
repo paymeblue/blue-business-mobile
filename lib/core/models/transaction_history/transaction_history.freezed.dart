@@ -23,11 +23,11 @@ mixin _$TransactionHistory {
   int get id => throw _privateConstructorUsedError;
   int get userId => throw _privateConstructorUsedError;
   int get transactionId => throw _privateConstructorUsedError;
-  String get receiverName => throw _privateConstructorUsedError;
-  String get senderName => throw _privateConstructorUsedError;
+  String? get receiverName => throw _privateConstructorUsedError;
+  String? get senderName => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get paymentMode => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
 
@@ -47,11 +47,11 @@ abstract class $TransactionHistoryCopyWith<$Res> {
       {int id,
       int userId,
       int transactionId,
-      String receiverName,
-      String senderName,
+      String? receiverName,
+      String? senderName,
       String amount,
       String paymentMode,
-      String type,
+      String? type,
       String createdAt,
       String status});
 }
@@ -72,11 +72,11 @@ class _$TransactionHistoryCopyWithImpl<$Res, $Val extends TransactionHistory>
     Object? id = null,
     Object? userId = null,
     Object? transactionId = null,
-    Object? receiverName = null,
-    Object? senderName = null,
+    Object? receiverName = freezed,
+    Object? senderName = freezed,
     Object? amount = null,
     Object? paymentMode = null,
-    Object? type = null,
+    Object? type = freezed,
     Object? createdAt = null,
     Object? status = null,
   }) {
@@ -93,14 +93,14 @@ class _$TransactionHistoryCopyWithImpl<$Res, $Val extends TransactionHistory>
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
               as int,
-      receiverName: null == receiverName
+      receiverName: freezed == receiverName
           ? _value.receiverName
           : receiverName // ignore: cast_nullable_to_non_nullable
-              as String,
-      senderName: null == senderName
+              as String?,
+      senderName: freezed == senderName
           ? _value.senderName
           : senderName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -109,10 +109,10 @@ class _$TransactionHistoryCopyWithImpl<$Res, $Val extends TransactionHistory>
           ? _value.paymentMode
           : paymentMode // ignore: cast_nullable_to_non_nullable
               as String,
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -137,11 +137,11 @@ abstract class _$$TransactionHistoryImplCopyWith<$Res>
       {int id,
       int userId,
       int transactionId,
-      String receiverName,
-      String senderName,
+      String? receiverName,
+      String? senderName,
       String amount,
       String paymentMode,
-      String type,
+      String? type,
       String createdAt,
       String status});
 }
@@ -160,11 +160,11 @@ class __$$TransactionHistoryImplCopyWithImpl<$Res>
     Object? id = null,
     Object? userId = null,
     Object? transactionId = null,
-    Object? receiverName = null,
-    Object? senderName = null,
+    Object? receiverName = freezed,
+    Object? senderName = freezed,
     Object? amount = null,
     Object? paymentMode = null,
-    Object? type = null,
+    Object? type = freezed,
     Object? createdAt = null,
     Object? status = null,
   }) {
@@ -181,14 +181,14 @@ class __$$TransactionHistoryImplCopyWithImpl<$Res>
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
               as int,
-      receiverName: null == receiverName
+      receiverName: freezed == receiverName
           ? _value.receiverName
           : receiverName // ignore: cast_nullable_to_non_nullable
-              as String,
-      senderName: null == senderName
+              as String?,
+      senderName: freezed == senderName
           ? _value.senderName
           : senderName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -197,10 +197,10 @@ class __$$TransactionHistoryImplCopyWithImpl<$Res>
           ? _value.paymentMode
           : paymentMode // ignore: cast_nullable_to_non_nullable
               as String,
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -221,10 +221,10 @@ class _$TransactionHistoryImpl implements _TransactionHistory {
       required this.userId,
       required this.transactionId,
       required this.receiverName,
-      required this.senderName,
+      this.senderName,
       required this.amount,
       required this.paymentMode,
-      required this.type,
+      this.type,
       required this.createdAt,
       this.status = "pending"});
 
@@ -238,15 +238,15 @@ class _$TransactionHistoryImpl implements _TransactionHistory {
   @override
   final int transactionId;
   @override
-  final String receiverName;
+  final String? receiverName;
   @override
-  final String senderName;
+  final String? senderName;
   @override
   final String amount;
   @override
   final String paymentMode;
   @override
-  final String type;
+  final String? type;
   @override
   final String createdAt;
   @override
@@ -305,11 +305,11 @@ abstract class _TransactionHistory implements TransactionHistory {
       {required final int id,
       required final int userId,
       required final int transactionId,
-      required final String receiverName,
-      required final String senderName,
+      required final String? receiverName,
+      final String? senderName,
       required final String amount,
       required final String paymentMode,
-      required final String type,
+      final String? type,
       required final String createdAt,
       final String status}) = _$TransactionHistoryImpl;
 
@@ -323,15 +323,15 @@ abstract class _TransactionHistory implements TransactionHistory {
   @override
   int get transactionId;
   @override
-  String get receiverName;
+  String? get receiverName;
   @override
-  String get senderName;
+  String? get senderName;
   @override
   String get amount;
   @override
   String get paymentMode;
   @override
-  String get type;
+  String? get type;
   @override
   String get createdAt;
   @override

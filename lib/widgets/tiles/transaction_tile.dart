@@ -55,10 +55,10 @@ class TransationTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Text(
-        //   "${transaction.paymentMode == "phone" && transaction.otherPartyName.startsWith(RegExp(r"[0-9]")) ? "+" : ""}${transaction.otherPartyName}",
-        //   style: AppTextStyles.header.copyWith(fontSize: 15.5),
-        // ),
+        Text(
+          transaction.senderName ?? "",
+          style: AppTextStyles.header.copyWith(fontSize: 15.5),
+        ),
         Text(
           "${methodString()}, ${timeString()}",
           style: AppTextStyles.smallText
@@ -83,7 +83,7 @@ class TransationTile extends StatelessWidget {
   }
 
   TransactionType getTransactionType() {
-    switch (transaction.type.toLowerCase()) {
+    switch (transaction.type?.toLowerCase()) {
       case "credit":
         return TransactionType.credit;
       case "debit":
