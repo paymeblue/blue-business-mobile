@@ -46,13 +46,16 @@ class _InsightsViewState extends State<InsightsView> {
                 ),
                 25.verticalGap,
                 Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      salesStatsContainer(model),
-                      15.verticalGap,
-                      spendingStatsContainer(model),
-                    ],
+                  child: RefreshIndicator(
+                    onRefresh: () async {},
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        salesStatsContainer(model),
+                        15.verticalGap,
+                        spendingStatsContainer(model),
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -89,7 +92,58 @@ class _InsightsViewState extends State<InsightsView> {
             color: AppColors.grey,
           ),
           12.verticalGap,
+          Container(
+            height: 65,
+            width: model.size.width,
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                Text(
+                  "${nairaSymbol()}140,000,000.00",
+                  style: AppTextStyles.header.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: AppColors.bgGrey,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Text(
+                    "12.6% increase vs last week",
+                    style: AppTextStyles.subHeader.copyWith(
+                      color: AppColors.primary,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
           lineChart(model),
+          20.verticalGap,
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 17),
+            decoration: BoxDecoration(
+              border: Border.all(color: AppColors.midGrey),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                analyticsColumn(
+                    title: "Point of Sales",
+                    amount: "60,000,000.00",
+                    percentIncrease: .4),
+                analyticsColumn(
+                  title: "Mobile Account",
+                  amount: "80,000,000.00",
+                  percentIncrease: -.156,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -209,6 +263,65 @@ class _InsightsViewState extends State<InsightsView> {
       ),
     );
   }
+
+  Widget analyticsColumn({
+    required String title,
+    required String amount,
+    double percentIncrease = 0,
+  }) =>
+      Container(
+        width: (context.mediaQuery.size.width - 80) / 2,
+        height: 80,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: AppTextStyles.smallText.copyWith(
+                color: AppColors.bodyTextColor2,
+              ),
+            ),
+            4.verticalGap,
+            Text(
+              "${nairaSymbol()}$amount",
+              style: AppTextStyles.header.copyWith(fontSize: 16.5),
+            ),
+            Row(
+              children: [
+                Icon(
+                  percentIncrease < 0
+                      ? Icons.arrow_downward_rounded
+                      : Icons.arrow_upward_rounded,
+                  color: percentIncrease < 0
+                      ? AppColors.error
+                      : AppColors.otherGreen,
+                  size: 16,
+                ),
+                8.horizontalGap,
+                RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                      text: "${percentIncrease.abs() * 100}% ",
+                      style: AppTextStyles.smallText.copyWith(
+                        color: percentIncrease < 0
+                            ? AppColors.error
+                            : AppColors.otherGreen,
+                      ),
+                    ),
+                    TextSpan(
+                      text: "vs last week",
+                      style: AppTextStyles.smallText.copyWith(
+                        color: AppColors.bodyTextColor,
+                      ),
+                    )
+                  ]),
+                ),
+              ],
+            )
+          ],
+        ),
+      );
 
   Widget totalSalesTextColumn() {
     return SizedBox(

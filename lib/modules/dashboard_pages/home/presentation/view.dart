@@ -203,31 +203,129 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                popupMenu(model),
+                8.verticalGap,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    analyticsColumn(
+                        title: "Point of Sales",
+                        amount: "60,000,000.00",
+                        percentIncrease: .4),
+                    analyticsColumn(
+                      title: "Mobile Account",
+                      amount: "80,000,000.00",
+                      percentIncrease: -.156,
+                    ),
+                  ],
+                ),
+                16.verticalGap,
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  height: 70,
+                  width: model.size.width,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: AppColors.bgGrey,
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(6),
+                    color: AppColors.inputField,
                   ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        model.popupItem,
-                        style: AppTextStyles.subHeader,
-                      ),
-                      8.horizontalGap,
-                      BluePopupMenu(
-                        icon: const Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                        ),
-                        popupItems: model.popupItems(),
-                      )
-                    ],
+                  child: Text(
+                    "${nairaSymbol()}140,000,000.00",
+                    style: AppTextStyles.header.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                )
+                ),
               ],
             ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget analyticsColumn({
+    required String title,
+    required String amount,
+    double percentIncrease = 0,
+  }) =>
+      Container(
+        width: (context.mediaQuery.size.width - 65) / 2,
+        height: 80,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: AppTextStyles.smallText.copyWith(
+                color: AppColors.bodyTextColor2,
+              ),
+            ),
+            4.verticalGap,
+            Text(
+              "${nairaSymbol()}$amount",
+              style: AppTextStyles.header.copyWith(fontSize: 16.5),
+            ),
+            Row(
+              children: [
+                Icon(
+                  percentIncrease < 0
+                      ? Icons.arrow_downward_rounded
+                      : Icons.arrow_upward_rounded,
+                  color: percentIncrease < 0
+                      ? AppColors.error
+                      : AppColors.otherGreen,
+                  size: 16,
+                ),
+                8.horizontalGap,
+                RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                      text: "${percentIncrease.abs() * 100}% ",
+                      style: AppTextStyles.smallText.copyWith(
+                        color: percentIncrease < 0
+                            ? AppColors.error
+                            : AppColors.otherGreen,
+                      ),
+                    ),
+                    TextSpan(
+                      text: "vs last week",
+                      style: AppTextStyles.smallText.copyWith(
+                        color: AppColors.bodyTextColor,
+                      ),
+                    )
+                  ]),
+                ),
+              ],
+            )
+          ],
+        ),
+      );
+
+  Widget popupMenu(HomeViewModel model) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        color: AppColors.bgGrey,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            model.popupItem,
+            style: AppTextStyles.subHeader.copyWith(
+              color: AppColors.primary,
+            ),
+          ),
+          8.horizontalGap,
+          BluePopupMenu(
+            icon: const Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: AppColors.primary,
+            ),
+            popupItems: model.popupItems(),
           )
         ],
       ),

@@ -135,7 +135,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
           ],
           isCurved: true,
           barWidth: 3,
-          isStrokeCapRound: false,
+          isStrokeCapRound: true,
           dotData: const FlDotData(
             show: false,
           ),
