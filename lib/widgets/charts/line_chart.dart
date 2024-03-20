@@ -1,11 +1,13 @@
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class BlueLineChart extends StatefulWidget {
-  const BlueLineChart({super.key});
+  final List<LineInputData> inputData;
+  const BlueLineChart({super.key, required this.inputData});
 
   @override
   State<BlueLineChart> createState() => _BlueLineChartState();
@@ -18,6 +20,17 @@ class _BlueLineChartState extends State<BlueLineChart> {
   ];
 
   bool showAvg = false;
+
+  List<double> values = [];
+
+  @override
+  void initState() {
+    super.initState();
+    values = widget.inputData.map((e) => e.amount).toList();
+    values.sort();
+  }
+
+  getValues() {}
 
   @override
   Widget build(BuildContext context) {
@@ -56,21 +69,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     TextStyle style =
         AppTextStyles.smallText.copyWith(color: const Color(0xFF615E83));
-    Widget text;
-    switch (value.toInt()) {
-      case 2:
-        text = Text('MAR', style: style);
-        break;
-      case 5:
-        text = Text('JUN', style: style);
-        break;
-      case 8:
-        text = Text('SEP', style: style);
-        break;
-      default:
-        text = Text('', style: style);
-        break;
-    }
+    Widget text = Text(widget.inputData[value.toInt()].label, style: style);
 
     return SideTitleWidget(
       axisSide: meta.axisSide,
@@ -119,20 +118,15 @@ class _BlueLineChartState extends State<BlueLineChart> {
         ),
       ),
       minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
+      maxX: widget.inputData.length.toDouble(),
+      minY: values.first,
+      maxY: values.last,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
-          ],
+          spots: List.generate(
+            widget.inputData.length,
+            (index) => FlSpot(index.toDouble(), widget.inputData[index].amount),
+          ),
           isCurved: true,
           barWidth: 3,
           isStrokeCapRound: true,

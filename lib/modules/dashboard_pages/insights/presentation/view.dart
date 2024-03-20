@@ -1,13 +1,16 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
-import 'package:blue_business/modules/dashboard_pages/insights/widgets/line_chart.dart';
+import 'package:blue_business/widgets/charts/line_chart.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/charts/pie_chart.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'view_model.dart';
 
@@ -150,7 +153,23 @@ class _InsightsViewState extends State<InsightsView> {
   }
 
   Widget lineChart(InsightsViewModel model) {
-    return const BlueLineChart();
+    if (model.gettingData) {
+      return Shimmer.fromColors(
+        baseColor: AppColors.brightBlue,
+        highlightColor: AppColors.white,
+        child: Container(),
+      );
+    } else if (model.inputData.isEmpty) {
+      model.inputData = [
+        LineInputData(
+          label: DateFormat.E().format(DateTime.now()).toLowerCase(),
+          amount: 0.0,
+        )
+      ];
+    }
+    return BlueLineChart(
+      inputData: model.inputData,
+    );
   }
 
   Widget spendingStatsContainer(InsightsViewModel model) {
