@@ -481,7 +481,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/recovery-code/update-phone',
+              '/recovery-codes/update-phone',
               queryParameters: queryParameters,
               data: _data,
             )

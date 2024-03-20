@@ -192,7 +192,7 @@ class _BluePaymentViewState extends State<BluePaymentView> {
               ),
               child: AppAssets.images.logos.blueBgLogo.image(),
             ),
-            10.verticalGap,
+            6.verticalGap,
             Text(
               "${item.uFirstName} ${item.uLastName}",
               overflow: TextOverflow.ellipsis,

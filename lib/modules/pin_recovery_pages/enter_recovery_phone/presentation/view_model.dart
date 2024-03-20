@@ -3,6 +3,8 @@ import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
+import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
 import 'package:blue_business/core/models/security_question/send/request/send_question_request.dart';
 import 'package:blue_business/core/models/security_question/send/response/send_question_request.dart';
@@ -106,21 +108,22 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
   }
 
   sendRecoveryPhone(BuildContext context) async {
-    // AppLoader.start();
-    // SendNewPhoneRequest request = SendNewPhoneRequest(phone: formatPhone());
+    AppLoader.start();
+    SendPhoneRecoverPinRequest request =
+        SendPhoneRecoverPinRequest(phone: formatPhone());
 
-    // SendNewPhoneResponse resp = await authService
-    //     .forgotPinWithPhone(request)
-    //     .onError((error, stackTrace) => SendNewPhoneResponse(
-    //         message: AppErrorHandler.getErrorMessage(error)));
+    SendNewPhoneResponse resp = await authService
+        .forgotPinWithPhone(request)
+        .onError((error, stackTrace) => SendNewPhoneResponse(
+            message: AppErrorHandler.getErrorMessage(error)));
 
-    // if (resp.status == "success") {
-    //   AppNotification.success(message: resp.message);
-    //   if (context.mounted) goToOtp(context);
-    // } else {
-    //   AppNotification.error(message: resp.message);
-    // }
-    // AppLoader.stop();
+    if (resp.status == "success") {
+      AppNotification.success(message: resp.message);
+      if (context.mounted) goToOtp(context);
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+    AppLoader.stop();
   }
 
   goToOtp(BuildContext context) {

@@ -56,7 +56,7 @@ class TransationTile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          transaction.senderName ?? "",
+          transaction.senderName ?? transaction.receiverName ?? "",
           style: AppTextStyles.header.copyWith(fontSize: 15.5),
         ),
         Text(
