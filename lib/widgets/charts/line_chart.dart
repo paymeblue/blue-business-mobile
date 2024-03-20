@@ -26,50 +26,31 @@ class _BlueLineChartState extends State<BlueLineChart> {
   @override
   void initState() {
     super.initState();
+    getValues();
+  }
+
+  getValues() {
     values = widget.inputData.map((e) => e.amount).toList();
     values.sort();
   }
 
-  getValues() {}
-
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        AspectRatio(
-          aspectRatio: 2.3,
-          child: LineChart(
-            showAvg ? avgData() : mainData(),
-          ),
-        ),
-        SizedBox(
-          width: 75,
-          height: 34,
-          child: TextButton(
-            onPressed: () {
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
-            child: Text(
-              'Average',
-              style: TextStyle(
-                fontSize: 12,
-                color: showAvg
-                    ? AppColors.primary.withOpacity(0.5)
-                    : AppColors.primary,
-              ),
-            ),
-          ),
-        ),
-      ],
+    return AspectRatio(
+      aspectRatio: 2.3,
+      child: LineChart(
+        mainData(),
+      ),
     );
   }
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     TextStyle style =
         AppTextStyles.smallText.copyWith(color: const Color(0xFF615E83));
-    Widget text = Text(widget.inputData[value.toInt()].label, style: style);
+    Widget text = Text(
+        widget.inputData[value.toInt()].label[0].toUpperCase() +
+            widget.inputData[value.toInt()].label.substring(1),
+        style: style);
 
     return SideTitleWidget(
       axisSide: meta.axisSide,
@@ -110,19 +91,20 @@ class _BlueLineChartState extends State<BlueLineChart> {
           tooltipBgColor: AppColors.textColor,
           getTooltipItems: (touchedSpots) => List.generate(
             touchedSpots.length,
-            (i) => LineTooltipItem(
-              "${nairaSymbol()}3.00",
+            (idx) => LineTooltipItem(
+              "${nairaSymbol()}${touchedSpots[idx].y}",
               AppTextStyles.smallText,
             ),
           ),
         ),
       ),
       minX: 0,
-      maxX: widget.inputData.length.toDouble(),
-      minY: values.first,
+      maxX: (widget.inputData.length - 1).toDouble(),
+      minY: 0,
       maxY: values.last,
       lineBarsData: [
         LineChartBarData(
+          color: AppColors.primary,
           spots: List.generate(
             widget.inputData.length,
             (index) => FlSpot(index.toDouble(), widget.inputData[index].amount),
@@ -141,67 +123,6 @@ class _BlueLineChartState extends State<BlueLineChart> {
               colors: gradientColors
                   .map((color) => color.withOpacity(0.4))
                   .toList(),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  LineChartData avgData() {
-    return LineChartData(
-      lineTouchData: const LineTouchData(enabled: false),
-      gridData: const FlGridData(show: false),
-      titlesData: FlTitlesData(
-        show: true,
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            reservedSize: 30,
-            getTitlesWidget: bottomTitleWidgets,
-            interval: 1,
-          ),
-        ),
-        leftTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        topTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        rightTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-      ),
-      borderData: FlBorderData(
-        show: false,
-      ),
-      minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
-      lineBarsData: [
-        LineChartBarData(
-          spots: const [
-            FlSpot(0, 3.44),
-            FlSpot(2.6, 3.44),
-            FlSpot(4.9, 3.44),
-            FlSpot(6.8, 3.44),
-            FlSpot(8, 3.44),
-            FlSpot(9.5, 3.44),
-            FlSpot(11, 3.44),
-          ],
-          isCurved: true,
-          barWidth: 3,
-          isStrokeCapRound: true,
-          dotData: const FlDotData(
-            show: false,
-          ),
-          belowBarData: BarAreaData(
-            show: true,
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: gradientColors.map((e) => e.withOpacity(.4)).toList(),
             ),
           ),
         ),

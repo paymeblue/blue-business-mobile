@@ -1,5 +1,6 @@
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/sales_analytics/response/sales_analytics_response.dart';
+import 'package:blue_business/core/models/spending_analytics/response/spending_analytics_response.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
@@ -14,7 +15,13 @@ abstract class InsightsService {
   }
 
   @GET("/sales")
-  Future<SalesAnalyticsResponse> getSalesAnalytics(
+  Future<SalesAnalyticsResponse> getSales(
     @Query("time_interval") String type,
   );
+
+  @GET("/spent")
+  Future<SpendingAnalyticsResponse> getSpending();
+
+  @GET("/analytics")
+  Future<SpendingAnalyticsResponse> getAnalytics();
 }

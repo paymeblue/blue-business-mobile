@@ -10,7 +10,7 @@ import 'package:blue_business/widgets/charts/pie_chart.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'view_model.dart';
 
@@ -50,7 +50,9 @@ class _InsightsViewState extends State<InsightsView> {
                 25.verticalGap,
                 Expanded(
                   child: RefreshIndicator(
-                    onRefresh: () async {},
+                    onRefresh: () async {
+                      model.getAnalytics();
+                    },
                     child: ListView(
                       shrinkWrap: true,
                       children: [
@@ -124,8 +126,10 @@ class _InsightsViewState extends State<InsightsView> {
               ],
             ),
           ),
-          lineChart(model),
-          20.verticalGap,
+          if (model.inputData.isNotEmpty || model.gettingSalesData) ...[
+            lineChart(model),
+            20.verticalGap
+          ],
           Container(
             padding: const EdgeInsets.symmetric(vertical: 17),
             decoration: BoxDecoration(
@@ -153,23 +157,18 @@ class _InsightsViewState extends State<InsightsView> {
   }
 
   Widget lineChart(InsightsViewModel model) {
-    if (model.gettingData) {
-      return Shimmer.fromColors(
-        baseColor: AppColors.brightBlue,
-        highlightColor: AppColors.white,
-        child: Container(),
+    if (model.gettingSalesData) {
+      return Container(
+        height: 120,
+        alignment: Alignment.center,
+        child: LoadingAnimationWidget.horizontalRotatingDots(
+            color: AppColors.primary, size: 45),
       );
-    } else if (model.inputData.isEmpty) {
-      model.inputData = [
-        LineInputData(
-          label: DateFormat.E().format(DateTime.now()).toLowerCase(),
-          amount: 0.0,
-        )
-      ];
+    } else {
+      return BlueLineChart(
+        inputData: model.inputData,
+      );
     }
-    return BlueLineChart(
-      inputData: model.inputData,
-    );
   }
 
   Widget spendingStatsContainer(InsightsViewModel model) {
@@ -202,14 +201,14 @@ class _InsightsViewState extends State<InsightsView> {
           6.verticalGap,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [...posKey(), 12.horizontalGap, ...mobileKey()],
+            children: [...posKey(model), 12.horizontalGap, ...mobileKey(model)],
           ),
         ],
       ),
     );
   }
 
-  List<Widget> posKey() {
+  List<Widget> posKey(InsightsViewModel model) {
     return [
       Container(
         height: 9,
@@ -228,14 +227,14 @@ class _InsightsViewState extends State<InsightsView> {
       ),
       4.horizontalGap,
       Text(
-        "65%",
+        "${(model.pieValues[0] * 100).toStringAsFixed(1)}%",
         style: AppTextStyles.smallText.copyWith(
             color: AppColors.neutralColorBlack, fontWeight: FontWeight.w500),
       ),
     ];
   }
 
-  List<Widget> mobileKey() {
+  List<Widget> mobileKey(InsightsViewModel model) {
     return [
       Container(
         height: 9,
@@ -254,7 +253,7 @@ class _InsightsViewState extends State<InsightsView> {
       ),
       4.horizontalGap,
       Text(
-        "35%",
+        "${(model.pieValues[1] * 100).toStringAsFixed(1)}%",
         style: AppTextStyles.smallText.copyWith(
             color: AppColors.neutralColorBlack, fontWeight: FontWeight.w500),
       ),
@@ -278,7 +277,7 @@ class _InsightsViewState extends State<InsightsView> {
           const PieChartData(Colors.transparent, 15)
         ],
         radius: 108,
-        child: totalSalesTextColumn(),
+        child: totalSpendingTextColumn(model),
       ),
     );
   }
@@ -342,9 +341,10 @@ class _InsightsViewState extends State<InsightsView> {
         ),
       );
 
-  Widget totalSalesTextColumn() {
+  Widget totalSpendingTextColumn(InsightsViewModel model) {
     return SizedBox(
       width: 130,
+      height: 50,
       child: FittedBox(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -357,7 +357,7 @@ class _InsightsViewState extends State<InsightsView> {
               ),
             ),
             Text(
-              "${nairaSymbol()}230,000.00",
+              "${nairaSymbol()}${model.totalSpending}",
               style: AppTextStyles.header.copyWith(fontSize: 20),
             ),
           ],

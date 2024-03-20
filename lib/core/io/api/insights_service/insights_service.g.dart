@@ -22,7 +22,7 @@ class _InsightsService implements InsightsService {
   String? baseUrl;
 
   @override
-  Future<SalesAnalyticsResponse> getSalesAnalytics(String type) async {
+  Future<SalesAnalyticsResponse> getSales(String type) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'time_interval': type};
     final _headers = <String, dynamic>{};
@@ -45,6 +45,60 @@ class _InsightsService implements InsightsService {
               baseUrl,
             ))));
     final value = SalesAnalyticsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SpendingAnalyticsResponse> getSpending() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SpendingAnalyticsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/spent',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SpendingAnalyticsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SpendingAnalyticsResponse> getAnalytics() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SpendingAnalyticsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/analytics',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SpendingAnalyticsResponse.fromJson(_result.data!);
     return value;
   }
 
