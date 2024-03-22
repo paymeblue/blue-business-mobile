@@ -17,6 +17,7 @@ import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/tiles/transaction_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -30,6 +31,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  NumberFormat format = NumberFormat("#,##0.00");
   @override
   Widget build(BuildContext context) {
     return BaseView<HomeViewModel>(
@@ -213,11 +215,13 @@ class _HomeViewState extends State<HomeView> {
                     children: [
                       analyticsColumn(
                           title: "Point of Sales",
-                          amount: model.spendingData!.desktopSum,
+                          amount: format.format(
+                              double.parse(model.spendingData!.desktopSum)),
                           percentIncrease: .4),
                       analyticsColumn(
                         title: "Mobile Account",
-                        amount: model.spendingData!.mobileSum,
+                        amount: format.format(
+                            double.parse(model.spendingData!.mobileSum)),
                         percentIncrease: -.156,
                       ),
                     ],
@@ -232,7 +236,7 @@ class _HomeViewState extends State<HomeView> {
                       color: AppColors.inputField,
                     ),
                     child: Text(
-                      "${nairaSymbol()}${double.parse(model.spendingData!.mobileSum) + double.parse(model.spendingData!.desktopSum)}",
+                      "${nairaSymbol()}${format.format(double.parse(model.spendingData!.mobileSum) + double.parse(model.spendingData!.desktopSum))}",
                       style: AppTextStyles.header.copyWith(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,

@@ -23,10 +23,10 @@ class InsightsViewModel extends BaseViewModel {
 
     selectedType = types[0];
     await getAnalytics();
-    getAnalytics();
   }
 
   getAnalytics() async {
+    getSalesAnalytics();
     await getLineChartData();
     await getSpending();
   }
@@ -152,5 +152,34 @@ class InsightsViewModel extends BaseViewModel {
   set pieValue(List<double> v) {
     _pie = v;
     notifyListeners();
+  }
+
+  bool _saleL = false;
+  bool get salesLoading => _saleL;
+  set salesLoading(bool v) {
+    _saleL = v;
+    notifyListeners();
+  }
+
+  SpendingAnalyticsData? _d;
+  SpendingAnalyticsData? get salesData => _d;
+  set salesData(SpendingAnalyticsData? d) {
+    _d = d;
+    notifyListeners();
+  }
+
+  getSalesAnalytics() async {
+    salesLoading = true;
+    SpendingAnalyticsResponse response = await InsightsService()
+        .getAnalytics()
+        .onError((error, stackTrace) => SpendingAnalyticsResponse(
+            message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      salesData = response.data;
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    salesLoading = false;
   }
 }

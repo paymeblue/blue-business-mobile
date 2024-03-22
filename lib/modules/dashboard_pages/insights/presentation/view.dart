@@ -8,7 +8,9 @@ import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/charts/pie_chart.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'view_model.dart';
 
@@ -20,6 +22,7 @@ class InsightsView extends StatefulWidget {
 }
 
 class _InsightsViewState extends State<InsightsView> {
+  NumberFormat format = NumberFormat("#,##0.00");
   @override
   Widget build(BuildContext context) {
     return BaseView<InsightsViewModel>(
@@ -95,61 +98,101 @@ class _InsightsViewState extends State<InsightsView> {
             color: AppColors.grey,
           ),
           12.verticalGap,
-          Container(
-            height: 65,
-            width: model.size.width,
-            alignment: Alignment.center,
-            child: Column(
-              children: [
-                Text(
-                  "${nairaSymbol()}140,000,000.00",
-                  style: AppTextStyles.header.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
+          model.salesLoading
+              ? salesTotalShimmer()
+              : Container(
+                  height: 65,
+                  width: model.size.width,
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      Text(
+                        "${nairaSymbol()}${format.format(double.parse(model.salesData?.mobileSum ?? "0.0") + double.parse(model.salesData?.desktopSum ?? "0.0"))}",
+                        style: AppTextStyles.header.copyWith(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        decoration: BoxDecoration(
+                          color: AppColors.bgGrey,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Text(
+                          "12.6% increase vs last week",
+                          style: AppTextStyles.subHeader.copyWith(
+                            color: AppColors.primary,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  decoration: BoxDecoration(
-                    color: AppColors.bgGrey,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Text(
-                    "12.6% increase vs last week",
-                    style: AppTextStyles.subHeader.copyWith(
-                      color: AppColors.primary,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
           if (model.inputData.isNotEmpty || model.gettingSalesData) ...[
             lineChart(model),
             20.verticalGap
           ],
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 17),
-            decoration: BoxDecoration(
-              border: Border.all(color: AppColors.midGrey),
-              borderRadius: BorderRadius.circular(6),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                analyticsColumn(
-                    title: "Point of Sales",
-                    amount: "60,000,000.00",
-                    percentIncrease: .4),
-                analyticsColumn(
-                  title: "Mobile Account",
-                  amount: "80,000,000.00",
-                  percentIncrease: -.156,
+          model.salesLoading
+              ? salesAmountShimmer()
+              : Container(
+                  padding: const EdgeInsets.symmetric(vertical: 17),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.midGrey),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      analyticsColumn(
+                          title: "Point of Sales",
+                          amount: format.format(
+                              double.parse(model.salesData!.desktopSum)),
+                          percentIncrease: .4),
+                      analyticsColumn(
+                        title: "Mobile Account",
+                        amount: format
+                            .format(double.parse(model.salesData!.mobileSum)),
+                        percentIncrease: -.156,
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          ),
         ],
+      ),
+    );
+  }
+
+  Widget salesTotalShimmer() {
+    return SizedBox(
+      height: 70,
+      width: context.mediaQuery.size.width,
+      child: Shimmer.fromColors(
+        baseColor: AppColors.brightBlue.withOpacity(.3),
+        highlightColor: AppColors.white,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget salesAmountShimmer() {
+    return SizedBox(
+      height: 65,
+      width: context.mediaQuery.size.width,
+      child: Shimmer.fromColors(
+        baseColor: AppColors.brightBlue.withOpacity(.3),
+        highlightColor: AppColors.white,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
       ),
     );
   }
@@ -355,7 +398,7 @@ class _InsightsViewState extends State<InsightsView> {
               ),
             ),
             Text(
-              "${nairaSymbol()}${model.totalSpending}",
+              "${nairaSymbol()}${format.format(model.totalSpending)}",
               style: AppTextStyles.header.copyWith(fontSize: 20),
             ),
           ],
