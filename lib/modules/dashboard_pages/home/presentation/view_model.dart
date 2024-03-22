@@ -1,10 +1,13 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
+import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/kyc_status/response/kyc_status_response.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
+import 'package:blue_business/core/models/spending_analytics/data/spending_analytics_data.dart';
+import 'package:blue_business/core/models/spending_analytics/response/spending_analytics_response.dart';
 import 'package:blue_business/core/models/todo/response/todo_response.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/topup_account/response/topup_response.dart';
@@ -43,6 +46,7 @@ class HomeViewModel extends BaseViewModel {
     if (!locator<AppStateValues>().loadedTodo) {
       getTodos();
     }
+    getAnalytics();
     transactionController.addPageRequestListener((pageKey) {
       getTransactions(pageKey);
     });
@@ -144,6 +148,35 @@ class HomeViewModel extends BaseViewModel {
         });
       }
     }
+  }
+
+  bool _saleL = false;
+  bool get salesLoading => _saleL;
+  set salesLoading(bool v) {
+    _saleL = v;
+    notifyListeners();
+  }
+
+  SpendingAnalyticsData? _d;
+  SpendingAnalyticsData? get spendingData => _d;
+  set spendingData(SpendingAnalyticsData? d) {
+    _d = d;
+    notifyListeners();
+  }
+
+  getAnalytics() async {
+    salesLoading = true;
+    SpendingAnalyticsResponse response = await InsightsService()
+        .getAnalytics()
+        .onError((error, stackTrace) => SpendingAnalyticsResponse(
+            message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      spendingData = response.data;
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    salesLoading = false;
   }
 
   int limit = 6;

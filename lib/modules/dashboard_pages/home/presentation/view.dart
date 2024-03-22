@@ -205,37 +205,41 @@ class _HomeViewState extends State<HomeView> {
               children: [
                 popupMenu(model),
                 8.verticalGap,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    analyticsColumn(
-                        title: "Point of Sales",
-                        amount: "60,000,000.00",
-                        percentIncrease: .4),
-                    analyticsColumn(
-                      title: "Mobile Account",
-                      amount: "80,000,000.00",
-                      percentIncrease: -.156,
-                    ),
-                  ],
-                ),
-                16.verticalGap,
-                Container(
-                  height: 70,
-                  width: model.size.width,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color: AppColors.inputField,
+                if (model.salesLoading)
+                  salesShimmer()
+                else ...[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      analyticsColumn(
+                          title: "Point of Sales",
+                          amount: model.spendingData!.desktopSum,
+                          percentIncrease: .4),
+                      analyticsColumn(
+                        title: "Mobile Account",
+                        amount: model.spendingData!.mobileSum,
+                        percentIncrease: -.156,
+                      ),
+                    ],
                   ),
-                  child: Text(
-                    "${nairaSymbol()}140,000,000.00",
-                    style: AppTextStyles.header.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
+                  16.verticalGap,
+                  Container(
+                    height: 70,
+                    width: model.size.width,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: AppColors.inputField,
+                    ),
+                    child: Text(
+                      "${nairaSymbol()}${double.parse(model.spendingData!.mobileSum) + double.parse(model.spendingData!.desktopSum)}",
+                      style: AppTextStyles.header.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
-                ),
+                ]
               ],
             ),
           )
@@ -585,6 +589,23 @@ class _HomeViewState extends State<HomeView> {
       width: 100,
       child: Shimmer.fromColors(
         baseColor: AppColors.brightBlue,
+        highlightColor: AppColors.white,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget salesShimmer() {
+    return SizedBox(
+      height: 150,
+      width: context.mediaQuery.size.width,
+      child: Shimmer.fromColors(
+        baseColor: AppColors.brightBlue.withOpacity(.3),
         highlightColor: AppColors.white,
         child: DecoratedBox(
           decoration: BoxDecoration(

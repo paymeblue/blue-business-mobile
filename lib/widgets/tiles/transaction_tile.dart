@@ -56,7 +56,7 @@ class TransationTile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          transaction.senderName ?? transaction.receiverName ?? "",
+          transaction.otherPartyName ?? "",
           style: AppTextStyles.header.copyWith(fontSize: 15.5),
         ),
         Text(
@@ -69,17 +69,17 @@ class TransationTile extends StatelessWidget {
   }
 
   PaymentMode getPaymentMode() {
-    switch (transaction.paymentMode) {
-      case "phone":
-        return PaymentMode.phone;
-      case "withdrawal":
-        return PaymentMode.withdrawal;
-      case "wallet_topup":
-        return PaymentMode.topup;
-      case "blue-user":
-      default:
-        return PaymentMode.blue;
-    }
+    // switch (transaction.paymentMode) {
+    //   case "phone":
+    //     return PaymentMode.phone;
+    //   case "withdrawal":
+    //     return PaymentMode.withdrawal;
+    //   case "wallet_topup":
+    //     return PaymentMode.topup;
+    //   case "blue-user":
+    //   default:
+    return PaymentMode.blue;
+    // }
   }
 
   TransactionType getTransactionType() {
@@ -93,17 +93,17 @@ class TransationTile extends StatelessWidget {
   }
 
   Widget transactionImage() {
-    switch (getPaymentMode()) {
-      case PaymentMode.blue:
-      case PaymentMode.qr:
-        return bluePaymentImage();
-      case PaymentMode.topup:
-      case PaymentMode.withdrawal:
-        return AppAssets.images.icons.virtualBank.svg();
-      case PaymentMode.phone:
-      default:
-        return defaultImage();
-    }
+    // switch (getPaymentMode()) {
+    //   case PaymentMode.blue:
+    //   case PaymentMode.qr:
+    //     return bluePaymentImage();
+    //   case PaymentMode.topup:
+    //   case PaymentMode.withdrawal:
+    //     return AppAssets.images.icons.virtualBank.svg();
+    //   case PaymentMode.phone:
+    //   default:
+    return defaultImage();
+    // }
   }
 
   Container defaultImage() {
@@ -115,10 +115,10 @@ class TransationTile extends StatelessWidget {
         color: AppColors.success,
       ),
       alignment: Alignment.center,
-      // child: Text(
-      //   transaction.initals,
-      //   style: AppTextStyles.smallButtonText.copyWith(color: AppColors.white),
-      // ),
+      child: Text(
+        transaction.initials,
+        style: AppTextStyles.smallButtonText.copyWith(color: AppColors.white),
+      ),
     );
   }
 
