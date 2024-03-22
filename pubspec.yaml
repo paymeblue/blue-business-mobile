@@ -27,6 +27,7 @@ dependencies:
   dotted_border: ^2.1.0
   nigerian_states_and_lga: ^1.0.0
   fl_chart: ^0.66.2
+  flutter_launcher_icons:
 
   #MEDIA UTILS
   barcode: ^2.2.6
@@ -93,6 +94,7 @@ dev_dependencies:
 flutter_icons:
   ios: true
   android: true
+  remove_alpha_ios: true
   image_path_android: 'assets/images/blue_launcher.png'
   image_path_ios: 'assets/images/blue_launcher.png'
 
