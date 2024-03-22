@@ -1,5 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/models/transaction/verify/data/verified_receiver_data.dart';
+import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class TransactionShellViewModel extends BaseViewModel {
       if (state.pathParameters["action"] == "withdraw") {
         data = state.extra as int;
       } else {
-        data = state.extra as VerifiedReceiverData;
+        data = state.extra as VerifiedReceiver;
       }
       context.go(
           "${RoutePaths.confirmPaymentPath}/${state.pathParameters["action"]}/${state.pathParameters["transaction_id"]}",

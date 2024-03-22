@@ -7,17 +7,30 @@ part 'transaction_history.g.dart';
 class TransactionHistory with _$TransactionHistory {
   const factory TransactionHistory({
     required int transactionId,
-    required String otherPartyName,
+    required String? receiverName,
+    String? otherPartyName,
+    required String amount,
+    // required String paymentMode,
+    String? type,
     required String createdAt,
-    required String transactionAmount,
-    required String paymentMode,
-    required String transactionType,
-    @Default("N/A") String initals,
+    @Default("pending") String status,
+    @Default("N/A") String initials,
   }) = _TransactionHistory;
 
   factory TransactionHistory.fromJson(Map<String, dynamic> json) =>
       _$TransactionHistoryImpl.fromJson(json);
 }
+
+// {
+//  "transaction_id":74,
+//  "receiver_name":"Priscilla Abhulimen",
+//  "other_party_name":"Maryam Tajudeen",
+//  "amount":"10.00",
+//  "status":"successful",
+//  "type":"debit",
+//  "created_at":"2024-03-12T21:29:02.000Z",
+//  "initials":"MT"
+// }
 
 enum TransactionType { debit, credit }
 

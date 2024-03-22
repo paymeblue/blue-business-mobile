@@ -97,7 +97,7 @@ class _TransactionService implements TransactionService {
   }
 
   @override
-  Future<dynamic> deleteBeneficiary(int id) async {
+  Future<dynamic> deleteBeneficiary(String id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -391,7 +391,7 @@ class _TransactionService implements TransactionService {
     )
             .compose(
               _dio.options,
-              '/accounts/verify',
+              '/withdrawal-accounts/verify',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -418,7 +418,7 @@ class _TransactionService implements TransactionService {
     )
             .compose(
               _dio.options,
-              '/accounts',
+              '/withdrawal-accounts',
               queryParameters: queryParameters,
               data: _data,
             )

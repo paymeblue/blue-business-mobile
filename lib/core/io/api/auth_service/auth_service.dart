@@ -100,7 +100,7 @@ abstract class AuthService {
     @Query("phone") String phone,
   );
 
-  @PATCH("/recovery-code/update-phone")
+  @PATCH("/recovery-codes/update-phone")
   Future<SetRecoveryPhoneResponse> updateRecoveryPhone(
       @Body() SetRecoveryPhoneRequest request);
 

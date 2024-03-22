@@ -18,7 +18,7 @@ dependencies:
   country_flags: ^2.2.0
   flutter_otp_text_field: ^1.1.1
   avatar_view: ^1.0.1
-  loading_animation_widget: ^1.2.0+4
+  loading_animation_widget: ^1.2.1
   overlay_kit: ^1.0.8
   shimmer: ^3.0.0
   infinite_scroll_pagination: ^4.0.0
@@ -27,6 +27,7 @@ dependencies:
   dotted_border: ^2.1.0
   nigerian_states_and_lga: ^1.0.0
   fl_chart: ^0.66.2
+  flutter_launcher_icons:
 
   #MEDIA UTILS
   barcode: ^2.2.6
@@ -74,6 +75,7 @@ dependencies:
   intl: ^0.18.0
   currency_text_input_formatter: ^2.1.11
   cloud_firestore: ^4.14.0
+  flutter_notification_channel: ^3.0.0
   
 
 dev_dependencies:
@@ -92,6 +94,7 @@ dev_dependencies:
 flutter_icons:
   ios: true
   android: true
+  remove_alpha_ios: true
   image_path_android: 'assets/images/blue_launcher.png'
   image_path_ios: 'assets/images/blue_launcher.png'
 

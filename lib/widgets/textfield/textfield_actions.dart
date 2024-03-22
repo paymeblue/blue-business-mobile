@@ -575,6 +575,7 @@ class _$BlueDropdownState<T> extends State<_$BlueDropdown<T>> {
                               _tempItemList = buildSearchList(value ?? "");
                             });
                           },
+                          hint: widget.searchHint,
                         ),
                       Expanded(
                         child: _tempItemList.isEmpty

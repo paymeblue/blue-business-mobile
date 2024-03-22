@@ -6,7 +6,7 @@ part 'blue_beneficiary.g.dart';
 @freezed
 class BlueBeneficiary with _$BlueBeneficiary {
   const factory BlueBeneficiary({
-    required int id,
+    required String id,
     required String firstName,
     required String lastName,
     required String identifier,

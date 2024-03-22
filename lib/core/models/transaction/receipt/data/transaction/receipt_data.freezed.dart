@@ -24,7 +24,7 @@ mixin _$ReceiptData {
   String get amount => throw _privateConstructorUsedError;
   String get orderReference => throw _privateConstructorUsedError;
   String get receiverName => throw _privateConstructorUsedError;
-  String get receivedBy => throw _privateConstructorUsedError;
+  String get receiverWallet => throw _privateConstructorUsedError;
   String get paymentMode => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $ReceiptDataCopyWith<$Res> {
       String amount,
       String orderReference,
       String receiverName,
-      String receivedBy,
+      String receiverWallet,
       String paymentMode,
       String createdAt,
       String status,
@@ -73,7 +73,7 @@ class _$ReceiptDataCopyWithImpl<$Res, $Val extends ReceiptData>
     Object? amount = null,
     Object? orderReference = null,
     Object? receiverName = null,
-    Object? receivedBy = null,
+    Object? receiverWallet = null,
     Object? paymentMode = null,
     Object? createdAt = null,
     Object? status = null,
@@ -97,9 +97,9 @@ class _$ReceiptDataCopyWithImpl<$Res, $Val extends ReceiptData>
           ? _value.receiverName
           : receiverName // ignore: cast_nullable_to_non_nullable
               as String,
-      receivedBy: null == receivedBy
-          ? _value.receivedBy
-          : receivedBy // ignore: cast_nullable_to_non_nullable
+      receiverWallet: null == receiverWallet
+          ? _value.receiverWallet
+          : receiverWallet // ignore: cast_nullable_to_non_nullable
               as String,
       paymentMode: null == paymentMode
           ? _value.paymentMode
@@ -138,7 +138,7 @@ abstract class _$$ReceiptDataImplCopyWith<$Res>
       String amount,
       String orderReference,
       String receiverName,
-      String receivedBy,
+      String receiverWallet,
       String paymentMode,
       String createdAt,
       String status,
@@ -161,7 +161,7 @@ class __$$ReceiptDataImplCopyWithImpl<$Res>
     Object? amount = null,
     Object? orderReference = null,
     Object? receiverName = null,
-    Object? receivedBy = null,
+    Object? receiverWallet = null,
     Object? paymentMode = null,
     Object? createdAt = null,
     Object? status = null,
@@ -185,9 +185,9 @@ class __$$ReceiptDataImplCopyWithImpl<$Res>
           ? _value.receiverName
           : receiverName // ignore: cast_nullable_to_non_nullable
               as String,
-      receivedBy: null == receivedBy
-          ? _value.receivedBy
-          : receivedBy // ignore: cast_nullable_to_non_nullable
+      receiverWallet: null == receiverWallet
+          ? _value.receiverWallet
+          : receiverWallet // ignore: cast_nullable_to_non_nullable
               as String,
       paymentMode: null == paymentMode
           ? _value.paymentMode
@@ -221,7 +221,7 @@ class _$ReceiptDataImpl implements _ReceiptData {
       required this.amount,
       required this.orderReference,
       required this.receiverName,
-      required this.receivedBy,
+      required this.receiverWallet,
       required this.paymentMode,
       required this.createdAt,
       this.status = "pending",
@@ -240,7 +240,7 @@ class _$ReceiptDataImpl implements _ReceiptData {
   @override
   final String receiverName;
   @override
-  final String receivedBy;
+  final String receiverWallet;
   @override
   final String paymentMode;
   @override
@@ -255,7 +255,7 @@ class _$ReceiptDataImpl implements _ReceiptData {
 
   @override
   String toString() {
-    return 'ReceiptData(id: $id, amount: $amount, orderReference: $orderReference, receiverName: $receiverName, receivedBy: $receivedBy, paymentMode: $paymentMode, createdAt: $createdAt, status: $status, senderName: $senderName, narration: $narration)';
+    return 'ReceiptData(id: $id, amount: $amount, orderReference: $orderReference, receiverName: $receiverName, receiverWallet: $receiverWallet, paymentMode: $paymentMode, createdAt: $createdAt, status: $status, senderName: $senderName, narration: $narration)';
   }
 
   @override
@@ -269,8 +269,8 @@ class _$ReceiptDataImpl implements _ReceiptData {
                 other.orderReference == orderReference) &&
             (identical(other.receiverName, receiverName) ||
                 other.receiverName == receiverName) &&
-            (identical(other.receivedBy, receivedBy) ||
-                other.receivedBy == receivedBy) &&
+            (identical(other.receiverWallet, receiverWallet) ||
+                other.receiverWallet == receiverWallet) &&
             (identical(other.paymentMode, paymentMode) ||
                 other.paymentMode == paymentMode) &&
             (identical(other.createdAt, createdAt) ||
@@ -290,7 +290,7 @@ class _$ReceiptDataImpl implements _ReceiptData {
       amount,
       orderReference,
       receiverName,
-      receivedBy,
+      receiverWallet,
       paymentMode,
       createdAt,
       status,
@@ -317,7 +317,7 @@ abstract class _ReceiptData implements ReceiptData {
       required final String amount,
       required final String orderReference,
       required final String receiverName,
-      required final String receivedBy,
+      required final String receiverWallet,
       required final String paymentMode,
       required final String createdAt,
       final String status,
@@ -336,7 +336,7 @@ abstract class _ReceiptData implements ReceiptData {
   @override
   String get receiverName;
   @override
-  String get receivedBy;
+  String get receiverWallet;
   @override
   String get paymentMode;
   @override

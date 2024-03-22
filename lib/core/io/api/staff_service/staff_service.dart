@@ -33,7 +33,7 @@ abstract class StaffService {
   });
 
   @DELETE("/{staffId}")
-  Future<CreateStaffResponse> deleteStaff({
+  Future deleteStaff({
     @Path('staffId') required int staffId,
   });
 }

@@ -54,7 +54,7 @@ abstract class TransactionService {
 
   @DELETE("/beneficiaries/{id}")
   Future deleteBeneficiary(
-    @Path() int id,
+    @Path() String id,
   );
 
   @POST("/beneficiaries")
@@ -93,11 +93,11 @@ abstract class TransactionService {
   @GET("/banks")
   Future<BankResponse> getBanks();
 
-  @POST("/accounts/verify")
+  @POST("/withdrawal-accounts/verify")
   Future<VerifyPayoutResponse> verifyAccount(
       @Body() VerifyPayoutRequest request);
 
-  @POST("/accounts")
+  @POST("/withdrawal-accounts")
   Future<SetPayoutResponse> addPayout(@Body() SetPayoutRequest request);
 
   @GET("/security-question")

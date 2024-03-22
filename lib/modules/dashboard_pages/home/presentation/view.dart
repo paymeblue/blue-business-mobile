@@ -17,6 +17,7 @@ import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/tiles/transaction_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -30,6 +31,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  NumberFormat format = NumberFormat("#,##0.00");
   @override
   Widget build(BuildContext context) {
     return BaseView<HomeViewModel>(
@@ -203,31 +205,135 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  decoration: BoxDecoration(
-                    color: AppColors.bgGrey,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
+                popupMenu(model),
+                8.verticalGap,
+                if (model.salesLoading)
+                  salesShimmer()
+                else ...[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        model.popupItem,
-                        style: AppTextStyles.subHeader,
+                      analyticsColumn(
+                          title: "Point of Sales",
+                          amount: format.format(
+                              double.parse(model.spendingData!.desktopSum)),
+                          percentIncrease: .4),
+                      analyticsColumn(
+                        title: "Mobile Account",
+                        amount: format.format(
+                            double.parse(model.spendingData!.mobileSum)),
+                        percentIncrease: -.156,
                       ),
-                      8.horizontalGap,
-                      BluePopupMenu(
-                        icon: const Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                        ),
-                        popupItems: model.popupItems(),
-                      )
                     ],
                   ),
-                )
+                  16.verticalGap,
+                  Container(
+                    height: 70,
+                    width: model.size.width,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: AppColors.inputField,
+                    ),
+                    child: Text(
+                      "${nairaSymbol()}${format.format(double.parse(model.spendingData!.mobileSum) + double.parse(model.spendingData!.desktopSum))}",
+                      style: AppTextStyles.header.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ]
               ],
             ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget analyticsColumn({
+    required String title,
+    required String amount,
+    double percentIncrease = 0,
+  }) =>
+      Container(
+        width: (context.mediaQuery.size.width - 65) / 2,
+        height: 80,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: AppTextStyles.smallText.copyWith(
+                color: AppColors.bodyTextColor2,
+              ),
+            ),
+            4.verticalGap,
+            Text(
+              "${nairaSymbol()}$amount",
+              style: AppTextStyles.header.copyWith(fontSize: 16.5),
+            ),
+            Row(
+              children: [
+                Icon(
+                  percentIncrease < 0
+                      ? Icons.arrow_downward_rounded
+                      : Icons.arrow_upward_rounded,
+                  color: percentIncrease < 0
+                      ? AppColors.error
+                      : AppColors.otherGreen,
+                  size: 16,
+                ),
+                8.horizontalGap,
+                RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                      text: "${percentIncrease.abs() * 100}% ",
+                      style: AppTextStyles.smallText.copyWith(
+                        color: percentIncrease < 0
+                            ? AppColors.error
+                            : AppColors.otherGreen,
+                      ),
+                    ),
+                    TextSpan(
+                      text: "vs last week",
+                      style: AppTextStyles.smallText.copyWith(
+                        color: AppColors.bodyTextColor,
+                      ),
+                    )
+                  ]),
+                ),
+              ],
+            )
+          ],
+        ),
+      );
+
+  Widget popupMenu(HomeViewModel model) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        color: AppColors.bgGrey,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            model.popupItem,
+            style: AppTextStyles.subHeader.copyWith(
+              color: AppColors.primary,
+            ),
+          ),
+          8.horizontalGap,
+          BluePopupMenu(
+            icon: const Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: AppColors.primary,
+            ),
+            popupItems: model.popupItems(),
           )
         ],
       ),
@@ -487,6 +593,23 @@ class _HomeViewState extends State<HomeView> {
       width: 100,
       child: Shimmer.fromColors(
         baseColor: AppColors.brightBlue,
+        highlightColor: AppColors.white,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget salesShimmer() {
+    return SizedBox(
+      height: 150,
+      width: context.mediaQuery.size.width,
+      child: Shimmer.fromColors(
+        baseColor: AppColors.brightBlue.withOpacity(.3),
         highlightColor: AppColors.white,
         child: DecoratedBox(
           decoration: BoxDecoration(

@@ -41,7 +41,7 @@ class TransationTile extends StatelessWidget {
       height: 20,
       child: FittedBox(
         child: Text(
-          "${typeSymbol()}${transaction.transactionAmount}",
+          "${typeSymbol()}${transaction.amount}",
           style: AppTextStyles.subHeader.copyWith(
             color: typeColor(),
           ),
@@ -56,7 +56,7 @@ class TransationTile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "${transaction.paymentMode == "phone" && transaction.otherPartyName.startsWith(RegExp(r"[0-9]")) ? "+" : ""}${transaction.otherPartyName}",
+          transaction.otherPartyName ?? "",
           style: AppTextStyles.header.copyWith(fontSize: 15.5),
         ),
         Text(
@@ -69,21 +69,21 @@ class TransationTile extends StatelessWidget {
   }
 
   PaymentMode getPaymentMode() {
-    switch (transaction.paymentMode) {
-      case "phone":
-        return PaymentMode.phone;
-      case "withdrawal":
-        return PaymentMode.withdrawal;
-      case "wallet_topup":
-        return PaymentMode.topup;
-      case "blue-user":
-      default:
-        return PaymentMode.blue;
-    }
+    // switch (transaction.paymentMode) {
+    //   case "phone":
+    //     return PaymentMode.phone;
+    //   case "withdrawal":
+    //     return PaymentMode.withdrawal;
+    //   case "wallet_topup":
+    //     return PaymentMode.topup;
+    //   case "blue-user":
+    //   default:
+    return PaymentMode.blue;
+    // }
   }
 
   TransactionType getTransactionType() {
-    switch (transaction.transactionType.toLowerCase()) {
+    switch (transaction.type?.toLowerCase()) {
       case "credit":
         return TransactionType.credit;
       case "debit":
@@ -93,17 +93,17 @@ class TransationTile extends StatelessWidget {
   }
 
   Widget transactionImage() {
-    switch (getPaymentMode()) {
-      case PaymentMode.blue:
-      case PaymentMode.qr:
-        return bluePaymentImage();
-      case PaymentMode.topup:
-      case PaymentMode.withdrawal:
-        return AppAssets.images.icons.virtualBank.svg();
-      case PaymentMode.phone:
-      default:
-        return defaultImage();
-    }
+    // switch (getPaymentMode()) {
+    //   case PaymentMode.blue:
+    //   case PaymentMode.qr:
+    //     return bluePaymentImage();
+    //   case PaymentMode.topup:
+    //   case PaymentMode.withdrawal:
+    //     return AppAssets.images.icons.virtualBank.svg();
+    //   case PaymentMode.phone:
+    //   default:
+    return defaultImage();
+    // }
   }
 
   Container defaultImage() {
@@ -116,7 +116,7 @@ class TransationTile extends StatelessWidget {
       ),
       alignment: Alignment.center,
       child: Text(
-        transaction.initals,
+        transaction.initials,
         style: AppTextStyles.smallButtonText.copyWith(color: AppColors.white),
       ),
     );
@@ -153,7 +153,7 @@ class TransationTile extends StatelessWidget {
   String amountString() {
     final formatCurrency = NumberFormat.simpleCurrency(name: nairaSymbol());
 
-    return formatCurrency.format(transaction.transactionAmount);
+    return formatCurrency.format(transaction.amount);
   }
 
   String typeSymbol() {

@@ -276,7 +276,7 @@ GoRouter router = GoRouter(
             builder: (context, state) {
               log(state.matchedLocation);
               return EnterPinRecoveryPhoneView(
-                  securityQuestion: state.extra as SecurityQuestion);
+                  securityQuestion: state.extra as SecurityQuestion?);
             },
           ),
           GoRoute(

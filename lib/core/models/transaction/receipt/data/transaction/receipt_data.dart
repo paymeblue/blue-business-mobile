@@ -10,7 +10,7 @@ class ReceiptData with _$ReceiptData {
     required String amount,
     required String orderReference,
     required String receiverName,
-    required String receivedBy,
+    required String receiverWallet,
     required String paymentMode,
     required String createdAt,
     @Default("pending") String status,
