@@ -322,7 +322,7 @@ class _HomeViewState extends State<HomeView> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            model.popupItem,
+            "This ${model.popupItem}",
             style: AppTextStyles.subHeader.copyWith(
               color: AppColors.primary,
             ),

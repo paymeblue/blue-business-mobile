@@ -167,7 +167,7 @@ class HomeViewModel extends BaseViewModel {
   getAnalytics() async {
     salesLoading = true;
     SpendingAnalyticsResponse response = await InsightsService()
-        .getAnalytics()
+        .getAnalytics("${popupItem}ly")
         .onError((error, stackTrace) => SpendingAnalyticsResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
@@ -327,19 +327,19 @@ class HomeViewModel extends BaseViewModel {
         PopupModel(
           title: "This week",
           onTap: () {
-            popupItem = "This week";
+            popupItem = "week";
           },
         ),
         PopupModel(
           title: "This month",
           onTap: () {
-            popupItem = "This month";
+            popupItem = "month";
           },
         ),
         PopupModel(
           title: "This year",
           onTap: () {
-            popupItem = "This year";
+            popupItem = "year";
           },
         ),
       ];

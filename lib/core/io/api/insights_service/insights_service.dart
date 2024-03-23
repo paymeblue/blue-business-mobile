@@ -20,8 +20,12 @@ abstract class InsightsService {
   );
 
   @GET("/spent")
-  Future<SpendingAnalyticsResponse> getSpending();
+  Future<SpendingAnalyticsResponse> getSpending(
+    @Query("time_interval") String type,
+  );
 
   @GET("/analytics")
-  Future<SpendingAnalyticsResponse> getAnalytics();
+  Future<SpendingAnalyticsResponse> getAnalytics(
+    @Query("time_interval") String type,
+  );
 }

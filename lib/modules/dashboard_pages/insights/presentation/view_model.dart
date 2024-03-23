@@ -100,7 +100,7 @@ class InsightsViewModel extends BaseViewModel {
 
   getSpending() async {
     SpendingAnalyticsResponse response = await insightsService
-        .getSpending()
+        .getSpending(selectedType.toLowerCase())
         .onError((error, stackTrace) => SpendingAnalyticsResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
@@ -171,7 +171,7 @@ class InsightsViewModel extends BaseViewModel {
   getSalesAnalytics() async {
     salesLoading = true;
     SpendingAnalyticsResponse response = await InsightsService()
-        .getAnalytics()
+        .getAnalytics(selectedType.toLowerCase())
         .onError((error, stackTrace) => SpendingAnalyticsResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 

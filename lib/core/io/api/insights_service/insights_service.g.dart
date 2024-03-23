@@ -49,9 +49,9 @@ class _InsightsService implements InsightsService {
   }
 
   @override
-  Future<SpendingAnalyticsResponse> getSpending() async {
+  Future<SpendingAnalyticsResponse> getSpending(String type) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'time_interval': type};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -76,9 +76,9 @@ class _InsightsService implements InsightsService {
   }
 
   @override
-  Future<SpendingAnalyticsResponse> getAnalytics() async {
+  Future<SpendingAnalyticsResponse> getAnalytics(String type) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'time_interval': type};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
