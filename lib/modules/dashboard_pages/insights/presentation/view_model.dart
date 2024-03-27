@@ -1,5 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
+import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
+import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
 import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/monthly/monthly_line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/response/sales_analytics_response.dart';
@@ -127,19 +129,31 @@ class InsightsViewModel extends BaseViewModel {
       if (selectedType == types[0]) {
         weeklyData =
             response.data!.map((e) => WeeklyLineChartData.fromJson(e)).toList();
+        inputData = response.data!
+            .map((e) => LineInputData.fromJson(e))
+            .toList()
+            .reversed
+            .toList();
       } else if (selectedType == types[1]) {
         monthlyData = response.data!
             .map((e) => MonthlyLineChartData.fromJson(e))
             .toList();
+        inputData = response.data!
+            .map(
+                (e) => LineInputData.fromJson(e).copyWith(label: e["label"][0]))
+            .toList()
+            .reversed
+            .toList();
       } else {
         yearlyData =
             response.data!.map((e) => YearlyLineChartData.fromJson(e)).toList();
+        inputData = response.data!
+            .map((e) => LineInputData.fromJson(e)
+                .copyWith(label: "'${e["label"].toString().substring(2)}"))
+            .toList()
+            .reversed
+            .toList();
       }
-      inputData = response.data!
-          .map((e) => LineInputData.fromJson(e))
-          .toList()
-          .reversed
-          .toList();
     } else {
       AppNotification.error(message: response.message);
     }
@@ -161,19 +175,19 @@ class InsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  SpendingAnalyticsData? _d;
-  SpendingAnalyticsData? get salesData => _d;
-  set salesData(SpendingAnalyticsData? d) {
+  AnalyticsData? _d;
+  AnalyticsData? get salesData => _d;
+  set salesData(AnalyticsData? d) {
     _d = d;
     notifyListeners();
   }
 
   getSalesAnalytics() async {
     salesLoading = true;
-    SpendingAnalyticsResponse response = await InsightsService()
+    AnalyticsResponse response = await InsightsService()
         .getAnalytics(selectedType.toLowerCase())
-        .onError((error, stackTrace) => SpendingAnalyticsResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+        .onError((error, stackTrace) =>
+            AnalyticsResponse(message: AppErrorHandler.getErrorMessage(error)));
 
     if (response.status == "success") {
       salesData = response.data;

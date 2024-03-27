@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 
 class BlueLineChart extends StatefulWidget {
   final List<LineInputData> inputData;
-  const BlueLineChart({super.key, required this.inputData});
+  final bool isMonthly;
+  const BlueLineChart(
+      {super.key, required this.inputData, this.isMonthly = false});
 
   @override
   State<BlueLineChart> createState() => _BlueLineChartState();
@@ -47,7 +49,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     TextStyle style =
         AppTextStyles.smallText.copyWith(color: const Color(0xFF615E83));
-    Widget text = Text(
+    late Widget text = Text(
         widget.inputData[value.toInt()].label[0].toUpperCase() +
             widget.inputData[value.toInt()].label.substring(1),
         style: style);

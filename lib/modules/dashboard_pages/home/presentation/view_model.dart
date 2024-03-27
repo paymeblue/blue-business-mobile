@@ -3,10 +3,10 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
 import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
+import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
+import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
 import 'package:blue_business/core/models/kyc_status/response/kyc_status_response.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
-import 'package:blue_business/core/models/spending_analytics/data/spending_analytics_data.dart';
-import 'package:blue_business/core/models/spending_analytics/response/spending_analytics_response.dart';
 import 'package:blue_business/core/models/todo/response/todo_response.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/topup_account/response/topup_response.dart';
@@ -155,19 +155,19 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  SpendingAnalyticsData? _d;
-  SpendingAnalyticsData? get spendingData => _d;
-  set spendingData(SpendingAnalyticsData? d) {
+  AnalyticsData? _d;
+  AnalyticsData? get spendingData => _d;
+  set spendingData(AnalyticsData? d) {
     _d = d;
     notifyListeners();
   }
 
   getAnalytics() async {
     salesLoading = true;
-    SpendingAnalyticsResponse response = await InsightsService()
+    AnalyticsResponse response = await InsightsService()
         .getAnalytics("weekly")
-        .onError((error, stackTrace) => SpendingAnalyticsResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+        .onError((error, stackTrace) =>
+            AnalyticsResponse(message: AppErrorHandler.getErrorMessage(error)));
 
     if (response.status == "success") {
       spendingData = response.data;

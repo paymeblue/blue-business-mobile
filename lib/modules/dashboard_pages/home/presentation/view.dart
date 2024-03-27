@@ -215,12 +215,12 @@ class _HomeViewState extends State<HomeView> {
                       analyticsColumn(
                           title: "Point of Sales",
                           amount: format.format(double.parse(
-                              model.spendingData?.desktopSum ?? "0.00")),
+                              model.spendingData?.desktop.total ?? "0.00")),
                           percentIncrease: .4),
                       analyticsColumn(
                         title: "Mobile Account",
                         amount: format.format(double.parse(
-                            model.spendingData?.mobileSum ?? "0.00")),
+                            model.spendingData?.mobile.total ?? "0.00")),
                         percentIncrease: -.156,
                       ),
                     ],
@@ -235,7 +235,7 @@ class _HomeViewState extends State<HomeView> {
                       color: AppColors.inputField,
                     ),
                     child: Text(
-                      "${nairaSymbol()}${format.format(double.parse(model.spendingData?.mobileSum ?? "0.00") + double.parse(model.spendingData?.desktopSum ?? "0.00"))}",
+                      "${nairaSymbol()}${format.format(double.parse(model.spendingData?.mobile.total ?? "0.00") + double.parse(model.spendingData?.desktop.total ?? "0.00"))}",
                       style: AppTextStyles.header.copyWith(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,

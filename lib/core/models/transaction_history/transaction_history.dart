@@ -21,17 +21,6 @@ class TransactionHistory with _$TransactionHistory {
       _$TransactionHistoryImpl.fromJson(json);
 }
 
-// {
-//  "transaction_id":74,
-//  "receiver_name":"Priscilla Abhulimen",
-//  "other_party_name":"Maryam Tajudeen",
-//  "amount":"10.00",
-//  "status":"successful",
-//  "type":"debit",
-//  "created_at":"2024-03-12T21:29:02.000Z",
-//  "initials":"MT"
-// }
-
 enum TransactionType { debit, credit }
 
 enum PaymentMode { blue, phone, qr, withdrawal, topup }

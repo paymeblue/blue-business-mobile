@@ -76,13 +76,13 @@ class _InsightsService implements InsightsService {
   }
 
   @override
-  Future<SpendingAnalyticsResponse> getAnalytics(String type) async {
+  Future<AnalyticsResponse> getAnalytics(String type) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'time_interval': type};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<SpendingAnalyticsResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<AnalyticsResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -98,7 +98,7 @@ class _InsightsService implements InsightsService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = SpendingAnalyticsResponse.fromJson(_result.data!);
+    final value = AnalyticsResponse.fromJson(_result.data!);
     return value;
   }
 

@@ -107,7 +107,7 @@ class _InsightsViewState extends State<InsightsView> {
                   child: Column(
                     children: [
                       Text(
-                        "${nairaSymbol()}${format.format(double.parse(model.salesData?.mobileSum ?? "0.0") + double.parse(model.salesData?.desktopSum ?? "0.0"))}",
+                        "${nairaSymbol()}${format.format(double.parse(model.salesData?.mobile.total ?? "0.0") + double.parse(model.salesData?.desktop.total ?? "0.0"))}",
                         style: AppTextStyles.header.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -146,13 +146,13 @@ class _InsightsViewState extends State<InsightsView> {
                     children: [
                       analyticsColumn(
                           title: "Point of Sales",
-                          amount: format.format(
-                              double.parse(model.salesData!.desktopSum)),
+                          amount: format.format(double.parse(
+                              model.salesData?.desktop.total ?? "0.00")),
                           percentIncrease: .4),
                       analyticsColumn(
                         title: "Mobile Account",
-                        amount: format
-                            .format(double.parse(model.salesData!.mobileSum)),
+                        amount: format.format(double.parse(
+                            model.salesData?.mobile.total ?? "0.00")),
                         percentIncrease: -.156,
                       ),
                     ],
