@@ -100,14 +100,14 @@ abstract class TransactionService {
   @POST("/withdrawal-accounts")
   Future<SetPayoutResponse> addPayout(@Body() SetPayoutRequest request);
 
-  @GET("/security-question")
+  @GET("/security-info")
   Future<GetQuestionResponse> getSecurityQuestion(@Query("phone") String phone);
 
   @PATCH("/security-question/answer")
   Future<SendQuestionResponse> sendSecurityAnswer(
       @Body() SendQuestionRequest request);
 
-  @POST("/security-question")
+  @POST("/security-info")
   Future<SendQuestionResponse> createSecurityQuestion(
       @Body() CreateQuestionRequest request);
 

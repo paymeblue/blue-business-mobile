@@ -23,7 +23,7 @@ ResetRecoveryCodeResponse _$ResetRecoveryCodeResponseFromJson(
 mixin _$ResetRecoveryCodeResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  ResetRecoveryCodeData? get data => throw _privateConstructorUsedError;
+  String? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,9 +37,7 @@ abstract class $ResetRecoveryCodeResponseCopyWith<$Res> {
           $Res Function(ResetRecoveryCodeResponse) then) =
       _$ResetRecoveryCodeResponseCopyWithImpl<$Res, ResetRecoveryCodeResponse>;
   @useResult
-  $Res call({String status, String? message, ResetRecoveryCodeData? data});
-
-  $ResetRecoveryCodeDataCopyWith<$Res>? get data;
+  $Res call({String status, String? message, String? data});
 }
 
 /// @nodoc
@@ -72,20 +70,8 @@ class _$ResetRecoveryCodeResponseCopyWithImpl<$Res,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as ResetRecoveryCodeData?,
+              as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ResetRecoveryCodeDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $ResetRecoveryCodeDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
   }
 }
 
@@ -98,10 +84,7 @@ abstract class _$$ResetRecoveryCodeResponseImplCopyWith<$Res>
       __$$ResetRecoveryCodeResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, ResetRecoveryCodeData? data});
-
-  @override
-  $ResetRecoveryCodeDataCopyWith<$Res>? get data;
+  $Res call({String status, String? message, String? data});
 }
 
 /// @nodoc
@@ -133,7 +116,7 @@ class __$$ResetRecoveryCodeResponseImplCopyWithImpl<$Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as ResetRecoveryCodeData?,
+              as String?,
     ));
   }
 }
@@ -153,7 +136,7 @@ class _$ResetRecoveryCodeResponseImpl implements _ResetRecoveryCodeResponse {
   @override
   final String? message;
   @override
-  final ResetRecoveryCodeData? data;
+  final String? data;
 
   @override
   String toString() {
@@ -193,7 +176,7 @@ abstract class _ResetRecoveryCodeResponse implements ResetRecoveryCodeResponse {
   const factory _ResetRecoveryCodeResponse(
       {final String status,
       final String? message,
-      final ResetRecoveryCodeData? data}) = _$ResetRecoveryCodeResponseImpl;
+      final String? data}) = _$ResetRecoveryCodeResponseImpl;
 
   factory _ResetRecoveryCodeResponse.fromJson(Map<String, dynamic> json) =
       _$ResetRecoveryCodeResponseImpl.fromJson;
@@ -203,7 +186,7 @@ abstract class _ResetRecoveryCodeResponse implements ResetRecoveryCodeResponse {
   @override
   String? get message;
   @override
-  ResetRecoveryCodeData? get data;
+  String? get data;
   @override
   @JsonKey(ignore: true)
   _$$ResetRecoveryCodeResponseImplCopyWith<_$ResetRecoveryCodeResponseImpl>

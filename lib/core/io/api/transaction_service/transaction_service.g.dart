@@ -445,7 +445,7 @@ class _TransactionService implements TransactionService {
     )
             .compose(
               _dio.options,
-              '/security-question',
+              '/security-info',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -501,7 +501,7 @@ class _TransactionService implements TransactionService {
     )
             .compose(
               _dio.options,
-              '/security-question',
+              '/security-info',
               queryParameters: queryParameters,
               data: _data,
             )

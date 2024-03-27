@@ -4,7 +4,6 @@ import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
 import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/kyc_status/response/kyc_status_response.dart';
-import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/models/spending_analytics/data/spending_analytics_data.dart';
 import 'package:blue_business/core/models/spending_analytics/response/spending_analytics_response.dart';
@@ -42,7 +41,6 @@ class HomeViewModel extends BaseViewModel {
   getDashData() async {
     getWalletBalance();
     getKyc();
-    popupItem = popupItems()[0].title;
     if (!locator<AppStateValues>().loadedTodo) {
       getTodos();
     }
@@ -167,7 +165,7 @@ class HomeViewModel extends BaseViewModel {
   getAnalytics() async {
     salesLoading = true;
     SpendingAnalyticsResponse response = await InsightsService()
-        .getAnalytics("${popupItem}ly")
+        .getAnalytics("weekly")
         .onError((error, stackTrace) => SpendingAnalyticsResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 
@@ -315,32 +313,4 @@ class HomeViewModel extends BaseViewModel {
   goToInitiateWithdrawal(BuildContext context) {
     context.go("${RoutePaths.initiateTransactionPath}/withdraw");
   }
-
-  late String _popupItem;
-  String get popupItem => _popupItem;
-  set popupItem(String v) {
-    _popupItem = v;
-    notifyListeners();
-  }
-
-  List<PopupModel> popupItems() => [
-        PopupModel(
-          title: "This week",
-          onTap: () {
-            popupItem = "week";
-          },
-        ),
-        PopupModel(
-          title: "This month",
-          onTap: () {
-            popupItem = "month";
-          },
-        ),
-        PopupModel(
-          title: "This year",
-          onTap: () {
-            popupItem = "year";
-          },
-        ),
-      ];
 }

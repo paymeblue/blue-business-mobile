@@ -10,7 +10,7 @@ class TransactionHistory with _$TransactionHistory {
     required String? receiverName,
     String? otherPartyName,
     required String amount,
-    // required String paymentMode,
+    required String paymentMode,
     String? type,
     required String createdAt,
     @Default("pending") String status,

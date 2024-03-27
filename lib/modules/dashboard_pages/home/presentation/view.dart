@@ -10,7 +10,6 @@ import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/modules/dashboard_pages/home/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
-import 'package:blue_business/widgets/modals/popup_menu.dart';
 import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
@@ -215,13 +214,13 @@ class _HomeViewState extends State<HomeView> {
                     children: [
                       analyticsColumn(
                           title: "Point of Sales",
-                          amount: format.format(
-                              double.parse(model.spendingData!.desktopSum)),
+                          amount: format.format(double.parse(
+                              model.spendingData?.desktopSum ?? "0.00")),
                           percentIncrease: .4),
                       analyticsColumn(
                         title: "Mobile Account",
-                        amount: format.format(
-                            double.parse(model.spendingData!.mobileSum)),
+                        amount: format.format(double.parse(
+                            model.spendingData?.mobileSum ?? "0.00")),
                         percentIncrease: -.156,
                       ),
                     ],
@@ -236,7 +235,7 @@ class _HomeViewState extends State<HomeView> {
                       color: AppColors.inputField,
                     ),
                     child: Text(
-                      "${nairaSymbol()}${format.format(double.parse(model.spendingData!.mobileSum) + double.parse(model.spendingData!.desktopSum))}",
+                      "${nairaSymbol()}${format.format(double.parse(model.spendingData?.mobileSum ?? "0.00") + double.parse(model.spendingData?.desktopSum ?? "0.00"))}",
                       style: AppTextStyles.header.copyWith(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
@@ -322,19 +321,11 @@ class _HomeViewState extends State<HomeView> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "This ${model.popupItem}",
+            "This week",
             style: AppTextStyles.subHeader.copyWith(
               color: AppColors.primary,
             ),
           ),
-          8.horizontalGap,
-          BluePopupMenu(
-            icon: const Icon(
-              Icons.keyboard_arrow_down_rounded,
-              color: AppColors.primary,
-            ),
-            popupItems: model.popupItems(),
-          )
         ],
       ),
     );

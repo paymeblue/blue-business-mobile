@@ -13,6 +13,7 @@ _$TransactionHistoryImpl _$$TransactionHistoryImplFromJson(
       receiverName: json['receiver_name'] as String?,
       otherPartyName: json['other_party_name'] as String?,
       amount: json['amount'] as String,
+      paymentMode: json['payment_mode'] as String,
       type: json['type'] as String?,
       createdAt: json['created_at'] as String,
       status: json['status'] as String? ?? "pending",
@@ -34,6 +35,7 @@ Map<String, dynamic> _$$TransactionHistoryImplToJson(
   writeNotNull('receiver_name', instance.receiverName);
   writeNotNull('other_party_name', instance.otherPartyName);
   val['amount'] = instance.amount;
+  val['payment_mode'] = instance.paymentMode;
   writeNotNull('type', instance.type);
   val['created_at'] = instance.createdAt;
   val['status'] = instance.status;
