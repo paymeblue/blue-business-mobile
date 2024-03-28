@@ -21,7 +21,7 @@ ResetPinRequest _$ResetPinRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ResetPinRequest {
   String get phone => throw _privateConstructorUsedError;
-  String get newPasscode => throw _privateConstructorUsedError;
+  String get newPin => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $ResetPinRequestCopyWith<$Res> {
           ResetPinRequest value, $Res Function(ResetPinRequest) then) =
       _$ResetPinRequestCopyWithImpl<$Res, ResetPinRequest>;
   @useResult
-  $Res call({String phone, String newPasscode});
+  $Res call({String phone, String newPin});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$ResetPinRequestCopyWithImpl<$Res, $Val extends ResetPinRequest>
   @override
   $Res call({
     Object? phone = null,
-    Object? newPasscode = null,
+    Object? newPin = null,
   }) {
     return _then(_value.copyWith(
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      newPasscode: null == newPasscode
-          ? _value.newPasscode
-          : newPasscode // ignore: cast_nullable_to_non_nullable
+      newPin: null == newPin
+          ? _value.newPin
+          : newPin // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$ResetPinRequestImplCopyWith<$Res>
       __$$ResetPinRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String phone, String newPasscode});
+  $Res call({String phone, String newPin});
 }
 
 /// @nodoc
@@ -90,16 +90,16 @@ class __$$ResetPinRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phone = null,
-    Object? newPasscode = null,
+    Object? newPin = null,
   }) {
     return _then(_$ResetPinRequestImpl(
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      newPasscode: null == newPasscode
-          ? _value.newPasscode
-          : newPasscode // ignore: cast_nullable_to_non_nullable
+      newPin: null == newPin
+          ? _value.newPin
+          : newPin // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -108,7 +108,7 @@ class __$$ResetPinRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResetPinRequestImpl implements _ResetPinRequest {
-  const _$ResetPinRequestImpl({required this.phone, required this.newPasscode});
+  const _$ResetPinRequestImpl({required this.phone, required this.newPin});
 
   factory _$ResetPinRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResetPinRequestImplFromJson(json);
@@ -116,11 +116,11 @@ class _$ResetPinRequestImpl implements _ResetPinRequest {
   @override
   final String phone;
   @override
-  final String newPasscode;
+  final String newPin;
 
   @override
   String toString() {
-    return 'ResetPinRequest(phone: $phone, newPasscode: $newPasscode)';
+    return 'ResetPinRequest(phone: $phone, newPin: $newPin)';
   }
 
   @override
@@ -129,13 +129,12 @@ class _$ResetPinRequestImpl implements _ResetPinRequest {
         (other.runtimeType == runtimeType &&
             other is _$ResetPinRequestImpl &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.newPasscode, newPasscode) ||
-                other.newPasscode == newPasscode));
+            (identical(other.newPin, newPin) || other.newPin == newPin));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, phone, newPasscode);
+  int get hashCode => Object.hash(runtimeType, phone, newPin);
 
   @JsonKey(ignore: true)
   @override
@@ -155,7 +154,7 @@ class _$ResetPinRequestImpl implements _ResetPinRequest {
 abstract class _ResetPinRequest implements ResetPinRequest {
   const factory _ResetPinRequest(
       {required final String phone,
-      required final String newPasscode}) = _$ResetPinRequestImpl;
+      required final String newPin}) = _$ResetPinRequestImpl;
 
   factory _ResetPinRequest.fromJson(Map<String, dynamic> json) =
       _$ResetPinRequestImpl.fromJson;
@@ -163,7 +162,7 @@ abstract class _ResetPinRequest implements ResetPinRequest {
   @override
   String get phone;
   @override
-  String get newPasscode;
+  String get newPin;
   @override
   @JsonKey(ignore: true)
   _$$ResetPinRequestImplCopyWith<_$ResetPinRequestImpl> get copyWith =>

@@ -38,33 +38,38 @@ class _HomeViewState extends State<HomeView> {
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
         return SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              height: model.size.height + 180,
-              width: model.size.width,
-              color: AppColors.offWhite,
-              padding: const EdgeInsets.only(top: 15),
-              child: Column(
-                children: [
-                  firstRow(() {
-                    model.goToTransactionHistory(context);
-                  }),
-                  12.verticalGap,
-                  walletSection(model),
-                  if (model.isTodoLoading ||
-                      locator<AppStateValues>().todos.isNotEmpty) ...[
-                    15.verticalGap,
-                    todoSection(model),
+          child: RefreshIndicator(
+            onRefresh: () async {
+              model.getDashData();
+            },
+            child: SingleChildScrollView(
+              child: Container(
+                height: model.size.height + 180,
+                width: model.size.width,
+                color: AppColors.offWhite,
+                padding: const EdgeInsets.only(top: 15),
+                child: Column(
+                  children: [
+                    firstRow(() {
+                      model.goToTransactionHistory(context);
+                    }),
+                    12.verticalGap,
+                    walletSection(model),
+                    if (model.isTodoLoading ||
+                        locator<AppStateValues>().todos.isNotEmpty) ...[
+                      15.verticalGap,
+                      todoSection(model),
+                    ],
+                    20.verticalGap,
+                    transactionOptionSection(model, context),
+                    12.verticalGap,
+                    totalSalesSection(model),
+                    12.verticalGap,
+                    Expanded(
+                      child: transactionSection(model),
+                    ),
                   ],
-                  20.verticalGap,
-                  transactionOptionSection(model, context),
-                  12.verticalGap,
-                  totalSalesSection(model),
-                  12.verticalGap,
-                  Expanded(
-                    child: transactionSection(model),
-                  ),
-                ],
+                ),
               ),
             ),
           ),

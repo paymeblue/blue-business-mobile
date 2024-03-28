@@ -41,7 +41,7 @@ class NewPinViewModel extends BaseViewModel {
   resetPin(BuildContext context, String phone) async {
     AppLoader.start();
 
-    ResetPinRequest request = ResetPinRequest(phone: phone, newPasscode: pin);
+    ResetPinRequest request = ResetPinRequest(phone: phone, newPin: pin);
     SendQuestionResponse resp = await transactionService
         .resetPin(request)
         .onError((error, stackTrace) => SendQuestionResponse(
