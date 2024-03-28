@@ -53,8 +53,8 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
                       children: [
                         title(),
                         35.verticalGap,
-                        barcodeImage(),
-                        10.verticalGap,
+                        // barcodeImage(),
+                        // 10.verticalGap,
                         const InfoContainer(
                             text:
                                 "Please remain logged in while paying with barcode"),
