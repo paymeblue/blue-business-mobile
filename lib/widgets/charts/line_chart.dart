@@ -4,6 +4,7 @@ import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class BlueLineChart extends StatefulWidget {
   final List<LineInputData> inputData;
@@ -61,6 +62,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
   }
 
   LineChartData mainData() {
+    NumberFormat format = NumberFormat.compact(explicitSign: true);
     return LineChartData(
       gridData: const FlGridData(
         show: false,
@@ -94,7 +96,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
           getTooltipItems: (touchedSpots) => List.generate(
             touchedSpots.length,
             (idx) => LineTooltipItem(
-              "${nairaSymbol()}${touchedSpots[idx].y}",
+              "${nairaSymbol()}${format.format(touchedSpots[idx].y)}",
               AppTextStyles.smallText,
             ),
           ),

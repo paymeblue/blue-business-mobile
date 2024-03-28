@@ -182,6 +182,27 @@ class InsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  double _mIncrease = 0;
+  double get mobileIncrease => _mIncrease;
+  set mobileIncrease(double v) {
+    _mIncrease = v;
+    notifyListeners();
+  }
+
+  double _dIncrease = 0;
+  double get desktopIncrease => _dIncrease;
+  set desktopIncrease(double v) {
+    _dIncrease = v;
+    notifyListeners();
+  }
+
+  double _tIncrease = 0;
+  double get totalIncrease => _tIncrease;
+  set totalIncrease(double v) {
+    _tIncrease = v;
+    notifyListeners();
+  }
+
   getSalesAnalytics() async {
     salesLoading = true;
     AnalyticsResponse response = await InsightsService()
@@ -191,9 +212,54 @@ class InsightsViewModel extends BaseViewModel {
 
     if (response.status == "success") {
       salesData = response.data;
+      calculateIncrease();
     } else {
       AppNotification.error(message: response.message);
     }
     salesLoading = false;
+  }
+
+  calculateIncrease() {
+    double currentMobile = double.parse(salesData?.mobile.current ?? "0.0");
+    double previousMobile = double.parse(salesData?.mobile.previous ?? "0.0");
+    double currentDesktop = double.parse(salesData?.desktop.current ?? "0.0");
+    double previousDesktop = double.parse(salesData?.desktop.previous ?? "0.0");
+
+    double currentTotal = currentMobile + currentDesktop;
+    double previousTotal = previousMobile + previousDesktop;
+
+    double mChange = currentMobile - previousMobile;
+    double dChange = currentDesktop - previousDesktop;
+    double tChange = currentTotal - previousTotal;
+
+    if (tChange == 0) {
+      totalIncrease = 0;
+    } else {
+      if (previousTotal == 0) {
+        totalIncrease = tChange / 100;
+      } else {
+        totalIncrease = tChange / previousTotal;
+      }
+    }
+
+    if (mChange == 0) {
+      mobileIncrease = 0;
+    } else {
+      if (previousMobile == 0) {
+        mobileIncrease = mChange / 100;
+      } else {
+        mobileIncrease = mChange / previousMobile;
+      }
+    }
+
+    if (dChange == 0) {
+      desktopIncrease = 0;
+    } else {
+      if (previousDesktop == 0) {
+        desktopIncrease = dChange / 100;
+      } else {
+        desktopIncrease = dChange / previousDesktop;
+      }
+    }
   }
 }

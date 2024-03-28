@@ -156,9 +156,23 @@ class HomeViewModel extends BaseViewModel {
   }
 
   AnalyticsData? _d;
-  AnalyticsData? get spendingData => _d;
-  set spendingData(AnalyticsData? d) {
+  AnalyticsData? get analyticsData => _d;
+  set analyticsData(AnalyticsData? d) {
     _d = d;
+    notifyListeners();
+  }
+
+  double _mIncrease = 0;
+  double get mobileIncrease => _mIncrease;
+  set mobileIncrease(double v) {
+    _mIncrease = v;
+    notifyListeners();
+  }
+
+  double _dIncrease = 0;
+  double get desktopIncrease => _dIncrease;
+  set desktopIncrease(double v) {
+    _dIncrease = v;
     notifyListeners();
   }
 
@@ -170,11 +184,45 @@ class HomeViewModel extends BaseViewModel {
             AnalyticsResponse(message: AppErrorHandler.getErrorMessage(error)));
 
     if (response.status == "success") {
-      spendingData = response.data;
+      analyticsData = response.data;
+      calculateIncrease();
     } else {
       AppNotification.error(message: response.message);
     }
     salesLoading = false;
+  }
+
+  calculateIncrease() {
+    double currentMobile = double.parse(analyticsData?.mobile.current ?? "0.0");
+    double previousMobile =
+        double.parse(analyticsData?.mobile.previous ?? "0.0");
+    double currentDesktop =
+        double.parse(analyticsData?.desktop.current ?? "0.0");
+    double previousDesktop =
+        double.parse(analyticsData?.desktop.previous ?? "0.0");
+
+    double mChange = currentMobile - previousMobile;
+    double dChange = currentDesktop - previousDesktop;
+
+    if (mChange == 0) {
+      mobileIncrease = 0;
+    } else {
+      if (previousMobile == 0) {
+        mobileIncrease = mChange / 100;
+      } else {
+        mobileIncrease = mChange / previousMobile;
+      }
+    }
+
+    if (dChange == 0) {
+      desktopIncrease = 0;
+    } else {
+      if (previousDesktop == 0) {
+        desktopIncrease = dChange / 100;
+      } else {
+        desktopIncrease = dChange / previousDesktop;
+      }
+    }
   }
 
   int limit = 6;

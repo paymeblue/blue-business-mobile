@@ -107,7 +107,7 @@ class _InsightsViewState extends State<InsightsView> {
                   child: Column(
                     children: [
                       Text(
-                        "${nairaSymbol()}${format.format(double.parse(model.salesData?.mobile.total ?? "0.0") + double.parse(model.salesData?.desktop.total ?? "0.0"))}",
+                        "${nairaSymbol()}${format.format(double.parse(model.salesData?.mobile.current ?? "0.0") + double.parse(model.salesData?.desktop.current ?? "0.0"))}",
                         style: AppTextStyles.header.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -120,7 +120,7 @@ class _InsightsViewState extends State<InsightsView> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "12.6% increase vs last week",
+                          "${model.totalIncrease * 100}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last week",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),
@@ -147,13 +147,13 @@ class _InsightsViewState extends State<InsightsView> {
                       analyticsColumn(
                           title: "Point of Sales",
                           amount: format.format(double.parse(
-                              model.salesData?.desktop.total ?? "0.00")),
-                          percentIncrease: .4),
+                              model.salesData?.desktop.current ?? "0.00")),
+                          percentIncrease: model.desktopIncrease),
                       analyticsColumn(
                         title: "Mobile Account",
                         amount: format.format(double.parse(
-                            model.salesData?.mobile.total ?? "0.00")),
-                        percentIncrease: -.156,
+                            model.salesData?.mobile.current ?? "0.00")),
+                        percentIncrease: model.mobileIncrease,
                       ),
                     ],
                   ),
@@ -357,24 +357,26 @@ class _InsightsViewState extends State<InsightsView> {
                       : AppColors.otherGreen,
                   size: 16,
                 ),
-                8.horizontalGap,
-                RichText(
-                  text: TextSpan(children: [
-                    TextSpan(
-                      text: "${percentIncrease.abs() * 100}% ",
-                      style: AppTextStyles.smallText.copyWith(
-                        color: percentIncrease < 0
-                            ? AppColors.error
-                            : AppColors.otherGreen,
+                2.horizontalGap,
+                Expanded(
+                  child: RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: "${percentIncrease.abs() * 100}% ",
+                        style: AppTextStyles.smallText.copyWith(
+                          color: percentIncrease < 0
+                              ? AppColors.error
+                              : AppColors.otherGreen,
+                        ),
                       ),
-                    ),
-                    TextSpan(
-                      text: "vs last week",
-                      style: AppTextStyles.smallText.copyWith(
-                        color: AppColors.bodyTextColor,
-                      ),
-                    )
-                  ]),
+                      TextSpan(
+                        text: "vs last week",
+                        style: AppTextStyles.smallText.copyWith(
+                          color: AppColors.bodyTextColor,
+                        ),
+                      )
+                    ]),
+                  ),
                 ),
               ],
             )

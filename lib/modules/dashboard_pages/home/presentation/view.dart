@@ -213,15 +213,16 @@ class _HomeViewState extends State<HomeView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       analyticsColumn(
-                          title: "Point of Sales",
-                          amount: format.format(double.parse(
-                              model.spendingData?.desktop.total ?? "0.00")),
-                          percentIncrease: .4),
+                        title: "Point of Sales",
+                        amount: format.format(double.parse(
+                            model.analyticsData?.desktop.total ?? "0.00")),
+                        percentIncrease: model.desktopIncrease,
+                      ),
                       analyticsColumn(
                         title: "Mobile Account",
                         amount: format.format(double.parse(
-                            model.spendingData?.mobile.total ?? "0.00")),
-                        percentIncrease: -.156,
+                            model.analyticsData?.mobile.total ?? "0.00")),
+                        percentIncrease: model.mobileIncrease,
                       ),
                     ],
                   ),
@@ -235,7 +236,7 @@ class _HomeViewState extends State<HomeView> {
                       color: AppColors.inputField,
                     ),
                     child: Text(
-                      "${nairaSymbol()}${format.format(double.parse(model.spendingData?.mobile.total ?? "0.00") + double.parse(model.spendingData?.desktop.total ?? "0.00"))}",
+                      "${nairaSymbol()}${format.format(double.parse(model.analyticsData?.mobile.total ?? "0.00") + double.parse(model.analyticsData?.desktop.total ?? "0.00"))}",
                       style: AppTextStyles.header.copyWith(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
@@ -285,24 +286,26 @@ class _HomeViewState extends State<HomeView> {
                       : AppColors.otherGreen,
                   size: 16,
                 ),
-                8.horizontalGap,
-                RichText(
-                  text: TextSpan(children: [
-                    TextSpan(
-                      text: "${percentIncrease.abs() * 100}% ",
-                      style: AppTextStyles.smallText.copyWith(
-                        color: percentIncrease < 0
-                            ? AppColors.error
-                            : AppColors.otherGreen,
+                2.horizontalGap,
+                Expanded(
+                  child: RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: "${percentIncrease.abs() * 100}% ",
+                        style: AppTextStyles.smallText.copyWith(
+                          color: percentIncrease < 0
+                              ? AppColors.error
+                              : AppColors.otherGreen,
+                        ),
                       ),
-                    ),
-                    TextSpan(
-                      text: "vs last week",
-                      style: AppTextStyles.smallText.copyWith(
-                        color: AppColors.bodyTextColor,
-                      ),
-                    )
-                  ]),
+                      TextSpan(
+                        text: "vs last week",
+                        style: AppTextStyles.smallText.copyWith(
+                          color: AppColors.bodyTextColor,
+                        ),
+                      )
+                    ]),
+                  ),
                 ),
               ],
             )
