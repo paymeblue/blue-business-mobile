@@ -109,8 +109,13 @@ class InsightsViewModel extends BaseViewModel {
     if (response.status == "success") {
       totalSpending = double.parse(response.data!.mobileSum) +
           double.parse(response.data!.desktopSum);
-      pieValues[1] = double.parse(response.data!.mobileSum) / totalSpending;
-      pieValues[0] = double.parse(response.data!.desktopSum) / totalSpending;
+      if (totalSpending == 0) {
+        pieValues[1] = .5;
+        pieValues[0] = .5;
+      } else {
+        pieValues[1] = double.parse(response.data!.mobileSum) / totalSpending;
+        pieValues[0] = double.parse(response.data!.desktopSum) / totalSpending;
+      }
     } else {
       AppNotification.error(message: response.message);
     }

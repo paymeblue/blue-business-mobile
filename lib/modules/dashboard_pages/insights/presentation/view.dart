@@ -120,7 +120,7 @@ class _InsightsViewState extends State<InsightsView> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${model.totalIncrease * 100}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last week",
+                          "${(model.totalIncrease * 100).abs()}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),

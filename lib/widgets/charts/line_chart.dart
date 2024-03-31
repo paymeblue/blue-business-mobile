@@ -62,7 +62,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
   }
 
   LineChartData mainData() {
-    NumberFormat format = NumberFormat.compact(explicitSign: true);
+    NumberFormat format = NumberFormat.compactCurrency(symbol: nairaSymbol());
     return LineChartData(
       gridData: const FlGridData(
         show: false,
@@ -96,7 +96,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
           getTooltipItems: (touchedSpots) => List.generate(
             touchedSpots.length,
             (idx) => LineTooltipItem(
-              "${nairaSymbol()}${format.format(touchedSpots[idx].y)}",
+              format.format(touchedSpots[idx].y),
               AppTextStyles.smallText,
             ),
           ),

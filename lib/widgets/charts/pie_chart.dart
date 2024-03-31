@@ -66,7 +66,7 @@ class _Painter extends CustomPainter {
                 ..strokeWidth = strokeWidth
                 ..strokeCap = StrokeCap.round,
               // remove padding from stroke
-              (e.percent >= _padding ? (e.percent - _padding) : (0)) *
+              (e.percent >= _padding ? (e.percent - _padding) : (e.percent)) *
                   _percentInRadians),
         )
         .toList();
@@ -74,11 +74,11 @@ class _Painter extends CustomPainter {
 
   static const _percentInRadians = 0.062831853071796;
   // this is the gap between strokes in percent
-  static const _padding = 4;
+  static const _padding = 3;
   static const _paddingInRadians = _percentInRadians * _padding;
   // 0 radians is to the right, but since we want to start from the top
   // we'll use -90 degrees in radians
-  static const _startAngle = 8.3 + _paddingInRadians / 2;
+  static const _startAngle = 8.25 + _paddingInRadians / 2;
 
   late final List<_PainterData> dataList;
 

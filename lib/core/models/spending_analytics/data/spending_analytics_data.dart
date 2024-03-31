@@ -6,8 +6,8 @@ part 'spending_analytics_data.g.dart';
 @freezed
 class SpendingAnalyticsData with _$SpendingAnalyticsData {
   const factory SpendingAnalyticsData({
-    required String desktopSum,
-    required String mobileSum,
+    @Default("0.0") String desktopSum,
+    @Default("0.0") String mobileSum,
   }) = _SpendingAnalyticsData;
 
   factory SpendingAnalyticsData.fromJson(Map<String, dynamic> json) =>
