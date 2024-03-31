@@ -169,7 +169,7 @@ class _DashService implements DashService {
     )
             .compose(
               _dio.options,
-              '/connections/details',
+              '/connections-details',
               queryParameters: queryParameters,
               data: _data,
             )

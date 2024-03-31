@@ -32,7 +32,7 @@ abstract class DashService {
   @GET("/withdrawal-accounts")
   Future<WithdrawalAccountResponse> getWithdrawalAccount();
 
-  @GET("/connections/details")
+  @GET("/connections-details")
   Future<ChatReceiverResponse> getReceiver(
       @Query("identifier") String identifier);
 }
