@@ -37,7 +37,11 @@ class StaffHomeViewModel extends BaseViewModel {
               );
 
       if (response.status == "success") {
-        staffPagingController.appendLastPage(response.data!);
+        if (response.data!.loadMore) {
+          staffPagingController.appendPage(response.data!.data, page + 1);
+        } else {
+          staffPagingController.appendLastPage(response.data!.data);
+        }
 
         notifyListeners();
       } else {
