@@ -78,7 +78,7 @@ class _Painter extends CustomPainter {
   static const _paddingInRadians = _percentInRadians * _padding;
   // 0 radians is to the right, but since we want to start from the top
   // we'll use -90 degrees in radians
-  static const _startAngle = 8.25 + _paddingInRadians / 2;
+  static const _startAngle = 8.25 + _paddingInRadians / 3;
 
   late final List<_PainterData> dataList;
 

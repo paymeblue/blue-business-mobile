@@ -1160,7 +1160,6 @@ class BlueBottomSheet {
       context: locator<NavigationService>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      // isDismissible: false,
       useSafeArea: true,
       builder: (ctx) {
         return StatefulBuilder(builder: (context, setState) {
@@ -1174,7 +1173,10 @@ class BlueBottomSheet {
             child: Container(
               height: 270,
               width: context.mediaQuery.size.width,
-              margin: const EdgeInsets.only(left: 17, right: 17, bottom: 35),
+              margin: EdgeInsets.only(
+                  left: 17,
+                  right: 17,
+                  bottom: context.mediaQuery.size.height - 305),
               padding: const EdgeInsets.only(
                   left: 20, right: 20, top: 20, bottom: 15),
               decoration: BoxDecoration(
