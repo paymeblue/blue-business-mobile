@@ -37,13 +37,13 @@ class DashboardShellViewModel extends BaseViewModel {
       case 1:
         context.push(RoutePaths.insightsPath);
       case 2:
-        if (locator<AppStateValues>().wallet == null) {
-          AppNotification.warning(message: "Getting wallet data...");
-        } else {
-          Provider.of<AppStateValues>(context, listen: false).hasNewMessage =
-              false;
-          context.push(RoutePaths.messagePath);
-        }
+      // if (locator<AppStateValues>().wallet == null) {
+      //   AppNotification.warning(message: "Getting wallet data...");
+      // } else {
+      //   Provider.of<AppStateValues>(context, listen: false).hasNewMessage =
+      //       false;
+      //   context.push(RoutePaths.messagePath);
+      // }
       case 3:
         context.push(RoutePaths.billsPath);
       case 4:

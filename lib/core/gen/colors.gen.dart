@@ -25,6 +25,33 @@ class AppColors {
   /// Color: #EAEAFE
   static const Color bgGrey = Color(0xFFEAEAFE);
 
+  /// MaterialColor:
+  ///   50: #FFE8E8F9
+  ///   100: #FFC7C6F0
+  ///   200: #FFA1A0E6
+  ///   300: #FF7B7ADC
+  ///   400: #FF5F5ED5
+  ///   500: #FF4341CD
+  ///   600: #FF3D3BC8
+  ///   700: #FF3432C1
+  ///   800: #FF2C2ABA
+  ///   900: #FF1E1CAE
+  static const MaterialColor blue = MaterialColor(
+    0xFF4341CD,
+    <int, Color>{
+      50: Color(0xFFE8E8F9),
+      100: Color(0xFFC7C6F0),
+      200: Color(0xFFA1A0E6),
+      300: Color(0xFF7B7ADC),
+      400: Color(0xFF5F5ED5),
+      500: Color(0xFF4341CD),
+      600: Color(0xFF3D3BC8),
+      700: Color(0xFF3432C1),
+      800: Color(0xFF2C2ABA),
+      900: Color(0xFF1E1CAE),
+    },
+  );
+
   /// Color: #32374E
   static const Color bodyTextColor = Color(0xFF32374E);
 

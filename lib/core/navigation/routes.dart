@@ -341,18 +341,18 @@ GoRouter router = GoRouter(
             ),
           ],
         ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: RoutePaths.messagePath,
-              name: "Message",
-              builder: (context, state) {
-                log(state.fullPath.toString());
-                return const MessageHomeView();
-              },
-            ),
-          ],
-        ),
+        // StatefulShellBranch(
+        //   routes: [
+        //     GoRoute(
+        //       path: RoutePaths.messagePath,
+        //       name: "Message",
+        //       builder: (context, state) {
+        //         log(state.fullPath.toString());
+        //         return const MessageHomeView();
+        //       },
+        //     ),
+        //   ],
+        // ),
         StatefulShellBranch(
           routes: [
             GoRoute(

@@ -107,6 +107,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get comingSoon =>
       const SvgGenImage('assets/images/icons/coming_soon.svg');
 
+  /// File path: assets/images/icons/copy-02.svg
+  SvgGenImage get copy02 =>
+      const SvgGenImage('assets/images/icons/copy-02.svg');
+
   /// File path: assets/images/icons/copy.svg
   SvgGenImage get copy => const SvgGenImage('assets/images/icons/copy.svg');
 
@@ -308,6 +312,7 @@ class $AssetsImagesIconsGen {
         cameraWhite,
         cancel,
         comingSoon,
+        copy02,
         copy,
         copyWhite,
         delete,
