@@ -80,7 +80,7 @@ class _HomeViewState extends State<HomeView> {
 
   Widget walletSection(HomeViewModel model) {
     return SizedBox(
-      height: 130,
+      height: 180,
       child: RefreshIndicator(
         onRefresh: () async {
           model.refreshWalletContainer();
@@ -103,8 +103,8 @@ class _HomeViewState extends State<HomeView> {
         model.hideBalance = !model.hideBalance;
       },
       child: Container(
-        height: 25,
-        width: 25,
+        height: 20,
+        width: 20,
         decoration: const BoxDecoration(),
         child: model.hideBalance
             ? AppAssets.images.icons.showBalance.svg()
@@ -394,10 +394,10 @@ class _HomeViewState extends State<HomeView> {
           child: Container(
             height: 62,
             width: 62,
+            padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-              color: option.buttonColor,
-              shape: BoxShape.circle,
-            ),
+                border: Border.all(color: AppColors.bgGrey),
+                borderRadius: BorderRadius.circular(20)),
             child: option.icon,
           ),
         ),
@@ -509,7 +509,7 @@ class _HomeViewState extends State<HomeView> {
         model.goToTransactionHistory(context);
       },
       child: Container(
-        height: 130,
+        height: 175,
         width: model.size.width,
         margin: const EdgeInsets.only(
           left: 16,
@@ -524,7 +524,6 @@ class _HomeViewState extends State<HomeView> {
         child: model.showEmptyState()
             ? refreshWalletContainer(model)
             : Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -536,9 +535,11 @@ class _HomeViewState extends State<HomeView> {
                       AppAssets.images.launcher.image(height: 23, width: 23),
                     ],
                   ),
+                  const Spacer(
+                    flex: 5,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Expanded(
                         child: model.isLoading
@@ -548,7 +549,24 @@ class _HomeViewState extends State<HomeView> {
                       8.horizontalGap,
                       model.isLoading
                           ? walletIdShimmer()
-                          : walletIdContainer(model),
+                          : volumeContainer(model),
+                    ],
+                  ),
+                  const Spacer(
+                    flex: 3,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: model.isLoading
+                            ? walletAmountShimmer()
+                            : branchContainer(model),
+                      ),
+                      8.horizontalGap,
+                      model.isLoading
+                          ? walletIdShimmer()
+                          : staffContainer(model),
                     ],
                   )
                 ],
@@ -637,36 +655,31 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget walletIdContainer(HomeViewModel model) {
+  Widget volumeContainer(HomeViewModel model) {
     return GestureDetector(
       onTap: () {
         model.copyWalletId();
       },
       child: Container(
         decoration: const BoxDecoration(),
-        height: 60,
+        height: 50,
+        width: 130,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "BLUE ID NO.",
+              "TRANSACTION VOL.",
               style: AppTextStyles.smallText.copyWith(
                 color: AppColors.brightBlue,
               ),
             ),
             4.verticalGap,
             FittedBox(
-              child: Row(
-                children: [
-                  Text(
-                    locator<AppStateValues>().wallet!.walletCode,
-                    style: AppTextStyles.header
-                        .copyWith(color: AppColors.grey, fontSize: 16.5),
-                  ),
-                  4.horizontalGap,
-                  AppAssets.images.icons.copyWhite.svg(height: 12),
-                ],
+              child: Text(
+                "30,000",
+                style: AppTextStyles.header
+                    .copyWith(color: AppColors.grey, fontSize: 16.5),
               ),
             ),
           ],
@@ -711,7 +724,7 @@ class _HomeViewState extends State<HomeView> {
 
   Widget walletBalanceContainer(HomeViewModel model) {
     return SizedBox(
-      height: 60,
+      height: 50,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -721,7 +734,7 @@ class _HomeViewState extends State<HomeView> {
               Text(
                 "WALLET BALANCE",
                 style: AppTextStyles.subHeader
-                    .copyWith(color: AppColors.brightBlue, fontSize: 15.5),
+                    .copyWith(color: AppColors.brightBlue, fontSize: 11),
               ),
               6.horizontalGap,
               balanceVisibilitySwitch(model)
@@ -729,10 +742,63 @@ class _HomeViewState extends State<HomeView> {
           ),
           FittedBox(
             child: Text(
-              "${nairaSymbol()}${model.hideBalance ? locator<AppStateValues>().wallet!.balance.toString().replaceAll(RegExp(r"[0-9]"), "*") : locator<AppStateValues>().wallet!.balance}",
+              "${nairaSymbol()}${model.hideBalance ? locator<AppStateValues>().wallet!.balance.toString().replaceAll(RegExp(r"[0-9]"), "*") : format.format(double.parse(locator<AppStateValues>().wallet!.balance))}",
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
-                fontSize: 22,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget branchContainer(HomeViewModel model) {
+    return SizedBox(
+      height: 50,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "TOTAL BRANCHES",
+            style: AppTextStyles.subHeader
+                .copyWith(color: AppColors.brightBlue, fontSize: 11),
+          ),
+          FittedBox(
+            child: Text(
+              "28",
+              style: AppTextStyles.header.copyWith(
+                color: AppColors.grey,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget staffContainer(HomeViewModel model) {
+    return SizedBox(
+      height: 50,
+      width: 130,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "TOTAL STAFF",
+            style: AppTextStyles.subHeader
+                .copyWith(color: AppColors.brightBlue, fontSize: 11),
+          ),
+          FittedBox(
+            child: Text(
+              "1,500",
+              style: AppTextStyles.header.copyWith(
+                color: AppColors.grey,
+                fontSize: 18,
               ),
             ),
           ),

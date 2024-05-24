@@ -1,5 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
 import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
@@ -17,7 +17,6 @@ import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
-import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/modules/dashboard_pages/home/models/transaction_option/transaction_option.dart';
@@ -289,27 +288,7 @@ class HomeViewModel extends BaseViewModel {
 
   List<TransactionOption> transactionOptions(BuildContext context) => [
         TransactionOption(
-          buttonColor: AppColors.primary,
-          icon: const Icon(
-            Icons.arrow_outward_rounded,
-            color: AppColors.white,
-            size: 24,
-          ),
-          title: "Send",
-          onTap: () {
-            goToInitiatePayment(context);
-          },
-        ),
-        TransactionOption(
-          buttonColor: AppColors.otherBlue,
-          icon: const RotatedBox(
-            quarterTurns: 2,
-            child: Icon(
-              Icons.arrow_outward_rounded,
-              color: AppColors.white,
-              size: 24,
-            ),
-          ),
+          icon: AppAssets.images.icons.receive.svg(),
           title: "Receive",
           onTap: () {
             if (isLoading && locator<AppStateValues>().wallet == null) {
@@ -320,29 +299,19 @@ class HomeViewModel extends BaseViewModel {
           },
         ),
         TransactionOption(
-          buttonColor: AppColors.textColor,
-          icon: const Icon(
-            Icons.add,
-            color: AppColors.white,
-            size: 24,
-          ),
-          title: "Top up",
-          onTap: showTopupModal,
+          icon: AppAssets.images.icons.branches.svg(),
+          title: "Branches",
+          onTap: () {},
         ),
         TransactionOption(
-          buttonColor: AppColors.success,
-          icon: Align(
-            alignment: Alignment.center,
-            child: Text(
-              "-",
-              style: AppTextStyles.header
-                  .copyWith(color: AppColors.white, fontSize: 30.5),
-            ),
-          ),
-          title: "Withdraw",
-          onTap: () {
-            goToInitiateWithdrawal(context);
-          },
+          icon: AppAssets.images.icons.staff.svg(),
+          title: "Staff",
+          onTap: () {},
+        ),
+        TransactionOption(
+          icon: AppAssets.images.icons.wallet.svg(),
+          title: "Wallet",
+          onTap: () {},
         )
       ];
 

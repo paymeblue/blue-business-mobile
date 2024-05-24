@@ -6,7 +6,6 @@ part 'transaction_option.freezed.dart';
 @freezed
 class TransactionOption with _$TransactionOption {
   const factory TransactionOption({
-    required Color buttonColor,
     required Widget icon,
     required String title,
     required VoidCallback onTap,

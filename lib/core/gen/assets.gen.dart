@@ -81,6 +81,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get biometrics =>
       const SvgGenImage('assets/images/icons/biometrics.svg');
 
+  /// File path: assets/images/icons/branches.svg
+  SvgGenImage get branches =>
+      const SvgGenImage('assets/images/icons/branches.svg');
+
   /// File path: assets/images/icons/calendar.svg
   SvgGenImage get calendar =>
       const SvgGenImage('assets/images/icons/calendar.svg');
@@ -218,6 +222,10 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/print.svg
   SvgGenImage get print => const SvgGenImage('assets/images/icons/print.svg');
 
+  /// File path: assets/images/icons/receive.svg
+  SvgGenImage get receive =>
+      const SvgGenImage('assets/images/icons/receive.svg');
+
   /// File path: assets/images/icons/recover_account.svg
   SvgGenImage get recoverAccount =>
       const SvgGenImage('assets/images/icons/recover_account.svg');
@@ -280,6 +288,9 @@ class $AssetsImagesIconsGen {
   SvgGenImage get virtualBank =>
       const SvgGenImage('assets/images/icons/virtual_bank.svg');
 
+  /// File path: assets/images/icons/wallet.svg
+  SvgGenImage get wallet => const SvgGenImage('assets/images/icons/wallet.svg');
+
   /// File path: assets/images/icons/warning.svg
   SvgGenImage get warning =>
       const SvgGenImage('assets/images/icons/warning.svg');
@@ -290,6 +301,7 @@ class $AssetsImagesIconsGen {
         alert,
         beneficiaries,
         biometrics,
+        branches,
         calendar,
         camera,
         cameraBlue,
@@ -327,6 +339,7 @@ class $AssetsImagesIconsGen {
         photoLibrary,
         pin,
         print,
+        receive,
         recoverAccount,
         recoveryCode,
         recoveryPhone,
@@ -344,6 +357,7 @@ class $AssetsImagesIconsGen {
         support,
         user,
         virtualBank,
+        wallet,
         warning
       ];
 }
