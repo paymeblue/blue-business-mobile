@@ -107,29 +107,29 @@ class AppColors {
   static const Color paleBlue = Color(0xFFECECEC);
 
   /// MaterialColor:
-  ///   50: #FFE8E8F9
-  ///   100: #FFC7C6F0
-  ///   200: #FFA1A0E6
-  ///   300: #FF7B7ADC
-  ///   400: #FF5F5ED5
-  ///   500: #FF4341CD
-  ///   600: #FF3D3BC8
-  ///   700: #FF3432C1
-  ///   800: #FF2C2ABA
-  ///   900: #FF1E1CAE
+  ///   50: #FFE5E5E9
+  ///   100: #FFBDBFC8
+  ///   200: #FF9194A4
+  ///   300: #FF656980
+  ///   400: #FF444964
+  ///   500: #FF232949
+  ///   600: #FF1F2442
+  ///   700: #FF1A1F39
+  ///   800: #FF151931
+  ///   900: #FF0C0F21
   static const MaterialColor primary = MaterialColor(
-    0xFF4341CD,
+    0xFF232949,
     <int, Color>{
-      50: Color(0xFFE8E8F9),
-      100: Color(0xFFC7C6F0),
-      200: Color(0xFFA1A0E6),
-      300: Color(0xFF7B7ADC),
-      400: Color(0xFF5F5ED5),
-      500: Color(0xFF4341CD),
-      600: Color(0xFF3D3BC8),
-      700: Color(0xFF3432C1),
-      800: Color(0xFF2C2ABA),
-      900: Color(0xFF1E1CAE),
+      50: Color(0xFFE5E5E9),
+      100: Color(0xFFBDBFC8),
+      200: Color(0xFF9194A4),
+      300: Color(0xFF656980),
+      400: Color(0xFF444964),
+      500: Color(0xFF232949),
+      600: Color(0xFF1F2442),
+      700: Color(0xFF1A1F39),
+      800: Color(0xFF151931),
+      900: Color(0xFF0C0F21),
     },
   );
 

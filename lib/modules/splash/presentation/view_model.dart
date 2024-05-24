@@ -38,7 +38,7 @@ class SplashViewModel extends BaseViewModel {
   List<String> onboardingText = [
     "Your all-in-one business manager app!",
     "Add and manage your Team seamlessly",
-    "Boost your business sales with data driven insights.",
+    "Boost your business sales with data-driven insights.",
     "Simplify your daily settlement tracking"
   ];
   List<String> onboardingSubtext = [
