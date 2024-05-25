@@ -1,5 +1,4 @@
 import 'package:blue_business/core/io/api/timed_refresh.dart';
-import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -56,9 +55,8 @@ class _BaseViewState<T extends ChangeNotifier> extends State<BaseView<T>> {
       child: GestureDetector(
         onTap: () {
           GoRouterState state = GoRouterState.of(context);
-          if (!state.matchedLocation.contains(RoutePaths.chatDetailsPath)) {
-            FocusManager.instance.primaryFocus?.unfocus();
-          }
+          FocusManager.instance.primaryFocus?.unfocus();
+
           if (state.matchedLocation.contains("/dash")) {
             RefreshTimer().resetTimer();
           }

@@ -323,12 +323,18 @@ class HomeViewModel extends BaseViewModel {
             child: AppAssets.images.icons.wallet.svg(),
           ),
           title: "Wallet",
-          onTap: () {},
+          onTap: () {
+            goToWallet(context);
+          },
         )
       ];
 
   goToReceiveMoney(BuildContext context) {
     context.go(RoutePaths.receiveMoneyPath);
+  }
+
+  goToWallet(BuildContext context) {
+    context.go(RoutePaths.walletPath);
   }
 
   goToTransactionHistory(BuildContext context) {

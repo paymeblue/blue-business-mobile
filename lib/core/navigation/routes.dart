@@ -14,6 +14,7 @@ import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.da
 import 'package:blue_business/modules/push_payment_pin/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/add/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/home/presentation/view.dart';
+import 'package:blue_business/modules/wallet/presentation/view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -571,14 +572,6 @@ GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: RoutePaths.startConversationPath,
-      name: "Start Conversation",
-      builder: (context, state) {
-        log(state.matchedLocation.toString());
-        return const StartConversationView();
-      },
-    ),
-    GoRoute(
       path: RoutePaths.staffManagementPath,
       builder: (context, state) {
         return const StaffHomeView();
@@ -597,6 +590,13 @@ GoRouter router = GoRouter(
         return PushPaymentPinView(
           transactionId: id,
         );
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.walletPath,
+      name: "Wallet",
+      builder: (context, state) {
+        return const WalletView();
       },
     ),
   ],

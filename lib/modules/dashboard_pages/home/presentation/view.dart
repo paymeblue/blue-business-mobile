@@ -606,7 +606,7 @@ class _HomeViewState extends State<HomeView> {
 
   Widget salesShimmer() {
     return SizedBox(
-      height: 150,
+      height: 80,
       width: context.mediaQuery.size.width,
       child: Shimmer.fromColors(
         baseColor: AppColors.brightBlue.withOpacity(.3),
@@ -862,7 +862,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         4.verticalGap,
         Text(
-          "${locator<AppStateValues>().currentUser!.firstName} ${locator<AppStateValues>().currentUser!.lastName}",
+          locator<AppStateValues>().currentUser!.businessProfile!.name,
           style: AppTextStyles.header.copyWith(fontSize: 18.5),
         ),
       ],

@@ -17,7 +17,7 @@ class RoutePaths {
   static String createPasswordPath = "$passwordPath/create";
   static String pinPath = "/pin";
   static String homePath = "/dash/home";
-  static String messagePath = "/dash/message";
+  static String walletPath = "/dash/wallet";
   static String loansPath = "/dash/loans";
   static String settingsPath = "/dash/settings";
   static String insightsPath = "/dash/insights";
@@ -46,9 +46,6 @@ class RoutePaths {
   static String viewPersonalInfoPath = "$settingsPath$personalInfoPath/view";
   static String addWithdrawalBankPath = "$settingsPath/withdrawal-details/add";
   static String accountRecoveryPath = "$settingsPath/account-recovery";
-  static String startConversationPath = "/dash/conversation/start";
-  static String chatDetailsPath = "/dash/converstaion/chat";
-  static String chatQrPath = "$messagePath/qr";
   static String pushPaymentPin = "$transactionPath/push-payment/pin";
 
   static String businessProfilePath = "/dash/business-profile";

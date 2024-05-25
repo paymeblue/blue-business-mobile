@@ -77,6 +77,9 @@ class $AssetsImagesIconsGen {
   SvgGenImage get beneficiaries =>
       const SvgGenImage('assets/images/icons/beneficiaries.svg');
 
+  /// File path: assets/images/icons/bills.svg
+  SvgGenImage get bills => const SvgGenImage('assets/images/icons/bills.svg');
+
   /// File path: assets/images/icons/biometrics.svg
   SvgGenImage get biometrics =>
       const SvgGenImage('assets/images/icons/biometrics.svg');
@@ -308,6 +311,7 @@ class $AssetsImagesIconsGen {
         aboutBlue,
         alert,
         beneficiaries,
+        bills,
         biometrics,
         branches,
         calendar,

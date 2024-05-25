@@ -117,7 +117,8 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "Path4her.org ",
+                  text:
+                      "${locator<AppStateValues>().currentUser!.businessProfile!.name} ",
                   style: AppTextStyles.subHeader
                       .copyWith(fontSize: 14.5, color: AppColors.blue),
                 ),
