@@ -15,7 +15,7 @@ class TransactionShellViewModel extends BaseViewModel {
   goBack(BuildContext context, int index) {
     GoRouterState state = GoRouterState.of(context);
     if (index == 0) {
-      context.go(RoutePaths.homePath);
+      context.go(RoutePaths.walletPath);
     } else if (index == 1) {
       context.go("${RoutePaths.initiateTransactionPath}/pay");
     } else if (index == 2) {

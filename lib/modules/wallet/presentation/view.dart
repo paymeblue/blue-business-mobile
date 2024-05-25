@@ -49,7 +49,7 @@ class _WalletViewState extends State<WalletView> {
                     title: "Transfer",
                     subtitle:
                         "Send money to others via QR Code, phone number, and Blue to Blue pay",
-                    onTap: () {},
+                    onTap: () => model.goToInitiatePayment(context),
                     heading: "TRANSFER FUNDS"),
                 25.verticalGap,
                 paymOptionContainer(
