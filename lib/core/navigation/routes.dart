@@ -10,6 +10,7 @@ import 'package:blue_business/core/navigation/screens.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.dart';
 import 'package:blue_business/modules/push_payment_pin/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/add/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/home/presentation/view.dart';
@@ -341,26 +342,14 @@ GoRouter router = GoRouter(
             ),
           ],
         ),
-        // StatefulShellBranch(
-        //   routes: [
-        //     GoRoute(
-        //       path: RoutePaths.messagePath,
-        //       name: "Message",
-        //       builder: (context, state) {
-        //         log(state.fullPath.toString());
-        //         return const MessageHomeView();
-        //       },
-        //     ),
-        //   ],
-        // ),
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: RoutePaths.billsPath,
-              name: "Bills",
+              path: RoutePaths.loansPath,
+              name: "Loans",
               builder: (context, state) {
                 log(state.fullPath.toString());
-                return const BillsView();
+                return const LoansView();
               },
             ),
           ],
@@ -587,26 +576,6 @@ GoRouter router = GoRouter(
       builder: (context, state) {
         log(state.matchedLocation.toString());
         return const StartConversationView();
-      },
-    ),
-    GoRoute(
-      path: RoutePaths.chatDetailsPath,
-      name: "Chat",
-      builder: (context, state) {
-        log(state.matchedLocation.toString());
-        Map extra = state.extra! as Map<String, dynamic>;
-        return ChatDetailView(
-          recipient: extra["peer"],
-          unreadCount: extra["unread"],
-        );
-      },
-    ),
-    GoRoute(
-      path: RoutePaths.chatQrPath,
-      name: "Chat Qr",
-      builder: (context, state) {
-        log(state.matchedLocation.toString());
-        return const QrChatView();
       },
     ),
     GoRoute(

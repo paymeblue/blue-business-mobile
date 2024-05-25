@@ -1,24 +1,23 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
-import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 import 'view_model.dart';
 
-class BillsView extends StatefulWidget {
-  const BillsView({super.key});
+class LoansView extends StatefulWidget {
+  const LoansView({super.key});
 
   @override
-  State<BillsView> createState() => _BillsViewState();
+  State<LoansView> createState() => _LoansViewState();
 }
 
-class _BillsViewState extends State<BillsView> {
+class _LoansViewState extends State<LoansView> {
   @override
   Widget build(BuildContext context) {
-    return BaseView<BillsViewModel>(
-      model: BillsViewModel(),
+    return BaseView<LoansViewModel>(
+      model: LoansViewModel(),
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
         return Scaffold(
@@ -45,7 +44,7 @@ class _BillsViewState extends State<BillsView> {
     return SizedBox(
       width: 265,
       child: Text(
-        "Easily pay for your airtime, internet, and electricity bills with Blue.",
+        "Quick and easily access loans whenever you need it, without stress or hassle.",
         style: AppTextStyles.subHeader,
         textAlign: TextAlign.center,
       ),
@@ -63,12 +62,10 @@ class _BillsViewState extends State<BillsView> {
     return Container(
       height: 170,
       width: 170,
-      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 44),
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors.bgGrey,
       ),
-      child: AppAssets.images.icons.comingSoon.svg(),
+      child: AppAssets.images.icons.loansComingSoon.svg(),
     );
   }
 }

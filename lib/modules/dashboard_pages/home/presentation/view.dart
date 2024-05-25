@@ -195,13 +195,16 @@ class _HomeViewState extends State<HomeView> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           totalSalesHeader(),
           14.verticalGap,
+          popupMenu(model),
+          8.verticalGap,
           Container(
             width: model.size.width,
-            height: 250,
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 17),
+            height: 100,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.midGrey),
               borderRadius: BorderRadius.circular(6),
@@ -209,8 +212,6 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                popupMenu(model),
-                8.verticalGap,
                 if (model.salesLoading)
                   salesShimmer()
                 else ...[
@@ -230,23 +231,6 @@ class _HomeViewState extends State<HomeView> {
                         percentIncrease: model.mobileIncrease,
                       ),
                     ],
-                  ),
-                  16.verticalGap,
-                  Container(
-                    height: 70,
-                    width: model.size.width,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: AppColors.inputField,
-                    ),
-                    child: Text(
-                      "${nairaSymbol()}${format.format(double.parse(model.analyticsData?.mobile.total ?? "0.00") + double.parse(model.analyticsData?.desktop.total ?? "0.00"))}",
-                      style: AppTextStyles.header.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
                   ),
                 ]
               ],
@@ -394,7 +378,6 @@ class _HomeViewState extends State<HomeView> {
           child: Container(
             height: 62,
             width: 62,
-            padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
                 border: Border.all(color: AppColors.bgGrey),
                 borderRadius: BorderRadius.circular(20)),

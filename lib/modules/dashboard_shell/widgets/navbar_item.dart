@@ -38,50 +38,16 @@ class NavBarItem extends StatelessWidget {
           ),
         );
       case 2:
-        // return Consumer<AppStateValues>(builder: (context, stateValues, _) {
-        //   return Stack(
-        //     children: [
-        //       Container(
-        //         height: 28,
-        //         width: 28,
-        //         alignment: Alignment.center,
-        //         child: AppAssets.images.navbarIcons.inactive.message.svg(
-        //           height: 20,
-        //           width: 20,
-        //         ),
-        //       ),
-        //       if (stateValues.hasNewMessage)
-        //         Positioned(
-        //           top: 0,
-        //           right: 0,
-        //           child: Container(
-        //             height: 8,
-        //             width: 8,
-        //             decoration: const BoxDecoration(
-        //                 color: AppColors.white, shape: BoxShape.circle),
-        //             alignment: Alignment.center,
-        //             child: Container(
-        //               height: 6,
-        //               width: 6,
-        //               decoration: const BoxDecoration(
-        //                   color: AppColors.primary, shape: BoxShape.circle),
-        //             ),
-        //           ),
-        //         )
-        //     ],
-        //   );
-        // });
-        // case 3:
         return Container(
           height: 28,
           width: 28,
           alignment: Alignment.center,
-          child: AppAssets.images.navbarIcons.inactive.bills.svg(
+          child: AppAssets.images.navbarIcons.inactive.loans.svg(
             height: 20,
             width: 20,
           ),
         );
-      case 4:
+      case 3:
         return Container(
           height: 28,
           width: 28,
@@ -127,26 +93,16 @@ class NavBarItem extends StatelessWidget {
           ),
         );
       case 2:
-        //   return Container(
-        //     height: 28,
-        //     width: 28,
-        //     alignment: Alignment.center,
-        //     child: AppAssets.images.navbarIcons.active.message.svg(
-        //       height: 20,
-        //       width: 20,
-        //     ),
-        //   );
-        // case 3:
         return Container(
           height: 28,
           width: 28,
           alignment: Alignment.center,
-          child: AppAssets.images.navbarIcons.active.bills.svg(
+          child: AppAssets.images.navbarIcons.active.loans.svg(
             height: 20,
             width: 20,
           ),
         );
-      case 4:
+      case 3:
         return Container(
           height: 28,
           width: 28,
@@ -176,10 +132,8 @@ class NavBarItem extends StatelessWidget {
       case 1:
         return "Insights";
       case 2:
-        //   return "Message";
-        // case 3:
-        return "Bills";
-      case 4:
+        return "Loans";
+      case 3:
         return "Settings";
       default:
         return "Home";

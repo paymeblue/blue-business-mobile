@@ -4,7 +4,7 @@ import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class BillsViewModel extends BaseViewModel {
+class LoansViewModel extends BaseViewModel {
   late Size size;
 
   init(BuildContext context) {

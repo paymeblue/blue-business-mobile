@@ -18,7 +18,7 @@ class RoutePaths {
   static String pinPath = "/pin";
   static String homePath = "/dash/home";
   static String messagePath = "/dash/message";
-  static String billsPath = "/dash/bills";
+  static String loansPath = "/dash/loans";
   static String settingsPath = "/dash/settings";
   static String insightsPath = "/dash/insights";
   static String enterRecoveryCodePath = "/recover-phone/recovery-code";

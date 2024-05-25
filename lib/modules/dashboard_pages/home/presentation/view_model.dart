@@ -288,7 +288,10 @@ class HomeViewModel extends BaseViewModel {
 
   List<TransactionOption> transactionOptions(BuildContext context) => [
         TransactionOption(
-          icon: AppAssets.images.icons.receive.svg(),
+          icon: Padding(
+            padding: const EdgeInsets.all(10),
+            child: AppAssets.images.icons.receive.svg(),
+          ),
           title: "Receive",
           onTap: () {
             if (isLoading && locator<AppStateValues>().wallet == null) {
@@ -299,17 +302,26 @@ class HomeViewModel extends BaseViewModel {
           },
         ),
         TransactionOption(
-          icon: AppAssets.images.icons.branches.svg(),
+          icon: Padding(
+            padding: const EdgeInsets.all(18),
+            child: AppAssets.images.icons.branches.svg(),
+          ),
           title: "Branches",
           onTap: () {},
         ),
         TransactionOption(
-          icon: AppAssets.images.icons.staff.svg(),
+          icon: Padding(
+            padding: const EdgeInsets.all(18),
+            child: AppAssets.images.icons.staff.svg(),
+          ),
           title: "Staff",
           onTap: () {},
         ),
         TransactionOption(
-          icon: AppAssets.images.icons.wallet.svg(),
+          icon: Padding(
+            padding: const EdgeInsets.all(18),
+            child: AppAssets.images.icons.wallet.svg(),
+          ),
           title: "Wallet",
           onTap: () {},
         )
