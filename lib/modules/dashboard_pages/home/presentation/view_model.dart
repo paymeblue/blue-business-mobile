@@ -315,7 +315,7 @@ class HomeViewModel extends BaseViewModel {
             child: AppAssets.images.icons.staff.svg(),
           ),
           title: "Staff",
-          onTap: () {},
+          onTap: () => goToStaffManagementHome(context),
         ),
         TransactionOption(
           icon: Padding(
@@ -328,6 +328,10 @@ class HomeViewModel extends BaseViewModel {
           },
         )
       ];
+
+  goToStaffManagementHome(BuildContext context) {
+    context.go(RoutePaths.staffManagementPath);
+  }
 
   goToReceiveMoney(BuildContext context) {
     context.go(RoutePaths.receiveMoneyPath);
