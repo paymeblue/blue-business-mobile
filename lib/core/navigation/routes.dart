@@ -10,6 +10,7 @@ import 'package:blue_business/core/navigation/screens.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/modules/bills/presentation/view.dart';
 import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.dart';
 import 'package:blue_business/modules/push_payment_pin/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/add/presentation/view.dart';
@@ -597,6 +598,13 @@ GoRouter router = GoRouter(
       name: "Wallet",
       builder: (context, state) {
         return const WalletView();
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.billsPath,
+      name: "Bills",
+      builder: (context, state) {
+        return const BillsView();
       },
     ),
   ],

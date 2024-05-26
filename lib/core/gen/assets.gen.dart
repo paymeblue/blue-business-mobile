@@ -70,6 +70,10 @@ class $AssetsImagesIconsGen {
   AssetGenImage get aboutBlue =>
       const AssetGenImage('assets/images/icons/about_blue.png');
 
+  /// File path: assets/images/icons/airtime.svg
+  SvgGenImage get airtime =>
+      const SvgGenImage('assets/images/icons/airtime.svg');
+
   /// File path: assets/images/icons/alert.svg
   SvgGenImage get alert => const SvgGenImage('assets/images/icons/alert.svg');
 
@@ -121,6 +125,9 @@ class $AssetsImagesIconsGen {
   SvgGenImage get copyWhite =>
       const SvgGenImage('assets/images/icons/copy_white.svg');
 
+  /// File path: assets/images/icons/data.svg
+  SvgGenImage get data => const SvgGenImage('assets/images/icons/data.svg');
+
   /// File path: assets/images/icons/delete.svg
   SvgGenImage get delete => const SvgGenImage('assets/images/icons/delete.svg');
 
@@ -143,6 +150,10 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/edit_info.svg
   SvgGenImage get editInfo =>
       const SvgGenImage('assets/images/icons/edit_info.svg');
+
+  /// File path: assets/images/icons/electricity.svg
+  SvgGenImage get electricity =>
+      const SvgGenImage('assets/images/icons/electricity.svg');
 
   /// File path: assets/images/icons/empty_staff.png
   AssetGenImage get emptyStaff =>
@@ -292,6 +303,9 @@ class $AssetsImagesIconsGen {
   SvgGenImage get support =>
       const SvgGenImage('assets/images/icons/support.svg');
 
+  /// File path: assets/images/icons/tv.svg
+  SvgGenImage get tv => const SvgGenImage('assets/images/icons/tv.svg');
+
   /// File path: assets/images/icons/user.svg
   SvgGenImage get user => const SvgGenImage('assets/images/icons/user.svg');
 
@@ -309,6 +323,7 @@ class $AssetsImagesIconsGen {
   /// List of all assets
   List<dynamic> get values => [
         aboutBlue,
+        airtime,
         alert,
         beneficiaries,
         bills,
@@ -323,12 +338,14 @@ class $AssetsImagesIconsGen {
         copy02,
         copy,
         copyWhite,
+        data,
         delete,
         deleteAccount,
         document,
         download,
         downloadNew,
         editInfo,
+        electricity,
         emptyStaff,
         error,
         export,
@@ -369,6 +386,7 @@ class $AssetsImagesIconsGen {
         staffManagement,
         success,
         support,
+        tv,
         user,
         virtualBank,
         wallet,

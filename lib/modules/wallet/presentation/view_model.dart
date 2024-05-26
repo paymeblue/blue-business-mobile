@@ -22,4 +22,8 @@ class WalletViewModel extends BaseViewModel {
   goToInitiateWithdrawal(BuildContext context) {
     context.go("${RoutePaths.initiateTransactionPath}/withdraw");
   }
+
+  goToBills(BuildContext context) {
+    context.go(RoutePaths.billsPath);
+  }
 }

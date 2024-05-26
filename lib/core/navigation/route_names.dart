@@ -18,6 +18,7 @@ class RoutePaths {
   static String pinPath = "/pin";
   static String homePath = "/dash/home";
   static String walletPath = "/dash/wallet";
+  static String billsPath = "$walletPath/bills";
   static String loansPath = "/dash/loans";
   static String settingsPath = "/dash/settings";
   static String insightsPath = "/dash/insights";

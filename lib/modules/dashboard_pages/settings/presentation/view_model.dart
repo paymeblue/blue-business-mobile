@@ -249,6 +249,12 @@ class SettingsViewModel extends BaseViewModel {
   List<SettingsOption> staffManagementOption(BuildContext context) => [
         SettingsOption(
           icon: AppAssets.images.icons.staffManagement.svg(),
+          title: "Manage business branch",
+          subtitle: "Track and monitor your business branches.",
+          onTap: () {},
+        ),
+        SettingsOption(
+          icon: AppAssets.images.icons.staffManagement.svg(),
           title: "Manage your team",
           subtitle: "Invite staff, set roles and access",
           onTap: () {
