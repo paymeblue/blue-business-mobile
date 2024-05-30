@@ -188,6 +188,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get history =>
       const SvgGenImage('assets/images/icons/history.svg');
 
+  /// File path: assets/images/icons/info_square.svg
+  SvgGenImage get infoSquare =>
+      const SvgGenImage('assets/images/icons/info_square.svg');
+
   /// File path: assets/images/icons/kyc.svg
   SvgGenImage get kyc => const SvgGenImage('assets/images/icons/kyc.svg');
 
@@ -355,6 +359,7 @@ class $AssetsImagesIconsGen {
         hide,
         hideBalance,
         history,
+        infoSquare,
         kyc,
         kycGrey,
         kycOutline,

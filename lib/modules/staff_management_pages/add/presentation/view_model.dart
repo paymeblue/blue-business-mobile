@@ -14,6 +14,7 @@ import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/dialogs.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,6 +29,32 @@ class AddStaffViewModel extends BaseViewModel {
 
   goBack(BuildContext context) {
     context.go(RoutePaths.staffManagementPath);
+  }
+
+  String? _path;
+  String? get path => _path;
+  set path(String? v) {
+    _path = v;
+    notifyListeners();
+  }
+
+  pickImage() async {
+    try {
+      FilePickerResult? result =
+          await FilePicker.platform.pickFiles(type: FileType.image);
+
+      if (result != null) {
+        String? p = result.files.single.path;
+
+        path = p;
+      } else {
+        AppNotification.error(message: "No image selected");
+      }
+    } catch (e) {
+      AppNotification.error(
+        message: AppErrorHandler.getErrorMessage(e),
+      );
+    }
   }
 
   CountryCode? _country;

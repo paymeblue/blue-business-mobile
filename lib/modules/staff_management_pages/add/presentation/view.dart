@@ -3,9 +3,12 @@ import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
+import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
+import 'package:blue_business/widgets/modals/info_container.dart';
 import 'package:blue_business/widgets/password_validation/password_validation.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
+import 'package:blue_business/widgets/textfield/dropdown.dart';
 import 'package:flutter/material.dart';
 
 import 'view_model.dart';
@@ -57,15 +60,52 @@ class _AddStaffViewState extends State<AddStaffView> {
     );
   }
 
+  Widget avatarRow(AddStaffViewModel model) {
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: model.pickImage,
+          child: BlueAvatar(
+            radius: 31,
+            imageUrl: model.path,
+          ),
+        ),
+        10.horizontalGap,
+        Text(
+          "Profile picture",
+          style: AppTextStyles.subHeader,
+        )
+      ],
+    );
+  }
+
   Widget form(AddStaffViewModel model) {
     return ListView(
       children: [
+        avatarRow(model),
+        15.verticalGap,
         BlueTextField.plaintext(
           hint: "Sharon Tate",
           title: "Staff name",
           onChanged: model.onChanged,
           controller: model.nameController,
         ),
+        12.verticalGap,
+        BlueDropdown.show(
+            banks: [],
+            onChanged: (val) {},
+            searchController: model.searchController,
+            title: "Set role"),
+        12.verticalGap,
+        BlueDropdown.show(
+            banks: [],
+            onChanged: (val) {},
+            searchController: model.searchController,
+            title: "Set branch"),
+        6.verticalGap,
+        const InfoContainer(
+            text:
+                "Select from pre-added branches. If none are displayed, add branches to your account."),
         12.verticalGap,
         BlueTextField.phone(
           title: "Phone number",
@@ -80,6 +120,7 @@ class _AddStaffViewState extends State<AddStaffView> {
         BlueTextField.password(
           controller: model.passwordController,
           onChanged: model.onChanged,
+          title: "Set password",
         ),
         10.verticalGap,
         ...List.generate(
