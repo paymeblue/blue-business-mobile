@@ -11,10 +11,10 @@ class AppTextStyles {
       fontWeight: FontWeight.w600,
       color: AppColors.textColor);
 
-  static TextStyle numberButton = const TextStyle(
-      fontSize: 31.5,
+  static TextStyle semiLargeHeader = const TextStyle(
       fontFamily: AppFonts.satoshi,
-      fontWeight: FontWeight.w700,
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
       color: AppColors.textColor);
 
   static TextStyle midHeader = const TextStyle(
@@ -22,6 +22,12 @@ class AppTextStyles {
       fontSize: 18,
       fontWeight: FontWeight.w500,
       color: AppColors.bodyTextColor);
+
+  static TextStyle numberButton = const TextStyle(
+      fontSize: 31.5,
+      fontFamily: AppFonts.satoshi,
+      fontWeight: FontWeight.w700,
+      color: AppColors.textColor);
 
   static TextStyle subHeader = const TextStyle(
     fontSize: 16.5,

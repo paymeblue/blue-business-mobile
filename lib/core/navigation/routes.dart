@@ -1,20 +1,54 @@
 import 'dart:developer';
 
+import 'package:blue_business/core/models/bills/airtime/review_data/review_airtime_data.dart';
+import 'package:blue_business/core/models/bills/airtime/vend/data/vend_airtime_data.dart';
+import 'package:blue_business/core/models/bills/cable/vend/data/vend_cable_data.dart';
+import 'package:blue_business/core/models/bills/cable/verify/data/verify_cable_data.dart';
+import 'package:blue_business/core/models/bills/data/vend/data/vend_data_data.dart';
+import 'package:blue_business/core/models/bills/data/verify/data/verify_data_data.dart';
+import 'package:blue_business/core/models/bills/electricity/vend/data/vend_electricity_data.dart';
+import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
 import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
 import 'package:blue_business/core/models/signup_profile/request/signup_profile_request.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
 import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
+import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
+import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
+import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
+import 'package:blue_business/core/models/transaction_detail/payment/payment_detail.dart';
+import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/navigation/screens.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/airtime/pin/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/airtime/review/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/airtime/success/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/cable/initiate/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/cable/pin/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/cable/review/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/cable/success/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/data/initiate/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/data/pin/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/data/review/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/data/success/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/electicity/initiate/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/electicity/pin/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/electicity/review/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/electicity/success/presentation/view.dart';
 import 'package:blue_business/modules/bills/presentation/view.dart';
 import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.dart';
 import 'package:blue_business/modules/push_payment_pin/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/add/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/home/presentation/view.dart';
+import 'package:blue_business/modules/transaction_details/pages/airtime_details/presentation/view.dart';
+import 'package:blue_business/modules/transaction_details/pages/cable_details/presentation/view.dart';
+import 'package:blue_business/modules/transaction_details/pages/data_details/presentation/view.dart';
+import 'package:blue_business/modules/transaction_details/pages/payment_details/presentation/view.dart';
+import 'package:blue_business/modules/transaction_details/pages/power_details/presentation/view.dart';
 import 'package:blue_business/modules/wallet/presentation/view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -607,5 +641,209 @@ GoRouter router = GoRouter(
         return const BillsView();
       },
     ),
+    ...electricityRoutes,
+    ...airtimeRoutes,
+    ...dataRoutes,
+    ...cableRoutes,
+    ...transactionDetailRoutes,
   ],
 );
+
+List<GoRoute> electricityRoutes = [
+  GoRoute(
+    path: RoutePaths.initiateElectricityPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return const InitiateElectricityView();
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.reviewElectricityPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      Map<String, dynamic> extra = state.extra as Map<String, dynamic>;
+      double amount = extra["amount"];
+      VerifyElectricityData data = extra["verify_data"];
+      return ReviewElectricityView(
+        data: data,
+        amount: amount,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.electricityPinPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      Map<String, dynamic> extra = state.extra as Map<String, dynamic>;
+      double amount = extra["amount"];
+      VerifyElectricityData data = extra["verify_data"];
+      return ConfirmElectricityPinView(
+        data: data,
+        amount: amount,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.electricitySuccessPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      VendElectricityData extra = state.extra as VendElectricityData;
+      return VendElectricitySuccessView(
+        data: extra,
+      );
+    },
+  ),
+];
+
+List<GoRoute> airtimeRoutes = [
+  GoRoute(
+    path: RoutePaths.initiateAirtimePath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return const InitiateAirtimeView();
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.reviewAirtimePath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return ReviewAirtimeView(
+        data: state.extra as ReviewAirtimeData,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.airtimePinPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return ConfirmAirtimePinView(
+        data: state.extra as ReviewAirtimeData,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.airtimeSuccessPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      VendAirtimeData extra = state.extra as VendAirtimeData;
+      return VendAirtimeSuccessView(
+        data: extra,
+      );
+    },
+  )
+];
+
+List<GoRoute> dataRoutes = [
+  GoRoute(
+    path: RoutePaths.initiateDataPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return const InitiateDataView();
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.reviewDataPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return ReviewDataView(
+        data: state.extra as VerifyDataData,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.dataPinPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return ConfirmDataPinView(
+        data: state.extra as VerifyDataData,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.dataSuccessPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return VendDataSuccessView(
+        data: state.extra as VendDataData,
+      );
+    },
+  )
+];
+
+List<GoRoute> cableRoutes = [
+  GoRoute(
+    path: RoutePaths.initiateCablePath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return const InitiateCableView();
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.reviewCablePath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return ReviewCableView(
+        data: state.extra as VerifyCableData,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.cablePinPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return ConfirmCablePinView(
+        data: state.extra as VerifyCableData,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.cableSuccessPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return VendCableSuccessView(
+        data: state.extra as VendCableData,
+      );
+    },
+  )
+];
+
+List<GoRoute> transactionDetailRoutes = [
+  GoRoute(
+    path: "${RoutePaths.transactionHistoryPath}/airtime/:id",
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return AirtimeDetailsView(detail: state.extra as AirtimeDetails);
+    },
+  ),
+  GoRoute(
+    path: "${RoutePaths.transactionHistoryPath}/power/:id",
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return PowerDetailsView(detail: state.extra as PowerDetails);
+    },
+  ),
+  GoRoute(
+    path: "${RoutePaths.transactionHistoryPath}/data/:id",
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return DataDetailsView(detail: state.extra as DataDetails);
+    },
+  ),
+  GoRoute(
+    path: "${RoutePaths.transactionHistoryPath}/tv/:id",
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return CableDetailsView(detail: state.extra as CableDetails);
+    },
+  ),
+  GoRoute(
+    path: "${RoutePaths.transactionHistoryPath}/payment/:id/:type",
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return PaymentDetailsView(
+        detail: state.extra as PaymentDetail,
+        type: state.pathParameters["type"]!,
+      );
+    },
+  ),
+];

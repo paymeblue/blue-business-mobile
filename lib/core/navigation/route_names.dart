@@ -19,6 +19,26 @@ class RoutePaths {
   static String homePath = "/dash/home";
   static String walletPath = "/dash/wallet";
   static String billsPath = "$walletPath/bills";
+
+  static String initiateElectricityPath = "$billsPath/electricity/initiate";
+  static String reviewElectricityPath = "$billsPath/electricity/review";
+  static String electricityPinPath = "$billsPath/electricity/pin";
+  static String electricitySuccessPath = "$billsPath/electricity/success";
+
+  static String initiateAirtimePath = "$billsPath/airtime/initiate";
+  static String reviewAirtimePath = "$billsPath/airtime/review";
+  static String airtimePinPath = "$billsPath/airtime/pin";
+  static String airtimeSuccessPath = "$billsPath/airtime/success";
+
+  static String initiateDataPath = "$billsPath/data/initiate";
+  static String reviewDataPath = "$billsPath/data/review";
+  static String dataPinPath = "$billsPath/data/pin";
+  static String dataSuccessPath = "$billsPath/data/success";
+
+  static String initiateCablePath = "$billsPath/cable/initiate";
+  static String reviewCablePath = "$billsPath/cable/review";
+  static String cablePinPath = "$billsPath/cable/pin";
+  static String cableSuccessPath = "$billsPath/cable/success";
   static String loansPath = "/dash/loans";
   static String settingsPath = "/dash/settings";
   static String insightsPath = "/dash/insights";

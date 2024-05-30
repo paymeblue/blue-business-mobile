@@ -1,0 +1,40 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'vend_data_data.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$VendDataDataImpl _$$VendDataDataImplFromJson(Map<String, dynamic> json) =>
+    _$VendDataDataImpl(
+      transactionId: json['transaction_id'] as String,
+      receiver: json['receiver'] as String,
+      provider: json['provider'] as String,
+      package: json['package'] as String,
+      paymentReference: json['payment_reference'] as String,
+      amount: json['amount'] as String,
+      status: json['status'] as String? ?? "pending",
+      createdAt: json['created_at'] as String?,
+    );
+
+Map<String, dynamic> _$$VendDataDataImplToJson(_$VendDataDataImpl instance) {
+  final val = <String, dynamic>{
+    'transaction_id': instance.transactionId,
+    'receiver': instance.receiver,
+    'provider': instance.provider,
+    'package': instance.package,
+    'payment_reference': instance.paymentReference,
+    'amount': instance.amount,
+    'status': instance.status,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('created_at', instance.createdAt);
+  return val;
+}

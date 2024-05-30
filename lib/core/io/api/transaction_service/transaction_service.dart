@@ -19,6 +19,7 @@ import 'package:blue_business/core/models/transaction/pay/withdraw/request/withd
 import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
 import 'package:blue_business/core/models/transaction/verify/request/verified_receiver_request.dart';
 import 'package:blue_business/core/models/transaction/verify/response/verified_receiver_response.dart';
+import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/models/withdrawal_account/set/request/set_payout_request.dart';
 import 'package:blue_business/core/models/withdrawal_account/set/response/set_payout_response.dart';
@@ -43,6 +44,12 @@ abstract class TransactionService {
     @Query("payment_mode") String? paymentMode,
     @Query("date") String? date,
     @Query("type") String? type,
+  });
+
+  @GET("/transaction-histories/details")
+  Future<TransactionDetailResponse> getTransactionDetails({
+    @Query("t_ref") required String transactionReference,
+    @Query("service") required String service,
   });
 
   @GET("/beneficiaries/index")

@@ -15,4 +15,5 @@ extension Gap on num {
 
 extension StringEx on String? {
   String get orEmpty => this ?? "";
+  String get sentenceCase => this![0].toUpperCase() + this!.substring(1);
 }
