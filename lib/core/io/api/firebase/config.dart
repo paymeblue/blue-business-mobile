@@ -33,7 +33,7 @@ Future handleForegroundMessages(RemoteMessage message) async {
       locator<NavigationService>().navigatorKey.currentContext!;
 
   if (data["type"] == "payment") {
-    if (AppConstants.accessToken.isNotEmpty) {
+    if (locator<AppStateValues>().accessToken.isNotEmpty) {
       PushPayment payment = PushPayment.fromJson(data);
       BlueBottomSheet.paymentRequest(payment).then((value) {
         if (value) {

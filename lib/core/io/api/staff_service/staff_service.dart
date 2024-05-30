@@ -1,4 +1,3 @@
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/staff/create/request/create_staff_request.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
@@ -11,9 +10,7 @@ part 'staff_service.g.dart';
     baseUrl:
         "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api/staff")
 abstract class StaffService {
-  factory StaffService() {
-    return _StaffService(DioConfig.dio());
-  }
+  factory StaffService(Dio dio) = _StaffService;
 
   @GET("")
   Future<GetStaffResponse> getStaff({

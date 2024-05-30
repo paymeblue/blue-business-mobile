@@ -13,7 +13,7 @@ class _BillsService implements BillsService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://blue-api-backend.herokuapp.com/api';
+    baseUrl ??= 'https://blue-business-backend-8c46f2828f9e.herokuapp.com/api';
   }
 
   final Dio _dio;

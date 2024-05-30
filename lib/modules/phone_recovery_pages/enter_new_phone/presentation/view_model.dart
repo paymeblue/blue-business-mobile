@@ -1,6 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/recover_phone/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
@@ -17,7 +18,6 @@ import 'package:go_router/go_router.dart';
 class EnterNewPhoneViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
-  late AuthService authService = AuthService();
 
   init(BuildContext context, int i) {
     size = context.mediaQuery.size;
@@ -56,9 +56,11 @@ class EnterNewPhoneViewModel extends BaseViewModel {
     SendNewPhoneRequest request =
         SendNewPhoneRequest(phone: formatPhone(), userId: id.toString());
 
-    SendNewPhoneResponse resp = await authService.updatePhone(request).onError(
-        (error, stackTrace) => SendNewPhoneResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .updatePhone(request)
+            .onError((error, stackTrace) => SendNewPhoneResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);

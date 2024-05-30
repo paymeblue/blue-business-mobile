@@ -39,7 +39,7 @@ class UpdateKycViewModel extends BaseViewModel {
   ];
 
   String url(String level) =>
-      "https://paymeblue.com/business-kyc/$level?token=${AppConstants.accessToken}";
+      "https://paymeblue.com/business-kyc/$level?token=${locator<AppStateValues>().accessToken}";
 
   goToBasicKycWeb(BuildContext context) async {
     var uri = Uri.parse(url("intermediate"));

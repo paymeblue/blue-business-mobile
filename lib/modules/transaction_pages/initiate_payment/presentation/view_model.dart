@@ -1,5 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/payment_option/payment_option.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
@@ -19,9 +20,6 @@ import 'package:go_router/go_router.dart';
 
 class InitiatePaymentViewModel extends BaseViewModel {
   late Size size;
-
-  TransactionService transactionService = TransactionService();
-  DashService dashService = DashService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -78,8 +76,9 @@ class InitiatePaymentViewModel extends BaseViewModel {
         int.tryParse(amountController.text.replaceAll(RegExp(r'[^0-9]'), ""));
     AppLoader.start();
 
-    InitiateTransactionResponse resp =
-        await transactionService.initiateTransaction(InitiateTransactionRequest(
+    InitiateTransactionResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .initiateTransaction(InitiateTransactionRequest(
       amount: (amountInKobo! / 100).toString(),
       narration: descriptionController.text.isEmpty
           ? null
@@ -98,7 +97,9 @@ class InitiatePaymentViewModel extends BaseViewModel {
     AppLoader.start();
 
     WithdrawalAccountResponse resp =
-        await dashService.getWithdrawalAccount().onError((error, stackTrace) {
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getWithdrawalAccount()
+            .onError((error, stackTrace) {
       return WithdrawalAccountResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });

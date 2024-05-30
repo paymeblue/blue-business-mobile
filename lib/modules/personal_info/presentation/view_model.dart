@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/settings_service/settings_service.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/upload_avatar/response/upload_avatar_response.dart';
@@ -80,7 +81,8 @@ class PersonalInfoViewModel extends BaseViewModel {
   uploadImage() async {
     AppLoader.start();
 
-    UploadAvatarResponse resp = await SettingsService()
+    UploadAvatarResponse resp = await SettingsService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .uploadDisplayPicture(File(path))
         .onError((error, stackTrace) => UploadAvatarResponse(
             message: AppErrorHandler.getErrorMessage(error)));

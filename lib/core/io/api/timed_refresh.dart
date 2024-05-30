@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -40,16 +41,17 @@ class RefreshTimer {
   }
 
   _refreshToken() async {
-    RefreshTokenResponse resp = await AuthService()
-        .refresh(RefreshTokenRequest(
-            refreshToken: locator<AppStateValues>().refreshToken))
-        .onError((error, stackTrace) {
+    RefreshTokenResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .refresh(RefreshTokenRequest(
+                refreshToken: locator<AppStateValues>().refreshToken))
+            .onError((error, stackTrace) {
       return RefreshTokenResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });
 
     if (resp.status == "success") {
-      AppConstants.accessToken = resp.data!.accessToken;
+      locator<AppStateValues>().accessToken = resp.data!.accessToken;
       _refreshTimer = null;
     } else {
       if (_count <= 2) {

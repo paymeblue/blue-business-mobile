@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/beneficiary/blue_beneficiary.dart';
 import 'package:blue_business/core/models/beneficiary/get/response/get_beneficiary_response.dart';
@@ -10,7 +11,9 @@ import 'package:blue_business/core/models/transaction/verify/request/verified_re
 import 'package:blue_business/core/models/transaction/verify/response/verified_receiver_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +23,6 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 class BluePaymentViewModel extends BaseViewModel {
   late Size size;
   late InitiateTransactionData data;
-  TransactionService transactionService = TransactionService();
 
   init(BuildContext context, InitiateTransactionData d) {
     size = context.mediaQuery.size;
@@ -81,7 +83,8 @@ class BluePaymentViewModel extends BaseViewModel {
   int limit = 50;
   getBeneficiaries(int page) async {
     try {
-      GetBeneficiaryResponse resp = await TransactionService()
+      GetBeneficiaryResponse resp = await TransactionService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
           .searchBeneficiaries(
         page,
         limit,
@@ -109,7 +112,8 @@ class BluePaymentViewModel extends BaseViewModel {
 
   getRecentlyPaid() async {
     loading = true;
-    RecentlyPaidResponse resp = await TransactionService()
+    RecentlyPaidResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .getRecentlyPaid()
         .onError((error, stackTrace) {
       return RecentlyPaidResponse(
@@ -152,7 +156,8 @@ class BluePaymentViewModel extends BaseViewModel {
       transactionId: data.id,
     );
 
-    VerifiedReceiverResponse resp = await transactionService
+    VerifiedReceiverResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .verifyReceiver(request)
         .onError((error, stackTrace) {
       return VerifiedReceiverResponse(

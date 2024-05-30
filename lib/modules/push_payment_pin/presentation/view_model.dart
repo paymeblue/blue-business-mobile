@@ -1,4 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
@@ -26,7 +27,6 @@ class PushPaymentPinViewModel extends BaseViewModel {
   late Size size;
   late String id;
   AppStateValues stateValues = locator<AppStateValues>();
-  late TransactionService transactionService = TransactionService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -76,7 +76,8 @@ class PushPaymentPinViewModel extends BaseViewModel {
     CreditRequest request =
         CreditRequest(transactionId: transactionId, passcode: pin);
 
-    PushPayResponse resp = await transactionService
+    PushPayResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .acceptPayment(request)
         .onError((error, stackTrace) {
       return PushPayResponse(message: AppErrorHandler.getErrorMessage(error));
@@ -92,7 +93,8 @@ class PushPaymentPinViewModel extends BaseViewModel {
 
   getSecurityQuestion(BuildContext context) async {
     AppLoader.start();
-    GetQuestionResponse resp = await transactionService
+    GetQuestionResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .getSecurityQuestion(stateValues.currentUser!.phone)
         .onError((error, stackTrace) => GetQuestionResponse(
             message: AppErrorHandler.getErrorMessage(error)));
@@ -117,7 +119,8 @@ class PushPaymentPinViewModel extends BaseViewModel {
     SetBeneficiaryRequest request =
         SetBeneficiaryRequest(identifier: data.receiver.walletCode!);
 
-    SetBeneficiaryResponse resp = await transactionService
+    SetBeneficiaryResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .addBeneficiary(request)
         .onError((error, stackTrace) {
       return SetBeneficiaryResponse(

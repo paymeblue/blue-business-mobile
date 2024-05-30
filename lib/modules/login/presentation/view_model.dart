@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
@@ -133,7 +134,9 @@ class LoginViewModel extends BaseViewModel {
     );
 
     LoginResponse resp =
-        await AuthService().login(request).onError((error, stackTrace) {
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .login(request)
+            .onError((error, stackTrace) {
       return LoginResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
@@ -206,7 +209,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   saveTokens(Token token) {
-    AppConstants.accessToken = token.accessToken;
+    locator<AppStateValues>().accessToken = token.accessToken;
     locator<AppStateValues>().refreshToken = token.refreshToken;
   }
 

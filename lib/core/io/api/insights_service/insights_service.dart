@@ -1,4 +1,3 @@
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
 import 'package:blue_business/core/models/sales_analytics/response/sales_analytics_response.dart';
 import 'package:blue_business/core/models/spending_analytics/response/spending_analytics_response.dart';
@@ -11,9 +10,7 @@ part 'insights_service.g.dart';
     baseUrl:
         "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api/insights")
 abstract class InsightsService {
-  factory InsightsService() {
-    return _InsightsService(DioConfig.dio());
-  }
+  factory InsightsService(Dio dio) = _InsightsService;
 
   @GET("/sales")
   Future<SalesAnalyticsResponse> getSales(

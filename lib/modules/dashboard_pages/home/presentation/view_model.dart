@@ -1,6 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
@@ -103,7 +104,9 @@ class HomeViewModel extends BaseViewModel {
   getWalletBalance() async {
     isLoading = true;
     WalletResponse resp =
-        await DashService().getWalletBalance().onError((error, stackTrace) {
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getWalletBalance()
+            .onError((error, stackTrace) {
       return WalletResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
@@ -119,7 +122,9 @@ class HomeViewModel extends BaseViewModel {
     isTodoLoading = true;
 
     TodoResponse resp =
-        await DashService().getTodos().onError((error, stackTrace) {
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getTodos()
+            .onError((error, stackTrace) {
       return TodoResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
@@ -177,7 +182,8 @@ class HomeViewModel extends BaseViewModel {
 
   getAnalytics() async {
     salesLoading = true;
-    AnalyticsResponse response = await InsightsService()
+    AnalyticsResponse response = await InsightsService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .getAnalytics("weekly")
         .onError((error, stackTrace) =>
             AnalyticsResponse(message: AppErrorHandler.getErrorMessage(error)));
@@ -231,8 +237,9 @@ class HomeViewModel extends BaseViewModel {
 
   getTransactions(int page) async {
     try {
-      TransactionResponse resp =
-          await TransactionService().getTransactions(page, limit);
+      TransactionResponse resp = await TransactionService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .getTransactions(page, limit);
       if (resp.status == "success") {
         List<TransactionHistory> t = resp.data!.data;
 
@@ -249,7 +256,9 @@ class HomeViewModel extends BaseViewModel {
     isKycLoading = true;
 
     KycStatusResponse resp =
-        await DashService().getKycStatus().onError((error, stackTrace) {
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getKycStatus()
+            .onError((error, stackTrace) {
       return KycStatusResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
@@ -265,7 +274,9 @@ class HomeViewModel extends BaseViewModel {
   getTopupAccount() async {
     AppLoader.start();
     TopupResponse resp =
-        await DashService().getTopupAccount().onError((error, stackTrace) {
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getTopupAccount()
+            .onError((error, stackTrace) {
       return TopupResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 

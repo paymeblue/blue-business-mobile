@@ -2,13 +2,16 @@ import 'dart:developer';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/change_pin/request/change_pin_request.dart';
 import 'package:blue_business/core/models/change_pin/response/change_pin_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
@@ -103,10 +106,11 @@ class ChangePinViewModel extends BaseViewModel {
   changePin(BuildContext context) async {
     AppLoader.start();
 
-    ChangePinResponse resp = await AuthService()
-        .changePin(ChangePinRequest(
-            confirmPin: confirmPin, oldPin: pin, newPin: newPin))
-        .onError((error, stackTrace) {
+    ChangePinResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .changePin(ChangePinRequest(
+                confirmPin: confirmPin, oldPin: pin, newPin: newPin))
+            .onError((error, stackTrace) {
       return ChangePinResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 

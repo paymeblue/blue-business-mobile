@@ -1,13 +1,16 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/staff/create/request/create_staff_request.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/dialogs.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
@@ -16,7 +19,6 @@ import 'package:go_router/go_router.dart';
 
 class AddStaffViewModel extends BaseViewModel {
   late Size size;
-  StaffService staffService = StaffService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -103,10 +105,11 @@ class AddStaffViewModel extends BaseViewModel {
         phone: formatPhone(),
         password: passwordController.text);
 
-    CreateStaffResponse response = await staffService
-        .createStaff(request: request)
-        .onError((error, stackTrace) => CreateStaffResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+    CreateStaffResponse response =
+        await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .createStaff(request: request)
+            .onError((error, stackTrace) => CreateStaffResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
 
     if (response.status == "success") {
       AppNotification.success(message: response.message);

@@ -1,4 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/reset/pin/request/reset_pin_request.dart';
 import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
@@ -17,7 +18,6 @@ import 'package:go_router/go_router.dart';
 class NewPinViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
-  late TransactionService transactionService = TransactionService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -25,7 +25,8 @@ class NewPinViewModel extends BaseViewModel {
 
   getSecurityQuestion(BuildContext context) async {
     AppLoader.start();
-    GetQuestionResponse resp = await transactionService
+    GetQuestionResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .getSecurityQuestion(stateValues.currentUser!.phone)
         .onError((error, stackTrace) => GetQuestionResponse(
             message: AppErrorHandler.getErrorMessage(error)));
@@ -42,7 +43,8 @@ class NewPinViewModel extends BaseViewModel {
     AppLoader.start();
 
     ResetPinRequest request = ResetPinRequest(phone: phone, newPin: pin);
-    SendQuestionResponse resp = await transactionService
+    SendQuestionResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .resetPin(request)
         .onError((error, stackTrace) => SendQuestionResponse(
             message: AppErrorHandler.getErrorMessage(error)));

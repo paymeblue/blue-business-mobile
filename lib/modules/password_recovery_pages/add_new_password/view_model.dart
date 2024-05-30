@@ -1,5 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/reset/password/request/reset_password_request.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
@@ -16,7 +17,6 @@ class AddNewPasswordViewModel extends BaseViewModel {
   late Size size;
   late String phone;
   AppStateValues stateValues = locator<AppStateValues>();
-  late AuthService authService = AuthService();
 
   init(BuildContext context, String p) {
     size = context.mediaQuery.size;
@@ -69,10 +69,11 @@ class AddNewPasswordViewModel extends BaseViewModel {
       password: passwordController.text,
       passwordConfirmation: confirmPasswordController.text,
     );
-    SendNewPhoneResponse resp = await authService
-        .resetPassword(request)
-        .onError((error, stackTrace) => SendNewPhoneResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resetPassword(request)
+            .onError((error, stackTrace) => SendNewPhoneResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);

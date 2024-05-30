@@ -1,5 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
@@ -22,7 +23,6 @@ import 'package:go_router/go_router.dart';
 class PinViewModel extends BaseViewModel {
   late Size size;
   late String id;
-  AuthService authService = AuthService();
 
   init(BuildContext context, String i, SignupProfileRequest r) {
     size = context.mediaQuery.size;
@@ -51,11 +51,12 @@ class PinViewModel extends BaseViewModel {
   setupProfile(BuildContext context) async {
     request = request.copyWith(passcode: pin, userId: id);
     AppLoader.start();
-    SignupProfileResponse resp = await authService
-        .setupProfile(
+    SignupProfileResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .setupProfile(
       request,
     )
-        .onError((error, stackTrace) {
+            .onError((error, stackTrace) {
       return SignupProfileResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });
@@ -80,7 +81,9 @@ class PinViewModel extends BaseViewModel {
     );
 
     LoginResponse resp =
-        await AuthService().login(loginRequest).onError((error, stackTrace) {
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .login(loginRequest)
+            .onError((error, stackTrace) {
       return LoginResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
@@ -149,7 +152,7 @@ class PinViewModel extends BaseViewModel {
   }
 
   saveTokens(Token token) {
-    AppConstants.accessToken = token.accessToken;
+    locator<AppStateValues>().accessToken = token.accessToken;
     locator<AppStateValues>().refreshToken = token.refreshToken;
   }
 

@@ -5,6 +5,7 @@ import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/settings_service/settings_service.dart';
 import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
@@ -35,8 +36,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 class SettingsViewModel extends BaseViewModel {
   late Size size;
-  DashService dashService = DashService();
-  AuthService authService = AuthService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -87,7 +86,8 @@ class SettingsViewModel extends BaseViewModel {
   uploadImage(File file) async {
     AppLoader.start();
 
-    UploadAvatarResponse resp = await SettingsService()
+    UploadAvatarResponse resp = await SettingsService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .uploadDisplayPicture(file)
         .onError((error, stackTrace) => UploadAvatarResponse(
             message: AppErrorHandler.getErrorMessage(error)));
@@ -171,7 +171,9 @@ class SettingsViewModel extends BaseViewModel {
     AppLoader.start();
 
     GetReasonResponse resp =
-        await authService.getReasons().onError((error, stackTrace) {
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getReasons()
+            .onError((error, stackTrace) {
       return GetReasonResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
@@ -194,7 +196,9 @@ class SettingsViewModel extends BaseViewModel {
     DeleteRequest request = DeleteRequest(reasonId: reason.id.toString());
 
     DeleteResponse resp =
-        await authService.deleteAccount(request).onError((error, stackTrace) {
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .deleteAccount(request)
+            .onError((error, stackTrace) {
       return DeleteResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
@@ -407,7 +411,8 @@ class SettingsViewModel extends BaseViewModel {
   toggleNotifications(bool v) async {
     AppLoader.start();
 
-    NotificationResponse resp = await SettingsService()
+    NotificationResponse resp = await SettingsService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .toggleNotifications(v ? 1 : 0)
         .onError((error, stackTrace) {
       return NotificationResponse(
@@ -442,7 +447,9 @@ class SettingsViewModel extends BaseViewModel {
     AppLoader.start();
 
     KycStatusResponse resp =
-        await DashService().getKycStatus().onError((error, stackTrace) {
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getKycStatus()
+            .onError((error, stackTrace) {
       return KycStatusResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
@@ -459,7 +466,9 @@ class SettingsViewModel extends BaseViewModel {
     AppLoader.start();
 
     WithdrawalAccountResponse resp =
-        await dashService.getWithdrawalAccount().onError((error, stackTrace) {
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getWithdrawalAccount()
+            .onError((error, stackTrace) {
       return WithdrawalAccountResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });

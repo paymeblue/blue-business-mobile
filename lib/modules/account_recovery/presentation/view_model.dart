@@ -2,6 +2,7 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/recovery_code/get/response/recovery_code_response.dart';
@@ -26,8 +27,6 @@ import 'package:go_router/go_router.dart';
 class AccountRecoveryViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
-  late AuthService authService = AuthService();
-  late TransactionService transactionService = TransactionService();
 
   init(BuildContext context, String? type) {
     size = context.mediaQuery.size;
@@ -140,7 +139,9 @@ class AccountRecoveryViewModel extends BaseViewModel {
     AppLoader.start();
 
     GetRecoveryCodeResponse resp =
-        await authService.getRecoveryCode().onError((error, stackTrace) {
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getRecoveryCode()
+            .onError((error, stackTrace) {
       return GetRecoveryCodeResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });
@@ -163,9 +164,10 @@ class AccountRecoveryViewModel extends BaseViewModel {
     SetRecoveryPhoneRequest request = SetRecoveryPhoneRequest(
         phone: formatPhone(), password: passwordController.text);
 
-    SetRecoveryPhoneResponse resp = await authService
-        .updateRecoveryPhone(request)
-        .onError((error, stackTrace) {
+    SetRecoveryPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .updateRecoveryPhone(request)
+            .onError((error, stackTrace) {
       return SetRecoveryPhoneResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });
@@ -200,7 +202,8 @@ class AccountRecoveryViewModel extends BaseViewModel {
         answer: answerController.text,
         password: passwordController.text);
 
-    SendQuestionResponse resp = await transactionService
+    SendQuestionResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .createSecurityQuestion(request)
         .onError((error, stackTrace) => SendQuestionResponse(
             message: AppErrorHandler.getErrorMessage(error)));
@@ -221,7 +224,9 @@ class AccountRecoveryViewModel extends BaseViewModel {
     AppLoader.start();
 
     ResetRecoveryCodeResponse resp =
-        await authService.resetRecoveryCode().onError((error, stackTrace) {
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resetRecoveryCode()
+            .onError((error, stackTrace) {
       return ResetRecoveryCodeResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });

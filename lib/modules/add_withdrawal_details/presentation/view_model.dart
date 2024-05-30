@@ -1,4 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/banks/item/bank.dart';
 import 'package:blue_business/core/models/banks/response/bank_response.dart';
@@ -19,7 +20,6 @@ import 'package:go_router/go_router.dart';
 class AddWithdrawalDetailsViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
-  late TransactionService transactionService = TransactionService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -97,8 +97,10 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
 
   getBanks() async {
     loadingBanks = true;
-    BankResponse resp =
-        await transactionService.getBanks().onError((error, stackTrace) {
+    BankResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getBanks()
+        .onError((error, stackTrace) {
       return BankResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
@@ -122,7 +124,8 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
     VerifyPayoutRequest request = VerifyPayoutRequest(
         bankId: selectedBank!.id.toString(),
         accountNumber: accountNumberController.text);
-    VerifyPayoutResponse resp = await transactionService
+    VerifyPayoutResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .verifyAccount(request)
         .onError((error, stackTrace) {
       return VerifyPayoutResponse(
@@ -143,7 +146,8 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
   setAccount() async {
     AppLoader.start();
     SetPayoutRequest request = SetPayoutRequest(reference: reference);
-    SetPayoutResponse resp = await transactionService
+    SetPayoutResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .addPayout(request)
         .onError((error, stackTrace) {
       return SetPayoutResponse(message: AppErrorHandler.getErrorMessage(error));

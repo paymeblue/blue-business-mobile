@@ -5,6 +5,7 @@ import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/banks/item/bank.dart';
 import 'package:blue_business/core/models/bills/get_packages/packages/packages.dart';
 import 'package:blue_business/core/models/bills/get_providers/providers/providers.dart';
+import 'package:blue_business/core/models/business_category/category/business_category.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/dropdown_type/dropdown_type.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -85,6 +86,20 @@ class BlueDropdown {
         value: value,
         searchController: searchController,
         title: title);
+  }
+
+  static Widget businessCategory({
+    required List<BusinessCategory> banks,
+    required ValueChanged<BusinessCategory?> onChanged,
+    required TextEditingController? searchController,
+    BusinessCategory? value,
+  }) {
+    return _BlueBusinessCategoryDropdown(
+      items: banks,
+      onChanged: onChanged,
+      value: value,
+      searchController: searchController,
+    );
   }
 
   static Widget show({
@@ -308,6 +323,112 @@ class _BlueCountryDropdown extends StatelessWidget {
               width: 20,
             ),
           4.horizontalGap,
+          const Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: AppColors.textColor,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _BlueBusinessCategoryDropdown extends StatelessWidget {
+  const _BlueBusinessCategoryDropdown({
+    required this.items,
+    required this.onChanged,
+    this.value,
+    required this.searchController,
+  });
+
+  final List<BusinessCategory> items;
+  final ValueChanged<BusinessCategory?> onChanged;
+  final BusinessCategory? value;
+  final TextEditingController? searchController;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: context.mediaQuery.size.width,
+      height: 85,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          textFieldHeader(),
+          _$BlueDropdown<BusinessCategory>(
+            items: items
+                .map((e) => DropdownType(label: e.title, value: e))
+                .toList(),
+            selectedValue: value,
+            canSearch: true,
+            selectedItemBuilder: selectedItem(),
+            itemBuilder: itemBuilder,
+            onChanged: onChanged,
+            onSearchChanged: onSearchChanged,
+            searchController: searchController,
+            searchHint: "Search Banks",
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget textFieldHeader() {
+    return Text(
+      "Business category",
+      style: AppTextStyles.subHeader.copyWith(color: AppColors.textColor),
+    );
+  }
+
+  Widget itemBuilder(BusinessCategory item) {
+    return Container(
+      height: 45,
+      decoration: const BoxDecoration(),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              item.title,
+              style: AppTextStyles.textField.copyWith(height: 1),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<BusinessCategory> onSearchChanged(String? v) {
+    List<BusinessCategory> temp = [];
+    if (v != null && v.isNotEmpty) {
+      for (BusinessCategory category in items) {
+        if (category.title.toLowerCase().contains(v.toLowerCase())) {
+          temp.add(category);
+        }
+      }
+    } else {
+      temp = items;
+    }
+
+    return temp;
+  }
+
+  Widget selectedItem() {
+    return Container(
+      height: 50,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(color: AppColors.grey)),
+      child: Row(
+        children: [
+          Text(
+            value?.title ?? "--Select a category--",
+            style: value == null
+                ? AppTextStyles.textField
+                    .copyWith(color: AppColors.textColor.withOpacity(.3))
+                : AppTextStyles.textField,
+          ),
+          const Spacer(),
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,

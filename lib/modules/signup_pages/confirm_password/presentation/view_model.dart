@@ -1,5 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
@@ -47,7 +48,9 @@ class ConfirmPasswordViewModel extends BaseViewModel {
     );
 
     LoginResponse resp =
-        await AuthService().login(request).onError((error, stackTrace) {
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .login(request)
+            .onError((error, stackTrace) {
       return LoginResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
@@ -117,7 +120,7 @@ class ConfirmPasswordViewModel extends BaseViewModel {
   }
 
   saveTokens(Token token) {
-    AppConstants.accessToken = token.accessToken;
+    locator<AppStateValues>().accessToken = token.accessToken;
     locator<AppStateValues>().refreshToken = token.refreshToken;
   }
 

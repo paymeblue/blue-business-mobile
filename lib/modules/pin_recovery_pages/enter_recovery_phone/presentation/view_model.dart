@@ -1,6 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
@@ -21,8 +22,6 @@ import 'package:go_router/go_router.dart';
 class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
-  late TransactionService transactionService = TransactionService();
-  late AuthService authService = AuthService();
 
   init(BuildContext context, SecurityQuestion? q) {
     size = context.mediaQuery.size;
@@ -93,7 +92,8 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
         phone: "+${stateValues.currentUser!.phone}",
         answer: answerController.text);
 
-    SendQuestionResponse resp = await transactionService
+    SendQuestionResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .sendSecurityAnswer(request)
         .onError((error, stackTrace) => SendQuestionResponse(
             message: AppErrorHandler.getErrorMessage(error)));
@@ -112,10 +112,11 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
     SendPhoneRecoverPinRequest request =
         SendPhoneRecoverPinRequest(phone: formatPhone());
 
-    SendNewPhoneResponse resp = await authService
-        .forgotPinWithPhone(request)
-        .onError((error, stackTrace) => SendNewPhoneResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .forgotPinWithPhone(request)
+            .onError((error, stackTrace) => SendNewPhoneResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);

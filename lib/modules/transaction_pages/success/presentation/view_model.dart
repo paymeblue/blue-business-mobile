@@ -1,13 +1,16 @@
 import 'dart:typed_data';
 
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
 import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
 import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:blue_business/widgets/modals/toast.dart';
@@ -18,7 +21,6 @@ import 'package:share_plus/share_plus.dart';
 
 class SuccessViewModel extends BaseViewModel {
   late Size size;
-  TransactionService transactionService = TransactionService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -38,7 +40,8 @@ class SuccessViewModel extends BaseViewModel {
   getTransactionReceipt(PayData data) async {
     AppLoader.start();
 
-    ReceiptResponse resp = await transactionService
+    ReceiptResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .getReceipt(data.transactionId)
         .onError((error, stackTrace) {
       return ReceiptResponse(message: AppErrorHandler.getErrorMessage(error));

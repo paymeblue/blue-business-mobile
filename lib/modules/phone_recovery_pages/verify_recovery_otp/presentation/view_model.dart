@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
@@ -18,7 +19,6 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
   late Size size;
   late String phone;
   AppStateValues stateValues = locator<AppStateValues>();
-  late AuthService authService = AuthService();
 
   init(BuildContext context, String p) {
     size = context.mediaQuery.size;
@@ -86,9 +86,10 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
   resendOtp() async {
     AppLoader.start();
 
-    SendNewPhoneResponse resp = await authService
-        .resendPhoneRecoveryOtp(phone.replaceFirst("+", ""))
-        .onError((error, stackTrace) {
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resendPhoneRecoveryOtp(phone.replaceFirst("+", ""))
+            .onError((error, stackTrace) {
       return SendNewPhoneResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });
@@ -106,9 +107,10 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
   verifyOtp(BuildContext context) async {
     AppLoader.start();
 
-    SendNewPhoneResponse resp = await authService
-        .verifyRecoveryOtp(pin, phone.replaceFirst("+", ""))
-        .onError((error, stackTrace) {
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .verifyRecoveryOtp(pin, phone.replaceFirst("+", ""))
+            .onError((error, stackTrace) {
       return SendNewPhoneResponse(
           message: AppErrorHandler.getErrorMessage(error));
     });

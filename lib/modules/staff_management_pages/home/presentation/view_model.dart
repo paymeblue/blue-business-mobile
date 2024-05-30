@@ -1,11 +1,14 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/dialogs.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
@@ -15,7 +18,6 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class StaffHomeViewModel extends BaseViewModel {
   late Size size;
-  StaffService staffService = StaffService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -30,11 +32,13 @@ class StaffHomeViewModel extends BaseViewModel {
 
   getStaff(int page) async {
     try {
-      GetStaffResponse response =
-          await staffService.getStaff(page: page, limit: 50).onError(
-                (error, stackTrace) => GetStaffResponse(
-                    message: AppErrorHandler.getErrorMessage(error)),
-              );
+      GetStaffResponse response = await StaffService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .getStaff(page: page, limit: 50)
+          .onError(
+            (error, stackTrace) => GetStaffResponse(
+                message: AppErrorHandler.getErrorMessage(error)),
+          );
 
       if (response.status == "success") {
         if (response.data!.loadMore) {
@@ -67,7 +71,9 @@ class StaffHomeViewModel extends BaseViewModel {
   deleteStaff(Staff staff) async {
     AppLoader.start();
 
-    var response = await staffService.deleteStaff(staffId: staff.id);
+    var response =
+        await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .deleteStaff(staffId: staff.id);
 
     if (response == null) {
       staffPagingController.refresh();

@@ -19,6 +19,7 @@ class AppStateValues extends ChangeNotifier {
   int _count = 0;
   bool _newMessage = false;
   String? _channelId;
+  String _token = "";
 
   List<TodoOption> _todos = [];
   User? _currentUser;
@@ -39,6 +40,7 @@ class AppStateValues extends ChangeNotifier {
   int get unreadCount => _count;
   bool get hasNewMessage => _newMessage;
   String? get channelId => _channelId;
+  String get accessToken => _token;
 
   User? get currentUser => _currentUser;
   Wallet? get wallet => _wallet;
@@ -47,6 +49,11 @@ class AppStateValues extends ChangeNotifier {
   Object? get extra => _extra;
 
   NotificationState? notificationState;
+
+  set accessToken(String v) {
+    _token = v;
+    notifyListeners();
+  }
 
   set refreshToken(String v) {
     _refreshToken = v;
@@ -134,7 +141,7 @@ class AppStateValues extends ChangeNotifier {
   }
 
   clear() {
-    AppConstants.accessToken = "";
+    accessToken = "";
     refreshToken = "";
     narration = "";
     todos = [];
@@ -151,10 +158,4 @@ class AppStateValues extends ChangeNotifier {
     withdrawalAccount = null;
     extra = null;
   }
-}
-
-class AppConstants {
-  AppConstants._();
-
-  static String accessToken = "";
 }

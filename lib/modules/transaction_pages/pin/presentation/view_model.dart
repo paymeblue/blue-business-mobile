@@ -1,4 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
@@ -26,7 +27,6 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
   late Size size;
   late String id;
   AppStateValues stateValues = locator<AppStateValues>();
-  late TransactionService transactionService = TransactionService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -81,8 +81,10 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
     WithdrawRequest request =
         WithdrawRequest(amount: (amount / 100).toString(), passcode: pin);
 
-    PayResponse resp =
-        await transactionService.withdraw(request).onError((error, stackTrace) {
+    PayResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .withdraw(request)
+        .onError((error, stackTrace) {
       return PayResponse(message: AppErrorHandler.getErrorMessage(error));
     });
 
@@ -102,8 +104,10 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
     CreditRequest request =
         CreditRequest(transactionId: transactionId, passcode: pin);
 
-    PayResponse resp =
-        await transactionService.pay(request).onError((error, stackTrace) {
+    PayResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .pay(request)
+        .onError((error, stackTrace) {
       return PayResponse(message: AppErrorHandler.getErrorMessage(error));
     });
     if (!locator<AppStateValues>().hasSavedBeneficiary &&
@@ -122,7 +126,8 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
 
   getSecurityQuestion(BuildContext context) async {
     AppLoader.start();
-    GetQuestionResponse resp = await transactionService
+    GetQuestionResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .getSecurityQuestion(stateValues.currentUser!.phone)
         .onError((error, stackTrace) => GetQuestionResponse(
             message: AppErrorHandler.getErrorMessage(error)));
@@ -147,7 +152,8 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
     SetBeneficiaryRequest request =
         SetBeneficiaryRequest(identifier: data.walletCode!);
 
-    SetBeneficiaryResponse resp = await transactionService
+    SetBeneficiaryResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .addBeneficiary(request)
         .onError((error, stackTrace) {
       return SetBeneficiaryResponse(

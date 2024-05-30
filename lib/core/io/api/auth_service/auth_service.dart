@@ -1,4 +1,3 @@
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/business_category/response/business_category_response.dart';
 import 'package:blue_business/core/models/change_password/request/change_password_request.dart';
 import 'package:blue_business/core/models/change_password/response/change_password_response.dart';
@@ -37,9 +36,7 @@ part 'auth_service.g.dart';
 @RestApi(
     baseUrl: "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api")
 abstract class AuthService {
-  factory AuthService() {
-    return _AuthService(DioConfig.dio());
-  }
+  factory AuthService(Dio dio) = _AuthService;
 
   @POST("/auth/login")
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);

@@ -24,7 +24,7 @@ class BillsViewModel extends BaseViewModel {
         title: "Purchase Airtime",
         subtitle: "Top-up your mobile airtime.",
         onTap: () {
-          // context.push(RoutePaths.initiateAirtimePath);
+          context.push(RoutePaths.initiateAirtimePath);
         },
       ),
       SectionOption(
@@ -32,7 +32,7 @@ class BillsViewModel extends BaseViewModel {
         title: "Purchase Data",
         subtitle: "Renew your data subscription.",
         onTap: () {
-          // context.push(RoutePaths.initiateDataPath);
+          context.push(RoutePaths.initiateDataPath);
         },
       ),
       SectionOption(
@@ -40,7 +40,7 @@ class BillsViewModel extends BaseViewModel {
         title: "Pay Electricity Bill",
         subtitle: "Purchase electricity units for your meter.",
         onTap: () {
-          // context.push(RoutePaths.initiateElectricityPath);
+          context.push(RoutePaths.initiateElectricityPath);
         },
       ),
       SectionOption(
@@ -48,7 +48,7 @@ class BillsViewModel extends BaseViewModel {
         title: "Pay Cable TV",
         subtitle: "Renew your cable tv subscription.",
         onTap: () {
-          // context.push(RoutePaths.initiateCablePath);
+          context.push(RoutePaths.initiateCablePath);
         },
       ),
     ];

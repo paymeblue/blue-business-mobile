@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -17,7 +18,6 @@ class VerifyPasswordRecoveryOtpViewModel extends BaseViewModel {
   late Size size;
   late String phone;
   AppStateValues stateValues = locator<AppStateValues>();
-  late AuthService authService = AuthService();
 
   init(BuildContext context, String p) {
     size = context.mediaQuery.size;
@@ -89,9 +89,11 @@ class VerifyPasswordRecoveryOtpViewModel extends BaseViewModel {
   resendOtp() async {
     AppLoader.start();
 
-    SendNewPhoneResponse resp = await authService.forgotPassword(phone).onError(
-        (error, stackTrace) => SendNewPhoneResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .forgotPassword(phone)
+            .onError((error, stackTrace) => SendNewPhoneResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
@@ -104,10 +106,11 @@ class VerifyPasswordRecoveryOtpViewModel extends BaseViewModel {
 
   verifyOtp(BuildContext context) async {
     AppLoader.start();
-    SendNewPhoneResponse resp = await authService
-        .verifyRecoveryOtp(pin, phone.replaceFirst("+", ""))
-        .onError((error, stackTrace) => SendNewPhoneResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .verifyRecoveryOtp(pin, phone.replaceFirst("+", ""))
+            .onError((error, stackTrace) => SendNewPhoneResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);

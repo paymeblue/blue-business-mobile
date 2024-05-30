@@ -2,12 +2,15 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
 import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
 import 'package:blue_business/core/models/transaction_detail/payment/payment_detail.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
+import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:blue_business/widgets/modals/toast.dart';
@@ -37,7 +40,8 @@ class PaymentDetailsViewModel extends BaseViewModel {
   getTransactionReceipt(PaymentDetail data) async {
     AppLoader.start();
 
-    ReceiptResponse resp = await TransactionService()
+    ReceiptResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .getReceipt(data.id.toString())
         .onError((error, stackTrace) {
       return ReceiptResponse(message: AppErrorHandler.getErrorMessage(error));

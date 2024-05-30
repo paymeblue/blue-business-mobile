@@ -76,7 +76,8 @@ class ConfirmCablePinViewModel extends BaseViewModel {
 
   getSecurityQuestion(BuildContext context) async {
     AppLoader.start();
-    GetQuestionResponse resp = await TransactionService()
+    GetQuestionResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .getSecurityQuestion(stateValues.currentUser!.phone)
         .onError((error, stackTrace) => GetQuestionResponse(
             message: AppErrorHandler.getErrorMessage(error)));
