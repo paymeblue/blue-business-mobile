@@ -31,6 +31,10 @@ class AddStaffViewModel extends BaseViewModel {
     context.go(RoutePaths.staffManagementPath);
   }
 
+  goToAddBranch(BuildContext context) {
+    context.push(RoutePaths.addBranchPath);
+  }
+
   String? _path;
   String? get path => _path;
   set path(String? v) {

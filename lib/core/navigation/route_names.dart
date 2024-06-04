@@ -76,4 +76,7 @@ class RoutePaths {
 
   static String staffManagementPath = "$settingsPath/staff-management";
   static String addStaffPath = "$staffManagementPath/add";
+
+  static String branchManagementPath = "$settingsPath/branch-management";
+  static String addBranchPath = "$branchManagementPath/add";
 }

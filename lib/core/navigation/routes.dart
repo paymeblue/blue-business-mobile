@@ -40,6 +40,7 @@ import 'package:blue_business/modules/bill_pages/electicity/pin/presentation/vie
 import 'package:blue_business/modules/bill_pages/electicity/review/presentation/view.dart';
 import 'package:blue_business/modules/bill_pages/electicity/success/presentation/view.dart';
 import 'package:blue_business/modules/bills/presentation/view.dart';
+import 'package:blue_business/modules/branch_management_pages/add/presentation/view.dart';
 import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.dart';
 import 'package:blue_business/modules/push_payment_pin/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/add/presentation/view.dart';
@@ -616,6 +617,18 @@ GoRouter router = GoRouter(
       path: RoutePaths.addStaffPath,
       builder: (context, state) {
         return const AddStaffView();
+      },
+    ),
+    // GoRoute(
+    //   path: RoutePaths.branchManagementPath,
+    //   builder: (context, state) {
+    //     return const StaffHomeView();
+    //   },
+    // ),
+    GoRoute(
+      path: RoutePaths.addBranchPath,
+      builder: (context, state) {
+        return const AddBranchView();
       },
     ),
     GoRoute(
