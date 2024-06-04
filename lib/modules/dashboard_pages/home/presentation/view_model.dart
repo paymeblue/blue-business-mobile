@@ -318,7 +318,7 @@ class HomeViewModel extends BaseViewModel {
             child: AppAssets.images.icons.branches.svg(),
           ),
           title: "Branches",
-          onTap: () {},
+          onTap: () => goToBranchManagementHome(context),
         ),
         TransactionOption(
           icon: Padding(
@@ -342,6 +342,10 @@ class HomeViewModel extends BaseViewModel {
 
   goToStaffManagementHome(BuildContext context) {
     context.go(RoutePaths.staffManagementPath);
+  }
+
+  goToBranchManagementHome(BuildContext context) {
+    context.go(RoutePaths.branchManagementPath);
   }
 
   goToReceiveMoney(BuildContext context) {

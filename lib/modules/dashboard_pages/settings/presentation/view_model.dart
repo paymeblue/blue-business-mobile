@@ -255,7 +255,9 @@ class SettingsViewModel extends BaseViewModel {
           icon: AppAssets.images.icons.staffManagement.svg(),
           title: "Manage business branch",
           subtitle: "Track and monitor your business branches.",
-          onTap: () {},
+          onTap: () {
+            context.go(RoutePaths.branchManagementPath);
+          },
         ),
         SettingsOption(
           icon: AppAssets.images.icons.staffManagement.svg(),

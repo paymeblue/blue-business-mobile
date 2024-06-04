@@ -1,6 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
-import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
