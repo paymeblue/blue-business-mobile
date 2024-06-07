@@ -3,21 +3,10 @@ import 'dart:io';
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
-import 'package:blue_business/core/io/api/settings_service/settings_service.dart';
 import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
-import 'package:blue_business/core/models/delete_account/delete/request/delete_request.dart';
-import 'package:blue_business/core/models/delete_account/delete/response/delete_response.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/reason/reason.dart';
-import 'package:blue_business/core/models/delete_account/get_reasons/response/get_reason_response.dart';
-import 'package:blue_business/core/models/kyc_status/response/kyc_status_response.dart';
-import 'package:blue_business/core/models/notification/response/notification_response.dart';
-import 'package:blue_business/core/models/upload_avatar/response/upload_avatar_response.dart';
-import 'package:blue_business/core/models/withdrawal_account/get/response/withdrawal_account_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -83,26 +72,7 @@ class SettingsViewModel extends BaseViewModel {
     }
   }
 
-  uploadImage(File file) async {
-    AppLoader.start();
-
-    UploadAvatarResponse resp = await SettingsService(
-            DioConfig.dio(locator<AppStateValues>().accessToken))
-        .uploadDisplayPicture(file)
-        .onError((error, stackTrace) => UploadAvatarResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
-
-    if (resp.status == "success") {
-      locator<AppStateValues>().currentUser = locator<AppStateValues>()
-          .currentUser!
-          .copyWith(displayPic: resp.data!.displayPic);
-      notifyListeners();
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    AppLoader.stop();
-  }
+  uploadImage(File file) async {}
 
   goToChangePassword(BuildContext context) {
     context.go(RoutePaths.changePasswordPath);
@@ -167,54 +137,9 @@ class SettingsViewModel extends BaseViewModel {
         )
       ];
 
-  getReasons(BuildContext context) async {
-    AppLoader.start();
+  getReasons(BuildContext context) async {}
 
-    GetReasonResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .getReasons()
-            .onError((error, stackTrace) {
-      return GetReasonResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    AppLoader.stop();
-    if (resp.status == "success") {
-      BlueDialog.reason(reasons: resp.data!).then((value) {
-        if (value != null) {
-          BlueDialog.deleteAccount(onDelete: () {
-            deleteAccount(value, context);
-          });
-        }
-      });
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-  }
-
-  deleteAccount(Reason reason, BuildContext context) async {
-    AppLoader.start();
-    DeleteRequest request = DeleteRequest(reasonId: reason.id.toString());
-
-    DeleteResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .deleteAccount(request)
-            .onError((error, stackTrace) {
-      return DeleteResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      if (context.mounted) {
-        if (context.mounted) context.go(RoutePaths.welcomePath);
-      }
-      StorageHelpers.deleteAll();
-      StorageValues.deleteLoginValues();
-      locator<AppStateValues>().clear();
-      AppNotification.success(message: resp.message);
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-    AppLoader.stop();
-  }
+  deleteAccount(Reason reason, BuildContext context) async {}
 
   startLogout(BuildContext context) async {
     BlueDialog.primary(
@@ -410,26 +335,7 @@ class SettingsViewModel extends BaseViewModel {
         ),
       ];
 
-  toggleNotifications(bool v) async {
-    AppLoader.start();
-
-    NotificationResponse resp = await SettingsService(
-            DioConfig.dio(locator<AppStateValues>().accessToken))
-        .toggleNotifications(v ? 1 : 0)
-        .onError((error, stackTrace) {
-      return NotificationResponse(
-          message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      notificationStatus = v;
-      AppNotification.success(message: resp.message);
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    AppLoader.stop();
-  }
+  toggleNotifications(bool v) async {}
 
   goToManageBeneficiaries(BuildContext context) {
     context.go(RoutePaths.manageBeneficiaryPath);
@@ -445,46 +351,9 @@ class SettingsViewModel extends BaseViewModel {
     await launchUrl(url, mode: LaunchMode.inAppWebView);
   }
 
-  getKyc() async {
-    AppLoader.start();
+  getKyc() async {}
 
-    KycStatusResponse resp =
-        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .getKycStatus()
-            .onError((error, stackTrace) {
-      return KycStatusResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      locator<AppStateValues>().kycLevel = resp.data!.kyc;
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    AppLoader.stop();
-  }
-
-  Future getWithdrawalAccount(BuildContext context) async {
-    AppLoader.start();
-
-    WithdrawalAccountResponse resp =
-        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .getWithdrawalAccount()
-            .onError((error, stackTrace) {
-      return WithdrawalAccountResponse(
-          message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      if (resp.data != null) {
-        locator<AppStateValues>().withdrawalAccount = resp.data;
-      }
-      if (context.mounted) goToWithdrawalBank(context);
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-    AppLoader.stop();
-  }
+  Future getWithdrawalAccount(BuildContext context) async {}
 
   goToPaymentLinkHistory(BuildContext context) {
     context.go(RoutePaths.paymentLinkPath);

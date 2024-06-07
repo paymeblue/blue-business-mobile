@@ -1,22 +1,14 @@
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
-import 'package:blue_business/core/models/login/request/login_request.dart';
-import 'package:blue_business/core/models/login/response/login_response.dart';
 import 'package:blue_business/core/models/signup_profile/request/signup_profile_request.dart';
-import 'package:blue_business/core/models/signup_profile/response/signup_profile_response.dart';
 import 'package:blue_business/core/models/token/token.dart';
 import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
-import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
-import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,56 +38,6 @@ class PinViewModel extends BaseViewModel {
   set request(SignupProfileRequest r) {
     _request = r;
     notifyListeners();
-  }
-
-  setupProfile(BuildContext context) async {
-    request = request.copyWith(passcode: pin, userId: id);
-    AppLoader.start();
-    SignupProfileResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .setupProfile(
-      request,
-    )
-            .onError((error, stackTrace) {
-      return SignupProfileResponse(
-          message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      String phone = StorageValues.username;
-      StorageValues.name = request.firstName;
-      await StorageHelpers.deleteAll();
-      locator<AppStateValues>().clear();
-      if (context.mounted) await login(context, phone);
-    } else {
-      AppLoader.stop();
-      AppNotification.error(message: resp.message);
-    }
-  }
-
-  login(BuildContext context, String phone) async {
-    LoginRequest loginRequest = LoginRequest(
-      phone: phone,
-      password: request.password,
-      fcmToken: locator<AppStateValues>().fcmToken,
-    );
-
-    LoginResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .login(loginRequest)
-            .onError((error, stackTrace) {
-      return LoginResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    AppLoader.stop();
-    if (resp.status == "success") {
-      await setNameInStorage(resp.data!.user.firstName, StorageValues.username);
-      saveTokens(resp.data!.token);
-      locator<AppStateValues>().currentUser = resp.data!.user;
-      if (context.mounted) await checkBiometric(context, resp.data!.user);
-    } else {
-      if (context.mounted) context.go(RoutePaths.loginPath);
-    }
   }
 
   checkBiometric(BuildContext context, User user) async {

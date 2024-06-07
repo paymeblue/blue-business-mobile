@@ -155,6 +155,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get electricity =>
       const SvgGenImage('assets/images/icons/electricity.svg');
 
+  /// File path: assets/images/icons/empty_branch.svg
+  SvgGenImage get emptyBranch =>
+      const SvgGenImage('assets/images/icons/empty_branch.svg');
+
   /// File path: assets/images/icons/empty_staff.png
   AssetGenImage get emptyStaff =>
       const AssetGenImage('assets/images/icons/empty_staff.png');
@@ -350,6 +354,7 @@ class $AssetsImagesIconsGen {
         downloadNew,
         editInfo,
         electricity,
+        emptyBranch,
         emptyStaff,
         error,
         export,

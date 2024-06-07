@@ -1,15 +1,8 @@
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
-import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
-import 'package:blue_business/core/models/reset/password/request/reset_password_request.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
-import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/error_handler.dart';
-import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -61,33 +54,7 @@ class AddNewPasswordViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  resetPassword(BuildContext context) async {
-    AppLoader.start();
-
-    ResetPasswordRequest request = ResetPasswordRequest(
-      phone: phone,
-      password: passwordController.text,
-      passwordConfirmation: confirmPasswordController.text,
-    );
-    SendNewPhoneResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .resetPassword(request)
-            .onError((error, stackTrace) => SendNewPhoneResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
-
-    if (resp.status == "success") {
-      AppNotification.success(message: resp.message);
-      Future.delayed(const Duration(milliseconds: 3500), () {
-        if (context.mounted) {
-          goToNext(context);
-        }
-      });
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    AppLoader.stop();
-  }
+  resetPassword(BuildContext context) async {}
 
   goToNext(BuildContext context) {
     context.go(RoutePaths.loginPath);

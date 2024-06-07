@@ -1,28 +1,16 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
-import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
-import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
-import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
-import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
-import 'package:blue_business/core/models/kyc_status/response/kyc_status_response.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
-import 'package:blue_business/core/models/todo/response/todo_response.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
-import 'package:blue_business/core/models/topup_account/response/topup_response.dart';
-import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
-import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
-import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/modules/dashboard_pages/home/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
-import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:blue_business/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -101,41 +89,9 @@ class HomeViewModel extends BaseViewModel {
     getTodos();
   }
 
-  getWalletBalance() async {
-    isLoading = true;
-    WalletResponse resp =
-        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .getWalletBalance()
-            .onError((error, stackTrace) {
-      return WalletResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
+  getWalletBalance() async {}
 
-    if (resp.status == "success") {
-      locator<AppStateValues>().wallet = resp.data!;
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-    isLoading = false;
-  }
-
-  getTodos() async {
-    isTodoLoading = true;
-
-    TodoResponse resp =
-        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .getTodos()
-            .onError((error, stackTrace) {
-      return TodoResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      locator<AppStateValues>().todos = resp.data!;
-      locator<AppStateValues>().loadedTodo = true;
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-    isTodoLoading = false;
-  }
+  getTodos() async {}
 
   onTapTodo(TodoOption todo, BuildContext context) {
     if (todo.route != null) {
@@ -180,22 +136,7 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getAnalytics() async {
-    salesLoading = true;
-    AnalyticsResponse response = await InsightsService(
-            DioConfig.dio(locator<AppStateValues>().accessToken))
-        .getAnalytics("weekly")
-        .onError((error, stackTrace) =>
-            AnalyticsResponse(message: AppErrorHandler.getErrorMessage(error)));
-
-    if (response.status == "success") {
-      analyticsData = response.data;
-      calculateIncrease();
-    } else {
-      AppNotification.error(message: response.message);
-    }
-    salesLoading = false;
-  }
+  getAnalytics() async {}
 
   calculateIncrease() {
     double currentMobile = double.parse(analyticsData?.mobile.current ?? "0.0");
@@ -236,58 +177,14 @@ class HomeViewModel extends BaseViewModel {
       PagingController<int, TransactionHistory>(firstPageKey: 1);
 
   getTransactions(int page) async {
-    try {
-      TransactionResponse resp = await TransactionService(
-              DioConfig.dio(locator<AppStateValues>().accessToken))
-          .getTransactions(page, limit);
-      if (resp.status == "success") {
-        List<TransactionHistory> t = resp.data!.data;
-
-        transactionController.appendLastPage(t);
-      } else {
-        transactionController.error = resp.message;
-      }
-    } catch (e) {
+    try {} catch (e) {
       transactionController.error = AppErrorHandler.getErrorMessage(e);
     }
   }
 
-  getKyc() async {
-    isKycLoading = true;
+  getKyc() async {}
 
-    KycStatusResponse resp =
-        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .getKycStatus()
-            .onError((error, stackTrace) {
-      return KycStatusResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      locator<AppStateValues>().kycLevel = resp.data!.kyc;
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    isKycLoading = false;
-  }
-
-  getTopupAccount() async {
-    AppLoader.start();
-    TopupResponse resp =
-        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .getTopupAccount()
-            .onError((error, stackTrace) {
-      return TopupResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      locator<AppStateValues>().account = resp.data!;
-      BlueBottomSheet.topup();
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-    AppLoader.stop();
-  }
+  getTopupAccount() async {}
 
   showTopupModal() {
     if (locator<AppStateValues>().account != null) {

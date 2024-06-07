@@ -124,11 +124,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                         ],
                       ),
                     ),
-                    AppButton.primary(
-                        title: "Share Receipt",
-                        onTap: () {
-                          model.getTransactionReceipt(widget.detail);
-                        }),
+                    AppButton.primary(title: "Share Receipt", onTap: () {}),
                     35.verticalGap,
                   ],
                 ),

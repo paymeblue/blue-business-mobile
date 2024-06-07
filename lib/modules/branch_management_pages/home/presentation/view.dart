@@ -1,7 +1,9 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
+import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 
 import 'view_model.dart';
@@ -36,7 +38,10 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                   tabs: model.types,
                   onChanged: model.onTypeChanged,
                 ),
-                25.verticalGap,
+                15.verticalGap,
+                BlueTextField.search(hint: "Search branches"),
+                10.verticalGap,
+                AppAssets.images.icons.emptyBranch.svg(),
               ],
             ),
           ),

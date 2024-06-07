@@ -46,7 +46,7 @@ class _AddWithdrawalDetailsViewState extends State<AddWithdrawalDetailsView> {
                 AppButton.primary(
                   title: "Link Account",
                   isEnabled: model.isActive(),
-                  onTap: model.setAccount,
+                  onTap: () {},
                 )
               ],
             ),

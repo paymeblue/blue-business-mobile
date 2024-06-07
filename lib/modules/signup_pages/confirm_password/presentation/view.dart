@@ -45,9 +45,7 @@ class _ConfirmPasswordViewState extends State<ConfirmPasswordView> {
             AppButton.primary(
               title: "Continue",
               isEnabled: model.passwordController.text.isNotEmpty,
-              onTap: () {
-                model.login(context, widget.phone);
-              },
+              onTap: () {},
             )
           ],
         );

@@ -47,9 +47,7 @@ class _ConfirmTransactionPinViewState extends State<ConfirmTransactionPinView> {
             const Spacer(),
             numberPad(model),
             55.verticalGap,
-            forgotPinButton(onTap: () {
-              model.getSecurityQuestion(context);
-            }),
+            forgotPinButton(onTap: () {}),
             62.verticalGap,
             confirmButton(
               onTap: () {

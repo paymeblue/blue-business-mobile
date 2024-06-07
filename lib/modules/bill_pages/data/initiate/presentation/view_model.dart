@@ -1,16 +1,8 @@
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/io/api/bills_service/bills_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/bills/data/verify/data/verify_data_data.dart';
-import 'package:blue_business/core/models/bills/data/verify/request/verify_data_request.dart';
-import 'package:blue_business/core/models/bills/data/verify/response/verify_data_response.dart';
 import 'package:blue_business/core/models/bills/get_packages/packages/packages.dart';
-import 'package:blue_business/core/models/bills/get_packages/response/get_packages_response.dart';
 import 'package:blue_business/core/models/bills/get_providers/providers/providers.dart';
-import 'package:blue_business/core/models/bills/get_providers/response/get_providers_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
-import 'package:blue_business/core/utils/app_loader.dart';
-import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -22,8 +14,6 @@ class InitiateDataViewModel extends BaseViewModel {
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
-
-    getProviders();
   }
 
   goBack(BuildContext context) {
@@ -57,9 +47,7 @@ class InitiateDataViewModel extends BaseViewModel {
     selectedPackage = null;
     if (item == null) {
       AppNotification.error(message: "Please select a provider");
-    } else {
-      getPackages();
-    }
+    } else {}
   }
 
   List<BillProvider> _providers = [];
@@ -74,23 +62,6 @@ class InitiateDataViewModel extends BaseViewModel {
   set selectedProvider(BillProvider? p) {
     _provider = p;
     notifyListeners();
-  }
-
-  getProviders() async {
-    gettingProviders = true;
-
-    GetProvidersResponse resp = await BillsService(DioConfig.dio())
-        .getProviders("data")
-        .onError((error, stackTrace) => GetProvidersResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
-
-    if (resp.status == "success") {
-      providers = resp.data ?? [];
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    gettingProviders = false;
   }
 
   onBillPackageChanged(BillPackage? item) {
@@ -111,24 +82,6 @@ class InitiateDataViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getPackages() async {
-    gettingPackages = true;
-
-    GetPackagesResponse resp = await BillsService(DioConfig.dio())
-        .getPackages(
-            providerNAme: selectedProvider!.name.toLowerCase(), service: "data")
-        .onError((error, stackTrace) => GetPackagesResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
-
-    if (resp.status == "success") {
-      packages = resp.data ?? [];
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    gettingPackages = false;
-  }
-
   bool isActive() {
     return phoneController.text.length >= 10 && selectedPackage != null;
   }
@@ -138,27 +91,6 @@ class InitiateDataViewModel extends BaseViewModel {
   set data(VerifyDataData? d) {
     _data = d;
     notifyListeners();
-  }
-
-  verfyPackage(BuildContext context) async {
-    AppLoader.start();
-    VerifyDataRequest request = VerifyDataRequest(
-      receiver: phoneController.text,
-      packageId: selectedPackage!.id.toString(),
-    );
-
-    VerifyDataResponse response = await BillsService(DioConfig.dio())
-        .verifyDataInfo(request)
-        .onError((error, stackTrace) => VerifyDataResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
-
-    if (response.status == "success") {
-      data = response.data;
-      if (context.mounted) goToNext(context);
-    } else {
-      AppNotification.error(message: response.message);
-    }
-    AppLoader.stop();
   }
 
   goToNext(BuildContext context) {

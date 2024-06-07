@@ -1,8 +1,4 @@
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
-import 'package:blue_business/core/models/topup_account/response/topup_response.dart';
-import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -31,22 +27,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     }
   }
 
-  getWalletBalance() async {
-    isWalletLoading = true;
-    WalletResponse resp =
-        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .getWalletBalance()
-            .onError((error, stackTrace) {
-      return WalletResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      locator<AppStateValues>().wallet = resp.data!;
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-    isWalletLoading = false;
-  }
+  getWalletBalance() async {}
 
   goBack(BuildContext context) {
     context.go(RoutePaths.homePath);
@@ -88,17 +69,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  getTopupAccount() async {
-    isAccountLoading = true;
-    TopupResponse resp =
-        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .getTopupAccount();
-
-    if (resp.status == "success") {
-      locator<AppStateValues>().account = resp.data!;
-    } else {}
-    isAccountLoading = false;
-  }
+  getTopupAccount() async {}
 
   copy(String v) {
     Clipboard.setData(ClipboardData(text: v)).then((value) {

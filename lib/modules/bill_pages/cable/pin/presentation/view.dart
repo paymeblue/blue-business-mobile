@@ -47,9 +47,7 @@ class _ConfirmCablePinViewState extends State<ConfirmCablePinView> {
                 const Spacer(),
                 numberPad(model),
                 55.verticalGap,
-                forgotPinButton(onTap: () {
-                  model.getSecurityQuestion(context);
-                }),
+                forgotPinButton(onTap: () {}),
                 62.verticalGap,
                 confirmButton(
                   onTap: () {

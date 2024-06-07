@@ -43,9 +43,7 @@ class _AddSizeViewState extends State<AddSizeView> {
               AppButton.primary(
                 title: "Continue",
                 isEnabled: model.selectedSize.isNotEmpty,
-                onTap: () {
-                  model.sendSize(context, widget.id);
-                },
+                onTap: () {},
               )
             ],
           );

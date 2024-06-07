@@ -41,16 +41,14 @@ class _VerifyRegistrationOtpViewState extends State<VerifyRegistrationOtpView> {
                     ? "Resend code"
                     : "Resend in ${model.timeString()}",
                 model.canResend,
-                model.resendOtp,
+                () {},
               ),
             ),
             const Spacer(),
             AppButton.primary(
               title: "Verify phone number",
               isEnabled: model.canContinue,
-              onTap: () {
-                model.verifyOtp(context);
-              },
+              onTap: () {},
             ),
           ],
         );

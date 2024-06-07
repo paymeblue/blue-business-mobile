@@ -54,9 +54,7 @@ class _VendDataSuccessViewState extends State<VendDataSuccessView> {
                     successMessage(),
                     const Spacer(),
                     shareReceiptButton(
-                      onTap: () {
-                        model.getTransactionDetails(widget.data);
-                      },
+                      onTap: () {},
                     ),
                     10.verticalGap,
                     doneButton(

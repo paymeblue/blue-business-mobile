@@ -1,23 +1,17 @@
 import 'dart:developer';
 
-import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
-import 'package:blue_business/core/models/login/request/login_request.dart';
-import 'package:blue_business/core/models/login/response/login_response.dart';
 import 'package:blue_business/core/models/token/token.dart';
 import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
-import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/biometics.dart';
 import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
@@ -123,36 +117,7 @@ class LoginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  login(BuildContext context, {VoidCallback? onComplete}) async {
-    AppLoader.start();
-    String p = formatPhone();
-
-    LoginRequest request = LoginRequest(
-      phone: p,
-      password: passwordController.text,
-      fcmToken: locator<AppStateValues>().fcmToken,
-    );
-
-    LoginResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .login(request)
-            .onError((error, stackTrace) {
-      return LoginResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    AppLoader.stop();
-    if (resp.status == "success") {
-      await setNameInStorage(resp.data!.user.firstName, p);
-      saveTokens(resp.data!.token);
-      locator<AppStateValues>().currentUser = resp.data!.user;
-
-      if (context.mounted) {
-        await checkBiometric(context, resp.data!.user, onComplete: onComplete);
-      }
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-  }
+  login(BuildContext context, {VoidCallback? onComplete}) async {}
 
   checkBiometric(BuildContext context, User user,
       {VoidCallback? onComplete}) async {

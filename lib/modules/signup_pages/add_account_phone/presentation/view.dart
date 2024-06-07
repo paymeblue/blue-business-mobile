@@ -43,9 +43,7 @@ class _EnterAccountPhoneViewState extends State<EnterAccountPhoneView> {
               title: "Send OTP",
               isEnabled: model.phoneController.text.isNotEmpty &&
                   model.phoneController.text.length >= 10,
-              onTap: () {
-                model.signup(context);
-              },
+              onTap: () {},
             ),
           ],
         );

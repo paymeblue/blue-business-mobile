@@ -46,9 +46,7 @@ class _AddBusinessNameViewState extends State<AddBusinessNameView> {
             AppButton.primary(
               title: "Continue",
               isEnabled: model.isActive(),
-              onTap: () {
-                model.sendName(context);
-              },
+              onTap: () {},
             ),
           ],
         );

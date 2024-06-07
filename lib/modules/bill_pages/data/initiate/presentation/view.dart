@@ -74,9 +74,7 @@ class _InitiateDataViewState extends State<InitiateDataView> {
                 AppButton.primary(
                   title: "Continue",
                   isEnabled: model.isActive(),
-                  onTap: () {
-                    model.verfyPackage(context);
-                  },
+                  onTap: () {},
                 ),
                 10.verticalGap,
               ],

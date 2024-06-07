@@ -43,11 +43,7 @@ class _PinViewState extends State<PinView> {
                 const Spacer(),
                 numberPad(model),
                 120.verticalGap,
-                registerButton(
-                    onTap: () {
-                      model.setupProfile(context);
-                    },
-                    isActive: model.pin.length >= 4),
+                registerButton(onTap: () {}, isActive: model.pin.length >= 4),
               ],
             ),
           ),
