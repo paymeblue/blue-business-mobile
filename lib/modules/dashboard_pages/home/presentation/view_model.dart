@@ -33,9 +33,9 @@ class HomeViewModel extends BaseViewModel {
       getTodos();
     }
     getAnalytics();
-    transactionController.addPageRequestListener((pageKey) {
-      getTransactions(pageKey);
-    });
+    // transactionController.addPageRequestListener((pageKey) {
+    //   getTransactions(pageKey);
+    // });
   }
 
   copyWalletId() {
@@ -71,7 +71,7 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  bool _loading = true;
+  bool _loading = false;
   bool get isLoading => _loading;
   set isLoading(bool v) {
     _loading = v;

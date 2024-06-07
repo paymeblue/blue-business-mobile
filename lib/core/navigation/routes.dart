@@ -22,7 +22,6 @@ import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/navigation/screens.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
-import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view.dart';
 import 'package:blue_business/modules/bill_pages/airtime/pin/presentation/view.dart';
 import 'package:blue_business/modules/bill_pages/airtime/review/presentation/view.dart';
@@ -69,11 +68,11 @@ GoRouter router = GoRouter(
     );
   },
   redirect: (context, state) {
-    AppStateValues stateValues = locator<AppStateValues>();
-    if (stateValues.currentUser == null &&
-        state.matchedLocation.contains("/dash")) {
-      return RoutePaths.loginPath;
-    }
+    // AppStateValues stateValues = locator<AppStateValues>();
+    // if (stateValues.currentUser == null &&
+    //     state.matchedLocation.contains("/dash")) {
+    //   return RoutePaths.loginPath;
+    // }
     return state.matchedLocation;
   },
   initialLocation: "/",

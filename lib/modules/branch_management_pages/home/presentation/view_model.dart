@@ -29,4 +29,8 @@ class BranchHomeViewModel extends BaseViewModel {
   onTypeChanged(String t) {
     selectedType = t;
   }
+
+  goToAddBranch(BuildContext context) {
+    context.push(RoutePaths.addBranchPath);
+  }
 }

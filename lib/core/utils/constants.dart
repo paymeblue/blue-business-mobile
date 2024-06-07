@@ -1,4 +1,5 @@
 import 'package:blue_business/core/io/api/timed_refresh.dart';
+import 'package:blue_business/core/models/business_profile/business_profile.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/topup_account/topup_account.dart';
 import 'package:blue_business/core/models/user/user.dart';
@@ -8,10 +9,10 @@ import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 
 class AppStateValues extends ChangeNotifier {
-  String _refreshToken = "";
+  String _refreshToken = "ABCDE";
   String _fcmToken = "";
   String _narration = "";
-  String _recoveryCode = "";
+  String _recoveryCode = "123DF1233";
   String _path = RoutePaths.homePath;
   bool _loadedTodo = false;
   String _kycLevel = "basic";
@@ -22,10 +23,26 @@ class AppStateValues extends ChangeNotifier {
   String _token = "";
 
   List<TodoOption> _todos = [];
-  User? _currentUser;
-  Wallet? _wallet;
-  TopupAccount? _account;
-  WithdrawalAccount? _withdrawalAccount;
+  User? _currentUser = const User(
+      id: 0,
+      firstName: "firstName",
+      lastName: "lastName",
+      phone: "2348123456789",
+      businessProfile: BusinessProfile(id: 2, level: 3, name: "Path4Her.org"));
+  Wallet? _wallet =
+      const Wallet(id: 1, balance: "15000.00", walletCode: "ABCDE");
+  TopupAccount? _account = const TopupAccount(
+      id: 2,
+      accountName: "name",
+      bankName: "wema",
+      accountNumber: "_accountNumber");
+  WithdrawalAccount? _withdrawalAccount = WithdrawalAccount(
+      id: 2,
+      bankId: 2,
+      bankName: "bankName",
+      accountName: "accountName",
+      accountNumber: "accountNumber",
+      createdAt: DateTime.now().toIso8601String());
   Object? _extra;
 
   String get refreshToken => _refreshToken;

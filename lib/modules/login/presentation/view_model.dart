@@ -117,7 +117,9 @@ class LoginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  login(BuildContext context, {VoidCallback? onComplete}) async {}
+  login(BuildContext context, {VoidCallback? onComplete}) async {
+    goToNext(context);
+  }
 
   checkBiometric(BuildContext context, User user,
       {VoidCallback? onComplete}) async {
@@ -126,23 +128,23 @@ class LoginViewModel extends BaseViewModel {
         onContinue: () async {
           await allowBiometrics();
           if (context.mounted) {
-            onComplete ?? goToNext(context, user);
+            onComplete ?? goToNext(context);
           }
         },
         onCancel: () async {
           await denyBiometrics();
           if (context.mounted) {
-            onComplete ?? goToNext(context, user);
+            onComplete ?? goToNext(context);
           }
         },
       );
     } else if (StorageValues.enableBiometrics == "true") {
       await allowBiometrics();
       if (context.mounted) {
-        onComplete ?? goToNext(context, user);
+        onComplete ?? goToNext(context);
       }
     } else if (context.mounted) {
-      onComplete ?? goToNext(context, user);
+      onComplete ?? goToNext(context);
     }
   }
 
@@ -192,16 +194,8 @@ class LoginViewModel extends BaseViewModel {
     return selectedCountry!.dialCode + number;
   }
 
-  goToNext(BuildContext context, User user) {
-    if (user.businessProfile == null || user.businessProfile!.level == 0) {
-      context.go(RoutePaths.registerSuccessPath);
-    } else if (user.businessProfile!.level == 1) {
-      context.go("${RoutePaths.businessSizePath}/${user.businessProfile!.id}");
-    } else if (user.businessProfile!.level == 2) {
-      context.go("${RoutePaths.businessLocation}/${user.businessProfile!.id}");
-    } else {
-      context.go(RoutePaths.homePath);
-    }
+  goToNext(BuildContext context) {
+    context.go(RoutePaths.homePath);
   }
 
   deleteStorageItems() async {

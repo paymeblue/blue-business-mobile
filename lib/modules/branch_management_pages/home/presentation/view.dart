@@ -1,7 +1,9 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
+import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
+import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
@@ -41,12 +43,49 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                 15.verticalGap,
                 BlueTextField.search(hint: "Search branches"),
                 10.verticalGap,
-                AppAssets.images.icons.emptyBranch.svg(),
+                Expanded(child: emptyBody(model)),
               ],
             ),
           ),
         );
       },
+    );
+  }
+
+  Widget emptyBody(BranchHomeViewModel model) {
+    return SizedBox(
+      width: model.size.width,
+      child: Column(
+        children: [
+          AppAssets.images.icons.emptyBranch.svg(),
+          Text(
+            "No Linked Branches",
+            style: AppTextStyles.midHeader,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 45),
+            child: Text(
+              "Add your branch now to start tracking revenue and performance stats.",
+              style: AppTextStyles.subHeader
+                  .copyWith(height: 1, fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          35.verticalGap,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 45),
+            child: AppButton.primaryWithIcon(
+              icon: const Icon(
+                Icons.add,
+              ),
+              title: "Add new branch",
+              onTap: () {
+                model.goToAddBranch(context);
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

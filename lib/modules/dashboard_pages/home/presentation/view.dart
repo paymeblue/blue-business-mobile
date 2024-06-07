@@ -513,8 +513,7 @@ class _HomeViewState extends State<HomeView> {
                     children: [
                       model.isKycLoading
                           ? walletTypeShimmer()
-                          : walletTypeContainer(
-                              kycLevel: locator<AppStateValues>().kycLevel),
+                          : walletTypeContainer(kycLevel: "basic"),
                       AppAssets.images.launcher.image(height: 23, width: 23),
                     ],
                   ),
@@ -819,9 +818,8 @@ class _HomeViewState extends State<HomeView> {
       ),
       child: Row(
         children: [
-          BlueAvatar(
+          const BlueAvatar(
             radius: 20,
-            imageUrl: locator<AppStateValues>().currentUser!.displayPic,
           ),
           12.horizontalGap,
           Expanded(
@@ -862,7 +860,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         4.verticalGap,
         Text(
-          locator<AppStateValues>().currentUser!.businessProfile!.name,
+          "Path4Her.org",
           style: AppTextStyles.header.copyWith(fontSize: 18.5),
         ),
       ],
