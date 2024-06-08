@@ -1,5 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
+import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
@@ -43,12 +45,63 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                 15.verticalGap,
                 BlueTextField.search(hint: "Search branches"),
                 10.verticalGap,
-                Expanded(child: emptyBody(model)),
+                Expanded(child: branchTile(model)),
               ],
             ),
           ),
         );
       },
+    );
+  }
+
+  Widget branchTile(BranchHomeViewModel model) {
+    return Container(
+      height: 130,
+      width: model.size.width,
+      padding: const EdgeInsets.symmetric(horizontal: 14),
+      decoration: BoxDecoration(
+          border: Border.all(color: AppColors.bgGrey),
+          borderRadius: BorderRadius.circular(5)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "KUBWA ABUJA BRANCH",
+            style:
+                AppTextStyles.subHeader.copyWith(fontWeight: FontWeight.w400),
+          ),
+          20.verticalGap,
+          Text(
+            "Total Revenue",
+            style: AppTextStyles.smallText.copyWith(
+                color: AppColors.bodyTextColor, fontWeight: FontWeight.w500),
+          ),
+          Text(
+            "${nairaSymbol()}30,000",
+            style: AppTextStyles.header,
+          ),
+          12.verticalGap,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: model.size.width / 2.5,
+                height: 40,
+                child: AppButton.primary(
+                  title: "View Insights",
+                  onTap: () {},
+                ),
+              ),
+              SizedBox(
+                width: model.size.width / 2.5,
+                height: 40,
+                child:
+                    AppButton.ghostPrimary(title: "Edit branch", onTap: () {}),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 

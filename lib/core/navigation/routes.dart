@@ -102,134 +102,6 @@ GoRouter router = GoRouter(
       },
     ),
     ShellRoute(
-      navigatorKey: locator<NavigationService>().shellKey,
-      builder: (context, state, child) {
-        int index = 0;
-        if (state.matchedLocation.startsWith(RoutePaths.registerOtpPath)) {
-          index = 1;
-        } else if (state.matchedLocation
-            .endsWith(RoutePaths.addPersonalInfoPath)) {
-          index = 2;
-        } else if (state.matchedLocation
-                .endsWith(RoutePaths.createPasswordPath) ||
-            state.matchedLocation.startsWith(
-              RoutePaths.confirmPasswordPath,
-            )) {
-          index = 3;
-        }
-        return SignupShellView(
-          currentIndex: index,
-          child: child,
-        );
-      },
-      routes: [
-        GoRoute(
-          path: RoutePaths.addAccountPhonePath,
-          name: "Add Account Phone Number",
-          builder: (context, state) {
-            log(state.fullPath.toString());
-            return const EnterAccountPhoneView();
-          },
-        ),
-        GoRoute(
-          path: "${RoutePaths.registerOtpPath}/:phone",
-          name: "Verify Registration Otp",
-          builder: (context, state) {
-            String phone = state.pathParameters["phone"] as String;
-            log(state.fullPath.toString());
-            return VerifyRegistrationOtpView(
-              phone: phone,
-            );
-          },
-        ),
-        GoRoute(
-          path: "${RoutePaths.confirmPasswordPath}/:phone",
-          builder: (context, state) {
-            String phone = state.pathParameters["phone"] as String;
-            return ConfirmPasswordView(
-              phone: phone,
-            );
-          },
-        ),
-        GoRoute(
-          path: "/:id${RoutePaths.addPersonalInfoPath}",
-          name: "Add Personal Info",
-          builder: (context, state) {
-            log(state.fullPath.toString());
-            return AddPersonalInfoView(
-              id: state.pathParameters["id"].toString(),
-            );
-          },
-        ),
-        GoRoute(
-          path: "/:id${RoutePaths.createPasswordPath}",
-          name: "Create Password",
-          builder: (context, state) {
-            log(state.fullPath.toString());
-            SignupProfileRequest r = state.extra! as SignupProfileRequest;
-            return AddPasswordView(
-              id: state.pathParameters["id"].toString(),
-              request: r,
-            );
-          },
-        ),
-      ],
-    ),
-    ShellRoute(
-      navigatorKey: locator<NavigationService>().shellKey,
-      builder: (context, state, child) {
-        int index = 0;
-        if (state.matchedLocation.startsWith(RoutePaths.businessSizePath)) {
-          index = 1;
-        } else if (state.matchedLocation
-            .startsWith(RoutePaths.businessLocation)) {
-          index = 2;
-        }
-        return SetupBusinessShellView(
-          currentIndex: index,
-          child: child,
-        );
-      },
-      routes: [
-        GoRoute(
-          path: RoutePaths.businessNamePath,
-          name: "Add Business Name",
-          builder: (context, state) {
-            log(state.fullPath.toString());
-            return const AddBusinessNameView();
-          },
-        ),
-        GoRoute(
-          path: "${RoutePaths.businessSizePath}/:id",
-          name: "Add Business Size and Branding",
-          builder: (context, state) {
-            String id = state.pathParameters["id"] as String;
-            log(state.matchedLocation);
-            return AddSizeView(
-              id: int.parse(id),
-            );
-          },
-        ),
-        GoRoute(
-          path: "${RoutePaths.businessLocation}/:id",
-          name: "Add Business Location",
-          builder: (context, state) {
-            String id = state.pathParameters["id"] as String;
-            log(state.matchedLocation);
-            return AddLocationView(
-              id: int.parse(id),
-            );
-          },
-        ),
-      ],
-    ),
-    GoRoute(
-      path: RoutePaths.registerSuccessPath,
-      builder: (context, state) {
-        return const RegisterSuccessView();
-      },
-    ),
-    ShellRoute(
         builder: (context, state, child) {
           return PhoneRecoveryShellView(
             child: child,
@@ -745,6 +617,48 @@ List<GoRoute> airtimeRoutes = [
     },
   )
 ];
+
+ShellRoute signupShellRoute = ShellRoute(
+  navigatorKey: locator<NavigationService>().shellKey,
+  builder: (context, state, child) {
+    int index = 0;
+    // if (state.matchedLocation.startsWith(RoutePaths.registerOtpPath)) {
+    //   index = 1;
+    // } else if (state.matchedLocation.endsWith(RoutePaths.addPersonalInfoPath)) {
+    //   index = 2;
+    // } else if (state.matchedLocation.endsWith(RoutePaths.createPasswordPath) ||
+    //     state.matchedLocation.startsWith(
+    //       RoutePaths.confirmPasswordPath,
+    //     )) {
+    //   index = 3;
+    // }
+    return SignupShellView(
+      currentIndex: index,
+      child: child,
+    );
+  },
+  routes: [
+    GoRoute(
+      path: RoutePaths.addAccountPhonePath,
+      name: "Add Account Phone Number",
+      builder: (context, state) {
+        log(state.fullPath.toString());
+        return const EnterAccountPhoneView();
+      },
+    ),
+    GoRoute(
+      path: "${RoutePaths.registerOtpPath}/:phone",
+      name: "Verify Registration Otp",
+      builder: (context, state) {
+        String phone = state.pathParameters["phone"] as String;
+        log(state.fullPath.toString());
+        return VerifyRegistrationOtpView(
+          phone: phone,
+        );
+      },
+    ),
+  ],
+);
 
 List<GoRoute> dataRoutes = [
   GoRoute(

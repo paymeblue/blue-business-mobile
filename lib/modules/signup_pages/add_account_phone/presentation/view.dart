@@ -4,6 +4,7 @@ import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
+import 'package:blue_business/widgets/password_validation/password_validation.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,24 @@ class _EnterAccountPhoneViewState extends State<EnterAccountPhoneView> {
                   ...titleAndSubtitle(),
                   50.verticalGap,
                   ...phoneFieldAndGap(model),
+                  BlueTextField.password(
+                    title: "Choose a password",
+                    controller: model.passwordController,
+                    onChanged: model.onChanged,
+                  ),
+                  20.verticalGap,
+                  ...List.generate(
+                    model.conditions().length,
+                    (i) => PasswordCheckOption(
+                        isComplete: model.conditions()[i]["isComplete"],
+                        condition: model.conditions()[i]["condition"]),
+                  ),
+                  20.verticalGap,
+                  BlueTextField.password(
+                    title: "Confirm password",
+                    controller: model.confirmPasswordController,
+                    onChanged: model.onChanged,
+                  ),
                   15.verticalGap,
                   subtext(() {
                     model.goToLogin(context);
@@ -41,8 +60,7 @@ class _EnterAccountPhoneViewState extends State<EnterAccountPhoneView> {
             ),
             AppButton.primary(
               title: "Send OTP",
-              isEnabled: model.phoneController.text.isNotEmpty &&
-                  model.phoneController.text.length >= 10,
+              isEnabled: model.isActive(),
               onTap: () {},
             ),
           ],

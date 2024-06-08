@@ -24,6 +24,42 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
   TextEditingController searchController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
+  RegExp letters = RegExp((r'[a-zA-Z]+?').toString());
+  RegExp numbers = RegExp((r'[0-9]+?').toString());
+  RegExp special = RegExp((r"[.,_@\\+$!#%^&*\-=?:;']+?").toString());
+
+  List<Map<String, dynamic>> conditions() => [
+        {
+          "isComplete": passwordController.text.length >= 9,
+          "condition": "Must contain 9 characters"
+        },
+        {
+          "isComplete": letters.hasMatch(passwordController.text),
+          "condition": "Must contain a letter"
+        },
+        {
+          "isComplete": special.hasMatch(passwordController.text),
+          "condition": "Must contain a symbol"
+        },
+        {
+          "isComplete": numbers.hasMatch(passwordController.text),
+          "condition": "Must contain a number"
+        },
+      ];
+
+  bool isActive() {
+    return phoneController.text.isNotEmpty &&
+        phoneController.text.length >= 10 &&
+        numbers.hasMatch(passwordController.text) &&
+        special.hasMatch(passwordController.text) &&
+        letters.hasMatch(passwordController.text) &&
+        passwordController.text.length >= 9 &&
+        passwordController.text == confirmPasswordController.text;
+  }
+
   onChanged(String? v) {
     notifyListeners();
   }
@@ -40,13 +76,13 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, String phone, SignupUserData user) {
-    if (user.level == 1) {
-      context.go("${RoutePaths.registerOtpPath}/$phone", extra: user);
-    } else if (user.level == 2) {
-      context.go("/${user.id}${RoutePaths.addPersonalInfoPath}");
-    } else if (user.level == 3) {
-      context.go("${RoutePaths.confirmPasswordPath}/$phone");
-    }
+    // if (user.level == 1) {
+    //   context.go("${RoutePaths.registerOtpPath}/$phone", extra: user);
+    // } else if (user.level == 2) {
+    //   context.go("/${user.id}${RoutePaths.addPersonalInfoPath}");
+    // } else if (user.level == 3) {
+    //   context.go("${RoutePaths.confirmPasswordPath}/$phone");
+    // }
   }
 
   String formatPhone() {

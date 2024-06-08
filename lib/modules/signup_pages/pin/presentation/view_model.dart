@@ -5,12 +5,10 @@ import 'package:blue_business/core/models/signup_profile/request/signup_profile_
 import 'package:blue_business/core/models/token/token.dart';
 import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
-import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class PinViewModel extends BaseViewModel {
   late Size size;
@@ -22,9 +20,7 @@ class PinViewModel extends BaseViewModel {
     request = r;
   }
 
-  goBack(BuildContext context) {
-    context.go("/$id${RoutePaths.addPersonalInfoPath}");
-  }
+  goBack(BuildContext context) {}
 
   String _pin = "";
   String get pin => _pin;
@@ -99,14 +95,14 @@ class PinViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, User user) {
-    if (user.businessProfile == null || user.businessProfile!.level == 0) {
-      context.go(RoutePaths.registerSuccessPath);
-    } else if (user.businessProfile!.level == 1) {
-      context.go("${RoutePaths.businessSizePath}/${user.businessProfile!.id}");
-    } else if (user.businessProfile!.level == 2) {
-      context.go("${RoutePaths.businessLocation}/${user.businessProfile!.id}");
-    } else {
-      context.go(RoutePaths.homePath);
-    }
+    // if (user.businessProfile == null || user.businessProfile!.level == 0) {
+    //   context.go(RoutePaths.registerSuccessPath);
+    // } else if (user.businessProfile!.level == 1) {
+    //   context.go("${RoutePaths.businessSizePath}/${user.businessProfile!.id}");
+    // } else if (user.businessProfile!.level == 2) {
+    //   context.go("${RoutePaths.businessLocation}/${user.businessProfile!.id}");
+    // } else {
+    //   context.go(RoutePaths.homePath);
+    // }
   }
 }

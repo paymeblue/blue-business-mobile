@@ -24,13 +24,6 @@ class SignupShellViewModel extends BaseViewModel {
       case 2:
         context.go(RoutePaths.addAccountPhonePath);
       case 3:
-        GoRouterState state = GoRouterState.of(context);
-        if (state.matchedLocation.startsWith(RoutePaths.confirmPasswordPath)) {
-          context.go(RoutePaths.addAccountPhonePath);
-        } else {
-          String id = state.pathParameters["id"] as String;
-          context.go("/$id${RoutePaths.addPersonalInfoPath}");
-        }
       default:
     }
   }
