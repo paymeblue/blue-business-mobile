@@ -12,19 +12,19 @@ class SignupShellViewModel extends BaseViewModel {
 
   PageController pageController = PageController();
 
-  goBack(BuildContext context, int i) {
-    switch (i) {
-      case 0:
-        if (context.canPop()) {
-          context.pop();
-        } else {
-          context.go(RoutePaths.splashPath);
-        }
-      case 1:
-      case 2:
-        context.go(RoutePaths.addAccountPhonePath);
-      case 3:
-      default:
+  goBack(BuildContext context) {
+    GoRouterState state = GoRouterState.of(context);
+    if (state.path!.startsWith(RoutePaths.addAccountPhonePath) ||
+        state.path!.startsWith(RoutePaths.registerProgressPath)) {
+      if (context.canPop()) {
+        context.pop();
+      } else {
+        context.go(RoutePaths.welcomePath);
+      }
+    } else if (state.path!.startsWith(RoutePaths.registerOtpPath)) {
+      context.go(RoutePaths.addAccountPhonePath);
+    } else {
+      context.go(RoutePaths.registerProgressPath);
     }
   }
 }

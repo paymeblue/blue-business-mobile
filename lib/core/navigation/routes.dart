@@ -43,6 +43,7 @@ import 'package:blue_business/modules/branch_management_pages/add/presentation/v
 import 'package:blue_business/modules/branch_management_pages/home/presentation/view.dart';
 import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.dart';
 import 'package:blue_business/modules/push_payment_pin/presentation/view.dart';
+import 'package:blue_business/modules/signup_pages/kyc_verification/presentation/view.dart';
 import 'package:blue_business/modules/signup_pages/progress_page/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/add/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/home/presentation/view.dart';
@@ -52,6 +53,7 @@ import 'package:blue_business/modules/transaction_details/pages/data_details/pre
 import 'package:blue_business/modules/transaction_details/pages/payment_details/presentation/view.dart';
 import 'package:blue_business/modules/transaction_details/pages/power_details/presentation/view.dart';
 import 'package:blue_business/modules/wallet/presentation/view.dart';
+import 'package:blue_business/modules/welcome/presentation/view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -90,7 +92,7 @@ GoRouter router = GoRouter(
       path: RoutePaths.welcomePath,
       name: "Welcome",
       builder: (context, state) {
-        return const SplashView();
+        return const WelcomeView();
       },
     ),
     GoRoute(
@@ -623,19 +625,7 @@ List<GoRoute> airtimeRoutes = [
 ShellRoute signupShellRoute = ShellRoute(
   navigatorKey: locator<NavigationService>().shellKey,
   builder: (context, state, child) {
-    int index = 0;
-    // if (state.matchedLocation.startsWith(RoutePaths.registerOtpPath)) {
-    //   index = 1;
-    // } else if (state.matchedLocation.endsWith(RoutePaths.addPersonalInfoPath)) {
-    //   index = 2;
-    // } else if (state.matchedLocation.endsWith(RoutePaths.createPasswordPath) ||
-    //     state.matchedLocation.startsWith(
-    //       RoutePaths.confirmPasswordPath,
-    //     )) {
-    //   index = 3;
-    // }
     return SignupShellView(
-      currentIndex: index,
       child: child,
     );
   },
@@ -650,10 +640,18 @@ ShellRoute signupShellRoute = ShellRoute(
     ),
     GoRoute(
       path: RoutePaths.registerProgressPath,
-      name: "Signup Progress Number",
+      name: "Signup Progress",
       builder: (context, state) {
         log(state.fullPath.toString());
         return const SignupProgressView();
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.registerKycPath,
+      name: "Signup Kyc",
+      builder: (context, state) {
+        log(state.fullPath.toString());
+        return const SignupKycView();
       },
     ),
     GoRoute(

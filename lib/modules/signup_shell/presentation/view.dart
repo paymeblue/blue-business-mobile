@@ -7,9 +7,7 @@ import 'view_model.dart';
 
 class SignupShellView extends StatefulWidget {
   final Widget child;
-  final int currentIndex;
-  const SignupShellView(
-      {super.key, required this.child, this.currentIndex = 0});
+  const SignupShellView({super.key, required this.child});
 
   @override
   State<SignupShellView> createState() => _SignupShellViewState();
@@ -25,11 +23,9 @@ class _SignupShellViewState extends State<SignupShellView> {
         return Scaffold(
           appBar: BlueAppBar.primary(
             onBackTap: () {
-              model.goBack(context, widget.currentIndex);
+              model.goBack(context);
             },
-            icon: widget.currentIndex == 0
-                ? Icons.close
-                : Icons.arrow_back_ios_new,
+            icon: Icons.arrow_back_ios_new,
           ),
           body: Container(
             height: model.size.height,

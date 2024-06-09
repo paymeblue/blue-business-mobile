@@ -48,7 +48,11 @@ class _SignupProgressViewState extends State<SignupProgressView> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: AppButton.primary(title: "Continue", onTap: () {}),
+              child: AppButton.primary(
+                  title: "Continue",
+                  onTap: () {
+                    model.goToNext(context);
+                  }),
             )
           ],
         );
