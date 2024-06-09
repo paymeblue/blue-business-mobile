@@ -25,48 +25,51 @@ class _EnterAccountPhoneViewState extends State<EnterAccountPhoneView> {
       onModelReady: (model) => model.init(context),
       model: EnterAccountPhoneViewModel(),
       builder: (context, model, _) {
-        return Column(
-          children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  ...titleAndSubtitle(),
-                  50.verticalGap,
-                  ...phoneFieldAndGap(model),
-                  20.verticalGap,
-                  BlueTextField.password(
-                    title: "Choose a password",
-                    controller: model.passwordController,
-                    onChanged: model.onChanged,
-                  ),
-                  20.verticalGap,
-                  ...List.generate(
-                    model.conditions().length,
-                    (i) => PasswordCheckOption(
-                        isComplete: model.conditions()[i]["isComplete"],
-                        condition: model.conditions()[i]["condition"]),
-                  ),
-                  20.verticalGap,
-                  BlueTextField.password(
-                    title: "Confirm password",
-                    controller: model.confirmPasswordController,
-                    onChanged: model.onChanged,
-                  ),
-                  15.verticalGap,
-                  subtext(() {
-                    model.goToLogin(context);
-                  }),
-                ],
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    ...titleAndSubtitle(),
+                    50.verticalGap,
+                    ...phoneFieldAndGap(model),
+                    20.verticalGap,
+                    BlueTextField.password(
+                      title: "Choose a password",
+                      controller: model.passwordController,
+                      onChanged: model.onChanged,
+                    ),
+                    20.verticalGap,
+                    ...List.generate(
+                      model.conditions().length,
+                      (i) => PasswordCheckOption(
+                          isComplete: model.conditions()[i]["isComplete"],
+                          condition: model.conditions()[i]["condition"]),
+                    ),
+                    20.verticalGap,
+                    BlueTextField.password(
+                      title: "Confirm password",
+                      controller: model.confirmPasswordController,
+                      onChanged: model.onChanged,
+                    ),
+                    15.verticalGap,
+                    subtext(() {
+                      model.goToLogin(context);
+                    }),
+                  ],
+                ),
               ),
-            ),
-            AppButton.primary(
-              title: "Send OTP",
-              isEnabled: model.isActive(),
-              onTap: () {
-                model.goToNext(context);
-              },
-            ),
-          ],
+              AppButton.primary(
+                title: "Send OTP",
+                isEnabled: model.isActive(),
+                onTap: () {
+                  model.goToNext(context);
+                },
+              ),
+            ],
+          ),
         );
       },
     );

@@ -23,6 +23,12 @@ class AppTextStyles {
       fontWeight: FontWeight.w500,
       color: AppColors.bodyTextColor);
 
+  static TextStyle smallHeader = const TextStyle(
+      fontFamily: AppFonts.satoshi,
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
+      color: AppColors.bodyTextColor);
+
   static TextStyle numberButton = const TextStyle(
       fontSize: 31.5,
       fontFamily: AppFonts.satoshi,

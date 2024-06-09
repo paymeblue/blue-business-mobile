@@ -35,7 +35,7 @@ class _SignupShellViewState extends State<SignupShellView> {
             height: model.size.height,
             width: model.size.width,
             color: AppColors.white,
-            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 35),
+            padding: const EdgeInsets.only(bottom: 35),
             child: widget.child,
           ),
         );

@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/models/signup/user/signup_user_data.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
+import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class VerifyRegistrationOtpViewModel extends BaseViewModel {
   late Size size;
@@ -77,5 +78,7 @@ class VerifyRegistrationOtpViewModel extends BaseViewModel {
     timer.cancel();
   }
 
-  goToNext(BuildContext context, SignupUserData user) {}
+  goToNext(BuildContext context) {
+    context.go(RoutePaths.registerProgressPath);
+  }
 }

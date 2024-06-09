@@ -24,33 +24,38 @@ class _VerifyRegistrationOtpViewState extends State<VerifyRegistrationOtpView> {
       onModelReady: (model) => model.init(context, widget.phone),
       model: VerifyRegistrationOtpViewModel(),
       builder: (context, model, _) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ...titleAndSubtitle(),
-            50.verticalGap,
-            BlueTextField.otp(
-              onChanged: model.onChanged,
-              onSubmit: model.onSubmit,
-            ),
-            35.verticalGap,
-            subtextAndTimeAction(
-              "Didn’t receive a code?",
-              resendButton(
-                model.canResend
-                    ? "Resend code"
-                    : "Resend in ${model.timeString()}",
-                model.canResend,
-                () {},
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ...titleAndSubtitle(),
+              50.verticalGap,
+              BlueTextField.otp(
+                onChanged: model.onChanged,
+                onSubmit: model.onSubmit,
               ),
-            ),
-            const Spacer(),
-            AppButton.primary(
-              title: "Verify phone number",
-              isEnabled: model.canContinue,
-              onTap: () {},
-            ),
-          ],
+              35.verticalGap,
+              subtextAndTimeAction(
+                "Didn’t receive a code?",
+                resendButton(
+                  model.canResend
+                      ? "Resend code"
+                      : "Resend in ${model.timeString()}",
+                  model.canResend,
+                  () {},
+                ),
+              ),
+              const Spacer(),
+              AppButton.primary(
+                title: "Verify phone number",
+                isEnabled: model.canContinue,
+                onTap: () {
+                  model.goToNext(context);
+                },
+              ),
+            ],
+          ),
         );
       },
     );

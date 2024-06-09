@@ -11,6 +11,7 @@ class RoutePaths {
   static String loginPath = '/login';
   static String addAccountPhonePath = "$accountPhonePath/add";
   static String registerOtpPath = '/register/otp';
+  static String registerProgressPath = '/register/progress';
   static String pinPath = "/pin";
   static String homePath = "/dash/home";
   static String walletPath = "/dash/wallet";

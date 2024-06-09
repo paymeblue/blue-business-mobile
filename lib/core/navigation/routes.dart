@@ -43,6 +43,7 @@ import 'package:blue_business/modules/branch_management_pages/add/presentation/v
 import 'package:blue_business/modules/branch_management_pages/home/presentation/view.dart';
 import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.dart';
 import 'package:blue_business/modules/push_payment_pin/presentation/view.dart';
+import 'package:blue_business/modules/signup_pages/progress_page/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/add/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/home/presentation/view.dart';
 import 'package:blue_business/modules/transaction_details/pages/airtime_details/presentation/view.dart';
@@ -645,6 +646,14 @@ ShellRoute signupShellRoute = ShellRoute(
       builder: (context, state) {
         log(state.fullPath.toString());
         return const EnterAccountPhoneView();
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.registerProgressPath,
+      name: "Signup Progress Number",
+      builder: (context, state) {
+        log(state.fullPath.toString());
+        return const SignupProgressView();
       },
     ),
     GoRoute(
