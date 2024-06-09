@@ -1,9 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/models/signup_profile/request/signup_profile_request.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
-import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/textfield/num_pad.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +9,7 @@ import 'package:flutter/material.dart';
 import 'view_model.dart';
 
 class PinView extends StatefulWidget {
-  final String id;
-  final SignupProfileRequest request;
-  const PinView({super.key, required this.id, required this.request});
+  const PinView({super.key});
 
   @override
   State<PinView> createState() => _PinViewState();
@@ -24,28 +20,25 @@ class _PinViewState extends State<PinView> {
   Widget build(BuildContext context) {
     return BaseView<PinViewModel>(
       model: PinViewModel(),
-      onModelReady: (model) => model.init(context, widget.id, widget.request),
+      onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
-        return Scaffold(
-          appBar: BlueAppBar.primary(onBackTap: () {
-            model.goBack(context);
-          }),
-          body: Container(
-            height: model.size.height,
-            width: model.size.width,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 35),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ...regidterTitleAndSubtitle(),
-                const Spacer(),
-                pinFields(model),
-                const Spacer(),
-                numberPad(model),
-                120.verticalGap,
-                registerButton(onTap: () {}, isActive: model.pin.length >= 4),
-              ],
-            ),
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ...regidterTitleAndSubtitle(),
+              const Spacer(),
+              pinFields(model),
+              const Spacer(),
+              numberPad(model),
+              120.verticalGap,
+              registerButton(
+                  onTap: () {
+                    model.checkBiometric(context);
+                  },
+                  isActive: model.pin.length >= 4),
+            ],
           ),
         );
       },

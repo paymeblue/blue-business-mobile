@@ -9,7 +9,6 @@ import 'package:blue_business/core/models/bills/data/verify/data/verify_data_dat
 import 'package:blue_business/core/models/bills/electricity/vend/data/vend_electricity_data.dart';
 import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
 import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
-import 'package:blue_business/core/models/signup_profile/request/signup_profile_request.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
 import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
@@ -43,8 +42,10 @@ import 'package:blue_business/modules/branch_management_pages/add/presentation/v
 import 'package:blue_business/modules/branch_management_pages/home/presentation/view.dart';
 import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.dart';
 import 'package:blue_business/modules/push_payment_pin/presentation/view.dart';
-import 'package:blue_business/modules/signup_pages/kyc_verification/presentation/view.dart';
+import 'package:blue_business/modules/signup_pages/business_details/presentation/view.dart';
+import 'package:blue_business/modules/signup_pages/business_kyc/presentation/view.dart';
 import 'package:blue_business/modules/signup_pages/progress_page/presentation/view.dart';
+import 'package:blue_business/modules/signup_pages/shareholder_details/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/add/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/home/presentation/view.dart';
 import 'package:blue_business/modules/transaction_details/pages/airtime_details/presentation/view.dart';
@@ -216,11 +217,7 @@ GoRouter router = GoRouter(
       path: "/:id${RoutePaths.pinPath}",
       builder: (context, state) {
         log(state.fullPath.toString());
-        SignupProfileRequest r = state.extra! as SignupProfileRequest;
-        return PinView(
-          id: state.pathParameters["id"].toString(),
-          request: r,
-        );
+        return const PinView();
       },
     ),
     StatefulShellRoute.indexedStack(
@@ -647,11 +644,27 @@ ShellRoute signupShellRoute = ShellRoute(
       },
     ),
     GoRoute(
-      path: RoutePaths.registerKycPath,
-      name: "Signup Kyc",
+      path: RoutePaths.registerShareholdersPath,
+      name: "Shareholder Details",
       builder: (context, state) {
         log(state.fullPath.toString());
-        return const SignupKycView();
+        return const ShareholderDetailsView();
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.registerBusinessDetailsPath,
+      name: "Signup Business Details",
+      builder: (context, state) {
+        log(state.fullPath.toString());
+        return const SignupBusinessDetailsView();
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.addShareholdersKycPath,
+      name: "Signup Shareholder Kyc",
+      builder: (context, state) {
+        log(state.fullPath.toString());
+        return const SignupBusinessKycView();
       },
     ),
     GoRoute(

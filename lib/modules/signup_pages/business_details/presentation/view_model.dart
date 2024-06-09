@@ -4,14 +4,22 @@ import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class SignupProgressViewModel extends BaseViewModel {
+class SignupBusinessDetailsViewModel extends BaseViewModel {
   late Size size;
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 
+  TextEditingController nameController = TextEditingController();
+  TextEditingController cacController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
+
+  onChanged(String? v) {
+    notifyListeners();
+  }
+
   goToNext(BuildContext context) {
-    context.push(RoutePaths.registerBusinessDetailsPath);
+    context.push(RoutePaths.registerShareholdersPath);
   }
 }
