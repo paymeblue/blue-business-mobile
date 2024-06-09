@@ -1,8 +1,6 @@
-import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
-import 'package:blue_business/widgets/steppers/horizontal_step_indicator.dart';
 import 'package:flutter/material.dart';
 
 import 'view_model.dart';
@@ -38,18 +36,7 @@ class _SignupShellViewState extends State<SignupShellView> {
             width: model.size.width,
             color: AppColors.white,
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 35),
-            child: Column(
-              children: [
-                StepIndicator(
-                  index: widget.currentIndex,
-                  indicatorCount: 4,
-                ),
-                35.verticalGap,
-                Expanded(
-                  child: widget.child,
-                ),
-              ],
-            ),
+            child: widget.child,
           ),
         );
       },

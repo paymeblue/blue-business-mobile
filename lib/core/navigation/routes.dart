@@ -531,6 +531,7 @@ GoRouter router = GoRouter(
     ...dataRoutes,
     ...cableRoutes,
     ...transactionDetailRoutes,
+    signupShellRoute,
   ],
 );
 

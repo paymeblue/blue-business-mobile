@@ -33,6 +33,7 @@ class _EnterAccountPhoneViewState extends State<EnterAccountPhoneView> {
                   ...titleAndSubtitle(),
                   50.verticalGap,
                   ...phoneFieldAndGap(model),
+                  20.verticalGap,
                   BlueTextField.password(
                     title: "Choose a password",
                     controller: model.passwordController,
@@ -61,7 +62,9 @@ class _EnterAccountPhoneViewState extends State<EnterAccountPhoneView> {
             AppButton.primary(
               title: "Send OTP",
               isEnabled: model.isActive(),
-              onTap: () {},
+              onTap: () {
+                model.goToNext(context);
+              },
             ),
           ],
         );
