@@ -103,7 +103,7 @@ class VerifyRegistrationOtpViewModel extends BaseViewModel {
   verifyOtp(BuildContext context) async {
     AppLoader.start();
     SignupResponse response = await AuthService(DioConfig.dio())
-        .verifySignupOtp(phone: phone, otp: pin)
+        .verifySignupOtp(phone: phone.replaceAll("+", ""), otp: pin)
         .onError((error, stackTrace) =>
             SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
 
@@ -116,6 +116,6 @@ class VerifyRegistrationOtpViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, SignupData data) {
-    context.go(RoutePaths.registerProgressPath, extra: data);
+    context.push(RoutePaths.registerProgressPath, extra: data);
   }
 }

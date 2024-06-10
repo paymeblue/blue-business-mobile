@@ -105,9 +105,9 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
 
   goToNext(BuildContext context, SignupData data) {
     if (data.level == 1) {
-      context.go("${RoutePaths.registerOtpPath}/${formatPhone()}");
+      context.push("${RoutePaths.registerOtpPath}/${formatPhone()}");
     } else {
-      context.go(RoutePaths.registerProgressPath, extra: data);
+      context.push(RoutePaths.registerProgressPath, extra: data);
     }
   }
 

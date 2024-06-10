@@ -1,3 +1,5 @@
+import 'package:blue_business/core/models/create_business_profile/request/create_business_profile_request.dart';
+import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
 import 'package:blue_business/core/models/signup/request/signup_request.dart';
 import 'package:blue_business/core/models/signup/response/signup_response.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -22,5 +24,10 @@ abstract class AuthService {
   @GET("/otps/new")
   Future<SignupResponse> resendSignupOtp({
     @Query("phone") required String phone,
+  });
+
+  @POST("/onboard/business-detail")
+  Future<CreateBusinessProfileResponse> createBusinessProfile({
+    @Body() required CreateBusinessProfileRequest request,
   });
 }
