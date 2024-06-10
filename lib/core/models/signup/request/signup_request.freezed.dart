@@ -21,6 +21,8 @@ SignupRequest _$SignupRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SignupRequest {
   String get phone => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  String get confirmPassword => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +36,7 @@ abstract class $SignupRequestCopyWith<$Res> {
           SignupRequest value, $Res Function(SignupRequest) then) =
       _$SignupRequestCopyWithImpl<$Res, SignupRequest>;
   @useResult
-  $Res call({String phone});
+  $Res call({String phone, String password, String confirmPassword});
 }
 
 /// @nodoc
@@ -51,11 +53,21 @@ class _$SignupRequestCopyWithImpl<$Res, $Val extends SignupRequest>
   @override
   $Res call({
     Object? phone = null,
+    Object? password = null,
+    Object? confirmPassword = null,
   }) {
     return _then(_value.copyWith(
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmPassword: null == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -69,7 +81,7 @@ abstract class _$$SignupRequestImplCopyWith<$Res>
       __$$SignupRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String phone});
+  $Res call({String phone, String password, String confirmPassword});
 }
 
 /// @nodoc
@@ -84,11 +96,21 @@ class __$$SignupRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phone = null,
+    Object? password = null,
+    Object? confirmPassword = null,
   }) {
     return _then(_$SignupRequestImpl(
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmPassword: null == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -97,17 +119,24 @@ class __$$SignupRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SignupRequestImpl implements _SignupRequest {
-  const _$SignupRequestImpl({required this.phone});
+  const _$SignupRequestImpl(
+      {required this.phone,
+      required this.password,
+      required this.confirmPassword});
 
   factory _$SignupRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignupRequestImplFromJson(json);
 
   @override
   final String phone;
+  @override
+  final String password;
+  @override
+  final String confirmPassword;
 
   @override
   String toString() {
-    return 'SignupRequest(phone: $phone)';
+    return 'SignupRequest(phone: $phone, password: $password, confirmPassword: $confirmPassword)';
   }
 
   @override
@@ -115,12 +144,17 @@ class _$SignupRequestImpl implements _SignupRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignupRequestImpl &&
-            (identical(other.phone, phone) || other.phone == phone));
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.confirmPassword, confirmPassword) ||
+                other.confirmPassword == confirmPassword));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, phone);
+  int get hashCode =>
+      Object.hash(runtimeType, phone, password, confirmPassword);
 
   @JsonKey(ignore: true)
   @override
@@ -137,14 +171,20 @@ class _$SignupRequestImpl implements _SignupRequest {
 }
 
 abstract class _SignupRequest implements SignupRequest {
-  const factory _SignupRequest({required final String phone}) =
-      _$SignupRequestImpl;
+  const factory _SignupRequest(
+      {required final String phone,
+      required final String password,
+      required final String confirmPassword}) = _$SignupRequestImpl;
 
   factory _SignupRequest.fromJson(Map<String, dynamic> json) =
       _$SignupRequestImpl.fromJson;
 
   @override
   String get phone;
+  @override
+  String get password;
+  @override
+  String get confirmPassword;
   @override
   @JsonKey(ignore: true)
   _$$SignupRequestImplCopyWith<_$SignupRequestImpl> get copyWith =>

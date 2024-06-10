@@ -7,6 +7,8 @@ part 'signup_request.g.dart';
 class SignupRequest with _$SignupRequest {
   const factory SignupRequest({
     required String phone,
+    required String password,
+    required String confirmPassword,
   }) = _SignupRequest;
 
   factory SignupRequest.fromJson(Map<String, dynamic> json) =>

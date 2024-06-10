@@ -22,7 +22,7 @@ SignupResponse _$SignupResponseFromJson(Map<String, dynamic> json) {
 mixin _$SignupResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  SignupUserData? get data => throw _privateConstructorUsedError;
+  SignupData? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +36,9 @@ abstract class $SignupResponseCopyWith<$Res> {
           SignupResponse value, $Res Function(SignupResponse) then) =
       _$SignupResponseCopyWithImpl<$Res, SignupResponse>;
   @useResult
-  $Res call({String status, String? message, SignupUserData? data});
+  $Res call({String status, String? message, SignupData? data});
 
-  $SignupUserDataCopyWith<$Res>? get data;
+  $SignupDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -70,18 +70,18 @@ class _$SignupResponseCopyWithImpl<$Res, $Val extends SignupResponse>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as SignupUserData?,
+              as SignupData?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SignupUserDataCopyWith<$Res>? get data {
+  $SignupDataCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
-    return $SignupUserDataCopyWith<$Res>(_value.data!, (value) {
+    return $SignupDataCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -95,10 +95,10 @@ abstract class _$$SignupResponseImplCopyWith<$Res>
       __$$SignupResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, SignupUserData? data});
+  $Res call({String status, String? message, SignupData? data});
 
   @override
-  $SignupUserDataCopyWith<$Res>? get data;
+  $SignupDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -128,7 +128,7 @@ class __$$SignupResponseImplCopyWithImpl<$Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as SignupUserData?,
+              as SignupData?,
     ));
   }
 }
@@ -147,7 +147,7 @@ class _$SignupResponseImpl implements _SignupResponse {
   @override
   final String? message;
   @override
-  final SignupUserData? data;
+  final SignupData? data;
 
   @override
   String toString() {
@@ -187,7 +187,7 @@ abstract class _SignupResponse implements SignupResponse {
   const factory _SignupResponse(
       {final String status,
       final String? message,
-      final SignupUserData? data}) = _$SignupResponseImpl;
+      final SignupData? data}) = _$SignupResponseImpl;
 
   factory _SignupResponse.fromJson(Map<String, dynamic> json) =
       _$SignupResponseImpl.fromJson;
@@ -197,7 +197,7 @@ abstract class _SignupResponse implements SignupResponse {
   @override
   String? get message;
   @override
-  SignupUserData? get data;
+  SignupData? get data;
   @override
   @JsonKey(ignore: true)
   _$$SignupResponseImplCopyWith<_$SignupResponseImpl> get copyWith =>

@@ -65,7 +65,7 @@ class _EnterAccountPhoneViewState extends State<EnterAccountPhoneView> {
                 title: "Send OTP",
                 isEnabled: model.isActive(),
                 onTap: () {
-                  model.goToNext(context);
+                  model.register(context);
                 },
               ),
             ],

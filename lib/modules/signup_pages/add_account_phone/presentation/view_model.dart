@@ -1,8 +1,16 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
+import 'package:blue_business/core/models/signup/data/signup_data.dart';
+import 'package:blue_business/core/models/signup/request/signup_request.dart';
+import 'package:blue_business/core/models/signup/response/signup_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -74,14 +82,33 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
     context.go(RoutePaths.loginPath);
   }
 
-  goToNext(BuildContext context) {
-    // if (user.level == 1) {
-    context.go("${RoutePaths.registerOtpPath}/${formatPhone()}");
-    // } else if (user.level == 2) {
-    //   context.go("/${user.id}${RoutePaths.addPersonalInfoPath}");
-    // } else if (user.level == 3) {
-    //   context.go("${RoutePaths.confirmPasswordPath}/$phone");
-    // }
+  register(BuildContext context) async {
+    AppLoader.start();
+    SignupRequest request = SignupRequest(
+        phone: formatPhone(),
+        password: passwordController.text,
+        confirmPassword: confirmPasswordController.text);
+
+    SignupResponse response = await AuthService(DioConfig.dio())
+        .register(request: request)
+        .onError((error, stackTrace) =>
+            SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      if (context.mounted) goToNext(context, response.data!);
+    } else {
+      AppNotification.error(message: response.message);
+    }
+
+    AppLoader.stop();
+  }
+
+  goToNext(BuildContext context, SignupData data) {
+    if (data.level == 1) {
+      context.go("${RoutePaths.registerOtpPath}/${formatPhone()}");
+    } else {
+      context.go(RoutePaths.registerProgressPath, extra: data);
+    }
   }
 
   String formatPhone() {

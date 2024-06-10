@@ -1,8 +1,14 @@
 import 'dart:async';
-
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/models/signup/data/signup_data.dart';
+import 'package:blue_business/core/models/signup/response/signup_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -78,7 +84,38 @@ class VerifyRegistrationOtpViewModel extends BaseViewModel {
     timer.cancel();
   }
 
-  goToNext(BuildContext context) {
-    context.go(RoutePaths.registerProgressPath);
+  resendOtp() async {
+    AppLoader.start();
+    SignupResponse response = await AuthService(DioConfig.dio())
+        .resendSignupOtp(phone: phone)
+        .onError((error, stackTrace) =>
+            SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      AppNotification.success(message: response.message);
+      startCountdown();
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    AppLoader.stop();
+  }
+
+  verifyOtp(BuildContext context) async {
+    AppLoader.start();
+    SignupResponse response = await AuthService(DioConfig.dio())
+        .verifySignupOtp(phone: phone, otp: pin)
+        .onError((error, stackTrace) =>
+            SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      if (context.mounted) goToNext(context, response.data!);
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    AppLoader.stop();
+  }
+
+  goToNext(BuildContext context, SignupData data) {
+    context.go(RoutePaths.registerProgressPath, extra: data);
   }
 }

@@ -12,7 +12,7 @@ _$SignupResponseImpl _$$SignupResponseImplFromJson(Map<String, dynamic> json) =>
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
-          : SignupUserData.fromJson(json['data'] as Map<String, dynamic>),
+          : SignupData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$SignupResponseImplToJson(

@@ -1,5 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
@@ -9,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'view_model.dart';
 
 class SignupProgressView extends StatefulWidget {
-  const SignupProgressView({super.key});
+  final SignupData data;
+  const SignupProgressView({super.key, required this.data});
 
   @override
   State<SignupProgressView> createState() => _SignupProgressViewState();
@@ -24,9 +26,18 @@ class _SignupProgressViewState extends State<SignupProgressView> {
       builder: (context, model, _) {
         return Column(
           children: [
-            const CircularStepIndicator(
-              max: 3,
-              progress: 1,
+            CircularStepIndicator(
+              max: model.progressSteps.length.toDouble(),
+              progress: model.progress.toDouble(),
+            ),
+            Text(
+              "Complete account setup",
+              style: AppTextStyles.midHeader,
+            ),
+            Text(
+              "${model.progress} out of ${model.progressSteps.length} complete",
+              style: AppTextStyles.smallText
+                  .copyWith(color: AppColors.bodyTextColor2),
             ),
             20.verticalGap,
             const Divider(
@@ -34,17 +45,17 @@ class _SignupProgressViewState extends State<SignupProgressView> {
             ),
             Expanded(
               child: ListView.separated(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
-                  itemBuilder: (ctx, i) => signupStep(
-                        index: i,
-                        progress: 1,
-                        title: "KYC Verification",
-                        subtitle:
-                            "Verify your identify as the owner/shareholder of the business",
-                      ),
-                  separatorBuilder: (ctx, i) => 18.verticalGap,
-                  itemCount: 3),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
+                itemBuilder: (ctx, i) => signupStep(
+                  index: i,
+                  progress: model.progress,
+                  title: model.progressSteps[i]["title"],
+                  subtitle: model.progressSteps[i]["subtitle"],
+                ),
+                separatorBuilder: (ctx, i) => 18.verticalGap,
+                itemCount: model.progressSteps.length,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),

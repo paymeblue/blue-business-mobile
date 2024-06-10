@@ -22,14 +22,14 @@ class CircularStepIndicator extends StatelessWidget {
               axisLineStyle: const AxisLineStyle(
                 thickness: 0.15,
                 cornerStyle: CornerStyle.bothCurve,
-                color: Color.fromARGB(30, 0, 169, 181),
+                color: AppColors.midGrey,
                 thicknessUnit: GaugeSizeUnit.factor,
               ),
               pointers: <GaugePointer>[
                 RangePointer(
                   value: progress,
                   cornerStyle: CornerStyle.bothCurve,
-                  color: AppColors.blue,
+                  color: AppColors.primary,
                   width: 0.15,
                   sizeUnit: GaugeSizeUnit.factor,
                 )

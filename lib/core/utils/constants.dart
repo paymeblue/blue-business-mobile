@@ -176,3 +176,8 @@ class AppStateValues extends ChangeNotifier {
     extra = null;
   }
 }
+
+class AppConstants {
+  static const String baseUrl =
+      "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api";
+}

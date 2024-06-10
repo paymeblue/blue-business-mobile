@@ -20,7 +20,13 @@ SignupData _$SignupDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SignupData {
-  SignupUserData get user => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
+  int get level => throw _privateConstructorUsedError;
+  bool get businessProfileCompleted => throw _privateConstructorUsedError;
+  bool get businessDetailsCompleted => throw _privateConstructorUsedError;
+  bool get businessKycCompleted => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +40,14 @@ abstract class $SignupDataCopyWith<$Res> {
           SignupData value, $Res Function(SignupData) then) =
       _$SignupDataCopyWithImpl<$Res, SignupData>;
   @useResult
-  $Res call({SignupUserData user});
-
-  $SignupUserDataCopyWith<$Res> get user;
+  $Res call(
+      {int id,
+      String phone,
+      int level,
+      bool businessProfileCompleted,
+      bool businessDetailsCompleted,
+      bool businessKycCompleted,
+      String? createdAt});
 }
 
 /// @nodoc
@@ -52,22 +63,44 @@ class _$SignupDataCopyWithImpl<$Res, $Val extends SignupData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? id = null,
+    Object? phone = null,
+    Object? level = null,
+    Object? businessProfileCompleted = null,
+    Object? businessDetailsCompleted = null,
+    Object? businessKycCompleted = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as SignupUserData,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      level: null == level
+          ? _value.level
+          : level // ignore: cast_nullable_to_non_nullable
+              as int,
+      businessProfileCompleted: null == businessProfileCompleted
+          ? _value.businessProfileCompleted
+          : businessProfileCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      businessDetailsCompleted: null == businessDetailsCompleted
+          ? _value.businessDetailsCompleted
+          : businessDetailsCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      businessKycCompleted: null == businessKycCompleted
+          ? _value.businessKycCompleted
+          : businessKycCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SignupUserDataCopyWith<$Res> get user {
-    return $SignupUserDataCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
   }
 }
 
@@ -79,10 +112,14 @@ abstract class _$$SignupDataImplCopyWith<$Res>
       __$$SignupDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({SignupUserData user});
-
-  @override
-  $SignupUserDataCopyWith<$Res> get user;
+  $Res call(
+      {int id,
+      String phone,
+      int level,
+      bool businessProfileCompleted,
+      bool businessDetailsCompleted,
+      bool businessKycCompleted,
+      String? createdAt});
 }
 
 /// @nodoc
@@ -96,13 +133,43 @@ class __$$SignupDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? id = null,
+    Object? phone = null,
+    Object? level = null,
+    Object? businessProfileCompleted = null,
+    Object? businessDetailsCompleted = null,
+    Object? businessKycCompleted = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$SignupDataImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as SignupUserData,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      level: null == level
+          ? _value.level
+          : level // ignore: cast_nullable_to_non_nullable
+              as int,
+      businessProfileCompleted: null == businessProfileCompleted
+          ? _value.businessProfileCompleted
+          : businessProfileCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      businessDetailsCompleted: null == businessDetailsCompleted
+          ? _value.businessDetailsCompleted
+          : businessDetailsCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      businessKycCompleted: null == businessKycCompleted
+          ? _value.businessKycCompleted
+          : businessKycCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -110,17 +177,39 @@ class __$$SignupDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SignupDataImpl implements _SignupData {
-  const _$SignupDataImpl({required this.user});
+  const _$SignupDataImpl(
+      {required this.id,
+      required this.phone,
+      required this.level,
+      this.businessProfileCompleted = false,
+      this.businessDetailsCompleted = false,
+      this.businessKycCompleted = false,
+      this.createdAt});
 
   factory _$SignupDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignupDataImplFromJson(json);
 
   @override
-  final SignupUserData user;
+  final int id;
+  @override
+  final String phone;
+  @override
+  final int level;
+  @override
+  @JsonKey()
+  final bool businessProfileCompleted;
+  @override
+  @JsonKey()
+  final bool businessDetailsCompleted;
+  @override
+  @JsonKey()
+  final bool businessKycCompleted;
+  @override
+  final String? createdAt;
 
   @override
   String toString() {
-    return 'SignupData(user: $user)';
+    return 'SignupData(id: $id, phone: $phone, level: $level, businessProfileCompleted: $businessProfileCompleted, businessDetailsCompleted: $businessDetailsCompleted, businessKycCompleted: $businessKycCompleted, createdAt: $createdAt)';
   }
 
   @override
@@ -128,12 +217,32 @@ class _$SignupDataImpl implements _SignupData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignupDataImpl &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.level, level) || other.level == level) &&
+            (identical(
+                    other.businessProfileCompleted, businessProfileCompleted) ||
+                other.businessProfileCompleted == businessProfileCompleted) &&
+            (identical(
+                    other.businessDetailsCompleted, businessDetailsCompleted) ||
+                other.businessDetailsCompleted == businessDetailsCompleted) &&
+            (identical(other.businessKycCompleted, businessKycCompleted) ||
+                other.businessKycCompleted == businessKycCompleted) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      phone,
+      level,
+      businessProfileCompleted,
+      businessDetailsCompleted,
+      businessKycCompleted,
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -150,14 +259,32 @@ class _$SignupDataImpl implements _SignupData {
 }
 
 abstract class _SignupData implements SignupData {
-  const factory _SignupData({required final SignupUserData user}) =
-      _$SignupDataImpl;
+  const factory _SignupData(
+      {required final int id,
+      required final String phone,
+      required final int level,
+      final bool businessProfileCompleted,
+      final bool businessDetailsCompleted,
+      final bool businessKycCompleted,
+      final String? createdAt}) = _$SignupDataImpl;
 
   factory _SignupData.fromJson(Map<String, dynamic> json) =
       _$SignupDataImpl.fromJson;
 
   @override
-  SignupUserData get user;
+  int get id;
+  @override
+  String get phone;
+  @override
+  int get level;
+  @override
+  bool get businessProfileCompleted;
+  @override
+  bool get businessDetailsCompleted;
+  @override
+  bool get businessKycCompleted;
+  @override
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$SignupDataImplCopyWith<_$SignupDataImpl> get copyWith =>

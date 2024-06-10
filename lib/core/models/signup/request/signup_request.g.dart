@@ -9,9 +9,13 @@ part of 'signup_request.dart';
 _$SignupRequestImpl _$$SignupRequestImplFromJson(Map<String, dynamic> json) =>
     _$SignupRequestImpl(
       phone: json['phone'] as String,
+      password: json['password'] as String,
+      confirmPassword: json['confirm_password'] as String,
     );
 
 Map<String, dynamic> _$$SignupRequestImplToJson(_$SignupRequestImpl instance) =>
     <String, dynamic>{
       'phone': instance.phone,
+      'password': instance.password,
+      'confirm_password': instance.confirmPassword,
     };

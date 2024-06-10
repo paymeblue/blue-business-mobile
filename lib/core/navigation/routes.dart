@@ -9,6 +9,7 @@ import 'package:blue_business/core/models/bills/data/verify/data/verify_data_dat
 import 'package:blue_business/core/models/bills/electricity/vend/data/vend_electricity_data.dart';
 import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
 import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
+import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
 import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
@@ -640,7 +641,9 @@ ShellRoute signupShellRoute = ShellRoute(
       name: "Signup Progress",
       builder: (context, state) {
         log(state.fullPath.toString());
-        return const SignupProgressView();
+        return SignupProgressView(
+          data: state.extra as SignupData,
+        );
       },
     ),
     GoRoute(
