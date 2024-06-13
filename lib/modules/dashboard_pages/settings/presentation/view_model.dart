@@ -107,10 +107,10 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   List<SettingsSection> sections(BuildContext context) => [
-        SettingsSection(
-          sectionTitle: "IDENTITY VERIFICATION",
-          options: identityOption(context),
-        ),
+        // SettingsSection(
+        //   sectionTitle: "IDENTITY VERIFICATION",
+        //   options: identityOption(context),
+        // ),
         SettingsSection(
           sectionTitle: "PROFILE SETTINGS",
           options: profileOption(context),
@@ -197,7 +197,7 @@ class SettingsViewModel extends BaseViewModel {
   List<SettingsOption> profileOption(BuildContext context) => [
         SettingsOption(
           icon: AppAssets.images.icons.editInfo.svg(),
-          title: "Personal info",
+          title: "Personal details",
           onTap: () {
             goToPersonalInfo(context);
           },

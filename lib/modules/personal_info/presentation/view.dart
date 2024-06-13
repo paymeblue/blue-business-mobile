@@ -44,11 +44,11 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                 12.verticalGap,
                 avatarRow(model),
                 15.verticalGap,
-                firstNameField(),
+                businessNameField(),
                 20.verticalGap,
-                middleNameField(),
+                cacField(),
                 20.verticalGap,
-                lastNameField(),
+                businesCategoryField(),
                 20.verticalGap,
                 phoneField(model),
                 const Spacer(),
@@ -65,29 +65,29 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
     );
   }
 
-  Widget firstNameField() {
+  Widget businessNameField() {
     return BlueTextField.plaintext(
-      hint: "John",
-      initialValue: locator<AppStateValues>().currentUser!.firstName,
-      title: "First name",
+      hint: "Dev Factory",
+      // initialValue: locator<AppStateValues>().currentUser!.firstName,
+      title: "Business name",
       isEnabled: false,
     );
   }
 
-  Widget middleNameField() {
+  Widget cacField() {
     return BlueTextField.plaintext(
-      hint: "John",
-      initialValue: locator<AppStateValues>().currentUser!.middleName,
-      title: "Middle name",
+      hint: "000000000",
+      // initialValue: locator<AppStateValues>().currentUser!.middleName,
+      title: "CAC Number",
       isEnabled: false,
     );
   }
 
-  Widget lastNameField() {
+  Widget businesCategoryField() {
     return BlueTextField.plaintext(
       hint: "John",
-      initialValue: locator<AppStateValues>().currentUser!.lastName,
-      title: "Last name",
+      // initialValue: locator<AppStateValues>().currentUser!.lastName,
+      title: "Business Category",
       isEnabled: false,
     );
   }
