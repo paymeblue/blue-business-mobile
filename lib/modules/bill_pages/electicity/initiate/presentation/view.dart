@@ -146,7 +146,7 @@ class _InitiateElectricityViewState extends State<InitiateElectricityView> {
 
   Widget statesDropdown(InitiateElectricityViewModel model) {
     return BlueDropdown.show(
-      banks: NigerianStatesAndLGA.allStates,
+      values: NigerianStatesAndLGA.allStates,
       onChanged: model.onStateChanged,
       searchController: model.searchController,
       value: model.state,

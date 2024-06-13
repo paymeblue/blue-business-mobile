@@ -1,5 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/gestures.dart';
@@ -8,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'view_model.dart';
 
 class ShareholderDetailsView extends StatefulWidget {
-  const ShareholderDetailsView({super.key});
+  final SignupData data;
+  const ShareholderDetailsView({super.key, required this.data});
 
   @override
   State<ShareholderDetailsView> createState() => _ShareholderDetailsViewState();

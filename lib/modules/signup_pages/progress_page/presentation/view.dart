@@ -22,7 +22,7 @@ class _SignupProgressViewState extends State<SignupProgressView> {
   Widget build(BuildContext context) {
     return BaseView<SignupProgressViewModel>(
       model: SignupProgressViewModel(),
-      onModelReady: (model) => model.init(context),
+      onModelReady: (model) => model.init(context, widget.data),
       builder: (context, model, _) {
         return Column(
           children: [
@@ -62,7 +62,7 @@ class _SignupProgressViewState extends State<SignupProgressView> {
               child: AppButton.primary(
                   title: "Continue",
                   onTap: () {
-                    model.goToNext(context);
+                    model.goToNext(context, widget.data);
                   }),
             )
           ],

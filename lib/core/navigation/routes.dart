@@ -651,7 +651,9 @@ ShellRoute signupShellRoute = ShellRoute(
       name: "Shareholder Details",
       builder: (context, state) {
         log(state.fullPath.toString());
-        return const ShareholderDetailsView();
+        return ShareholderDetailsView(
+          data: state.extra as SignupData,
+        );
       },
     ),
     GoRoute(
@@ -659,7 +661,9 @@ ShellRoute signupShellRoute = ShellRoute(
       name: "Signup Business Details",
       builder: (context, state) {
         log(state.fullPath.toString());
-        return const SignupBusinessDetailsView();
+        return SignupBusinessDetailsView(
+          data: state.extra as SignupData,
+        );
       },
     ),
     GoRoute(

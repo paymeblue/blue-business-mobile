@@ -1,4 +1,4 @@
-import 'package:blue_business/core/models/shareholders/shareholders.dart';
+import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_business_profile_data.freezed.dart';

@@ -122,7 +122,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/onboard/business-detail',
+              '/onboard/business-details',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -132,6 +132,60 @@ class _AuthService implements AuthService {
               baseUrl,
             ))));
     final value = CreateBusinessProfileResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<BusinessCategoryResponse> getCategories() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BusinessCategoryResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/business-categories',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = BusinessCategoryResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<GetShareholdersResponse> getShareholders({required int userId}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GetShareholdersResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/business/${userId}/shareholders',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = GetShareholdersResponse.fromJson(_result.data!);
     return value;
   }
 

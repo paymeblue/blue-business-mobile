@@ -8,12 +8,18 @@ import 'package:go_router/go_router.dart';
 class SignupProgressViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  init(BuildContext context, SignupData data) {
     size = context.mediaQuery.size;
+
+    setProgress(data);
   }
 
-  goToNext(BuildContext context) {
-    context.push(RoutePaths.registerBusinessDetailsPath);
+  goToNext(BuildContext context, SignupData data) {
+    if (progress == 1) {
+      context.push(RoutePaths.registerBusinessDetailsPath, extra: data);
+    } else if (progress == 2) {
+      context.push(RoutePaths.addShareholdersKycPath, extra: data);
+    }
   }
 
   setProgress(SignupData data) {

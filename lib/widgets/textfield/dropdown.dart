@@ -89,13 +89,13 @@ class BlueDropdown {
   }
 
   static Widget businessCategory({
-    required List<BusinessCategory> banks,
+    required List<BusinessCategory> categories,
     required ValueChanged<BusinessCategory?> onChanged,
     required TextEditingController? searchController,
     BusinessCategory? value,
   }) {
     return _BlueBusinessCategoryDropdown(
-      items: banks,
+      items: categories,
       onChanged: onChanged,
       value: value,
       searchController: searchController,
@@ -103,14 +103,14 @@ class BlueDropdown {
   }
 
   static Widget show({
-    required List<String> banks,
+    required List<String> values,
     required ValueChanged<String?> onChanged,
-    required TextEditingController? searchController,
+    TextEditingController? searchController,
     String? value,
     required String title,
   }) {
     return _BlueStringDropdown(
-      items: banks,
+      items: values,
       onChanged: onChanged,
       value: value,
       searchController: searchController,
@@ -997,7 +997,7 @@ class _$BlueDropdownState<T> extends State<_$BlueDropdown<T>> {
                         widget.title!,
                         12.verticalGap,
                       ],
-                      if (widget.canSearch)
+                      if (widget.canSearch && widget.searchController != null)
                         BlueTextField.search(
                           controller: widget.searchController,
                           hint: widget.searchHint,

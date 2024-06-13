@@ -94,13 +94,13 @@ class _AddStaffViewState extends State<AddStaffView> {
         ),
         12.verticalGap,
         BlueDropdown.show(
-            banks: [],
+            values: [],
             onChanged: (val) {},
             searchController: model.searchController,
             title: "Set role"),
         12.verticalGap,
         BlueDropdown.show(
-            banks: [],
+            values: [],
             onChanged: (val) {},
             searchController: model.searchController,
             title: "Set branch"),

@@ -1,7 +1,9 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
+import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:blue_business/widgets/textfield/dropdown.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +11,8 @@ import 'package:flutter/material.dart';
 import 'view_model.dart';
 
 class SignupBusinessDetailsView extends StatefulWidget {
-  const SignupBusinessDetailsView({super.key});
+  final SignupData data;
+  const SignupBusinessDetailsView({super.key, required this.data});
 
   @override
   State<SignupBusinessDetailsView> createState() =>
@@ -47,25 +50,33 @@ class _SignupBusinessDetailsViewState extends State<SignupBusinessDetailsView> {
                       keyboardType: TextInputType.number,
                     ),
                     20.verticalGap,
-                    BlueDropdown.businessCategory(
-                      banks: [],
-                      onChanged: (val) {},
-                      searchController: model.searchController,
-                    ),
+                    model.gettingCat
+                        ? BlueLoadingTile.withoutImage()
+                        : BlueDropdown.businessCategory(
+                            categories: model.categories,
+                            value: model.category,
+                            onChanged: (val) {
+                              model.category = val;
+                            },
+                            searchController: model.searchController,
+                          ),
                     20.verticalGap,
                     BlueDropdown.show(
                       title: "Staff size",
-                      banks: [],
-                      onChanged: (val) {},
-                      searchController: model.searchController,
+                      values: model.sizes,
+                      value: model.staffSize,
+                      onChanged: (val) {
+                        model.staffSize = val;
+                      },
                     ),
                   ],
                 ),
               ),
               AppButton.primary(
                 title: "Continue",
+                isEnabled: model.isActive(),
                 onTap: () {
-                  model.goToNext(context);
+                  model.createBusinessProfile(context, widget.data);
                 },
               ),
             ],
