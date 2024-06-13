@@ -33,7 +33,7 @@ dependencies:
   #MEDIA UTILS
   barcode: ^2.2.6
   qr_flutter: ^4.1.0
-  screenshot: ^2.1.0
+  screenshot: ^3.0.0
   share_plus: ^7.2.1
   file_picker: ^6.1.1
   local_auth: ^2.1.8
