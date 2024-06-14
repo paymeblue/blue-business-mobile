@@ -16,9 +16,9 @@ class SignupProgressViewModel extends BaseViewModel {
 
   goToNext(BuildContext context, SignupData data) {
     if (progress == 1) {
-      context.push(RoutePaths.registerBusinessDetailsPath, extra: data);
+      context.go(RoutePaths.registerBusinessDetailsPath, extra: data);
     } else if (progress == 2) {
-      context.push(RoutePaths.addShareholdersKycPath, extra: data);
+      context.go(RoutePaths.addShareholdersKycPath, extra: data);
     }
   }
 

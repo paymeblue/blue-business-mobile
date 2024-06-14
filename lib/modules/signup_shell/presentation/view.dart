@@ -1,6 +1,5 @@
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
-import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'view_model.dart';
@@ -21,12 +20,6 @@ class _SignupShellViewState extends State<SignupShellView> {
       model: SignupShellViewModel(),
       builder: (context, model, _) {
         return Scaffold(
-          appBar: BlueAppBar.primary(
-            onBackTap: () {
-              model.goBack(context);
-            },
-            icon: Icons.arrow_back_ios_new,
-          ),
           body: Container(
             height: model.size.height,
             width: model.size.width,

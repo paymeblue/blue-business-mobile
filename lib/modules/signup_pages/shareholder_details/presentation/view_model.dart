@@ -14,4 +14,6 @@ class ShareholderDetailsViewModel extends BaseViewModel {
   goToNext(BuildContext context) {
     context.push(RoutePaths.addShareholdersKycPath);
   }
+
+  getShareholders() async {}
 }

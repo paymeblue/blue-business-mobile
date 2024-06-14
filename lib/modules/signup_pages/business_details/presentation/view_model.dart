@@ -31,7 +31,7 @@ class SignupBusinessDetailsViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, SignupData data) {
-    context.push(RoutePaths.registerShareholdersPath, extra: data);
+    context.go(RoutePaths.registerShareholdersPath, extra: data);
   }
 
   bool _gettingCat = false;

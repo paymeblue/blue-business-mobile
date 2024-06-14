@@ -111,6 +111,10 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
     }
   }
 
+  goBack(BuildContext context) {
+    context.go(RoutePaths.welcomePath);
+  }
+
   String formatPhone() {
     String number = phoneController.text.replaceAll(" ", "");
 

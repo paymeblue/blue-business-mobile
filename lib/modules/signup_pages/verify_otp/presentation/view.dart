@@ -1,6 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
+import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
@@ -24,37 +25,45 @@ class _VerifyRegistrationOtpViewState extends State<VerifyRegistrationOtpView> {
       onModelReady: (model) => model.init(context, widget.phone),
       model: VerifyRegistrationOtpViewModel(),
       builder: (context, model, _) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ...titleAndSubtitle(),
-              50.verticalGap,
-              BlueTextField.otp(
-                onChanged: model.onChanged,
-                onSubmit: model.onSubmit,
-              ),
-              35.verticalGap,
-              subtextAndTimeAction(
-                "Didn’t receive a code?",
-                resendButton(
-                  model.canResend
-                      ? "Resend code"
-                      : "Resend in ${model.timeString()}",
-                  model.canResend,
-                  model.resendOtp,
+        return Scaffold(
+          appBar: BlueAppBar.primary(
+            onBackTap: () {
+              model.goBack(context);
+            },
+            icon: Icons.arrow_back_ios_new,
+          ),
+          body: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ...titleAndSubtitle(),
+                50.verticalGap,
+                BlueTextField.otp(
+                  onChanged: model.onChanged,
+                  onSubmit: model.onSubmit,
                 ),
-              ),
-              const Spacer(),
-              AppButton.primary(
-                title: "Verify phone number",
-                isEnabled: model.canContinue,
-                onTap: () {
-                  model.verifyOtp(context);
-                },
-              ),
-            ],
+                35.verticalGap,
+                subtextAndTimeAction(
+                  "Didn’t receive a code?",
+                  resendButton(
+                    model.canResend
+                        ? "Resend code"
+                        : "Resend in ${model.timeString()}",
+                    model.canResend,
+                    model.resendOtp,
+                  ),
+                ),
+                const Spacer(),
+                AppButton.primary(
+                  title: "Verify phone number",
+                  isEnabled: model.canContinue,
+                  onTap: () {
+                    model.verifyOtp(context);
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },

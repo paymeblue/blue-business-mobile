@@ -116,6 +116,10 @@ class VerifyRegistrationOtpViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, SignupData data) {
-    context.push(RoutePaths.registerProgressPath, extra: data);
+    context.pushReplacement(RoutePaths.registerProgressPath, extra: data);
+  }
+
+  goBack(BuildContext context) {
+    context.pop();
   }
 }
