@@ -4,6 +4,7 @@ import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
+import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -39,35 +40,44 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
                 ...titleAndSubtitle(),
                 50.verticalGap,
                 Expanded(
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    itemBuilder: (ctx, i) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          shareholderTile(
-                            title: "Semira Yesufu",
-                            subtitle:
-                                "206, RD, D Close, House 5, F/Town, Lagos",
-                          ),
-                          if (i == 1) ...[
-                            25.verticalGap,
-                            subtext(() {
-                              model.goToNext(context);
-                            })
-                          ],
-                        ],
-                      );
-                    },
-                    separatorBuilder: (ctx, i) => 18.verticalGap,
-                    itemCount: 2,
-                  ),
+                  child: model.gettingShareholders
+                      ? loadingState(model)
+                      : ListView.separated(
+                          shrinkWrap: true,
+                          itemBuilder: (ctx, i) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                shareholderTile(
+                                  title: model.shareholders[i].name,
+                                  subtitle: model.shareholders[i].address,
+                                ),
+                                if (i == 1) ...[
+                                  25.verticalGap,
+                                  subtext(() {
+                                    model.goToNext(context);
+                                  })
+                                ],
+                              ],
+                            );
+                          },
+                          separatorBuilder: (ctx, i) => 18.verticalGap,
+                          itemCount: model.shareholders.length,
+                        ),
                 ),
               ],
             ),
           ),
         );
       },
+    );
+  }
+
+  Widget loadingState(ShareholderDetailsViewModel mode) {
+    return ListView.separated(
+      itemBuilder: (ctx, i) => BlueLoadingTile.withImage(),
+      separatorBuilder: (ctx, i) => 18.verticalGap,
+      itemCount: 4,
     );
   }
 
@@ -90,7 +100,7 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
             ),
             alignment: Alignment.center,
             child: Text(
-              "",
+              title.initials,
               style: AppTextStyles.midHeader.copyWith(
                 fontWeight: FontWeight.w500,
               ),
