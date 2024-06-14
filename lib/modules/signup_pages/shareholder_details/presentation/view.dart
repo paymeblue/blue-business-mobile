@@ -51,11 +51,16 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
                                 shareholderTile(
                                   title: model.shareholders[i].name,
                                   subtitle: model.shareholders[i].address,
+                                  onTap: () {
+                                    model.goToNext(context,
+                                        data: widget.data,
+                                        shareholder: model.shareholders[i]);
+                                  },
                                 ),
                                 if (i == 1) ...[
                                   25.verticalGap,
                                   subtext(() {
-                                    model.goToNext(context);
+                                    model.goToNext(context, data: widget.data);
                                   })
                                 ],
                               ],
@@ -81,50 +86,60 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
     );
   }
 
-  Widget shareholderTile({required String title, required String subtitle}) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6),
-        color: AppColors.inputField,
-      ),
-      child: Row(
-        children: [
-          Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.blue,
-              border: Border.all(color: AppColors.blue),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              title.initials,
-              style: AppTextStyles.midHeader.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+  Widget shareholderTile(
+      {required String title,
+      required String subtitle,
+      required VoidCallback onTap}) {
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        onTap: onTap,
+        splashColor: AppColors.brightBlue.withOpacity(.3),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            color: AppColors.inputField,
           ),
-          12.horizontalGap,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: AppTextStyles.smallHeader,
+          child: Row(
+            children: [
+              Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.blue,
+                  border: Border.all(color: AppColors.blue),
                 ),
-                Text(
-                  subtitle,
-                  style: AppTextStyles.smallText
-                      .copyWith(color: AppColors.bodyTextColor2),
-                )
-              ],
-            ),
+                alignment: Alignment.center,
+                child: Text(
+                  title.initials,
+                  style: AppTextStyles.midHeader.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              12.horizontalGap,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: AppTextStyles.smallHeader,
+                    ),
+                    Text(
+                      subtitle,
+                      style: AppTextStyles.smallText
+                          .copyWith(color: AppColors.bodyTextColor2),
+                    )
+                  ],
+                ),
+              ),
+              16.horizontalGap,
+            ],
           ),
-          16.horizontalGap,
-        ],
+        ),
       ),
     );
   }

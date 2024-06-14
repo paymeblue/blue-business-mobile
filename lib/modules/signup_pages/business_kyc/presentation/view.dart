@@ -1,4 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
+import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
@@ -8,7 +10,10 @@ import 'package:flutter/material.dart';
 import 'view_model.dart';
 
 class SignupBusinessKycView extends StatefulWidget {
-  const SignupBusinessKycView({super.key});
+  final SignupData data;
+  final Shareholders? shareholder;
+  const SignupBusinessKycView(
+      {super.key, required this.data, this.shareholder});
 
   @override
   State<SignupBusinessKycView> createState() => _SignupBusinessKycViewState();

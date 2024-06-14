@@ -24,8 +24,16 @@ class ShareholderDetailsViewModel extends BaseViewModel {
     context.go(RoutePaths.registerProgressPath, extra: data);
   }
 
-  goToNext(BuildContext context) {
-    context.push(RoutePaths.addShareholdersKycPath);
+  goToNext(BuildContext context,
+      {Shareholders? shareholder, required SignupData data}) {
+    Map<String, dynamic> extra = {"data": data};
+
+    if (shareholder != null) {
+      extra["shareholder"] = shareholder;
+    }
+    context.push(
+        "${RoutePaths.addShareholdersKycPath}${shareholder != null ? "/${shareholder.id}" : ""}",
+        extra: extra);
   }
 
   List<Shareholders> _shareholders = [];

@@ -9,6 +9,7 @@ import 'package:blue_business/core/models/bills/data/verify/data/verify_data_dat
 import 'package:blue_business/core/models/bills/electricity/vend/data/vend_electricity_data.dart';
 import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
 import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
+import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
@@ -667,11 +668,21 @@ ShellRoute signupShellRoute = ShellRoute(
       },
     ),
     GoRoute(
-      path: RoutePaths.addShareholdersKycPath,
+      path: "${RoutePaths.addShareholdersKycPath}/:id",
       name: "Signup Shareholder Kyc",
       builder: (context, state) {
         log(state.fullPath.toString());
-        return const SignupBusinessKycView();
+        Shareholders? shareholder;
+        SignupData data =
+            (state.extra as Map<String, dynamic>)["data"] as SignupData;
+        if ((state.extra as Map<String, dynamic>)["shareholder"] != null) {
+          shareholder = (state.extra as Map<String, dynamic>)["shareholder"]
+              as Shareholders;
+        }
+        return SignupBusinessKycView(
+          shareholder: shareholder,
+          data: data,
+        );
       },
     ),
     GoRoute(
