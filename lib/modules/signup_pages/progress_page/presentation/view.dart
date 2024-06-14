@@ -3,6 +3,7 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/steppers/circular_step_indicator.dart';
 import 'package:flutter/material.dart';
@@ -24,48 +25,56 @@ class _SignupProgressViewState extends State<SignupProgressView> {
       model: SignupProgressViewModel(),
       onModelReady: (model) => model.init(context, widget.data),
       builder: (context, model, _) {
-        return Column(
-          children: [
-            CircularStepIndicator(
-              max: model.progressSteps.length.toDouble(),
-              progress: model.progress.toDouble(),
-            ),
-            Text(
-              "Complete account setup",
-              style: AppTextStyles.midHeader,
-            ),
-            Text(
-              "${model.progress} out of ${model.progressSteps.length} complete",
-              style: AppTextStyles.smallText
-                  .copyWith(color: AppColors.bodyTextColor2),
-            ),
-            20.verticalGap,
-            const Divider(
-              color: AppColors.midGrey,
-            ),
-            Expanded(
-              child: ListView.separated(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
-                itemBuilder: (ctx, i) => signupStep(
-                  index: i,
-                  progress: model.progress,
-                  title: model.progressSteps[i]["title"],
-                  subtitle: model.progressSteps[i]["subtitle"],
-                ),
-                separatorBuilder: (ctx, i) => 18.verticalGap,
-                itemCount: model.progressSteps.length,
+        return Scaffold(
+          appBar: BlueAppBar.primary(
+            onBackTap: () {
+              model.goBack(context);
+            },
+            icon: Icons.arrow_back_ios_new,
+          ),
+          body: Column(
+            children: [
+              CircularStepIndicator(
+                max: model.progressSteps.length.toDouble(),
+                progress: model.progress.toDouble(),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: AppButton.primary(
-                  title: "Continue",
-                  onTap: () {
-                    model.goToNext(context, widget.data);
-                  }),
-            )
-          ],
+              Text(
+                "Complete account setup",
+                style: AppTextStyles.midHeader,
+              ),
+              Text(
+                "${model.progress} out of ${model.progressSteps.length} complete",
+                style: AppTextStyles.smallText
+                    .copyWith(color: AppColors.bodyTextColor2),
+              ),
+              20.verticalGap,
+              const Divider(
+                color: AppColors.midGrey,
+              ),
+              Expanded(
+                child: ListView.separated(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
+                  itemBuilder: (ctx, i) => signupStep(
+                    index: i,
+                    progress: model.progress,
+                    title: model.progressSteps[i]["title"],
+                    subtitle: model.progressSteps[i]["subtitle"],
+                  ),
+                  separatorBuilder: (ctx, i) => 18.verticalGap,
+                  itemCount: model.progressSteps.length,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: AppButton.primary(
+                    title: "Continue",
+                    onTap: () {
+                      model.goToNext(context, widget.data);
+                    }),
+              )
+            ],
+          ),
         );
       },
     );

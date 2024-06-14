@@ -22,6 +22,14 @@ class SignupProgressViewModel extends BaseViewModel {
     }
   }
 
+  goBack(BuildContext context) {
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go(RoutePaths.addAccountPhonePath);
+    }
+  }
+
   setProgress(SignupData data) {
     if (data.businessProfileCompleted) {
       progress = 1;

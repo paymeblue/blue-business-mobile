@@ -34,6 +34,10 @@ class SignupBusinessDetailsViewModel extends BaseViewModel {
     context.go(RoutePaths.registerShareholdersPath, extra: data);
   }
 
+  goBack(BuildContext context, SignupData data) {
+    context.go(RoutePaths.registerProgressPath, extra: data);
+  }
+
   bool _gettingCat = false;
   bool get gettingCat => _gettingCat;
   set gettingCat(bool v) {
@@ -96,7 +100,9 @@ class SignupBusinessDetailsViewModel extends BaseViewModel {
             message: AppErrorHandler.getErrorMessage(error)));
 
     if (response.status == "success") {
-      if (context.mounted) goToNext(context, data);
+      if (context.mounted) {
+        goToNext(context, data.copyWith(businessDetailsCompleted: true));
+      }
     } else {
       AppNotification.error(message: response.message);
     }

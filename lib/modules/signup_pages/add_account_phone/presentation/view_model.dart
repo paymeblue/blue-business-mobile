@@ -82,6 +82,8 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
     context.go(RoutePaths.loginPath);
   }
 
+  final formKey = GlobalKey<FormState>();
+
   register(BuildContext context) async {
     AppLoader.start();
     SignupRequest request = SignupRequest(
@@ -95,6 +97,7 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
             SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
 
     if (response.status == "success") {
+      formKey.currentState!.reset();
       if (context.mounted) goToNext(context, response.data!);
     } else {
       AppNotification.error(message: response.message);

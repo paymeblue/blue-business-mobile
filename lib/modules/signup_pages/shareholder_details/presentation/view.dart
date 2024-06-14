@@ -3,6 +3,7 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -21,40 +22,49 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
   Widget build(BuildContext context) {
     return BaseView<ShareholderDetailsViewModel>(
       model: ShareholderDetailsViewModel(),
-      onModelReady: (model) => model.init(context),
+      onModelReady: (model) => model.init(context, widget.data),
       builder: (context, model, _) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ...titleAndSubtitle(),
-              50.verticalGap,
-              Expanded(
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (ctx, i) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        shareholderTile(
-                          title: "Semira Yesufu",
-                          subtitle: "206, RD, D Close, House 5, F/Town, Lagos",
-                        ),
-                        if (i == 1) ...[
-                          25.verticalGap,
-                          subtext(() {
-                            model.goToNext(context);
-                          })
+        return Scaffold(
+          appBar: BlueAppBar.primary(
+            onBackTap: () {
+              model.goBack(context, widget.data);
+            },
+            icon: Icons.arrow_back_ios_new,
+          ),
+          body: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ...titleAndSubtitle(),
+                50.verticalGap,
+                Expanded(
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    itemBuilder: (ctx, i) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          shareholderTile(
+                            title: "Semira Yesufu",
+                            subtitle:
+                                "206, RD, D Close, House 5, F/Town, Lagos",
+                          ),
+                          if (i == 1) ...[
+                            25.verticalGap,
+                            subtext(() {
+                              model.goToNext(context);
+                            })
+                          ],
                         ],
-                      ],
-                    );
-                  },
-                  separatorBuilder: (ctx, i) => 18.verticalGap,
-                  itemCount: 2,
+                      );
+                    },
+                    separatorBuilder: (ctx, i) => 18.verticalGap,
+                    itemCount: 2,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

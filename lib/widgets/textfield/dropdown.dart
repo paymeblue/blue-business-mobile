@@ -147,6 +147,10 @@ class _BlueStringDropdown extends StatelessWidget {
             items: items.map((e) => DropdownType(label: e, value: e)).toList(),
             selectedValue: value,
             canSearch: true,
+            title: Text(
+              "Select from the list below",
+              style: AppTextStyles.midHeader,
+            ),
             selectedItemBuilder: selectedItem(),
             itemBuilder: itemBuilder,
             onChanged: onChanged,
