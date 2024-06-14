@@ -1,20 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'signup_profile_response.dart';
+part of 'complete_registration_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SignupProfileResponseImpl _$$SignupProfileResponseImplFromJson(
+_$CompleteRegistrationResponseImpl _$$CompleteRegistrationResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$SignupProfileResponseImpl(
+    _$CompleteRegistrationResponseImpl(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$SignupProfileResponseImplToJson(
-    _$SignupProfileResponseImpl instance) {
+Map<String, dynamic> _$$CompleteRegistrationResponseImplToJson(
+    _$CompleteRegistrationResponseImpl instance) {
   final val = <String, dynamic>{
     'status': instance.status,
   };

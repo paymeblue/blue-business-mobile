@@ -1,4 +1,6 @@
 import 'package:blue_business/core/models/business_category/response/business_category_response.dart';
+import 'package:blue_business/core/models/complete_registration/request/complete_registration_request.dart';
+import 'package:blue_business/core/models/complete_registration/response/complete_registration_response.dart';
 import 'package:blue_business/core/models/create_business_profile/request/create_business_profile_request.dart';
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
 import 'package:blue_business/core/models/shareholders/get/response/get_shareholders_response.dart';
@@ -39,5 +41,10 @@ abstract class AuthService {
   @GET("/business/{id}/shareholders")
   Future<GetShareholdersResponse> getShareholders({
     @Path("id") required int userId,
+  });
+
+  @POST("/onboard/complete")
+  Future<CompleteRegistrationResponse> completeRegistration({
+    @Body() required CompleteRegistrationRequest request,
   });
 }
