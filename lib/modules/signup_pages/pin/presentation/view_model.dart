@@ -1,5 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
+import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/models/token/token.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -17,7 +18,7 @@ class PinViewModel extends BaseViewModel {
     size = context.mediaQuery.size;
   }
 
-  goBack(BuildContext context) {}
+  goBack(BuildContext context, SignupData data) {}
 
   String _pin = "";
   String get pin => _pin;

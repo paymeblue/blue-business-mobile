@@ -216,10 +216,12 @@ GoRouter router = GoRouter(
           ),
         ]),
     GoRoute(
-      path: "/:id${RoutePaths.pinPath}",
+      path: "/register${RoutePaths.pinPath}",
       builder: (context, state) {
         log(state.fullPath.toString());
-        return const PinView();
+        return PinView(
+          data: state.extra as SignupData,
+        );
       },
     ),
     StatefulShellRoute.indexedStack(
