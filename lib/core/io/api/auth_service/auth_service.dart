@@ -38,7 +38,7 @@ abstract class AuthService {
   @GET("/business-categories")
   Future<BusinessCategoryResponse> getCategories();
 
-  @GET("/business/{id}/shareholders")
+  @GET("/business-profiles/{id}/shareholders")
   Future<GetShareholdersResponse> getShareholders({
     @Path("id") required int userId,
   });

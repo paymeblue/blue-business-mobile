@@ -61,7 +61,7 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
                                             shareholder: model.shareholders[i]);
                                       },
                                     ),
-                                    if (i == 1) ...[
+                                    if (i == model.shareholders.length - 1) ...[
                                       25.verticalGap,
                                       subtext(() {
                                         model.goToNext(context,
@@ -121,6 +121,7 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
                   title.initials,
                   style: AppTextStyles.midHeader.copyWith(
                     fontWeight: FontWeight.w500,
+                    color: AppColors.white,
                   ),
                 ),
               ),
@@ -130,11 +131,11 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title,
+                      title.nameCase,
                       style: AppTextStyles.smallHeader,
                     ),
                     Text(
-                      subtitle,
+                      subtitle.sentenceCase,
                       style: AppTextStyles.smallText
                           .copyWith(color: AppColors.bodyTextColor2),
                     )

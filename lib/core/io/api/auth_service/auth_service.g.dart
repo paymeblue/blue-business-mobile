@@ -176,7 +176,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/business/${userId}/shareholders',
+              '/business-profiles/${userId}/shareholders',
               queryParameters: queryParameters,
               data: _data,
             )
