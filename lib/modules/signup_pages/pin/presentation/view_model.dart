@@ -1,6 +1,8 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/storage/functions.dart';
+import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/complete_registration/request/complete_registration_request.dart';
 import 'package:blue_business/core/models/complete_registration/response/complete_registration_response.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
@@ -43,6 +45,8 @@ class PinViewModel extends BaseViewModel {
             message: AppErrorHandler.getErrorMessage(error)));
 
     if (response.status == "success") {
+      StorageValues.deleteLoginValues();
+      await StorageHelpers.deleteAll();
       if (context.mounted) {
         goToNext(context);
       }

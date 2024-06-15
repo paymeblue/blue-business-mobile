@@ -1,4 +1,6 @@
+import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class BaseView<T extends ChangeNotifier> extends StatefulWidget {
@@ -52,18 +54,18 @@ class _BaseViewState<T extends ChangeNotifier> extends State<BaseView<T>> {
       value: model,
       child: GestureDetector(
         onTap: () {
-          // GoRouterState state = GoRouterState.of(context);
+          GoRouterState state = GoRouterState.of(context);
           FocusManager.instance.primaryFocus?.unfocus();
 
-          // if (state.matchedLocation.contains("/dash")) {
-          //   RefreshTimer().resetTimer();
-          // }
+          if (state.matchedLocation.contains("/dash")) {
+            RefreshTimer().resetTimer();
+          }
         },
         onPanDown: (details) {
-          // GoRouterState state = GoRouterState.of(context);
-          // if (state.matchedLocation.contains("/dash")) {
-          //   RefreshTimer().resetTimer();
-          // }
+          GoRouterState state = GoRouterState.of(context);
+          if (state.matchedLocation.contains("/dash")) {
+            RefreshTimer().resetTimer();
+          }
         },
         child: Consumer<T>(
           builder: widget.builder,

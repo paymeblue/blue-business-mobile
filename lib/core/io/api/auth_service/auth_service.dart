@@ -5,6 +5,8 @@ import 'package:blue_business/core/models/create_business_profile/request/create
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
+import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
+import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
 import 'package:blue_business/core/models/shareholders/add/request/add_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/request/create_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/response/create_shareholders_response.dart';
@@ -64,5 +66,10 @@ abstract class AuthService {
   @POST("/auth")
   Future<LoginResponse> login({
     @Body() required LoginRequest request,
+  });
+
+  @POST("/auth/refresh-access-token")
+  Future<RefreshTokenResponse> refresh({
+    @Body() required RefreshTokenRequest request,
   });
 }
