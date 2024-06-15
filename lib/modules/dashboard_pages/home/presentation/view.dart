@@ -513,7 +513,10 @@ class _HomeViewState extends State<HomeView> {
                     children: [
                       model.isKycLoading
                           ? walletTypeShimmer()
-                          : walletTypeContainer(kycLevel: "basic"),
+                          : walletTypeContainer(
+                              kycLevel:
+                                  locator<AppStateValues>().currentUser!.kyc,
+                            ),
                       AppAssets.images.launcher.image(height: 23, width: 23),
                     ],
                   ),
@@ -541,14 +544,10 @@ class _HomeViewState extends State<HomeView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        child: model.isLoading
-                            ? walletAmountShimmer()
-                            : branchContainer(model),
+                        child: branchContainer(model),
                       ),
                       8.horizontalGap,
-                      model.isLoading
-                          ? walletIdShimmer()
-                          : staffContainer(model),
+                      staffContainer(model),
                     ],
                   )
                 ],
@@ -659,7 +658,10 @@ class _HomeViewState extends State<HomeView> {
             4.verticalGap,
             FittedBox(
               child: Text(
-                "30,000",
+                locator<AppStateValues>()
+                    .currentUser!
+                    .transactionVolume
+                    .toString(),
                 style: AppTextStyles.header
                     .copyWith(color: AppColors.grey, fontSize: 16.5),
               ),
@@ -750,7 +752,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           FittedBox(
             child: Text(
-              "28",
+              locator<AppStateValues>().currentUser!.totalBranches.toString(),
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
                 fontSize: 18,
@@ -777,7 +779,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           FittedBox(
             child: Text(
-              "1,500",
+              locator<AppStateValues>().currentUser!.totalStaff.toString(),
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
                 fontSize: 18,
