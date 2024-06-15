@@ -12,6 +12,7 @@ _$CreateBusinessProfileDataImpl _$$CreateBusinessProfileDataImplFromJson(
       id: json['id'] as int,
       phone: json['phone'] as String,
       level: json['level'] as int,
+      businessId: json['business_id'] as int,
       businessProfileCompleted:
           json['business_profile_completed'] as bool? ?? false,
       businessDetailsCompleted:
@@ -30,6 +31,7 @@ Map<String, dynamic> _$$CreateBusinessProfileDataImplToJson(
     'id': instance.id,
     'phone': instance.phone,
     'level': instance.level,
+    'business_id': instance.businessId,
     'business_profile_completed': instance.businessProfileCompleted,
     'business_details_completed': instance.businessDetailsCompleted,
     'business_kyc_completed': instance.businessKycCompleted,

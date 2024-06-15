@@ -18,7 +18,7 @@ class SignupProgressViewModel extends BaseViewModel {
     if (progress == 1) {
       context.go(RoutePaths.registerBusinessDetailsPath, extra: data);
     } else if (progress == 2) {
-      context.go(RoutePaths.addShareholdersKycPath, extra: data);
+      context.go(RoutePaths.registerShareholdersPath, extra: data);
     } else {
       context.go("/register${RoutePaths.pinPath}", extra: data);
     }

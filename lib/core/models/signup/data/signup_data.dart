@@ -12,6 +12,7 @@ class SignupData with _$SignupData {
     @Default(false) bool businessProfileCompleted,
     @Default(false) bool businessDetailsCompleted,
     @Default(false) bool businessKycCompleted,
+    int? businessId,
     String? createdAt,
   }) = _SignupData;
 

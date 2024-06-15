@@ -10,6 +10,7 @@ class CreateBusinessProfileData with _$CreateBusinessProfileData {
     required int id,
     required String phone,
     required int level,
+    required int businessId,
     @Default(false) bool businessProfileCompleted,
     @Default(false) bool businessDetailsCompleted,
     @Default(false) bool businessKycCompleted,

@@ -31,9 +31,7 @@ class ShareholderDetailsViewModel extends BaseViewModel {
     if (shareholder != null) {
       extra["shareholder"] = shareholder;
     }
-    context.push(
-        "${RoutePaths.addShareholdersKycPath}${shareholder != null ? "/${shareholder.id}" : ""}",
-        extra: extra);
+    context.push(RoutePaths.addShareholdersKycPath, extra: extra);
   }
 
   List<Shareholders> _shareholders = [];
@@ -53,7 +51,7 @@ class ShareholderDetailsViewModel extends BaseViewModel {
   getShareholders(SignupData data) async {
     gettingShareholders = true;
     GetShareholdersResponse response = await AuthService(DioConfig.dio())
-        .getShareholders(userId: data.id)
+        .getShareholders(userId: data.businessId!)
         .onError((error, stackTrace) => GetShareholdersResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 

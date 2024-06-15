@@ -16,6 +16,7 @@ _$SignupDataImpl _$$SignupDataImplFromJson(Map<String, dynamic> json) =>
       businessDetailsCompleted:
           json['business_details_completed'] as bool? ?? false,
       businessKycCompleted: json['business_kyc_completed'] as bool? ?? false,
+      businessId: json['business_id'] as int?,
       createdAt: json['created_at'] as String?,
     );
 
@@ -35,6 +36,7 @@ Map<String, dynamic> _$$SignupDataImplToJson(_$SignupDataImpl instance) {
     }
   }
 
+  writeNotNull('business_id', instance.businessId);
   writeNotNull('created_at', instance.createdAt);
   return val;
 }

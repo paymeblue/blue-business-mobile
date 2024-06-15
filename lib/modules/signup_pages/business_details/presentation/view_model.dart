@@ -101,7 +101,11 @@ class SignupBusinessDetailsViewModel extends BaseViewModel {
 
     if (response.status == "success") {
       if (context.mounted) {
-        goToNext(context, data.copyWith(businessDetailsCompleted: true));
+        goToNext(
+            context,
+            data.copyWith(
+                businessDetailsCompleted: true,
+                businessId: response.data!.businessId));
       }
     } else {
       AppNotification.error(message: response.message);

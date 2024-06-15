@@ -670,7 +670,7 @@ ShellRoute signupShellRoute = ShellRoute(
       },
     ),
     GoRoute(
-      path: "${RoutePaths.addShareholdersKycPath}/:id",
+      path: RoutePaths.addShareholdersKycPath,
       name: "Signup Shareholder Kyc",
       builder: (context, state) {
         log(state.fullPath.toString());

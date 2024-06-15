@@ -5,6 +5,7 @@ import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
+import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -42,33 +43,37 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
                 Expanded(
                   child: model.gettingShareholders
                       ? loadingState(model)
-                      : ListView.separated(
-                          shrinkWrap: true,
-                          itemBuilder: (ctx, i) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                shareholderTile(
-                                  title: model.shareholders[i].name,
-                                  subtitle: model.shareholders[i].address,
-                                  onTap: () {
-                                    model.goToNext(context,
-                                        data: widget.data,
-                                        shareholder: model.shareholders[i]);
-                                  },
-                                ),
-                                if (i == 1) ...[
-                                  25.verticalGap,
-                                  subtext(() {
-                                    model.goToNext(context, data: widget.data);
-                                  })
-                                ],
-                              ],
-                            );
-                          },
-                          separatorBuilder: (ctx, i) => 18.verticalGap,
-                          itemCount: model.shareholders.length,
-                        ),
+                      : model.shareholders.isEmpty
+                          ? NoItems.firstPage(
+                              "We could not get any shareholders")
+                          : ListView.separated(
+                              shrinkWrap: true,
+                              itemBuilder: (ctx, i) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    shareholderTile(
+                                      title: model.shareholders[i].name,
+                                      subtitle: model.shareholders[i].address,
+                                      onTap: () {
+                                        model.goToNext(context,
+                                            data: widget.data,
+                                            shareholder: model.shareholders[i]);
+                                      },
+                                    ),
+                                    if (i == 1) ...[
+                                      25.verticalGap,
+                                      subtext(() {
+                                        model.goToNext(context,
+                                            data: widget.data);
+                                      })
+                                    ],
+                                  ],
+                                );
+                              },
+                              separatorBuilder: (ctx, i) => 18.verticalGap,
+                              itemCount: model.shareholders.length,
+                            ),
                 ),
               ],
             ),

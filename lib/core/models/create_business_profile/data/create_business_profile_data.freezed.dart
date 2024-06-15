@@ -24,6 +24,7 @@ mixin _$CreateBusinessProfileData {
   int get id => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   int get level => throw _privateConstructorUsedError;
+  int get businessId => throw _privateConstructorUsedError;
   bool get businessProfileCompleted => throw _privateConstructorUsedError;
   bool get businessDetailsCompleted => throw _privateConstructorUsedError;
   bool get businessKycCompleted => throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $CreateBusinessProfileDataCopyWith<$Res> {
       {int id,
       String phone,
       int level,
+      int businessId,
       bool businessProfileCompleted,
       bool businessDetailsCompleted,
       bool businessKycCompleted,
@@ -70,6 +72,7 @@ class _$CreateBusinessProfileDataCopyWithImpl<$Res,
     Object? id = null,
     Object? phone = null,
     Object? level = null,
+    Object? businessId = null,
     Object? businessProfileCompleted = null,
     Object? businessDetailsCompleted = null,
     Object? businessKycCompleted = null,
@@ -88,6 +91,10 @@ class _$CreateBusinessProfileDataCopyWithImpl<$Res,
       level: null == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
+              as int,
+      businessId: null == businessId
+          ? _value.businessId
+          : businessId // ignore: cast_nullable_to_non_nullable
               as int,
       businessProfileCompleted: null == businessProfileCompleted
           ? _value.businessProfileCompleted
@@ -126,6 +133,7 @@ abstract class _$$CreateBusinessProfileDataImplCopyWith<$Res>
       {int id,
       String phone,
       int level,
+      int businessId,
       bool businessProfileCompleted,
       bool businessDetailsCompleted,
       bool businessKycCompleted,
@@ -149,6 +157,7 @@ class __$$CreateBusinessProfileDataImplCopyWithImpl<$Res>
     Object? id = null,
     Object? phone = null,
     Object? level = null,
+    Object? businessId = null,
     Object? businessProfileCompleted = null,
     Object? businessDetailsCompleted = null,
     Object? businessKycCompleted = null,
@@ -167,6 +176,10 @@ class __$$CreateBusinessProfileDataImplCopyWithImpl<$Res>
       level: null == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
+              as int,
+      businessId: null == businessId
+          ? _value.businessId
+          : businessId // ignore: cast_nullable_to_non_nullable
               as int,
       businessProfileCompleted: null == businessProfileCompleted
           ? _value.businessProfileCompleted
@@ -199,6 +212,7 @@ class _$CreateBusinessProfileDataImpl implements _CreateBusinessProfileData {
       {required this.id,
       required this.phone,
       required this.level,
+      required this.businessId,
       this.businessProfileCompleted = false,
       this.businessDetailsCompleted = false,
       this.businessKycCompleted = false,
@@ -215,6 +229,8 @@ class _$CreateBusinessProfileDataImpl implements _CreateBusinessProfileData {
   final String phone;
   @override
   final int level;
+  @override
+  final int businessId;
   @override
   @JsonKey()
   final bool businessProfileCompleted;
@@ -238,7 +254,7 @@ class _$CreateBusinessProfileDataImpl implements _CreateBusinessProfileData {
 
   @override
   String toString() {
-    return 'CreateBusinessProfileData(id: $id, phone: $phone, level: $level, businessProfileCompleted: $businessProfileCompleted, businessDetailsCompleted: $businessDetailsCompleted, businessKycCompleted: $businessKycCompleted, shareholders: $shareholders, createdAt: $createdAt)';
+    return 'CreateBusinessProfileData(id: $id, phone: $phone, level: $level, businessId: $businessId, businessProfileCompleted: $businessProfileCompleted, businessDetailsCompleted: $businessDetailsCompleted, businessKycCompleted: $businessKycCompleted, shareholders: $shareholders, createdAt: $createdAt)';
   }
 
   @override
@@ -249,6 +265,8 @@ class _$CreateBusinessProfileDataImpl implements _CreateBusinessProfileData {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.level, level) || other.level == level) &&
+            (identical(other.businessId, businessId) ||
+                other.businessId == businessId) &&
             (identical(
                     other.businessProfileCompleted, businessProfileCompleted) ||
                 other.businessProfileCompleted == businessProfileCompleted) &&
@@ -270,6 +288,7 @@ class _$CreateBusinessProfileDataImpl implements _CreateBusinessProfileData {
       id,
       phone,
       level,
+      businessId,
       businessProfileCompleted,
       businessDetailsCompleted,
       businessKycCompleted,
@@ -296,6 +315,7 @@ abstract class _CreateBusinessProfileData implements CreateBusinessProfileData {
       {required final int id,
       required final String phone,
       required final int level,
+      required final int businessId,
       final bool businessProfileCompleted,
       final bool businessDetailsCompleted,
       final bool businessKycCompleted,
@@ -311,6 +331,8 @@ abstract class _CreateBusinessProfileData implements CreateBusinessProfileData {
   String get phone;
   @override
   int get level;
+  @override
+  int get businessId;
   @override
   bool get businessProfileCompleted;
   @override

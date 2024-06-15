@@ -26,6 +26,7 @@ mixin _$SignupData {
   bool get businessProfileCompleted => throw _privateConstructorUsedError;
   bool get businessDetailsCompleted => throw _privateConstructorUsedError;
   bool get businessKycCompleted => throw _privateConstructorUsedError;
+  int? get businessId => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $SignupDataCopyWith<$Res> {
       bool businessProfileCompleted,
       bool businessDetailsCompleted,
       bool businessKycCompleted,
+      int? businessId,
       String? createdAt});
 }
 
@@ -69,6 +71,7 @@ class _$SignupDataCopyWithImpl<$Res, $Val extends SignupData>
     Object? businessProfileCompleted = null,
     Object? businessDetailsCompleted = null,
     Object? businessKycCompleted = null,
+    Object? businessId = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -96,6 +99,10 @@ class _$SignupDataCopyWithImpl<$Res, $Val extends SignupData>
           ? _value.businessKycCompleted
           : businessKycCompleted // ignore: cast_nullable_to_non_nullable
               as bool,
+      businessId: freezed == businessId
+          ? _value.businessId
+          : businessId // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -119,6 +126,7 @@ abstract class _$$SignupDataImplCopyWith<$Res>
       bool businessProfileCompleted,
       bool businessDetailsCompleted,
       bool businessKycCompleted,
+      int? businessId,
       String? createdAt});
 }
 
@@ -139,6 +147,7 @@ class __$$SignupDataImplCopyWithImpl<$Res>
     Object? businessProfileCompleted = null,
     Object? businessDetailsCompleted = null,
     Object? businessKycCompleted = null,
+    Object? businessId = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_$SignupDataImpl(
@@ -166,6 +175,10 @@ class __$$SignupDataImplCopyWithImpl<$Res>
           ? _value.businessKycCompleted
           : businessKycCompleted // ignore: cast_nullable_to_non_nullable
               as bool,
+      businessId: freezed == businessId
+          ? _value.businessId
+          : businessId // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -184,6 +197,7 @@ class _$SignupDataImpl implements _SignupData {
       this.businessProfileCompleted = false,
       this.businessDetailsCompleted = false,
       this.businessKycCompleted = false,
+      this.businessId,
       this.createdAt});
 
   factory _$SignupDataImpl.fromJson(Map<String, dynamic> json) =>
@@ -205,11 +219,13 @@ class _$SignupDataImpl implements _SignupData {
   @JsonKey()
   final bool businessKycCompleted;
   @override
+  final int? businessId;
+  @override
   final String? createdAt;
 
   @override
   String toString() {
-    return 'SignupData(id: $id, phone: $phone, level: $level, businessProfileCompleted: $businessProfileCompleted, businessDetailsCompleted: $businessDetailsCompleted, businessKycCompleted: $businessKycCompleted, createdAt: $createdAt)';
+    return 'SignupData(id: $id, phone: $phone, level: $level, businessProfileCompleted: $businessProfileCompleted, businessDetailsCompleted: $businessDetailsCompleted, businessKycCompleted: $businessKycCompleted, businessId: $businessId, createdAt: $createdAt)';
   }
 
   @override
@@ -228,6 +244,8 @@ class _$SignupDataImpl implements _SignupData {
                 other.businessDetailsCompleted == businessDetailsCompleted) &&
             (identical(other.businessKycCompleted, businessKycCompleted) ||
                 other.businessKycCompleted == businessKycCompleted) &&
+            (identical(other.businessId, businessId) ||
+                other.businessId == businessId) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -242,6 +260,7 @@ class _$SignupDataImpl implements _SignupData {
       businessProfileCompleted,
       businessDetailsCompleted,
       businessKycCompleted,
+      businessId,
       createdAt);
 
   @JsonKey(ignore: true)
@@ -266,6 +285,7 @@ abstract class _SignupData implements SignupData {
       final bool businessProfileCompleted,
       final bool businessDetailsCompleted,
       final bool businessKycCompleted,
+      final int? businessId,
       final String? createdAt}) = _$SignupDataImpl;
 
   factory _SignupData.fromJson(Map<String, dynamic> json) =
@@ -283,6 +303,8 @@ abstract class _SignupData implements SignupData {
   bool get businessDetailsCompleted;
   @override
   bool get businessKycCompleted;
+  @override
+  int? get businessId;
   @override
   String? get createdAt;
   @override
