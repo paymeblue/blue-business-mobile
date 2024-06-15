@@ -113,14 +113,16 @@ class __$$SpendingAnalyticsDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SpendingAnalyticsDataImpl implements _SpendingAnalyticsData {
   const _$SpendingAnalyticsDataImpl(
-      {required this.desktopSum, required this.mobileSum});
+      {this.desktopSum = "0.0", this.mobileSum = "0.0"});
 
   factory _$SpendingAnalyticsDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$SpendingAnalyticsDataImplFromJson(json);
 
   @override
+  @JsonKey()
   final String desktopSum;
   @override
+  @JsonKey()
   final String mobileSum;
 
   @override
@@ -160,8 +162,8 @@ class _$SpendingAnalyticsDataImpl implements _SpendingAnalyticsData {
 
 abstract class _SpendingAnalyticsData implements SpendingAnalyticsData {
   const factory _SpendingAnalyticsData(
-      {required final String desktopSum,
-      required final String mobileSum}) = _$SpendingAnalyticsDataImpl;
+      {final String desktopSum,
+      final String mobileSum}) = _$SpendingAnalyticsDataImpl;
 
   factory _SpendingAnalyticsData.fromJson(Map<String, dynamic> json) =
       _$SpendingAnalyticsDataImpl.fromJson;

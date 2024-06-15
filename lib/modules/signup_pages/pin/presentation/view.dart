@@ -1,6 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/models/signup_profile/request/signup_profile_request.dart';
+import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
@@ -11,9 +11,8 @@ import 'package:flutter/material.dart';
 import 'view_model.dart';
 
 class PinView extends StatefulWidget {
-  final String id;
-  final SignupProfileRequest request;
-  const PinView({super.key, required this.id, required this.request});
+  final SignupData data;
+  const PinView({super.key, required this.data});
 
   @override
   State<PinView> createState() => _PinViewState();
@@ -24,16 +23,18 @@ class _PinViewState extends State<PinView> {
   Widget build(BuildContext context) {
     return BaseView<PinViewModel>(
       model: PinViewModel(),
-      onModelReady: (model) => model.init(context, widget.id, widget.request),
+      onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
         return Scaffold(
-          appBar: BlueAppBar.primary(onBackTap: () {
-            model.goBack(context);
-          }),
-          body: Container(
-            height: model.size.height,
-            width: model.size.width,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 35),
+          appBar: BlueAppBar.primary(
+            onBackTap: () {
+              model.goBack(context, widget.data);
+            },
+            icon: Icons.arrow_back_ios_new,
+          ),
+          body: Padding(
+            padding:
+                const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 35),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -45,7 +46,7 @@ class _PinViewState extends State<PinView> {
                 120.verticalGap,
                 registerButton(
                     onTap: () {
-                      model.setupProfile(context);
+                      model.completeRegistration(widget.data, context);
                     },
                     isActive: model.pin.length >= 4),
               ],

@@ -1,29 +1,21 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
-import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
-import 'package:blue_business/core/models/transaction/verify/request/verified_receiver_request.dart';
-import 'package:blue_business/core/models/transaction/verify/response/verified_receiver_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
-import 'package:blue_business/core/navigation/route_names.dart';
-import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PhonePaymentViewModel extends BaseViewModel {
   late Size size;
   late InitiateTransactionData data;
-  TransactionService transactionService = TransactionService();
 
   init(BuildContext context, InitiateTransactionData d) {
     size = context.mediaQuery.size;
@@ -138,35 +130,15 @@ class PhonePaymentViewModel extends BaseViewModel {
   }
 
   onButtonTap(BuildContext context) {
-    verify().then((value) {
-      log(value.toString());
-      if (value.status == "success") {
-        context.go("${RoutePaths.confirmPaymentPath}/phone/${data.id}",
-            extra: value.data);
-      } else {
-        AppNotification.error(message: value.message);
-      }
-    });
-  }
-
-  Future<VerifiedReceiverResponse> verify() async {
-    AppLoader.start();
-
-    VerifiedReceiverRequest request = VerifiedReceiverRequest(
-      receiver: formatPhone(),
-      transactionId: data.id,
-      receiverName: recipientController.text,
-    );
-
-    VerifiedReceiverResponse resp = await transactionService
-        .verifyReceiver(request)
-        .onError((error, stackTrace) {
-      return VerifiedReceiverResponse(
-          message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    AppLoader.stop();
-    return resp;
+    // verify().then((value) {
+    //   log(value.toString());
+    //   if (value.status == "success") {
+    //     context.go("${RoutePaths.confirmPaymentPath}/phone/${data.id}",
+    //         extra: value.data);
+    //   } else {
+    //     AppNotification.error(message: value.message);
+    //   }
+    // });
   }
 
   String formatPhone() {

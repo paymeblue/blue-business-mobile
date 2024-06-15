@@ -9,8 +9,6 @@ import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
-import 'package:blue_business/widgets/buttons/app_buttons.dart';
-import 'package:blue_business/widgets/modals/info_container.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -41,40 +39,45 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
             },
             icon: Icons.arrow_back_ios_new_rounded,
           ),
-          body: SingleChildScrollView(
-            child: SizedBox(
-              height: model.size.height + 50,
-              width: model.size.width,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      children: [
-                        title(),
-                        35.verticalGap,
-                        barcodeImage(),
-                        10.verticalGap,
-                        const InfoContainer(
-                            text:
-                                "Please remain logged in while paying with barcode"),
-                        15.verticalGap,
-                        qrImageContainer(model),
-                        36.verticalGap,
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 35),
-                          child: AppButton.primary(
-                            title: "Share my QR code",
-                            onTap: model.downloadAndShareQr,
-                          ),
+          body: SizedBox(
+            height: model.size.height,
+            width: model.size.width,
+            child: ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    children: [
+                      title(),
+                      25.verticalGap,
+                      qrImageContainer(model),
+                      10.verticalGap,
+                      TextButton(
+                        onPressed: model.downloadAndShareQr,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.share_outlined,
+                              weight: .4,
+                              color: AppColors.primary,
+                            ),
+                            10.horizontalGap,
+                            Text(
+                              "SHARE QR CODE",
+                              style: AppTextStyles.smallButtonText
+                                  .copyWith(color: AppColors.primary),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  35.verticalGap,
-                  walletDataContainer(model),
-                ],
-              ),
+                ),
+                30.verticalGap,
+                walletDataContainer(model),
+              ],
             ),
           ),
         );
@@ -85,7 +88,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
   Container walletDataContainer(ReceiveMoneyViewModel model) {
     return Container(
       width: context.mediaQuery.size.width,
-      height: 300,
+      height: 325,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -105,13 +108,46 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          walletDataTitle("Topup Account"),
-          5.verticalGap,
-          walletAccountDataContent(model),
-          20.verticalGap,
-          walletDataTitle("Blue Wallet"),
-          5.verticalGap,
-          walletIdDataContent(model),
+          Text(
+            "BUSINESS CREDENTIALS",
+            style: AppTextStyles.header
+                .copyWith(fontSize: 15, fontWeight: FontWeight.w500),
+          ),
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: "",
+                  // "${locator<AppStateValues>().currentUser!.businessProfile!.name} ",
+                  style: AppTextStyles.subHeader
+                      .copyWith(fontSize: 14.5, color: AppColors.blue),
+                ),
+                TextSpan(
+                  text: "Topup Account and Blue ID",
+                  style: AppTextStyles.subHeader.copyWith(fontSize: 14.5),
+                )
+              ],
+            ),
+          ),
+          10.verticalGap,
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+              decoration:
+                  BoxDecoration(border: Border.all(color: AppColors.grey)),
+              child: Column(
+                children: [
+                  walletAccountDataContent(model),
+                  const Spacer(),
+                  const Divider(
+                    color: AppColors.grey,
+                  ),
+                  const Spacer(),
+                  walletIdDataContent(model),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -132,26 +168,17 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
             height: 70,
             width: context.mediaQuery.size.width,
             padding: const EdgeInsets.symmetric(horizontal: 12),
-            decoration: BoxDecoration(
-              color: AppColors.grey,
-              borderRadius: BorderRadius.circular(6),
-            ),
+            decoration: const BoxDecoration(),
             child: Row(
               children: [
                 blueAccountImage(),
                 10.horizontalGap,
                 Expanded(
-                  child: textColumn(
-                    title: locator<AppStateValues>().account!.bankName,
-                    subtitle: locator<AppStateValues>().account!.accountNumber,
+                  child: accountTextColumn(
+                    bank: locator<AppStateValues>().account!.bankName,
+                    accountNumber:
+                        locator<AppStateValues>().account!.accountNumber,
                   ),
-                ),
-                10.horizontalGap,
-                Container(
-                  height: 38,
-                  width: 38,
-                  padding: const EdgeInsets.all(12),
-                  child: AppAssets.images.icons.copy.svg(),
                 ),
               ],
             ),
@@ -173,29 +200,18 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
             model.copy(locator<AppStateValues>().wallet!.walletCode);
           },
           child: Container(
-            height: 70,
             width: context.mediaQuery.size.width,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-            decoration: BoxDecoration(
-              color: AppColors.grey,
-              borderRadius: BorderRadius.circular(6),
-            ),
+            decoration: const BoxDecoration(),
             child: Row(
               children: [
                 blueWalletIdImage(),
                 10.horizontalGap,
                 Expanded(
-                  child: textColumn(
+                  child: idTextColumn(
                     title: "Blue ID Number",
                     subtitle: locator<AppStateValues>().wallet!.walletCode,
                   ),
-                ),
-                10.horizontalGap,
-                Container(
-                  height: 38,
-                  width: 38,
-                  padding: const EdgeInsets.all(12),
-                  child: AppAssets.images.icons.copy.svg(),
                 ),
               ],
             ),
@@ -205,19 +221,80 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
     }
   }
 
-  Widget textColumn({required String title, required String subtitle}) {
+  Widget accountTextColumn(
+      {required String bank, required String accountNumber}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Topup Account",
+          style: AppTextStyles.header
+              .copyWith(fontSize: 15.5, fontWeight: FontWeight.w500),
+        ),
+        Row(
+          children: [
+            RichText(
+              text: TextSpan(children: [
+                TextSpan(
+                  text: "$bank ",
+                  style: AppTextStyles.smallText.copyWith(
+                    color: AppColors.bodyTextColor,
+                    fontSize: 14.5,
+                  ),
+                ),
+                TextSpan(
+                  text: "| ",
+                  style: AppTextStyles.smallText.copyWith(
+                      color: AppColors.bodyTextColor.withOpacity(.35),
+                      fontSize: 14.5),
+                ),
+                TextSpan(
+                  text: "$accountNumber ",
+                  style: AppTextStyles.smallText.copyWith(
+                      color: AppColors.bodyTextColor.withOpacity(.7),
+                      fontSize: 14.5),
+                )
+              ]),
+            ),
+            4.horizontalGap,
+            Container(
+              height: 30,
+              width: 30,
+              padding: const EdgeInsets.all(7),
+              child: AppAssets.images.icons.copy02.svg(),
+            )
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget idTextColumn({required String title, required String subtitle}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           title,
-          style: AppTextStyles.header.copyWith(fontSize: 15.5),
+          style: AppTextStyles.header
+              .copyWith(fontSize: 15.5, fontWeight: FontWeight.w600),
         ),
-        Text(
-          subtitle,
-          style: AppTextStyles.smallText
-              .copyWith(color: AppColors.bodyTextColor, fontSize: 14.5),
+        Row(
+          children: [
+            Text(
+              subtitle,
+              style: AppTextStyles.smallText
+                  .copyWith(color: AppColors.bodyTextColor, fontSize: 14.5),
+            ),
+            2.horizontalGap,
+            Container(
+              height: 30,
+              width: 30,
+              padding: const EdgeInsets.all(7),
+              child: AppAssets.images.icons.copy02.svg(),
+            ),
+          ],
         )
       ],
     );
@@ -250,19 +327,22 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
     );
   }
 
-  Widget walletDataTitle(String title) {
-    return Text(
-      title,
-      style: AppTextStyles.subHeader.copyWith(
-        color: AppColors.textColor,
-      ),
-    );
-  }
-
   Widget title() {
-    return Text(
-      "Receive money easily!",
-      style: AppTextStyles.header,
+    return Column(
+      children: [
+        Text(
+          "Receive money easily!",
+          style: AppTextStyles.header,
+        ),
+        SizedBox(
+          width: 300,
+          child: Text(
+            "Scan/Share the barcode below to receive payment.",
+            style: AppTextStyles.subHeader.copyWith(height: 1.2),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
     );
   }
 
@@ -270,8 +350,8 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
     return Stack(
       children: [
         Container(
-          height: 255,
-          width: 255,
+          height: 270,
+          width: 270,
           decoration: const BoxDecoration(
             color: AppColors.bgGrey,
             shape: BoxShape.circle,
@@ -281,8 +361,8 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
           child: Screenshot(
             controller: model.screenshotController,
             child: Container(
-              height: 167,
-              width: 167,
+              height: 175,
+              width: 175,
               decoration: BoxDecoration(
                 color: AppColors.white,
                 borderRadius: BorderRadius.circular(17),
@@ -296,8 +376,8 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
         ),
         Positioned(
           top: 25,
-          left: 106,
-          right: 106,
+          left: 110,
+          right: 110,
           child: Container(
             height: 50,
             width: 50,
@@ -306,12 +386,12 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
               color: AppColors.white,
               shape: BoxShape.circle,
             ),
-            child: SizedBox(
-              height: 43,
-              width: 43,
+            child: const SizedBox(
+              height: 45,
+              width: 45,
               child: BlueAvatar(
-                radius: 21.5,
-                imageUrl: locator<AppStateValues>().currentUser!.displayPic,
+                radius: 22.5,
+                // imageUrl: locator<AppStateValues>().currentUser!.displayPic,
               ),
             ),
           ),

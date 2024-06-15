@@ -6,7 +6,7 @@ import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
-import 'package:blue_business/widgets/textfield/textfield_actions.dart';
+import 'package:blue_business/widgets/textfield/dropdown.dart';
 import 'view_model.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +46,7 @@ class _AddWithdrawalDetailsViewState extends State<AddWithdrawalDetailsView> {
                 AppButton.primary(
                   title: "Link Account",
                   isEnabled: model.isActive(),
-                  onTap: model.setAccount,
+                  onTap: () {},
                 )
               ],
             ),

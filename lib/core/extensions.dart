@@ -15,4 +15,10 @@ extension Gap on num {
 
 extension StringEx on String? {
   String get orEmpty => this ?? "";
+  String get sentenceCase =>
+      this![0].toUpperCase() + this!.substring(1).toLowerCase();
+  String get initials =>
+      "${this!.split(" ").first[0].toUpperCase()}${this!.split(" ").length > 1 ? this!.split(" ").last[0].toUpperCase() : ""}";
+  String get nameCase =>
+      "${this!.split(" ").first.sentenceCase} ${this!.split(" ").last.sentenceCase}";
 }

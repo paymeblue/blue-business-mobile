@@ -1,8 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
-import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
-import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
@@ -44,11 +42,11 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                 12.verticalGap,
                 avatarRow(model),
                 15.verticalGap,
-                firstNameField(),
+                businessNameField(),
                 20.verticalGap,
-                middleNameField(),
+                cacField(),
                 20.verticalGap,
-                lastNameField(),
+                businesCategoryField(),
                 20.verticalGap,
                 phoneField(model),
                 const Spacer(),
@@ -65,29 +63,29 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
     );
   }
 
-  Widget firstNameField() {
+  Widget businessNameField() {
     return BlueTextField.plaintext(
-      hint: "John",
-      initialValue: locator<AppStateValues>().currentUser!.firstName,
-      title: "First name",
+      hint: "Dev Factory",
+      // initialValue: locator<AppStateValues>().currentUser!.firstName,
+      title: "Business name",
       isEnabled: false,
     );
   }
 
-  Widget middleNameField() {
+  Widget cacField() {
     return BlueTextField.plaintext(
-      hint: "John",
-      initialValue: locator<AppStateValues>().currentUser!.middleName,
-      title: "Middle name",
+      hint: "000000000",
+      // initialValue: locator<AppStateValues>().currentUser!.middleName,
+      title: "CAC Number",
       isEnabled: false,
     );
   }
 
-  Widget lastNameField() {
+  Widget businesCategoryField() {
     return BlueTextField.plaintext(
       hint: "John",
-      initialValue: locator<AppStateValues>().currentUser!.lastName,
-      title: "Last name",
+      // initialValue: locator<AppStateValues>().currentUser!.lastName,
+      title: "Business Category",
       isEnabled: false,
     );
   }
@@ -108,11 +106,12 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
       children: [
         GestureDetector(
           onTap: model.pickImage,
-          child: BlueAvatar(
+          //FIX: the imageUr;
+          child: const BlueAvatar(
             radius: 31,
-            imageUrl: model.path.isEmpty
-                ? locator<AppStateValues>().currentUser!.displayPic
-                : model.path,
+            // imageUrl: model.path.isEmpty
+            // ? locator<AppStateValues>().currentUser!.displayPic
+            // : model.path,
           ),
         ),
         10.horizontalGap,

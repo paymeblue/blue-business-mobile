@@ -1,0 +1,149 @@
+import 'dart:async';
+
+import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
+import 'package:blue_business/core/models/bills/get_providers/providers/providers.dart';
+import 'package:blue_business/core/module_config/base_view_model.dart';
+import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+class InitiateElectricityViewModel extends BaseViewModel {
+  late Size size;
+
+  init(BuildContext context) {
+    size = context.mediaQuery.size;
+  }
+
+  goBack(BuildContext context) {
+    context.pop();
+  }
+
+  TextEditingController searchController = TextEditingController();
+  TextEditingController meterNumberController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
+
+  onBillProviderChanged(BillProvider? item) {
+    selectedProvider = item;
+
+    shouldVerify();
+  }
+
+  String? _state;
+  String? get state => _state;
+
+  set state(String? v) {
+    _state = v;
+    notifyListeners();
+  }
+
+  String? _meterType;
+  String? get selectedMeterType => _meterType;
+  set selectedMeterType(String? b) {
+    _meterType = b;
+    notifyListeners();
+  }
+
+  onMeterTypeChanged(String? item) {
+    selectedMeterType = item;
+
+    shouldVerify();
+  }
+
+  bool _gettingProviders = false;
+  bool get gettingProviders => _gettingProviders;
+  set gettingProviders(bool v) {
+    _gettingProviders = v;
+    notifyListeners();
+  }
+
+  bool _verifying = false;
+  bool get verifying => _verifying;
+  set verifying(bool v) {
+    _verifying = v;
+    notifyListeners();
+  }
+
+  onStateChanged(String? v) {
+    state = v;
+    selectedProvider = null;
+    if (v == null || v.isEmpty) {
+      AppNotification.error(message: "Please select a state");
+    } else {
+      getProviders();
+    }
+  }
+
+  Timer? timer;
+
+  onMeterNumberChanged(String? v) {
+    if (timer != null) {
+      timer!.cancel();
+    }
+
+    timer = Timer(const Duration(seconds: 1), () {
+      shouldVerify();
+    });
+  }
+
+  onChanged(String? v) {
+    notifyListeners();
+  }
+
+  List<BillProvider> _providers = [];
+  List<BillProvider> get providers => _providers;
+  set providers(List<BillProvider> p) {
+    _providers = p;
+    notifyListeners();
+  }
+
+  BillProvider? _provider;
+  BillProvider? get selectedProvider => _provider;
+  set selectedProvider(BillProvider? p) {
+    _provider = p;
+    notifyListeners();
+  }
+
+  getProviders() async {}
+
+  VerifyElectricityData? _data;
+  VerifyElectricityData? get data => _data;
+  set data(VerifyElectricityData? d) {
+    _data = d;
+    notifyListeners();
+  }
+
+  shouldVerify() {
+    if (selectedMeterType != null &&
+        selectedProvider != null &&
+        meterNumberController.text.length >= 5) {
+      verfiyMeter();
+    }
+  }
+
+  verfiyMeter() async {}
+
+  bool isActive() {
+    double? amount = double.tryParse(amountController.text
+        .replaceAll(nairaSymbol(), "")
+        .replaceAll(",", ""));
+
+    double minimum = double.parse(
+        data?.minimumAmount.replaceAll(nairaSymbol(), "").replaceAll(",", "") ??
+            "0.0");
+
+    return data != null &&
+        amount != null &&
+        amount >= (minimum + data!.serviceCharge);
+  }
+
+  goToNext(BuildContext context) {
+    double amount = double.parse(amountController.text
+        .replaceAll(nairaSymbol(), "")
+        .replaceAll(",", ""));
+    context.push(RoutePaths.reviewElectricityPath,
+        extra: {"verify_data": data!, "amount": amount});
+  }
+}

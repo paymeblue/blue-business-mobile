@@ -1,11 +1,9 @@
 import 'dart:async';
-
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
-import 'package:blue_business/core/io/storage/keys.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/models/signup/response/signup_response.dart';
-import 'package:blue_business/core/models/signup/user/signup_user_data.dart';
-import 'package:blue_business/core/models/signup_otp/response/signup_otp_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
@@ -16,7 +14,6 @@ import 'package:go_router/go_router.dart';
 
 class VerifyRegistrationOtpViewModel extends BaseViewModel {
   late Size size;
-  AuthService authService = AuthService();
 
   init(BuildContext context, String p) {
     size = context.mediaQuery.size;
@@ -83,49 +80,46 @@ class VerifyRegistrationOtpViewModel extends BaseViewModel {
 
   late String phone;
 
+  stopTimer() {
+    timer.cancel();
+  }
+
   resendOtp() async {
     AppLoader.start();
+    SignupResponse response = await AuthService(DioConfig.dio())
+        .resendSignupOtp(phone: phone)
+        .onError((error, stackTrace) =>
+            SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
 
-    SignupOtpResponse resp =
-        await authService.resendOtp(phone).onError((error, stackTrace) {
-      return SignupOtpResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      AppNotification.success(message: resp.message);
+    if (response.status == "success") {
+      AppNotification.success(message: response.message);
       startCountdown();
     } else {
-      AppNotification.error(message: resp.message);
+      AppNotification.error(message: response.message);
     }
-
     AppLoader.stop();
   }
 
   verifyOtp(BuildContext context) async {
     AppLoader.start();
+    SignupResponse response = await AuthService(DioConfig.dio())
+        .verifySignupOtp(phone: phone.replaceAll("+", ""), otp: pin)
+        .onError((error, stackTrace) =>
+            SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
 
-    SignupResponse resp = await authService
-        .verifyOtp(pin, phone.replaceFirst("+", ""))
-        .onError((error, stackTrace) {
-      return SignupResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      AppNotification.success(message: resp.message);
-      StorageValues.username = phone;
-      if (context.mounted) goToNext(context, resp.data!);
+    if (response.status == "success") {
+      if (context.mounted) goToNext(context, response.data!);
     } else {
-      AppNotification.error(message: resp.message);
+      AppNotification.error(message: response.message);
     }
-
     AppLoader.stop();
   }
 
-  stopTimer() {
-    timer.cancel();
+  goToNext(BuildContext context, SignupData data) {
+    context.pushReplacement(RoutePaths.registerProgressPath, extra: data);
   }
 
-  goToNext(BuildContext context, SignupUserData user) {
-    context.go("/${user.id}${RoutePaths.addPersonalInfoPath}");
+  goBack(BuildContext context) {
+    context.pop();
   }
 }

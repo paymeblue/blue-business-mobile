@@ -1,29 +1,16 @@
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
-import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
-import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
-import 'package:blue_business/core/models/kyc_status/response/kyc_status_response.dart';
-import 'package:blue_business/core/models/popup/popup.dart';
+import 'package:blue_business/core/gen/assets.gen.dart';
+import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
-import 'package:blue_business/core/models/spending_analytics/data/spending_analytics_data.dart';
-import 'package:blue_business/core/models/spending_analytics/response/spending_analytics_response.dart';
-import 'package:blue_business/core/models/todo/response/todo_response.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
-import 'package:blue_business/core/models/topup_account/response/topup_response.dart';
-import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
-import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
-import 'package:blue_business/core/utils/app_loader.dart';
-import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/modules/dashboard_pages/home/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
-import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:blue_business/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,14 +29,13 @@ class HomeViewModel extends BaseViewModel {
   getDashData() async {
     getWalletBalance();
     getKyc();
-    popupItem = popupItems()[0].title;
     if (!locator<AppStateValues>().loadedTodo) {
       getTodos();
     }
     getAnalytics();
-    transactionController.addPageRequestListener((pageKey) {
-      getTransactions(pageKey);
-    });
+    // transactionController.addPageRequestListener((pageKey) {
+    //   getTransactions(pageKey);
+    // });
   }
 
   copyWalletId() {
@@ -85,7 +71,7 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  bool _loading = true;
+  bool _loading = false;
   bool get isLoading => _loading;
   set isLoading(bool v) {
     _loading = v;
@@ -103,37 +89,9 @@ class HomeViewModel extends BaseViewModel {
     getTodos();
   }
 
-  getWalletBalance() async {
-    isLoading = true;
-    WalletResponse resp =
-        await DashService().getWalletBalance().onError((error, stackTrace) {
-      return WalletResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
+  getWalletBalance() async {}
 
-    if (resp.status == "success") {
-      locator<AppStateValues>().wallet = resp.data!;
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-    isLoading = false;
-  }
-
-  getTodos() async {
-    isTodoLoading = true;
-
-    TodoResponse resp =
-        await DashService().getTodos().onError((error, stackTrace) {
-      return TodoResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      locator<AppStateValues>().todos = resp.data!;
-      locator<AppStateValues>().loadedTodo = true;
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-    isTodoLoading = false;
-  }
+  getTodos() async {}
 
   onTapTodo(TodoOption todo, BuildContext context) {
     if (todo.route != null) {
@@ -157,26 +115,60 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  SpendingAnalyticsData? _d;
-  SpendingAnalyticsData? get spendingData => _d;
-  set spendingData(SpendingAnalyticsData? d) {
+  AnalyticsData? _d;
+  AnalyticsData? get analyticsData => _d;
+  set analyticsData(AnalyticsData? d) {
     _d = d;
     notifyListeners();
   }
 
-  getAnalytics() async {
-    salesLoading = true;
-    SpendingAnalyticsResponse response = await InsightsService()
-        .getAnalytics()
-        .onError((error, stackTrace) => SpendingAnalyticsResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+  double _mIncrease = 0;
+  double get mobileIncrease => _mIncrease;
+  set mobileIncrease(double v) {
+    _mIncrease = v;
+    notifyListeners();
+  }
 
-    if (response.status == "success") {
-      spendingData = response.data;
+  double _dIncrease = 0;
+  double get desktopIncrease => _dIncrease;
+  set desktopIncrease(double v) {
+    _dIncrease = v;
+    notifyListeners();
+  }
+
+  getAnalytics() async {}
+
+  calculateIncrease() {
+    double currentMobile = double.parse(analyticsData?.mobile.current ?? "0.0");
+    double previousMobile =
+        double.parse(analyticsData?.mobile.previous ?? "0.0");
+    double currentDesktop =
+        double.parse(analyticsData?.desktop.current ?? "0.0");
+    double previousDesktop =
+        double.parse(analyticsData?.desktop.previous ?? "0.0");
+
+    double mChange = currentMobile - previousMobile;
+    double dChange = currentDesktop - previousDesktop;
+
+    if (mChange == 0) {
+      mobileIncrease = 0;
     } else {
-      AppNotification.error(message: response.message);
+      if (previousMobile == 0) {
+        mobileIncrease = mChange / 100;
+      } else {
+        mobileIncrease = mChange / previousMobile;
+      }
     }
-    salesLoading = false;
+
+    if (dChange == 0) {
+      desktopIncrease = 0;
+    } else {
+      if (previousDesktop == 0) {
+        desktopIncrease = dChange / 100;
+      } else {
+        desktopIncrease = dChange / previousDesktop;
+      }
+    }
   }
 
   int limit = 6;
@@ -185,53 +177,14 @@ class HomeViewModel extends BaseViewModel {
       PagingController<int, TransactionHistory>(firstPageKey: 1);
 
   getTransactions(int page) async {
-    try {
-      TransactionResponse resp =
-          await TransactionService().getTransactions(page, limit);
-      if (resp.status == "success") {
-        List<TransactionHistory> t = resp.data!.data;
-
-        transactionController.appendLastPage(t);
-      } else {
-        transactionController.error = resp.message;
-      }
-    } catch (e) {
+    try {} catch (e) {
       transactionController.error = AppErrorHandler.getErrorMessage(e);
     }
   }
 
-  getKyc() async {
-    isKycLoading = true;
+  getKyc() async {}
 
-    KycStatusResponse resp =
-        await DashService().getKycStatus().onError((error, stackTrace) {
-      return KycStatusResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      locator<AppStateValues>().kycLevel = resp.data!.kyc;
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    isKycLoading = false;
-  }
-
-  getTopupAccount() async {
-    AppLoader.start();
-    TopupResponse resp =
-        await DashService().getTopupAccount().onError((error, stackTrace) {
-      return TopupResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      locator<AppStateValues>().account = resp.data!;
-      BlueBottomSheet.topup();
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-    AppLoader.stop();
-  }
+  getTopupAccount() async {}
 
   showTopupModal() {
     if (locator<AppStateValues>().account != null) {
@@ -243,26 +196,9 @@ class HomeViewModel extends BaseViewModel {
 
   List<TransactionOption> transactionOptions(BuildContext context) => [
         TransactionOption(
-          buttonColor: AppColors.primary,
-          icon: const Icon(
-            Icons.arrow_outward_rounded,
-            color: AppColors.white,
-            size: 24,
-          ),
-          title: "Send",
-          onTap: () {
-            goToInitiatePayment(context);
-          },
-        ),
-        TransactionOption(
-          buttonColor: AppColors.otherBlue,
-          icon: const RotatedBox(
-            quarterTurns: 2,
-            child: Icon(
-              Icons.arrow_outward_rounded,
-              color: AppColors.white,
-              size: 24,
-            ),
+          icon: Padding(
+            padding: const EdgeInsets.all(10),
+            child: AppAssets.images.icons.receive.svg(),
           ),
           title: "Receive",
           onTap: () {
@@ -274,34 +210,47 @@ class HomeViewModel extends BaseViewModel {
           },
         ),
         TransactionOption(
-          buttonColor: AppColors.textColor,
-          icon: const Icon(
-            Icons.add,
-            color: AppColors.white,
-            size: 24,
+          icon: Padding(
+            padding: const EdgeInsets.all(18),
+            child: AppAssets.images.icons.branches.svg(),
           ),
-          title: "Top up",
-          onTap: showTopupModal,
+          title: "Branches",
+          onTap: () => goToBranchManagementHome(context),
         ),
         TransactionOption(
-          buttonColor: AppColors.success,
-          icon: Align(
-            alignment: Alignment.center,
-            child: Text(
-              "-",
-              style: AppTextStyles.header
-                  .copyWith(color: AppColors.white, fontSize: 30.5),
-            ),
+          icon: Padding(
+            padding: const EdgeInsets.all(18),
+            child: AppAssets.images.icons.staff.svg(),
           ),
-          title: "Withdraw",
+          title: "Staff",
+          onTap: () => goToStaffManagementHome(context),
+        ),
+        TransactionOption(
+          icon: Padding(
+            padding: const EdgeInsets.all(18),
+            child: AppAssets.images.icons.wallet.svg(),
+          ),
+          title: "Wallet",
           onTap: () {
-            goToInitiateWithdrawal(context);
+            goToWallet(context);
           },
         )
       ];
 
+  goToStaffManagementHome(BuildContext context) {
+    context.go(RoutePaths.staffManagementPath);
+  }
+
+  goToBranchManagementHome(BuildContext context) {
+    context.go(RoutePaths.branchManagementPath);
+  }
+
   goToReceiveMoney(BuildContext context) {
     context.go(RoutePaths.receiveMoneyPath);
+  }
+
+  goToWallet(BuildContext context) {
+    context.go(RoutePaths.walletPath);
   }
 
   goToTransactionHistory(BuildContext context) {
@@ -315,32 +264,4 @@ class HomeViewModel extends BaseViewModel {
   goToInitiateWithdrawal(BuildContext context) {
     context.go("${RoutePaths.initiateTransactionPath}/withdraw");
   }
-
-  late String _popupItem;
-  String get popupItem => _popupItem;
-  set popupItem(String v) {
-    _popupItem = v;
-    notifyListeners();
-  }
-
-  List<PopupModel> popupItems() => [
-        PopupModel(
-          title: "This week",
-          onTap: () {
-            popupItem = "This week";
-          },
-        ),
-        PopupModel(
-          title: "This month",
-          onTap: () {
-            popupItem = "This month";
-          },
-        ),
-        PopupModel(
-          title: "This year",
-          onTap: () {
-            popupItem = "This year";
-          },
-        ),
-      ];
 }

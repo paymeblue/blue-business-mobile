@@ -9,8 +9,8 @@ part of 'spending_analytics_data.dart';
 _$SpendingAnalyticsDataImpl _$$SpendingAnalyticsDataImplFromJson(
         Map<String, dynamic> json) =>
     _$SpendingAnalyticsDataImpl(
-      desktopSum: json['desktop_sum'] as String,
-      mobileSum: json['mobile_sum'] as String,
+      desktopSum: json['desktop_sum'] as String? ?? "0.0",
+      mobileSum: json['mobile_sum'] as String? ?? "0.0",
     );
 
 Map<String, dynamic> _$$SpendingAnalyticsDataImplToJson(

@@ -20,8 +20,15 @@ LoginData _$LoginDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginData {
-  User get user => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
+  String get kyc => throw _privateConstructorUsedError;
+  int get totalStaff => throw _privateConstructorUsedError;
+  int get totalBranches => throw _privateConstructorUsedError;
+  int get transactionVolume => throw _privateConstructorUsedError;
+  int get netProfit => throw _privateConstructorUsedError;
   Token get token => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +41,17 @@ abstract class $LoginDataCopyWith<$Res> {
   factory $LoginDataCopyWith(LoginData value, $Res Function(LoginData) then) =
       _$LoginDataCopyWithImpl<$Res, LoginData>;
   @useResult
-  $Res call({User user, Token token});
+  $Res call(
+      {int id,
+      String phone,
+      String kyc,
+      int totalStaff,
+      int totalBranches,
+      int transactionVolume,
+      int netProfit,
+      Token token,
+      String? createdAt});
 
-  $UserCopyWith<$Res> get user;
   $TokenCopyWith<$Res> get token;
 }
 
@@ -53,27 +68,54 @@ class _$LoginDataCopyWithImpl<$Res, $Val extends LoginData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? id = null,
+    Object? phone = null,
+    Object? kyc = null,
+    Object? totalStaff = null,
+    Object? totalBranches = null,
+    Object? transactionVolume = null,
+    Object? netProfit = null,
     Object? token = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      kyc: null == kyc
+          ? _value.kyc
+          : kyc // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalStaff: null == totalStaff
+          ? _value.totalStaff
+          : totalStaff // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalBranches: null == totalBranches
+          ? _value.totalBranches
+          : totalBranches // ignore: cast_nullable_to_non_nullable
+              as int,
+      transactionVolume: null == transactionVolume
+          ? _value.transactionVolume
+          : transactionVolume // ignore: cast_nullable_to_non_nullable
+              as int,
+      netProfit: null == netProfit
+          ? _value.netProfit
+          : netProfit // ignore: cast_nullable_to_non_nullable
+              as int,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as Token,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
   }
 
   @override
@@ -93,10 +135,17 @@ abstract class _$$LoginDataImplCopyWith<$Res>
       __$$LoginDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User user, Token token});
+  $Res call(
+      {int id,
+      String phone,
+      String kyc,
+      int totalStaff,
+      int totalBranches,
+      int transactionVolume,
+      int netProfit,
+      Token token,
+      String? createdAt});
 
-  @override
-  $UserCopyWith<$Res> get user;
   @override
   $TokenCopyWith<$Res> get token;
 }
@@ -112,18 +161,53 @@ class __$$LoginDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? id = null,
+    Object? phone = null,
+    Object? kyc = null,
+    Object? totalStaff = null,
+    Object? totalBranches = null,
+    Object? transactionVolume = null,
+    Object? netProfit = null,
     Object? token = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$LoginDataImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      kyc: null == kyc
+          ? _value.kyc
+          : kyc // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalStaff: null == totalStaff
+          ? _value.totalStaff
+          : totalStaff // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalBranches: null == totalBranches
+          ? _value.totalBranches
+          : totalBranches // ignore: cast_nullable_to_non_nullable
+              as int,
+      transactionVolume: null == transactionVolume
+          ? _value.transactionVolume
+          : transactionVolume // ignore: cast_nullable_to_non_nullable
+              as int,
+      netProfit: null == netProfit
+          ? _value.netProfit
+          : netProfit // ignore: cast_nullable_to_non_nullable
+              as int,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as Token,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -131,19 +215,47 @@ class __$$LoginDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LoginDataImpl implements _LoginData {
-  const _$LoginDataImpl({required this.user, required this.token});
+  const _$LoginDataImpl(
+      {required this.id,
+      required this.phone,
+      this.kyc = "basic",
+      this.totalStaff = 0,
+      this.totalBranches = 0,
+      this.transactionVolume = 0,
+      this.netProfit = 0,
+      required this.token,
+      this.createdAt});
 
   factory _$LoginDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginDataImplFromJson(json);
 
   @override
-  final User user;
+  final int id;
+  @override
+  final String phone;
+  @override
+  @JsonKey()
+  final String kyc;
+  @override
+  @JsonKey()
+  final int totalStaff;
+  @override
+  @JsonKey()
+  final int totalBranches;
+  @override
+  @JsonKey()
+  final int transactionVolume;
+  @override
+  @JsonKey()
+  final int netProfit;
   @override
   final Token token;
+  @override
+  final String? createdAt;
 
   @override
   String toString() {
-    return 'LoginData(user: $user, token: $token)';
+    return 'LoginData(id: $id, phone: $phone, kyc: $kyc, totalStaff: $totalStaff, totalBranches: $totalBranches, transactionVolume: $transactionVolume, netProfit: $netProfit, token: $token, createdAt: $createdAt)';
   }
 
   @override
@@ -151,13 +263,26 @@ class _$LoginDataImpl implements _LoginData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginDataImpl &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.kyc, kyc) || other.kyc == kyc) &&
+            (identical(other.totalStaff, totalStaff) ||
+                other.totalStaff == totalStaff) &&
+            (identical(other.totalBranches, totalBranches) ||
+                other.totalBranches == totalBranches) &&
+            (identical(other.transactionVolume, transactionVolume) ||
+                other.transactionVolume == transactionVolume) &&
+            (identical(other.netProfit, netProfit) ||
+                other.netProfit == netProfit) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, user, token);
+  int get hashCode => Object.hash(runtimeType, id, phone, kyc, totalStaff,
+      totalBranches, transactionVolume, netProfit, token, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -175,15 +300,37 @@ class _$LoginDataImpl implements _LoginData {
 
 abstract class _LoginData implements LoginData {
   const factory _LoginData(
-      {required final User user, required final Token token}) = _$LoginDataImpl;
+      {required final int id,
+      required final String phone,
+      final String kyc,
+      final int totalStaff,
+      final int totalBranches,
+      final int transactionVolume,
+      final int netProfit,
+      required final Token token,
+      final String? createdAt}) = _$LoginDataImpl;
 
   factory _LoginData.fromJson(Map<String, dynamic> json) =
       _$LoginDataImpl.fromJson;
 
   @override
-  User get user;
+  int get id;
+  @override
+  String get phone;
+  @override
+  String get kyc;
+  @override
+  int get totalStaff;
+  @override
+  int get totalBranches;
+  @override
+  int get transactionVolume;
+  @override
+  int get netProfit;
   @override
   Token get token;
+  @override
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$LoginDataImplCopyWith<_$LoginDataImpl> get copyWith =>

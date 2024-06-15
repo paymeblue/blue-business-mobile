@@ -1,10 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
 import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
-import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
@@ -18,7 +16,6 @@ import 'package:share_plus/share_plus.dart';
 
 class SuccessViewModel extends BaseViewModel {
   late Size size;
-  TransactionService transactionService = TransactionService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -33,27 +30,6 @@ class SuccessViewModel extends BaseViewModel {
   set receipt(ReceiptData? r) {
     _r = r;
     notifyListeners();
-  }
-
-  getTransactionReceipt(PayData data) async {
-    AppLoader.start();
-
-    ReceiptResponse resp = await transactionService
-        .getReceipt(data.transactionId)
-        .onError((error, stackTrace) {
-      return ReceiptResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      receipt = resp.data!;
-      await Future.delayed(const Duration(milliseconds: 350), () {
-        downloadAndShareQr(data);
-      });
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    AppLoader.stop();
   }
 
   ScreenshotController screenshotController = ScreenshotController();

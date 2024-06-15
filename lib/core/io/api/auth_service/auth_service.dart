@@ -1,136 +1,75 @@
-import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/business_category/response/business_category_response.dart';
-import 'package:blue_business/core/models/change_password/request/change_password_request.dart';
-import 'package:blue_business/core/models/change_password/response/change_password_response.dart';
-import 'package:blue_business/core/models/change_pin/request/change_pin_request.dart';
-import 'package:blue_business/core/models/change_pin/response/change_pin_response.dart';
-import 'package:blue_business/core/models/create_business_profile/location/request/busines_location_request.dart';
-import 'package:blue_business/core/models/create_business_profile/name/request/busines_name_request.dart';
-import 'package:blue_business/core/models/create_business_profile/name/response/busines_name_response.dart';
-import 'package:blue_business/core/models/create_business_profile/size/request/busines_size_request.dart';
-import 'package:blue_business/core/models/delete_account/delete/request/delete_request.dart';
-import 'package:blue_business/core/models/delete_account/delete/response/delete_response.dart';
-import 'package:blue_business/core/models/delete_account/get_reasons/response/get_reason_response.dart';
+import 'package:blue_business/core/models/complete_registration/request/complete_registration_request.dart';
+import 'package:blue_business/core/models/complete_registration/response/complete_registration_response.dart';
+import 'package:blue_business/core/models/create_business_profile/request/create_business_profile_request.dart';
+import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
-import 'package:blue_business/core/models/recover_phone/request/recover_phone_request.dart';
-import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
-import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
-import 'package:blue_business/core/models/recovery_code/get/response/recovery_code_response.dart';
-import 'package:blue_business/core/models/recovery_code/reset/response/recovery_code_response.dart';
-import 'package:blue_business/core/models/recovery_code/send/response/recovery_code_response.dart';
-import 'package:blue_business/core/models/recovery_phone/set/request/recovery_phone_request.dart';
-import 'package:blue_business/core/models/recovery_phone/set/response/recovery_phone_response.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
-import 'package:blue_business/core/models/reset/password/request/reset_password_request.dart';
+import 'package:blue_business/core/models/shareholders/add/request/add_shareholders_request.dart';
+import 'package:blue_business/core/models/shareholders/create/request/create_shareholders_request.dart';
+import 'package:blue_business/core/models/shareholders/create/response/create_shareholders_response.dart';
+import 'package:blue_business/core/models/shareholders/get/response/get_shareholders_response.dart';
 import 'package:blue_business/core/models/signup/request/signup_request.dart';
 import 'package:blue_business/core/models/signup/response/signup_response.dart';
-import 'package:blue_business/core/models/signup_otp/response/signup_otp_response.dart';
-import 'package:blue_business/core/models/signup_profile/request/signup_profile_request.dart';
-import 'package:blue_business/core/models/signup_profile/response/signup_profile_response.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'auth_service.g.dart';
 
-@RestApi(
-    baseUrl: "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api")
+@RestApi(baseUrl: AppConstants.baseUrl)
 abstract class AuthService {
-  factory AuthService() {
-    return _AuthService(DioConfig.dio());
-  }
+  factory AuthService(Dio dio) = _AuthService;
 
-  @POST("/auth/login")
-  Future<LoginResponse> login(@Body() LoginRequest loginRequest);
+  @POST("/onboard/signup")
+  Future<SignupResponse> register({@Body() required SignupRequest request});
 
-  @POST("/users/refreshtoken")
-  Future<RefreshTokenResponse> refresh(@Body() RefreshTokenRequest request);
+  @GET("/onboard/verify-account")
+  Future<SignupResponse> verifySignupOtp({
+    @Query("otp") required String otp,
+    @Query("phone") required String phone,
+  });
 
-  @PATCH("/pins")
-  Future<ChangePinResponse> changePin(@Body() ChangePinRequest request);
+  @GET("/otps/new")
+  Future<SignupResponse> resendSignupOtp({
+    @Query("phone") required String phone,
+  });
 
-  @PATCH("/users/update-password")
-  Future<ChangePasswordResponse> changePassword(
-      @Body() ChangePasswordRequest request);
-
-  @GET("/reasons")
-  Future<GetReasonResponse> getReasons();
-
-  @POST("/users/delete")
-  Future<DeleteResponse> deleteAccount(@Body() DeleteRequest request);
-
-  @POST("/auth/register")
-  Future<SignupResponse> signup(@Body() SignupRequest request);
-
-  @GET("/otps/resend")
-  Future<SignupOtpResponse> resendOtp(@Query("phone") String phone);
-
-  @GET("/otps/user-verification")
-  Future<SignupResponse> verifyOtp(
-      @Query("otp") String otp, @Query("phone") String phone);
-
-  @PATCH("/users/update-profile")
-  Future<SignupProfileResponse> setupProfile(
-    @Body() SignupProfileRequest request,
-  );
-
-  @GET("/recovery-codes/verify")
-  Future<SendRecoveryCodeResponse> verifyRecoveryCode(
-      @Query("code") String code);
-
-  @GET("/recovery-codes")
-  Future<GetRecoveryCodeResponse> getRecoveryCode();
-
-  @GET("/recovery-codes/reset")
-  Future<ResetRecoveryCodeResponse> resetRecoveryCode();
-
-  @PATCH("/users/update-phone")
-  Future<SendNewPhoneResponse> updatePhone(
-    @Body() SendNewPhoneRequest request,
-  );
-
-  @GET("/otps/resend")
-  Future<SendNewPhoneResponse> resendPhoneRecoveryOtp(
-      @Query("phone") String phone);
-
-  @GET("/otps/verify")
-  Future<SendNewPhoneResponse> verifyRecoveryOtp(
-    @Query("otp") String otp,
-    @Query("phone") String phone,
-  );
-
-  @PATCH("/recovery-codes/update-phone")
-  Future<SetRecoveryPhoneResponse> updateRecoveryPhone(
-      @Body() SetRecoveryPhoneRequest request);
-
-  @GET("/users/forgot-password")
-  Future<SendNewPhoneResponse> forgotPassword(@Query("phone") String phone);
-
-  @PATCH("/pins/forgot")
-  Future<SendNewPhoneResponse> forgotPinWithPhone(
-      @Body() SendPhoneRecoverPinRequest request);
-
-  @PATCH("/users/reset-password")
-  Future<SendNewPhoneResponse> resetPassword(
-      @Body() ResetPasswordRequest request);
+  @POST("/onboard/business-details")
+  Future<CreateBusinessProfileResponse> createBusinessProfile({
+    @Body() required CreateBusinessProfileRequest request,
+  });
 
   @GET("/business-categories")
   Future<BusinessCategoryResponse> getCategories();
 
-  @POST("/business-profiles")
-  Future<BusinessNameResponse> addBusinessName(
-      @Body() BusinessNameRequest request);
+  @GET("/business-profiles/{id}/shareholders")
+  Future<GetShareholdersResponse> getShareholders({
+    @Path("id") required int userId,
+  });
 
-  @PATCH("/business-profiles/{id}")
-  Future<BusinessNameResponse> addBusinessSize(
-    @Path('id') String id,
-    @Body() BusinessSizeRequest request,
-  );
+  @POST("/onboard/complete")
+  Future<CompleteRegistrationResponse> completeRegistration({
+    @Body() required CompleteRegistrationRequest request,
+  });
 
-  @PATCH("/business-profiles/{id}/address")
-  Future<BusinessNameResponse> addBusinessAddress(
-    @Path('id') String id,
-    @Body() BusinessLocationRequest request,
-  );
+  @POST("/onboard/kyc-verification")
+  Future<SignupResponse> addShareholderBvn(
+      {@Body() required AddShareholdersRequest request});
+
+  @POST("/shareholders")
+  Future<CreateShareholdersResponse> createShareholder(
+      {@Body() required CreateShareholdersRequest request});
+
+  @POST("/auth")
+  Future<LoginResponse> login({
+    @Body() required LoginRequest request,
+  });
+
+  @POST("/auth/refresh-access-token")
+  Future<RefreshTokenResponse> refresh({
+    @Body() required RefreshTokenRequest request,
+  });
 }

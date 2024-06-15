@@ -70,6 +70,10 @@ class $AssetsImagesIconsGen {
   AssetGenImage get aboutBlue =>
       const AssetGenImage('assets/images/icons/about_blue.png');
 
+  /// File path: assets/images/icons/airtime.svg
+  SvgGenImage get airtime =>
+      const SvgGenImage('assets/images/icons/airtime.svg');
+
   /// File path: assets/images/icons/alert.svg
   SvgGenImage get alert => const SvgGenImage('assets/images/icons/alert.svg');
 
@@ -77,9 +81,16 @@ class $AssetsImagesIconsGen {
   SvgGenImage get beneficiaries =>
       const SvgGenImage('assets/images/icons/beneficiaries.svg');
 
+  /// File path: assets/images/icons/bills.svg
+  SvgGenImage get bills => const SvgGenImage('assets/images/icons/bills.svg');
+
   /// File path: assets/images/icons/biometrics.svg
   SvgGenImage get biometrics =>
       const SvgGenImage('assets/images/icons/biometrics.svg');
+
+  /// File path: assets/images/icons/branches.svg
+  SvgGenImage get branches =>
+      const SvgGenImage('assets/images/icons/branches.svg');
 
   /// File path: assets/images/icons/calendar.svg
   SvgGenImage get calendar =>
@@ -103,12 +114,19 @@ class $AssetsImagesIconsGen {
   SvgGenImage get comingSoon =>
       const SvgGenImage('assets/images/icons/coming_soon.svg');
 
+  /// File path: assets/images/icons/copy-02.svg
+  SvgGenImage get copy02 =>
+      const SvgGenImage('assets/images/icons/copy-02.svg');
+
   /// File path: assets/images/icons/copy.svg
   SvgGenImage get copy => const SvgGenImage('assets/images/icons/copy.svg');
 
   /// File path: assets/images/icons/copy_white.svg
   SvgGenImage get copyWhite =>
       const SvgGenImage('assets/images/icons/copy_white.svg');
+
+  /// File path: assets/images/icons/data.svg
+  SvgGenImage get data => const SvgGenImage('assets/images/icons/data.svg');
 
   /// File path: assets/images/icons/delete.svg
   SvgGenImage get delete => const SvgGenImage('assets/images/icons/delete.svg');
@@ -132,6 +150,14 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/edit_info.svg
   SvgGenImage get editInfo =>
       const SvgGenImage('assets/images/icons/edit_info.svg');
+
+  /// File path: assets/images/icons/electricity.svg
+  SvgGenImage get electricity =>
+      const SvgGenImage('assets/images/icons/electricity.svg');
+
+  /// File path: assets/images/icons/empty_branch.svg
+  SvgGenImage get emptyBranch =>
+      const SvgGenImage('assets/images/icons/empty_branch.svg');
 
   /// File path: assets/images/icons/empty_staff.png
   AssetGenImage get emptyStaff =>
@@ -166,6 +192,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get history =>
       const SvgGenImage('assets/images/icons/history.svg');
 
+  /// File path: assets/images/icons/info_square.svg
+  SvgGenImage get infoSquare =>
+      const SvgGenImage('assets/images/icons/info_square.svg');
+
   /// File path: assets/images/icons/kyc.svg
   SvgGenImage get kyc => const SvgGenImage('assets/images/icons/kyc.svg');
 
@@ -176,6 +206,10 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/kyc_outline.svg
   SvgGenImage get kycOutline =>
       const SvgGenImage('assets/images/icons/kyc_outline.svg');
+
+  /// File path: assets/images/icons/loans_coming_soon.svg
+  SvgGenImage get loansComingSoon =>
+      const SvgGenImage('assets/images/icons/loans_coming_soon.svg');
 
   /// File path: assets/images/icons/new_message.svg
   SvgGenImage get newMessage =>
@@ -217,6 +251,10 @@ class $AssetsImagesIconsGen {
 
   /// File path: assets/images/icons/print.svg
   SvgGenImage get print => const SvgGenImage('assets/images/icons/print.svg');
+
+  /// File path: assets/images/icons/receive.svg
+  SvgGenImage get receive =>
+      const SvgGenImage('assets/images/icons/receive.svg');
 
   /// File path: assets/images/icons/recover_account.svg
   SvgGenImage get recoverAccount =>
@@ -273,12 +311,18 @@ class $AssetsImagesIconsGen {
   SvgGenImage get support =>
       const SvgGenImage('assets/images/icons/support.svg');
 
+  /// File path: assets/images/icons/tv.svg
+  SvgGenImage get tv => const SvgGenImage('assets/images/icons/tv.svg');
+
   /// File path: assets/images/icons/user.svg
   SvgGenImage get user => const SvgGenImage('assets/images/icons/user.svg');
 
   /// File path: assets/images/icons/virtual_bank.svg
   SvgGenImage get virtualBank =>
       const SvgGenImage('assets/images/icons/virtual_bank.svg');
+
+  /// File path: assets/images/icons/wallet.svg
+  SvgGenImage get wallet => const SvgGenImage('assets/images/icons/wallet.svg');
 
   /// File path: assets/images/icons/warning.svg
   SvgGenImage get warning =>
@@ -287,23 +331,30 @@ class $AssetsImagesIconsGen {
   /// List of all assets
   List<dynamic> get values => [
         aboutBlue,
+        airtime,
         alert,
         beneficiaries,
+        bills,
         biometrics,
+        branches,
         calendar,
         camera,
         cameraBlue,
         cameraWhite,
         cancel,
         comingSoon,
+        copy02,
         copy,
         copyWhite,
+        data,
         delete,
         deleteAccount,
         document,
         download,
         downloadNew,
         editInfo,
+        electricity,
+        emptyBranch,
         emptyStaff,
         error,
         export,
@@ -313,9 +364,11 @@ class $AssetsImagesIconsGen {
         hide,
         hideBalance,
         history,
+        infoSquare,
         kyc,
         kycGrey,
         kycOutline,
+        loansComingSoon,
         newMessage,
         notifications,
         password,
@@ -327,6 +380,7 @@ class $AssetsImagesIconsGen {
         photoLibrary,
         pin,
         print,
+        receive,
         recoverAccount,
         recoveryCode,
         recoveryPhone,
@@ -342,8 +396,10 @@ class $AssetsImagesIconsGen {
         staffManagement,
         success,
         support,
+        tv,
         user,
         virtualBank,
+        wallet,
         warning
       ];
 }
@@ -375,10 +431,6 @@ class $AssetsImagesNavbarIconsGen {
 class $AssetsImagesNavbarIconsActiveGen {
   const $AssetsImagesNavbarIconsActiveGen();
 
-  /// File path: assets/images/navbar_icons/active/bills.svg
-  SvgGenImage get bills =>
-      const SvgGenImage('assets/images/navbar_icons/active/bills.svg');
-
   /// File path: assets/images/navbar_icons/active/home.svg
   SvgGenImage get home =>
       const SvgGenImage('assets/images/navbar_icons/active/home.svg');
@@ -387,24 +439,20 @@ class $AssetsImagesNavbarIconsActiveGen {
   SvgGenImage get insights =>
       const SvgGenImage('assets/images/navbar_icons/active/insights.svg');
 
-  /// File path: assets/images/navbar_icons/active/message.svg
-  SvgGenImage get message =>
-      const SvgGenImage('assets/images/navbar_icons/active/message.svg');
+  /// File path: assets/images/navbar_icons/active/loans.svg
+  SvgGenImage get loans =>
+      const SvgGenImage('assets/images/navbar_icons/active/loans.svg');
 
   /// File path: assets/images/navbar_icons/active/settings.svg
   SvgGenImage get settings =>
       const SvgGenImage('assets/images/navbar_icons/active/settings.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [bills, home, insights, message, settings];
+  List<SvgGenImage> get values => [home, insights, loans, settings];
 }
 
 class $AssetsImagesNavbarIconsInactiveGen {
   const $AssetsImagesNavbarIconsInactiveGen();
-
-  /// File path: assets/images/navbar_icons/inactive/bills.svg
-  SvgGenImage get bills =>
-      const SvgGenImage('assets/images/navbar_icons/inactive/bills.svg');
 
   /// File path: assets/images/navbar_icons/inactive/home.svg
   SvgGenImage get home =>
@@ -414,16 +462,16 @@ class $AssetsImagesNavbarIconsInactiveGen {
   SvgGenImage get insights =>
       const SvgGenImage('assets/images/navbar_icons/inactive/insights.svg');
 
-  /// File path: assets/images/navbar_icons/inactive/message.svg
-  SvgGenImage get message =>
-      const SvgGenImage('assets/images/navbar_icons/inactive/message.svg');
+  /// File path: assets/images/navbar_icons/inactive/loans.svg
+  SvgGenImage get loans =>
+      const SvgGenImage('assets/images/navbar_icons/inactive/loans.svg');
 
   /// File path: assets/images/navbar_icons/inactive/settings.svg
   SvgGenImage get settings =>
       const SvgGenImage('assets/images/navbar_icons/inactive/settings.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [bills, home, insights, message, settings];
+  List<SvgGenImage> get values => [home, insights, loans, settings];
 }
 
 class AppAssets {

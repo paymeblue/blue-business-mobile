@@ -1,17 +1,17 @@
 import 'package:blue_business/core/io/api/timed_refresh.dart';
+import 'package:blue_business/core/models/login/data/login_data.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/topup_account/topup_account.dart';
-import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/models/wallet/wallet.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/data/withdrawal_account.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 
 class AppStateValues extends ChangeNotifier {
-  String _refreshToken = "";
+  String _refreshToken = "ABCDE";
   String _fcmToken = "";
   String _narration = "";
-  String _recoveryCode = "";
+  String _recoveryCode = "123DF1233";
   String _path = RoutePaths.homePath;
   bool _loadedTodo = false;
   String _kycLevel = "basic";
@@ -19,12 +19,24 @@ class AppStateValues extends ChangeNotifier {
   int _count = 0;
   bool _newMessage = false;
   String? _channelId;
+  String _token = "";
 
   List<TodoOption> _todos = [];
-  User? _currentUser;
-  Wallet? _wallet;
-  TopupAccount? _account;
-  WithdrawalAccount? _withdrawalAccount;
+  LoginData? _currentUser;
+  Wallet? _wallet =
+      const Wallet(id: 1, balance: "15000.00", walletCode: "ABCDE");
+  TopupAccount? _account = const TopupAccount(
+      id: 2,
+      accountName: "name",
+      bankName: "wema",
+      accountNumber: "_accountNumber");
+  WithdrawalAccount? _withdrawalAccount = WithdrawalAccount(
+      id: 2,
+      bankId: 2,
+      bankName: "bankName",
+      accountName: "accountName",
+      accountNumber: "accountNumber",
+      createdAt: DateTime.now().toIso8601String());
   Object? _extra;
 
   String get refreshToken => _refreshToken;
@@ -39,14 +51,20 @@ class AppStateValues extends ChangeNotifier {
   int get unreadCount => _count;
   bool get hasNewMessage => _newMessage;
   String? get channelId => _channelId;
+  String get accessToken => _token;
 
-  User? get currentUser => _currentUser;
+  LoginData? get currentUser => _currentUser;
   Wallet? get wallet => _wallet;
   TopupAccount? get account => _account;
   WithdrawalAccount? get withdrawalAccount => _withdrawalAccount;
   Object? get extra => _extra;
 
   NotificationState? notificationState;
+
+  set accessToken(String v) {
+    _token = v;
+    notifyListeners();
+  }
 
   set refreshToken(String v) {
     _refreshToken = v;
@@ -108,7 +126,7 @@ class AppStateValues extends ChangeNotifier {
     notifyListeners();
   }
 
-  set currentUser(User? u) {
+  set currentUser(LoginData? u) {
     _currentUser = u;
     notifyListeners();
   }
@@ -134,7 +152,7 @@ class AppStateValues extends ChangeNotifier {
   }
 
   clear() {
-    AppConstants.accessToken = "";
+    accessToken = "";
     refreshToken = "";
     narration = "";
     todos = [];
@@ -154,7 +172,6 @@ class AppStateValues extends ChangeNotifier {
 }
 
 class AppConstants {
-  AppConstants._();
-
-  static String accessToken = "";
+  static const String baseUrl =
+      "https://blue-business-backend-8c46f2828f9e.herokuapp.com/api";
 }

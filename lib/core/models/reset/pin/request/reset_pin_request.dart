@@ -7,7 +7,7 @@ part 'reset_pin_request.g.dart';
 class ResetPinRequest with _$ResetPinRequest {
   const factory ResetPinRequest({
     required String phone,
-    required String newPasscode,
+    required String newPin,
   }) = _ResetPinRequest;
 
   factory ResetPinRequest.fromJson(Map<String, dynamic> json) =>

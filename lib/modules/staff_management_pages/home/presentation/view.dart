@@ -5,6 +5,7 @@ import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
+import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
@@ -121,37 +122,71 @@ class _StaffHomeViewState extends State<StaffHomeView> {
     );
   }
 
-  SizedBox staffTile(StaffHomeViewModel model, Staff item) {
-    return SizedBox(
-      height: 50,
+  Widget staffTile(StaffHomeViewModel model, Staff item) {
+    return Container(
+      height: 130,
       width: model.size.width,
-      child: Row(
+      padding: const EdgeInsets.symmetric(horizontal: 14),
+      decoration: BoxDecoration(
+          border: Border.all(color: AppColors.bgGrey),
+          borderRadius: BorderRadius.circular(5)),
+      child: Column(
         children: [
-          AppAssets.images.icons.staff.svg(),
-          10.horizontalGap,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  item.name,
-                  style: AppTextStyles.subHeader,
+          Row(
+            children: [
+              const BlueAvatar(radius: 22.5),
+              10.horizontalGap,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.name,
+                      style: AppTextStyles.header.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      "Kubwa Abuja Branch",
+                      style: AppTextStyles.smallText.copyWith(
+                        color: AppColors.blue,
+                      ),
+                    ),
+                    Text(
+                      "+${item.phone}",
+                      style: AppTextStyles.smallText.copyWith(
+                        color: AppColors.bodyTextColor2,
+                      ),
+                    ),
+                  ],
                 ),
-                Text(
-                  item.phone,
-                  style: AppTextStyles.smallText.copyWith(
-                    color: AppColors.bodyTextColor2,
-                  ),
-                )
-              ],
-            ),
+              ),
+            ],
           ),
-          IconButton(
-            onPressed: () {
-              model.onDeleteStaff(item);
-            },
-            icon: AppAssets.images.icons.delete.svg(),
-          )
+          15.verticalGap,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: model.size.width / 2.5,
+                height: 40,
+                child: AppButton.primary(
+                  title: "Edit staff",
+                  onTap: () {},
+                ),
+              ),
+              SizedBox(
+                width: model.size.width / 2.5,
+                height: 40,
+                child: AppButton.ghostPrimary(
+                    title: "Delete",
+                    onTap: () {
+                      model.onDeleteStaff(item);
+                    }),
+              )
+            ],
+          ),
         ],
       ),
     );

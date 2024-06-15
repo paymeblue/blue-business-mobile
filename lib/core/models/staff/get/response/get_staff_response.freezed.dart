@@ -21,7 +21,7 @@ GetStaffResponse _$GetStaffResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GetStaffResponse {
   String get status => throw _privateConstructorUsedError;
-  List<Staff>? get data => throw _privateConstructorUsedError;
+  GetStaffData? get data => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,9 @@ abstract class $GetStaffResponseCopyWith<$Res> {
           GetStaffResponse value, $Res Function(GetStaffResponse) then) =
       _$GetStaffResponseCopyWithImpl<$Res, GetStaffResponse>;
   @useResult
-  $Res call({String status, List<Staff>? data, String? message});
+  $Res call({String status, GetStaffData? data, String? message});
+
+  $GetStaffDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -64,12 +66,24 @@ class _$GetStaffResponseCopyWithImpl<$Res, $Val extends GetStaffResponse>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Staff>?,
+              as GetStaffData?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GetStaffDataCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $GetStaffDataCopyWith<$Res>(_value.data!, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
   }
 }
 
@@ -81,7 +95,10 @@ abstract class _$$GetStaffResponseImplCopyWith<$Res>
       __$$GetStaffResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, List<Staff>? data, String? message});
+  $Res call({String status, GetStaffData? data, String? message});
+
+  @override
+  $GetStaffDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -105,9 +122,9 @@ class __$$GetStaffResponseImplCopyWithImpl<$Res>
           : status // ignore: cast_nullable_to_non_nullable
               as String,
       data: freezed == data
-          ? _value._data
+          ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Staff>?,
+              as GetStaffData?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -119,9 +136,7 @@ class __$$GetStaffResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GetStaffResponseImpl implements _GetStaffResponse {
-  const _$GetStaffResponseImpl(
-      {this.status = "fail", final List<Staff>? data, this.message})
-      : _data = data;
+  const _$GetStaffResponseImpl({this.status = "fail", this.data, this.message});
 
   factory _$GetStaffResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetStaffResponseImplFromJson(json);
@@ -129,16 +144,8 @@ class _$GetStaffResponseImpl implements _GetStaffResponse {
   @override
   @JsonKey()
   final String status;
-  final List<Staff>? _data;
   @override
-  List<Staff>? get data {
-    final value = _data;
-    if (value == null) return null;
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final GetStaffData? data;
   @override
   final String? message;
 
@@ -153,14 +160,13 @@ class _$GetStaffResponseImpl implements _GetStaffResponse {
         (other.runtimeType == runtimeType &&
             other is _$GetStaffResponseImpl &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality().equals(other._data, _data) &&
+            (identical(other.data, data) || other.data == data) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, status, const DeepCollectionEquality().hash(_data), message);
+  int get hashCode => Object.hash(runtimeType, status, data, message);
 
   @JsonKey(ignore: true)
   @override
@@ -180,7 +186,7 @@ class _$GetStaffResponseImpl implements _GetStaffResponse {
 abstract class _GetStaffResponse implements GetStaffResponse {
   const factory _GetStaffResponse(
       {final String status,
-      final List<Staff>? data,
+      final GetStaffData? data,
       final String? message}) = _$GetStaffResponseImpl;
 
   factory _GetStaffResponse.fromJson(Map<String, dynamic> json) =
@@ -189,7 +195,7 @@ abstract class _GetStaffResponse implements GetStaffResponse {
   @override
   String get status;
   @override
-  List<Staff>? get data;
+  GetStaffData? get data;
   @override
   String? get message;
   @override

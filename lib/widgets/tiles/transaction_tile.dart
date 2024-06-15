@@ -69,17 +69,17 @@ class TransationTile extends StatelessWidget {
   }
 
   PaymentMode getPaymentMode() {
-    // switch (transaction.paymentMode) {
-    //   case "phone":
-    //     return PaymentMode.phone;
-    //   case "withdrawal":
-    //     return PaymentMode.withdrawal;
-    //   case "wallet_topup":
-    //     return PaymentMode.topup;
-    //   case "blue-user":
-    //   default:
-    return PaymentMode.blue;
-    // }
+    switch (transaction.paymentMode) {
+      case "phone":
+        return PaymentMode.phone;
+      case "withdrawal":
+        return PaymentMode.withdrawal;
+      case "wallet_topup":
+        return PaymentMode.topup;
+      case "blue-user":
+      default:
+        return PaymentMode.blue;
+    }
   }
 
   TransactionType getTransactionType() {
@@ -93,17 +93,17 @@ class TransationTile extends StatelessWidget {
   }
 
   Widget transactionImage() {
-    // switch (getPaymentMode()) {
-    //   case PaymentMode.blue:
-    //   case PaymentMode.qr:
-    //     return bluePaymentImage();
-    //   case PaymentMode.topup:
-    //   case PaymentMode.withdrawal:
-    //     return AppAssets.images.icons.virtualBank.svg();
-    //   case PaymentMode.phone:
-    //   default:
-    return defaultImage();
-    // }
+    switch (getPaymentMode()) {
+      case PaymentMode.blue:
+      case PaymentMode.qr:
+        return bluePaymentImage();
+      case PaymentMode.topup:
+      case PaymentMode.withdrawal:
+        return AppAssets.images.icons.virtualBank.svg();
+      case PaymentMode.phone:
+      default:
+        return defaultImage();
+    }
   }
 
   Container defaultImage() {

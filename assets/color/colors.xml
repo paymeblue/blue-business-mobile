@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary" type="material">#4341CD</color>
+    <color name="primary" type="material">#232949</color>
+    <color name="blue" type="material">#4341CD</color>
     <color name="white" type="material">#FFFFFF</color>
     <color name="offWhite">#FEFEFE</color>
     <color name="grey">#F7F7FA</color>

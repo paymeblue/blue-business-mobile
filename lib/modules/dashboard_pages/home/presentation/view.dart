@@ -10,7 +10,6 @@ import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/modules/dashboard_pages/home/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
-import 'package:blue_business/widgets/modals/popup_menu.dart';
 import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
@@ -39,33 +38,38 @@ class _HomeViewState extends State<HomeView> {
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
         return SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              height: model.size.height + 180,
-              width: model.size.width,
-              color: AppColors.offWhite,
-              padding: const EdgeInsets.only(top: 15),
-              child: Column(
-                children: [
-                  firstRow(() {
-                    model.goToTransactionHistory(context);
-                  }),
-                  12.verticalGap,
-                  walletSection(model),
-                  if (model.isTodoLoading ||
-                      locator<AppStateValues>().todos.isNotEmpty) ...[
-                    15.verticalGap,
-                    todoSection(model),
+          child: RefreshIndicator(
+            onRefresh: () async {
+              model.getDashData();
+            },
+            child: SingleChildScrollView(
+              child: Container(
+                height: model.size.height + 180,
+                width: model.size.width,
+                color: AppColors.offWhite,
+                padding: const EdgeInsets.only(top: 15),
+                child: Column(
+                  children: [
+                    firstRow(() {
+                      model.goToTransactionHistory(context);
+                    }),
+                    12.verticalGap,
+                    walletSection(model),
+                    if (model.isTodoLoading ||
+                        locator<AppStateValues>().todos.isNotEmpty) ...[
+                      15.verticalGap,
+                      todoSection(model),
+                    ],
+                    20.verticalGap,
+                    transactionOptionSection(model, context),
+                    12.verticalGap,
+                    totalSalesSection(model),
+                    12.verticalGap,
+                    Expanded(
+                      child: transactionSection(model),
+                    ),
                   ],
-                  20.verticalGap,
-                  transactionOptionSection(model, context),
-                  12.verticalGap,
-                  totalSalesSection(model),
-                  12.verticalGap,
-                  Expanded(
-                    child: transactionSection(model),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
@@ -76,7 +80,7 @@ class _HomeViewState extends State<HomeView> {
 
   Widget walletSection(HomeViewModel model) {
     return SizedBox(
-      height: 130,
+      height: 180,
       child: RefreshIndicator(
         onRefresh: () async {
           model.refreshWalletContainer();
@@ -99,8 +103,8 @@ class _HomeViewState extends State<HomeView> {
         model.hideBalance = !model.hideBalance;
       },
       child: Container(
-        height: 25,
-        width: 25,
+        height: 20,
+        width: 20,
         decoration: const BoxDecoration(),
         child: model.hideBalance
             ? AppAssets.images.icons.showBalance.svg()
@@ -191,13 +195,16 @@ class _HomeViewState extends State<HomeView> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           totalSalesHeader(),
           14.verticalGap,
+          popupMenu(model),
+          8.verticalGap,
           Container(
             width: model.size.width,
-            height: 250,
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 17),
+            height: 100,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.midGrey),
               borderRadius: BorderRadius.circular(6),
@@ -205,8 +212,6 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                popupMenu(model),
-                8.verticalGap,
                 if (model.salesLoading)
                   salesShimmer()
                 else ...[
@@ -214,34 +219,18 @@ class _HomeViewState extends State<HomeView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       analyticsColumn(
-                          title: "Point of Sales",
-                          amount: format.format(
-                              double.parse(model.spendingData!.desktopSum)),
-                          percentIncrease: .4),
+                        title: "Point of Sales",
+                        amount: format.format(double.parse(
+                            model.analyticsData?.desktop.total ?? "0.00")),
+                        percentIncrease: model.desktopIncrease,
+                      ),
                       analyticsColumn(
                         title: "Mobile Account",
-                        amount: format.format(
-                            double.parse(model.spendingData!.mobileSum)),
-                        percentIncrease: -.156,
+                        amount: format.format(double.parse(
+                            model.analyticsData?.mobile.total ?? "0.00")),
+                        percentIncrease: model.mobileIncrease,
                       ),
                     ],
-                  ),
-                  16.verticalGap,
-                  Container(
-                    height: 70,
-                    width: model.size.width,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: AppColors.inputField,
-                    ),
-                    child: Text(
-                      "${nairaSymbol()}${format.format(double.parse(model.spendingData!.mobileSum) + double.parse(model.spendingData!.desktopSum))}",
-                      style: AppTextStyles.header.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
                   ),
                 ]
               ],
@@ -286,24 +275,26 @@ class _HomeViewState extends State<HomeView> {
                       : AppColors.otherGreen,
                   size: 16,
                 ),
-                8.horizontalGap,
-                RichText(
-                  text: TextSpan(children: [
-                    TextSpan(
-                      text: "${percentIncrease.abs() * 100}% ",
-                      style: AppTextStyles.smallText.copyWith(
-                        color: percentIncrease < 0
-                            ? AppColors.error
-                            : AppColors.otherGreen,
+                2.horizontalGap,
+                Expanded(
+                  child: RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: "${percentIncrease.abs() * 100}% ",
+                        style: AppTextStyles.smallText.copyWith(
+                          color: percentIncrease < 0
+                              ? AppColors.error
+                              : AppColors.otherGreen,
+                        ),
                       ),
-                    ),
-                    TextSpan(
-                      text: "vs last week",
-                      style: AppTextStyles.smallText.copyWith(
-                        color: AppColors.bodyTextColor,
-                      ),
-                    )
-                  ]),
+                      TextSpan(
+                        text: "vs last week",
+                        style: AppTextStyles.smallText.copyWith(
+                          color: AppColors.bodyTextColor,
+                        ),
+                      )
+                    ]),
+                  ),
                 ),
               ],
             )
@@ -322,19 +313,11 @@ class _HomeViewState extends State<HomeView> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            model.popupItem,
+            "This week",
             style: AppTextStyles.subHeader.copyWith(
               color: AppColors.primary,
             ),
           ),
-          8.horizontalGap,
-          BluePopupMenu(
-            icon: const Icon(
-              Icons.keyboard_arrow_down_rounded,
-              color: AppColors.primary,
-            ),
-            popupItems: model.popupItems(),
-          )
         ],
       ),
     );
@@ -396,9 +379,8 @@ class _HomeViewState extends State<HomeView> {
             height: 62,
             width: 62,
             decoration: BoxDecoration(
-              color: option.buttonColor,
-              shape: BoxShape.circle,
-            ),
+                border: Border.all(color: AppColors.bgGrey),
+                borderRadius: BorderRadius.circular(20)),
             child: option.icon,
           ),
         ),
@@ -510,7 +492,7 @@ class _HomeViewState extends State<HomeView> {
         model.goToTransactionHistory(context);
       },
       child: Container(
-        height: 130,
+        height: 175,
         width: model.size.width,
         margin: const EdgeInsets.only(
           left: 16,
@@ -525,7 +507,6 @@ class _HomeViewState extends State<HomeView> {
         child: model.showEmptyState()
             ? refreshWalletContainer(model)
             : Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -533,13 +514,17 @@ class _HomeViewState extends State<HomeView> {
                       model.isKycLoading
                           ? walletTypeShimmer()
                           : walletTypeContainer(
-                              kycLevel: locator<AppStateValues>().kycLevel),
+                              kycLevel:
+                                  locator<AppStateValues>().currentUser!.kyc,
+                            ),
                       AppAssets.images.launcher.image(height: 23, width: 23),
                     ],
                   ),
+                  const Spacer(
+                    flex: 5,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Expanded(
                         child: model.isLoading
@@ -549,7 +534,20 @@ class _HomeViewState extends State<HomeView> {
                       8.horizontalGap,
                       model.isLoading
                           ? walletIdShimmer()
-                          : walletIdContainer(model),
+                          : volumeContainer(model),
+                    ],
+                  ),
+                  const Spacer(
+                    flex: 3,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: branchContainer(model),
+                      ),
+                      8.horizontalGap,
+                      staffContainer(model),
                     ],
                   )
                 ],
@@ -606,7 +604,7 @@ class _HomeViewState extends State<HomeView> {
 
   Widget salesShimmer() {
     return SizedBox(
-      height: 150,
+      height: 80,
       width: context.mediaQuery.size.width,
       child: Shimmer.fromColors(
         baseColor: AppColors.brightBlue.withOpacity(.3),
@@ -638,36 +636,34 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget walletIdContainer(HomeViewModel model) {
+  Widget volumeContainer(HomeViewModel model) {
     return GestureDetector(
       onTap: () {
         model.copyWalletId();
       },
       child: Container(
         decoration: const BoxDecoration(),
-        height: 60,
+        height: 50,
+        width: 130,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "BLUE ID NO.",
+              "TRANSACTION VOL.",
               style: AppTextStyles.smallText.copyWith(
                 color: AppColors.brightBlue,
               ),
             ),
             4.verticalGap,
             FittedBox(
-              child: Row(
-                children: [
-                  Text(
-                    locator<AppStateValues>().wallet!.walletCode,
-                    style: AppTextStyles.header
-                        .copyWith(color: AppColors.grey, fontSize: 16.5),
-                  ),
-                  4.horizontalGap,
-                  AppAssets.images.icons.copyWhite.svg(height: 12),
-                ],
+              child: Text(
+                locator<AppStateValues>()
+                    .currentUser!
+                    .transactionVolume
+                    .toString(),
+                style: AppTextStyles.header
+                    .copyWith(color: AppColors.grey, fontSize: 16.5),
               ),
             ),
           ],
@@ -712,7 +708,7 @@ class _HomeViewState extends State<HomeView> {
 
   Widget walletBalanceContainer(HomeViewModel model) {
     return SizedBox(
-      height: 60,
+      height: 50,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -722,7 +718,7 @@ class _HomeViewState extends State<HomeView> {
               Text(
                 "WALLET BALANCE",
                 style: AppTextStyles.subHeader
-                    .copyWith(color: AppColors.brightBlue, fontSize: 15.5),
+                    .copyWith(color: AppColors.brightBlue, fontSize: 11),
               ),
               6.horizontalGap,
               balanceVisibilitySwitch(model)
@@ -730,10 +726,63 @@ class _HomeViewState extends State<HomeView> {
           ),
           FittedBox(
             child: Text(
-              "${nairaSymbol()}${model.hideBalance ? locator<AppStateValues>().wallet!.balance.toString().replaceAll(RegExp(r"[0-9]"), "*") : locator<AppStateValues>().wallet!.balance}",
+              "${nairaSymbol()}${model.hideBalance ? locator<AppStateValues>().wallet!.balance.toString().replaceAll(RegExp(r"[0-9]"), "*") : format.format(double.parse(locator<AppStateValues>().wallet!.balance))}",
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
-                fontSize: 22,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget branchContainer(HomeViewModel model) {
+    return SizedBox(
+      height: 50,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "TOTAL BRANCHES",
+            style: AppTextStyles.subHeader
+                .copyWith(color: AppColors.brightBlue, fontSize: 11),
+          ),
+          FittedBox(
+            child: Text(
+              locator<AppStateValues>().currentUser!.totalBranches.toString(),
+              style: AppTextStyles.header.copyWith(
+                color: AppColors.grey,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget staffContainer(HomeViewModel model) {
+    return SizedBox(
+      height: 50,
+      width: 130,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "TOTAL STAFF",
+            style: AppTextStyles.subHeader
+                .copyWith(color: AppColors.brightBlue, fontSize: 11),
+          ),
+          FittedBox(
+            child: Text(
+              locator<AppStateValues>().currentUser!.totalStaff.toString(),
+              style: AppTextStyles.header.copyWith(
+                color: AppColors.grey,
+                fontSize: 18,
               ),
             ),
           ),
@@ -771,9 +820,8 @@ class _HomeViewState extends State<HomeView> {
       ),
       child: Row(
         children: [
-          BlueAvatar(
+          const BlueAvatar(
             radius: 20,
-            imageUrl: locator<AppStateValues>().currentUser!.displayPic,
           ),
           12.horizontalGap,
           Expanded(
@@ -814,7 +862,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         4.verticalGap,
         Text(
-          "${locator<AppStateValues>().currentUser!.firstName} ${locator<AppStateValues>().currentUser!.lastName}",
+          "Path4Her.org",
           style: AppTextStyles.header.copyWith(fontSize: 18.5),
         ),
       ],

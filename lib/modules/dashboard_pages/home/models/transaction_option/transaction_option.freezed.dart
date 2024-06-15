@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TransactionOption {
-  Color get buttonColor => throw _privateConstructorUsedError;
   Widget get icon => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   VoidCallback get onTap => throw _privateConstructorUsedError;
@@ -32,7 +31,7 @@ abstract class $TransactionOptionCopyWith<$Res> {
           TransactionOption value, $Res Function(TransactionOption) then) =
       _$TransactionOptionCopyWithImpl<$Res, TransactionOption>;
   @useResult
-  $Res call({Color buttonColor, Widget icon, String title, VoidCallback onTap});
+  $Res call({Widget icon, String title, VoidCallback onTap});
 }
 
 /// @nodoc
@@ -48,16 +47,11 @@ class _$TransactionOptionCopyWithImpl<$Res, $Val extends TransactionOption>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? buttonColor = null,
     Object? icon = null,
     Object? title = null,
     Object? onTap = null,
   }) {
     return _then(_value.copyWith(
-      buttonColor: null == buttonColor
-          ? _value.buttonColor
-          : buttonColor // ignore: cast_nullable_to_non_nullable
-              as Color,
       icon: null == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -82,7 +76,7 @@ abstract class _$$TransactionOptionImplCopyWith<$Res>
       __$$TransactionOptionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Color buttonColor, Widget icon, String title, VoidCallback onTap});
+  $Res call({Widget icon, String title, VoidCallback onTap});
 }
 
 /// @nodoc
@@ -96,16 +90,11 @@ class __$$TransactionOptionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? buttonColor = null,
     Object? icon = null,
     Object? title = null,
     Object? onTap = null,
   }) {
     return _then(_$TransactionOptionImpl(
-      buttonColor: null == buttonColor
-          ? _value.buttonColor
-          : buttonColor // ignore: cast_nullable_to_non_nullable
-              as Color,
       icon: null == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -126,13 +115,8 @@ class __$$TransactionOptionImplCopyWithImpl<$Res>
 
 class _$TransactionOptionImpl implements _TransactionOption {
   const _$TransactionOptionImpl(
-      {required this.buttonColor,
-      required this.icon,
-      required this.title,
-      required this.onTap});
+      {required this.icon, required this.title, required this.onTap});
 
-  @override
-  final Color buttonColor;
   @override
   final Widget icon;
   @override
@@ -142,7 +126,7 @@ class _$TransactionOptionImpl implements _TransactionOption {
 
   @override
   String toString() {
-    return 'TransactionOption(buttonColor: $buttonColor, icon: $icon, title: $title, onTap: $onTap)';
+    return 'TransactionOption(icon: $icon, title: $title, onTap: $onTap)';
   }
 
   @override
@@ -150,15 +134,13 @@ class _$TransactionOptionImpl implements _TransactionOption {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TransactionOptionImpl &&
-            (identical(other.buttonColor, buttonColor) ||
-                other.buttonColor == buttonColor) &&
             (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.onTap, onTap) || other.onTap == onTap));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, buttonColor, icon, title, onTap);
+  int get hashCode => Object.hash(runtimeType, icon, title, onTap);
 
   @JsonKey(ignore: true)
   @override
@@ -170,13 +152,10 @@ class _$TransactionOptionImpl implements _TransactionOption {
 
 abstract class _TransactionOption implements TransactionOption {
   const factory _TransactionOption(
-      {required final Color buttonColor,
-      required final Widget icon,
+      {required final Widget icon,
       required final String title,
       required final VoidCallback onTap}) = _$TransactionOptionImpl;
 
-  @override
-  Color get buttonColor;
   @override
   Widget get icon;
   @override

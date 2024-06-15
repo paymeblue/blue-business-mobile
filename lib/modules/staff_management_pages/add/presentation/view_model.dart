@@ -1,22 +1,18 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
-import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
-import 'package:blue_business/core/models/staff/create/request/create_staff_request.dart';
-import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
-import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/dialogs.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 class AddStaffViewModel extends BaseViewModel {
   late Size size;
-  StaffService staffService = StaffService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -26,6 +22,36 @@ class AddStaffViewModel extends BaseViewModel {
 
   goBack(BuildContext context) {
     context.go(RoutePaths.staffManagementPath);
+  }
+
+  goToAddBranch(BuildContext context) {
+    context.push(RoutePaths.addBranchPath);
+  }
+
+  String? _path;
+  String? get path => _path;
+  set path(String? v) {
+    _path = v;
+    notifyListeners();
+  }
+
+  pickImage() async {
+    try {
+      FilePickerResult? result =
+          await FilePicker.platform.pickFiles(type: FileType.image);
+
+      if (result != null) {
+        String? p = result.files.single.path;
+
+        path = p;
+      } else {
+        AppNotification.error(message: "No image selected");
+      }
+    } catch (e) {
+      AppNotification.error(
+        message: AppErrorHandler.getErrorMessage(e),
+      );
+    }
   }
 
   CountryCode? _country;
@@ -88,36 +114,10 @@ class AddStaffViewModel extends BaseViewModel {
       title: "Staff Access",
       subtitle:
           "Are you sure you want to grant ‘Sharon Joy’ access to your BlueBusiness.",
-      onDelete: () {
-        createStaff(context);
-      },
+      onDelete: () {},
       confirmText: "Confirm",
       confirmColor: AppColors.primary,
     );
-  }
-
-  createStaff(BuildContext context) async {
-    AppLoader.start();
-    CreateStaffRequest request = CreateStaffRequest(
-        name: nameController.text,
-        phone: formatPhone(),
-        password: passwordController.text);
-
-    CreateStaffResponse response = await staffService
-        .createStaff(request: request)
-        .onError((error, stackTrace) => CreateStaffResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
-
-    if (response.status == "success") {
-      AppNotification.success(message: response.message);
-
-      Future.delayed(const Duration(seconds: 3), () {
-        goBack(context);
-      });
-    } else {
-      AppNotification.error(message: response.message);
-    }
-    AppLoader.stop();
   }
 
   String formatPhone() {

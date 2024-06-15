@@ -1,18 +1,62 @@
 import 'dart:developer';
 
+import 'package:blue_business/core/models/bills/airtime/review_data/review_airtime_data.dart';
+import 'package:blue_business/core/models/bills/airtime/vend/data/vend_airtime_data.dart';
+import 'package:blue_business/core/models/bills/cable/vend/data/vend_cable_data.dart';
+import 'package:blue_business/core/models/bills/cable/verify/data/verify_cable_data.dart';
+import 'package:blue_business/core/models/bills/data/vend/data/vend_data_data.dart';
+import 'package:blue_business/core/models/bills/data/verify/data/verify_data_data.dart';
+import 'package:blue_business/core/models/bills/electricity/vend/data/vend_electricity_data.dart';
+import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
 import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
-import 'package:blue_business/core/models/signup_profile/request/signup_profile_request.dart';
+import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
+import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
 import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
+import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
+import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
+import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
+import 'package:blue_business/core/models/transaction_detail/payment/payment_detail.dart';
+import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/navigation/screens.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
-import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/airtime/pin/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/airtime/review/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/airtime/success/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/cable/initiate/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/cable/pin/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/cable/review/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/cable/success/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/data/initiate/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/data/pin/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/data/review/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/data/success/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/electicity/initiate/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/electicity/pin/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/electicity/review/presentation/view.dart';
+import 'package:blue_business/modules/bill_pages/electicity/success/presentation/view.dart';
+import 'package:blue_business/modules/bills/presentation/view.dart';
+import 'package:blue_business/modules/branch_management_pages/add/presentation/view.dart';
+import 'package:blue_business/modules/branch_management_pages/home/presentation/view.dart';
+import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.dart';
 import 'package:blue_business/modules/push_payment_pin/presentation/view.dart';
+import 'package:blue_business/modules/signup_pages/business_details/presentation/view.dart';
+import 'package:blue_business/modules/signup_pages/business_kyc/presentation/view.dart';
+import 'package:blue_business/modules/signup_pages/progress_page/presentation/view.dart';
+import 'package:blue_business/modules/signup_pages/shareholder_details/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/add/presentation/view.dart';
 import 'package:blue_business/modules/staff_management_pages/home/presentation/view.dart';
+import 'package:blue_business/modules/transaction_details/pages/airtime_details/presentation/view.dart';
+import 'package:blue_business/modules/transaction_details/pages/cable_details/presentation/view.dart';
+import 'package:blue_business/modules/transaction_details/pages/data_details/presentation/view.dart';
+import 'package:blue_business/modules/transaction_details/pages/payment_details/presentation/view.dart';
+import 'package:blue_business/modules/transaction_details/pages/power_details/presentation/view.dart';
+import 'package:blue_business/modules/wallet/presentation/view.dart';
+import 'package:blue_business/modules/welcome/presentation/view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -30,11 +74,11 @@ GoRouter router = GoRouter(
     );
   },
   redirect: (context, state) {
-    AppStateValues stateValues = locator<AppStateValues>();
-    if (stateValues.currentUser == null &&
-        state.matchedLocation.contains("/dash")) {
-      return RoutePaths.loginPath;
-    }
+    // AppStateValues stateValues = locator<AppStateValues>();
+    // if (stateValues.currentUser == null &&
+    //     state.matchedLocation.contains("/dash")) {
+    //   return RoutePaths.loginPath;
+    // }
     return state.matchedLocation;
   },
   initialLocation: "/",
@@ -51,7 +95,7 @@ GoRouter router = GoRouter(
       path: RoutePaths.welcomePath,
       name: "Welcome",
       builder: (context, state) {
-        return const SplashView();
+        return const WelcomeView();
       },
     ),
     GoRoute(
@@ -61,134 +105,6 @@ GoRouter router = GoRouter(
         return LoginView(
           onComplete: state.extra as VoidCallback?,
         );
-      },
-    ),
-    ShellRoute(
-      navigatorKey: locator<NavigationService>().shellKey,
-      builder: (context, state, child) {
-        int index = 0;
-        if (state.matchedLocation.startsWith(RoutePaths.registerOtpPath)) {
-          index = 1;
-        } else if (state.matchedLocation
-            .endsWith(RoutePaths.addPersonalInfoPath)) {
-          index = 2;
-        } else if (state.matchedLocation
-                .endsWith(RoutePaths.createPasswordPath) ||
-            state.matchedLocation.startsWith(
-              RoutePaths.confirmPasswordPath,
-            )) {
-          index = 3;
-        }
-        return SignupShellView(
-          currentIndex: index,
-          child: child,
-        );
-      },
-      routes: [
-        GoRoute(
-          path: RoutePaths.addAccountPhonePath,
-          name: "Add Account Phone Number",
-          builder: (context, state) {
-            log(state.fullPath.toString());
-            return const EnterAccountPhoneView();
-          },
-        ),
-        GoRoute(
-          path: "${RoutePaths.registerOtpPath}/:phone",
-          name: "Verify Registration Otp",
-          builder: (context, state) {
-            String phone = state.pathParameters["phone"] as String;
-            log(state.fullPath.toString());
-            return VerifyRegistrationOtpView(
-              phone: phone,
-            );
-          },
-        ),
-        GoRoute(
-          path: "${RoutePaths.confirmPasswordPath}/:phone",
-          builder: (context, state) {
-            String phone = state.pathParameters["phone"] as String;
-            return ConfirmPasswordView(
-              phone: phone,
-            );
-          },
-        ),
-        GoRoute(
-          path: "/:id${RoutePaths.addPersonalInfoPath}",
-          name: "Add Personal Info",
-          builder: (context, state) {
-            log(state.fullPath.toString());
-            return AddPersonalInfoView(
-              id: state.pathParameters["id"].toString(),
-            );
-          },
-        ),
-        GoRoute(
-          path: "/:id${RoutePaths.createPasswordPath}",
-          name: "Create Password",
-          builder: (context, state) {
-            log(state.fullPath.toString());
-            SignupProfileRequest r = state.extra! as SignupProfileRequest;
-            return AddPasswordView(
-              id: state.pathParameters["id"].toString(),
-              request: r,
-            );
-          },
-        ),
-      ],
-    ),
-    ShellRoute(
-      navigatorKey: locator<NavigationService>().shellKey,
-      builder: (context, state, child) {
-        int index = 0;
-        if (state.matchedLocation.startsWith(RoutePaths.businessSizePath)) {
-          index = 1;
-        } else if (state.matchedLocation
-            .startsWith(RoutePaths.businessLocation)) {
-          index = 2;
-        }
-        return SetupBusinessShellView(
-          currentIndex: index,
-          child: child,
-        );
-      },
-      routes: [
-        GoRoute(
-          path: RoutePaths.businessNamePath,
-          name: "Add Business Name",
-          builder: (context, state) {
-            log(state.fullPath.toString());
-            return const AddBusinessNameView();
-          },
-        ),
-        GoRoute(
-          path: "${RoutePaths.businessSizePath}/:id",
-          name: "Add Business Size and Branding",
-          builder: (context, state) {
-            String id = state.pathParameters["id"] as String;
-            log(state.matchedLocation);
-            return AddSizeView(
-              id: int.parse(id),
-            );
-          },
-        ),
-        GoRoute(
-          path: "${RoutePaths.businessLocation}/:id",
-          name: "Add Business Location",
-          builder: (context, state) {
-            String id = state.pathParameters["id"] as String;
-            log(state.matchedLocation);
-            return AddLocationView(
-              id: int.parse(id),
-            );
-          },
-        ),
-      ],
-    ),
-    GoRoute(
-      path: RoutePaths.registerSuccessPath,
-      builder: (context, state) {
-        return const RegisterSuccessView();
       },
     ),
     ShellRoute(
@@ -300,13 +216,11 @@ GoRouter router = GoRouter(
           ),
         ]),
     GoRoute(
-      path: "/:id${RoutePaths.pinPath}",
+      path: "/register${RoutePaths.pinPath}",
       builder: (context, state) {
         log(state.fullPath.toString());
-        SignupProfileRequest r = state.extra! as SignupProfileRequest;
         return PinView(
-          id: state.pathParameters["id"].toString(),
-          request: r,
+          data: state.extra as SignupData,
         );
       },
     ),
@@ -344,23 +258,11 @@ GoRouter router = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: RoutePaths.messagePath,
-              name: "Message",
+              path: RoutePaths.loansPath,
+              name: "Loans",
               builder: (context, state) {
                 log(state.fullPath.toString());
-                return const MessageHomeView();
-              },
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: RoutePaths.billsPath,
-              name: "Bills",
-              builder: (context, state) {
-                log(state.fullPath.toString());
-                return const BillsView();
+                return const LoansView();
               },
             ),
           ],
@@ -582,34 +484,6 @@ GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: RoutePaths.startConversationPath,
-      name: "Start Conversation",
-      builder: (context, state) {
-        log(state.matchedLocation.toString());
-        return const StartConversationView();
-      },
-    ),
-    GoRoute(
-      path: RoutePaths.chatDetailsPath,
-      name: "Chat",
-      builder: (context, state) {
-        log(state.matchedLocation.toString());
-        Map extra = state.extra! as Map<String, dynamic>;
-        return ChatDetailView(
-          recipient: extra["peer"],
-          unreadCount: extra["unread"],
-        );
-      },
-    ),
-    GoRoute(
-      path: RoutePaths.chatQrPath,
-      name: "Chat Qr",
-      builder: (context, state) {
-        log(state.matchedLocation.toString());
-        return const QrChatView();
-      },
-    ),
-    GoRoute(
       path: RoutePaths.staffManagementPath,
       builder: (context, state) {
         return const StaffHomeView();
@@ -622,6 +496,18 @@ GoRouter router = GoRouter(
       },
     ),
     GoRoute(
+      path: RoutePaths.branchManagementPath,
+      builder: (context, state) {
+        return const BranchHomeView();
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.addBranchPath,
+      builder: (context, state) {
+        return const AddBranchView();
+      },
+    ),
+    GoRoute(
       path: "/:id${RoutePaths.pushPaymentPin}",
       builder: (context, state) {
         String id = state.pathParameters["id"] as String;
@@ -630,5 +516,302 @@ GoRouter router = GoRouter(
         );
       },
     ),
+    GoRoute(
+      path: RoutePaths.walletPath,
+      name: "Wallet",
+      builder: (context, state) {
+        return const WalletView();
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.billsPath,
+      name: "Bills",
+      builder: (context, state) {
+        return const BillsView();
+      },
+    ),
+    ...electricityRoutes,
+    ...airtimeRoutes,
+    ...dataRoutes,
+    ...cableRoutes,
+    ...transactionDetailRoutes,
+    signupShellRoute,
   ],
 );
+
+List<GoRoute> electricityRoutes = [
+  GoRoute(
+    path: RoutePaths.initiateElectricityPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return const InitiateElectricityView();
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.reviewElectricityPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      Map<String, dynamic> extra = state.extra as Map<String, dynamic>;
+      double amount = extra["amount"];
+      VerifyElectricityData data = extra["verify_data"];
+      return ReviewElectricityView(
+        data: data,
+        amount: amount,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.electricityPinPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      Map<String, dynamic> extra = state.extra as Map<String, dynamic>;
+      double amount = extra["amount"];
+      VerifyElectricityData data = extra["verify_data"];
+      return ConfirmElectricityPinView(
+        data: data,
+        amount: amount,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.electricitySuccessPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      VendElectricityData extra = state.extra as VendElectricityData;
+      return VendElectricitySuccessView(
+        data: extra,
+      );
+    },
+  ),
+];
+
+List<GoRoute> airtimeRoutes = [
+  GoRoute(
+    path: RoutePaths.initiateAirtimePath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return const InitiateAirtimeView();
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.reviewAirtimePath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return ReviewAirtimeView(
+        data: state.extra as ReviewAirtimeData,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.airtimePinPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return ConfirmAirtimePinView(
+        data: state.extra as ReviewAirtimeData,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.airtimeSuccessPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      VendAirtimeData extra = state.extra as VendAirtimeData;
+      return VendAirtimeSuccessView(
+        data: extra,
+      );
+    },
+  )
+];
+
+ShellRoute signupShellRoute = ShellRoute(
+  navigatorKey: locator<NavigationService>().shellKey,
+  builder: (context, state, child) {
+    return SignupShellView(
+      child: child,
+    );
+  },
+  routes: [
+    GoRoute(
+      path: RoutePaths.addAccountPhonePath,
+      name: "Add Account Phone Number",
+      builder: (context, state) {
+        log(state.fullPath.toString());
+        return const EnterAccountPhoneView();
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.registerProgressPath,
+      name: "Signup Progress",
+      builder: (context, state) {
+        log(state.fullPath.toString());
+        return SignupProgressView(
+          data: state.extra as SignupData,
+        );
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.registerShareholdersPath,
+      name: "Shareholder Details",
+      builder: (context, state) {
+        log(state.fullPath.toString());
+        return ShareholderDetailsView(
+          data: state.extra as SignupData,
+        );
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.registerBusinessDetailsPath,
+      name: "Signup Business Details",
+      builder: (context, state) {
+        log(state.fullPath.toString());
+        return SignupBusinessDetailsView(
+          data: state.extra as SignupData,
+        );
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.addShareholdersKycPath,
+      name: "Signup Shareholder Kyc",
+      builder: (context, state) {
+        log(state.fullPath.toString());
+        Shareholders? shareholder;
+        SignupData data =
+            (state.extra as Map<String, dynamic>)["data"] as SignupData;
+        if ((state.extra as Map<String, dynamic>)["shareholder"] != null) {
+          shareholder = (state.extra as Map<String, dynamic>)["shareholder"]
+              as Shareholders;
+        }
+        return SignupBusinessKycView(
+          shareholder: shareholder,
+          data: data,
+        );
+      },
+    ),
+    GoRoute(
+      path: "${RoutePaths.registerOtpPath}/:phone",
+      name: "Verify Registration Otp",
+      builder: (context, state) {
+        String phone = state.pathParameters["phone"] as String;
+        log(state.fullPath.toString());
+        return VerifyRegistrationOtpView(
+          phone: phone,
+        );
+      },
+    ),
+  ],
+);
+
+List<GoRoute> dataRoutes = [
+  GoRoute(
+    path: RoutePaths.initiateDataPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return const InitiateDataView();
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.reviewDataPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return ReviewDataView(
+        data: state.extra as VerifyDataData,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.dataPinPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return ConfirmDataPinView(
+        data: state.extra as VerifyDataData,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.dataSuccessPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return VendDataSuccessView(
+        data: state.extra as VendDataData,
+      );
+    },
+  )
+];
+
+List<GoRoute> cableRoutes = [
+  GoRoute(
+    path: RoutePaths.initiateCablePath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return const InitiateCableView();
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.reviewCablePath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return ReviewCableView(
+        data: state.extra as VerifyCableData,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.cablePinPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return ConfirmCablePinView(
+        data: state.extra as VerifyCableData,
+      );
+    },
+  ),
+  GoRoute(
+    path: RoutePaths.cableSuccessPath,
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return VendCableSuccessView(
+        data: state.extra as VendCableData,
+      );
+    },
+  )
+];
+
+List<GoRoute> transactionDetailRoutes = [
+  GoRoute(
+    path: "${RoutePaths.transactionHistoryPath}/airtime/:id",
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return AirtimeDetailsView(detail: state.extra as AirtimeDetails);
+    },
+  ),
+  GoRoute(
+    path: "${RoutePaths.transactionHistoryPath}/power/:id",
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return PowerDetailsView(detail: state.extra as PowerDetails);
+    },
+  ),
+  GoRoute(
+    path: "${RoutePaths.transactionHistoryPath}/data/:id",
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return DataDetailsView(detail: state.extra as DataDetails);
+    },
+  ),
+  GoRoute(
+    path: "${RoutePaths.transactionHistoryPath}/tv/:id",
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return CableDetailsView(detail: state.extra as CableDetails);
+    },
+  ),
+  GoRoute(
+    path: "${RoutePaths.transactionHistoryPath}/payment/:id/:type",
+    builder: (context, state) {
+      log(state.matchedLocation.toString());
+      return PaymentDetailsView(
+        detail: state.extra as PaymentDetail,
+        type: state.pathParameters["type"]!,
+      );
+    },
+  ),
+];

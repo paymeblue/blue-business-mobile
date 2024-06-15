@@ -1,4 +1,4 @@
-import 'package:blue_business/core/models/staff/get/item/staff.dart';
+import 'package:blue_business/core/models/staff/get/data/staff_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'get_staff_response.freezed.dart';
@@ -8,7 +8,7 @@ part 'get_staff_response.g.dart';
 class GetStaffResponse with _$GetStaffResponse {
   const factory GetStaffResponse({
     @Default("fail") String status,
-    List<Staff>? data,
+    GetStaffData? data,
     String? message,
   }) = _GetStaffResponse;
 

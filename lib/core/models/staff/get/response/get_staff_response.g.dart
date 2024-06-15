@@ -10,9 +10,9 @@ _$GetStaffResponseImpl _$$GetStaffResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$GetStaffResponseImpl(
       status: json['status'] as String? ?? "fail",
-      data: (json['data'] as List<dynamic>?)
-          ?.map((e) => Staff.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      data: json['data'] == null
+          ? null
+          : GetStaffData.fromJson(json['data'] as Map<String, dynamic>),
       message: json['message'] as String?,
     );
 

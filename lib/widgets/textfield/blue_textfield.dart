@@ -6,7 +6,7 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
-import 'package:blue_business/widgets/textfield/textfield_actions.dart';
+import 'package:blue_business/widgets/textfield/dropdown.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -107,13 +107,11 @@ class BlueTextField {
     String title = "",
     ValueChanged<String?>? onChanged,
     TextEditingController? controller,
+    TextInputType? keyboardType,
     FocusNode? node,
     bool isOptional = false,
     bool isEnabled = true,
     String? initialValue,
-    bool? expands,
-    int? maxLines,
-    int? minLines,
   }) {
     return _BluePlaintextTextField(
       title: title,
@@ -124,7 +122,30 @@ class BlueTextField {
       hint: hint,
       isEnabled: isEnabled,
       initialValue: initialValue,
-      expands: expands,
+      keyboardType: keyboardType,
+    );
+  }
+
+  static Widget email({
+    required String hint,
+    String title = "",
+    ValueChanged<String?>? onChanged,
+    TextEditingController? controller,
+    FocusNode? node,
+    bool isOptional = false,
+    bool isEnabled = true,
+    String? initialValue,
+  }) {
+    return _BluePlaintextTextField(
+      title: title,
+      isOptional: isOptional,
+      node: node,
+      onChanged: onChanged,
+      controller: controller,
+      hint: hint,
+      isEnabled: isEnabled,
+      initialValue: initialValue,
+      keyboardType: TextInputType.emailAddress,
     );
   }
 
@@ -160,8 +181,6 @@ class BlueTextField {
     FocusNode? node,
     bool isOptional = false,
     bool isEnabled = true,
-    int? maxLines,
-    int? minLines,
   }) {
     return _BluePlaintextTextField(
       title: title,
@@ -172,8 +191,6 @@ class BlueTextField {
       hint: hint,
       isEnabled: isEnabled,
       keyboardType: TextInputType.number,
-      maxLines: maxLines,
-      minLines: minLines,
       inputFormatters: <TextInputFormatter>[
         FilteringTextInputFormatter.digitsOnly,
         CurrencyTextInputFormatter(
@@ -252,7 +269,6 @@ class _BluePasswordTextField extends StatelessWidget {
       title: title,
       isOptional: false,
       onChanged: onChanged,
-      maxLines: 1,
     );
   }
 }
@@ -297,21 +313,18 @@ class _BluePlaintextTextField extends StatelessWidget {
     this.isEnabled = true,
     this.isOptional = false,
     required this.title,
-    this.keyboardType = TextInputType.text,
+    this.keyboardType,
     this.onChanged,
     this.inputFormatters,
     this.initialValue,
     this.isMessage = false,
     this.capitalization = TextCapitalization.none,
-    this.expands,
-    this.maxLines,
-    this.minLines,
   });
 
   final String? hint;
   final TextEditingController? controller;
   final ValueChanged<String?>? onChanged;
-  final TextInputType keyboardType;
+  final TextInputType? keyboardType;
   final FocusNode? node;
   final bool isEnabled;
   final bool isOptional;
@@ -320,9 +333,6 @@ class _BluePlaintextTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final bool isMessage;
   final TextCapitalization capitalization;
-  final bool? expands;
-  final int? maxLines;
-  final int? minLines;
 
   @override
   Widget build(BuildContext context) {
@@ -339,9 +349,6 @@ class _BluePlaintextTextField extends StatelessWidget {
       inputFormatters: inputFormatters,
       isMessage: isMessage,
       capitalization: capitalization,
-      expands: expands,
-      maxLines: maxLines,
-      minLines: minLines,
     );
   }
 }
@@ -364,9 +371,6 @@ class _$BlueTextField extends StatefulWidget {
     this.inputFormatters,
     this.isMessage = false,
     this.capitalization = TextCapitalization.none,
-    this.expands,
-    this.maxLines,
-    this.minLines,
   });
 
   final String? hint;
@@ -385,9 +389,6 @@ class _$BlueTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final bool isMessage;
   final TextCapitalization capitalization;
-  final bool? expands;
-  final int? maxLines;
-  final int? minLines;
 
   @override
   State<_$BlueTextField> createState() => _$BlueTextFieldState();
@@ -424,7 +425,7 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.maxLines == null ? null : 75,
+      height: widget.isMessage ? null : 75,
       width: context.mediaQuery.size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -446,9 +447,12 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
             textAlignVertical: TextAlignVertical.center,
             keyboardType: widget.keyboardType,
             onChanged: widget.onChanged,
-            expands: widget.expands ?? false,
-            minLines: widget.isMessage ? 1 : widget.maxLines,
-            maxLines: widget.isPassword ? 1 : widget.maxLines,
+            minLines: 1,
+            maxLines: widget.isMessage
+                ? 3
+                : widget.isPassword
+                    ? 1
+                    : null,
             cursorHeight: widget.isMessage ? 15 : null,
             decoration: InputDecoration(
               isCollapsed: true,

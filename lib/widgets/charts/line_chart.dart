@@ -4,10 +4,13 @@ import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class BlueLineChart extends StatefulWidget {
   final List<LineInputData> inputData;
-  const BlueLineChart({super.key, required this.inputData});
+  final bool isMonthly;
+  const BlueLineChart(
+      {super.key, required this.inputData, this.isMonthly = false});
 
   @override
   State<BlueLineChart> createState() => _BlueLineChartState();
@@ -47,7 +50,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     TextStyle style =
         AppTextStyles.smallText.copyWith(color: const Color(0xFF615E83));
-    Widget text = Text(
+    late Widget text = Text(
         widget.inputData[value.toInt()].label[0].toUpperCase() +
             widget.inputData[value.toInt()].label.substring(1),
         style: style);
@@ -59,6 +62,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
   }
 
   LineChartData mainData() {
+    NumberFormat format = NumberFormat.compactCurrency(symbol: nairaSymbol());
     return LineChartData(
       gridData: const FlGridData(
         show: false,
@@ -92,7 +96,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
           getTooltipItems: (touchedSpots) => List.generate(
             touchedSpots.length,
             (idx) => LineTooltipItem(
-              "${nairaSymbol()}${touchedSpots[idx].y}",
+              format.format(touchedSpots[idx].y),
               AppTextStyles.smallText,
             ),
           ),

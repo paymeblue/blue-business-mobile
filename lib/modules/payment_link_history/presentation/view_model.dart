@@ -2,12 +2,9 @@ import 'dart:typed_data';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/payment_link/payment_link.dart';
-import 'package:blue_business/core/models/payment_link/response/payment_link_response.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
-import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
@@ -22,7 +19,6 @@ import 'package:share_plus/share_plus.dart';
 
 class PaymentLinkHistoryViewModel extends BaseViewModel {
   late Size size;
-  TransactionService transactionService = TransactionService();
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
@@ -95,26 +91,7 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
 
   int limit = 50;
   getPaymentLinkHistory(int page) async {
-    try {
-      PaymentLinkResponse resp = await transactionService
-          .getPaymentLinkHistory(page, limit, getStatus(selectedStatus))
-          .onError((error, stackTrace) {
-        return PaymentLinkResponse(
-            message: AppErrorHandler.getErrorMessage(error));
-      });
-
-      if (resp.status != "success") {
-        paymentLinkController.error = resp.message;
-      } else {
-        List<PaymentLinkItem> i = resp.data!.data;
-
-        if (resp.data!.loadMore) {
-          paymentLinkController.appendPage(i, page + 1);
-        } else {
-          paymentLinkController.appendLastPage(i);
-        }
-      }
-    } catch (e) {
+    try {} catch (e) {
       paymentLinkController.error = AppErrorHandler.getErrorMessage(e);
     }
   }
@@ -133,26 +110,7 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getTransactionReceipt(PaymentLinkItem data) async {
-    AppLoader.start();
-
-    ReceiptResponse resp = await transactionService
-        .getReceipt(data.transactionId.toString())
-        .onError((error, stackTrace) {
-      return ReceiptResponse(message: AppErrorHandler.getErrorMessage(error));
-    });
-
-    if (resp.status == "success") {
-      receipt = resp.data!;
-      await Future.delayed(const Duration(milliseconds: 350), () {
-        downloadAndShareQr(data);
-      });
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    AppLoader.stop();
-  }
+  getTransactionReceipt(PaymentLinkItem data) async {}
 
   ScreenshotController screenshotController = ScreenshotController();
 
