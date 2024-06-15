@@ -3,6 +3,9 @@ import 'package:blue_business/core/models/complete_registration/request/complete
 import 'package:blue_business/core/models/complete_registration/response/complete_registration_response.dart';
 import 'package:blue_business/core/models/create_business_profile/request/create_business_profile_request.dart';
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
+import 'package:blue_business/core/models/shareholders/add/request/add_shareholders_request.dart';
+import 'package:blue_business/core/models/shareholders/create/request/create_shareholders_request.dart';
+import 'package:blue_business/core/models/shareholders/create/response/create_shareholders_response.dart';
 import 'package:blue_business/core/models/shareholders/get/response/get_shareholders_response.dart';
 import 'package:blue_business/core/models/signup/request/signup_request.dart';
 import 'package:blue_business/core/models/signup/response/signup_response.dart';
@@ -47,4 +50,12 @@ abstract class AuthService {
   Future<CompleteRegistrationResponse> completeRegistration({
     @Body() required CompleteRegistrationRequest request,
   });
+
+  @POST("/onboard/kyc-verification")
+  Future<SignupResponse> addShareholderBvn(
+      {@Body() required AddShareholdersRequest request});
+
+  @POST("/shareholders")
+  Future<CreateShareholdersResponse> createShareholder(
+      {@Body() required CreateShareholdersRequest request});
 }

@@ -23,12 +23,12 @@ mixin _$Shareholders {
   int get id => throw _privateConstructorUsedError;
   int get businessId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
   bool get verified => throw _privateConstructorUsedError;
   String get designation => throw _privateConstructorUsedError;
   String? get bvn => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,12 +46,12 @@ abstract class $ShareholdersCopyWith<$Res> {
       {int id,
       int businessId,
       String name,
-      String address,
       bool verified,
       String designation,
       String? bvn,
       String? phone,
-      String? createdAt});
+      String? createdAt,
+      String? address});
 }
 
 /// @nodoc
@@ -70,12 +70,12 @@ class _$ShareholdersCopyWithImpl<$Res, $Val extends Shareholders>
     Object? id = null,
     Object? businessId = null,
     Object? name = null,
-    Object? address = null,
     Object? verified = null,
     Object? designation = null,
     Object? bvn = freezed,
     Object? phone = freezed,
     Object? createdAt = freezed,
+    Object? address = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -89,10 +89,6 @@ class _$ShareholdersCopyWithImpl<$Res, $Val extends Shareholders>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
               as String,
       verified: null == verified
           ? _value.verified
@@ -113,6 +109,10 @@ class _$ShareholdersCopyWithImpl<$Res, $Val extends Shareholders>
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -130,12 +130,12 @@ abstract class _$$ShareholdersImplCopyWith<$Res>
       {int id,
       int businessId,
       String name,
-      String address,
       bool verified,
       String designation,
       String? bvn,
       String? phone,
-      String? createdAt});
+      String? createdAt,
+      String? address});
 }
 
 /// @nodoc
@@ -152,12 +152,12 @@ class __$$ShareholdersImplCopyWithImpl<$Res>
     Object? id = null,
     Object? businessId = null,
     Object? name = null,
-    Object? address = null,
     Object? verified = null,
     Object? designation = null,
     Object? bvn = freezed,
     Object? phone = freezed,
     Object? createdAt = freezed,
+    Object? address = freezed,
   }) {
     return _then(_$ShareholdersImpl(
       id: null == id
@@ -171,10 +171,6 @@ class __$$ShareholdersImplCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
               as String,
       verified: null == verified
           ? _value.verified
@@ -196,6 +192,10 @@ class __$$ShareholdersImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -207,12 +207,12 @@ class _$ShareholdersImpl implements _Shareholders {
       {required this.id,
       required this.businessId,
       required this.name,
-      required this.address,
       this.verified = false,
       this.designation = "WITNESS",
       this.bvn,
       this.phone,
-      this.createdAt});
+      this.createdAt,
+      this.address});
 
   factory _$ShareholdersImpl.fromJson(Map<String, dynamic> json) =>
       _$$ShareholdersImplFromJson(json);
@@ -223,8 +223,6 @@ class _$ShareholdersImpl implements _Shareholders {
   final int businessId;
   @override
   final String name;
-  @override
-  final String address;
   @override
   @JsonKey()
   final bool verified;
@@ -237,10 +235,12 @@ class _$ShareholdersImpl implements _Shareholders {
   final String? phone;
   @override
   final String? createdAt;
+  @override
+  final String? address;
 
   @override
   String toString() {
-    return 'Shareholders(id: $id, businessId: $businessId, name: $name, address: $address, verified: $verified, designation: $designation, bvn: $bvn, phone: $phone, createdAt: $createdAt)';
+    return 'Shareholders(id: $id, businessId: $businessId, name: $name, verified: $verified, designation: $designation, bvn: $bvn, phone: $phone, createdAt: $createdAt, address: $address)';
   }
 
   @override
@@ -252,7 +252,6 @@ class _$ShareholdersImpl implements _Shareholders {
             (identical(other.businessId, businessId) ||
                 other.businessId == businessId) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.address, address) || other.address == address) &&
             (identical(other.verified, verified) ||
                 other.verified == verified) &&
             (identical(other.designation, designation) ||
@@ -260,13 +259,14 @@ class _$ShareholdersImpl implements _Shareholders {
             (identical(other.bvn, bvn) || other.bvn == bvn) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.address, address) || other.address == address));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, businessId, name, address,
-      verified, designation, bvn, phone, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, businessId, name, verified,
+      designation, bvn, phone, createdAt, address);
 
   @JsonKey(ignore: true)
   @override
@@ -287,12 +287,12 @@ abstract class _Shareholders implements Shareholders {
       {required final int id,
       required final int businessId,
       required final String name,
-      required final String address,
       final bool verified,
       final String designation,
       final String? bvn,
       final String? phone,
-      final String? createdAt}) = _$ShareholdersImpl;
+      final String? createdAt,
+      final String? address}) = _$ShareholdersImpl;
 
   factory _Shareholders.fromJson(Map<String, dynamic> json) =
       _$ShareholdersImpl.fromJson;
@@ -304,8 +304,6 @@ abstract class _Shareholders implements Shareholders {
   @override
   String get name;
   @override
-  String get address;
-  @override
   bool get verified;
   @override
   String get designation;
@@ -315,6 +313,8 @@ abstract class _Shareholders implements Shareholders {
   String? get phone;
   @override
   String? get createdAt;
+  @override
+  String? get address;
   @override
   @JsonKey(ignore: true)
   _$$ShareholdersImplCopyWith<_$ShareholdersImpl> get copyWith =>

@@ -18,7 +18,9 @@ class PinViewModel extends BaseViewModel {
     size = context.mediaQuery.size;
   }
 
-  goBack(BuildContext context, SignupData data) {}
+  goBack(BuildContext context, SignupData data) {
+    context.go(RoutePaths.registerProgressPath, extra: data);
+  }
 
   String _pin = "";
   String get pin => _pin;

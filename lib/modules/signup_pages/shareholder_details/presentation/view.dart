@@ -92,9 +92,7 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
   }
 
   Widget shareholderTile(
-      {required String title,
-      required String subtitle,
-      required VoidCallback onTap}) {
+      {required String title, String? subtitle, required VoidCallback onTap}) {
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
@@ -134,11 +132,12 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
                       title.nameCase,
                       style: AppTextStyles.smallHeader,
                     ),
-                    Text(
-                      subtitle.sentenceCase,
-                      style: AppTextStyles.smallText
-                          .copyWith(color: AppColors.bodyTextColor2),
-                    )
+                    if (subtitle != null)
+                      Text(
+                        subtitle.sentenceCase,
+                        style: AppTextStyles.smallText
+                            .copyWith(color: AppColors.bodyTextColor2),
+                      )
                   ],
                 ),
               ),
