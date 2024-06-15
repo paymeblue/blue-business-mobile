@@ -21,7 +21,7 @@ CompleteRegistrationRequest _$CompleteRegistrationRequestFromJson(
 
 /// @nodoc
 mixin _$CompleteRegistrationRequest {
-  String get userId => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
   String get pin => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $CompleteRegistrationRequestCopyWith<$Res> {
       _$CompleteRegistrationRequestCopyWithImpl<$Res,
           CompleteRegistrationRequest>;
   @useResult
-  $Res call({String userId, String pin});
+  $Res call({int userId, String pin});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$CompleteRegistrationRequestCopyWithImpl<$Res,
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       pin: null == pin
           ? _value.pin
           : pin // ignore: cast_nullable_to_non_nullable
@@ -80,7 +80,7 @@ abstract class _$$CompleteRegistrationRequestImplCopyWith<$Res>
       __$$CompleteRegistrationRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, String pin});
+  $Res call({int userId, String pin});
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class __$$CompleteRegistrationRequestImplCopyWithImpl<$Res>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       pin: null == pin
           ? _value.pin
           : pin // ignore: cast_nullable_to_non_nullable
@@ -124,7 +124,7 @@ class _$CompleteRegistrationRequestImpl
       _$$CompleteRegistrationRequestImplFromJson(json);
 
   @override
-  final String userId;
+  final int userId;
   @override
   final String pin;
 
@@ -164,14 +164,14 @@ class _$CompleteRegistrationRequestImpl
 abstract class _CompleteRegistrationRequest
     implements CompleteRegistrationRequest {
   const factory _CompleteRegistrationRequest(
-      {required final String userId,
+      {required final int userId,
       required final String pin}) = _$CompleteRegistrationRequestImpl;
 
   factory _CompleteRegistrationRequest.fromJson(Map<String, dynamic> json) =
       _$CompleteRegistrationRequestImpl.fromJson;
 
   @override
-  String get userId;
+  int get userId;
   @override
   String get pin;
   @override

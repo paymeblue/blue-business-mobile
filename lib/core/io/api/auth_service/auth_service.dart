@@ -3,6 +3,8 @@ import 'package:blue_business/core/models/complete_registration/request/complete
 import 'package:blue_business/core/models/complete_registration/response/complete_registration_response.dart';
 import 'package:blue_business/core/models/create_business_profile/request/create_business_profile_request.dart';
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
+import 'package:blue_business/core/models/login/request/login_request.dart';
+import 'package:blue_business/core/models/login/response/login_response.dart';
 import 'package:blue_business/core/models/shareholders/add/request/add_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/request/create_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/response/create_shareholders_response.dart';
@@ -58,4 +60,9 @@ abstract class AuthService {
   @POST("/shareholders")
   Future<CreateShareholdersResponse> createShareholder(
       {@Body() required CreateShareholdersRequest request});
+
+  @POST("/auth")
+  Future<LoginResponse> login({
+    @Body() required LoginRequest request,
+  });
 }

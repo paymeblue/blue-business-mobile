@@ -46,7 +46,7 @@ class _PinViewState extends State<PinView> {
                 120.verticalGap,
                 registerButton(
                     onTap: () {
-                      model.checkBiometric(context);
+                      model.completeRegistration(widget.data, context);
                     },
                     isActive: model.pin.length >= 4),
               ],

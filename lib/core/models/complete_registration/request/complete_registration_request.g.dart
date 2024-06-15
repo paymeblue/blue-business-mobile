@@ -9,7 +9,7 @@ part of 'complete_registration_request.dart';
 _$CompleteRegistrationRequestImpl _$$CompleteRegistrationRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$CompleteRegistrationRequestImpl(
-      userId: json['user_id'] as String,
+      userId: json['user_id'] as int,
       pin: json['pin'] as String,
     );
 

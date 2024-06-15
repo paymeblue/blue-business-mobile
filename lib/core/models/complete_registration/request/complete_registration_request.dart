@@ -6,7 +6,7 @@ part 'complete_registration_request.g.dart';
 @freezed
 class CompleteRegistrationRequest with _$CompleteRegistrationRequest {
   const factory CompleteRegistrationRequest({
-    required String userId,
+    required int userId,
     required String pin,
   }) = _CompleteRegistrationRequest;
 
