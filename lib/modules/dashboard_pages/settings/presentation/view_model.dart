@@ -30,8 +30,8 @@ class SettingsViewModel extends BaseViewModel {
     size = context.mediaQuery.size;
 
     notificationStatus =
-        locator<AppStateValues>().currentUser!.notificationStatus == 1;
-    useBiometrics = StorageValues.enableBiometrics == "true";
+        // locator<AppStateValues>().currentUser!.notificationStatus == 1;
+        useBiometrics = StorageValues.enableBiometrics == "true";
   }
 
   bool _useBiometrics = false;

@@ -59,7 +59,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     });
     if (img != null) {
       XFile image = XFile.fromData(img!,
-          name: "${locator<AppStateValues>().currentUser!.firstName}_qr",
+          // name: "${locator<AppStateValues>().currentUser!.firstName}_qr",
           mimeType: "png");
 
       Share.shareXFiles([image]).then((value) {

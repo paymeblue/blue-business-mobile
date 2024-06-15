@@ -1,8 +1,7 @@
 import 'package:blue_business/core/io/api/timed_refresh.dart';
-import 'package:blue_business/core/models/business_profile/business_profile.dart';
+import 'package:blue_business/core/models/login/data/login_data.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/topup_account/topup_account.dart';
-import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/models/wallet/wallet.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/data/withdrawal_account.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -23,12 +22,7 @@ class AppStateValues extends ChangeNotifier {
   String _token = "";
 
   List<TodoOption> _todos = [];
-  User? _currentUser = const User(
-      id: 0,
-      firstName: "firstName",
-      lastName: "lastName",
-      phone: "2348123456789",
-      businessProfile: BusinessProfile(id: 2, level: 3, name: "Path4Her.org"));
+  LoginData? _currentUser;
   Wallet? _wallet =
       const Wallet(id: 1, balance: "15000.00", walletCode: "ABCDE");
   TopupAccount? _account = const TopupAccount(
@@ -59,7 +53,7 @@ class AppStateValues extends ChangeNotifier {
   String? get channelId => _channelId;
   String get accessToken => _token;
 
-  User? get currentUser => _currentUser;
+  LoginData? get currentUser => _currentUser;
   Wallet? get wallet => _wallet;
   TopupAccount? get account => _account;
   WithdrawalAccount? get withdrawalAccount => _withdrawalAccount;
@@ -132,7 +126,7 @@ class AppStateValues extends ChangeNotifier {
     notifyListeners();
   }
 
-  set currentUser(User? u) {
+  set currentUser(LoginData? u) {
     _currentUser = u;
     notifyListeners();
   }

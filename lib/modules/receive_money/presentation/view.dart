@@ -117,8 +117,8 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text:
-                      "${locator<AppStateValues>().currentUser!.businessProfile!.name} ",
+                  text: "",
+                  // "${locator<AppStateValues>().currentUser!.businessProfile!.name} ",
                   style: AppTextStyles.subHeader
                       .copyWith(fontSize: 14.5, color: AppColors.blue),
                 ),
@@ -386,12 +386,12 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
               color: AppColors.white,
               shape: BoxShape.circle,
             ),
-            child: SizedBox(
+            child: const SizedBox(
               height: 45,
               width: 45,
               child: BlueAvatar(
                 radius: 22.5,
-                imageUrl: locator<AppStateValues>().currentUser!.displayPic,
+                // imageUrl: locator<AppStateValues>().currentUser!.displayPic,
               ),
             ),
           ),

@@ -1,8 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
-import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
-import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
@@ -108,11 +106,12 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
       children: [
         GestureDetector(
           onTap: model.pickImage,
-          child: BlueAvatar(
+          //FIX: the imageUr;
+          child: const BlueAvatar(
             radius: 31,
-            imageUrl: model.path.isEmpty
-                ? locator<AppStateValues>().currentUser!.displayPic
-                : model.path,
+            // imageUrl: model.path.isEmpty
+            // ? locator<AppStateValues>().currentUser!.displayPic
+            // : model.path,
           ),
         ),
         10.horizontalGap,

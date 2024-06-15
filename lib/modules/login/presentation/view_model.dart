@@ -7,10 +7,10 @@ import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
+import 'package:blue_business/core/models/login/data/login_data.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
 import 'package:blue_business/core/models/token/token.dart';
-import 'package:blue_business/core/models/user/user.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -141,19 +141,19 @@ class LoginViewModel extends BaseViewModel {
 
     AppLoader.stop();
     if (resp.status == "success") {
-      await setNameInStorage(resp.data!.user.firstName, p);
+      // await setNameInStorage(resp.data!.firstName, p);
       saveTokens(resp.data!.token);
-      locator<AppStateValues>().currentUser = resp.data!.user;
+      locator<AppStateValues>().currentUser = resp.data!;
 
       if (context.mounted) {
-        await checkBiometric(context, resp.data!.user, onComplete: onComplete);
+        await checkBiometric(context, resp.data!, onComplete: onComplete);
       }
     } else {
       AppNotification.error(message: resp.message);
     }
   }
 
-  checkBiometric(BuildContext context, User user,
+  checkBiometric(BuildContext context, LoginData user,
       {VoidCallback? onComplete}) async {
     if (StorageValues.hasRequestedBiometrics != "true") {
       await BlueBottomSheet.biometrics(
@@ -226,7 +226,7 @@ class LoginViewModel extends BaseViewModel {
     return selectedCountry!.dialCode + number;
   }
 
-  goToNext(BuildContext context, User user) {
+  goToNext(BuildContext context, LoginData user) {
     context.go(RoutePaths.homePath);
   }
 
