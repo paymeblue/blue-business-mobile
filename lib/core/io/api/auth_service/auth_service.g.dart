@@ -328,6 +328,121 @@ class _AuthService implements AuthService {
     return value;
   }
 
+  @override
+  Future<SendNewPhoneResponse> forgotPassword(String phone) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'phone': phone};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendNewPhoneResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/users/forgot-password',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendNewPhoneResponse> resetPassword(
+      ResetPasswordRequest request) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendNewPhoneResponse>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/users/reset-password',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendNewPhoneResponse> resendOtp({required String phone}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'phone': phone};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendNewPhoneResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/otps/resend',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendNewPhoneResponse> verifyOtp({
+    required String otp,
+    required String phone,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'otp': otp,
+      r'phone': phone,
+    };
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendNewPhoneResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/otps/verify',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

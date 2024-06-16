@@ -5,8 +5,10 @@ import 'package:blue_business/core/models/create_business_profile/request/create
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
+import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
+import 'package:blue_business/core/models/reset/password/request/reset_password_request.dart';
 import 'package:blue_business/core/models/shareholders/add/request/add_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/request/create_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/response/create_shareholders_response.dart';
@@ -71,5 +73,23 @@ abstract class AuthService {
   @POST("/auth/refresh-access-token")
   Future<RefreshTokenResponse> refresh({
     @Body() required RefreshTokenRequest request,
+  });
+
+  @GET("/users/forgot-password")
+  Future<SendNewPhoneResponse> forgotPassword(@Query("phone") String phone);
+
+  @PATCH("/users/reset-password")
+  Future<SendNewPhoneResponse> resetPassword(
+      @Body() ResetPasswordRequest request);
+
+  @GET("/otps/resend")
+  Future<SendNewPhoneResponse> resendOtp({
+    @Query("phone") required String phone,
+  });
+
+  @GET("/otps/verify")
+  Future<SendNewPhoneResponse> verifyOtp({
+    @Query("otp") required String otp,
+    @Query("phone") required String phone,
   });
 }
