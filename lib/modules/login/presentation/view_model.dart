@@ -42,7 +42,7 @@ class LoginViewModel extends BaseViewModel {
 
   showNotification() {
     switch (locator<AppStateValues>().notificationState!) {
-      case NotificationState.success:
+      case NotificationState.logoutSuccess:
         AppNotification.success(
             message: "You have been logged out successfully. See you soon");
       case NotificationState.error:
@@ -50,6 +50,9 @@ class LoginViewModel extends BaseViewModel {
       case NotificationState.warning:
         AppNotification.warning(
             message: "Session timed out due toinactivity. Please login again");
+      case NotificationState.signupSuccess:
+        AppNotification.success(
+            message: "You have successfully signed up. Login to continue.");
     }
   }
 

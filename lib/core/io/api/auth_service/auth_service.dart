@@ -6,9 +6,14 @@ import 'package:blue_business/core/models/create_business_profile/response/creat
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
 import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
 import 'package:blue_business/core/models/reset/password/request/reset_password_request.dart';
+import 'package:blue_business/core/models/reset/pin/request/reset_pin_request.dart';
+import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
+import 'package:blue_business/core/models/security_question/send/request/send_question_request.dart';
+import 'package:blue_business/core/models/security_question/send/response/send_question_request.dart';
 import 'package:blue_business/core/models/shareholders/add/request/add_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/request/create_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/response/create_shareholders_response.dart';
@@ -92,4 +97,18 @@ abstract class AuthService {
     @Query("otp") required String otp,
     @Query("phone") required String phone,
   });
+
+  @PATCH("/pins/recover-by-phone")
+  Future<SendNewPhoneResponse> forgotPinWithPhone(
+      @Body() SendPhoneRecoverPinRequest request);
+
+  @GET("/security-info")
+  Future<GetQuestionResponse> getSecurityQuestion(@Query("phone") String phone);
+
+  @PATCH("/security-question/answer")
+  Future<SendQuestionResponse> sendSecurityAnswer(
+      @Body() SendQuestionRequest request);
+
+  @PATCH("/pins/reset")
+  Future<SendQuestionResponse> resetPin(@Body() ResetPinRequest request);
 }

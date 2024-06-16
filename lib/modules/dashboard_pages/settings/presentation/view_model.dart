@@ -158,7 +158,8 @@ class SettingsViewModel extends BaseViewModel {
     if (context.mounted) {
       context.go(RoutePaths.loginPath);
     }
-    locator<AppStateValues>().notificationState = NotificationState.success;
+    locator<AppStateValues>().notificationState =
+        NotificationState.logoutSuccess;
     RefreshTimer().cancelTimer();
 
     AppLoader.stop();

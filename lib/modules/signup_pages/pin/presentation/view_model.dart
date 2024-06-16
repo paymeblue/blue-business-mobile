@@ -1,6 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/complete_registration/request/complete_registration_request.dart';
@@ -8,7 +9,9 @@ import 'package:blue_business/core/models/complete_registration/response/complet
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +50,8 @@ class PinViewModel extends BaseViewModel {
     if (response.status == "success") {
       StorageValues.deleteLoginValues();
       await StorageHelpers.deleteAll();
+      locator<AppStateValues>().notificationState =
+          NotificationState.signupSuccess;
       if (context.mounted) {
         goToNext(context);
       }
