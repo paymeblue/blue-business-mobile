@@ -144,7 +144,7 @@ class LoginViewModel extends BaseViewModel {
 
     AppLoader.stop();
     if (resp.status == "success") {
-      // await setNameInStorage(resp.data!.firstName, p);
+      await setNameInStorage(resp.data!.business.name, p);
       saveTokens(resp.data!.token);
       locator<AppStateValues>().currentUser = resp.data!;
 

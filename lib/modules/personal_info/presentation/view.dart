@@ -1,6 +1,8 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
+import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
@@ -66,7 +68,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
   Widget businessNameField() {
     return BlueTextField.plaintext(
       hint: "Dev Factory",
-      // initialValue: locator<AppStateValues>().currentUser!.firstName,
+      initialValue: locator<AppStateValues>().currentUser!.business.name,
       title: "Business name",
       isEnabled: false,
     );
@@ -75,7 +77,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
   Widget cacField() {
     return BlueTextField.plaintext(
       hint: "000000000",
-      // initialValue: locator<AppStateValues>().currentUser!.middleName,
+      initialValue: locator<AppStateValues>().currentUser!.business.cacNumber,
       title: "CAC Number",
       isEnabled: false,
     );
@@ -84,7 +86,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
   Widget businesCategoryField() {
     return BlueTextField.plaintext(
       hint: "John",
-      // initialValue: locator<AppStateValues>().currentUser!.lastName,
+      initialValue: locator<AppStateValues>().currentUser!.business.category,
       title: "Business Category",
       isEnabled: false,
     );

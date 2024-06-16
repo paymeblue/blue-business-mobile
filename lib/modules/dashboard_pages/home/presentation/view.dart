@@ -660,6 +660,7 @@ class _HomeViewState extends State<HomeView> {
               child: Text(
                 locator<AppStateValues>()
                     .currentUser!
+                    .dashboardData
                     .transactionVolume
                     .toString(),
                 style: AppTextStyles.header
@@ -752,7 +753,11 @@ class _HomeViewState extends State<HomeView> {
           ),
           FittedBox(
             child: Text(
-              locator<AppStateValues>().currentUser!.totalBranches.toString(),
+              locator<AppStateValues>()
+                  .currentUser!
+                  .dashboardData
+                  .totalBranches
+                  .toString(),
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
                 fontSize: 18,
@@ -779,7 +784,11 @@ class _HomeViewState extends State<HomeView> {
           ),
           FittedBox(
             child: Text(
-              locator<AppStateValues>().currentUser!.totalStaff.toString(),
+              locator<AppStateValues>()
+                  .currentUser!
+                  .dashboardData
+                  .totalStaff
+                  .toString(),
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
                 fontSize: 18,
@@ -820,8 +829,9 @@ class _HomeViewState extends State<HomeView> {
       ),
       child: Row(
         children: [
-          const BlueAvatar(
+          BlueAvatar(
             radius: 20,
+            imageUrl: locator<AppStateValues>().currentUser!.displayPic,
           ),
           12.horizontalGap,
           Expanded(
@@ -862,7 +872,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         4.verticalGap,
         Text(
-          "Path4Her.org",
+          locator<AppStateValues>().currentUser!.business.name,
           style: AppTextStyles.header.copyWith(fontSize: 18.5),
         ),
       ],

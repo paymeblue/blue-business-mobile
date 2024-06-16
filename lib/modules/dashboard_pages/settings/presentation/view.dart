@@ -70,7 +70,8 @@ class _SettingsViewState extends State<SettingsView> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: AppButton.ghostPrimary(
-        title: "Log out",
+        title:
+            "Log out ${locator<AppStateValues>().currentUser!.business.name}",
         // ${locator<AppStateValues>().currentUser!.firstName.toUpperCase()}",
         onTap: () {
           model.startLogout(context);
@@ -82,8 +83,7 @@ class _SettingsViewState extends State<SettingsView> {
 
   Widget nameText() {
     return Text(
-      "",
-      // "${locator<AppStateValues>().currentUser!.firstName} ${locator<AppStateValues>().currentUser!.lastName}",
+      locator<AppStateValues>().currentUser!.business.name,
       style: AppTextStyles.header.copyWith(fontSize: 18.5),
     );
   }
