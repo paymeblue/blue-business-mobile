@@ -3,7 +3,7 @@ import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
-import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';

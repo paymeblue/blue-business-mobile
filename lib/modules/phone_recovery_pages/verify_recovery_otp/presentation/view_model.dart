@@ -1,10 +1,19 @@
 import 'dart:async';
 
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/storage/keys.dart';
+import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/recover_phone/verify/request/verify_new_phone_request.dart';
+import 'package:blue_business/core/models/recover_phone/verify/response/verify_new_phone_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -76,9 +85,50 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
     });
   }
 
-  resendOtp() async {}
+  resendOtp() async {
+    AppLoader.start();
 
-  verifyOtp(BuildContext context) async {}
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resendOtp(phone: phone.replaceFirst("+", ""))
+            .onError((error, stackTrace) {
+      return SendNewPhoneResponse(
+          message: AppErrorHandler.getErrorMessage(error));
+    });
+
+    if (resp.status == "success") {
+      AppNotification.success(message: resp.message);
+      startCountdown();
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    AppLoader.stop();
+  }
+
+  verifyOtp(BuildContext context) async {
+    AppLoader.start();
+
+    VerifyNewPhoneRequest request =
+        VerifyNewPhoneRequest(reference: phone.replaceFirst("+", ""), otp: pin);
+
+    VerifyNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .verifyPhoneRecoveryOtp(reguest: request)
+            .onError((error, stackTrace) {
+      return VerifyNewPhoneResponse(
+          message: AppErrorHandler.getErrorMessage(error));
+    });
+
+    if (resp.status == "success") {
+      AppNotification.success(message: resp.message);
+      StorageValues.username = phone;
+      if (context.mounted) goToNext(context);
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+    AppLoader.stop();
+  }
 
   stopTimer() {
     timer.cancel();

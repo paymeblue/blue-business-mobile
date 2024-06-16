@@ -5,8 +5,12 @@ import 'package:blue_business/core/models/create_business_profile/request/create
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
-import 'package:blue_business/core/models/recover_phone/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/recover_phone/add/request/recover_phone_request.dart';
+import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/recover_phone/verify/request/verify_new_phone_request.dart';
+import 'package:blue_business/core/models/recover_phone/verify/response/verify_new_phone_response.dart';
 import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
+import 'package:blue_business/core/models/recovery_code/send/response/recovery_code_response.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
 import 'package:blue_business/core/models/reset/password/request/reset_password_request.dart';
@@ -111,4 +115,18 @@ abstract class AuthService {
 
   @PATCH("/pins/reset")
   Future<SendQuestionResponse> resetPin(@Body() ResetPinRequest request);
+
+  @GET("/recovery-info/verify")
+  Future<SendRecoveryCodeResponse> verifyRecoveryCode(
+      @Query("code") String code);
+
+  @PATCH("/recovery-info/update-phone")
+  Future<SendNewPhoneResponse> updatePhone(
+    @Body() SendNewPhoneRequest request,
+  );
+
+  @POST("/recovery-info/verify-otp")
+  Future<VerifyNewPhoneResponse> verifyPhoneRecoveryOtp({
+    @Body() required VerifyNewPhoneRequest reguest,
+  });
 }

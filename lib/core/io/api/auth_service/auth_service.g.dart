@@ -553,6 +553,88 @@ class _AuthService implements AuthService {
     return value;
   }
 
+  @override
+  Future<SendRecoveryCodeResponse> verifyRecoveryCode(String code) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'code': code};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendRecoveryCodeResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/recovery-info/verify',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendRecoveryCodeResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendNewPhoneResponse> updatePhone(SendNewPhoneRequest request) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendNewPhoneResponse>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/recovery-info/update-phone',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<VerifyNewPhoneResponse> verifyPhoneRecoveryOtp(
+      {required VerifyNewPhoneRequest reguest}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = reguest;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<VerifyNewPhoneResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/recovery-info/verify-otp',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = VerifyNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
