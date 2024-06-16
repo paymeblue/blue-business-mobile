@@ -4,6 +4,7 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
+import 'package:blue_business/core/models/recover_phone/add/data/recover_phone_data.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/recover_phone/verify/request/verify_new_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/verify/response/verify_new_phone_response.dart';
@@ -19,13 +20,11 @@ import 'package:go_router/go_router.dart';
 
 class VerifyRecoveryOtpViewModel extends BaseViewModel {
   late Size size;
-  late String phone;
   AppStateValues stateValues = locator<AppStateValues>();
 
-  init(BuildContext context, String p) {
+  init(BuildContext context) {
     size = context.mediaQuery.size;
     startCountdown();
-    phone = p;
   }
 
   bool _continue = false;
@@ -85,12 +84,12 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
     });
   }
 
-  resendOtp() async {
+  resendOtp(SendNewPhoneData data) async {
     AppLoader.start();
 
     SendNewPhoneResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .resendOtp(phone: phone.replaceFirst("+", ""))
+            .resendRecoveryOtp(phone: data.newPhone)
             .onError((error, stackTrace) {
       return SendNewPhoneResponse(
           message: AppErrorHandler.getErrorMessage(error));
@@ -106,15 +105,15 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  verifyOtp(BuildContext context) async {
+  verifyOtp(BuildContext context, SendNewPhoneData data) async {
     AppLoader.start();
 
     VerifyNewPhoneRequest request =
-        VerifyNewPhoneRequest(reference: phone.replaceFirst("+", ""), otp: pin);
+        VerifyNewPhoneRequest(reference: data.reference, otp: pin);
 
     VerifyNewPhoneResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .verifyPhoneRecoveryOtp(reguest: request)
+            .verifyRecoveryOtp(reguest: request)
             .onError((error, stackTrace) {
       return VerifyNewPhoneResponse(
           message: AppErrorHandler.getErrorMessage(error));
@@ -122,7 +121,7 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
-      StorageValues.username = phone;
+      StorageValues.username = "+${data.newPhone}";
       if (context.mounted) goToNext(context);
     } else {
       AppNotification.error(message: resp.message);
@@ -139,6 +138,6 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.go(RoutePaths.loginPath);
+    context.push(RoutePaths.loginPath);
   }
 }

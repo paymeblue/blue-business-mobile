@@ -3,6 +3,7 @@ import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
+import 'package:blue_business/core/models/recover_phone/add/data/recover_phone_data.dart';
 import 'package:blue_business/core/models/recover_phone/add/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
@@ -45,7 +46,7 @@ class EnterNewPhoneViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.go(RoutePaths.enterRecoveryCodePath);
   }
 
   late int id;
@@ -64,7 +65,7 @@ class EnterNewPhoneViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
-      if (context.mounted) goToNext(context, formatPhone());
+      if (context.mounted) goToNext(context, resp.data!);
     } else {
       AppNotification.error(message: resp.message);
     }
@@ -84,7 +85,7 @@ class EnterNewPhoneViewModel extends BaseViewModel {
     return selectedCountry!.dialCode + number;
   }
 
-  goToNext(BuildContext context, String phone) {
-    context.push("${RoutePaths.phoneRecoveryOtpPath}/$phone");
+  goToNext(BuildContext context, SendNewPhoneData data) {
+    context.push(RoutePaths.phoneRecoveryOtpPath, extra: data);
   }
 }

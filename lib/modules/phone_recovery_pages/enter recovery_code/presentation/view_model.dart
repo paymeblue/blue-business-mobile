@@ -51,6 +51,6 @@ class EnterRecoveryCodeViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, int id) {
-    context.push("${RoutePaths.recoverPhoneNumberPath}/$id");
+    context.go("${RoutePaths.recoverPhoneNumberPath}/$id");
   }
 }

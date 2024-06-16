@@ -8,6 +8,7 @@ import 'package:blue_business/core/models/bills/data/vend/data/vend_data_data.da
 import 'package:blue_business/core/models/bills/data/verify/data/verify_data_data.dart';
 import 'package:blue_business/core/models/bills/electricity/vend/data/vend_electricity_data.dart';
 import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
+import 'package:blue_business/core/models/recover_phone/add/data/recover_phone_data.dart';
 import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
 import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
@@ -133,13 +134,12 @@ GoRouter router = GoRouter(
             },
           ),
           GoRoute(
-            path: "${RoutePaths.phoneRecoveryOtpPath}/:phone",
+            path: RoutePaths.phoneRecoveryOtpPath,
             name: "Verify Recovery Otp",
             builder: (context, state) {
-              String phone = state.pathParameters["phone"] as String;
               log(state.fullPath.toString());
               return VerifyRecoveryOtpView(
-                phone: phone,
+                data: state.extra as SendNewPhoneData,
               );
             },
           ),

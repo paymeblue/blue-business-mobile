@@ -120,13 +120,18 @@ abstract class AuthService {
   Future<SendRecoveryCodeResponse> verifyRecoveryCode(
       @Query("code") String code);
 
-  @PATCH("/recovery-info/update-phone")
+  @POST("/recovery-info/update-phone")
   Future<SendNewPhoneResponse> updatePhone(
     @Body() SendNewPhoneRequest request,
   );
 
   @POST("/recovery-info/verify-otp")
-  Future<VerifyNewPhoneResponse> verifyPhoneRecoveryOtp({
+  Future<VerifyNewPhoneResponse> verifyRecoveryOtp({
     @Body() required VerifyNewPhoneRequest reguest,
+  });
+
+  @GET("/recovery-info/resend-otp")
+  Future<SendNewPhoneResponse> resendRecoveryOtp({
+    @Query("phone") required String phone,
   });
 }

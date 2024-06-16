@@ -11,6 +11,9 @@ _$SendNewPhoneResponseImpl _$$SendNewPhoneResponseImplFromJson(
     _$SendNewPhoneResponseImpl(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
+      data: json['data'] == null
+          ? null
+          : SendNewPhoneData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$SendNewPhoneResponseImplToJson(
@@ -26,5 +29,6 @@ Map<String, dynamic> _$$SendNewPhoneResponseImplToJson(
   }
 
   writeNotNull('message', instance.message);
+  writeNotNull('data', instance.data);
   return val;
 }

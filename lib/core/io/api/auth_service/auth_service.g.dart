@@ -588,7 +588,7 @@ class _AuthService implements AuthService {
     final _data = request;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SendNewPhoneResponse>(Options(
-      method: 'PATCH',
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
@@ -608,7 +608,7 @@ class _AuthService implements AuthService {
   }
 
   @override
-  Future<VerifyNewPhoneResponse> verifyPhoneRecoveryOtp(
+  Future<VerifyNewPhoneResponse> verifyRecoveryOtp(
       {required VerifyNewPhoneRequest reguest}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -632,6 +632,34 @@ class _AuthService implements AuthService {
               baseUrl,
             ))));
     final value = VerifyNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendNewPhoneResponse> resendRecoveryOtp(
+      {required String phone}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'phone': phone};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendNewPhoneResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/recovery-info/resend-otp',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendNewPhoneResponse.fromJson(_result.data!);
     return value;
   }
 

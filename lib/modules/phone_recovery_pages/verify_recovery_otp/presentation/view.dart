@@ -1,5 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/models/recover_phone/add/data/recover_phone_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
@@ -10,8 +11,8 @@ import '../../../../core/utils/app_text_styles.dart';
 import 'view_model.dart';
 
 class VerifyRecoveryOtpView extends StatefulWidget {
-  final String phone;
-  const VerifyRecoveryOtpView({super.key, required this.phone});
+  final SendNewPhoneData data;
+  const VerifyRecoveryOtpView({super.key, required this.data});
 
   @override
   State<VerifyRecoveryOtpView> createState() => _VerifyRecoveryOtpViewState();
@@ -21,7 +22,7 @@ class _VerifyRecoveryOtpViewState extends State<VerifyRecoveryOtpView> {
   @override
   Widget build(BuildContext context) {
     return BaseView<VerifyRecoveryOtpViewModel>(
-      onModelReady: (model) => model.init(context, widget.phone),
+      onModelReady: (model) => model.init(context),
       model: VerifyRecoveryOtpViewModel(),
       builder: (context, model, _) {
         return Scaffold(
@@ -53,7 +54,9 @@ class _VerifyRecoveryOtpViewState extends State<VerifyRecoveryOtpView> {
                         ? "Resend code"
                         : "Resend in ${model.timeString()}",
                     model.canResend,
-                    model.resendOtp,
+                    () {
+                      model.resendOtp(widget.data);
+                    },
                   ),
                 ),
                 const Spacer(),
@@ -61,7 +64,7 @@ class _VerifyRecoveryOtpViewState extends State<VerifyRecoveryOtpView> {
                   title: "Change phone number",
                   isEnabled: model.canContinue,
                   onTap: () {
-                    model.verifyOtp(context);
+                    model.verifyOtp(context, widget.data);
                   },
                 ),
               ],
@@ -82,7 +85,7 @@ class _VerifyRecoveryOtpViewState extends State<VerifyRecoveryOtpView> {
       SizedBox(
         width: 350,
         child: Text(
-          "Please enter the OTP code sent to the number ending in ${widget.phone.substring(widget.phone.length - 4)} to change it successfully",
+          "Please enter the OTP code sent to the number ending in ${widget.data.newPhone.substring(widget.data.newPhone.length - 4)} to change it successfully",
           style: AppTextStyles.subHeader,
           textAlign: TextAlign.start,
         ),

@@ -22,6 +22,7 @@ SendNewPhoneResponse _$SendNewPhoneResponseFromJson(Map<String, dynamic> json) {
 mixin _$SendNewPhoneResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
+  SendNewPhoneData? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,9 @@ abstract class $SendNewPhoneResponseCopyWith<$Res> {
           $Res Function(SendNewPhoneResponse) then) =
       _$SendNewPhoneResponseCopyWithImpl<$Res, SendNewPhoneResponse>;
   @useResult
-  $Res call({String status, String? message});
+  $Res call({String status, String? message, SendNewPhoneData? data});
+
+  $SendNewPhoneDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -54,6 +57,7 @@ class _$SendNewPhoneResponseCopyWithImpl<$Res,
   $Res call({
     Object? status = null,
     Object? message = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -64,7 +68,23 @@ class _$SendNewPhoneResponseCopyWithImpl<$Res,
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as SendNewPhoneData?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SendNewPhoneDataCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $SendNewPhoneDataCopyWith<$Res>(_value.data!, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
   }
 }
 
@@ -76,7 +96,10 @@ abstract class _$$SendNewPhoneResponseImplCopyWith<$Res>
       __$$SendNewPhoneResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message});
+  $Res call({String status, String? message, SendNewPhoneData? data});
+
+  @override
+  $SendNewPhoneDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -92,6 +115,7 @@ class __$$SendNewPhoneResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? message = freezed,
+    Object? data = freezed,
   }) {
     return _then(_$SendNewPhoneResponseImpl(
       status: null == status
@@ -102,6 +126,10 @@ class __$$SendNewPhoneResponseImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as SendNewPhoneData?,
     ));
   }
 }
@@ -109,7 +137,8 @@ class __$$SendNewPhoneResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SendNewPhoneResponseImpl implements _SendNewPhoneResponse {
-  const _$SendNewPhoneResponseImpl({this.status = "fail", this.message});
+  const _$SendNewPhoneResponseImpl(
+      {this.status = "fail", this.message, this.data});
 
   factory _$SendNewPhoneResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$SendNewPhoneResponseImplFromJson(json);
@@ -119,10 +148,12 @@ class _$SendNewPhoneResponseImpl implements _SendNewPhoneResponse {
   final String status;
   @override
   final String? message;
+  @override
+  final SendNewPhoneData? data;
 
   @override
   String toString() {
-    return 'SendNewPhoneResponse(status: $status, message: $message)';
+    return 'SendNewPhoneResponse(status: $status, message: $message, data: $data)';
   }
 
   @override
@@ -131,12 +162,13 @@ class _$SendNewPhoneResponseImpl implements _SendNewPhoneResponse {
         (other.runtimeType == runtimeType &&
             other is _$SendNewPhoneResponseImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message);
+  int get hashCode => Object.hash(runtimeType, status, message, data);
 
   @JsonKey(ignore: true)
   @override
@@ -157,7 +189,8 @@ class _$SendNewPhoneResponseImpl implements _SendNewPhoneResponse {
 abstract class _SendNewPhoneResponse implements SendNewPhoneResponse {
   const factory _SendNewPhoneResponse(
       {final String status,
-      final String? message}) = _$SendNewPhoneResponseImpl;
+      final String? message,
+      final SendNewPhoneData? data}) = _$SendNewPhoneResponseImpl;
 
   factory _SendNewPhoneResponse.fromJson(Map<String, dynamic> json) =
       _$SendNewPhoneResponseImpl.fromJson;
@@ -166,6 +199,8 @@ abstract class _SendNewPhoneResponse implements SendNewPhoneResponse {
   String get status;
   @override
   String? get message;
+  @override
+  SendNewPhoneData? get data;
   @override
   @JsonKey(ignore: true)
   _$$SendNewPhoneResponseImplCopyWith<_$SendNewPhoneResponseImpl>
