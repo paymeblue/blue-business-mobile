@@ -3,6 +3,7 @@ import 'package:blue_business/core/models/complete_registration/request/complete
 import 'package:blue_business/core/models/complete_registration/response/complete_registration_response.dart';
 import 'package:blue_business/core/models/create_business_profile/request/create_business_profile_request.dart';
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
+import 'package:blue_business/core/models/forgot_password/verify/request/verify_forgot_password_request.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
 import 'package:blue_business/core/models/recover_phone/add/request/recover_phone_request.dart';
@@ -84,10 +85,10 @@ abstract class AuthService {
     @Body() required RefreshTokenRequest request,
   });
 
-  @GET("/users/forgot-password")
+  @GET("/forgot-password")
   Future<SendNewPhoneResponse> forgotPassword(@Query("phone") String phone);
 
-  @PATCH("/users/reset-password")
+  @PATCH("/forgot-password/change")
   Future<SendNewPhoneResponse> resetPassword(
       @Body() ResetPasswordRequest request);
 
@@ -100,6 +101,11 @@ abstract class AuthService {
   Future<SendNewPhoneResponse> verifyOtp({
     @Query("otp") required String otp,
     @Query("phone") required String phone,
+  });
+
+  @POST("/otps/verify")
+  Future<SendNewPhoneResponse> verifyForgotPasswordOtp({
+    @Body() required VerifyForgotPasswordRequest request,
   });
 
   @PATCH("/pins/recover-by-phone")

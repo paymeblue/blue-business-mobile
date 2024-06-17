@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/models/forgot_password/verify/request/verify_forgot_password_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/signup/response/signup_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -89,11 +91,11 @@ class VerifyPasswordRecoveryOtpViewModel extends BaseViewModel {
   resendOtp() async {
     AppLoader.start();
 
-    SendNewPhoneResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .resendOtp(phone: phone)
-            .onError((error, stackTrace) => SendNewPhoneResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+    SignupResponse resp = await AuthService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .resendSignupOtp(phone: phone)
+        .onError((error, stackTrace) =>
+            SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
@@ -106,9 +108,13 @@ class VerifyPasswordRecoveryOtpViewModel extends BaseViewModel {
 
   verifyOtp(BuildContext context) async {
     AppLoader.start();
+
+    VerifyForgotPasswordRequest request =
+        VerifyForgotPasswordRequest(otp: pin, phone: phone);
+
     SendNewPhoneResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .verifyOtp(otp: pin, phone: phone)
+            .verifyForgotPasswordOtp(request: request)
             .onError((error, stackTrace) => SendNewPhoneResponse(
                 message: AppErrorHandler.getErrorMessage(error)));
 

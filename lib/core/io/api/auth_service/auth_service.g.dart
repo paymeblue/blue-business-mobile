@@ -342,7 +342,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/users/forgot-password',
+              '/forgot-password',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -370,7 +370,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/users/reset-password',
+              '/forgot-password/change',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -425,6 +425,34 @@ class _AuthService implements AuthService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SendNewPhoneResponse>(Options(
       method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/otps/verify',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendNewPhoneResponse> verifyForgotPasswordOtp(
+      {required VerifyForgotPasswordRequest request}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendNewPhoneResponse>(Options(
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
