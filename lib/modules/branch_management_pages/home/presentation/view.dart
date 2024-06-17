@@ -2,13 +2,17 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
+import 'package:blue_business/widgets/paging/error.dart';
+import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'view_model.dart';
 
@@ -45,7 +49,9 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                 15.verticalGap,
                 BlueTextField.search(hint: "Search branches"),
                 10.verticalGap,
-                Expanded(child: branchTile(model)),
+                Expanded(
+                  child: branchList(model),
+                ),
               ],
             ),
           ),
@@ -54,7 +60,78 @@ class _BranchHomeViewState extends State<BranchHomeView> {
     );
   }
 
-  Widget branchTile(BranchHomeViewModel model) {
+  Widget branchList(BranchHomeViewModel model) {
+    return RefreshIndicator(
+      onRefresh: () async => model.branchPagingController.refresh(),
+      child: PagedListView<int, Branch>.separated(
+        pagingController: model.branchPagingController,
+        builderDelegate: PagedChildBuilderDelegate(
+            noItemsFoundIndicatorBuilder: (context) => emptyBody(model),
+            firstPageProgressIndicatorBuilder: (context) => Column(
+                  children: List.generate(
+                    4,
+                    (index) => Column(
+                      children: [
+                        BlueLoadingTile.withoutImage(),
+                        if (index < 3) 6.verticalGap,
+                      ],
+                    ),
+                  ),
+                ),
+            firstPageErrorIndicatorBuilder: (ctx) => Column(
+                  children: [
+                    PagingError.firstPage(
+                      model.branchPagingController.error.toString(),
+                      model.branchPagingController.refresh,
+                    ),
+                  ],
+                ),
+            newPageErrorIndicatorBuilder: (ctx) => PagingError.firstPage(
+                  model.branchPagingController.error.toString(),
+                  model.branchPagingController.refresh,
+                ),
+            newPageProgressIndicatorBuilder: (context) =>
+                BlueLoadingTile.withImage(),
+            itemBuilder: (context, item, i) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    if (i == 0) ...[
+                      GestureDetector(
+                        onTap: () {
+                          model.goToAddBranch(context);
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              const Icon(
+                                Icons.add,
+                                size: 15,
+                                color: AppColors.primary,
+                              ),
+                              Text(
+                                "Add Branch",
+                                style: AppTextStyles.subText.copyWith(
+                                  color: AppColors.primary,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      8.verticalGap
+                    ],
+                    branchTile(model, item),
+                  ],
+                )),
+        separatorBuilder: (context, i) => 10.verticalGap,
+      ),
+    );
+  }
+
+  Widget branchTile(BranchHomeViewModel model, Branch item) {
     return Container(
       height: 130,
       width: model.size.width,
@@ -66,7 +143,7 @@ class _BranchHomeViewState extends State<BranchHomeView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "KUBWA ABUJA BRANCH",
+            item.name.toUpperCase(),
             style:
                 AppTextStyles.subHeader.copyWith(fontWeight: FontWeight.w400),
           ),
@@ -95,8 +172,10 @@ class _BranchHomeViewState extends State<BranchHomeView> {
               SizedBox(
                 width: model.size.width / 2.5,
                 height: 40,
-                child:
-                    AppButton.ghostPrimary(title: "Edit branch", onTap: () {}),
+                child: AppButton.ghostPrimary(
+                  title: "Edit branch",
+                  onTap: () {},
+                ),
               )
             ],
           ),
