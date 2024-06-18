@@ -78,10 +78,10 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  bool showEmptyState() {
-    return (locator<AppStateValues>().wallet == null) &&
-        (!isKycLoading && !isLoading);
-  }
+  // bool showEmptyState() {
+  //   return (locator<AppStateValues>().wallet == null) &&
+  //       (!isKycLoading && !isLoading);
+  // }
 
   refreshWalletContainer() {
     getWalletBalance();

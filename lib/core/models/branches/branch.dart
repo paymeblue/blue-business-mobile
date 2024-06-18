@@ -8,7 +8,7 @@ class Branch with _$Branch {
   const factory Branch({
     required int id,
     required String name,
-    required String loaction,
+    required String location,
     @Default("0") String staffSize,
     int? businessId,
     String? createdAt,

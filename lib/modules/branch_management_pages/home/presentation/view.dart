@@ -133,9 +133,8 @@ class _BranchHomeViewState extends State<BranchHomeView> {
 
   Widget branchTile(BranchHomeViewModel model, Branch item) {
     return Container(
-      height: 130,
       width: model.size.width,
-      padding: const EdgeInsets.symmetric(horizontal: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.bgGrey),
           borderRadius: BorderRadius.circular(5)),
@@ -147,7 +146,7 @@ class _BranchHomeViewState extends State<BranchHomeView> {
             style:
                 AppTextStyles.subHeader.copyWith(fontWeight: FontWeight.w400),
           ),
-          20.verticalGap,
+          12.verticalGap,
           Text(
             "Total Revenue",
             style: AppTextStyles.smallText.copyWith(

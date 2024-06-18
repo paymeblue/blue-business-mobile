@@ -498,60 +498,58 @@ class _HomeViewState extends State<HomeView> {
           left: 16,
           right: 16,
         ),
-        padding: EdgeInsets.symmetric(
-            horizontal: 17, vertical: model.showEmptyState() ? 21 : 11),
+        padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 11),
         decoration: BoxDecoration(
           color: AppColors.primary,
           borderRadius: BorderRadius.circular(11),
         ),
-        child: model.showEmptyState()
-            ? refreshWalletContainer(model)
-            : Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      model.isKycLoading
-                          ? walletTypeShimmer()
-                          : walletTypeContainer(
-                              kycLevel:
-                                  locator<AppStateValues>().currentUser!.kyc,
-                            ),
-                      AppAssets.images.launcher.image(height: 23, width: 23),
-                    ],
-                  ),
-                  const Spacer(
-                    flex: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: model.isLoading
-                            ? walletAmountShimmer()
-                            : walletBalanceContainer(model),
+        child:
+            // model.showEmptyState()
+            //     ? refreshWalletContainer(model)
+            //     :
+            Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                model.isKycLoading
+                    ? walletTypeShimmer()
+                    : walletTypeContainer(
+                        kycLevel: locator<AppStateValues>().currentUser!.kyc,
                       ),
-                      8.horizontalGap,
-                      model.isLoading
-                          ? walletIdShimmer()
-                          : volumeContainer(model),
-                    ],
-                  ),
-                  const Spacer(
-                    flex: 3,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: branchContainer(model),
-                      ),
-                      8.horizontalGap,
-                      staffContainer(model),
-                    ],
-                  )
-                ],
-              ),
+                AppAssets.images.launcher.image(height: 23, width: 23),
+              ],
+            ),
+            const Spacer(
+              flex: 5,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: model.isLoading
+                      ? walletAmountShimmer()
+                      : walletBalanceContainer(model),
+                ),
+                8.horizontalGap,
+                model.isLoading ? walletIdShimmer() : volumeContainer(model),
+              ],
+            ),
+            const Spacer(
+              flex: 3,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: branchContainer(model),
+                ),
+                8.horizontalGap,
+                staffContainer(model),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

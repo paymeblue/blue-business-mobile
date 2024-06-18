@@ -43,7 +43,12 @@ class _AddBranchViewState extends State<AddBranchView> {
                   icon: const Icon(
                     Icons.add,
                   ),
-                  onTap: () {},
+                  isEnabled: model.nameController.text.isNotEmpty &&
+                      model.sizeController.text.isNotEmpty &&
+                      model.locationController.text.isNotEmpty,
+                  onTap: () {
+                    model.createBranch(context);
+                  },
                 )
               ],
             ),
@@ -63,17 +68,17 @@ class _AddBranchViewState extends State<AddBranchView> {
       ),
       12.verticalGap,
       BlueTextField.plaintext(
-        hint: "0-10",
+        hint: "10",
         title: "Staff size",
         onChanged: model.onChanged,
-        controller: model.nameController,
+        controller: model.sizeController,
       ),
       12.verticalGap,
       BlueTextField.plaintext(
         hint: "Apapa, Lagos",
         title: "Location",
         onChanged: model.onChanged,
-        controller: model.nameController,
+        controller: model.locationController,
       )
     ]);
   }

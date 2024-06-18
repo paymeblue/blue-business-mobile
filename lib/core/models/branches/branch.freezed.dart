@@ -22,7 +22,7 @@ Branch _$BranchFromJson(Map<String, dynamic> json) {
 mixin _$Branch {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get loaction => throw _privateConstructorUsedError;
+  String get location => throw _privateConstructorUsedError;
   String get staffSize => throw _privateConstructorUsedError;
   int? get businessId => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $BranchCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      String loaction,
+      String location,
       String staffSize,
       int? businessId,
       String? createdAt});
@@ -61,7 +61,7 @@ class _$BranchCopyWithImpl<$Res, $Val extends Branch>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? loaction = null,
+    Object? location = null,
     Object? staffSize = null,
     Object? businessId = freezed,
     Object? createdAt = freezed,
@@ -75,9 +75,9 @@ class _$BranchCopyWithImpl<$Res, $Val extends Branch>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      loaction: null == loaction
-          ? _value.loaction
-          : loaction // ignore: cast_nullable_to_non_nullable
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
               as String,
       staffSize: null == staffSize
           ? _value.staffSize
@@ -105,7 +105,7 @@ abstract class _$$BranchImplCopyWith<$Res> implements $BranchCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      String loaction,
+      String location,
       String staffSize,
       int? businessId,
       String? createdAt});
@@ -124,7 +124,7 @@ class __$$BranchImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? loaction = null,
+    Object? location = null,
     Object? staffSize = null,
     Object? businessId = freezed,
     Object? createdAt = freezed,
@@ -138,9 +138,9 @@ class __$$BranchImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      loaction: null == loaction
-          ? _value.loaction
-          : loaction // ignore: cast_nullable_to_non_nullable
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
               as String,
       staffSize: null == staffSize
           ? _value.staffSize
@@ -164,7 +164,7 @@ class _$BranchImpl implements _Branch {
   const _$BranchImpl(
       {required this.id,
       required this.name,
-      required this.loaction,
+      required this.location,
       this.staffSize = "0",
       this.businessId,
       this.createdAt});
@@ -177,7 +177,7 @@ class _$BranchImpl implements _Branch {
   @override
   final String name;
   @override
-  final String loaction;
+  final String location;
   @override
   @JsonKey()
   final String staffSize;
@@ -188,7 +188,7 @@ class _$BranchImpl implements _Branch {
 
   @override
   String toString() {
-    return 'Branch(id: $id, name: $name, loaction: $loaction, staffSize: $staffSize, businessId: $businessId, createdAt: $createdAt)';
+    return 'Branch(id: $id, name: $name, location: $location, staffSize: $staffSize, businessId: $businessId, createdAt: $createdAt)';
   }
 
   @override
@@ -198,8 +198,8 @@ class _$BranchImpl implements _Branch {
             other is _$BranchImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.loaction, loaction) ||
-                other.loaction == loaction) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
             (identical(other.staffSize, staffSize) ||
                 other.staffSize == staffSize) &&
             (identical(other.businessId, businessId) ||
@@ -211,7 +211,7 @@ class _$BranchImpl implements _Branch {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, loaction, staffSize, businessId, createdAt);
+      runtimeType, id, name, location, staffSize, businessId, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -231,7 +231,7 @@ abstract class _Branch implements Branch {
   const factory _Branch(
       {required final int id,
       required final String name,
-      required final String loaction,
+      required final String location,
       final String staffSize,
       final int? businessId,
       final String? createdAt}) = _$BranchImpl;
@@ -243,7 +243,7 @@ abstract class _Branch implements Branch {
   @override
   String get name;
   @override
-  String get loaction;
+  String get location;
   @override
   String get staffSize;
   @override
