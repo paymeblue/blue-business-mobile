@@ -54,6 +54,7 @@ class LoginViewModel extends BaseViewModel {
         AppNotification.success(
             message: "You have successfully signed up. Login to continue.");
     }
+    locator<AppStateValues>().notificationState = null;
   }
 
   setSelectedCountry() {

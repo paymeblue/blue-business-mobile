@@ -1,6 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/branches/create/data/create_branch_request.dart';
 import 'package:blue_business/core/models/branches/create/response/create_branch_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
@@ -15,15 +16,43 @@ import 'package:go_router/go_router.dart';
 class AddBranchViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  init(BuildContext context, Branch? branch) {
     size = context.mediaQuery.size;
+
+    if (branch != null) {
+      setInitialValues(branch);
+    }
+  }
+
+  setInitialValues(Branch branch) {
+    nameController.text = branch.name;
+    locationController.text = branch.location;
+    staffSize = branch.staffSize;
+  }
+
+  bool isActive(Branch? branch) {
+    return (branch != null &&
+            (branch.name != nameController.text ||
+                branch.staffSize != staffSize ||
+                branch.location != locationController.text)) ||
+        (nameController.text.isNotEmpty &&
+            staffSize != null &&
+            locationController.text.isNotEmpty);
   }
 
   goBack(BuildContext context) {
     context.pop();
   }
 
-  TextEditingController sizeController = TextEditingController();
+  List<String> sizes = ["< 9", "10 - 49", "50 - 249", "> 250"];
+
+  String? _staffSize;
+  String? get staffSize => _staffSize;
+  set staffSize(String? s) {
+    _staffSize = s;
+    notifyListeners();
+  }
+
   TextEditingController locationController = TextEditingController();
   TextEditingController nameController = TextEditingController();
 
@@ -36,12 +65,36 @@ class AddBranchViewModel extends BaseViewModel {
 
     CreateBranchRequest request = CreateBranchRequest(
         name: nameController.text,
-        staffSize: sizeController.text,
+        staffSize: staffSize!,
         location: locationController.text);
 
     CreateBranchResponse response = await BranchService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .createBranch(request: request)
+        .onError(
+          (error, stackTrace) => CreateBranchResponse(
+              message: AppErrorHandler.getErrorMessage(error)),
+        );
+
+    if (response.status == "success") {
+      if (context.mounted) goBack(context);
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    AppLoader.stop();
+  }
+
+  editBranch(BuildContext context, Branch branch) async {
+    AppLoader.start();
+
+    CreateBranchRequest request = CreateBranchRequest(
+        name: nameController.text,
+        staffSize: staffSize!,
+        location: locationController.text);
+
+    CreateBranchResponse response = await BranchService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .editBranch(request: request, id: branch.id)
         .onError(
           (error, stackTrace) => CreateBranchResponse(
               message: AppErrorHandler.getErrorMessage(error)),

@@ -29,4 +29,15 @@ abstract class BranchService {
   Future<CreateBranchResponse> createBranch({
     @Body() required CreateBranchRequest request,
   });
+
+  @PATCH("/branches/{id}")
+  Future<CreateBranchResponse> editBranch({
+    @Path("id") required int id,
+    @Body() required CreateBranchRequest request,
+  });
+
+  @DELETE("/branches/{id}")
+  Future<CreateBranchResponse> deleteBranch({
+    @Path("id") required int id,
+  });
 }

@@ -47,8 +47,44 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                   onChanged: model.onTypeChanged,
                 ),
                 15.verticalGap,
-                BlueTextField.search(hint: "Search branches"),
+                BlueTextField.search(
+                  hint: "Search branches",
+                  controller: model.searchController,
+                  onSearchChanged: model.onSearchChanged,
+                ),
                 10.verticalGap,
+                if (model.branchPagingController.itemList != null &&
+                    model.branchPagingController.itemList!.isNotEmpty) ...[
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      onTap: () {
+                        model.goToAddBranch(context);
+                      },
+                      child: Container(
+                        decoration: const BoxDecoration(),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Icon(
+                              Icons.add,
+                              size: 15,
+                              color: AppColors.primary,
+                            ),
+                            Text(
+                              "Add Branch",
+                              style: AppTextStyles.subText.copyWith(
+                                color: AppColors.primary,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  8.verticalGap
+                ],
                 Expanded(
                   child: branchList(model),
                 ),
@@ -95,34 +131,6 @@ class _BranchHomeViewState extends State<BranchHomeView> {
             itemBuilder: (context, item, i) => Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    if (i == 0) ...[
-                      GestureDetector(
-                        onTap: () {
-                          model.goToAddBranch(context);
-                        },
-                        child: Container(
-                          decoration: const BoxDecoration(),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              const Icon(
-                                Icons.add,
-                                size: 15,
-                                color: AppColors.primary,
-                              ),
-                              Text(
-                                "Add Branch",
-                                style: AppTextStyles.subText.copyWith(
-                                  color: AppColors.primary,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      8.verticalGap
-                    ],
                     branchTile(model, item),
                   ],
                 )),
@@ -173,7 +181,10 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                 height: 40,
                 child: AppButton.ghostPrimary(
                   title: "Edit branch",
-                  onTap: () {},
+                  onTap: () {
+                    model.goToAddBranch(context, item);
+                    // model.deleteBranch(context, item);
+                  },
                 ),
               )
             ],

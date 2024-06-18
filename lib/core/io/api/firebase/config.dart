@@ -78,9 +78,8 @@ class FirebaseConfig {
         options: DefaultFirebaseOptions.currentPlatform);
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-    await messaging.requestPermission();
-
     try {
+      await messaging.requestPermission();
       stateValues.fcmToken = await messaging.getToken() ?? "";
     } catch (e) {
       AppNotification.error(message: AppErrorHandler.getErrorMessage(e));

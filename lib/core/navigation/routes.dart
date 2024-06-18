@@ -8,6 +8,7 @@ import 'package:blue_business/core/models/bills/data/vend/data/vend_data_data.da
 import 'package:blue_business/core/models/bills/data/verify/data/verify_data_data.dart';
 import 'package:blue_business/core/models/bills/electricity/vend/data/vend_electricity_data.dart';
 import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
+import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/recover_phone/add/data/recover_phone_data.dart';
 import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
 import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
@@ -504,7 +505,9 @@ GoRouter router = GoRouter(
     GoRoute(
       path: RoutePaths.addBranchPath,
       builder: (context, state) {
-        return const AddBranchView();
+        return AddBranchView(
+          branch: state.extra as Branch?,
+        );
       },
     ),
     GoRoute(

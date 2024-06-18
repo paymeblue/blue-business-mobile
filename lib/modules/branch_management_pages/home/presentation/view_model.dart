@@ -1,14 +1,20 @@
+import 'dart:async';
+
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/models/branches/create/response/create_branch_response.dart';
 import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -44,15 +50,36 @@ class BranchHomeViewModel extends BaseViewModel {
     selectedType = t;
   }
 
-  goToAddBranch(BuildContext context) {
-    context.push(RoutePaths.addBranchPath);
+  goToAddBranch(BuildContext context, [Branch? branch]) {
+    context.push(RoutePaths.addBranchPath, extra: branch).then((v) {
+      branchPagingController.refresh();
+    });
+  }
+
+  TextEditingController searchController = TextEditingController();
+
+  Timer? searchTimer;
+  Future<String?> onSearchChanged(String? val) async {
+    if (searchTimer != null) {
+      searchTimer!.cancel();
+    }
+
+    searchTimer = Timer(const Duration(milliseconds: 1500), () async {
+      branchPagingController.refresh();
+    });
+    return val;
   }
 
   getBranches(int page) async {
     try {
       GetBranchesResponse response = await BranchService(
               DioConfig.dio(locator<AppStateValues>().accessToken))
-          .getAllBranches(page: page, limit: 50)
+          .getAllBranches(
+            page: page,
+            limit: 50,
+            search:
+                searchController.text.isEmpty ? null : searchController.text,
+          )
           .onError(
             (error, stackTrace) => GetBranchesResponse(
                 message: AppErrorHandler.getErrorMessage(error)),
@@ -72,5 +99,24 @@ class BranchHomeViewModel extends BaseViewModel {
     } catch (e) {
       branchPagingController.error = AppErrorHandler.getErrorMessage(e);
     }
+  }
+
+  deleteBranch(BuildContext context, Branch branch) async {
+    AppLoader.start();
+
+    CreateBranchResponse response = await BranchService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .deleteBranch(id: branch.id)
+        .onError(
+          (error, stackTrace) => CreateBranchResponse(
+              message: AppErrorHandler.getErrorMessage(error)),
+        );
+
+    if (response.status == "success") {
+      branchPagingController.refresh();
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    AppLoader.stop();
   }
 }
