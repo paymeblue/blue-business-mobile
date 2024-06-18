@@ -20,11 +20,12 @@ GetStaffData _$GetStaffDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GetStaffData {
-  String get total => throw _privateConstructorUsedError;
-  String get limit => throw _privateConstructorUsedError;
-  String get page => throw _privateConstructorUsedError;
+  int get total => throw _privateConstructorUsedError;
+  int get limit => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
   List<Staff> get data => throw _privateConstructorUsedError;
   bool get loadMore => throw _privateConstructorUsedError;
+  int? get perPage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,11 +40,12 @@ abstract class $GetStaffDataCopyWith<$Res> {
       _$GetStaffDataCopyWithImpl<$Res, GetStaffData>;
   @useResult
   $Res call(
-      {String total,
-      String limit,
-      String page,
+      {int total,
+      int limit,
+      int page,
       List<Staff> data,
-      bool loadMore});
+      bool loadMore,
+      int? perPage});
 }
 
 /// @nodoc
@@ -64,20 +66,21 @@ class _$GetStaffDataCopyWithImpl<$Res, $Val extends GetStaffData>
     Object? page = null,
     Object? data = null,
     Object? loadMore = null,
+    Object? perPage = freezed,
   }) {
     return _then(_value.copyWith(
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -86,6 +89,10 @@ class _$GetStaffDataCopyWithImpl<$Res, $Val extends GetStaffData>
           ? _value.loadMore
           : loadMore // ignore: cast_nullable_to_non_nullable
               as bool,
+      perPage: freezed == perPage
+          ? _value.perPage
+          : perPage // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -99,11 +106,12 @@ abstract class _$$GetStaffDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String total,
-      String limit,
-      String page,
+      {int total,
+      int limit,
+      int page,
       List<Staff> data,
-      bool loadMore});
+      bool loadMore,
+      int? perPage});
 }
 
 /// @nodoc
@@ -122,20 +130,21 @@ class __$$GetStaffDataImplCopyWithImpl<$Res>
     Object? page = null,
     Object? data = null,
     Object? loadMore = null,
+    Object? perPage = freezed,
   }) {
     return _then(_$GetStaffDataImpl(
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -144,6 +153,10 @@ class __$$GetStaffDataImplCopyWithImpl<$Res>
           ? _value.loadMore
           : loadMore // ignore: cast_nullable_to_non_nullable
               as bool,
+      perPage: freezed == perPage
+          ? _value.perPage
+          : perPage // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -156,18 +169,19 @@ class _$GetStaffDataImpl implements _GetStaffData {
       required this.limit,
       required this.page,
       final List<Staff> data = const [],
-      this.loadMore = false})
+      this.loadMore = false,
+      this.perPage})
       : _data = data;
 
   factory _$GetStaffDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetStaffDataImplFromJson(json);
 
   @override
-  final String total;
+  final int total;
   @override
-  final String limit;
+  final int limit;
   @override
-  final String page;
+  final int page;
   final List<Staff> _data;
   @override
   @JsonKey()
@@ -180,10 +194,12 @@ class _$GetStaffDataImpl implements _GetStaffData {
   @override
   @JsonKey()
   final bool loadMore;
+  @override
+  final int? perPage;
 
   @override
   String toString() {
-    return 'GetStaffData(total: $total, limit: $limit, page: $page, data: $data, loadMore: $loadMore)';
+    return 'GetStaffData(total: $total, limit: $limit, page: $page, data: $data, loadMore: $loadMore, perPage: $perPage)';
   }
 
   @override
@@ -196,13 +212,14 @@ class _$GetStaffDataImpl implements _GetStaffData {
             (identical(other.page, page) || other.page == page) &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.loadMore, loadMore) ||
-                other.loadMore == loadMore));
+                other.loadMore == loadMore) &&
+            (identical(other.perPage, perPage) || other.perPage == perPage));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, total, limit, page,
-      const DeepCollectionEquality().hash(_data), loadMore);
+      const DeepCollectionEquality().hash(_data), loadMore, perPage);
 
   @JsonKey(ignore: true)
   @override
@@ -220,25 +237,28 @@ class _$GetStaffDataImpl implements _GetStaffData {
 
 abstract class _GetStaffData implements GetStaffData {
   const factory _GetStaffData(
-      {required final String total,
-      required final String limit,
-      required final String page,
+      {required final int total,
+      required final int limit,
+      required final int page,
       final List<Staff> data,
-      final bool loadMore}) = _$GetStaffDataImpl;
+      final bool loadMore,
+      final int? perPage}) = _$GetStaffDataImpl;
 
   factory _GetStaffData.fromJson(Map<String, dynamic> json) =
       _$GetStaffDataImpl.fromJson;
 
   @override
-  String get total;
+  int get total;
   @override
-  String get limit;
+  int get limit;
   @override
-  String get page;
+  int get page;
   @override
   List<Staff> get data;
   @override
   bool get loadMore;
+  @override
+  int? get perPage;
   @override
   @JsonKey(ignore: true)
   _$$GetStaffDataImplCopyWith<_$GetStaffDataImpl> get copyWith =>

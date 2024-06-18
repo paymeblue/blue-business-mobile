@@ -9,6 +9,7 @@ import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
+import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -40,7 +41,12 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ...titleAndSubtitle(model),
-                  12.verticalGap,
+                  15.verticalGap,
+                  BlueTextField.search(
+                    hint: "Search branches",
+                    controller: model.searchController,
+                    onSearchChanged: model.onSearchChanged,
+                  ),
                   Expanded(
                     child: staffList(model),
                   ),
@@ -198,10 +204,7 @@ class _StaffHomeViewState extends State<StaffHomeView> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AppAssets.images.icons.emptyStaff.image(
-            height: 88,
-            width: 128,
-          ),
+          AppAssets.images.icons.emptyStaff.svg(),
           SizedBox(
             width: 179,
             child: Text(
