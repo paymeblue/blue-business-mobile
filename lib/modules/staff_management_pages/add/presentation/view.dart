@@ -2,6 +2,7 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
@@ -16,7 +17,8 @@ import 'package:flutter/material.dart';
 import 'view_model.dart';
 
 class AddStaffView extends StatefulWidget {
-  const AddStaffView({super.key});
+  final Staff? staff;
+  const AddStaffView({super.key, this.staff});
 
   @override
   State<AddStaffView> createState() => _AddStaffViewState();
@@ -42,14 +44,16 @@ class _AddStaffViewState extends State<AddStaffView> {
               children: [
                 ...titleAndSubtitle(),
                 25.verticalGap,
+                if (widget.staff != null) ...[
+                  branchTile(model),
+                  12.verticalGap
+                ],
                 Expanded(
                   child: form(model),
                 ),
                 AppButton.primary(
                   title: "Grant access",
-                  isEnabled: model.nameController.text.isNotEmpty &&
-                      model.phoneController.text.isNotEmpty &&
-                      model.isActive(),
+                  isEnabled: model.isActive(),
                   onTap: () {
                     model.confirmAccess(context);
                   },
@@ -59,6 +63,31 @@ class _AddStaffViewState extends State<AddStaffView> {
           ),
         );
       },
+    );
+  }
+
+  Widget branchTile(AddStaffViewModel model) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      width: model.size.width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6),
+        color: AppColors.inputField,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.staff!.name.nameCase,
+            style: AppTextStyles.smallHeader,
+          ),
+          Text(
+            widget.staff!.branchName.sentenceCase,
+            style: AppTextStyles.smallText
+                .copyWith(color: AppColors.bodyTextColor2),
+          )
+        ],
+      ),
     );
   }
 
@@ -94,10 +123,13 @@ class _AddStaffViewState extends State<AddStaffView> {
         ),
         12.verticalGap,
         BlueDropdown.show(
-            values: [],
-            onChanged: (val) {},
-            searchController: model.searchController,
-            title: "Set role"),
+          values: model.roles,
+          onChanged: (val) {
+            model.role = val;
+          },
+          title: "Set role",
+          value: model.role,
+        ),
         12.verticalGap,
         BlueDropdown.branch(
           controller: model.branchPagingController,

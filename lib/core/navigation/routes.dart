@@ -13,6 +13,7 @@ import 'package:blue_business/core/models/recover_phone/add/data/recover_phone_d
 import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
 import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
+import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
 import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
@@ -493,7 +494,9 @@ GoRouter router = GoRouter(
     GoRoute(
       path: RoutePaths.addStaffPath,
       builder: (context, state) {
-        return const AddStaffView();
+        return AddStaffView(
+          staff: state.extra as Staff?,
+        );
       },
     ),
     GoRoute(

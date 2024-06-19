@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'staff_service.g.dart';
@@ -14,6 +18,18 @@ abstract class StaffService {
     @Query("page") required int page,
     @Query("limit") required int limit,
     @Query("search") String? search,
+  });
+
+  @POST("/staff")
+  @MultiPart()
+  Future<CreateStaffResponse> createStaff({
+    @Part(name: "display_picture", contentType: "image/png")
+    required File image,
+    @Part(name: "name") required String name,
+    @Part(name: "phone") required String phone,
+    @Part(name: "branch_id") required int branchId,
+    @Part(name: "role") required String role,
+    @Part(name: "password") required String password,
   });
 
   // @GET("/branches/{id}")

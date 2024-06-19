@@ -22,7 +22,11 @@ Staff _$StaffFromJson(Map<String, dynamic> json) {
 mixin _$Staff {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get branchName => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  String? get displayPicture => throw _privateConstructorUsedError;
+  String get role => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +38,14 @@ abstract class $StaffCopyWith<$Res> {
   factory $StaffCopyWith(Staff value, $Res Function(Staff) then) =
       _$StaffCopyWithImpl<$Res, Staff>;
   @useResult
-  $Res call({int id, String name, String phone});
+  $Res call(
+      {int id,
+      String name,
+      String branchName,
+      String phone,
+      String? displayPicture,
+      String role,
+      String? createdAt});
 }
 
 /// @nodoc
@@ -52,7 +63,11 @@ class _$StaffCopyWithImpl<$Res, $Val extends Staff>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? branchName = null,
     Object? phone = null,
+    Object? displayPicture = freezed,
+    Object? role = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -63,10 +78,26 @@ class _$StaffCopyWithImpl<$Res, $Val extends Staff>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      branchName: null == branchName
+          ? _value.branchName
+          : branchName // ignore: cast_nullable_to_non_nullable
+              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      displayPicture: freezed == displayPicture
+          ? _value.displayPicture
+          : displayPicture // ignore: cast_nullable_to_non_nullable
+              as String?,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -78,7 +109,14 @@ abstract class _$$StaffImplCopyWith<$Res> implements $StaffCopyWith<$Res> {
       __$$StaffImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String phone});
+  $Res call(
+      {int id,
+      String name,
+      String branchName,
+      String phone,
+      String? displayPicture,
+      String role,
+      String? createdAt});
 }
 
 /// @nodoc
@@ -94,7 +132,11 @@ class __$$StaffImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? branchName = null,
     Object? phone = null,
+    Object? displayPicture = freezed,
+    Object? role = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$StaffImpl(
       id: null == id
@@ -105,10 +147,26 @@ class __$$StaffImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      branchName: null == branchName
+          ? _value.branchName
+          : branchName // ignore: cast_nullable_to_non_nullable
+              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      displayPicture: freezed == displayPicture
+          ? _value.displayPicture
+          : displayPicture // ignore: cast_nullable_to_non_nullable
+              as String?,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -117,7 +175,13 @@ class __$$StaffImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StaffImpl implements _Staff {
   const _$StaffImpl(
-      {required this.id, required this.name, required this.phone});
+      {required this.id,
+      required this.name,
+      required this.branchName,
+      required this.phone,
+      this.displayPicture,
+      this.role = 'cashier',
+      this.createdAt});
 
   factory _$StaffImpl.fromJson(Map<String, dynamic> json) =>
       _$$StaffImplFromJson(json);
@@ -127,11 +191,20 @@ class _$StaffImpl implements _Staff {
   @override
   final String name;
   @override
+  final String branchName;
+  @override
   final String phone;
+  @override
+  final String? displayPicture;
+  @override
+  @JsonKey()
+  final String role;
+  @override
+  final String? createdAt;
 
   @override
   String toString() {
-    return 'Staff(id: $id, name: $name, phone: $phone)';
+    return 'Staff(id: $id, name: $name, branchName: $branchName, phone: $phone, displayPicture: $displayPicture, role: $role, createdAt: $createdAt)';
   }
 
   @override
@@ -141,12 +214,20 @@ class _$StaffImpl implements _Staff {
             other is _$StaffImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.phone, phone) || other.phone == phone));
+            (identical(other.branchName, branchName) ||
+                other.branchName == branchName) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.displayPicture, displayPicture) ||
+                other.displayPicture == displayPicture) &&
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, phone);
+  int get hashCode => Object.hash(runtimeType, id, name, branchName, phone,
+      displayPicture, role, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -166,7 +247,11 @@ abstract class _Staff implements Staff {
   const factory _Staff(
       {required final int id,
       required final String name,
-      required final String phone}) = _$StaffImpl;
+      required final String branchName,
+      required final String phone,
+      final String? displayPicture,
+      final String role,
+      final String? createdAt}) = _$StaffImpl;
 
   factory _Staff.fromJson(Map<String, dynamic> json) = _$StaffImpl.fromJson;
 
@@ -175,7 +260,15 @@ abstract class _Staff implements Staff {
   @override
   String get name;
   @override
+  String get branchName;
+  @override
   String get phone;
+  @override
+  String? get displayPicture;
+  @override
+  String get role;
+  @override
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$StaffImplCopyWith<_$StaffImpl> get copyWith =>

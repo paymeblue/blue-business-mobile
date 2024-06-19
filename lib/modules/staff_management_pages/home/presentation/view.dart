@@ -140,7 +140,10 @@ class _StaffHomeViewState extends State<StaffHomeView> {
         children: [
           Row(
             children: [
-              const BlueAvatar(radius: 22.5),
+              BlueAvatar(
+                radius: 22.5,
+                imageUrl: item.displayPicture,
+              ),
               10.horizontalGap,
               Expanded(
                 child: Column(
@@ -154,7 +157,7 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                       ),
                     ),
                     Text(
-                      "Kubwa Abuja Branch",
+                      item.branchName,
                       style: AppTextStyles.smallText.copyWith(
                         color: AppColors.blue,
                       ),
@@ -179,7 +182,9 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                 height: 40,
                 child: AppButton.primary(
                   title: "Edit staff",
-                  onTap: () {},
+                  onTap: () {
+                    model.goToAddStaff(context, staff: item);
+                  },
                 ),
               ),
               SizedBox(

@@ -8,7 +8,11 @@ class Staff with _$Staff {
   const factory Staff({
     required int id,
     required String name,
+    required String branchName,
     required String phone,
+    String? displayPicture,
+    @Default('cashier') String role,
+    String? createdAt,
   }) = _Staff;
 
   factory Staff.fromJson(Map<String, dynamic> json) =>

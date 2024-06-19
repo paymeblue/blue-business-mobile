@@ -56,8 +56,10 @@ class StaffHomeViewModel extends BaseViewModel {
     context.go(RoutePaths.settingsPath);
   }
 
-  goToAddStaff(BuildContext context) {
-    context.go(RoutePaths.addStaffPath);
+  goToAddStaff(BuildContext context, {Staff? staff}) {
+    context.push(RoutePaths.addStaffPath, extra: staff).then((v) {
+      staffPagingController.refresh();
+    });
   }
 
   TextEditingController searchController = TextEditingController();

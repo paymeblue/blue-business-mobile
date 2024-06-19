@@ -56,6 +56,69 @@ class _StaffService implements StaffService {
     return value;
   }
 
+  @override
+  Future<CreateStaffResponse> createStaff({
+    required File image,
+    required String name,
+    required String phone,
+    required int branchId,
+    required String role,
+    required String password,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.files.add(MapEntry(
+      'display_picture',
+      MultipartFile.fromFileSync(
+        image.path,
+        filename: image.path.split(Platform.pathSeparator).last,
+        contentType: MediaType.parse('image/png'),
+      ),
+    ));
+    _data.fields.add(MapEntry(
+      'name',
+      name,
+    ));
+    _data.fields.add(MapEntry(
+      'phone',
+      phone,
+    ));
+    _data.fields.add(MapEntry(
+      'branch_id',
+      branchId.toString(),
+    ));
+    _data.fields.add(MapEntry(
+      'role',
+      role,
+    ));
+    _data.fields.add(MapEntry(
+      'password',
+      password,
+    ));
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CreateStaffResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              '/staff',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = CreateStaffResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

@@ -1,14 +1,19 @@
+import 'dart:io';
+
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
+import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/dialogs.dart';
@@ -31,7 +36,7 @@ class AddStaffViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.go(RoutePaths.staffManagementPath);
+    context.pop();
   }
 
   goToAddBranch(BuildContext context) {
@@ -113,7 +118,11 @@ class AddStaffViewModel extends BaseViewModel {
       ];
 
   bool isActive() {
-    return numbers.hasMatch(passwordController.text) &&
+    return nameController.text.isNotEmpty &&
+        phoneController.text.isNotEmpty &&
+        branch != null &&
+        role != null &&
+        numbers.hasMatch(passwordController.text) &&
         special.hasMatch(passwordController.text) &&
         letters.hasMatch(passwordController.text) &&
         passwordController.text.length >= 9;
@@ -124,7 +133,9 @@ class AddStaffViewModel extends BaseViewModel {
       title: "Staff Access",
       subtitle:
           "Are you sure you want to grant ‘Sharon Joy’ access to your BlueBusiness.",
-      onDelete: () {},
+      onDelete: () {
+        createStaff(context);
+      },
       confirmText: "Confirm",
       confirmColor: AppColors.primary,
     );
@@ -141,6 +152,15 @@ class AddStaffViewModel extends BaseViewModel {
     }
 
     return selectedCountry!.dialCode + number;
+  }
+
+  List<String> roles = ["Admin", "Cashier"];
+
+  String? _role;
+  String? get role => _role;
+  set role(String? r) {
+    _role = r;
+    notifyListeners();
   }
 
   Branch? _branch;
@@ -182,5 +202,32 @@ class AddStaffViewModel extends BaseViewModel {
     } catch (e) {
       branchPagingController.error = AppErrorHandler.getErrorMessage(e);
     }
+  }
+
+  createStaff(BuildContext context) async {
+    AppLoader.start();
+
+    CreateStaffResponse response =
+        await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .createStaff(
+      image: File(path!),
+      name: nameController.text,
+      phone: formatPhone(),
+      branchId: branch!.id,
+      role: role!.toLowerCase(),
+      password: passwordController.text,
+    )
+            .onError((error, stacktrace) {
+      return CreateStaffResponse(
+          message: AppErrorHandler.getErrorMessage(error));
+    });
+
+    if (response.status == "success") {
+      if (context.mounted) goBack(context);
+    } else {
+      AppNotification.error(message: response.message);
+    }
+
+    AppLoader.stop();
   }
 }
