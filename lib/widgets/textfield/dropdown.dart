@@ -15,6 +15,8 @@ import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
+import 'package:blue_business/widgets/paging/error.dart';
+import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
@@ -122,7 +124,7 @@ class BlueDropdown {
     );
   }
 
-  static Widget branchDropdown({
+  static Widget branch({
     required PagingController<int, Branch> controller,
     required ValueChanged<Branch?> onChanged,
     required Branch? value,
@@ -1319,9 +1321,37 @@ class _$BluePagedDropdownState<T> extends State<_$BluePagedDropdown<T>> {
                                         ],
                                       ),
                                     ),
+                                firstPageProgressIndicatorBuilder: (context) =>
+                                    Column(
+                                      children: List.generate(
+                                        4,
+                                        (index) => Column(
+                                          children: [
+                                            BlueLoadingTile.withoutImage(),
+                                            if (index < 3) 6.verticalGap,
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                firstPageErrorIndicatorBuilder: (ctx) => Column(
+                                      children: [
+                                        PagingError.firstPage(
+                                          widget.controller.error.toString(),
+                                          widget.controller.refresh,
+                                        ),
+                                      ],
+                                    ),
+                                newPageErrorIndicatorBuilder: (ctx) =>
+                                    PagingError.firstPage(
+                                      widget.controller.error.toString(),
+                                      widget.controller.refresh,
+                                    ),
+                                newPageProgressIndicatorBuilder: (context) =>
+                                    BlueLoadingTile.withImage(),
                                 itemBuilder: (ctx, item, i) => GestureDetector(
                                       onTap: () {
-                                        onTap();
+                                        val = item;
+                                        Navigator.pop(context);
                                       },
                                       child: widget.itemBuilder(item),
                                     )),

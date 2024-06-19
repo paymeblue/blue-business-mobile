@@ -143,6 +143,13 @@ class AddStaffViewModel extends BaseViewModel {
     return selectedCountry!.dialCode + number;
   }
 
+  Branch? _branch;
+  Branch? get branch => _branch;
+  set branch(Branch? b) {
+    _branch = b;
+    notifyListeners();
+  }
+
   PagingController<int, Branch> branchPagingController =
       PagingController<int, Branch>(firstPageKey: 1);
 
