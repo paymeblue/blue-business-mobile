@@ -42,11 +42,17 @@ abstract class StaffService {
   //   @Body() required CreateBranchRequest request,
   // });
 
-  // @PATCH("/branches/{id}")
-  // Future<CreateBranchResponse> editBranch({
-  //   @Path("id") required int id,
-  //   @Body() required CreateBranchRequest request,
-  // });
+  @PATCH("/staff/{id}")
+  @MultiPart()
+  Future<CreateStaffResponse> editStaff({
+    @Path("id") required int id,
+    @Part(name: "display_picture", contentType: "image/png") File? image,
+    @Part(name: "name") required String name,
+    @Part(name: "phone") required String phone,
+    @Part(name: "branch_id") int? branchId,
+    @Part(name: "role") required String role,
+    @Part(name: "password") String? password,
+  });
 
   @DELETE("/staff/{id}")
   Future<CreateStaffResponse> deleteStaff({

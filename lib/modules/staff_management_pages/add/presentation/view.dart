@@ -52,10 +52,14 @@ class _AddStaffViewState extends State<AddStaffView> {
                   child: form(model),
                 ),
                 AppButton.primary(
-                  title: "Grant access",
-                  isEnabled: model.isActive(),
+                  title: widget.staff == null ? "Grant access" : "Edit info",
+                  isEnabled: model.isActive(widget.staff),
                   onTap: () {
-                    model.confirmAccess(context);
+                    if (widget.staff == null) {
+                      model.confirmAccess(context);
+                    } else {
+                      model.editStaff(context, widget.staff!);
+                    }
                   },
                 )
               ],

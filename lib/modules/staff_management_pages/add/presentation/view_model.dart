@@ -7,6 +7,7 @@ import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/models/branches/details/response/get_branch_response.dart';
 import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
@@ -40,11 +41,33 @@ class AddStaffViewModel extends BaseViewModel {
     }
   }
 
-  setStaff(Staff staff) {
+  setStaff(Staff staff) async {
     nameController.text = staff.name;
     phoneController.text = staff.phone
         .replaceFirst(selectedCountry!.dialCode, "")
         .replaceFirst("+", "");
+    role = roles[roles.indexOf(staff.role.sentenceCase)];
+    // branch = await getBranchById(staff.br)
+  }
+
+  Future<Branch?> getBranchById(int id) async {
+    AppLoader.start();
+
+    GetBranchResponse response = await BranchService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getBranchById(id: id)
+        .onError(
+          (error, stackTrace) => GetBranchResponse(
+              message: AppErrorHandler.getErrorMessage(error)),
+        );
+
+    AppLoader.stop();
+
+    if (response.status == "success") {
+      return response.data!;
+    } else {
+      return null;
+    }
   }
 
   goBack(BuildContext context) {
@@ -129,15 +152,20 @@ class AddStaffViewModel extends BaseViewModel {
         },
       ];
 
-  bool isActive() {
-    return nameController.text.isNotEmpty &&
-        phoneController.text.isNotEmpty &&
-        branch != null &&
-        role != null &&
-        numbers.hasMatch(passwordController.text) &&
-        special.hasMatch(passwordController.text) &&
-        letters.hasMatch(passwordController.text) &&
-        passwordController.text.length >= 9;
+  bool isActive(Staff? staff) {
+    return (staff == null &&
+            nameController.text.isNotEmpty &&
+            phoneController.text.isNotEmpty &&
+            branch != null &&
+            role != null &&
+            numbers.hasMatch(passwordController.text) &&
+            special.hasMatch(passwordController.text) &&
+            letters.hasMatch(passwordController.text) &&
+            passwordController.text.length >= 9) ||
+        (staff != null &&
+            nameController.text.isNotEmpty &&
+            phoneController.text.isNotEmpty &&
+            role != null);
   }
 
   confirmAccess(BuildContext context) {
@@ -228,6 +256,35 @@ class AddStaffViewModel extends BaseViewModel {
       branchId: branch!.id,
       role: role!.toLowerCase(),
       password: passwordController.text,
+    )
+            .onError((error, stacktrace) {
+      return CreateStaffResponse(
+          message: AppErrorHandler.getErrorMessage(error));
+    });
+
+    if (response.status == "success") {
+      if (context.mounted) goBack(context);
+    } else {
+      AppNotification.error(message: response.message);
+    }
+
+    AppLoader.stop();
+  }
+
+  editStaff(BuildContext context, Staff staff) async {
+    AppLoader.start();
+
+    CreateStaffResponse response =
+        await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .editStaff(
+      id: staff.id,
+      image: path != null ? File(path!) : null,
+      name: nameController.text,
+      phone: formatPhone(),
+      branchId: branch?.id,
+      role: role!.toLowerCase(),
+      password:
+          passwordController.text.isEmpty ? null : passwordController.text,
     )
             .onError((error, stacktrace) {
       return CreateStaffResponse(
