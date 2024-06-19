@@ -48,8 +48,8 @@ abstract class StaffService {
   //   @Body() required CreateBranchRequest request,
   // });
 
-  // @DELETE("/branches/{id}")
-  // Future<CreateBranchResponse> deleteBranch({
-  //   @Path("id") required int id,
-  // });
+  @DELETE("/staff/{id}")
+  Future<CreateStaffResponse> deleteStaff({
+    @Path("id") required int id,
+  });
 }

@@ -29,7 +29,7 @@ class _AddStaffViewState extends State<AddStaffView> {
   Widget build(BuildContext context) {
     return BaseView<AddStaffViewModel>(
       model: AddStaffViewModel(),
-      onModelReady: (model) => model.init(context),
+      onModelReady: (model) => model.init(context, widget.staff),
       builder: (context, model, _) {
         return Scaffold(
           appBar: BlueAppBar.primary(

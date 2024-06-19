@@ -163,7 +163,7 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                       ),
                     ),
                     Text(
-                      "+${item.phone}",
+                      item.phone,
                       style: AppTextStyles.smallText.copyWith(
                         color: AppColors.bodyTextColor2,
                       ),

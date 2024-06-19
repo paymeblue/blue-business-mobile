@@ -1,17 +1,19 @@
 import 'dart:async';
 
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
+import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/dialogs.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -44,12 +46,14 @@ class StaffHomeViewModel extends BaseViewModel {
 
   onDeleteStaff(Staff staff) {
     BlueDialog.primary(
-        title: "Deny Access",
-        subtitle:
-            "Are you sure you remove access of BlueBusiness from ‘Sharon Joy’ ?",
-        onDelete: () {},
-        confirmText: "Confirm",
-        confirmColor: AppColors.primary);
+      title: "Deny Access",
+      subtitle:
+          "Are you sure you remove access to BlueBusiness from ‘${staff.name}’ ?",
+      onDelete: () {
+        deleteStaff(staff);
+      },
+      confirmText: "Confirm",
+    );
   }
 
   goBack(BuildContext context) {
@@ -93,5 +97,24 @@ class StaffHomeViewModel extends BaseViewModel {
     } catch (e) {
       staffPagingController.error = AppErrorHandler.getErrorMessage(e);
     }
+  }
+
+  deleteStaff(Staff staff) async {
+    AppLoader.start();
+
+    CreateStaffResponse response =
+        await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .deleteStaff(id: staff.id)
+            .onError(
+              (error, stackTrace) => CreateStaffResponse(
+                  message: AppErrorHandler.getErrorMessage(error)),
+            );
+
+    if (response.status == "success") {
+      staffPagingController.refresh();
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    AppLoader.stop();
   }
 }

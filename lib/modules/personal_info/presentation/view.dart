@@ -109,11 +109,11 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
         GestureDetector(
           onTap: model.pickImage,
           //FIX: the imageUr;
-          child: const BlueAvatar(
+          child: BlueAvatar(
             radius: 31,
-            // imageUrl: model.path.isEmpty
-            // ? locator<AppStateValues>().currentUser!.displayPic
-            // : model.path,
+            imageUrl: model.path.isEmpty
+                ? locator<AppStateValues>().currentUser!.displayPic
+                : model.path,
           ),
         ),
         10.horizontalGap,

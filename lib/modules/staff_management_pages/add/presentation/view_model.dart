@@ -10,6 +10,7 @@ import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
+import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -26,13 +27,24 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 class AddStaffViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  init(BuildContext context, Staff? staff) {
     size = context.mediaQuery.size;
 
     setSelectedCountry();
     branchPagingController.addPageRequestListener((pageKey) {
       getBranches(pageKey);
     });
+
+    if (staff != null) {
+      setStaff(staff);
+    }
+  }
+
+  setStaff(Staff staff) {
+    nameController.text = staff.name;
+    phoneController.text = staff.phone
+        .replaceFirst(selectedCountry!.dialCode, "")
+        .replaceFirst("+", "");
   }
 
   goBack(BuildContext context) {
