@@ -130,14 +130,26 @@ class _StaffHomeViewState extends State<StaffHomeView> {
 
   Widget staffTile(StaffHomeViewModel model, Staff item) {
     return Container(
-      height: 130,
       width: model.size.width,
-      padding: const EdgeInsets.symmetric(horizontal: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.bgGrey),
           borderRadius: BorderRadius.circular(5)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: const BoxDecoration(color: AppColors.inputField),
+            child: Text(
+              "${item.role.toUpperCase()} ROLE",
+              style: AppTextStyles.smallText.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.textColor,
+                  fontSize: 10),
+            ),
+          ),
+          8.verticalGap,
           Row(
             children: [
               BlueAvatar(

@@ -1,11 +1,19 @@
 import 'dart:async';
 
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/bills_service/bills_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
+import 'package:blue_business/core/models/bills/electricity/verify/request/verify_electricity_request.dart';
+import 'package:blue_business/core/models/bills/electricity/verify/response/verify_electricity_response.dart';
 import 'package:blue_business/core/models/bills/get_providers/providers/providers.dart';
+import 'package:blue_business/core/models/bills/get_providers/response/get_providers_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -106,7 +114,25 @@ class InitiateElectricityViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getProviders() async {}
+  getProviders() async {
+    gettingProviders = true;
+    if (state == "FCT(Abuja)") {
+      state = "Abuja";
+    }
+    GetProvidersResponse resp =
+        await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getProviders("power", state!.toLowerCase())
+            .onError((error, stackTrace) => GetProvidersResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
+
+    if (resp.status == "success") {
+      providers = resp.data ?? [];
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    gettingProviders = false;
+  }
 
   VerifyElectricityData? _data;
   VerifyElectricityData? get data => _data;
@@ -123,7 +149,26 @@ class InitiateElectricityViewModel extends BaseViewModel {
     }
   }
 
-  verfiyMeter() async {}
+  verfiyMeter() async {
+    verifying = true;
+    VerifyElectricityRequest request = VerifyElectricityRequest(
+        receiver: meterNumberController.text,
+        meterType: selectedMeterType!,
+        providerId: selectedProvider!.id.toString());
+
+    VerifyElectricityResponse response =
+        await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .verifyMeter(request)
+            .onError((error, stackTrace) => VerifyElectricityResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      data = response.data;
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    verifying = false;
+  }
 
   bool isActive() {
     double? amount = double.tryParse(amountController.text

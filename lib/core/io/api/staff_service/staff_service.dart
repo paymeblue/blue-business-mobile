@@ -37,11 +37,6 @@ abstract class StaffService {
   //   @Path("id") required int id,
   // });
 
-  // @POST("/branches")
-  // Future<CreateBranchResponse> createBranch({
-  //   @Body() required CreateBranchRequest request,
-  // });
-
   @PATCH("/staff/{id}")
   @MultiPart()
   Future<CreateStaffResponse> editStaff({

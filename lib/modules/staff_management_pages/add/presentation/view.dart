@@ -44,10 +44,6 @@ class _AddStaffViewState extends State<AddStaffView> {
               children: [
                 ...titleAndSubtitle(),
                 25.verticalGap,
-                if (widget.staff != null) ...[
-                  branchTile(model),
-                  12.verticalGap
-                ],
                 Expanded(
                   child: form(model),
                 ),
@@ -86,7 +82,7 @@ class _AddStaffViewState extends State<AddStaffView> {
             style: AppTextStyles.smallHeader,
           ),
           Text(
-            widget.staff!.branchName.sentenceCase,
+            widget.staff!.role.sentenceCase,
             style: AppTextStyles.smallText
                 .copyWith(color: AppColors.bodyTextColor2),
           )
@@ -102,7 +98,7 @@ class _AddStaffViewState extends State<AddStaffView> {
           onTap: model.pickImage,
           child: BlueAvatar(
             radius: 31,
-            imageUrl: model.path,
+            imageUrl: model.path ?? widget.staff?.displayPicture,
           ),
         ),
         10.horizontalGap,
@@ -117,6 +113,10 @@ class _AddStaffViewState extends State<AddStaffView> {
   Widget form(AddStaffViewModel model) {
     return ListView(
       children: [
+        if (widget.staff != null) ...[
+          branchTile(model),
+          12.verticalGap,
+        ],
         avatarRow(model),
         15.verticalGap,
         BlueTextField.plaintext(
