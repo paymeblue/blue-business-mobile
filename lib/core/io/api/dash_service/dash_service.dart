@@ -10,9 +10,9 @@ part 'dash_service.g.dart';
 abstract class DashService {
   factory DashService(Dio dio) = _DashService;
 
-  @GET("/wallets")
+  @GET("/wallets/details")
   Future<WalletResponse> getWalletDetails();
 
-  @GET("/wallets/account")
+  @GET("/wallet-accounts")
   Future<TopupResponse> getWalletAccount();
 }
