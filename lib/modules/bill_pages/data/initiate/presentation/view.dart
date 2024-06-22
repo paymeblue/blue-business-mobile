@@ -61,7 +61,7 @@ class _InitiateDataViewState extends State<InitiateDataView> {
                               10.horizontalGap,
                               GestureDetector(
                                 onTap: () {
-                                  model.getPackages();
+                                  model.getProviders();
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.all(12),

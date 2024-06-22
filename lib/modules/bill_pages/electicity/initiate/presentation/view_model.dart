@@ -14,6 +14,7 @@ import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -60,10 +61,10 @@ class InitiateElectricityViewModel extends BaseViewModel {
     shouldVerify();
   }
 
-  bool _gettingProviders = false;
-  bool get gettingProviders => _gettingProviders;
-  set gettingProviders(bool v) {
-    _gettingProviders = v;
+  FetchState _providersState = FetchState.complete;
+  FetchState get providersState => _providersState;
+  set providersState(FetchState s) {
+    _providersState = s;
     notifyListeners();
   }
 
@@ -115,7 +116,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
   }
 
   getProviders() async {
-    gettingProviders = true;
+    providersState = FetchState.loading;
     if (state == "FCT(Abuja)") {
       state = "Abuja";
     }
@@ -127,11 +128,11 @@ class InitiateElectricityViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       providers = resp.data ?? [];
+      providersState = FetchState.complete;
     } else {
       AppNotification.error(message: resp.message);
+      providersState = FetchState.error;
     }
-
-    gettingProviders = false;
   }
 
   VerifyElectricityData? _data;

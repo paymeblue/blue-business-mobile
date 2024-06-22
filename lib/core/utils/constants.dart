@@ -5,6 +5,7 @@ import 'package:blue_business/core/models/topup_account/topup_account.dart';
 import 'package:blue_business/core/models/wallet/wallet.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/data/withdrawal_account.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:flutter/material.dart';
 
 class AppStateValues extends ChangeNotifier {
@@ -13,7 +14,7 @@ class AppStateValues extends ChangeNotifier {
   String _narration = "";
   String _recoveryCode = "123DF1233";
   String _path = RoutePaths.homePath;
-  bool _loadedTodo = false;
+  FetchState _todoState = FetchState.loading;
   String _kycLevel = "basic";
   bool _hasSavedBeneficiary = true;
   int _count = 0;
@@ -23,13 +24,8 @@ class AppStateValues extends ChangeNotifier {
 
   List<TodoOption> _todos = [];
   LoginData? _currentUser;
-  Wallet? _wallet =
-      const Wallet(id: 1, balance: "15000.00", walletCode: "ABCDE");
-  TopupAccount? _account = const TopupAccount(
-      id: 2,
-      accountName: "name",
-      bankName: "wema",
-      accountNumber: "_accountNumber");
+  Wallet? _wallet;
+  TopupAccount? _account;
   WithdrawalAccount? _withdrawalAccount = WithdrawalAccount(
       id: 2,
       bankId: 2,
@@ -44,7 +40,7 @@ class AppStateValues extends ChangeNotifier {
   String get narration => _narration;
   String get recoveryCode => _recoveryCode;
   List<TodoOption> get todos => _todos;
-  bool get loadedTodo => _loadedTodo;
+  FetchState get todoState => _todoState;
   String get kycLevel => _kycLevel;
   bool get hasSavedBeneficiary => _hasSavedBeneficiary;
   String get resetPath => _path;
@@ -91,8 +87,8 @@ class AppStateValues extends ChangeNotifier {
     notifyListeners();
   }
 
-  set loadedTodo(bool v) {
-    _loadedTodo = v;
+  set todoState(FetchState v) {
+    _todoState = v;
     notifyListeners();
   }
 
@@ -156,7 +152,7 @@ class AppStateValues extends ChangeNotifier {
     refreshToken = "";
     narration = "";
     todos = [];
-    loadedTodo = false;
+    todoState = FetchState.loading;
     kycLevel = "basic";
     hasSavedBeneficiary = true;
     resetPath = RoutePaths.homePath;

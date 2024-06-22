@@ -1,14 +1,18 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
+import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
+import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/modules/dashboard_pages/home/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/widgets/modals/toast.dart';
@@ -28,8 +32,7 @@ class HomeViewModel extends BaseViewModel {
 
   getDashData() async {
     getWalletBalance();
-    getKyc();
-    if (!locator<AppStateValues>().loadedTodo) {
+    if (locator<AppStateValues>().todoState != FetchState.complete) {
       getTodos();
     }
     getAnalytics();
@@ -64,32 +67,40 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  bool _kycLoading = false;
-  bool get isKycLoading => _kycLoading;
-  set isKycLoading(bool v) {
-    _kycLoading = v;
-    notifyListeners();
+  bool showEmptyState() {
+    return (locator<AppStateValues>().wallet == null) ||
+        (walletState == FetchState.error);
   }
-
-  bool _loading = false;
-  bool get isLoading => _loading;
-  set isLoading(bool v) {
-    _loading = v;
-    notifyListeners();
-  }
-
-  // bool showEmptyState() {
-  //   return (locator<AppStateValues>().wallet == null) &&
-  //       (!isKycLoading && !isLoading);
-  // }
 
   refreshWalletContainer() {
     getWalletBalance();
-    getKyc();
+
     getTodos();
   }
 
-  getWalletBalance() async {}
+  FetchState _walletState = FetchState.complete;
+  FetchState get walletState => _walletState;
+  set walletState(FetchState s) {
+    _walletState = s;
+    notifyListeners();
+  }
+
+  getWalletBalance() async {
+    walletState = FetchState.loading;
+
+    WalletResponse resp = await DashService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getWalletDetails()
+        .onError((error, stackTrace) =>
+            WalletResponse(message: AppErrorHandler.getErrorMessage(error)));
+
+    if (resp.status == "success") {
+      walletState = FetchState.complete;
+      locator<AppStateValues>().wallet = resp.data;
+    } else {
+      walletState = FetchState.error;
+    }
+  }
 
   getTodos() async {}
 
@@ -182,18 +193,6 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  getKyc() async {}
-
-  getTopupAccount() async {}
-
-  showTopupModal() {
-    if (locator<AppStateValues>().account != null) {
-      BlueBottomSheet.topup();
-    } else {
-      getTopupAccount();
-    }
-  }
-
   List<TransactionOption> transactionOptions(BuildContext context) => [
         TransactionOption(
           icon: Padding(
@@ -202,7 +201,8 @@ class HomeViewModel extends BaseViewModel {
           ),
           title: "Receive",
           onTap: () {
-            if (isLoading && locator<AppStateValues>().wallet == null) {
+            if (walletState == FetchState.loading &&
+                locator<AppStateValues>().wallet == null) {
               BlueToast.primaryWithcon("Please wait...");
             } else {
               goToReceiveMoney(context);

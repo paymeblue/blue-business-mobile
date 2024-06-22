@@ -8,6 +8,7 @@ import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/modules/dashboard_pages/home/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/paging/error.dart';
@@ -512,11 +513,9 @@ class _HomeViewState extends State<HomeView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                model.isKycLoading
-                    ? walletTypeShimmer()
-                    : walletTypeContainer(
-                        kycLevel: locator<AppStateValues>().currentUser!.kyc,
-                      ),
+                walletTypeContainer(
+                  kycLevel: locator<AppStateValues>().currentUser!.kyc,
+                ),
                 AppAssets.images.launcher.image(height: 23, width: 23),
               ],
             ),
@@ -527,12 +526,12 @@ class _HomeViewState extends State<HomeView> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: model.isLoading
+                  child: model.walletState == FetchState.loading
                       ? walletAmountShimmer()
                       : walletBalanceContainer(model),
                 ),
                 8.horizontalGap,
-                model.isLoading ? walletIdShimmer() : volumeContainer(model),
+                volumeContainer(model),
               ],
             ),
             const Spacer(
@@ -635,45 +634,40 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget volumeContainer(HomeViewModel model) {
-    return GestureDetector(
-      onTap: () {
-        model.copyWalletId();
-      },
-      child: Container(
-        decoration: const BoxDecoration(),
-        height: 50,
-        width: 130,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "TRANSACTION VOL.",
-              style: AppTextStyles.smallText.copyWith(
-                color: AppColors.brightBlue,
-              ),
+    return Container(
+      decoration: const BoxDecoration(),
+      height: 50,
+      width: 130,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "TRANSACTION VOL.",
+            style: AppTextStyles.smallText.copyWith(
+              color: AppColors.brightBlue,
             ),
-            4.verticalGap,
-            FittedBox(
-              child: Text(
-                locator<AppStateValues>()
-                    .currentUser!
-                    .dashboardData
-                    .transactionVolume
-                    .toString(),
-                style: AppTextStyles.header
-                    .copyWith(color: AppColors.grey, fontSize: 16.5),
-              ),
+          ),
+          4.verticalGap,
+          FittedBox(
+            child: Text(
+              locator<AppStateValues>()
+                  .currentUser!
+                  .dashboardData
+                  .transactionVolume
+                  .toString(),
+              style: AppTextStyles.header
+                  .copyWith(color: AppColors.grey, fontSize: 16.5),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   Widget walletAmountShimmer() {
     return SizedBox(
-      height: 51,
+      height: 38,
       width: 180,
       child: Shimmer.fromColors(
         baseColor: AppColors.brightBlue,
@@ -725,8 +719,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           FittedBox(
             child: Text(
-              "${nairaSymbol()} 0.00",
-              // "${nairaSymbol()}${model.hideBalance ? locator<AppStateValues>().wallet!.balance.toString().replaceAll(RegExp(r"[0-9]"), "*") : format.format(double.parse(locator<AppStateValues>().wallet!.balance))}",
+              "${nairaSymbol()}${model.hideBalance ? locator<AppStateValues>().wallet!.balance.toString().replaceAll(RegExp(r"[0-9]"), "*") : format.format(double.parse(locator<AppStateValues>().wallet!.balance))}",
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
                 fontSize: 18,

@@ -1,10 +1,15 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/models/topup_account/response/topup_response.dart';
+import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:blue_business/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
@@ -27,26 +32,34 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     }
   }
 
-  getWalletBalance() async {}
-
   goBack(BuildContext context) {
     context.go(RoutePaths.homePath);
   }
 
   ScreenshotController screenshotController = ScreenshotController();
 
-  bool _accountloading = false;
-  bool get isAccountLoading => _accountloading;
-  set isAccountLoading(bool l) {
-    _accountloading = l;
+  FetchState _walletState = FetchState.complete;
+  FetchState get walletState => _walletState;
+  set walletState(FetchState s) {
+    _walletState = s;
     notifyListeners();
   }
 
-  bool _walletloading = false;
-  bool get isWalletLoading => _walletloading;
-  set isWalletLoading(bool l) {
-    _walletloading = l;
-    notifyListeners();
+  getWalletBalance() async {
+    walletState = FetchState.loading;
+
+    WalletResponse resp = await DashService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getWalletDetails()
+        .onError((error, stackTrace) =>
+            WalletResponse(message: AppErrorHandler.getErrorMessage(error)));
+
+    if (resp.status == "success") {
+      walletState = FetchState.complete;
+      locator<AppStateValues>().wallet = resp.data;
+    } else {
+      walletState = FetchState.error;
+    }
   }
 
   downloadAndShareQr() async {
@@ -69,7 +82,29 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  getTopupAccount() async {}
+  FetchState _accountState = FetchState.complete;
+  FetchState get accountState => _accountState;
+  set accountState(FetchState s) {
+    _accountState = s;
+    notifyListeners();
+  }
+
+  getTopupAccount() async {
+    accountState = FetchState.loading;
+
+    TopupResponse resp =
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getWalletAccount()
+            .onError((error, stackTrace) =>
+                TopupResponse(message: AppErrorHandler.getErrorMessage(error)));
+
+    if (resp.status == "success") {
+      accountState = FetchState.complete;
+      locator<AppStateValues>().account = resp.data;
+    } else {
+      accountState = FetchState.error;
+    }
+  }
 
   copy(String v) {
     Clipboard.setData(ClipboardData(text: v)).then((value) {
