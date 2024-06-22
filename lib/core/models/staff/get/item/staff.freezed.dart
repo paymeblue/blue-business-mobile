@@ -23,6 +23,7 @@ mixin _$Staff {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get branchName => throw _privateConstructorUsedError;
+  int get branchId => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String? get displayPicture => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $StaffCopyWith<$Res> {
       {int id,
       String name,
       String branchName,
+      int branchId,
       String phone,
       String? displayPicture,
       String role,
@@ -64,6 +66,7 @@ class _$StaffCopyWithImpl<$Res, $Val extends Staff>
     Object? id = null,
     Object? name = null,
     Object? branchName = null,
+    Object? branchId = null,
     Object? phone = null,
     Object? displayPicture = freezed,
     Object? role = null,
@@ -82,6 +85,10 @@ class _$StaffCopyWithImpl<$Res, $Val extends Staff>
           ? _value.branchName
           : branchName // ignore: cast_nullable_to_non_nullable
               as String,
+      branchId: null == branchId
+          ? _value.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as int,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -113,6 +120,7 @@ abstract class _$$StaffImplCopyWith<$Res> implements $StaffCopyWith<$Res> {
       {int id,
       String name,
       String branchName,
+      int branchId,
       String phone,
       String? displayPicture,
       String role,
@@ -133,6 +141,7 @@ class __$$StaffImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? branchName = null,
+    Object? branchId = null,
     Object? phone = null,
     Object? displayPicture = freezed,
     Object? role = null,
@@ -151,6 +160,10 @@ class __$$StaffImplCopyWithImpl<$Res>
           ? _value.branchName
           : branchName // ignore: cast_nullable_to_non_nullable
               as String,
+      branchId: null == branchId
+          ? _value.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as int,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -178,6 +191,7 @@ class _$StaffImpl implements _Staff {
       {required this.id,
       required this.name,
       required this.branchName,
+      required this.branchId,
       required this.phone,
       this.displayPicture,
       this.role = 'cashier',
@@ -193,6 +207,8 @@ class _$StaffImpl implements _Staff {
   @override
   final String branchName;
   @override
+  final int branchId;
+  @override
   final String phone;
   @override
   final String? displayPicture;
@@ -204,7 +220,7 @@ class _$StaffImpl implements _Staff {
 
   @override
   String toString() {
-    return 'Staff(id: $id, name: $name, branchName: $branchName, phone: $phone, displayPicture: $displayPicture, role: $role, createdAt: $createdAt)';
+    return 'Staff(id: $id, name: $name, branchName: $branchName, branchId: $branchId, phone: $phone, displayPicture: $displayPicture, role: $role, createdAt: $createdAt)';
   }
 
   @override
@@ -216,6 +232,8 @@ class _$StaffImpl implements _Staff {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.branchName, branchName) ||
                 other.branchName == branchName) &&
+            (identical(other.branchId, branchId) ||
+                other.branchId == branchId) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.displayPicture, displayPicture) ||
                 other.displayPicture == displayPicture) &&
@@ -226,8 +244,8 @@ class _$StaffImpl implements _Staff {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, branchName, phone,
-      displayPicture, role, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, name, branchName, branchId,
+      phone, displayPicture, role, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -248,6 +266,7 @@ abstract class _Staff implements Staff {
       {required final int id,
       required final String name,
       required final String branchName,
+      required final int branchId,
       required final String phone,
       final String? displayPicture,
       final String role,
@@ -261,6 +280,8 @@ abstract class _Staff implements Staff {
   String get name;
   @override
   String get branchName;
+  @override
+  int get branchId;
   @override
   String get phone;
   @override

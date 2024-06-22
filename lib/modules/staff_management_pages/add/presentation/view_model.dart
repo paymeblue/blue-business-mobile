@@ -47,7 +47,7 @@ class AddStaffViewModel extends BaseViewModel {
         .replaceFirst(selectedCountry!.dialCode, "")
         .replaceFirst("+", "");
     role = roles[roles.indexOf(staff.role.sentenceCase)];
-    // branch = await getBranchById(staff.br)
+    branch = await getBranchById(staff.branchId);
   }
 
   Future<Branch?> getBranchById(int id) async {
@@ -158,14 +158,21 @@ class AddStaffViewModel extends BaseViewModel {
             phoneController.text.isNotEmpty &&
             branch != null &&
             role != null &&
-            numbers.hasMatch(passwordController.text) &&
-            special.hasMatch(passwordController.text) &&
-            letters.hasMatch(passwordController.text) &&
-            passwordController.text.length >= 9) ||
+            isValidPassword()) ||
         (staff != null &&
-            nameController.text.isNotEmpty &&
-            phoneController.text.isNotEmpty &&
-            role != null);
+            (nameController.text != staff.name ||
+                phoneController.text != staff.phone.replaceFirst("+", "") ||
+                isValidPassword() ||
+                role != staff.role.sentenceCase ||
+                branch?.id != staff.branchId ||
+                path != null));
+  }
+
+  bool isValidPassword() {
+    return numbers.hasMatch(passwordController.text) &&
+        special.hasMatch(passwordController.text) &&
+        letters.hasMatch(passwordController.text) &&
+        passwordController.text.length >= 9;
   }
 
   confirmAccess(BuildContext context) {

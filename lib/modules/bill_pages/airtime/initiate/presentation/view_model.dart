@@ -54,10 +54,10 @@ class InitiateAirtimeViewModel extends BaseViewModel {
   TextEditingController phoneController = TextEditingController();
   TextEditingController amountController = TextEditingController();
 
-  bool _gettingProviders = false;
-  bool get gettingProviders => _gettingProviders;
-  set gettingProviders(bool v) {
-    _gettingProviders = v;
+  FetchState _providersState = FetchState.complete;
+  FetchState get providersState => _providersState;
+  set providersState(FetchState s) {
+    _providersState = s;
     notifyListeners();
   }
 
@@ -80,7 +80,7 @@ class InitiateAirtimeViewModel extends BaseViewModel {
   }
 
   getProviders() async {
-    gettingProviders = true;
+    providersState = FetchState.loading;
 
     GetProvidersResponse resp =
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
@@ -89,12 +89,12 @@ class InitiateAirtimeViewModel extends BaseViewModel {
                 message: AppErrorHandler.getErrorMessage(error)));
 
     if (resp.status == "success") {
+      providersState = FetchState.complete;
       providers = resp.data ?? [];
     } else {
+      providersState = FetchState.error;
       AppNotification.error(message: resp.message);
     }
-
-    gettingProviders = false;
   }
 
   bool isActive() {
@@ -133,3 +133,5 @@ class InitiateAirtimeViewModel extends BaseViewModel {
     context.push(RoutePaths.reviewAirtimePath, extra: data);
   }
 }
+
+enum FetchState { error, complete, loading, empty }

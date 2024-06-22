@@ -1,4 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
@@ -42,15 +43,38 @@ class _InitiateAirtimeViewState extends State<InitiateAirtimeView> {
                 Expanded(
                   child: ListView(
                     children: [
-                      model.gettingProviders
-                          ? BlueLoadingTile.withoutImage()
-                          : BlueDropdown.billProviders(
-                              banks: model.providers,
-                              onChanged: model.onBillProviderChanged,
-                              value: model.selectedProvider,
-                              searchController: model.searchController,
-                              title: "network",
+                      if (model.providersState == FetchState.loading)
+                        BlueLoadingTile.withoutImage(title: "Network")
+                      else
+                        Row(
+                          children: [
+                            Expanded(
+                              child: BlueDropdown.billProviders(
+                                banks: model.providers,
+                                onChanged: model.onBillProviderChanged,
+                                value: model.selectedProvider,
+                                searchController: model.searchController,
+                                title: "network",
+                              ),
                             ),
+                            if (model.providersState == FetchState.error) ...[
+                              10.horizontalGap,
+                              GestureDetector(
+                                onTap: () {
+                                  model.getProviders();
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: const BoxDecoration(
+                                      color: AppColors.inputField),
+                                  child: const Icon(
+                                    Icons.refresh_rounded,
+                                  ),
+                                ),
+                              )
+                            ]
+                          ],
+                        ),
                       20.verticalGap,
                       BlueTextField.phone(
                         title: "Phone",

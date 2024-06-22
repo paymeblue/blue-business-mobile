@@ -9,6 +9,7 @@ class Staff with _$Staff {
     required int id,
     required String name,
     required String branchName,
+    required int branchId,
     required String phone,
     String? displayPicture,
     @Default('cashier') String role,

@@ -12,6 +12,7 @@ import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -40,17 +41,17 @@ class InitiateCableViewModel extends BaseViewModel {
   TextEditingController searchController = TextEditingController();
   TextEditingController cardNumberController = TextEditingController();
 
-  bool _gettingProviders = false;
-  bool get gettingProviders => _gettingProviders;
-  set gettingProviders(bool v) {
-    _gettingProviders = v;
+  FetchState _providersState = FetchState.complete;
+  FetchState get providersState => _providersState;
+  set providersState(FetchState s) {
+    _providersState = s;
     notifyListeners();
   }
 
-  bool _gettingPackages = false;
-  bool get gettingPackages => _gettingPackages;
-  set gettingPackages(bool v) {
-    _gettingPackages = v;
+  FetchState _packagesState = FetchState.complete;
+  FetchState get packagesState => _packagesState;
+  set packagesState(FetchState s) {
+    _packagesState = s;
     notifyListeners();
   }
 
@@ -80,7 +81,7 @@ class InitiateCableViewModel extends BaseViewModel {
   }
 
   getProviders() async {
-    gettingProviders = true;
+    providersState = FetchState.loading;
 
     GetProvidersResponse resp =
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
@@ -89,12 +90,12 @@ class InitiateCableViewModel extends BaseViewModel {
                 message: AppErrorHandler.getErrorMessage(error)));
 
     if (resp.status == "success") {
+      providersState = FetchState.complete;
       providers = resp.data ?? [];
     } else {
+      providersState = FetchState.error;
       AppNotification.error(message: resp.message);
     }
-
-    gettingProviders = false;
   }
 
   onBillPackageChanged(BillPackage? item) {
@@ -118,7 +119,7 @@ class InitiateCableViewModel extends BaseViewModel {
   }
 
   getPackages() async {
-    gettingPackages = true;
+    packagesState = FetchState.loading;
 
     GetPackagesResponse resp =
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
@@ -129,12 +130,12 @@ class InitiateCableViewModel extends BaseViewModel {
                 message: AppErrorHandler.getErrorMessage(error)));
 
     if (resp.status == "success") {
+      packagesState = FetchState.complete;
       packages = resp.data ?? [];
     } else {
+      packagesState = FetchState.error;
       AppNotification.error(message: resp.message);
     }
-
-    gettingPackages = false;
   }
 
   shouldVerify() {

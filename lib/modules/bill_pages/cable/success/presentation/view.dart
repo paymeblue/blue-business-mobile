@@ -112,7 +112,7 @@ class _VendCableSuccessViewState extends State<VendCableSuccessView> {
     return SizedBox(
       width: 340,
       child: Text(
-        "You purchased ${widget.data.package} for ${nairaSymbol()}${format.format(double.parse(widget.data.amount) + 100)}",
+        "You purchased ${widget.data.package} for ${nairaSymbol()}${format.format(widget.data.amount.toDouble() + 100)}",
         style: AppTextStyles.subHeader.copyWith(
           color: const Color(0xFFB0F0EA),
         ),
