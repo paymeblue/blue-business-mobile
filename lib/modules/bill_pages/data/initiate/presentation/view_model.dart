@@ -13,6 +13,7 @@ import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -39,17 +40,17 @@ class InitiateDataViewModel extends BaseViewModel {
   TextEditingController searchController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-  bool _gettingProviders = false;
-  bool get gettingProviders => _gettingProviders;
-  set gettingProviders(bool v) {
-    _gettingProviders = v;
+  FetchState _providersState = FetchState.complete;
+  FetchState get providersState => _providersState;
+  set providersState(FetchState s) {
+    _providersState = s;
     notifyListeners();
   }
 
-  bool _gettingPackages = false;
-  bool get gettingPackages => _gettingPackages;
-  set gettingPackages(bool v) {
-    _gettingPackages = v;
+  FetchState _packagesState = FetchState.complete;
+  FetchState get packagesState => _packagesState;
+  set packagesState(FetchState s) {
+    _packagesState = s;
     notifyListeners();
   }
 
@@ -79,7 +80,7 @@ class InitiateDataViewModel extends BaseViewModel {
   }
 
   getProviders() async {
-    gettingProviders = true;
+    providersState = FetchState.loading;
 
     GetProvidersResponse resp =
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
@@ -89,11 +90,11 @@ class InitiateDataViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       providers = resp.data ?? [];
+      providersState = FetchState.complete;
     } else {
       AppNotification.error(message: resp.message);
+      providersState = FetchState.error;
     }
-
-    gettingProviders = false;
   }
 
   onBillPackageChanged(BillPackage? item) {
@@ -115,7 +116,7 @@ class InitiateDataViewModel extends BaseViewModel {
   }
 
   getPackages() async {
-    gettingPackages = true;
+    packagesState = FetchState.loading;
 
     GetPackagesResponse resp =
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
@@ -127,11 +128,11 @@ class InitiateDataViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       packages = resp.data ?? [];
+      packagesState = FetchState.complete;
     } else {
       AppNotification.error(message: resp.message);
+      packagesState = FetchState.error;
     }
-
-    gettingPackages = false;
   }
 
   bool isActive() {

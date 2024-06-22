@@ -25,7 +25,7 @@ mixin _$VendDataData {
   String get provider => throw _privateConstructorUsedError;
   String get package => throw _privateConstructorUsedError;
   String get paymentReference => throw _privateConstructorUsedError;
-  String get amount => throw _privateConstructorUsedError;
+  int get amount => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
@@ -47,7 +47,7 @@ abstract class $VendDataDataCopyWith<$Res> {
       String provider,
       String package,
       String paymentReference,
-      String amount,
+      int amount,
       String status,
       String? createdAt});
 }
@@ -98,7 +98,7 @@ class _$VendDataDataCopyWithImpl<$Res, $Val extends VendDataData>
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -125,7 +125,7 @@ abstract class _$$VendDataDataImplCopyWith<$Res>
       String provider,
       String package,
       String paymentReference,
-      String amount,
+      int amount,
       String status,
       String? createdAt});
 }
@@ -174,7 +174,7 @@ class __$$VendDataDataImplCopyWithImpl<$Res>
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -214,7 +214,7 @@ class _$VendDataDataImpl implements _VendDataData {
   @override
   final String paymentReference;
   @override
-  final String amount;
+  final int amount;
   @override
   @JsonKey()
   final String status;
@@ -272,7 +272,7 @@ abstract class _VendDataData implements VendDataData {
       required final String provider,
       required final String package,
       required final String paymentReference,
-      required final String amount,
+      required final int amount,
       final String status,
       final String? createdAt}) = _$VendDataDataImpl;
 
@@ -290,7 +290,7 @@ abstract class _VendDataData implements VendDataData {
   @override
   String get paymentReference;
   @override
-  String get amount;
+  int get amount;
   @override
   String get status;
   @override
