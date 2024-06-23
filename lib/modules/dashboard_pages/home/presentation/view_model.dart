@@ -2,9 +2,11 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
+import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
 import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
@@ -36,9 +38,9 @@ class HomeViewModel extends BaseViewModel {
       getTodos();
     }
     getAnalytics();
-    // transactionController.addPageRequestListener((pageKey) {
-    //   getTransactions(pageKey);
-    // });
+    transactionController.addPageRequestListener((pageKey) {
+      getTransactions(pageKey);
+    });
   }
 
   copyWalletId() {
@@ -188,7 +190,18 @@ class HomeViewModel extends BaseViewModel {
       PagingController<int, TransactionHistory>(firstPageKey: 1);
 
   getTransactions(int page) async {
-    try {} catch (e) {
+    try {
+      TransactionResponse resp = await TransactionService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .getTransactions(page, limit);
+      if (resp.status == "success") {
+        List<TransactionHistory> t = resp.data!.data;
+
+        transactionController.appendLastPage(t);
+      } else {
+        transactionController.error = resp.message;
+      }
+    } catch (e) {
       transactionController.error = AppErrorHandler.getErrorMessage(e);
     }
   }

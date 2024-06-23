@@ -1,10 +1,15 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
+import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
+import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -17,7 +22,9 @@ class TransactionHistoryViewModel extends BaseViewModel {
     size = context.mediaQuery.size;
     selectedType = types[0];
 
-    transactionController.addPageRequestListener((pageKey) {});
+    transactionController.addPageRequestListener((pageKey) {
+      getTransactions(pageKey);
+    });
   }
 
   List<String> types = ["All", "Credit", "Debit"];
@@ -57,6 +64,39 @@ class TransactionHistoryViewModel extends BaseViewModel {
 
   PagingController<int, TransactionHistory> transactionController =
       PagingController<int, TransactionHistory>(firstPageKey: 1);
+
+  getTransactions(int page) async {
+    try {
+      TransactionResponse resp = await TransactionService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .getTransactions(
+        page,
+        limit,
+        type: selectedType.toLowerCase() == "all"
+            ? null
+            : selectedType.toLowerCase(),
+        paymentMode: type.isEmpty ? null : getType(type),
+        date: date.isEmpty ? null : date,
+      )
+          .onError((error, stackTrace) {
+        return TransactionResponse(
+            message: AppErrorHandler.getErrorMessage(error));
+      });
+      if (resp.status == "success") {
+        List<TransactionHistory> t = resp.data!.data;
+
+        if (resp.data!.loadMore) {
+          transactionController.appendPage(t, page + 1);
+        } else {
+          transactionController.appendLastPage(t);
+        }
+      } else {
+        transactionController.error = resp.message;
+      }
+    } catch (e) {
+      transactionController.error = AppErrorHandler.getErrorMessage(e);
+    }
+  }
 
   bool showDate(int i) {
     TransactionHistory transaction = transactionController.itemList![i];

@@ -174,7 +174,9 @@ class _BluePaymentViewState extends State<BluePaymentView> {
   Widget recentlyPaidContainer(
       RecentlyPaidItem item, BluePaymentViewModel model) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        model.onTapRecentlyPaid(item);
+      },
       child: Container(
         decoration: const BoxDecoration(),
         width: 85,

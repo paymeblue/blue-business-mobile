@@ -20,11 +20,11 @@ PayData _$PayDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PayData {
-  String get transactionId => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get receiverName => throw _privateConstructorUsedError;
   String get receiverWallet => throw _privateConstructorUsedError;
-  String get reference => throw _privateConstructorUsedError;
+  String? get reference => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
 
@@ -39,11 +39,11 @@ abstract class $PayDataCopyWith<$Res> {
       _$PayDataCopyWithImpl<$Res, PayData>;
   @useResult
   $Res call(
-      {String transactionId,
+      {String id,
       String amount,
       String receiverName,
       String receiverWallet,
-      String reference,
+      String? reference,
       String status,
       String createdAt});
 }
@@ -61,18 +61,18 @@ class _$PayDataCopyWithImpl<$Res, $Val extends PayData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? transactionId = null,
+    Object? id = null,
     Object? amount = null,
     Object? receiverName = null,
     Object? receiverWallet = null,
-    Object? reference = null,
+    Object? reference = freezed,
     Object? status = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
-      transactionId: null == transactionId
-          ? _value.transactionId
-          : transactionId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       amount: null == amount
           ? _value.amount
@@ -86,10 +86,10 @@ class _$PayDataCopyWithImpl<$Res, $Val extends PayData>
           ? _value.receiverWallet
           : receiverWallet // ignore: cast_nullable_to_non_nullable
               as String,
-      reference: null == reference
+      reference: freezed == reference
           ? _value.reference
           : reference // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -110,11 +110,11 @@ abstract class _$$PayDataImplCopyWith<$Res> implements $PayDataCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String transactionId,
+      {String id,
       String amount,
       String receiverName,
       String receiverWallet,
-      String reference,
+      String? reference,
       String status,
       String createdAt});
 }
@@ -130,18 +130,18 @@ class __$$PayDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? transactionId = null,
+    Object? id = null,
     Object? amount = null,
     Object? receiverName = null,
     Object? receiverWallet = null,
-    Object? reference = null,
+    Object? reference = freezed,
     Object? status = null,
     Object? createdAt = null,
   }) {
     return _then(_$PayDataImpl(
-      transactionId: null == transactionId
-          ? _value.transactionId
-          : transactionId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       amount: null == amount
           ? _value.amount
@@ -155,10 +155,10 @@ class __$$PayDataImplCopyWithImpl<$Res>
           ? _value.receiverWallet
           : receiverWallet // ignore: cast_nullable_to_non_nullable
               as String,
-      reference: null == reference
+      reference: freezed == reference
           ? _value.reference
           : reference // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -175,11 +175,11 @@ class __$$PayDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PayDataImpl implements _PayData {
   const _$PayDataImpl(
-      {required this.transactionId,
+      {required this.id,
       required this.amount,
       required this.receiverName,
       required this.receiverWallet,
-      required this.reference,
+      this.reference,
       required this.status,
       required this.createdAt});
 
@@ -187,7 +187,7 @@ class _$PayDataImpl implements _PayData {
       _$$PayDataImplFromJson(json);
 
   @override
-  final String transactionId;
+  final String id;
   @override
   final String amount;
   @override
@@ -195,7 +195,7 @@ class _$PayDataImpl implements _PayData {
   @override
   final String receiverWallet;
   @override
-  final String reference;
+  final String? reference;
   @override
   final String status;
   @override
@@ -203,7 +203,7 @@ class _$PayDataImpl implements _PayData {
 
   @override
   String toString() {
-    return 'PayData(transactionId: $transactionId, amount: $amount, receiverName: $receiverName, receiverWallet: $receiverWallet, reference: $reference, status: $status, createdAt: $createdAt)';
+    return 'PayData(id: $id, amount: $amount, receiverName: $receiverName, receiverWallet: $receiverWallet, reference: $reference, status: $status, createdAt: $createdAt)';
   }
 
   @override
@@ -211,8 +211,7 @@ class _$PayDataImpl implements _PayData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PayDataImpl &&
-            (identical(other.transactionId, transactionId) ||
-                other.transactionId == transactionId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.receiverName, receiverName) ||
                 other.receiverName == receiverName) &&
@@ -227,8 +226,8 @@ class _$PayDataImpl implements _PayData {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, transactionId, amount,
-      receiverName, receiverWallet, reference, status, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, amount, receiverName,
+      receiverWallet, reference, status, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -246,18 +245,18 @@ class _$PayDataImpl implements _PayData {
 
 abstract class _PayData implements PayData {
   const factory _PayData(
-      {required final String transactionId,
+      {required final String id,
       required final String amount,
       required final String receiverName,
       required final String receiverWallet,
-      required final String reference,
+      final String? reference,
       required final String status,
       required final String createdAt}) = _$PayDataImpl;
 
   factory _PayData.fromJson(Map<String, dynamic> json) = _$PayDataImpl.fromJson;
 
   @override
-  String get transactionId;
+  String get id;
   @override
   String get amount;
   @override
@@ -265,7 +264,7 @@ abstract class _PayData implements PayData {
   @override
   String get receiverWallet;
   @override
-  String get reference;
+  String? get reference;
   @override
   String get status;
   @override

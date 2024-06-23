@@ -51,7 +51,7 @@ class _$LoadingTile extends StatelessWidget {
       baseColor: AppColors.brightBlue.withOpacity(.35),
       highlightColor: AppColors.white,
       child: Container(
-        height: 70,
+        height: title == null ? 50 : 70,
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
