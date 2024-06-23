@@ -20,7 +20,7 @@ TransactionData _$TransactionDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TransactionData {
-  String get total => throw _privateConstructorUsedError;
+  int get total => throw _privateConstructorUsedError;
   String get limit => throw _privateConstructorUsedError;
   String get page => throw _privateConstructorUsedError;
   List<TransactionHistory> get data => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $TransactionDataCopyWith<$Res> {
       _$TransactionDataCopyWithImpl<$Res, TransactionData>;
   @useResult
   $Res call(
-      {String total,
+      {int total,
       String limit,
       String page,
       List<TransactionHistory> data,
@@ -69,7 +69,7 @@ class _$TransactionDataCopyWithImpl<$Res, $Val extends TransactionData>
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
@@ -99,7 +99,7 @@ abstract class _$$TransactionDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String total,
+      {int total,
       String limit,
       String page,
       List<TransactionHistory> data,
@@ -127,7 +127,7 @@ class __$$TransactionDataImplCopyWithImpl<$Res>
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
@@ -163,7 +163,7 @@ class _$TransactionDataImpl implements _TransactionData {
       _$$TransactionDataImplFromJson(json);
 
   @override
-  final String total;
+  final int total;
   @override
   final String limit;
   @override
@@ -221,7 +221,7 @@ class _$TransactionDataImpl implements _TransactionData {
 
 abstract class _TransactionData implements TransactionData {
   const factory _TransactionData(
-      {required final String total,
+      {required final int total,
       required final String limit,
       required final String page,
       final List<TransactionHistory> data,
@@ -231,7 +231,7 @@ abstract class _TransactionData implements TransactionData {
       _$TransactionDataImpl.fromJson;
 
   @override
-  String get total;
+  int get total;
   @override
   String get limit;
   @override

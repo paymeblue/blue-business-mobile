@@ -56,7 +56,7 @@ class TransationTile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          transaction.otherPartyName ?? "",
+          transaction.senderName ?? "",
           style: AppTextStyles.header.copyWith(fontSize: 15.5),
         ),
         Text(
@@ -116,7 +116,7 @@ class TransationTile extends StatelessWidget {
       ),
       alignment: Alignment.center,
       child: Text(
-        transaction.initials,
+        transaction.senderName.initials,
         style: AppTextStyles.smallButtonText.copyWith(color: AppColors.white),
       ),
     );

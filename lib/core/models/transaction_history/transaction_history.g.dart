@@ -9,11 +9,11 @@ part of 'transaction_history.dart';
 _$TransactionHistoryImpl _$$TransactionHistoryImplFromJson(
         Map<String, dynamic> json) =>
     _$TransactionHistoryImpl(
-      transactionId: json['transaction_id'] as int,
+      transactionId: json['transaction_id'] as String,
       receiverName: json['receiver_name'] as String?,
-      otherPartyName: json['other_party_name'] as String?,
-      amount: json['amount'] as String,
-      paymentMode: json['payment_mode'] as String,
+      senderName: json['sender_name'] as String?,
+      amount: (json['amount'] as num).toDouble(),
+      paymentMode: json['payment_mode'] as String? ?? "blue-user",
       type: json['type'] as String?,
       createdAt: json['created_at'] as String,
       status: json['status'] as String? ?? "pending",
@@ -33,7 +33,7 @@ Map<String, dynamic> _$$TransactionHistoryImplToJson(
   }
 
   writeNotNull('receiver_name', instance.receiverName);
-  writeNotNull('other_party_name', instance.otherPartyName);
+  writeNotNull('sender_name', instance.senderName);
   val['amount'] = instance.amount;
   val['payment_mode'] = instance.paymentMode;
   writeNotNull('type', instance.type);

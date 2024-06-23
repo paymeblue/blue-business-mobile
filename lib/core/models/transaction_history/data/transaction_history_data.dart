@@ -7,7 +7,7 @@ part 'transaction_history_data.g.dart';
 @freezed
 class TransactionData with _$TransactionData {
   const factory TransactionData({
-    required String total,
+    required int total,
     required String limit,
     required String page,
     @Default([]) List<TransactionHistory> data,

@@ -6,11 +6,11 @@ part 'transaction_history.g.dart';
 @freezed
 class TransactionHistory with _$TransactionHistory {
   const factory TransactionHistory({
-    required int transactionId,
+    required String transactionId,
     required String? receiverName,
-    String? otherPartyName,
-    required String amount,
-    required String paymentMode,
+    String? senderName,
+    required double amount,
+    @Default("blue-user") String paymentMode,
     String? type,
     required String createdAt,
     @Default("pending") String status,
