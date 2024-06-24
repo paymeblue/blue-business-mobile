@@ -214,7 +214,7 @@ class _BlueBranchDropdownState extends State<_BlueBranchDropdown> {
 
   Timer? searchTimer;
 
-  Future<String?> onSearchChanged(String? val) async {
+  String? onSearchChanged(String? val) {
     if (searchTimer != null) {
       searchTimer!.cancel();
     }

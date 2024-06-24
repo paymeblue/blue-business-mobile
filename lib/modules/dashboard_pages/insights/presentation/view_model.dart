@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
+import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
 import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/monthly/monthly_line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/response/sales_analytics_response.dart';
@@ -18,7 +23,9 @@ import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class InsightsViewModel extends BaseViewModel {
   late Size size;
@@ -27,6 +34,9 @@ class InsightsViewModel extends BaseViewModel {
     size = context.mediaQuery.size;
 
     selectedType = types[0];
+    branchPagingController.addPageRequestListener((page) {
+      getBranches(page);
+    });
     await getAnalytics();
   }
 
@@ -287,6 +297,60 @@ class InsightsViewModel extends BaseViewModel {
       } else {
         desktopIncrease = dChange / previousDesktop;
       }
+    }
+  }
+
+  Branch? _branch;
+  Branch? get branch => _branch;
+  set branch(Branch? b) {
+    _branch = b;
+    notifyListeners();
+  }
+
+  TextEditingController searchController = TextEditingController();
+
+  Timer? searchTimer;
+
+  String? onSearchChanged(String? val) {
+    if (searchTimer != null) {
+      searchTimer!.cancel();
+    }
+
+    searchTimer = Timer(const Duration(milliseconds: 1500), () async {
+      branchPagingController.refresh();
+    });
+    return val;
+  }
+
+  PagingController<int, Branch> branchPagingController =
+      PagingController<int, Branch>(firstPageKey: 1);
+
+  getBranches(int page) async {
+    try {
+      GetBranchesResponse response = await BranchService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .getAllBranches(
+            page: page,
+            limit: 50,
+          )
+          .onError(
+            (error, stackTrace) => GetBranchesResponse(
+                message: AppErrorHandler.getErrorMessage(error)),
+          );
+
+      if (response.status == "success") {
+        if (response.data!.loadMore) {
+          branchPagingController.appendPage(response.data!.data, page + 1);
+        } else {
+          branchPagingController.appendLastPage(response.data!.data);
+        }
+
+        notifyListeners();
+      } else {
+        branchPagingController.error = response.message;
+      }
+    } catch (e) {
+      branchPagingController.error = AppErrorHandler.getErrorMessage(e);
     }
   }
 }
