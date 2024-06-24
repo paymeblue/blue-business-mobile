@@ -7,11 +7,10 @@ part 'transaction_history.g.dart';
 class TransactionHistory with _$TransactionHistory {
   const factory TransactionHistory({
     required String transactionId,
-    required String? receiverName,
-    String? senderName,
-    required double amount,
-    @Default("blue-user") String paymentMode,
-    String? type,
+    required String otherPartyName,
+    required String transactionAmount,
+    required String paymentMode,
+    String? transactionType,
     required String createdAt,
     @Default("pending") String status,
     @Default("N/A") String initials,
@@ -23,4 +22,14 @@ class TransactionHistory with _$TransactionHistory {
 
 enum TransactionType { debit, credit }
 
-enum PaymentMode { blue, phone, qr, withdrawal, topup }
+enum PaymentMode {
+  blue,
+  phone,
+  qr,
+  withdrawal,
+  topup,
+  airtime,
+  data,
+  electricity,
+  tv
+}

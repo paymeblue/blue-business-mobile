@@ -8,8 +8,8 @@ part 'transaction_history_data.g.dart';
 class TransactionData with _$TransactionData {
   const factory TransactionData({
     required int total,
-    required String limit,
-    required String page,
+    required int limit,
+    required int page,
     @Default([]) List<TransactionHistory> data,
     @Default(false) bool loadMore,
   }) = _TransactionData;

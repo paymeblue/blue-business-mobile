@@ -10,11 +10,10 @@ _$TransactionHistoryImpl _$$TransactionHistoryImplFromJson(
         Map<String, dynamic> json) =>
     _$TransactionHistoryImpl(
       transactionId: json['transaction_id'] as String,
-      receiverName: json['receiver_name'] as String?,
-      senderName: json['sender_name'] as String?,
-      amount: (json['amount'] as num).toDouble(),
-      paymentMode: json['payment_mode'] as String? ?? "blue-user",
-      type: json['type'] as String?,
+      otherPartyName: json['other_party_name'] as String,
+      transactionAmount: json['transaction_amount'] as String,
+      paymentMode: json['payment_mode'] as String,
+      transactionType: json['transaction_type'] as String?,
       createdAt: json['created_at'] as String,
       status: json['status'] as String? ?? "pending",
       initials: json['initials'] as String? ?? "N/A",
@@ -24,6 +23,9 @@ Map<String, dynamic> _$$TransactionHistoryImplToJson(
     _$TransactionHistoryImpl instance) {
   final val = <String, dynamic>{
     'transaction_id': instance.transactionId,
+    'other_party_name': instance.otherPartyName,
+    'transaction_amount': instance.transactionAmount,
+    'payment_mode': instance.paymentMode,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -32,11 +34,7 @@ Map<String, dynamic> _$$TransactionHistoryImplToJson(
     }
   }
 
-  writeNotNull('receiver_name', instance.receiverName);
-  writeNotNull('sender_name', instance.senderName);
-  val['amount'] = instance.amount;
-  val['payment_mode'] = instance.paymentMode;
-  writeNotNull('type', instance.type);
+  writeNotNull('transaction_type', instance.transactionType);
   val['created_at'] = instance.createdAt;
   val['status'] = instance.status;
   val['initials'] = instance.initials;

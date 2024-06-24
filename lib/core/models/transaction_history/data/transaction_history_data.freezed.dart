@@ -21,8 +21,8 @@ TransactionData _$TransactionDataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TransactionData {
   int get total => throw _privateConstructorUsedError;
-  String get limit => throw _privateConstructorUsedError;
-  String get page => throw _privateConstructorUsedError;
+  int get limit => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
   List<TransactionHistory> get data => throw _privateConstructorUsedError;
   bool get loadMore => throw _privateConstructorUsedError;
 
@@ -40,8 +40,8 @@ abstract class $TransactionDataCopyWith<$Res> {
   @useResult
   $Res call(
       {int total,
-      String limit,
-      String page,
+      int limit,
+      int page,
       List<TransactionHistory> data,
       bool loadMore});
 }
@@ -73,11 +73,11 @@ class _$TransactionDataCopyWithImpl<$Res, $Val extends TransactionData>
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -100,8 +100,8 @@ abstract class _$$TransactionDataImplCopyWith<$Res>
   @useResult
   $Res call(
       {int total,
-      String limit,
-      String page,
+      int limit,
+      int page,
       List<TransactionHistory> data,
       bool loadMore});
 }
@@ -131,11 +131,11 @@ class __$$TransactionDataImplCopyWithImpl<$Res>
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -165,9 +165,9 @@ class _$TransactionDataImpl implements _TransactionData {
   @override
   final int total;
   @override
-  final String limit;
+  final int limit;
   @override
-  final String page;
+  final int page;
   final List<TransactionHistory> _data;
   @override
   @JsonKey()
@@ -222,8 +222,8 @@ class _$TransactionDataImpl implements _TransactionData {
 abstract class _TransactionData implements TransactionData {
   const factory _TransactionData(
       {required final int total,
-      required final String limit,
-      required final String page,
+      required final int limit,
+      required final int page,
       final List<TransactionHistory> data,
       final bool loadMore}) = _$TransactionDataImpl;
 
@@ -233,9 +233,9 @@ abstract class _TransactionData implements TransactionData {
   @override
   int get total;
   @override
-  String get limit;
+  int get limit;
   @override
-  String get page;
+  int get page;
   @override
   List<TransactionHistory> get data;
   @override

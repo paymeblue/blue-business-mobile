@@ -41,7 +41,7 @@ class TransationTile extends StatelessWidget {
       height: 20,
       child: FittedBox(
         child: Text(
-          "${typeSymbol()}${transaction.amount}",
+          "${typeSymbol()}${transaction.transactionAmount}",
           style: AppTextStyles.subHeader.copyWith(
             color: typeColor(),
           ),
@@ -56,7 +56,7 @@ class TransationTile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          transaction.senderName ?? "",
+          columnTitle(),
           style: AppTextStyles.header.copyWith(fontSize: 15.5),
         ),
         Text(
@@ -68,22 +68,58 @@ class TransationTile extends StatelessWidget {
     );
   }
 
+  String columnTitle() {
+    switch (getPaymentMode()) {
+      case PaymentMode.blue:
+      case PaymentMode.qr:
+        return transaction.otherPartyName;
+      case PaymentMode.topup:
+        return transaction.otherPartyName;
+      case PaymentMode.withdrawal:
+        return transaction.otherPartyName;
+      case PaymentMode.phone:
+        if (transaction.otherPartyName
+            .toString()
+            .startsWith(RegExp(r"[0-9]"))) {
+          return "+${transaction.otherPartyName}";
+        } else {
+          return transaction.otherPartyName;
+        }
+      case PaymentMode.airtime:
+        return "Airtime Bill";
+      case PaymentMode.data:
+        return "Data Bill";
+      case PaymentMode.electricity:
+        return "Electricity Bill";
+      case PaymentMode.tv:
+        return "Cable TV bill";
+    }
+  }
+
   PaymentMode getPaymentMode() {
     switch (transaction.paymentMode) {
-      case "phone":
-        return PaymentMode.phone;
       case "withdrawal":
         return PaymentMode.withdrawal;
       case "wallet_topup":
         return PaymentMode.topup;
       case "blue-user":
-      default:
         return PaymentMode.blue;
+      case "power":
+        return PaymentMode.electricity;
+      case "data":
+        return PaymentMode.data;
+      case "airtime":
+        return PaymentMode.airtime;
+      case "cable-tv":
+        return PaymentMode.tv;
+      case "phone":
+      default:
+        return PaymentMode.phone;
     }
   }
 
   TransactionType getTransactionType() {
-    switch (transaction.type?.toLowerCase()) {
+    switch (transaction.transactionType?.toLowerCase()) {
       case "credit":
         return TransactionType.credit;
       case "debit":
@@ -101,8 +137,15 @@ class TransationTile extends StatelessWidget {
       case PaymentMode.withdrawal:
         return AppAssets.images.icons.virtualBank.svg();
       case PaymentMode.phone:
-      default:
         return defaultImage();
+      case PaymentMode.airtime:
+        return AppAssets.images.icons.airtime.svg();
+      case PaymentMode.data:
+        return AppAssets.images.icons.data.svg();
+      case PaymentMode.electricity:
+        return AppAssets.images.icons.electricity.svg();
+      case PaymentMode.tv:
+        return AppAssets.images.icons.tv.svg();
     }
   }
 
@@ -116,7 +159,7 @@ class TransationTile extends StatelessWidget {
       ),
       alignment: Alignment.center,
       child: Text(
-        transaction.senderName.initials,
+        transaction.otherPartyName.initials,
         style: AppTextStyles.smallButtonText.copyWith(color: AppColors.white),
       ),
     );
@@ -153,7 +196,7 @@ class TransationTile extends StatelessWidget {
   String amountString() {
     final formatCurrency = NumberFormat.simpleCurrency(name: nairaSymbol());
 
-    return formatCurrency.format(transaction.amount);
+    return formatCurrency.format(double.parse(transaction.transactionAmount));
   }
 
   String typeSymbol() {
