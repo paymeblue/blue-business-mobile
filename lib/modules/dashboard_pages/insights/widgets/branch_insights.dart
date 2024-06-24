@@ -38,29 +38,30 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
         children: [
           branchSelect(),
           20.verticalGap,
-          if (widget.model.branch == null)
-            Expanded(child: emptyBody(widget.model))
-          else ...[
-            FilterTab(
-              selectedValue: widget.model.selectedType,
-              tabs: widget.model.types,
-              onChanged: widget.model.onTypeChanged,
-            ),
-            25.verticalGap,
-            Expanded(
-              child: RefreshIndicator(
-                onRefresh: () async {
-                  widget.model.getAnalytics();
-                },
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    salesStatsContainer(widget.model),
-                  ],
-                ),
-              ),
-            )
-          ]
+          FilterTab(
+            selectedValue: widget.model.selectedType,
+            tabs: widget.model.types,
+            onChanged: widget.model.onTypeChanged,
+          ),
+          25.verticalGap,
+          Expanded(
+            child: widget.model.branch == null
+                ? Align(
+                    alignment: Alignment.center,
+                    child: emptyBody(widget.model),
+                  )
+                : RefreshIndicator(
+                    onRefresh: () async {
+                      widget.model.getAnalytics();
+                    },
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        salesStatsContainer(widget.model),
+                      ],
+                    ),
+                  ),
+          )
         ],
       ),
     );
