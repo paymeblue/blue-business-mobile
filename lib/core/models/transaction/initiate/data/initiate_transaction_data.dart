@@ -7,6 +7,7 @@ part 'initiate_transaction_data.g.dart';
 class InitiateTransactionData with _$InitiateTransactionData {
   const factory InitiateTransactionData({
     required int id,
+    required String transactionId,
     required String amount,
     required String status,
     required String createdAt,

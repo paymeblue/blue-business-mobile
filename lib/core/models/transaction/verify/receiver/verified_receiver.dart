@@ -11,8 +11,8 @@ class VerifiedReceiver with _$VerifiedReceiver {
     String? walletCode,
     required String receiverName,
     required String phone,
-    required String amount,
-    required int charge,
+    required double amount,
+    required double charge,
   }) = _VerifiedReceiver;
 
   factory VerifiedReceiver.fromJson(Map<String, dynamic> json) =>

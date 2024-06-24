@@ -35,7 +35,8 @@ class QrPaymentViewModel extends BaseViewModel {
 
     verify(val).then((value) {
       if (value.status == "success") {
-        context.go("${RoutePaths.confirmPaymentPath}/blue-user/${data.id}",
+        context.go(
+            "${RoutePaths.confirmPaymentPath}/blue-user/${data.transactionId}",
             extra: value.data);
       } else {
         AppNotification.error(message: value.message);
@@ -49,7 +50,7 @@ class QrPaymentViewModel extends BaseViewModel {
 
     VerifiedReceiverRequest request = VerifiedReceiverRequest(
       receiver: identifier,
-      transactionId: data.id,
+      transactionId: data.transactionId,
     );
 
     VerifiedReceiverResponse resp = await TransactionService(

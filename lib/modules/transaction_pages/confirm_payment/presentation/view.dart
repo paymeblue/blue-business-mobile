@@ -184,14 +184,14 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
   List<Widget> paymentTitleAndSubtitle() {
     return [
       Text(
-        "Send ${nairaSymbol()}${double.parse(widget.data!.amount).toStringAsFixed(2)}",
+        "Send ${nairaSymbol()}${widget.data!.amount.toStringAsFixed(2)}",
         style: AppTextStyles.header,
       ),
       8.verticalGap,
       SizedBox(
         width: 330,
         child: Text(
-          "You are about to send ${nairaSymbol()}${double.parse(widget.data!.amount).toStringAsFixed(2)} to the following ${modeString()}.",
+          "You are about to send ${nairaSymbol()}${widget.data!.amount.toStringAsFixed(2)} to the following ${modeString()}.",
           style: AppTextStyles.subHeader,
           textAlign: TextAlign.start,
         ),
@@ -239,9 +239,9 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
           decoration: const BoxDecoration(
               shape: BoxShape.circle, color: AppColors.primary),
           child: Text(
-            widget.data!.receiverName[0],
+            widget.data!.receiverName.initials,
             style: AppTextStyles.header
-                .copyWith(color: AppColors.white, fontSize: 18.5),
+                .copyWith(color: AppColors.white, fontSize: 17.5),
           ),
         );
       case "blue-user":
