@@ -75,6 +75,7 @@ class FilterTab extends StatelessWidget {
           child: Text(
             tabs[index],
             style: AppTextStyles.largeButtonText.copyWith(
+              fontSize: 15,
               color: selectedValue == tabs[index]
                   ? AppColors.white
                   : AppColors.textColor,

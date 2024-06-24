@@ -2,8 +2,10 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
+import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
@@ -17,6 +19,7 @@ import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/modules/dashboard_pages/home/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:blue_business/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -121,10 +124,10 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  bool _saleL = false;
-  bool get salesLoading => _saleL;
-  set salesLoading(bool v) {
-    _saleL = v;
+  FetchState _analyticsState = FetchState.complete;
+  FetchState get analyticsState => _analyticsState;
+  set analyticsState(FetchState s) {
+    _analyticsState = s;
     notifyListeners();
   }
 
@@ -149,7 +152,23 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getAnalytics() async {}
+  getAnalytics() async {
+    analyticsState = FetchState.loading;
+    AnalyticsResponse response = await InsightsService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getAnalytics("weekly")
+        .onError((error, stackTrace) =>
+            AnalyticsResponse(message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      analyticsState = FetchState.complete;
+      analyticsData = response.data;
+      calculateIncrease();
+    } else {
+      analyticsState = FetchState.error;
+      AppNotification.error(message: response.message);
+    }
+  }
 
   calculateIncrease() {
     double currentMobile = double.parse(analyticsData?.mobile.current ?? "0.0");

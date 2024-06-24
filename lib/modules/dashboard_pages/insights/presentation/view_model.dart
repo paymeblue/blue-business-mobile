@@ -1,12 +1,22 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
+import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
 import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/monthly/monthly_line_chart_data.dart';
+import 'package:blue_business/core/models/sales_analytics/response/sales_analytics_response.dart';
 import 'package:blue_business/core/models/sales_analytics/weekly/weekly_line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/yearly/yearly_line_chart_data.dart';
 import 'package:blue_business/core/models/spending_analytics/data/spending_analytics_data.dart';
+import 'package:blue_business/core/models/spending_analytics/response/spending_analytics_response.dart';
+import 'package:blue_business/core/models/tab_item/tab_item.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,8 +32,8 @@ class InsightsViewModel extends BaseViewModel {
 
   getAnalytics() async {
     getSalesAnalytics();
-    // await getLineChartData();
-    // await getSpending();
+    await getLineChartData();
+    await getSpending();
   }
 
   goBack(BuildContext context) {
@@ -50,6 +60,22 @@ class InsightsViewModel extends BaseViewModel {
     _gettingSalesData = value;
     notifyListeners();
   }
+
+  int _tab = 0;
+  int get currTab => _tab;
+  set currTab(int i) {
+    _tab = i;
+    notifyListeners();
+  }
+
+  List<TabItem> tabs() => [
+        TabItem(
+          name: "General Insights",
+        ),
+        TabItem(
+          name: "Branch Insights",
+        ),
+      ];
 
   List<LineInputData> _data = [];
   List<LineInputData> get inputData => _data;
@@ -91,6 +117,74 @@ class InsightsViewModel extends BaseViewModel {
   set totalSpending(double s) {
     _totalS = s;
     notifyListeners();
+  }
+
+  getSpending() async {
+    SpendingAnalyticsResponse response = await InsightsService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getSpending(selectedType.toLowerCase())
+        .onError((error, stackTrace) => SpendingAnalyticsResponse(
+            message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      totalSpending = double.parse(response.data!.mobileSum) +
+          double.parse(response.data!.desktopSum);
+      if (totalSpending == 0) {
+        pieValues[1] = .5;
+        pieValues[0] = .5;
+      } else {
+        pieValues[1] = double.parse(response.data!.mobileSum) / totalSpending;
+        pieValues[0] = double.parse(response.data!.desktopSum) / totalSpending;
+      }
+    } else {
+      AppNotification.error(message: response.message);
+    }
+  }
+
+  getLineChartData() async {
+    gettingSalesData = true;
+    SalesAnalyticsResponse response = await InsightsService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getSales(
+          selectedType.toLowerCase(),
+        )
+        .onError((error, stackTrace) => SalesAnalyticsResponse(
+            message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      if (selectedType == types[0]) {
+        weeklyData =
+            response.data!.map((e) => WeeklyLineChartData.fromJson(e)).toList();
+        inputData = response.data!
+            .map((e) => LineInputData.fromJson(e))
+            .toList()
+            .reversed
+            .toList();
+      } else if (selectedType == types[1]) {
+        monthlyData = response.data!
+            .map((e) => MonthlyLineChartData.fromJson(e))
+            .toList();
+        inputData = response.data!
+            .map(
+                (e) => LineInputData.fromJson(e).copyWith(label: e["label"][0]))
+            .toList()
+            .reversed
+            .toList();
+      } else {
+        yearlyData =
+            response.data!.map((e) => YearlyLineChartData.fromJson(e)).toList();
+        inputData = response.data!
+            .map((e) => LineInputData.fromJson(e)
+                .copyWith(label: "'${e["label"].toString().substring(2)}"))
+            .toList()
+            .reversed
+            .toList();
+      }
+    } else {
+      AppNotification.error(message: response.message);
+    }
+
+    gettingSalesData = false;
   }
 
   List<double> _pie = [1, 0];
@@ -135,7 +229,22 @@ class InsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getSalesAnalytics() async {}
+  getSalesAnalytics() async {
+    salesLoading = true;
+    AnalyticsResponse response = await InsightsService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getAnalytics(selectedType.toLowerCase())
+        .onError((error, stackTrace) =>
+            AnalyticsResponse(message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      salesData = response.data;
+      calculateIncrease();
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    salesLoading = false;
+  }
 
   calculateIncrease() {
     double currentMobile = double.parse(salesData?.mobile.current ?? "0.0");

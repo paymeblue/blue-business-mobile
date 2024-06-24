@@ -43,6 +43,8 @@ class _InsightsViewState extends State<InsightsView> {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
             child: Column(
               children: [
+                tabs(model),
+                12.verticalGap,
                 FilterTab(
                   selectedValue: model.selectedType,
                   tabs: model.types,
@@ -69,6 +71,52 @@ class _InsightsViewState extends State<InsightsView> {
           ),
         );
       },
+    );
+  }
+
+  Widget tabs(InsightsViewModel model) {
+    return SizedBox(
+      height: 40,
+      width: context.mediaQuery.size.width,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: model.tabs().length,
+        itemBuilder: (context, i) {
+          return customTab(model, i, context);
+        },
+      ),
+    );
+  }
+
+  Widget customTab(InsightsViewModel model, int i, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        model.currTab = i;
+      },
+      child: Container(
+        decoration: const BoxDecoration(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              model.tabs()[i].name,
+              style: AppTextStyles.midHeader.copyWith(
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            5.verticalGap,
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 350),
+              height: model.tabs()[i] == model.tabs()[model.currTab] ? 4 : 2.2,
+              width: model.size.width / 2,
+              decoration: BoxDecoration(
+                color: i == model.currTab ? AppColors.primary : null,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 

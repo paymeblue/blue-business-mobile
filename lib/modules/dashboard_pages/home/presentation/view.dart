@@ -213,7 +213,7 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (model.salesLoading)
+                if (model.analyticsState == FetchState.loading)
                   salesShimmer()
                 else ...[
                   Row(
