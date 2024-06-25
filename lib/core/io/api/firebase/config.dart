@@ -61,9 +61,9 @@ class FirebaseConfig {
   static initNotification() async {
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
-      alert: true,
+      alert: false,
       sound: true,
-      badge: true,
+      badge: false,
     );
 
     FirebaseMessaging.instance.getInitialMessage().then(_handleMessage);

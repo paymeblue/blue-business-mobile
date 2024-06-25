@@ -12,6 +12,7 @@ import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/widgets/modals/dialogs.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -99,6 +100,15 @@ class BranchHomeViewModel extends BaseViewModel {
     } catch (e) {
       branchPagingController.error = AppErrorHandler.getErrorMessage(e);
     }
+  }
+
+  onDeleteBranch(BuildContext context, Branch branch) {
+    BlueDialog.primary(
+        title: "Delete branch",
+        subtitle: "Are you sure you want to delete ${branch.name.sentenceCase}",
+        onDelete: () {
+          deleteBranch(context, branch);
+        });
   }
 
   deleteBranch(BuildContext context, Branch branch) async {

@@ -146,49 +146,69 @@ class _BranchHomeViewState extends State<BranchHomeView> {
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.bgGrey),
           borderRadius: BorderRadius.circular(5)),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            item.name.toUpperCase(),
-            style:
-                AppTextStyles.subHeader.copyWith(fontWeight: FontWeight.w400),
-          ),
-          12.verticalGap,
-          Text(
-            "Total Revenue",
-            style: AppTextStyles.smallText.copyWith(
-                color: AppColors.bodyTextColor, fontWeight: FontWeight.w500),
-          ),
-          Text(
-            "${nairaSymbol()}30,000",
-            style: AppTextStyles.header,
-          ),
-          12.verticalGap,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                width: model.size.width / 2.5,
-                height: 40,
-                child: AppButton.primary(
-                  title: "View Insights",
-                  onTap: () {},
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.name.toUpperCase(),
+                  style: AppTextStyles.subHeader
+                      .copyWith(fontWeight: FontWeight.w400),
                 ),
-              ),
-              SizedBox(
-                width: model.size.width / 2.5,
-                height: 40,
-                child: AppButton.ghostPrimary(
-                  title: "Edit branch",
-                  onTap: () {
-                    model.goToAddBranch(context, item);
-                    // model.deleteBranch(context, item);
-                  },
+                12.verticalGap,
+                Text(
+                  "Total Revenue",
+                  style: AppTextStyles.smallText.copyWith(
+                      color: AppColors.bodyTextColor,
+                      fontWeight: FontWeight.w500),
                 ),
-              )
-            ],
+                Text(
+                  "${nairaSymbol()}30,000",
+                  style: AppTextStyles.header,
+                ),
+                12.verticalGap,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: model.size.width / 2.5,
+                      height: 40,
+                      child: AppButton.primary(
+                        title: "View Insights",
+                        onTap: () {},
+                      ),
+                    ),
+                    SizedBox(
+                      width: model.size.width / 2.5,
+                      height: 40,
+                      child: AppButton.ghostPrimary(
+                        title: "Edit branch",
+                        onTap: () {
+                          model.goToAddBranch(context, item);
+                          // model.deleteBranch(context, item);
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
+          6.horizontalGap,
+          GestureDetector(
+            onTap: () {
+              model.onDeleteBranch(context, item);
+            },
+            child: Container(
+              height: 35,
+              width: 35,
+              decoration: const BoxDecoration(),
+              child: AppAssets.images.icons.delete.svg(),
+            ),
+          )
         ],
       ),
     );
