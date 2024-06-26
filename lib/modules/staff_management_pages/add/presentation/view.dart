@@ -5,9 +5,11 @@ import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
+import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/password_validation/password_validation.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:blue_business/widgets/textfield/dropdown.dart';
@@ -135,15 +137,17 @@ class _AddStaffViewState extends State<AddStaffView> {
           value: model.role,
         ),
         12.verticalGap,
-        BlueDropdown.branch(
-          controller: model.branchPagingController,
-          onChanged: (val) {
-            model.branch = val;
-          },
-          searchController: model.searchController,
-          title: "Set branch",
-          value: model.branch,
-        ),
+        model.branchSetState == FetchState.loading
+            ? BlueLoadingTile.withoutImage(title: "Set branch")
+            : BlueDropdown.branch(
+                controller: model.branchPagingController,
+                onChanged: (val) {
+                  model.branch = val;
+                },
+                searchController: model.searchController,
+                title: "Set branch",
+                value: model.branch,
+              ),
         6.verticalGap,
         info(model),
         12.verticalGap,

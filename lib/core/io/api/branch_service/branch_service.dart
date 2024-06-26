@@ -36,7 +36,7 @@ abstract class BranchService {
     @Body() required CreateBranchRequest request,
   });
 
-  @DELETE("/branches/{id}")
+  @GET("/branches/{id}/delete")
   Future<CreateBranchResponse> deleteBranch({
     @Path("id") required int id,
   });

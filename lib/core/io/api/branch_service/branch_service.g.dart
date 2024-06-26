@@ -151,13 +151,13 @@ class _BranchService implements BranchService {
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<CreateBranchResponse>(Options(
-      method: 'DELETE',
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/branches/${id}',
+              '/branches/${id}/delete',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -18,6 +18,7 @@ import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/modals/dialogs.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:file_picker/file_picker.dart';
@@ -47,11 +48,12 @@ class AddStaffViewModel extends BaseViewModel {
         .replaceFirst(selectedCountry!.dialCode, "")
         .replaceFirst("+", "");
     role = roles[roles.indexOf(staff.role.sentenceCase)];
-    branch = await getBranchById(staff.branchId);
+    branchSetState = FetchState.loading;
+    await getBranchById(staff.branchId);
   }
 
-  Future<Branch?> getBranchById(int id) async {
-    AppLoader.start();
+  getBranchById(int id) async {
+    branchSetState = FetchState.loading;
 
     GetBranchResponse response = await BranchService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
@@ -64,10 +66,12 @@ class AddStaffViewModel extends BaseViewModel {
     AppLoader.stop();
 
     if (response.status == "success") {
-      return response.data!;
+      branchSetState = FetchState.complete;
     } else {
-      return null;
+      branchSetState = FetchState.error;
     }
+
+    branch = response.data;
   }
 
   goBack(BuildContext context) {
@@ -153,19 +157,35 @@ class AddStaffViewModel extends BaseViewModel {
       ];
 
   bool isActive(Staff? staff) {
-    return (staff == null &&
-            nameController.text.isNotEmpty &&
-            phoneController.text.isNotEmpty &&
-            branch != null &&
-            role != null &&
-            isValidPassword()) ||
-        (staff != null &&
-            (nameController.text != staff.name ||
-                phoneController.text != staff.phone.replaceFirst("+", "") ||
-                isValidPassword() ||
-                role != staff.role.sentenceCase ||
-                branch?.id != staff.branchId ||
-                path != null));
+    return staff == null && canCreate() || staff != null && canEdit(staff);
+  }
+
+  FetchState _branchSetState = FetchState.complete;
+  FetchState get branchSetState => _branchSetState;
+  set branchSetState(FetchState s) {
+    _branchSetState = s;
+    notifyListeners();
+  }
+
+  bool canCreate() {
+    return nameController.text.isNotEmpty &&
+        phoneController.text.isNotEmpty &&
+        branch != null &&
+        role != null &&
+        isValidPassword();
+  }
+
+  bool canEdit(Staff staff) {
+    return branchSetState != FetchState.loading &&
+        (nameController.text.toLowerCase() != staff.name.toLowerCase() ||
+            phoneController.text !=
+                staff.phone
+                    .replaceFirst(selectedCountry!.dialCode, "")
+                    .replaceFirst("+", "") ||
+            isValidPassword() ||
+            role?.toLowerCase() != staff.role.toLowerCase() ||
+            branch?.id != staff.branchId ||
+            path != null);
   }
 
   bool isValidPassword() {

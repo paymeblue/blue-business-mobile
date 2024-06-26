@@ -347,7 +347,7 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToBlueWeb() async {
-    Uri url = Uri.parse("https://paymeblue.com");
+    Uri url = Uri.parse("https://paymeblue.com/business");
 
     await launchUrl(url, mode: LaunchMode.inAppWebView);
   }

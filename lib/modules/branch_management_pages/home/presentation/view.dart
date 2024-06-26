@@ -174,7 +174,7 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: model.size.width / 2.5,
+                      width: model.size.width / 2.6,
                       height: 40,
                       child: AppButton.primary(
                         title: "View Insights",
@@ -182,7 +182,7 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                       ),
                     ),
                     SizedBox(
-                      width: model.size.width / 2.5,
+                      width: model.size.width / 2.6,
                       height: 40,
                       child: AppButton.ghostPrimary(
                         title: "Edit branch",
@@ -203,9 +203,10 @@ class _BranchHomeViewState extends State<BranchHomeView> {
               model.onDeleteBranch(context, item);
             },
             child: Container(
-              height: 35,
-              width: 35,
+              height: 25,
+              width: 25,
               decoration: const BoxDecoration(),
+              padding: const EdgeInsets.all(4),
               child: AppAssets.images.icons.delete.svg(),
             ),
           )
