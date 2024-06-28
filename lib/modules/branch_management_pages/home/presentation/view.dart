@@ -178,7 +178,9 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                       height: 40,
                       child: AppButton.primary(
                         title: "View Insights",
-                        onTap: () {},
+                        onTap: () {
+                          model.goToBranchInsights(context, item);
+                        },
                       ),
                     ),
                     SizedBox(

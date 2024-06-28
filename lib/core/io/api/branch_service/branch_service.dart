@@ -2,6 +2,7 @@ import 'package:blue_business/core/models/branches/create/data/create_branch_req
 import 'package:blue_business/core/models/branches/create/response/create_branch_response.dart';
 import 'package:blue_business/core/models/branches/details/response/get_branch_response.dart';
 import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
+import 'package:blue_business/core/models/sales_analytics/response/sales_analytics_response.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -39,5 +40,13 @@ abstract class BranchService {
   @GET("/branches/{id}/delete")
   Future<CreateBranchResponse> deleteBranch({
     @Path("id") required int id,
+  });
+
+  @GET("/branches/{id}/insights")
+  Future<SalesAnalyticsResponse> getBranchInsights({
+    @Path("id") required int branchId,
+    @Query("start_date") String? start,
+    @Query("end_date") String? end,
+    @Query("payment_method") String? method,
   });
 }

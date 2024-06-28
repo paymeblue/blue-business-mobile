@@ -43,6 +43,7 @@ import 'package:blue_business/modules/bill_pages/electicity/pin/presentation/vie
 import 'package:blue_business/modules/bill_pages/electicity/review/presentation/view.dart';
 import 'package:blue_business/modules/bill_pages/electicity/success/presentation/view.dart';
 import 'package:blue_business/modules/bills/presentation/view.dart';
+import 'package:blue_business/modules/branch_insights/presentation/view.dart';
 import 'package:blue_business/modules/branch_management_pages/add/presentation/view.dart';
 import 'package:blue_business/modules/branch_management_pages/home/presentation/view.dart';
 import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.dart';
@@ -510,6 +511,14 @@ GoRouter router = GoRouter(
       builder: (context, state) {
         return AddBranchView(
           branch: state.extra as Branch?,
+        );
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.branchInsightsPath,
+      builder: (context, state) {
+        return BranchInsightsView(
+          branch: state.extra as Branch,
         );
       },
     ),

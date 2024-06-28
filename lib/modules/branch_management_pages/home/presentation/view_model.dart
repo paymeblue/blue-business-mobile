@@ -129,4 +129,8 @@ class BranchHomeViewModel extends BaseViewModel {
     }
     AppLoader.stop();
   }
+
+  goToBranchInsights(BuildContext context, Branch branch) {
+    context.push(RoutePaths.branchInsightsPath, extra: branch);
+  }
 }
