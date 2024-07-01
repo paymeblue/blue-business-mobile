@@ -1,3 +1,4 @@
+import 'package:blue_business/core/models/business_dash/response/business_dash_response.dart';
 import 'package:blue_business/core/models/topup_account/response/topup_response.dart';
 import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -15,4 +16,7 @@ abstract class DashService {
 
   @GET("/wallet-accounts")
   Future<TopupResponse> getWalletAccount();
+
+  @GET("/business-profiles/dashboard")
+  Future<BusinessDashResponse> getDashDetails();
 }

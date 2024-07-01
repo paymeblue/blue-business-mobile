@@ -13,6 +13,7 @@ import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:intl/intl.dart';
 
 import 'view_model.dart';
 
@@ -140,6 +141,8 @@ class _BranchHomeViewState extends State<BranchHomeView> {
   }
 
   Widget branchTile(BranchHomeViewModel model, Branch item) {
+    NumberFormat format = NumberFormat("#,##0.00");
+    String amount = format.format(double.parse(item.totalAmount));
     return Container(
       width: model.size.width,
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -166,7 +169,7 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                       fontWeight: FontWeight.w500),
                 ),
                 Text(
-                  "${nairaSymbol()}30,000",
+                  "${nairaSymbol()}$amount",
                   style: AppTextStyles.header,
                 ),
                 12.verticalGap,

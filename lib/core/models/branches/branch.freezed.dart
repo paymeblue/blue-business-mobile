@@ -24,6 +24,7 @@ mixin _$Branch {
   String get name => throw _privateConstructorUsedError;
   String get location => throw _privateConstructorUsedError;
   String get staffSize => throw _privateConstructorUsedError;
+  String get totalAmount => throw _privateConstructorUsedError;
   int? get businessId => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
@@ -42,6 +43,7 @@ abstract class $BranchCopyWith<$Res> {
       String name,
       String location,
       String staffSize,
+      String totalAmount,
       int? businessId,
       String? createdAt});
 }
@@ -63,6 +65,7 @@ class _$BranchCopyWithImpl<$Res, $Val extends Branch>
     Object? name = null,
     Object? location = null,
     Object? staffSize = null,
+    Object? totalAmount = null,
     Object? businessId = freezed,
     Object? createdAt = freezed,
   }) {
@@ -82,6 +85,10 @@ class _$BranchCopyWithImpl<$Res, $Val extends Branch>
       staffSize: null == staffSize
           ? _value.staffSize
           : staffSize // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalAmount: null == totalAmount
+          ? _value.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
               as String,
       businessId: freezed == businessId
           ? _value.businessId
@@ -107,6 +114,7 @@ abstract class _$$BranchImplCopyWith<$Res> implements $BranchCopyWith<$Res> {
       String name,
       String location,
       String staffSize,
+      String totalAmount,
       int? businessId,
       String? createdAt});
 }
@@ -126,6 +134,7 @@ class __$$BranchImplCopyWithImpl<$Res>
     Object? name = null,
     Object? location = null,
     Object? staffSize = null,
+    Object? totalAmount = null,
     Object? businessId = freezed,
     Object? createdAt = freezed,
   }) {
@@ -145,6 +154,10 @@ class __$$BranchImplCopyWithImpl<$Res>
       staffSize: null == staffSize
           ? _value.staffSize
           : staffSize // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalAmount: null == totalAmount
+          ? _value.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
               as String,
       businessId: freezed == businessId
           ? _value.businessId
@@ -166,6 +179,7 @@ class _$BranchImpl implements _Branch {
       required this.name,
       required this.location,
       this.staffSize = "0",
+      this.totalAmount = "0",
       this.businessId,
       this.createdAt});
 
@@ -182,13 +196,16 @@ class _$BranchImpl implements _Branch {
   @JsonKey()
   final String staffSize;
   @override
+  @JsonKey()
+  final String totalAmount;
+  @override
   final int? businessId;
   @override
   final String? createdAt;
 
   @override
   String toString() {
-    return 'Branch(id: $id, name: $name, location: $location, staffSize: $staffSize, businessId: $businessId, createdAt: $createdAt)';
+    return 'Branch(id: $id, name: $name, location: $location, staffSize: $staffSize, totalAmount: $totalAmount, businessId: $businessId, createdAt: $createdAt)';
   }
 
   @override
@@ -202,6 +219,8 @@ class _$BranchImpl implements _Branch {
                 other.location == location) &&
             (identical(other.staffSize, staffSize) ||
                 other.staffSize == staffSize) &&
+            (identical(other.totalAmount, totalAmount) ||
+                other.totalAmount == totalAmount) &&
             (identical(other.businessId, businessId) ||
                 other.businessId == businessId) &&
             (identical(other.createdAt, createdAt) ||
@@ -210,8 +229,8 @@ class _$BranchImpl implements _Branch {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, location, staffSize, businessId, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, name, location, staffSize,
+      totalAmount, businessId, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -233,6 +252,7 @@ abstract class _Branch implements Branch {
       required final String name,
       required final String location,
       final String staffSize,
+      final String totalAmount,
       final int? businessId,
       final String? createdAt}) = _$BranchImpl;
 
@@ -246,6 +266,8 @@ abstract class _Branch implements Branch {
   String get location;
   @override
   String get staffSize;
+  @override
+  String get totalAmount;
   @override
   int? get businessId;
   @override

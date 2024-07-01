@@ -6,6 +6,8 @@ import 'package:blue_business/core/io/api/insights_service/insights_service.dart
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
+import 'package:blue_business/core/models/business_dash/data/business_dash_data.dart';
+import 'package:blue_business/core/models/business_dash/response/business_dash_response.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
@@ -37,6 +39,7 @@ class HomeViewModel extends BaseViewModel {
 
   getDashData() async {
     getWalletBalance();
+    getBusinessData();
     if (locator<AppStateValues>().todoState != FetchState.complete) {
       getTodos();
     }
@@ -78,7 +81,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   refreshWalletContainer() {
-    getWalletBalance();
+    getBusinessData();
 
     getTodos();
   }
@@ -87,6 +90,20 @@ class HomeViewModel extends BaseViewModel {
   FetchState get walletState => _walletState;
   set walletState(FetchState s) {
     _walletState = s;
+    notifyListeners();
+  }
+
+  FetchState _businessDataState = FetchState.complete;
+  FetchState get businessDataState => _businessDataState;
+  set businessDataState(FetchState s) {
+    _businessDataState = s;
+    notifyListeners();
+  }
+
+  BusinessDashData? _businessDash;
+  BusinessDashData? get businessDash => _businessDash;
+  set businessDash(BusinessDashData? v) {
+    _businessDash = v;
     notifyListeners();
   }
 
@@ -104,6 +121,23 @@ class HomeViewModel extends BaseViewModel {
       locator<AppStateValues>().wallet = resp.data;
     } else {
       walletState = FetchState.error;
+    }
+  }
+
+  getBusinessData() async {
+    businessDataState = FetchState.loading;
+
+    BusinessDashResponse resp =
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getDashDetails()
+            .onError((error, stackTrace) => BusinessDashResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
+
+    if (resp.status == "success") {
+      businessDataState = FetchState.complete;
+      businessDash = resp.data;
+    } else {
+      businessDataState = FetchState.error;
     }
   }
 

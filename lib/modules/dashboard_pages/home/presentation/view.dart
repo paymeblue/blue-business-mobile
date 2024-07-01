@@ -504,11 +504,7 @@ class _HomeViewState extends State<HomeView> {
           color: AppColors.primary,
           borderRadius: BorderRadius.circular(11),
         ),
-        child:
-            // model.showEmptyState()
-            //     ? refreshWalletContainer(model)
-            //     :
-            Column(
+        child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -526,12 +522,14 @@ class _HomeViewState extends State<HomeView> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: model.walletState == FetchState.loading
+                  child: model.businessDataState == FetchState.loading
                       ? walletAmountShimmer()
                       : walletBalanceContainer(model),
                 ),
                 8.horizontalGap,
-                volumeContainer(model),
+                model.businessDataState == FetchState.loading
+                    ? walletAmountShimmer()
+                    : volumeContainer(model),
               ],
             ),
             const Spacer(
@@ -541,10 +539,14 @@ class _HomeViewState extends State<HomeView> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: branchContainer(model),
+                  child: model.businessDataState == FetchState.loading
+                      ? walletAmountShimmer()
+                      : branchContainer(model),
                 ),
                 8.horizontalGap,
-                staffContainer(model),
+                model.businessDataState == FetchState.loading
+                    ? walletAmountShimmer()
+                    : staffContainer(model),
               ],
             )
           ],
@@ -556,6 +558,7 @@ class _HomeViewState extends State<HomeView> {
   Column refreshWalletContainer(HomeViewModel model) {
     return Column(
       children: [
+        const Spacer(),
         GestureDetector(
           onTap: model.refreshWalletContainer,
           child: Container(
@@ -571,13 +574,14 @@ class _HomeViewState extends State<HomeView> {
         ),
         const Spacer(),
         SizedBox(
-          width: 160,
+          width: 200,
           child: Text(
             "Please pull down to refresh your wallet content.",
             style: AppTextStyles.smallText.copyWith(height: 1),
             textAlign: TextAlign.center,
           ),
-        )
+        ),
+        const Spacer(),
       ],
     );
   }
@@ -700,6 +704,8 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget walletBalanceContainer(HomeViewModel model) {
+    String balance = format.format(
+        double.parse(locator<AppStateValues>().wallet?.balance ?? "0.00"));
     return SizedBox(
       height: 50,
       child: Column(
@@ -719,7 +725,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           FittedBox(
             child: Text(
-              "${nairaSymbol()}${model.hideBalance ? locator<AppStateValues>().wallet!.balance.toString().replaceAll(RegExp(r"[0-9]"), "*") : format.format(locator<AppStateValues>().wallet!.balance)}",
+              "${nairaSymbol()}${model.hideBalance ? balance.replaceAll(RegExp(r"[0-9]"), "*") : balance}",
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
                 fontSize: 18,

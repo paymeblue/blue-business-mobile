@@ -10,6 +10,7 @@ class Branch with _$Branch {
     required String name,
     required String location,
     @Default("0") String staffSize,
+    @Default("0") String totalAmount,
     int? businessId,
     String? createdAt,
   }) = _Branch;
