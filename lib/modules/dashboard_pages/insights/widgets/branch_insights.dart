@@ -6,6 +6,7 @@ import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/modules/dashboard_pages/insights/presentation/view_model.dart';
 import 'package:blue_business/widgets/charts/line_chart.dart';
 import 'package:blue_business/widgets/paging/error.dart';
@@ -280,7 +281,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
             color: AppColors.grey,
           ),
           12.verticalGap,
-          model.salesLoading
+          model.salesState == FetchState.loading
               ? salesTotalShimmer()
               : Container(
                   height: 65,
@@ -311,11 +312,12 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                     ],
                   ),
                 ),
-          if (model.inputData.isNotEmpty || model.gettingSalesData) ...[
+          if (model.branchInputData.isNotEmpty ||
+              model.salesState == FetchState.loading) ...[
             lineChart(model),
             20.verticalGap
           ],
-          model.salesLoading
+          model.salesState == FetchState.loading
               ? salesAmountShimmer()
               : Container(
                   padding: const EdgeInsets.symmetric(vertical: 17),
@@ -380,7 +382,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
   }
 
   Widget lineChart(InsightsViewModel model) {
-    if (model.gettingSalesData) {
+    if (model.salesState == FetchState.loading) {
       return Container(
         height: 120,
         alignment: Alignment.center,
@@ -389,7 +391,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
       );
     } else {
       return BlueLineChart(
-        inputData: model.inputData,
+        inputData: model.branchInputData,
       );
     }
   }

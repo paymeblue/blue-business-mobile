@@ -5,7 +5,10 @@ import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
+import 'package:blue_business/core/models/sales_analytics/monthly/monthly_line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/response/sales_analytics_response.dart';
+import 'package:blue_business/core/models/sales_analytics/weekly/weekly_line_chart_data.dart';
+import 'package:blue_business/core/models/sales_analytics/yearly/yearly_line_chart_data.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -82,6 +85,27 @@ class BranchInsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  List<WeeklyLineChartData> _weeklyData = [];
+  List<WeeklyLineChartData> get weeklyData => _weeklyData;
+  set weeklyData(List<WeeklyLineChartData> d) {
+    _weeklyData = d;
+    notifyListeners();
+  }
+
+  List<MonthlyLineChartData> _monthlyData = [];
+  List<MonthlyLineChartData> get monthlyData => _monthlyData;
+  set monthlyData(List<MonthlyLineChartData> d) {
+    _monthlyData = d;
+    notifyListeners();
+  }
+
+  List<YearlyLineChartData> _yearlyData = [];
+  List<YearlyLineChartData> get yearlyData => _yearlyData;
+  set yearlyData(List<YearlyLineChartData> d) {
+    _yearlyData = d;
+    notifyListeners();
+  }
+
   getSalesAnalytics() async {
     salesState = FetchState.loading;
     SalesAnalyticsResponse response = await BranchService(
@@ -92,8 +116,34 @@ class BranchInsightsViewModel extends BaseViewModel {
             message: AppErrorHandler.getErrorMessage(error)));
 
     if (response.status == "success") {
-      // salesData = response.data;
-      // calculateIncrease();
+      if (selectedType == types[0]) {
+        weeklyData =
+            response.data!.map((e) => WeeklyLineChartData.fromJson(e)).toList();
+        inputData = response.data!
+            .map((e) => LineInputData.fromJson(e))
+            .toList()
+            .reversed
+            .toList();
+      } else if (selectedType == types[1]) {
+        monthlyData = response.data!
+            .map((e) => MonthlyLineChartData.fromJson(e))
+            .toList();
+        inputData = response.data!
+            .map(
+                (e) => LineInputData.fromJson(e).copyWith(label: e["label"][0]))
+            .toList()
+            .reversed
+            .toList();
+      } else {
+        yearlyData =
+            response.data!.map((e) => YearlyLineChartData.fromJson(e)).toList();
+        inputData = response.data!
+            .map((e) => LineInputData.fromJson(e)
+                .copyWith(label: "'${e["label"].toString().substring(2)}"))
+            .toList()
+            .reversed
+            .toList();
+      }
       log(response.data.toString());
 
       salesState = FetchState.complete;

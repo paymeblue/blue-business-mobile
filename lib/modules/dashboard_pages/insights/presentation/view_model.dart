@@ -21,6 +21,7 @@ import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -41,9 +42,13 @@ class InsightsViewModel extends BaseViewModel {
   }
 
   getAnalytics() async {
-    getSalesAnalytics();
-    await getLineChartData();
-    await getSpending();
+    if (branch == null) {
+      getSalesAnalytics();
+      await getLineChartData();
+      await getSpending();
+    } else {
+      getBranchSalesAnalytics();
+    }
   }
 
   goBack(BuildContext context) {
@@ -75,6 +80,7 @@ class InsightsViewModel extends BaseViewModel {
   int get currTab => _tab;
   set currTab(int i) {
     _tab = i;
+    getAnalytics();
     notifyListeners();
   }
 
@@ -91,6 +97,13 @@ class InsightsViewModel extends BaseViewModel {
   List<LineInputData> get inputData => _data;
   set inputData(List<LineInputData> d) {
     _data = d;
+    notifyListeners();
+  }
+
+  List<LineInputData> _branchdata = [];
+  List<LineInputData> get branchInputData => _branchdata;
+  set branchInputData(List<LineInputData> d) {
+    _branchdata = d;
     notifyListeners();
   }
 
@@ -195,6 +208,62 @@ class InsightsViewModel extends BaseViewModel {
     }
 
     gettingSalesData = false;
+  }
+
+  FetchState _salesState = FetchState.complete;
+  FetchState get salesState => _salesState;
+  set salesState(FetchState value) {
+    _salesState = value;
+    notifyListeners();
+  }
+
+  getBranchSalesAnalytics() async {
+    salesState = FetchState.loading;
+    SalesAnalyticsResponse response = await BranchService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getBranchInsights(
+            branchId: branch!.id, timeInterval: selectedType.toLowerCase())
+        .onError((error, stackTrace) => SalesAnalyticsResponse(
+            message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      // salesData = response.data;
+      // calculateIncrease();
+      if (selectedType == types[0]) {
+        weeklyData =
+            response.data!.map((e) => WeeklyLineChartData.fromJson(e)).toList();
+        branchInputData = response.data!
+            .map((e) => LineInputData.fromJson(e))
+            .toList()
+            .reversed
+            .toList();
+      } else if (selectedType == types[1]) {
+        monthlyData = response.data!
+            .map((e) => MonthlyLineChartData.fromJson(e))
+            .toList();
+        branchInputData = response.data!
+            .map(
+                (e) => LineInputData.fromJson(e).copyWith(label: e["label"][0]))
+            .toList()
+            .reversed
+            .toList();
+      } else {
+        yearlyData =
+            response.data!.map((e) => YearlyLineChartData.fromJson(e)).toList();
+        branchInputData = response.data!
+            .map((e) => LineInputData.fromJson(e)
+                .copyWith(label: "'${e["label"].toString().substring(2)}"))
+            .toList()
+            .reversed
+            .toList();
+      }
+
+      salesState = FetchState.complete;
+    } else {
+      AppNotification.error(message: response.message);
+
+      salesState = FetchState.error;
+    }
   }
 
   List<double> _pie = [1, 0];
@@ -304,6 +373,7 @@ class InsightsViewModel extends BaseViewModel {
   Branch? get branch => _branch;
   set branch(Branch? b) {
     _branch = b;
+    getAnalytics();
     notifyListeners();
   }
 
