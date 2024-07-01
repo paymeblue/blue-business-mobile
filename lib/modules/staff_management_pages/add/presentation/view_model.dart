@@ -63,8 +63,6 @@ class AddStaffViewModel extends BaseViewModel {
               message: AppErrorHandler.getErrorMessage(error)),
         );
 
-    AppLoader.stop();
-
     if (response.status == "success") {
       branchSetState = FetchState.complete;
     } else {

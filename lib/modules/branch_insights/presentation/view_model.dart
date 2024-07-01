@@ -4,6 +4,7 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
+import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/response/sales_analytics_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -15,11 +16,28 @@ import 'package:flutter/material.dart';
 
 class BranchInsightsViewModel extends BaseViewModel {
   late Size size;
+  late int branchId;
 
   init(BuildContext context, int id) {
     size = context.mediaQuery.size;
 
-    getSalesAnalytics(id);
+    branchId = id;
+    selectedType = types[0];
+    getSalesAnalytics();
+  }
+
+  List<String> types = ["Weekly", "Monthly", "Yearly"];
+
+  late String _type;
+  String get selectedType => _type;
+  set selectedType(String v) {
+    _type = v;
+    notifyListeners();
+  }
+
+  onTypeChanged(String t) {
+    selectedType = t;
+    getSalesAnalytics();
   }
 
   FetchState _salesState = FetchState.complete;
@@ -57,11 +75,19 @@ class BranchInsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getSalesAnalytics(int id) async {
+  List<LineInputData> _data = [];
+  List<LineInputData> get inputData => _data;
+  set inputData(List<LineInputData> d) {
+    _data = d;
+    notifyListeners();
+  }
+
+  getSalesAnalytics() async {
     salesState = FetchState.loading;
     SalesAnalyticsResponse response = await BranchService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
-        .getBranchInsights(branchId: id)
+        .getBranchInsights(
+            branchId: branchId, timeInterval: selectedType.toLowerCase())
         .onError((error, stackTrace) => SalesAnalyticsResponse(
             message: AppErrorHandler.getErrorMessage(error)));
 

@@ -45,8 +45,7 @@ abstract class BranchService {
   @GET("/branches/{id}/insights")
   Future<SalesAnalyticsResponse> getBranchInsights({
     @Path("id") required int branchId,
-    @Query("start_date") String? start,
-    @Query("end_date") String? end,
+    @Query("time_interval") required String timeInterval,
     @Query("payment_method") String? method,
   });
 }

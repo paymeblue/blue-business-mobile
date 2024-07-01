@@ -5,6 +5,7 @@ import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/branches/create/response/create_branch_response.dart';
+import 'package:blue_business/core/models/branches/details/response/get_branch_response.dart';
 import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -127,6 +128,26 @@ class BranchHomeViewModel extends BaseViewModel {
     } else {
       AppNotification.error(message: response.message);
     }
+    AppLoader.stop();
+  }
+
+  getBranch(BuildContext context, int id) async {
+    AppLoader.start();
+
+    GetBranchResponse response = await BranchService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getBranchById(id: id)
+        .onError(
+          (error, stackTrace) => GetBranchResponse(
+              message: AppErrorHandler.getErrorMessage(error)),
+        );
+
+    if (response.status == "success") {
+      if (context.mounted) goToAddBranch(context, response.data);
+    } else {
+      AppNotification.error(message: response.message);
+    }
+
     AppLoader.stop();
   }
 

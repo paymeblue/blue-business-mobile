@@ -173,14 +173,12 @@ class _BranchService implements BranchService {
   @override
   Future<SalesAnalyticsResponse> getBranchInsights({
     required int branchId,
-    String? start,
-    String? end,
+    required String timeInterval,
     String? method,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'start_date': start,
-      r'end_date': end,
+      r'time_interval': timeInterval,
       r'payment_method': method,
     };
     queryParameters.removeWhere((k, v) => v == null);

@@ -192,8 +192,7 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                       child: AppButton.ghostPrimary(
                         title: "Edit branch",
                         onTap: () {
-                          model.goToAddBranch(context, item);
-                          // model.deleteBranch(context, item);
+                          model.getBranch(context, item.id);
                         },
                       ),
                     )
