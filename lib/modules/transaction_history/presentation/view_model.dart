@@ -56,7 +56,9 @@ class TransactionHistoryViewModel extends BaseViewModel {
   filterAction() {
     BlueBottomSheet.filter(
       alertTypes,
+      statuses,
       type,
+      status,
       date,
       pickDate,
       selectedDate: (value) {
@@ -64,6 +66,9 @@ class TransactionHistoryViewModel extends BaseViewModel {
       },
       selectedType: (value) {
         type = value;
+      },
+      selectedStatus: (value) {
+        status = value;
       },
       refresh: transactionController.refresh,
     );
@@ -84,6 +89,7 @@ class TransactionHistoryViewModel extends BaseViewModel {
             : selectedType.toLowerCase(),
         paymentMode: type.isEmpty ? null : getType(type),
         date: date.isEmpty ? null : date,
+        status: status.isEmpty ? null : status.toLowerCase(),
       )
           .onError((error, stackTrace) {
         return TransactionResponse(
@@ -138,11 +144,23 @@ class TransactionHistoryViewModel extends BaseViewModel {
     "Withdrawal",
     "Wallet Topup"
   ];
+  List<String> statuses = [
+    "Successful",
+    "Pending",
+    "Failed",
+  ];
 
   String _transactiontype = "";
   String get type => _transactiontype;
   set type(String m) {
     _transactiontype = m;
+    notifyListeners();
+  }
+
+  String _transactionStatus = "";
+  String get status => _transactionStatus;
+  set status(String m) {
+    _transactionStatus = m;
     notifyListeners();
   }
 
