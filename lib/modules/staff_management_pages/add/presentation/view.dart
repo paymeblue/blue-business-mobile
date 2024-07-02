@@ -3,6 +3,7 @@ import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
+import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
@@ -128,14 +129,20 @@ class _AddStaffViewState extends State<AddStaffView> {
           controller: model.nameController,
         ),
         12.verticalGap,
-        BlueDropdown.show(
-          values: model.roles,
-          onChanged: (val) {
-            model.role = val;
-          },
-          title: "Set role",
-          value: model.role,
-        ),
+        model.roleState == FetchState.loading
+            ? BlueLoadingTile.withoutImage(title: "Set role")
+            : BlueDropdown.show(
+                values: model.roles.map((e) => e.name.sentenceCase).toList(),
+                onChanged: (val) {
+                  for (StaffRole r in model.roles) {
+                    if (r.name.toLowerCase() == val?.toLowerCase()) {
+                      model.role = r.copyWith(name: r.name.sentenceCase);
+                    }
+                  }
+                },
+                title: "Set role",
+                value: model.role?.name,
+              ),
         12.verticalGap,
         model.branchSetState == FetchState.loading
             ? BlueLoadingTile.withoutImage(title: "Set branch")

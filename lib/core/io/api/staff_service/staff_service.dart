@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
+import 'package:blue_business/core/models/staff_roles/get/response/staff_role_response.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
@@ -53,4 +54,7 @@ abstract class StaffService {
   Future<CreateStaffResponse> deleteStaff({
     @Path("id") required int id,
   });
+
+  @GET("/roles")
+  Future<GetStaffRoleResponse> getStaffRoles();
 }

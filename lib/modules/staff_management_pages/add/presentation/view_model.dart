@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:blue_business/core/extensions.dart';
@@ -13,6 +12,8 @@ import 'package:blue_business/core/models/branches/get/response/get_branches_res
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
+import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
+import 'package:blue_business/core/models/staff_roles/get/response/staff_role_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -24,16 +25,18 @@ import 'package:blue_business/widgets/modals/dialogs.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class AddStaffViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context, Staff? staff) {
+  init(BuildContext context, Staff? staff) async {
     size = context.mediaQuery.size;
 
     setSelectedCountry();
+    await getRoles();
     branchPagingController.addPageRequestListener((pageKey) {
       getBranches(pageKey);
     });
@@ -48,9 +51,17 @@ class AddStaffViewModel extends BaseViewModel {
     phoneController.text = staff.phone
         .replaceFirst(selectedCountry!.dialCode, "")
         .replaceFirst("+", "");
-    role = roles[roles.indexOf(staff.role.sentenceCase)];
+    setRole(staff);
     branchSetState = FetchState.loading;
     await getBranchById(staff.branchId);
+  }
+
+  setRole(Staff staff) {
+    for (StaffRole r in roles) {
+      if (r.name.toLowerCase() == staff.role.toLowerCase()) {
+        role = r.copyWith(name: r.name.sentenceCase);
+      }
+    }
   }
 
   getBranchById(int id) async {
@@ -182,7 +193,7 @@ class AddStaffViewModel extends BaseViewModel {
                     .replaceFirst(selectedCountry!.dialCode, "")
                     .replaceFirst("+", "") ||
             isValidPassword() ||
-            role?.toLowerCase() != staff.role.toLowerCase() ||
+            role?.name.toLowerCase() != staff.role.toLowerCase() ||
             branch?.id != staff.branchId ||
             path != null);
   }
@@ -220,11 +231,9 @@ class AddStaffViewModel extends BaseViewModel {
     return selectedCountry!.dialCode + number;
   }
 
-  List<String> roles = ["Admin", "Cashier"];
-
-  String? _role;
-  String? get role => _role;
-  set role(String? r) {
+  StaffRole? _role;
+  StaffRole? get role => _role;
+  set role(StaffRole? r) {
     _role = r;
     notifyListeners();
   }
@@ -280,7 +289,7 @@ class AddStaffViewModel extends BaseViewModel {
       name: nameController.text,
       phone: formatPhone(),
       branchId: branch!.id,
-      role: role!.toLowerCase(),
+      role: role!.name.toLowerCase(),
       password: passwordController.text,
     )
             .onError((error, stacktrace) {
@@ -300,8 +309,6 @@ class AddStaffViewModel extends BaseViewModel {
   editStaff(BuildContext context, Staff staff) async {
     AppLoader.start();
 
-    log(formatPhone());
-
     CreateStaffResponse response =
         await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .editStaff(
@@ -310,7 +317,7 @@ class AddStaffViewModel extends BaseViewModel {
       name: nameController.text,
       phone: formatPhone(),
       branchId: branch?.id,
-      role: role!.toLowerCase(),
+      role: role!.name.toLowerCase(),
       password:
           passwordController.text.isEmpty ? null : passwordController.text,
     )
@@ -326,5 +333,37 @@ class AddStaffViewModel extends BaseViewModel {
     }
 
     AppLoader.stop();
+  }
+
+  FetchState _roleState = FetchState.complete;
+  FetchState get roleState => _roleState;
+  set roleState(FetchState value) {
+    _roleState = value;
+    notifyListeners();
+  }
+
+  List<StaffRole> _roles = [];
+  List<StaffRole> get roles => _roles;
+  set roles(List<StaffRole> value) {
+    _roles = value;
+    notifyListeners();
+  }
+
+  getRoles() async {
+    roleState = FetchState.loading;
+
+    GetStaffRoleResponse response =
+        await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getStaffRoles()
+            .onError((error, stacjtrace) => GetStaffRoleResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      roles = response.data!;
+      roleState = FetchState.complete;
+    } else {
+      roleState = FetchState.error;
+      AppNotification.error(message: response.message);
+    }
   }
 }
