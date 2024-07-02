@@ -3,6 +3,7 @@ import 'package:blue_business/core/models/branches/create/response/create_branch
 import 'package:blue_business/core/models/branches/details/response/get_branch_response.dart';
 import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
 import 'package:blue_business/core/models/sales_analytics/response/sales_analytics_response.dart';
+import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -47,5 +48,12 @@ abstract class BranchService {
     @Path("id") required int branchId,
     @Query("time_interval") required String timeInterval,
     @Query("payment_method") String? method,
+  });
+
+  @GET("/branches/{id}/staff")
+  Future<GetStaffResponse> getBranchStaff({
+    @Path("id") required int id,
+    @Query("page") required int page,
+    @Query("limit") required int limit,
   });
 }

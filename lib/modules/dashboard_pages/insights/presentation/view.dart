@@ -41,8 +41,8 @@ class _InsightsViewState extends State<InsightsView> {
                 35.verticalGap,
                 Expanded(
                   child: model.currTab == 0
-                      ? GeneralInsightsPage(model: model)
-                      : BranchInsightsPage(model: model),
+                      ? const GeneralInsightsPage()
+                      : const BranchInsightsPage(),
                 ),
               ],
             ),

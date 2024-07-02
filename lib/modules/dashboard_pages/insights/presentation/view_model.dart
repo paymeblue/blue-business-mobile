@@ -15,6 +15,8 @@ import 'package:blue_business/core/models/sales_analytics/weekly/weekly_line_cha
 import 'package:blue_business/core/models/sales_analytics/yearly/yearly_line_chart_data.dart';
 import 'package:blue_business/core/models/spending_analytics/data/spending_analytics_data.dart';
 import 'package:blue_business/core/models/spending_analytics/response/spending_analytics_response.dart';
+import 'package:blue_business/core/models/staff/get/item/staff.dart';
+import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
 import 'package:blue_business/core/models/tab_item/tab_item.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -38,6 +40,11 @@ class InsightsViewModel extends BaseViewModel {
     branchPagingController.addPageRequestListener((page) {
       getBranches(page);
     });
+
+    staffPagingController.addPageRequestListener((pageKey) {
+      getBranchStaff(pageKey);
+    });
+
     await getAnalytics();
   }
 
@@ -394,6 +401,8 @@ class InsightsViewModel extends BaseViewModel {
 
   PagingController<int, Branch> branchPagingController =
       PagingController<int, Branch>(firstPageKey: 1);
+  PagingController<int, Staff> staffPagingController =
+      PagingController<int, Staff>(firstPageKey: 1);
 
   getBranches(int page) async {
     try {
@@ -413,6 +422,36 @@ class InsightsViewModel extends BaseViewModel {
           branchPagingController.appendPage(response.data!.data, page + 1);
         } else {
           branchPagingController.appendLastPage(response.data!.data);
+        }
+
+        notifyListeners();
+      } else {
+        branchPagingController.error = response.message;
+      }
+    } catch (e) {
+      branchPagingController.error = AppErrorHandler.getErrorMessage(e);
+    }
+  }
+
+  getBranchStaff(int page) async {
+    try {
+      GetStaffResponse response = await BranchService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .getBranchStaff(
+            page: page,
+            limit: 50,
+            id: branch!.id,
+          )
+          .onError(
+            (error, stackTrace) => GetStaffResponse(
+                message: AppErrorHandler.getErrorMessage(error)),
+          );
+
+      if (response.status == "success") {
+        if (response.data!.loadMore) {
+          staffPagingController.appendPage(response.data!.data, page + 1);
+        } else {
+          staffPagingController.appendLastPage(response.data!.data);
         }
 
         notifyListeners();

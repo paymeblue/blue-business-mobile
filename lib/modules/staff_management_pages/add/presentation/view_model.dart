@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:blue_business/core/extensions.dart';
@@ -298,6 +299,8 @@ class AddStaffViewModel extends BaseViewModel {
 
   editStaff(BuildContext context, Staff staff) async {
     AppLoader.start();
+
+    log(formatPhone());
 
     CreateStaffResponse response =
         await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))

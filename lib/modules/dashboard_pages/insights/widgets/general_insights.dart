@@ -1,6 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/modules/dashboard_pages/insights/presentation/view_model.dart';
 import 'package:blue_business/widgets/charts/line_chart.dart';
@@ -12,8 +13,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
 class GeneralInsightsPage extends StatefulWidget {
-  final InsightsViewModel model;
-  const GeneralInsightsPage({super.key, required this.model});
+  const GeneralInsightsPage({super.key});
 
   @override
   State<GeneralInsightsPage> createState() => _GeneralInsightsPageState();
@@ -22,36 +22,41 @@ class GeneralInsightsPage extends StatefulWidget {
 class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-      ),
-      child: Column(
-        children: [
-          FilterTab(
-            selectedValue: widget.model.selectedType,
-            tabs: widget.model.types,
-            onChanged: widget.model.onTypeChanged,
-          ),
-          25.verticalGap,
-          Expanded(
-            child: RefreshIndicator(
-              onRefresh: () async {
-                widget.model.getAnalytics();
-              },
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  salesStatsContainer(widget.model),
-                  15.verticalGap,
-                  spendingStatsContainer(widget.model),
-                ],
-              ),
+    return BaseView<InsightsViewModel>(
+        model: InsightsViewModel(),
+        onModelReady: (model) => model.init(context),
+        builder: (context, model, _) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
             ),
-          )
-        ],
-      ),
-    );
+            child: Column(
+              children: [
+                FilterTab(
+                  selectedValue: model.selectedType,
+                  tabs: model.types,
+                  onChanged: model.onTypeChanged,
+                ),
+                25.verticalGap,
+                Expanded(
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      model.getAnalytics();
+                    },
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        salesStatsContainer(model),
+                        15.verticalGap,
+                        spendingStatsContainer(model),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+        });
   }
 
   Widget salesStatsContainer(InsightsViewModel model) {

@@ -3,11 +3,14 @@ import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/models/staff/get/item/staff.dart';
+import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/modules/dashboard_pages/insights/presentation/view_model.dart';
+import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/charts/line_chart.dart';
 import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
@@ -20,8 +23,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
 class BranchInsightsPage extends StatefulWidget {
-  final InsightsViewModel model;
-  const BranchInsightsPage({super.key, required this.model});
+  const BranchInsightsPage({super.key});
 
   @override
   State<BranchInsightsPage> createState() => _BranchInsightsPageState();
@@ -30,48 +32,55 @@ class BranchInsightsPage extends StatefulWidget {
 class _BranchInsightsPageState extends State<BranchInsightsPage> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          branchSelect(),
-          20.verticalGap,
-          FilterTab(
-            selectedValue: widget.model.selectedType,
-            tabs: widget.model.types,
-            onChanged: widget.model.onTypeChanged,
-          ),
-          25.verticalGap,
-          Expanded(
-            child: widget.model.branch == null
-                ? Align(
-                    alignment: Alignment.center,
-                    child: emptyBody(widget.model),
-                  )
-                : RefreshIndicator(
-                    onRefresh: () async {
-                      widget.model.getAnalytics();
-                    },
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: [
-                        salesStatsContainer(widget.model),
-                      ],
-                    ),
-                  ),
-          )
-        ],
-      ),
-    );
+    return BaseView<InsightsViewModel>(
+        model: InsightsViewModel(),
+        onModelReady: (model) => model.init(context),
+        builder: (context, model, _) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                branchSelect(model),
+                20.verticalGap,
+                FilterTab(
+                  selectedValue: model.selectedType,
+                  tabs: model.types,
+                  onChanged: model.onTypeChanged,
+                ),
+                25.verticalGap,
+                Expanded(
+                  child: model.branch == null
+                      ? Align(
+                          alignment: Alignment.center,
+                          child: emptyBody(model),
+                        )
+                      : RefreshIndicator(
+                          onRefresh: () async {
+                            model.getAnalytics();
+                          },
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              salesStatsContainer(model),
+                              15.verticalGap,
+                              staffList(model)
+                            ],
+                          ),
+                        ),
+                ),
+              ],
+            ),
+          );
+        });
   }
 
-  Widget branchSelect() {
+  Widget branchSelect(InsightsViewModel model) {
     return InkWell(
       onTap: () async {
-        widget.model.branch = await onTap();
+        model.branch = await onTap(model);
       },
       splashColor: AppColors.primary.withOpacity(.15),
       child: Container(
@@ -84,7 +93,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              widget.model.branch?.name.toUpperCase() ?? "SELECT A BRANCH",
+              model.branch?.name.toUpperCase() ?? "SELECT A BRANCH",
               style: AppTextStyles.smallText.copyWith(
                 color: AppColors.blue,
                 fontSize: 11,
@@ -127,8 +136,8 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
     );
   }
 
-  Future<Branch?> onTap() async {
-    Branch? val = widget.model.branch;
+  Future<Branch?> onTap(InsightsViewModel model) async {
+    Branch? val = model.branch;
     await showModalBottomSheet(
       context: locator<NavigationService>().navigatorKey.currentContext!,
       isScrollControlled: true,
@@ -157,14 +166,13 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                   child: Column(
                     children: [
                       BlueTextField.search(
-                        controller: widget.model.searchController,
+                        controller: model.searchController,
                         hint: "Search branches",
-                        onSearchChanged: widget.model.onSearchChanged,
+                        onSearchChanged: model.onSearchChanged,
                       ),
                       Expanded(
                         child: PagedListView<int, Branch>.separated(
-                            pagingController:
-                                widget.model.branchPagingController,
+                            pagingController: model.branchPagingController,
                             builderDelegate: PagedChildBuilderDelegate(
                                 noItemsFoundIndicatorBuilder: (context) =>
                                     SizedBox(
@@ -181,7 +189,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                                           ),
                                           8.verticalGap,
                                           Text(
-                                            "Looks like nothing matches \"${widget.model.searchController.text}\"",
+                                            "Looks like nothing matches \"${model.searchController.text}\"",
                                           ),
                                         ],
                                       ),
@@ -201,20 +209,16 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                                 firstPageErrorIndicatorBuilder: (ctx) => Column(
                                       children: [
                                         PagingError.firstPage(
-                                          widget.model.branchPagingController
-                                              .error
+                                          model.branchPagingController.error
                                               .toString(),
-                                          widget.model.branchPagingController
-                                              .refresh,
+                                          model.branchPagingController.refresh,
                                         ),
                                       ],
                                     ),
                                 newPageErrorIndicatorBuilder: (ctx) =>
                                     PagingError.firstPage(
-                                      widget.model.branchPagingController
-                                          .toString(),
-                                      widget
-                                          .model.branchPagingController.refresh,
+                                      model.branchPagingController.toString(),
+                                      model.branchPagingController.refresh,
                                     ),
                                 newPageProgressIndicatorBuilder: (context) =>
                                     BlueLoadingTile.withImage(),
@@ -456,4 +460,166 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
           ],
         ),
       );
+
+  Widget staffList(InsightsViewModel model) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
+      decoration: BoxDecoration(
+          border: Border.all(color: AppColors.midGrey),
+          borderRadius: BorderRadius.circular(7)),
+      child: RefreshIndicator(
+        onRefresh: () async => model.staffPagingController.refresh(),
+        child: PagedListView<int, Staff>.separated(
+          shrinkWrap: true,
+          pagingController: model.staffPagingController,
+          builderDelegate: PagedChildBuilderDelegate(
+              noItemsFoundIndicatorBuilder: (context) => Container(),
+              firstPageProgressIndicatorBuilder: (context) => Column(
+                    children: List.generate(
+                      4,
+                      (index) => Column(
+                        children: [
+                          BlueLoadingTile.withImage(),
+                          if (index < 3) 6.verticalGap,
+                        ],
+                      ),
+                    ),
+                  ),
+              firstPageErrorIndicatorBuilder: (ctx) => Column(
+                    children: [
+                      PagingError.firstPage(
+                        model.staffPagingController.error.toString(),
+                        model.staffPagingController.refresh,
+                      ),
+                    ],
+                  ),
+              newPageErrorIndicatorBuilder: (ctx) => PagingError.firstPage(
+                    model.staffPagingController.error.toString(),
+                    model.staffPagingController.refresh,
+                  ),
+              newPageProgressIndicatorBuilder: (context) =>
+                  BlueLoadingTile.withImage(),
+              itemBuilder: (context, item, i) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      if (i == 0) ...[
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Staff and their roles",
+                                        style: AppTextStyles.subText.copyWith(
+                                          color: AppColors.bodyTextColor2,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Staff details",
+                                        style: AppTextStyles.subText.copyWith(
+                                          color: AppColors.textColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: AppColors.blue),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 6),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          "All roles",
+                                          style: AppTextStyles.subText.copyWith(
+                                            color: AppColors.blue,
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.keyboard_arrow_down_rounded,
+                                          size: 18,
+                                          color: AppColors.blue,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Divider(
+                              color: AppColors.midGrey,
+                            ),
+                          ],
+                        ),
+                        8.verticalGap
+                      ],
+                      staffTile(model, item),
+                    ],
+                  )),
+          separatorBuilder: (context, i) => const Divider(
+            color: AppColors.midGrey,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget staffTile(InsightsViewModel model, Staff item) {
+    return Container(
+      width: model.size.width,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+      child: Row(
+        children: [
+          BlueAvatar(
+            radius: 22.5,
+            imageUrl: item.displayPicture,
+          ),
+          10.horizontalGap,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.name,
+                  style: AppTextStyles.header.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: const BoxDecoration(color: AppColors.inputField),
+                  child: Text(
+                    "${item.role.toUpperCase()} ROLE",
+                    style: AppTextStyles.smallText.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.textColor,
+                        fontSize: 10),
+                  ),
+                ),
+                Text(
+                  item.phone,
+                  style: AppTextStyles.smallText.copyWith(
+                    color: AppColors.bodyTextColor2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
