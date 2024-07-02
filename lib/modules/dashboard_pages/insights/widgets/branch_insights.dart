@@ -14,6 +14,7 @@ import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/charts/line_chart.dart';
 import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
+import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
@@ -473,7 +474,27 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
           shrinkWrap: true,
           pagingController: model.staffPagingController,
           builderDelegate: PagedChildBuilderDelegate(
-              noItemsFoundIndicatorBuilder: (context) => Container(),
+              noItemsFoundIndicatorBuilder: (context) => Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Staff and their roles",
+                        style: AppTextStyles.subText.copyWith(
+                          color: AppColors.bodyTextColor2,
+                        ),
+                      ),
+                      Text(
+                        "Staff details",
+                        style: AppTextStyles.subText.copyWith(
+                          color: AppColors.textColor,
+                        ),
+                      ),
+                      25.verticalGap,
+                      NoItems.firstPage(
+                          "You have not added any staff to this branch yet"),
+                    ],
+                  ),
               firstPageProgressIndicatorBuilder: (context) => Column(
                     children: List.generate(
                       4,

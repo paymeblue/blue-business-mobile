@@ -6,8 +6,15 @@ import 'package:flutter/material.dart';
 
 class BluePopupMenu extends StatefulWidget {
   final List<PopupModel> popupItems;
+  final double? width;
+  final double? height;
   final Widget? icon;
-  const BluePopupMenu({super.key, required this.popupItems, this.icon});
+  const BluePopupMenu(
+      {super.key,
+      required this.popupItems,
+      this.icon,
+      this.width = 20,
+      this.height = 35});
 
   @override
   State<BluePopupMenu> createState() => _BluePopupMenuState();
@@ -17,8 +24,8 @@ class _BluePopupMenuState extends State<BluePopupMenu> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 35,
-      width: 20,
+      height: widget.height,
+      width: widget.width,
       child: PopupMenuButton<PopupModel>(
         color: AppColors.white,
         position: PopupMenuPosition.over,

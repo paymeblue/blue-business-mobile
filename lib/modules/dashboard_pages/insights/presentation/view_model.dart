@@ -87,8 +87,8 @@ class InsightsViewModel extends BaseViewModel {
   int get currTab => _tab;
   set currTab(int i) {
     _tab = i;
-    getAnalytics();
     notifyListeners();
+    getAnalytics();
   }
 
   List<TabItem> tabs() => [
@@ -380,8 +380,10 @@ class InsightsViewModel extends BaseViewModel {
   Branch? get branch => _branch;
   set branch(Branch? b) {
     _branch = b;
-    getAnalytics();
     notifyListeners();
+    getAnalytics();
+
+    staffPagingController.refresh();
   }
 
   TextEditingController searchController = TextEditingController();
@@ -456,10 +458,10 @@ class InsightsViewModel extends BaseViewModel {
 
         notifyListeners();
       } else {
-        branchPagingController.error = response.message;
+        staffPagingController.error = response.message;
       }
     } catch (e) {
-      branchPagingController.error = AppErrorHandler.getErrorMessage(e);
+      staffPagingController.error = AppErrorHandler.getErrorMessage(e);
     }
   }
 }

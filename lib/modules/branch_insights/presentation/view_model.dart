@@ -3,12 +3,17 @@ import 'dart:developer';
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/monthly/monthly_line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/response/sales_analytics_response.dart';
 import 'package:blue_business/core/models/sales_analytics/weekly/weekly_line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/yearly/yearly_line_chart_data.dart';
+import 'package:blue_business/core/models/staff/get/item/staff.dart';
+import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
+import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
+import 'package:blue_business/core/models/staff_roles/get/response/staff_role_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -16,6 +21,7 @@ import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class BranchInsightsViewModel extends BaseViewModel {
   late Size size;
@@ -27,6 +33,11 @@ class BranchInsightsViewModel extends BaseViewModel {
     branchId = id;
     selectedType = types[0];
     getSalesAnalytics();
+    getRoles();
+
+    staffPagingController.addPageRequestListener((pageKey) {
+      getBranchStaff(pageKey);
+    });
   }
 
   List<String> types = ["Weekly", "Monthly", "Yearly"];
@@ -195,6 +206,71 @@ class BranchInsightsViewModel extends BaseViewModel {
       } else {
         desktopIncrease = dChange / previousDesktop;
       }
+    }
+  }
+
+  PagingController<int, Staff> staffPagingController =
+      PagingController<int, Staff>(firstPageKey: 1);
+
+  getBranchStaff(int page) async {
+    try {
+      GetStaffResponse response = await BranchService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .getBranchStaff(
+            page: page,
+            limit: 50,
+            id: branchId,
+          )
+          .onError(
+            (error, stackTrace) => GetStaffResponse(
+                message: AppErrorHandler.getErrorMessage(error)),
+          );
+
+      if (response.status == "success") {
+        if (response.data!.loadMore) {
+          staffPagingController.appendPage(response.data!.data, page + 1);
+        } else {
+          staffPagingController.appendLastPage(response.data!.data);
+        }
+
+        notifyListeners();
+      } else {
+        staffPagingController.error = response.message;
+      }
+    } catch (e) {
+      staffPagingController.error = AppErrorHandler.getErrorMessage(e);
+    }
+  }
+
+  FetchState _roleState = FetchState.complete;
+  FetchState get roleState => _roleState;
+  set roleState(FetchState value) {
+    _roleState = value;
+    notifyListeners();
+  }
+
+  List<StaffRole> _roles = [];
+  List<StaffRole> get roles => _roles;
+  set roles(List<StaffRole> value) {
+    _roles = value;
+    notifyListeners();
+  }
+
+  getRoles() async {
+    roleState = FetchState.loading;
+
+    GetStaffRoleResponse response =
+        await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getStaffRoles()
+            .onError((error, stacjtrace) => GetStaffRoleResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      roles = response.data!;
+      roleState = FetchState.complete;
+    } else {
+      roleState = FetchState.error;
+      AppNotification.error(message: response.message);
     }
   }
 }

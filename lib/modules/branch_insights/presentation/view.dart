@@ -2,14 +2,22 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/models/popup/popup.dart';
+import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
+import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/charts/line_chart.dart';
+import 'package:blue_business/widgets/modals/popup_menu.dart';
+import 'package:blue_business/widgets/paging/error.dart';
+import 'package:blue_business/widgets/paging/loading_shimmer.dart';
+import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shimmer/shimmer.dart';
@@ -76,6 +84,8 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                         shrinkWrap: true,
                         children: [
                           salesStatsContainer(model),
+                          15.verticalGap,
+                          staffList(model)
                         ],
                       ),
                     ),
@@ -85,6 +95,198 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
             ),
           );
         });
+  }
+
+  Widget staffList(BranchInsightsViewModel model) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
+      decoration: BoxDecoration(
+          border: Border.all(color: AppColors.midGrey),
+          borderRadius: BorderRadius.circular(7)),
+      child: RefreshIndicator(
+        onRefresh: () async => model.staffPagingController.refresh(),
+        child: PagedListView<int, Staff>.separated(
+          shrinkWrap: true,
+          pagingController: model.staffPagingController,
+          builderDelegate: PagedChildBuilderDelegate(
+              noItemsFoundIndicatorBuilder: (context) => Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Staff and their roles",
+                        style: AppTextStyles.subText.copyWith(
+                          color: AppColors.bodyTextColor2,
+                        ),
+                      ),
+                      Text(
+                        "Staff details",
+                        style: AppTextStyles.subText.copyWith(
+                          color: AppColors.textColor,
+                        ),
+                      ),
+                      25.verticalGap,
+                      NoItems.firstPage(
+                          "You have not added any staff to this branch yet"),
+                    ],
+                  ),
+              firstPageProgressIndicatorBuilder: (context) => Column(
+                    children: List.generate(
+                      4,
+                      (index) => Column(
+                        children: [
+                          BlueLoadingTile.withImage(),
+                          if (index < 3) 6.verticalGap,
+                        ],
+                      ),
+                    ),
+                  ),
+              firstPageErrorIndicatorBuilder: (ctx) => Column(
+                    children: [
+                      PagingError.firstPage(
+                        model.staffPagingController.error.toString(),
+                        model.staffPagingController.refresh,
+                      ),
+                    ],
+                  ),
+              newPageErrorIndicatorBuilder: (ctx) => PagingError.firstPage(
+                    model.staffPagingController.error.toString(),
+                    model.staffPagingController.refresh,
+                  ),
+              newPageProgressIndicatorBuilder: (context) =>
+                  BlueLoadingTile.withImage(),
+              itemBuilder: (context, item, i) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      if (i == 0) ...[
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Staff and their roles",
+                                        style: AppTextStyles.subText.copyWith(
+                                          color: AppColors.bodyTextColor2,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Staff details",
+                                        style: AppTextStyles.subText.copyWith(
+                                          color: AppColors.textColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                BluePopupMenu(
+                                    width: null,
+                                    icon: Container(
+                                      decoration: BoxDecoration(
+                                        border:
+                                            Border.all(color: AppColors.blue),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 6),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            "All roles",
+                                            style:
+                                                AppTextStyles.subText.copyWith(
+                                              color: AppColors.blue,
+                                            ),
+                                          ),
+                                          const Icon(
+                                            Icons.keyboard_arrow_down_rounded,
+                                            size: 18,
+                                            color: AppColors.blue,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    popupItems: model.roles
+                                        .map(
+                                          (e) => PopupModel(
+                                            title: e.name.sentenceCase,
+                                            onTap: () {},
+                                          ),
+                                        )
+                                        .toList()),
+                              ],
+                            ),
+                            const Divider(
+                              color: AppColors.midGrey,
+                            ),
+                          ],
+                        ),
+                        8.verticalGap
+                      ],
+                      staffTile(model, item),
+                    ],
+                  )),
+          separatorBuilder: (context, i) => const Divider(
+            color: AppColors.midGrey,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget staffTile(BranchInsightsViewModel model, Staff item) {
+    return Container(
+      width: model.size.width,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+      child: Row(
+        children: [
+          BlueAvatar(
+            radius: 22.5,
+            imageUrl: item.displayPicture,
+          ),
+          10.horizontalGap,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.name,
+                  style: AppTextStyles.header.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: const BoxDecoration(color: AppColors.inputField),
+                  child: Text(
+                    "${item.role.toUpperCase()} ROLE",
+                    style: AppTextStyles.smallText.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.textColor,
+                        fontSize: 10),
+                  ),
+                ),
+                Text(
+                  item.phone,
+                  style: AppTextStyles.smallText.copyWith(
+                    color: AppColors.bodyTextColor2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget salesStatsContainer(BranchInsightsViewModel model) {
