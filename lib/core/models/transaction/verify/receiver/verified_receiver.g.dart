@@ -14,7 +14,7 @@ _$VerifiedReceiverImpl _$$VerifiedReceiverImplFromJson(
       walletCode: json['wallet_code'] as String?,
       receiverName: json['receiver_name'] as String,
       phone: json['phone'] as String,
-      amount: (json['amount'] as num).toDouble(),
+      amount: json['amount'] as String,
       charge: (json['charge'] as num).toDouble(),
     );
 

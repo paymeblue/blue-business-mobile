@@ -9,18 +9,21 @@ import 'package:intl/intl.dart';
 
 class TransationTile extends StatelessWidget {
   final TransactionHistory transaction;
+  final bool colored;
   const TransationTile({
     super.key,
     required this.transaction,
+    this.colored = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
-      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+      padding: EdgeInsets.symmetric(
+          vertical: colored ? 14 : 6, horizontal: colored ? 17 : 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
+        color: colored ? AppColors.inputField : null,
       ),
       child: Row(
         children: [

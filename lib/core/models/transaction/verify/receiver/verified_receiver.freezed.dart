@@ -25,7 +25,7 @@ mixin _$VerifiedReceiver {
   String? get walletCode => throw _privateConstructorUsedError;
   String get receiverName => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-  double get amount => throw _privateConstructorUsedError;
+  String get amount => throw _privateConstructorUsedError;
   double get charge => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $VerifiedReceiverCopyWith<$Res> {
       String? walletCode,
       String receiverName,
       String phone,
-      double amount,
+      String amount,
       double charge});
 }
 
@@ -95,7 +95,7 @@ class _$VerifiedReceiverCopyWithImpl<$Res, $Val extends VerifiedReceiver>
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       charge: null == charge
           ? _value.charge
           : charge // ignore: cast_nullable_to_non_nullable
@@ -118,7 +118,7 @@ abstract class _$$VerifiedReceiverImplCopyWith<$Res>
       String? walletCode,
       String receiverName,
       String phone,
-      double amount,
+      String amount,
       double charge});
 }
 
@@ -165,7 +165,7 @@ class __$$VerifiedReceiverImplCopyWithImpl<$Res>
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       charge: null == charge
           ? _value.charge
           : charge // ignore: cast_nullable_to_non_nullable
@@ -200,7 +200,7 @@ class _$VerifiedReceiverImpl implements _VerifiedReceiver {
   @override
   final String phone;
   @override
-  final double amount;
+  final String amount;
   @override
   final double charge;
 
@@ -252,7 +252,7 @@ abstract class _VerifiedReceiver implements VerifiedReceiver {
       final String? walletCode,
       required final String receiverName,
       required final String phone,
-      required final double amount,
+      required final String amount,
       required final double charge}) = _$VerifiedReceiverImpl;
 
   factory _VerifiedReceiver.fromJson(Map<String, dynamic> json) =
@@ -269,7 +269,7 @@ abstract class _VerifiedReceiver implements VerifiedReceiver {
   @override
   String get phone;
   @override
-  double get amount;
+  String get amount;
   @override
   double get charge;
   @override

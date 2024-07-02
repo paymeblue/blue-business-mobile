@@ -162,13 +162,18 @@ class _HomeViewState extends State<HomeView> {
                     newPageProgressIndicatorBuilder: (context) =>
                         BlueLoadingTile.withImage(),
                     itemBuilder: (context, item, i) {
-                      return TransationTile(
-                        transaction: item,
+                      return GestureDetector(
+                        onTap: () {
+                          model.getBillTransactionDetails(item, context);
+                        },
+                        child: TransationTile(
+                          transaction: item,
+                        ),
                       );
                     },
                   ),
                   separatorBuilder: (context, i) {
-                    return 20.verticalGap;
+                    return 10.verticalGap;
                   },
                 )),
           ),

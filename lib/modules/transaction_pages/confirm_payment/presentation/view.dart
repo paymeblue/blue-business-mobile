@@ -184,14 +184,14 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
   List<Widget> paymentTitleAndSubtitle() {
     return [
       Text(
-        "Send ${nairaSymbol()}${widget.data!.amount.toStringAsFixed(2)}",
+        "Send ${nairaSymbol()}${widget.data!.amount}",
         style: AppTextStyles.header,
       ),
       8.verticalGap,
       SizedBox(
         width: 330,
         child: Text(
-          "You are about to send ${nairaSymbol()}${widget.data!.amount.toStringAsFixed(2)} to the following ${modeString()}.",
+          "You are about to send ${nairaSymbol()}${widget.data!.amount} to the following ${modeString()}.",
           style: AppTextStyles.subHeader,
           textAlign: TextAlign.start,
         ),

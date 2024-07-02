@@ -11,7 +11,7 @@ class VerifiedReceiver with _$VerifiedReceiver {
     String? walletCode,
     required String receiverName,
     required String phone,
-    required double amount,
+    required String amount,
     required double charge,
   }) = _VerifiedReceiver;
 

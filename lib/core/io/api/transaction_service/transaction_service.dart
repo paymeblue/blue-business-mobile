@@ -6,6 +6,7 @@ import 'package:blue_business/core/models/transaction/pay/withdraw/request/withd
 import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
 import 'package:blue_business/core/models/transaction/verify/request/verified_receiver_request.dart';
 import 'package:blue_business/core/models/transaction/verify/response/verified_receiver_response.dart';
+import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
@@ -44,4 +45,15 @@ abstract class TransactionService {
 
   @GET("/payments/receipt")
   Future<ReceiptResponse> getReceipt(@Query("t_id") String transactionId);
+
+  @GET("/{service}/details")
+  Future<TransactionDetailResponse> getBillTransactionDetails({
+    @Query("t_id") required String transactionId,
+    @Path("service") required String service,
+  });
+
+  @GET("/payment/receipt")
+  Future<TransactionDetailResponse> getpaymentTransactionDetails({
+    @Query("t_id") required String transactionId,
+  });
 }

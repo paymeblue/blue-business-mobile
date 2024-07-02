@@ -10,12 +10,18 @@ import 'package:blue_business/core/models/business_dash/data/business_dash_data.
 import 'package:blue_business/core/models/business_dash/response/business_dash_response.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
+import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
+import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
+import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
+import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
+import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
 import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
@@ -302,6 +308,71 @@ class HomeViewModel extends BaseViewModel {
           },
         )
       ];
+
+  getBillTransactionDetails(
+      TransactionHistory transaction, BuildContext context) async {
+    AppLoader.start();
+
+    TransactionDetailResponse response = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getBillTransactionDetails(
+      transactionId: transaction.transactionId.toString(),
+      service: getService(transaction.paymentMode),
+    )
+        .onError((error, stackTrace) {
+      return TransactionDetailResponse(
+          message: AppErrorHandler.getErrorMessage(error));
+    });
+
+    if (response.status == "success") {
+      if (context.mounted) {
+        handleDetailResponse(getService(transaction.paymentMode),
+            transaction.transactionType ?? 'debit', response, context);
+      }
+    } else {
+      AppNotification.error(message: response.message);
+    }
+
+    AppLoader.stop();
+  }
+
+  handleDetailResponse(String mode, String type,
+      TransactionDetailResponse response, BuildContext context) {
+    if (mode == "airtime") {
+      AirtimeDetails airtimeDetails = AirtimeDetails.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${airtimeDetails.transactionId}",
+          extra: airtimeDetails);
+    } else if (mode == "power") {
+      PowerDetails powerDetails = PowerDetails.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${powerDetails.transactionId}",
+          extra: powerDetails);
+    } else if (mode == "data") {
+      DataDetails dataDetails = DataDetails.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${dataDetails.transactionId}",
+          extra: dataDetails);
+    } else if (mode == "tv") {
+      CableDetails cableDetails = CableDetails.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${cableDetails.transactionId}",
+          extra: cableDetails);
+    }
+  }
+
+  String getService(String mode) {
+    switch (mode) {
+      case "airtime":
+      case "power":
+      case "data":
+        return mode;
+      case "cable-tv":
+        return "tv";
+      default:
+        return "payment";
+    }
+  }
 
   goToStaffManagementHome(BuildContext context) {
     context.go(RoutePaths.staffManagementPath);

@@ -2,15 +2,22 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
+import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
+import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
+import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
+import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
+import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -184,6 +191,81 @@ class TransactionHistoryViewModel extends BaseViewModel {
       return "withdrawal";
     } else {
       return "wallet_topup";
+    }
+  }
+
+  // getPaymentDetails(
+  //     TransactionHistory transaction, BuildContext context) async {
+  //   if (mode == "payment") {
+  //     PaymentDetail paymentDetail = PaymentDetail.fromJson(response.data);
+  //     context.push(
+  //         "${RoutePaths.transactionHistoryPath}/payment/${paymentDetail.transactionId}/$type",
+  //         extra: paymentDetail);
+  //   }
+  // }
+
+  getBillTransactionDetails(
+      TransactionHistory transaction, BuildContext context) async {
+    AppLoader.start();
+
+    TransactionDetailResponse response = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getBillTransactionDetails(
+      transactionId: transaction.transactionId.toString(),
+      service: getService(transaction.paymentMode),
+    )
+        .onError((error, stackTrace) {
+      return TransactionDetailResponse(
+          message: AppErrorHandler.getErrorMessage(error));
+    });
+
+    if (response.status == "success") {
+      if (context.mounted) {
+        handleDetailResponse(getService(transaction.paymentMode),
+            transaction.transactionType ?? 'debit', response, context);
+      }
+    } else {
+      AppNotification.error(message: response.message);
+    }
+
+    AppLoader.stop();
+  }
+
+  handleDetailResponse(String mode, String type,
+      TransactionDetailResponse response, BuildContext context) {
+    if (mode == "airtime") {
+      AirtimeDetails airtimeDetails = AirtimeDetails.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${airtimeDetails.transactionId}",
+          extra: airtimeDetails);
+    } else if (mode == "power") {
+      PowerDetails powerDetails = PowerDetails.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${powerDetails.transactionId}",
+          extra: powerDetails);
+    } else if (mode == "data") {
+      DataDetails dataDetails = DataDetails.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${dataDetails.transactionId}",
+          extra: dataDetails);
+    } else if (mode == "tv") {
+      CableDetails cableDetails = CableDetails.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${cableDetails.transactionId}",
+          extra: cableDetails);
+    }
+  }
+
+  String getService(String mode) {
+    switch (mode) {
+      case "airtime":
+      case "power":
+      case "data":
+        return mode;
+      case "cable-tv":
+        return "tv";
+      default:
+        return "payment";
     }
   }
 }
