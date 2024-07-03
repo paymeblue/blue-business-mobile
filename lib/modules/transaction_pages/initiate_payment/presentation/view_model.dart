@@ -40,15 +40,21 @@ class InitiatePaymentViewModel extends BaseViewModel {
   startTransaction(BuildContext context, bool isWithdrawal) {
     if (!isWithdrawal) {
       BlueBottomSheet.paymentMethod(amountController.text).then((value) {
-        initiateTransaction(getModeString(value)).then((val) {
-          if (val != null) {
-            locator<AppStateValues>().narration = descriptionController.text;
-            context.go(
-              "${RoutePaths.verifyReceiverPath}/${getModeString(value)}",
-              extra: val,
-            );
-          }
-        });
+        if (value == PaymentMode.offline) {
+          context.go(
+            "${RoutePaths.verifyReceiverPath}/${getModeString(value)}",
+          );
+        } else {
+          initiateTransaction(getModeString(value)).then((val) {
+            if (val != null) {
+              locator<AppStateValues>().narration = descriptionController.text;
+              context.go(
+                "${RoutePaths.verifyReceiverPath}/${getModeString(value)}",
+                extra: val,
+              );
+            }
+          });
+        }
       });
     } else {
       int? amountInKobo =
