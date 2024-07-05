@@ -18,7 +18,6 @@ import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/biometics.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
-import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -88,7 +87,9 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
     });
 
     if (resp.status != "success") {
-      AppNotification.error(message: resp.message);
+      if (context.mounted) {
+        context.go(RoutePaths.transactionErrorPath, extra: resp.message!);
+      }
     }
 
     AppLoader.stop();
@@ -116,7 +117,9 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
     }
 
     if (resp.status != "success") {
-      AppNotification.error(message: resp.message);
+      if (context.mounted) {
+        context.go(RoutePaths.transactionErrorPath, extra: resp.message!);
+      }
     }
     AppLoader.stop();
 

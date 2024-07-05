@@ -76,6 +76,7 @@ class RoutePaths {
   static String confirmPaymentPath = "$transactionPath/confirm";
   static String transactionPinPath = "$transactionPath/pin";
   static String successPath = "$transactionPath/success";
+  static String transactionErrorPath = "$transactionPath/error";
   static String pushPaymentPin = "$transactionPath/push-payment/pin";
 
   static String viewPersonalInfoPath = "$settingsPath$personalInfoPath/view";

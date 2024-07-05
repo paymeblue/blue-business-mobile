@@ -16,7 +16,6 @@ import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/biometics.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
-import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -59,7 +58,9 @@ class ConfirmDataPinViewModel extends BaseViewModel {
         context.go(RoutePaths.dataSuccessPath, extra: response.data!);
       }
     } else {
-      AppNotification.error(message: response.message);
+      if (context.mounted) {
+        context.go(RoutePaths.transactionErrorPath, extra: response.message!);
+      }
     }
 
     AppLoader.stop();

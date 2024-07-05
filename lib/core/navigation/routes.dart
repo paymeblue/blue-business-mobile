@@ -59,6 +59,7 @@ import 'package:blue_business/modules/transaction_details/pages/cable_details/pr
 import 'package:blue_business/modules/transaction_details/pages/data_details/presentation/view.dart';
 import 'package:blue_business/modules/transaction_details/pages/payment_details/presentation/view.dart';
 import 'package:blue_business/modules/transaction_details/pages/power_details/presentation/view.dart';
+import 'package:blue_business/modules/transaction_error/presentation/view.dart';
 import 'package:blue_business/modules/wallet/presentation/view.dart';
 import 'package:blue_business/modules/welcome/presentation/view.dart';
 import 'package:flutter/material.dart';
@@ -635,7 +636,13 @@ List<GoRoute> airtimeRoutes = [
         data: extra,
       );
     },
-  )
+  ),
+  GoRoute(
+    path: RoutePaths.transactionErrorPath,
+    builder: (context, state) {
+      return TransactionErrorView(error: state.extra as String);
+    },
+  ),
 ];
 
 ShellRoute signupShellRoute = ShellRoute(
