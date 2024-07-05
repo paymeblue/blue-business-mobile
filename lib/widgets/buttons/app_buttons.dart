@@ -36,6 +36,19 @@ sealed class AppButton extends StatelessWidget {
           isEnabled: isEnabled,
           isLoading: isLoading);
 
+  factory AppButton.ghost(
+          {required String title,
+          required void Function() onTap,
+          bool isEnabled = true,
+          Color? textColor,
+          bool isLoading = false}) =>
+      _AppButtonGhost(
+          title: title,
+          onTap: onTap,
+          textColor: textColor,
+          isEnabled: isEnabled,
+          isLoading: isLoading);
+
   factory AppButton.primaryWithIcon(
           {required String title,
           required Widget icon,
@@ -127,6 +140,35 @@ class _AppButtonGhostPrimary extends StatelessWidget implements AppButton {
   }
 }
 
+class _AppButtonGhost extends StatelessWidget implements AppButton {
+  final String title;
+  final void Function() onTap;
+  final bool isEnabled;
+  final bool isLoading;
+  final Color? textColor;
+
+  const _AppButtonGhost({
+    required this.title,
+    required this.onTap,
+    required this.isEnabled,
+    required this.isLoading,
+    this.textColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return _$AppButton(
+      title: title,
+      onTap: onTap,
+      isEnabled: isEnabled,
+      textColor: textColor,
+      isLoading: isLoading,
+      backgroundColor: AppColors.white,
+      isFilled: false,
+    );
+  }
+}
+
 class _$AppButton extends AppButton {
   final String title;
   final void Function() onTap;
@@ -194,27 +236,24 @@ class _$AppButton extends AppButton {
             ),
             shadowColor: Colors.transparent,
             minimumSize: const Size(double.infinity, 50),
-            disabledBackgroundColor: backgroundColor.withOpacity(0.5),
+            disabledBackgroundColor: AppColors.inputField,
             foregroundColor: backgroundColor,
             side: BorderSide(color: textColor ?? backgroundColor, width: 1)),
         onPressed: (!isEnabled || isLoading) ? null : onTap,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (icon != null)
-              iconAlignment == IconAlignment.left
-                  ? iconLeftAlignedAndText()
-                  : iconRightAlignedAndText()
-            else
-              FittedBox(
+        child: icon != null
+            ? iconAlignment == IconAlignment.left
+                ? iconLeftAlignedAndText()
+                : iconRightAlignedAndText()
+            : FittedBox(
                 child: Text(
                   title,
-                  style:
-                      AppTextStyles.largeButtonText.copyWith(color: textColor),
+                  style: AppTextStyles.largeButtonText.copyWith(
+                    color: isEnabled || isLoading
+                        ? textColor ?? AppColors.primary
+                        : AppColors.primary.withOpacity(.4),
+                  ),
                 ),
-              )
-          ],
-        ));
+              ));
 
     Widget filledButton = ElevatedButton(
         style: ElevatedButton.styleFrom(

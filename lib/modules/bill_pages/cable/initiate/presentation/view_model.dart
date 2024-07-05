@@ -34,8 +34,6 @@ class InitiateCableViewModel extends BaseViewModel {
 
   onChanged(String? v) {
     notifyListeners();
-
-    shouldVerify();
   }
 
   TextEditingController searchController = TextEditingController();
@@ -100,8 +98,6 @@ class InitiateCableViewModel extends BaseViewModel {
 
   onBillPackageChanged(BillPackage? item) {
     selectedPackage = item;
-
-    shouldVerify();
   }
 
   List<BillPackage> _packages = [];
@@ -138,10 +134,8 @@ class InitiateCableViewModel extends BaseViewModel {
     }
   }
 
-  shouldVerify() {
-    if (selectedPackage != null && cardNumberController.text.length >= 10) {
-      verfyPackage();
-    }
+  bool shouldVerify() {
+    return selectedPackage != null && cardNumberController.text.length >= 10;
   }
 
   bool _verifying = false;
@@ -158,7 +152,7 @@ class InitiateCableViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  verfyPackage() async {
+  verifyPackage() async {
     verifying = true;
     VerifyCableRequest request = VerifyCableRequest(
       receiver: cardNumberController.text,

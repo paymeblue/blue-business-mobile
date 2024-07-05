@@ -113,12 +113,33 @@ class _InitiateElectricityViewState extends State<InitiateElectricityView> {
           value: model.selectedMeterType,
         ),
         20.verticalGap,
-        BlueTextField.plaintext(
-          hint: "Meter Number",
-          title: "Meter Number",
-          keyboardType: TextInputType.number,
-          controller: model.meterNumberController,
-          onChanged: model.onMeterNumberChanged,
+        Row(
+          children: [
+            Expanded(
+              child: BlueTextField.plaintext(
+                hint: "Meter Number",
+                title: "Meter Number",
+                keyboardType: TextInputType.number,
+                controller: model.meterNumberController,
+                onChanged: model.onChanged,
+              ),
+            ),
+            6.horizontalGap,
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: SizedBox(
+                height: 35,
+                width: 110,
+                child: AppButton.ghost(
+                  title: "Verify",
+                  isEnabled: model.shouldVerify(),
+                  onTap: () {
+                    model.verifyMeter();
+                  },
+                ),
+              ),
+            )
+          ],
         ),
         8.verticalGap,
         if (model.verifying)
@@ -149,7 +170,7 @@ class _InitiateElectricityViewState extends State<InitiateElectricityView> {
                   ),
                 ),
                 Text(
-                  "The minimum amount payable is ${nairaSymbol()}${(double.parse(model.data!.minimumAmount) + model.data!.serviceCharge).toStringAsFixed(2)}",
+                  "The minimum amount payable is ${nairaSymbol()}${(double.parse(model.data!.minimumAmount)).toStringAsFixed(2)}",
                   style: AppTextStyles.smallText.copyWith(
                     color: AppColors.bodyTextColor,
                   ),

@@ -36,8 +36,6 @@ class InitiateElectricityViewModel extends BaseViewModel {
 
   onBillProviderChanged(BillProvider? item) {
     selectedProvider = item;
-
-    shouldVerify();
   }
 
   String? _state;
@@ -57,8 +55,6 @@ class InitiateElectricityViewModel extends BaseViewModel {
 
   onMeterTypeChanged(String? item) {
     selectedMeterType = item;
-
-    shouldVerify();
   }
 
   FetchState _providersState = FetchState.complete;
@@ -83,18 +79,6 @@ class InitiateElectricityViewModel extends BaseViewModel {
     } else {
       getProviders();
     }
-  }
-
-  Timer? timer;
-
-  onMeterNumberChanged(String? v) {
-    if (timer != null) {
-      timer!.cancel();
-    }
-
-    timer = Timer(const Duration(seconds: 1), () {
-      shouldVerify();
-    });
   }
 
   onChanged(String? v) {
@@ -142,15 +126,13 @@ class InitiateElectricityViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  shouldVerify() {
-    if (selectedMeterType != null &&
+  bool shouldVerify() {
+    return selectedMeterType != null &&
         selectedProvider != null &&
-        meterNumberController.text.length >= 5) {
-      verfiyMeter();
-    }
+        meterNumberController.text.isNotEmpty;
   }
 
-  verfiyMeter() async {
+  verifyMeter() async {
     verifying = true;
     VerifyElectricityRequest request = VerifyElectricityRequest(
         receiver: meterNumberController.text,
@@ -180,9 +162,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
         data?.minimumAmount.replaceAll(nairaSymbol(), "").replaceAll(",", "") ??
             "0.0");
 
-    return data != null &&
-        amount != null &&
-        amount >= (minimum + data!.serviceCharge);
+    return data != null && amount != null && amount >= (minimum);
   }
 
   goToNext(BuildContext context) {

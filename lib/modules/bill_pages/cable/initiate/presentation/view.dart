@@ -110,11 +110,33 @@ class _InitiateCableViewState extends State<InitiateCableView> {
                           ],
                         ),
                       20.verticalGap,
-                      BlueTextField.plaintext(
-                          hint: "Smartcard/IUC number",
-                          title: "Smartcard/IUC number",
-                          controller: model.cardNumberController,
-                          onChanged: model.onChanged),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: BlueTextField.plaintext(
+                              hint: "Smartcard/IUC number",
+                              title: "Smartcard/IUC number",
+                              controller: model.cardNumberController,
+                              onChanged: model.onChanged,
+                            ),
+                          ),
+                          6.horizontalGap,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: SizedBox(
+                              height: 35,
+                              width: 110,
+                              child: AppButton.ghost(
+                                title: "Verify",
+                                isEnabled: model.shouldVerify(),
+                                onTap: () {
+                                  model.verifyPackage();
+                                },
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                       8.verticalGap,
                       if (model.verifying)
                         BlueLoadingTile.withoutImage()
