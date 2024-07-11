@@ -167,7 +167,7 @@ class _InitiateCableViewState extends State<InitiateCableView> {
                                 ),
                               ),
                               Text(
-                                "The amount to be paid is ${nairaSymbol()}${(model.data!.amount.toDouble() + model.data!.serviceCharge).toStringAsFixed(2)}",
+                                "The amount to be paid is ${nairaSymbol()}${(double.parse(model.data!.amount) + double.parse(model.data!.serviceCharge)).toStringAsFixed(2)}",
                                 style: AppTextStyles.smallText.copyWith(
                                   color: AppColors.bodyTextColor,
                                 ),
