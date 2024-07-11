@@ -18,7 +18,8 @@ abstract class BranchService {
   Future<GetBranchesResponse> getAllBranches({
     @Query("page") required int page,
     @Query("limit") required int limit,
-    @Query("sort") String? sort,
+    @Query("start_date") String? startDate,
+    @Query("end_date") String? endDate,
     @Query("search") String? search,
   });
 

@@ -193,7 +193,7 @@ class BlueTextField {
       keyboardType: TextInputType.number,
       inputFormatters: <TextInputFormatter>[
         FilteringTextInputFormatter.digitsOnly,
-        CurrencyTextInputFormatter(
+        CurrencyTextInputFormatter.currency(
           decimalDigits: 2,
           symbol: nairaSymbol(),
           name: "NGN",

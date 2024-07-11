@@ -24,14 +24,16 @@ class _BranchService implements BranchService {
   Future<GetBranchesResponse> getAllBranches({
     required int page,
     required int limit,
-    String? sort,
+    String? startDate,
+    String? endDate,
     String? search,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
       r'limit': limit,
-      r'sort': sort,
+      r'start_date': startDate,
+      r'end_date': endDate,
       r'search': search,
     };
     queryParameters.removeWhere((k, v) => v == null);
