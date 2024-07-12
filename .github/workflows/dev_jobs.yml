@@ -1,4 +1,4 @@
-name: Goalspaces dev jobs
+name: Blue business jobs
 on:
   push:
     branches:
