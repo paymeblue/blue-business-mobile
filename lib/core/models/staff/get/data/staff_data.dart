@@ -7,11 +7,12 @@ part 'staff_data.g.dart';
 @freezed
 class GetStaffData with _$GetStaffData {
   const factory GetStaffData({
-    required String total,
-    required String limit,
-    required String page,
+    required int total,
+    required int limit,
+    required int page,
     @Default([]) List<Staff> data,
     @Default(false) bool loadMore,
+    int? perPage,
   }) = _GetStaffData;
 
   factory GetStaffData.fromJson(Map<String, dynamic> json) =>

@@ -77,19 +77,23 @@ class _$PagingErrorWidget extends StatelessWidget {
           children: [
             AppAssets.images.icons.error.image(height: 92, width: 192),
             18.verticalGap,
-            Text(message, style: AppTextStyles.subText),
+            Text(
+              message,
+              style: AppTextStyles.subText,
+              textAlign: TextAlign.center,
+            ),
             15.verticalGap,
             GestureDetector(
               onTap: onRefresh,
               child: Container(
                 width: 85,
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                 decoration: const BoxDecoration(
                   color: AppColors.midGrey,
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  " Refresh",
+                  "Refresh",
                   style: AppTextStyles.smallButtonText.copyWith(
                     color: AppColors.primary,
                   ),

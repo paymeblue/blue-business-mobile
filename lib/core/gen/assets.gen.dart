@@ -159,9 +159,9 @@ class $AssetsImagesIconsGen {
   SvgGenImage get emptyBranch =>
       const SvgGenImage('assets/images/icons/empty_branch.svg');
 
-  /// File path: assets/images/icons/empty_staff.png
-  AssetGenImage get emptyStaff =>
-      const AssetGenImage('assets/images/icons/empty_staff.png');
+  /// File path: assets/images/icons/empty_staff.svg
+  SvgGenImage get emptyStaff =>
+      const SvgGenImage('assets/images/icons/empty_staff.svg');
 
   /// File path: assets/images/icons/error.png
   AssetGenImage get error =>

@@ -8,6 +8,7 @@ import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/modules/dashboard_pages/home/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/paging/error.dart';
@@ -161,13 +162,18 @@ class _HomeViewState extends State<HomeView> {
                     newPageProgressIndicatorBuilder: (context) =>
                         BlueLoadingTile.withImage(),
                     itemBuilder: (context, item, i) {
-                      return TransationTile(
-                        transaction: item,
+                      return GestureDetector(
+                        onTap: () {
+                          model.getBillTransactionDetails(item, context);
+                        },
+                        child: TransationTile(
+                          transaction: item,
+                        ),
                       );
                     },
                   ),
                   separatorBuilder: (context, i) {
-                    return 20.verticalGap;
+                    return 10.verticalGap;
                   },
                 )),
           ),
@@ -212,7 +218,7 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (model.salesLoading)
+                if (model.analyticsState == FetchState.loading)
                   salesShimmer()
                 else ...[
                   Row(
@@ -498,60 +504,58 @@ class _HomeViewState extends State<HomeView> {
           left: 16,
           right: 16,
         ),
-        padding: EdgeInsets.symmetric(
-            horizontal: 17, vertical: model.showEmptyState() ? 21 : 11),
+        padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 11),
         decoration: BoxDecoration(
           color: AppColors.primary,
           borderRadius: BorderRadius.circular(11),
         ),
-        child: model.showEmptyState()
-            ? refreshWalletContainer(model)
-            : Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      model.isKycLoading
-                          ? walletTypeShimmer()
-                          : walletTypeContainer(
-                              kycLevel:
-                                  locator<AppStateValues>().currentUser!.kyc,
-                            ),
-                      AppAssets.images.launcher.image(height: 23, width: 23),
-                    ],
-                  ),
-                  const Spacer(
-                    flex: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: model.isLoading
-                            ? walletAmountShimmer()
-                            : walletBalanceContainer(model),
-                      ),
-                      8.horizontalGap,
-                      model.isLoading
-                          ? walletIdShimmer()
-                          : volumeContainer(model),
-                    ],
-                  ),
-                  const Spacer(
-                    flex: 3,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: branchContainer(model),
-                      ),
-                      8.horizontalGap,
-                      staffContainer(model),
-                    ],
-                  )
-                ],
-              ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                walletTypeContainer(
+                  kycLevel: locator<AppStateValues>().currentUser!.kyc,
+                ),
+                AppAssets.images.launcher.image(height: 23, width: 23),
+              ],
+            ),
+            const Spacer(
+              flex: 5,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: model.businessDataState == FetchState.loading
+                      ? walletAmountShimmer()
+                      : walletBalanceContainer(model),
+                ),
+                8.horizontalGap,
+                model.businessDataState == FetchState.loading
+                    ? walletAmountShimmer()
+                    : volumeContainer(model),
+              ],
+            ),
+            const Spacer(
+              flex: 3,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: model.businessDataState == FetchState.loading
+                      ? walletAmountShimmer()
+                      : branchContainer(model),
+                ),
+                8.horizontalGap,
+                model.businessDataState == FetchState.loading
+                    ? walletAmountShimmer()
+                    : staffContainer(model),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -559,6 +563,7 @@ class _HomeViewState extends State<HomeView> {
   Column refreshWalletContainer(HomeViewModel model) {
     return Column(
       children: [
+        const Spacer(),
         GestureDetector(
           onTap: model.refreshWalletContainer,
           child: Container(
@@ -574,13 +579,14 @@ class _HomeViewState extends State<HomeView> {
         ),
         const Spacer(),
         SizedBox(
-          width: 160,
+          width: 200,
           child: Text(
             "Please pull down to refresh your wallet content.",
             style: AppTextStyles.smallText.copyWith(height: 1),
             textAlign: TextAlign.center,
           ),
-        )
+        ),
+        const Spacer(),
       ],
     );
   }
@@ -637,44 +643,40 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget volumeContainer(HomeViewModel model) {
-    return GestureDetector(
-      onTap: () {
-        model.copyWalletId();
-      },
-      child: Container(
-        decoration: const BoxDecoration(),
-        height: 50,
-        width: 130,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "TRANSACTION VOL.",
-              style: AppTextStyles.smallText.copyWith(
-                color: AppColors.brightBlue,
-              ),
+    return Container(
+      decoration: const BoxDecoration(),
+      height: 50,
+      width: 130,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "TRANSACTION VOL.",
+            style: AppTextStyles.smallText.copyWith(
+              color: AppColors.brightBlue,
             ),
-            4.verticalGap,
-            FittedBox(
-              child: Text(
-                locator<AppStateValues>()
-                    .currentUser!
-                    .transactionVolume
-                    .toString(),
-                style: AppTextStyles.header
-                    .copyWith(color: AppColors.grey, fontSize: 16.5),
-              ),
+          ),
+          4.verticalGap,
+          FittedBox(
+            child: Text(
+              locator<AppStateValues>()
+                  .currentUser!
+                  .dashboardData
+                  .transactionVolume
+                  .toString(),
+              style: AppTextStyles.header
+                  .copyWith(color: AppColors.grey, fontSize: 16.5),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   Widget walletAmountShimmer() {
     return SizedBox(
-      height: 51,
+      height: 38,
       width: 180,
       child: Shimmer.fromColors(
         baseColor: AppColors.brightBlue,
@@ -707,6 +709,8 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget walletBalanceContainer(HomeViewModel model) {
+    String balance = format.format(
+        double.parse(locator<AppStateValues>().wallet?.balance ?? "0.00"));
     return SizedBox(
       height: 50,
       child: Column(
@@ -726,7 +730,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           FittedBox(
             child: Text(
-              "${nairaSymbol()}${model.hideBalance ? locator<AppStateValues>().wallet!.balance.toString().replaceAll(RegExp(r"[0-9]"), "*") : format.format(double.parse(locator<AppStateValues>().wallet!.balance))}",
+              "${nairaSymbol()}${model.hideBalance ? balance.replaceAll(RegExp(r"[0-9]"), "*") : balance}",
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
                 fontSize: 18,
@@ -752,7 +756,11 @@ class _HomeViewState extends State<HomeView> {
           ),
           FittedBox(
             child: Text(
-              locator<AppStateValues>().currentUser!.totalBranches.toString(),
+              locator<AppStateValues>()
+                  .currentUser!
+                  .dashboardData
+                  .totalBranches
+                  .toString(),
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
                 fontSize: 18,
@@ -779,7 +787,11 @@ class _HomeViewState extends State<HomeView> {
           ),
           FittedBox(
             child: Text(
-              locator<AppStateValues>().currentUser!.totalStaff.toString(),
+              locator<AppStateValues>()
+                  .currentUser!
+                  .dashboardData
+                  .totalStaff
+                  .toString(),
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
                 fontSize: 18,
@@ -820,8 +832,9 @@ class _HomeViewState extends State<HomeView> {
       ),
       child: Row(
         children: [
-          const BlueAvatar(
+          BlueAvatar(
             radius: 20,
+            imageUrl: locator<AppStateValues>().currentUser!.displayPic,
           ),
           12.horizontalGap,
           Expanded(
@@ -862,7 +875,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         4.verticalGap,
         Text(
-          "Path4Her.org",
+          locator<AppStateValues>().currentUser!.business.name,
           style: AppTextStyles.header.copyWith(fontSize: 18.5),
         ),
       ],

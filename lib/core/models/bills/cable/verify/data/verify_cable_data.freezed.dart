@@ -26,7 +26,7 @@ mixin _$VerifyCableData {
   String get receiver => throw _privateConstructorUsedError;
   String get provider => throw _privateConstructorUsedError;
   String get package => throw _privateConstructorUsedError;
-  int get serviceCharge => throw _privateConstructorUsedError;
+  String get serviceCharge => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $VerifyCableDataCopyWith<$Res> {
       String receiver,
       String provider,
       String package,
-      int serviceCharge,
+      String serviceCharge,
       String amount,
       String status,
       String? createdAt});
@@ -108,7 +108,7 @@ class _$VerifyCableDataCopyWithImpl<$Res, $Val extends VerifyCableData>
       serviceCharge: null == serviceCharge
           ? _value.serviceCharge
           : serviceCharge // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -140,7 +140,7 @@ abstract class _$$VerifyCableDataImplCopyWith<$Res>
       String receiver,
       String provider,
       String package,
-      int serviceCharge,
+      String serviceCharge,
       String amount,
       String status,
       String? createdAt});
@@ -196,7 +196,7 @@ class __$$VerifyCableDataImplCopyWithImpl<$Res>
       serviceCharge: null == serviceCharge
           ? _value.serviceCharge
           : serviceCharge // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -223,8 +223,8 @@ class _$VerifyCableDataImpl implements _VerifyCableData {
       required this.receiver,
       required this.provider,
       required this.package,
-      this.serviceCharge = 100,
-      this.amount = "0.0",
+      this.serviceCharge = "100.00",
+      this.amount = ".00",
       this.status = "pending",
       this.createdAt});
 
@@ -245,7 +245,7 @@ class _$VerifyCableDataImpl implements _VerifyCableData {
   final String package;
   @override
   @JsonKey()
-  final int serviceCharge;
+  final String serviceCharge;
   @override
   @JsonKey()
   final String amount;
@@ -322,7 +322,7 @@ abstract class _VerifyCableData implements VerifyCableData {
       required final String receiver,
       required final String provider,
       required final String package,
-      final int serviceCharge,
+      final String serviceCharge,
       final String amount,
       final String status,
       final String? createdAt}) = _$VerifyCableDataImpl;
@@ -343,7 +343,7 @@ abstract class _VerifyCableData implements VerifyCableData {
   @override
   String get package;
   @override
-  int get serviceCharge;
+  String get serviceCharge;
   @override
   String get amount;
   @override

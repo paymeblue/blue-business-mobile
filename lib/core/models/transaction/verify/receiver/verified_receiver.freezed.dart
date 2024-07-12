@@ -26,7 +26,7 @@ mixin _$VerifiedReceiver {
   String get receiverName => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
-  int get charge => throw _privateConstructorUsedError;
+  double get charge => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +47,7 @@ abstract class $VerifiedReceiverCopyWith<$Res> {
       String receiverName,
       String phone,
       String amount,
-      int charge});
+      double charge});
 }
 
 /// @nodoc
@@ -99,7 +99,7 @@ class _$VerifiedReceiverCopyWithImpl<$Res, $Val extends VerifiedReceiver>
       charge: null == charge
           ? _value.charge
           : charge // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ) as $Val);
   }
 }
@@ -119,7 +119,7 @@ abstract class _$$VerifiedReceiverImplCopyWith<$Res>
       String receiverName,
       String phone,
       String amount,
-      int charge});
+      double charge});
 }
 
 /// @nodoc
@@ -169,7 +169,7 @@ class __$$VerifiedReceiverImplCopyWithImpl<$Res>
       charge: null == charge
           ? _value.charge
           : charge // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -202,7 +202,7 @@ class _$VerifiedReceiverImpl implements _VerifiedReceiver {
   @override
   final String amount;
   @override
-  final int charge;
+  final double charge;
 
   @override
   String toString() {
@@ -253,7 +253,7 @@ abstract class _VerifiedReceiver implements VerifiedReceiver {
       required final String receiverName,
       required final String phone,
       required final String amount,
-      required final int charge}) = _$VerifiedReceiverImpl;
+      required final double charge}) = _$VerifiedReceiverImpl;
 
   factory _VerifiedReceiver.fromJson(Map<String, dynamic> json) =
       _$VerifiedReceiverImpl.fromJson;
@@ -271,7 +271,7 @@ abstract class _VerifiedReceiver implements VerifiedReceiver {
   @override
   String get amount;
   @override
-  int get charge;
+  double get charge;
   @override
   @JsonKey(ignore: true)
   _$$VerifiedReceiverImplCopyWith<_$VerifiedReceiverImpl> get copyWith =>

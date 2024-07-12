@@ -3,6 +3,7 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
@@ -43,31 +44,99 @@ class _InitiateCableViewState extends State<InitiateCableView> {
                 Expanded(
                   child: ListView(
                     children: [
-                      model.gettingProviders
-                          ? BlueLoadingTile.withoutImage()
-                          : BlueDropdown.billProviders(
-                              banks: model.providers,
-                              onChanged: model.onBillProviderChanged,
-                              value: model.selectedProvider,
-                              searchController: model.searchController,
-                              title: "cable providers",
+                      if (model.providersState == FetchState.loading)
+                        BlueLoadingTile.withoutImage(title: "Cable Providers")
+                      else
+                        Row(
+                          children: [
+                            Expanded(
+                              child: BlueDropdown.billProviders(
+                                banks: model.providers,
+                                onChanged: model.onBillProviderChanged,
+                                value: model.selectedProvider,
+                                searchController: model.searchController,
+                                title: "cable providers",
+                              ),
                             ),
+                            if (model.packagesState == FetchState.error) ...[
+                              10.horizontalGap,
+                              GestureDetector(
+                                onTap: () {
+                                  model.getProviders();
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: const BoxDecoration(
+                                      color: AppColors.inputField),
+                                  child: const Icon(
+                                    Icons.refresh_rounded,
+                                  ),
+                                ),
+                              ),
+                            ]
+                          ],
+                        ),
                       20.verticalGap,
-                      model.gettingPackages
-                          ? BlueLoadingTile.withoutImage()
-                          : BlueDropdown.billPackages(
-                              banks: model.packages,
-                              onChanged: model.onBillPackageChanged,
-                              value: model.selectedPackage,
-                              searchController: model.searchController,
-                              title: "cable bundles",
+                      if (model.packagesState == FetchState.loading)
+                        BlueLoadingTile.withoutImage(title: "Cable bundles")
+                      else
+                        Row(
+                          children: [
+                            Expanded(
+                              child: BlueDropdown.billPackages(
+                                banks: model.packages,
+                                onChanged: model.onBillPackageChanged,
+                                value: model.selectedPackage,
+                                searchController: model.searchController,
+                                title: "cable bundles",
+                              ),
                             ),
+                            if (model.packagesState == FetchState.error) ...[
+                              10.horizontalGap,
+                              GestureDetector(
+                                onTap: () {
+                                  model.getPackages();
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: const BoxDecoration(
+                                      color: AppColors.inputField),
+                                  child: const Icon(
+                                    Icons.refresh_rounded,
+                                  ),
+                                ),
+                              ),
+                            ]
+                          ],
+                        ),
                       20.verticalGap,
-                      BlueTextField.plaintext(
-                          hint: "Smartcard/IUC number",
-                          title: "Smartcard/IUC number",
-                          controller: model.cardNumberController,
-                          onChanged: model.onChanged),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: BlueTextField.plaintext(
+                              hint: "Smartcard/IUC number",
+                              title: "Smartcard/IUC number",
+                              controller: model.cardNumberController,
+                              onChanged: model.onChanged,
+                            ),
+                          ),
+                          6.horizontalGap,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: SizedBox(
+                              height: 35,
+                              width: 110,
+                              child: AppButton.ghost(
+                                title: "Verify",
+                                isEnabled: model.shouldVerify(),
+                                onTap: () {
+                                  model.verifyPackage();
+                                },
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                       8.verticalGap,
                       if (model.verifying)
                         BlueLoadingTile.withoutImage()
@@ -98,7 +167,7 @@ class _InitiateCableViewState extends State<InitiateCableView> {
                                 ),
                               ),
                               Text(
-                                "The amount to be paid is ${nairaSymbol()}${(double.parse(model.data!.amount) + model.data!.serviceCharge).toStringAsFixed(2)}",
+                                "The amount to be paid is ${nairaSymbol()}${(double.parse(model.data!.amount) + double.parse(model.data!.serviceCharge)).toStringAsFixed(2)}",
                                 style: AppTextStyles.smallText.copyWith(
                                   color: AppColors.bodyTextColor,
                                 ),

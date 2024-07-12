@@ -1,10 +1,18 @@
 import 'dart:async';
 
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/models/forgot_password/verify/request/verify_forgot_password_request.dart';
+import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/signup/response/signup_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -80,9 +88,44 @@ class VerifyPasswordRecoveryOtpViewModel extends BaseViewModel {
     timer.cancel();
   }
 
-  resendOtp() async {}
+  resendOtp() async {
+    AppLoader.start();
 
-  verifyOtp(BuildContext context) async {}
+    SignupResponse resp = await AuthService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .resendSignupOtp(phone: phone)
+        .onError((error, stackTrace) =>
+            SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
+
+    if (resp.status == "success") {
+      AppNotification.success(message: resp.message);
+      startCountdown();
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+    AppLoader.stop();
+  }
+
+  verifyOtp(BuildContext context) async {
+    AppLoader.start();
+
+    VerifyForgotPasswordRequest request =
+        VerifyForgotPasswordRequest(otp: pin, phone: phone);
+
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .verifyForgotPasswordOtp(request: request)
+            .onError((error, stackTrace) => SendNewPhoneResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
+
+    if (resp.status == "success") {
+      AppNotification.success(message: resp.message);
+      if (context.mounted) goToNext(context);
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+    AppLoader.stop();
+  }
 
   goBack(BuildContext context) {
     context.pop();

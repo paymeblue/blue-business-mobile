@@ -90,4 +90,4 @@ class RefreshTimer {
   }
 }
 
-enum NotificationState { success, error, warning }
+enum NotificationState { signupSuccess, logoutSuccess, error, warning }

@@ -3,6 +3,7 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
@@ -73,14 +74,36 @@ class _InitiateElectricityViewState extends State<InitiateElectricityView> {
             ),
             SizedBox(
               width: model.size.width / 2.35,
-              child: model.gettingProviders
-                  ? BlueLoadingTile.withoutImage()
-                  : BlueDropdown.billProviders(
-                      banks: model.providers,
-                      onChanged: model.onBillProviderChanged,
-                      value: model.selectedProvider,
-                      searchController: model.searchController,
-                      title: "DISCO",
+              child: model.providersState == FetchState.loading
+                  ? BlueLoadingTile.withoutImage(title: "DISCOs")
+                  : Row(
+                      children: [
+                        Expanded(
+                          child: BlueDropdown.billProviders(
+                            banks: model.providers,
+                            onChanged: model.onBillProviderChanged,
+                            value: model.selectedProvider,
+                            searchController: model.searchController,
+                            title: "DISCO",
+                          ),
+                        ),
+                        if (model.providersState == FetchState.error) ...[
+                          10.horizontalGap,
+                          GestureDetector(
+                            onTap: () {
+                              model.getProviders();
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: const BoxDecoration(
+                                  color: AppColors.inputField),
+                              child: const Icon(
+                                Icons.refresh_rounded,
+                              ),
+                            ),
+                          ),
+                        ]
+                      ],
                     ),
             )
           ],
@@ -90,12 +113,33 @@ class _InitiateElectricityViewState extends State<InitiateElectricityView> {
           value: model.selectedMeterType,
         ),
         20.verticalGap,
-        BlueTextField.plaintext(
-          hint: "Meter Number",
-          title: "Meter Number",
-          keyboardType: TextInputType.number,
-          controller: model.meterNumberController,
-          onChanged: model.onMeterNumberChanged,
+        Row(
+          children: [
+            Expanded(
+              child: BlueTextField.plaintext(
+                hint: "Meter Number",
+                title: "Meter Number",
+                keyboardType: TextInputType.number,
+                controller: model.meterNumberController,
+                onChanged: model.onChanged,
+              ),
+            ),
+            6.horizontalGap,
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: SizedBox(
+                height: 35,
+                width: 110,
+                child: AppButton.ghost(
+                  title: "Verify",
+                  isEnabled: model.shouldVerify(),
+                  onTap: () {
+                    model.verifyMeter();
+                  },
+                ),
+              ),
+            )
+          ],
         ),
         8.verticalGap,
         if (model.verifying)
@@ -126,7 +170,7 @@ class _InitiateElectricityViewState extends State<InitiateElectricityView> {
                   ),
                 ),
                 Text(
-                  "The minimum amount payable is ${nairaSymbol()}${(double.parse(model.data!.minimumAmount) + model.data!.serviceCharge).toStringAsFixed(2)}",
+                  "The minimum amount payable is ${nairaSymbol()}${(double.parse(model.data!.minimumAmount)).toStringAsFixed(2)}",
                   style: AppTextStyles.smallText.copyWith(
                     color: AppColors.bodyTextColor,
                   ),

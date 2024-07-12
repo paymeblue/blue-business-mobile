@@ -1,11 +1,16 @@
 import 'dart:typed_data';
 
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
 import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
+import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:blue_business/widgets/modals/toast.dart';
@@ -32,6 +37,28 @@ class SuccessViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  getTransactionReceipt(PayData data) async {
+    AppLoader.start();
+
+    ReceiptResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getReceipt(data.id)
+        .onError((error, stackTrace) {
+      return ReceiptResponse(message: AppErrorHandler.getErrorMessage(error));
+    });
+
+    if (resp.status == "success") {
+      receipt = resp.data!;
+      await Future.delayed(const Duration(milliseconds: 350), () {
+        downloadAndShareQr(data);
+      });
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    AppLoader.stop();
+  }
+
   ScreenshotController screenshotController = ScreenshotController();
 
   downloadAndShareQr(PayData data) async {
@@ -42,8 +69,8 @@ class SuccessViewModel extends BaseViewModel {
       AppNotification.error(message: AppErrorHandler.getErrorMessage(onError));
     });
     if (img != null) {
-      XFile image = XFile.fromData(img!,
-          name: "receipt_${data.transactionId}", mimeType: "png");
+      XFile image =
+          XFile.fromData(img!, name: "receipt_${data.id}", mimeType: "png");
 
       Share.shareXFiles(
         [image],

@@ -13,7 +13,8 @@ class VendCableData with _$VendCableData {
     required String provider,
     required String package,
     required String paymentReference,
-    required String amount,
+    required int amount,
+    @Default(0) int serviceCharget,
     @Default("pending") String status,
     String? createdAt,
   }) = _VendCableData;

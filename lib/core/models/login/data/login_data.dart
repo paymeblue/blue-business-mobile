@@ -1,3 +1,5 @@
+import 'package:blue_business/core/models/business_profile/business_data.dart';
+import 'package:blue_business/core/models/dashboard_data/dashboard_data.dart';
 import 'package:blue_business/core/models/token/token.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -6,16 +8,16 @@ part 'login_data.g.dart';
 
 @freezed
 class LoginData with _$LoginData {
-  const factory LoginData(
-      {required int id,
-      required String phone,
-      @Default("basic") String kyc,
-      @Default(0) int totalStaff,
-      @Default(0) int totalBranches,
-      @Default(0) int transactionVolume,
-      @Default(0) int netProfit,
-      required Token token,
-      String? createdAt}) = _LoginData;
+  const factory LoginData({
+    required int id,
+    required String phone,
+    required BusinessData business,
+    required DashboardData dashboardData,
+    @Default("basic") String kyc,
+    required Token token,
+    String? createdAt,
+    String? displayPic,
+  }) = _LoginData;
 
   factory LoginData.fromJson(Map<String, dynamic> json) =>
       _$LoginDataImpl.fromJson(json);

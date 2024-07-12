@@ -12,7 +12,7 @@ class VerifiedReceiver with _$VerifiedReceiver {
     required String receiverName,
     required String phone,
     required String amount,
-    required int charge,
+    required double charge,
   }) = _VerifiedReceiver;
 
   factory VerifiedReceiver.fromJson(Map<String, dynamic> json) =>

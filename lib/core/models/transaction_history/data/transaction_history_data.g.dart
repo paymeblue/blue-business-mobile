@@ -9,9 +9,9 @@ part of 'transaction_history_data.dart';
 _$TransactionDataImpl _$$TransactionDataImplFromJson(
         Map<String, dynamic> json) =>
     _$TransactionDataImpl(
-      total: json['total'] as String,
-      limit: json['limit'] as String,
-      page: json['page'] as String,
+      total: json['total'] as int,
+      limit: json['limit'] as int,
+      page: json['page'] as int,
       data: (json['data'] as List<dynamic>?)
               ?.map(
                   (e) => TransactionHistory.fromJson(e as Map<String, dynamic>))

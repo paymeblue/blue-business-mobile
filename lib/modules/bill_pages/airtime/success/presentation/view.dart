@@ -53,7 +53,9 @@ class _VendAirtimeSuccessViewState extends State<VendAirtimeSuccessView> {
                     successMessage(),
                     const Spacer(),
                     shareReceiptButton(
-                      onTap: () {},
+                      onTap: () {
+                        model.getTransactionDetails(widget.data);
+                      },
                     ),
                     10.verticalGap,
                     doneButton(

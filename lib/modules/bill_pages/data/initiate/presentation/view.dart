@@ -1,6 +1,8 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
@@ -41,25 +43,71 @@ class _InitiateDataViewState extends State<InitiateDataView> {
                 Expanded(
                   child: ListView(
                     children: [
-                      model.gettingProviders
-                          ? BlueLoadingTile.withoutImage()
-                          : BlueDropdown.billProviders(
-                              banks: model.providers,
-                              onChanged: model.onBillProviderChanged,
-                              value: model.selectedProvider,
-                              searchController: model.searchController,
-                              title: "data provider",
+                      if (model.providersState == FetchState.loading)
+                        BlueLoadingTile.withoutImage(title: "Data providers")
+                      else
+                        Row(
+                          children: [
+                            Expanded(
+                              child: BlueDropdown.billProviders(
+                                banks: model.providers,
+                                onChanged: model.onBillProviderChanged,
+                                value: model.selectedProvider,
+                                searchController: model.searchController,
+                                title: "data provider",
+                              ),
                             ),
+                            if (model.providersState == FetchState.error) ...[
+                              10.horizontalGap,
+                              GestureDetector(
+                                onTap: () {
+                                  model.getProviders();
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: const BoxDecoration(
+                                      color: AppColors.inputField),
+                                  child: const Icon(
+                                    Icons.refresh_rounded,
+                                  ),
+                                ),
+                              ),
+                            ]
+                          ],
+                        ),
                       20.verticalGap,
-                      model.gettingPackages
-                          ? BlueLoadingTile.withoutImage()
-                          : BlueDropdown.billPackages(
-                              banks: model.packages,
-                              onChanged: model.onBillPackageChanged,
-                              value: model.selectedPackage,
-                              searchController: model.searchController,
-                              title: "data bundles",
+                      if (model.packagesState == FetchState.loading)
+                        BlueLoadingTile.withoutImage(title: "Data bundles")
+                      else
+                        Row(
+                          children: [
+                            Expanded(
+                              child: BlueDropdown.billPackages(
+                                banks: model.packages,
+                                onChanged: model.onBillPackageChanged,
+                                value: model.selectedPackage,
+                                searchController: model.searchController,
+                                title: "data bundles",
+                              ),
                             ),
+                            if (model.packagesState == FetchState.error) ...[
+                              10.horizontalGap,
+                              GestureDetector(
+                                onTap: () {
+                                  model.getPackages();
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: const BoxDecoration(
+                                      color: AppColors.inputField),
+                                  child: const Icon(
+                                    Icons.refresh_rounded,
+                                  ),
+                                ),
+                              ),
+                            ]
+                          ],
+                        ),
                       20.verticalGap,
                       BlueTextField.plaintext(
                         title: "Phone number/Device ID",
@@ -74,7 +122,9 @@ class _InitiateDataViewState extends State<InitiateDataView> {
                 AppButton.primary(
                   title: "Continue",
                   isEnabled: model.isActive(),
-                  onTap: () {},
+                  onTap: () {
+                    model.verfyPackage(context);
+                  },
                 ),
                 10.verticalGap,
               ],

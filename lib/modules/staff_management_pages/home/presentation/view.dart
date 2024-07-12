@@ -9,6 +9,7 @@ import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
+import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -40,7 +41,12 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ...titleAndSubtitle(model),
-                  12.verticalGap,
+                  15.verticalGap,
+                  BlueTextField.search(
+                    hint: "Search branches",
+                    controller: model.searchController,
+                    onSearchChanged: model.onSearchChanged,
+                  ),
                   Expanded(
                     child: staffList(model),
                   ),
@@ -124,17 +130,32 @@ class _StaffHomeViewState extends State<StaffHomeView> {
 
   Widget staffTile(StaffHomeViewModel model, Staff item) {
     return Container(
-      height: 130,
       width: model.size.width,
-      padding: const EdgeInsets.symmetric(horizontal: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.bgGrey),
           borderRadius: BorderRadius.circular(5)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: const BoxDecoration(color: AppColors.inputField),
+            child: Text(
+              "${item.role.toUpperCase()} ROLE",
+              style: AppTextStyles.smallText.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.textColor,
+                  fontSize: 10),
+            ),
+          ),
+          8.verticalGap,
           Row(
             children: [
-              const BlueAvatar(radius: 22.5),
+              BlueAvatar(
+                radius: 22.5,
+                imageUrl: item.displayPicture,
+              ),
               10.horizontalGap,
               Expanded(
                 child: Column(
@@ -148,13 +169,13 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                       ),
                     ),
                     Text(
-                      "Kubwa Abuja Branch",
+                      item.branchName,
                       style: AppTextStyles.smallText.copyWith(
                         color: AppColors.blue,
                       ),
                     ),
                     Text(
-                      "+${item.phone}",
+                      item.phone,
                       style: AppTextStyles.smallText.copyWith(
                         color: AppColors.bodyTextColor2,
                       ),
@@ -173,7 +194,9 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                 height: 40,
                 child: AppButton.primary(
                   title: "Edit staff",
-                  onTap: () {},
+                  onTap: () {
+                    model.goToAddStaff(context, staff: item);
+                  },
                 ),
               ),
               SizedBox(
@@ -198,10 +221,7 @@ class _StaffHomeViewState extends State<StaffHomeView> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AppAssets.images.icons.emptyStaff.image(
-            height: 88,
-            width: 128,
-          ),
+          AppAssets.images.icons.emptyStaff.svg(),
           SizedBox(
             width: 179,
             child: Text(

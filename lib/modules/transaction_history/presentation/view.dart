@@ -126,15 +126,21 @@ class _TransactionHistoryViewState extends State<TransactionHistoryView> {
                         .copyWith(color: AppColors.textColor),
                   ),
                 4.verticalGap,
-                TransationTile(
-                  transaction: item,
+                GestureDetector(
+                  onTap: () {
+                    model.getBillTransactionDetails(item, context);
+                  },
+                  child: TransationTile(
+                    transaction: item,
+                    colored: true,
+                  ),
                 ),
               ],
             );
           },
         ),
         separatorBuilder: (context, i) {
-          return 30.verticalGap;
+          return 10.verticalGap;
         },
       ),
     );

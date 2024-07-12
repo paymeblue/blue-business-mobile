@@ -27,7 +27,7 @@ mixin _$VerifyElectricityData {
   String get receiver => throw _privateConstructorUsedError;
   String get provider => throw _privateConstructorUsedError;
   String get meterType => throw _privateConstructorUsedError;
-  int get serviceCharge => throw _privateConstructorUsedError;
+  String get serviceCharge => throw _privateConstructorUsedError;
   String get minimumAmount => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
@@ -51,7 +51,7 @@ abstract class $VerifyElectricityDataCopyWith<$Res> {
       String receiver,
       String provider,
       String meterType,
-      int serviceCharge,
+      String serviceCharge,
       String minimumAmount,
       String status,
       String? createdAt});
@@ -110,7 +110,7 @@ class _$VerifyElectricityDataCopyWithImpl<$Res,
       serviceCharge: null == serviceCharge
           ? _value.serviceCharge
           : serviceCharge // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       minimumAmount: null == minimumAmount
           ? _value.minimumAmount
           : minimumAmount // ignore: cast_nullable_to_non_nullable
@@ -143,7 +143,7 @@ abstract class _$$VerifyElectricityDataImplCopyWith<$Res>
       String receiver,
       String provider,
       String meterType,
-      int serviceCharge,
+      String serviceCharge,
       String minimumAmount,
       String status,
       String? createdAt});
@@ -200,7 +200,7 @@ class __$$VerifyElectricityDataImplCopyWithImpl<$Res>
       serviceCharge: null == serviceCharge
           ? _value.serviceCharge
           : serviceCharge // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       minimumAmount: null == minimumAmount
           ? _value.minimumAmount
           : minimumAmount // ignore: cast_nullable_to_non_nullable
@@ -227,7 +227,7 @@ class _$VerifyElectricityDataImpl implements _VerifyElectricityData {
       required this.receiver,
       required this.provider,
       required this.meterType,
-      this.serviceCharge = 100,
+      this.serviceCharge = "100.00",
       this.minimumAmount = "0.0",
       this.status = "pending",
       this.createdAt});
@@ -249,7 +249,7 @@ class _$VerifyElectricityDataImpl implements _VerifyElectricityData {
   final String meterType;
   @override
   @JsonKey()
-  final int serviceCharge;
+  final String serviceCharge;
   @override
   @JsonKey()
   final String minimumAmount;
@@ -328,7 +328,7 @@ abstract class _VerifyElectricityData implements VerifyElectricityData {
       required final String receiver,
       required final String provider,
       required final String meterType,
-      final int serviceCharge,
+      final String serviceCharge,
       final String minimumAmount,
       final String status,
       final String? createdAt}) = _$VerifyElectricityDataImpl;
@@ -349,7 +349,7 @@ abstract class _VerifyElectricityData implements VerifyElectricityData {
   @override
   String get meterType;
   @override
-  int get serviceCharge;
+  String get serviceCharge;
   @override
   String get minimumAmount;
   @override

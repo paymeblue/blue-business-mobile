@@ -76,20 +76,17 @@ class RoutePaths {
   static String confirmPaymentPath = "$transactionPath/confirm";
   static String transactionPinPath = "$transactionPath/pin";
   static String successPath = "$transactionPath/success";
+  static String transactionErrorPath = "$transactionPath/error";
   static String pushPaymentPin = "$transactionPath/push-payment/pin";
 
   static String viewPersonalInfoPath = "$settingsPath$personalInfoPath/view";
   static String addWithdrawalBankPath = "$settingsPath/withdrawal-details/add";
   static String accountRecoveryPath = "$settingsPath/account-recovery";
 
-  static String businessProfilePath = "/dash/business-profile";
-  static String businessNamePath = "$businessProfilePath/name";
-  static String businessSizePath = "$businessProfilePath/size";
-  static String businessLocation = "$businessProfilePath/location";
-
   static String staffManagementPath = "$settingsPath/staff-management";
   static String addStaffPath = "$staffManagementPath/add";
 
   static String branchManagementPath = "$settingsPath/branch-management";
   static String addBranchPath = "$branchManagementPath/add";
+  static String branchInsightsPath = "$branchManagementPath/insights";
 }

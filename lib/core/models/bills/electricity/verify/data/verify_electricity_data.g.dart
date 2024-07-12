@@ -15,7 +15,7 @@ _$VerifyElectricityDataImpl _$$VerifyElectricityDataImplFromJson(
       receiver: json['receiver'] as String,
       provider: json['provider'] as String,
       meterType: json['meter_type'] as String,
-      serviceCharge: json['service_charge'] as int? ?? 100,
+      serviceCharge: json['service_charge'] as String? ?? "100.00",
       minimumAmount: json['minimum_amount'] as String? ?? "0.0",
       status: json['status'] as String? ?? "pending",
       createdAt: json['created_at'] as String?,

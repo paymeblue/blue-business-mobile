@@ -12,7 +12,7 @@ class VerifyElectricityData with _$VerifyElectricityData {
     required String receiver,
     required String provider,
     required String meterType,
-    @Default(100) int serviceCharge,
+    @Default("100.00") String serviceCharge,
     @Default("0.0") String minimumAmount,
     @Default("pending") String status,
     String? createdAt,

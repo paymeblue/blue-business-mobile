@@ -1,16 +1,33 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
+import 'package:blue_business/core/io/api/dash_service/dash_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
+import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
+import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
+import 'package:blue_business/core/models/business_dash/data/business_dash_data.dart';
+import 'package:blue_business/core/models/business_dash/response/business_dash_response.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
+import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
+import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
+import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
+import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
+import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
+import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
+import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/modules/dashboard_pages/home/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:blue_business/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,14 +45,14 @@ class HomeViewModel extends BaseViewModel {
 
   getDashData() async {
     getWalletBalance();
-    getKyc();
-    if (!locator<AppStateValues>().loadedTodo) {
+    getBusinessData();
+    if (locator<AppStateValues>().todoState != FetchState.complete) {
       getTodos();
     }
     getAnalytics();
-    // transactionController.addPageRequestListener((pageKey) {
-    //   getTransactions(pageKey);
-    // });
+    transactionController.addPageRequestListener((pageKey) {
+      getTransactions(pageKey);
+    });
   }
 
   copyWalletId() {
@@ -64,32 +81,71 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  bool _kycLoading = false;
-  bool get isKycLoading => _kycLoading;
-  set isKycLoading(bool v) {
-    _kycLoading = v;
-    notifyListeners();
-  }
-
-  bool _loading = false;
-  bool get isLoading => _loading;
-  set isLoading(bool v) {
-    _loading = v;
-    notifyListeners();
-  }
-
   bool showEmptyState() {
-    return (locator<AppStateValues>().wallet == null) &&
-        (!isKycLoading && !isLoading);
+    return (locator<AppStateValues>().wallet == null) ||
+        (walletState == FetchState.error);
   }
 
   refreshWalletContainer() {
-    getWalletBalance();
-    getKyc();
+    getBusinessData();
+
     getTodos();
   }
 
-  getWalletBalance() async {}
+  FetchState _walletState = FetchState.complete;
+  FetchState get walletState => _walletState;
+  set walletState(FetchState s) {
+    _walletState = s;
+    notifyListeners();
+  }
+
+  FetchState _businessDataState = FetchState.complete;
+  FetchState get businessDataState => _businessDataState;
+  set businessDataState(FetchState s) {
+    _businessDataState = s;
+    notifyListeners();
+  }
+
+  BusinessDashData? _businessDash;
+  BusinessDashData? get businessDash => _businessDash;
+  set businessDash(BusinessDashData? v) {
+    _businessDash = v;
+    notifyListeners();
+  }
+
+  getWalletBalance() async {
+    walletState = FetchState.loading;
+
+    WalletResponse resp = await DashService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getWalletDetails()
+        .onError((error, stackTrace) =>
+            WalletResponse(message: AppErrorHandler.getErrorMessage(error)));
+
+    if (resp.status == "success") {
+      walletState = FetchState.complete;
+      locator<AppStateValues>().wallet = resp.data;
+    } else {
+      walletState = FetchState.error;
+    }
+  }
+
+  getBusinessData() async {
+    businessDataState = FetchState.loading;
+
+    BusinessDashResponse resp =
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getDashDetails()
+            .onError((error, stackTrace) => BusinessDashResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
+
+    if (resp.status == "success") {
+      businessDataState = FetchState.complete;
+      businessDash = resp.data;
+    } else {
+      businessDataState = FetchState.error;
+    }
+  }
 
   getTodos() async {}
 
@@ -108,10 +164,10 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  bool _saleL = false;
-  bool get salesLoading => _saleL;
-  set salesLoading(bool v) {
-    _saleL = v;
+  FetchState _analyticsState = FetchState.complete;
+  FetchState get analyticsState => _analyticsState;
+  set analyticsState(FetchState s) {
+    _analyticsState = s;
     notifyListeners();
   }
 
@@ -136,7 +192,23 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getAnalytics() async {}
+  getAnalytics() async {
+    analyticsState = FetchState.loading;
+    AnalyticsResponse response = await InsightsService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getAnalytics("weekly")
+        .onError((error, stackTrace) =>
+            AnalyticsResponse(message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      analyticsState = FetchState.complete;
+      analyticsData = response.data;
+      calculateIncrease();
+    } else {
+      analyticsState = FetchState.error;
+      AppNotification.error(message: response.message);
+    }
+  }
 
   calculateIncrease() {
     double currentMobile = double.parse(analyticsData?.mobile.current ?? "0.0");
@@ -177,20 +249,19 @@ class HomeViewModel extends BaseViewModel {
       PagingController<int, TransactionHistory>(firstPageKey: 1);
 
   getTransactions(int page) async {
-    try {} catch (e) {
+    try {
+      TransactionResponse resp = await TransactionService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .getTransactions(page, limit);
+      if (resp.status == "success") {
+        List<TransactionHistory> t = resp.data!.data;
+
+        transactionController.appendLastPage(t);
+      } else {
+        transactionController.error = resp.message;
+      }
+    } catch (e) {
       transactionController.error = AppErrorHandler.getErrorMessage(e);
-    }
-  }
-
-  getKyc() async {}
-
-  getTopupAccount() async {}
-
-  showTopupModal() {
-    if (locator<AppStateValues>().account != null) {
-      BlueBottomSheet.topup();
-    } else {
-      getTopupAccount();
     }
   }
 
@@ -202,7 +273,8 @@ class HomeViewModel extends BaseViewModel {
           ),
           title: "Receive",
           onTap: () {
-            if (isLoading && locator<AppStateValues>().wallet == null) {
+            if (walletState == FetchState.loading &&
+                locator<AppStateValues>().wallet == null) {
               BlueToast.primaryWithcon("Please wait...");
             } else {
               goToReceiveMoney(context);
@@ -236,6 +308,71 @@ class HomeViewModel extends BaseViewModel {
           },
         )
       ];
+
+  getBillTransactionDetails(
+      TransactionHistory transaction, BuildContext context) async {
+    AppLoader.start();
+
+    TransactionDetailResponse response = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getBillTransactionDetails(
+      transactionId: transaction.transactionId.toString(),
+      service: getService(transaction.paymentMode),
+    )
+        .onError((error, stackTrace) {
+      return TransactionDetailResponse(
+          message: AppErrorHandler.getErrorMessage(error));
+    });
+
+    if (response.status == "success") {
+      if (context.mounted) {
+        handleDetailResponse(getService(transaction.paymentMode),
+            transaction.transactionType ?? 'debit', response, context);
+      }
+    } else {
+      AppNotification.error(message: response.message);
+    }
+
+    AppLoader.stop();
+  }
+
+  handleDetailResponse(String mode, String type,
+      TransactionDetailResponse response, BuildContext context) {
+    if (mode == "airtime") {
+      AirtimeDetails airtimeDetails = AirtimeDetails.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${airtimeDetails.transactionId}",
+          extra: airtimeDetails);
+    } else if (mode == "power") {
+      PowerDetails powerDetails = PowerDetails.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${powerDetails.transactionId}",
+          extra: powerDetails);
+    } else if (mode == "data") {
+      DataDetails dataDetails = DataDetails.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${dataDetails.transactionId}",
+          extra: dataDetails);
+    } else if (mode == "tv") {
+      CableDetails cableDetails = CableDetails.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${cableDetails.transactionId}",
+          extra: cableDetails);
+    }
+  }
+
+  String getService(String mode) {
+    switch (mode) {
+      case "airtime":
+      case "power":
+      case "data":
+        return mode;
+      case "cable-tv":
+        return "tv";
+      default:
+        return "payment";
+    }
+  }
 
   goToStaffManagementHome(BuildContext context) {
     context.go(RoutePaths.staffManagementPath);

@@ -15,7 +15,7 @@ _$VerifiedReceiverImpl _$$VerifiedReceiverImplFromJson(
       receiverName: json['receiver_name'] as String,
       phone: json['phone'] as String,
       amount: json['amount'] as String,
-      charge: json['charge'] as int,
+      charge: (json['charge'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$VerifiedReceiverImplToJson(

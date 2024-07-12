@@ -6,6 +6,7 @@ import 'package:blue_business/core/models/bills/electricity/vend/data/vend_elect
 import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:blue_business/widgets/modals/toast.dart';
@@ -32,7 +33,29 @@ class VendElectricitySuccessViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getTransactionDetails(VendElectricityData transaction) async {}
+  getTransactionDetails(VendElectricityData transaction) async {
+    AppLoader.start();
+
+    // TransactionDetailResponse response = await TransactionService(
+    //         DioConfig.dio(locator<AppStateValues>().accessToken))
+    //     .getTransactionDetails(
+    //   transactionReference: transaction.transactionId.toString(),
+    //   service: "power",
+    // )
+    //     .onError((error, stackTrace) {
+    //   return TransactionDetailResponse(
+    //       message: AppErrorHandler.getErrorMessage(error));
+    // });
+
+    // if (response.status == "success") {
+    //   powerDetails = PowerDetails.fromJson(response.data);
+    //   downloadAndShareQr();
+    // } else {
+    //   AppNotification.error(message: response.message);
+    // }
+
+    AppLoader.stop();
+  }
 
   ScreenshotController screenshotController = ScreenshotController();
 

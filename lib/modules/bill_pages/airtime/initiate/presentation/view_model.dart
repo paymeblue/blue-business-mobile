@@ -1,9 +1,16 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/bills_service/bills_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/bills/airtime/review_data/review_airtime_data.dart';
 import 'package:blue_business/core/models/bills/get_providers/providers/providers.dart';
+import 'package:blue_business/core/models/bills/get_providers/response/get_providers_response.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
+import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,6 +23,7 @@ class InitiateAirtimeViewModel extends BaseViewModel {
     size = context.mediaQuery.size;
 
     setSelectedCountry();
+    getProviders();
   }
 
   goBack(BuildContext context) {
@@ -46,10 +54,10 @@ class InitiateAirtimeViewModel extends BaseViewModel {
   TextEditingController phoneController = TextEditingController();
   TextEditingController amountController = TextEditingController();
 
-  bool _gettingProviders = false;
-  bool get gettingProviders => _gettingProviders;
-  set gettingProviders(bool v) {
-    _gettingProviders = v;
+  FetchState _providersState = FetchState.complete;
+  FetchState get providersState => _providersState;
+  set providersState(FetchState s) {
+    _providersState = s;
     notifyListeners();
   }
 
@@ -69,6 +77,24 @@ class InitiateAirtimeViewModel extends BaseViewModel {
   set selectedProvider(BillProvider? p) {
     _provider = p;
     notifyListeners();
+  }
+
+  getProviders() async {
+    providersState = FetchState.loading;
+
+    GetProvidersResponse resp =
+        await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getProviders("airtime")
+            .onError((error, stackTrace) => GetProvidersResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
+
+    if (resp.status == "success") {
+      providersState = FetchState.complete;
+      providers = resp.data ?? [];
+    } else {
+      providersState = FetchState.error;
+      AppNotification.error(message: resp.message);
+    }
   }
 
   bool isActive() {
@@ -107,3 +133,5 @@ class InitiateAirtimeViewModel extends BaseViewModel {
     context.push(RoutePaths.reviewAirtimePath, extra: data);
   }
 }
+
+enum FetchState { error, complete, loading, empty }

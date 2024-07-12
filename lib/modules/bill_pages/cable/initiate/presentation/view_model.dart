@@ -1,8 +1,18 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/bills_service/bills_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/bills/cable/verify/data/verify_cable_data.dart';
+import 'package:blue_business/core/models/bills/cable/verify/request/verify_cable_request.dart';
+import 'package:blue_business/core/models/bills/cable/verify/response/verify_cable_response.dart';
 import 'package:blue_business/core/models/bills/get_packages/packages/packages.dart';
+import 'package:blue_business/core/models/bills/get_packages/response/get_packages_response.dart';
 import 'package:blue_business/core/models/bills/get_providers/providers/providers.dart';
+import 'package:blue_business/core/models/bills/get_providers/response/get_providers_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
+import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +24,8 @@ class InitiateCableViewModel extends BaseViewModel {
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
+
+    getProviders();
   }
 
   goBack(BuildContext context) {
@@ -22,24 +34,22 @@ class InitiateCableViewModel extends BaseViewModel {
 
   onChanged(String? v) {
     notifyListeners();
-
-    shouldVerify();
   }
 
   TextEditingController searchController = TextEditingController();
   TextEditingController cardNumberController = TextEditingController();
 
-  bool _gettingProviders = false;
-  bool get gettingProviders => _gettingProviders;
-  set gettingProviders(bool v) {
-    _gettingProviders = v;
+  FetchState _providersState = FetchState.complete;
+  FetchState get providersState => _providersState;
+  set providersState(FetchState s) {
+    _providersState = s;
     notifyListeners();
   }
 
-  bool _gettingPackages = false;
-  bool get gettingPackages => _gettingPackages;
-  set gettingPackages(bool v) {
-    _gettingPackages = v;
+  FetchState _packagesState = FetchState.complete;
+  FetchState get packagesState => _packagesState;
+  set packagesState(FetchState s) {
+    _packagesState = s;
     notifyListeners();
   }
 
@@ -49,7 +59,9 @@ class InitiateCableViewModel extends BaseViewModel {
     selectedPackage = null;
     if (item == null) {
       AppNotification.error(message: "Please select a provider");
-    } else {}
+    } else {
+      getPackages();
+    }
   }
 
   List<BillProvider> _providers = [];
@@ -66,10 +78,26 @@ class InitiateCableViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  getProviders() async {
+    providersState = FetchState.loading;
+
+    GetProvidersResponse resp =
+        await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getProviders("tv")
+            .onError((error, stackTrace) => GetProvidersResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
+
+    if (resp.status == "success") {
+      providersState = FetchState.complete;
+      providers = resp.data ?? [];
+    } else {
+      providersState = FetchState.error;
+      AppNotification.error(message: resp.message);
+    }
+  }
+
   onBillPackageChanged(BillPackage? item) {
     selectedPackage = item;
-
-    shouldVerify();
   }
 
   List<BillPackage> _packages = [];
@@ -86,8 +114,28 @@ class InitiateCableViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  shouldVerify() {
-    if (selectedPackage != null && cardNumberController.text.length >= 10) {}
+  getPackages() async {
+    packagesState = FetchState.loading;
+
+    GetPackagesResponse resp =
+        await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getPackages(
+                providerNAme: selectedProvider!.name.toLowerCase(),
+                service: "tv")
+            .onError((error, stackTrace) => GetPackagesResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
+
+    if (resp.status == "success") {
+      packagesState = FetchState.complete;
+      packages = resp.data ?? [];
+    } else {
+      packagesState = FetchState.error;
+      AppNotification.error(message: resp.message);
+    }
+  }
+
+  bool shouldVerify() {
+    return selectedPackage != null && cardNumberController.text.length >= 10;
   }
 
   bool _verifying = false;
@@ -102,6 +150,27 @@ class InitiateCableViewModel extends BaseViewModel {
   set data(VerifyCableData? d) {
     _data = d;
     notifyListeners();
+  }
+
+  verifyPackage() async {
+    verifying = true;
+    VerifyCableRequest request = VerifyCableRequest(
+      receiver: cardNumberController.text,
+      packageId: selectedPackage!.id.toString(),
+    );
+
+    VerifyCableResponse response =
+        await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .verifyCableInfo(request)
+            .onError((error, stackTrace) => VerifyCableResponse(
+                message: AppErrorHandler.getErrorMessage(error)));
+
+    if (response.status == "success") {
+      data = response.data;
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    verifying = false;
   }
 
   goToNext(BuildContext context) {

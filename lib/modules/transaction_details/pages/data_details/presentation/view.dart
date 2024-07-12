@@ -77,7 +77,7 @@ class _DataDetailsViewState extends State<DataDetailsView> {
                           ),
                           4.verticalGap,
                           ...detailsSection(
-                            title: "Metwork",
+                            title: "Network",
                             detail: widget.detail.provider,
                           ),
                           4.verticalGap,

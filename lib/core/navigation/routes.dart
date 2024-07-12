@@ -8,9 +8,12 @@ import 'package:blue_business/core/models/bills/data/vend/data/vend_data_data.da
 import 'package:blue_business/core/models/bills/data/verify/data/verify_data_data.dart';
 import 'package:blue_business/core/models/bills/electricity/vend/data/vend_electricity_data.dart';
 import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
+import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/models/recover_phone/add/data/recover_phone_data.dart';
 import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
 import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
+import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
 import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
@@ -40,6 +43,7 @@ import 'package:blue_business/modules/bill_pages/electicity/pin/presentation/vie
 import 'package:blue_business/modules/bill_pages/electicity/review/presentation/view.dart';
 import 'package:blue_business/modules/bill_pages/electicity/success/presentation/view.dart';
 import 'package:blue_business/modules/bills/presentation/view.dart';
+import 'package:blue_business/modules/branch_insights/presentation/view.dart';
 import 'package:blue_business/modules/branch_management_pages/add/presentation/view.dart';
 import 'package:blue_business/modules/branch_management_pages/home/presentation/view.dart';
 import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.dart';
@@ -55,6 +59,7 @@ import 'package:blue_business/modules/transaction_details/pages/cable_details/pr
 import 'package:blue_business/modules/transaction_details/pages/data_details/presentation/view.dart';
 import 'package:blue_business/modules/transaction_details/pages/payment_details/presentation/view.dart';
 import 'package:blue_business/modules/transaction_details/pages/power_details/presentation/view.dart';
+import 'package:blue_business/modules/transaction_error/presentation/view.dart';
 import 'package:blue_business/modules/wallet/presentation/view.dart';
 import 'package:blue_business/modules/welcome/presentation/view.dart';
 import 'package:flutter/material.dart';
@@ -133,13 +138,12 @@ GoRouter router = GoRouter(
             },
           ),
           GoRoute(
-            path: "${RoutePaths.phoneRecoveryOtpPath}/:phone",
+            path: RoutePaths.phoneRecoveryOtpPath,
             name: "Verify Recovery Otp",
             builder: (context, state) {
-              String phone = state.pathParameters["phone"] as String;
               log(state.fullPath.toString());
               return VerifyRecoveryOtpView(
-                phone: phone,
+                data: state.extra as SendNewPhoneData,
               );
             },
           ),
@@ -492,7 +496,9 @@ GoRouter router = GoRouter(
     GoRoute(
       path: RoutePaths.addStaffPath,
       builder: (context, state) {
-        return const AddStaffView();
+        return AddStaffView(
+          staff: state.extra as Staff?,
+        );
       },
     ),
     GoRoute(
@@ -504,7 +510,17 @@ GoRouter router = GoRouter(
     GoRoute(
       path: RoutePaths.addBranchPath,
       builder: (context, state) {
-        return const AddBranchView();
+        return AddBranchView(
+          branch: state.extra as Branch?,
+        );
+      },
+    ),
+    GoRoute(
+      path: RoutePaths.branchInsightsPath,
+      builder: (context, state) {
+        return BranchInsightsView(
+          branch: state.extra as Branch,
+        );
       },
     ),
     GoRoute(
@@ -620,7 +636,13 @@ List<GoRoute> airtimeRoutes = [
         data: extra,
       );
     },
-  )
+  ),
+  GoRoute(
+    path: RoutePaths.transactionErrorPath,
+    builder: (context, state) {
+      return TransactionErrorView(error: state.extra as String);
+    },
+  ),
 ];
 
 ShellRoute signupShellRoute = ShellRoute(

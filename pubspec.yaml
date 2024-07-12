@@ -27,8 +27,7 @@ dependencies:
   dotted_border: ^2.1.0
   nigerian_states_and_lga: ^1.0.0
   fl_chart: ^0.66.2
-  flutter_launcher_icons:
-  flutter_native_splash:
+  custom_date_range_picker: ^1.1.0
 
   #MEDIA UTILS
   barcode: ^2.2.6
@@ -73,7 +72,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0
 
   #FORMATTING
-  intl: ^0.18.0
+  intl: ^0.19.0
   currency_text_input_formatter: ^2.1.11
   cloud_firestore: ^4.14.0
   syncfusion_flutter_gauges: ^20.4.48

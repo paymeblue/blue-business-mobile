@@ -3,10 +3,22 @@ import 'package:blue_business/core/models/complete_registration/request/complete
 import 'package:blue_business/core/models/complete_registration/response/complete_registration_response.dart';
 import 'package:blue_business/core/models/create_business_profile/request/create_business_profile_request.dart';
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
+import 'package:blue_business/core/models/forgot_password/verify/request/verify_forgot_password_request.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
+import 'package:blue_business/core/models/recover_phone/add/request/recover_phone_request.dart';
+import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/recover_phone/verify/request/verify_new_phone_request.dart';
+import 'package:blue_business/core/models/recover_phone/verify/response/verify_new_phone_response.dart';
+import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
+import 'package:blue_business/core/models/recovery_code/send/response/recovery_code_response.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
+import 'package:blue_business/core/models/reset/password/request/reset_password_request.dart';
+import 'package:blue_business/core/models/reset/pin/request/reset_pin_request.dart';
+import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
+import 'package:blue_business/core/models/security_question/send/request/send_question_request.dart';
+import 'package:blue_business/core/models/security_question/send/response/send_question_request.dart';
 import 'package:blue_business/core/models/shareholders/add/request/add_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/request/create_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/response/create_shareholders_response.dart';
@@ -19,9 +31,10 @@ import 'package:retrofit/retrofit.dart';
 
 part 'auth_service.g.dart';
 
-@RestApi(baseUrl: AppConstants.baseUrl)
+@RestApi()
 abstract class AuthService {
-  factory AuthService(Dio dio) = _AuthService;
+  factory AuthService(Dio dio) =>
+      _AuthService(dio, baseUrl: AppConstants.baseUrl);
 
   @POST("/onboard/signup")
   Future<SignupResponse> register({@Body() required SignupRequest request});
@@ -71,5 +84,61 @@ abstract class AuthService {
   @POST("/auth/refresh-access-token")
   Future<RefreshTokenResponse> refresh({
     @Body() required RefreshTokenRequest request,
+  });
+
+  @GET("/forgot-password")
+  Future<SendNewPhoneResponse> forgotPassword(@Query("phone") String phone);
+
+  @PATCH("/forgot-password/change")
+  Future<SendNewPhoneResponse> resetPassword(
+      @Body() ResetPasswordRequest request);
+
+  @GET("/otps/resend")
+  Future<SendNewPhoneResponse> resendOtp({
+    @Query("phone") required String phone,
+  });
+
+  @GET("/otps/verify")
+  Future<SendNewPhoneResponse> verifyOtp({
+    @Query("otp") required String otp,
+    @Query("phone") required String phone,
+  });
+
+  @POST("/otps/verify")
+  Future<SendNewPhoneResponse> verifyForgotPasswordOtp({
+    @Body() required VerifyForgotPasswordRequest request,
+  });
+
+  @PATCH("/pins/recover-by-phone")
+  Future<SendNewPhoneResponse> forgotPinWithPhone(
+      @Body() SendPhoneRecoverPinRequest request);
+
+  @GET("/security-info")
+  Future<GetQuestionResponse> getSecurityQuestion(@Query("phone") String phone);
+
+  @PATCH("/security-question/answer")
+  Future<SendQuestionResponse> sendSecurityAnswer(
+      @Body() SendQuestionRequest request);
+
+  @PATCH("/pins/reset")
+  Future<SendQuestionResponse> resetPin(@Body() ResetPinRequest request);
+
+  @GET("/recovery-info/verify")
+  Future<SendRecoveryCodeResponse> verifyRecoveryCode(
+      @Query("code") String code);
+
+  @POST("/recovery-info/update-phone")
+  Future<SendNewPhoneResponse> updatePhone(
+    @Body() SendNewPhoneRequest request,
+  );
+
+  @POST("/recovery-info/verify-otp")
+  Future<VerifyNewPhoneResponse> verifyRecoveryOtp({
+    @Body() required VerifyNewPhoneRequest reguest,
+  });
+
+  @GET("/recovery-info/resend-otp")
+  Future<SendNewPhoneResponse> resendRecoveryOtp({
+    @Query("phone") required String phone,
   });
 }

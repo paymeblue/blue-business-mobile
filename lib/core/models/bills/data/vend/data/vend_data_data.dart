@@ -11,7 +11,7 @@ class VendDataData with _$VendDataData {
     required String provider,
     required String package,
     required String paymentReference,
-    required String amount,
+    required int amount,
     @Default("pending") String status,
     String? createdAt,
   }) = _VendDataData;

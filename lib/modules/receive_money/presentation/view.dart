@@ -7,6 +7,7 @@ import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
@@ -154,7 +155,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
   }
 
   Widget walletAccountDataContent(ReceiveMoneyViewModel model) {
-    if (model.isAccountLoading) {
+    if (model.accountState == FetchState.loading) {
       return BlueLoadingTile.withImage();
     } else {
       return Material(
@@ -189,7 +190,8 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
   }
 
   Widget walletIdDataContent(ReceiveMoneyViewModel model) {
-    if (model.isWalletLoading || locator<AppStateValues>().wallet == null) {
+    if (model.walletState == FetchState.loading ||
+        locator<AppStateValues>().wallet == null) {
       return BlueLoadingTile.withImage();
     } else {
       return Material(

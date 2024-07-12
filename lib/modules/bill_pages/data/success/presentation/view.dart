@@ -54,7 +54,9 @@ class _VendDataSuccessViewState extends State<VendDataSuccessView> {
                     successMessage(),
                     const Spacer(),
                     shareReceiptButton(
-                      onTap: () {},
+                      onTap: () {
+                        model.getTransactionDetails(widget.data);
+                      },
                     ),
                     10.verticalGap,
                     doneButton(
@@ -110,7 +112,7 @@ class _VendDataSuccessViewState extends State<VendDataSuccessView> {
     return SizedBox(
       width: 340,
       child: Text(
-        "You purchased ${widget.data.package} for ${nairaSymbol()}${format.format(double.parse(widget.data.amount))}",
+        "You purchased ${widget.data.package} for ${nairaSymbol()}${format.format(widget.data.amount.toDouble())}",
         style: AppTextStyles.subHeader.copyWith(
           color: const Color(0xFFB0F0EA),
         ),

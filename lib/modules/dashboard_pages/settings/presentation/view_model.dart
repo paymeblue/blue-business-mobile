@@ -158,7 +158,8 @@ class SettingsViewModel extends BaseViewModel {
     if (context.mounted) {
       context.go(RoutePaths.loginPath);
     }
-    locator<AppStateValues>().notificationState = NotificationState.success;
+    locator<AppStateValues>().notificationState =
+        NotificationState.logoutSuccess;
     RefreshTimer().cancelTimer();
 
     AppLoader.stop();
@@ -346,7 +347,7 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToBlueWeb() async {
-    Uri url = Uri.parse("https://paymeblue.com");
+    Uri url = Uri.parse("https://paymeblue.com/business");
 
     await launchUrl(url, mode: LaunchMode.inAppWebView);
   }

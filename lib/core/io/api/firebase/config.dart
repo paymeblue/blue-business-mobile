@@ -61,9 +61,9 @@ class FirebaseConfig {
   static initNotification() async {
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
-      alert: true,
+      alert: false,
       sound: true,
-      badge: true,
+      badge: false,
     );
 
     FirebaseMessaging.instance.getInitialMessage().then(_handleMessage);
@@ -78,9 +78,8 @@ class FirebaseConfig {
         options: DefaultFirebaseOptions.currentPlatform);
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-    await messaging.requestPermission();
-
     try {
+      await messaging.requestPermission();
       stateValues.fcmToken = await messaging.getToken() ?? "";
     } catch (e) {
       AppNotification.error(message: AppErrorHandler.getErrorMessage(e));

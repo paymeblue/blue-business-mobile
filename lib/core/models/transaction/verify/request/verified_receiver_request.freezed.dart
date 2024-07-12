@@ -21,7 +21,7 @@ VerifiedReceiverRequest _$VerifiedReceiverRequestFromJson(
 
 /// @nodoc
 mixin _$VerifiedReceiverRequest {
-  int get transactionId => throw _privateConstructorUsedError;
+  String get transactionId => throw _privateConstructorUsedError;
   String get receiver => throw _privateConstructorUsedError;
   String? get receiverName => throw _privateConstructorUsedError;
 
@@ -37,7 +37,7 @@ abstract class $VerifiedReceiverRequestCopyWith<$Res> {
           $Res Function(VerifiedReceiverRequest) then) =
       _$VerifiedReceiverRequestCopyWithImpl<$Res, VerifiedReceiverRequest>;
   @useResult
-  $Res call({int transactionId, String receiver, String? receiverName});
+  $Res call({String transactionId, String receiver, String? receiverName});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$VerifiedReceiverRequestCopyWithImpl<$Res,
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       receiver: null == receiver
           ? _value.receiver
           : receiver // ignore: cast_nullable_to_non_nullable
@@ -84,7 +84,7 @@ abstract class _$$VerifiedReceiverRequestImplCopyWith<$Res>
       __$$VerifiedReceiverRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int transactionId, String receiver, String? receiverName});
+  $Res call({String transactionId, String receiver, String? receiverName});
 }
 
 /// @nodoc
@@ -108,7 +108,7 @@ class __$$VerifiedReceiverRequestImplCopyWithImpl<$Res>
       transactionId: null == transactionId
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       receiver: null == receiver
           ? _value.receiver
           : receiver // ignore: cast_nullable_to_non_nullable
@@ -131,7 +131,7 @@ class _$VerifiedReceiverRequestImpl implements _VerifiedReceiverRequest {
       _$$VerifiedReceiverRequestImplFromJson(json);
 
   @override
-  final int transactionId;
+  final String transactionId;
   @override
   final String receiver;
   @override
@@ -177,7 +177,7 @@ class _$VerifiedReceiverRequestImpl implements _VerifiedReceiverRequest {
 
 abstract class _VerifiedReceiverRequest implements VerifiedReceiverRequest {
   const factory _VerifiedReceiverRequest(
-      {required final int transactionId,
+      {required final String transactionId,
       required final String receiver,
       final String? receiverName}) = _$VerifiedReceiverRequestImpl;
 
@@ -185,7 +185,7 @@ abstract class _VerifiedReceiverRequest implements VerifiedReceiverRequest {
       _$VerifiedReceiverRequestImpl.fromJson;
 
   @override
-  int get transactionId;
+  String get transactionId;
   @override
   String get receiver;
   @override

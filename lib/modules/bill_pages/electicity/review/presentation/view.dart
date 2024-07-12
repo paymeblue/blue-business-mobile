@@ -49,7 +49,7 @@ class _ReviewElectricityViewState extends State<ReviewElectricityView> {
                   style: AppTextStyles.subHeader.copyWith(height: 1.2),
                 ),
                 Text(
-                  "${nairaSymbol()}${widget.amount.toStringAsFixed(2)}",
+                  "${nairaSymbol()}${(widget.amount + double.parse(widget.data.serviceCharge)).toStringAsFixed(2)}",
                   style: AppTextStyles.header.copyWith(
                       fontSize: 26, fontWeight: FontWeight.w700, height: 1.2),
                 ),
@@ -74,12 +74,12 @@ class _ReviewElectricityViewState extends State<ReviewElectricityView> {
                 ...detailsSection(
                   title: "Amount",
                   detail:
-                      "${nairaSymbol()}${(widget.amount - widget.data.serviceCharge).toStringAsFixed(2)}",
+                      "${nairaSymbol()}${(widget.amount).toStringAsFixed(2)}",
                 ),
                 detailRow(
                     title: "Service charge",
                     detail:
-                        "${nairaSymbol()}${widget.data.serviceCharge.toDouble().toStringAsFixed(2)}"),
+                        "${nairaSymbol()}${double.parse(widget.data.serviceCharge).toStringAsFixed(2)}"),
                 const Spacer(),
                 AppButton.primary(
                   title: "Continue",

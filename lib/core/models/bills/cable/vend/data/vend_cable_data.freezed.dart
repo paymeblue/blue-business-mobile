@@ -27,7 +27,8 @@ mixin _$VendCableData {
   String get provider => throw _privateConstructorUsedError;
   String get package => throw _privateConstructorUsedError;
   String get paymentReference => throw _privateConstructorUsedError;
-  String get amount => throw _privateConstructorUsedError;
+  int get amount => throw _privateConstructorUsedError;
+  int get serviceCharget => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
@@ -51,7 +52,8 @@ abstract class $VendCableDataCopyWith<$Res> {
       String provider,
       String package,
       String paymentReference,
-      String amount,
+      int amount,
+      int serviceCharget,
       String status,
       String? createdAt});
 }
@@ -77,6 +79,7 @@ class _$VendCableDataCopyWithImpl<$Res, $Val extends VendCableData>
     Object? package = null,
     Object? paymentReference = null,
     Object? amount = null,
+    Object? serviceCharget = null,
     Object? status = null,
     Object? createdAt = freezed,
   }) {
@@ -112,7 +115,11 @@ class _$VendCableDataCopyWithImpl<$Res, $Val extends VendCableData>
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
+      serviceCharget: null == serviceCharget
+          ? _value.serviceCharget
+          : serviceCharget // ignore: cast_nullable_to_non_nullable
+              as int,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -141,7 +148,8 @@ abstract class _$$VendCableDataImplCopyWith<$Res>
       String provider,
       String package,
       String paymentReference,
-      String amount,
+      int amount,
+      int serviceCharget,
       String status,
       String? createdAt});
 }
@@ -165,6 +173,7 @@ class __$$VendCableDataImplCopyWithImpl<$Res>
     Object? package = null,
     Object? paymentReference = null,
     Object? amount = null,
+    Object? serviceCharget = null,
     Object? status = null,
     Object? createdAt = freezed,
   }) {
@@ -200,7 +209,11 @@ class __$$VendCableDataImplCopyWithImpl<$Res>
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
+      serviceCharget: null == serviceCharget
+          ? _value.serviceCharget
+          : serviceCharget // ignore: cast_nullable_to_non_nullable
+              as int,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -225,6 +238,7 @@ class _$VendCableDataImpl implements _VendCableData {
       required this.package,
       required this.paymentReference,
       required this.amount,
+      this.serviceCharget = 0,
       this.status = "pending",
       this.createdAt});
 
@@ -246,7 +260,10 @@ class _$VendCableDataImpl implements _VendCableData {
   @override
   final String paymentReference;
   @override
-  final String amount;
+  final int amount;
+  @override
+  @JsonKey()
+  final int serviceCharget;
   @override
   @JsonKey()
   final String status;
@@ -255,7 +272,7 @@ class _$VendCableDataImpl implements _VendCableData {
 
   @override
   String toString() {
-    return 'VendCableData(transactionId: $transactionId, customerName: $customerName, customerInfo: $customerInfo, receiver: $receiver, provider: $provider, package: $package, paymentReference: $paymentReference, amount: $amount, status: $status, createdAt: $createdAt)';
+    return 'VendCableData(transactionId: $transactionId, customerName: $customerName, customerInfo: $customerInfo, receiver: $receiver, provider: $provider, package: $package, paymentReference: $paymentReference, amount: $amount, serviceCharget: $serviceCharget, status: $status, createdAt: $createdAt)';
   }
 
   @override
@@ -277,6 +294,8 @@ class _$VendCableDataImpl implements _VendCableData {
             (identical(other.paymentReference, paymentReference) ||
                 other.paymentReference == paymentReference) &&
             (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.serviceCharget, serviceCharget) ||
+                other.serviceCharget == serviceCharget) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
@@ -294,6 +313,7 @@ class _$VendCableDataImpl implements _VendCableData {
       package,
       paymentReference,
       amount,
+      serviceCharget,
       status,
       createdAt);
 
@@ -320,7 +340,8 @@ abstract class _VendCableData implements VendCableData {
       required final String provider,
       required final String package,
       required final String paymentReference,
-      required final String amount,
+      required final int amount,
+      final int serviceCharget,
       final String status,
       final String? createdAt}) = _$VendCableDataImpl;
 
@@ -342,7 +363,9 @@ abstract class _VendCableData implements VendCableData {
   @override
   String get paymentReference;
   @override
-  String get amount;
+  int get amount;
+  @override
+  int get serviceCharget;
   @override
   String get status;
   @override
