@@ -9,7 +9,8 @@ part 'dash_service.g.dart';
 
 @RestApi(baseUrl: AppConstants.baseUrl)
 abstract class DashService {
-  factory DashService(Dio dio) = _DashService;
+  factory DashService(Dio dio) =>
+      _DashService(dio, baseUrl: AppConstants.baseUrl);
 
   @GET("/wallets/details")
   Future<WalletResponse> getWalletDetails();

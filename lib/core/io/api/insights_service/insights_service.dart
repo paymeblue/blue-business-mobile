@@ -7,9 +7,10 @@ import 'package:retrofit/http.dart';
 
 part 'insights_service.g.dart';
 
-@RestApi(baseUrl: "${AppConstants.baseUrl}/insights")
+@RestApi()
 abstract class InsightsService {
-  factory InsightsService(Dio dio) = _InsightsService;
+  factory InsightsService(Dio dio) =>
+      _InsightsService(dio, baseUrl: "${AppConstants.baseUrl}/insights");
 
   @GET("/credit")
   Future<SalesAnalyticsResponse> getSales(

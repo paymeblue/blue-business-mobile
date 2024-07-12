@@ -12,10 +12,7 @@ class _InsightsService implements InsightsService {
   _InsightsService(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??=
-        'https://blue-business-backend-8c46f2828f9e.herokuapp.com/api/insights';
-  }
+  });
 
   final Dio _dio;
 

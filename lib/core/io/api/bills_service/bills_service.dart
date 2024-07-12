@@ -20,9 +20,10 @@ import 'package:retrofit/http.dart';
 
 part 'bills_service.g.dart';
 
-@RestApi(baseUrl: AppConstants.baseUrl)
+@RestApi()
 abstract class BillsService {
-  factory BillsService(Dio dio) = _BillsService;
+  factory BillsService(Dio dio) =>
+      _BillsService(dio, baseUrl: AppConstants.baseUrl);
 
   @GET("/{service}/packages")
   Future<GetPackagesResponse> getPackages({

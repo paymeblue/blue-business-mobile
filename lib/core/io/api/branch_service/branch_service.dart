@@ -10,9 +10,10 @@ import 'package:retrofit/retrofit.dart';
 
 part 'branch_service.g.dart';
 
-@RestApi(baseUrl: AppConstants.baseUrl)
+@RestApi()
 abstract class BranchService {
-  factory BranchService(Dio dio) = _BranchService;
+  factory BranchService(Dio dio) =>
+      _BranchService(dio, baseUrl: AppConstants.baseUrl);
 
   @GET("/branches")
   Future<GetBranchesResponse> getAllBranches({

@@ -10,9 +10,10 @@ import 'package:retrofit/retrofit.dart';
 
 part 'staff_service.g.dart';
 
-@RestApi(baseUrl: AppConstants.baseUrl)
+@RestApi()
 abstract class StaffService {
-  factory StaffService(Dio dio) = _StaffService;
+  factory StaffService(Dio dio) =>
+      _StaffService(dio, baseUrl: AppConstants.baseUrl);
 
   @GET("/staffs")
   Future<GetStaffResponse> getAllStaff({

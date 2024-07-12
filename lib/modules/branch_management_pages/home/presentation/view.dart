@@ -9,7 +9,6 @@ import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
-import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -42,12 +41,6 @@ class _BranchHomeViewState extends State<BranchHomeView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FilterTab(
-                  selectedValue: model.selectedType,
-                  tabs: model.types,
-                  onChanged: model.onTypeChanged,
-                ),
-                15.verticalGap,
                 BlueTextField.search(
                   hint: "Search branches",
                   controller: model.searchController,

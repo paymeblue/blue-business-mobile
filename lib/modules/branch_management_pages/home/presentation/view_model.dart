@@ -26,7 +26,6 @@ class BranchHomeViewModel extends BaseViewModel {
   init(BuildContext context) {
     size = context.mediaQuery.size;
 
-    selectedType = types[0];
     branchPagingController.addPageRequestListener((pageKey) {
       getBranches(pageKey);
     });
@@ -38,19 +37,6 @@ class BranchHomeViewModel extends BaseViewModel {
 
   PagingController<int, Branch> branchPagingController =
       PagingController<int, Branch>(firstPageKey: 1);
-
-  List<String> types = ["Weekly", "Monthly", "Yearly"];
-
-  late String _type;
-  String get selectedType => _type;
-  set selectedType(String v) {
-    _type = v;
-    notifyListeners();
-  }
-
-  onTypeChanged(String t) {
-    selectedType = t;
-  }
 
   goToAddBranch(BuildContext context, [Branch? branch]) {
     context.push(RoutePaths.addBranchPath, extra: branch).then((v) {

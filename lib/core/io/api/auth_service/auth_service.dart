@@ -31,9 +31,10 @@ import 'package:retrofit/retrofit.dart';
 
 part 'auth_service.g.dart';
 
-@RestApi(baseUrl: AppConstants.baseUrl)
+@RestApi()
 abstract class AuthService {
-  factory AuthService(Dio dio) = _AuthService;
+  factory AuthService(Dio dio) =>
+      _AuthService(dio, baseUrl: AppConstants.baseUrl);
 
   @POST("/onboard/signup")
   Future<SignupResponse> register({@Body() required SignupRequest request});

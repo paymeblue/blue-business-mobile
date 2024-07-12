@@ -14,9 +14,10 @@ import 'package:retrofit/http.dart';
 
 part 'transaction_service.g.dart';
 
-@RestApi(baseUrl: AppConstants.baseUrl)
+@RestApi()
 abstract class TransactionService {
-  factory TransactionService(Dio dio) = _TransactionService;
+  factory TransactionService(Dio dio) =>
+      _TransactionService(dio, baseUrl: AppConstants.baseUrl);
 
   @GET("/transaction-histories")
   Future<TransactionResponse> getTransactions(

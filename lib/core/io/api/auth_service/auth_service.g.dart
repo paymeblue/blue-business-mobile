@@ -12,9 +12,7 @@ class _AuthService implements AuthService {
   _AuthService(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= 'https://blue-business-backend-8c46f2828f9e.herokuapp.com/api';
-  }
+  });
 
   final Dio _dio;
 
