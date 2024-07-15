@@ -7,7 +7,7 @@ part 'image.g.dart';
 class UserImage with _$UserImage {
   const factory UserImage({
     required int id,
-    required String displayPic,
+    required String displayPicture,
   }) = _UserImage;
 
   factory UserImage.fromJson(Map<String, dynamic> json) =>

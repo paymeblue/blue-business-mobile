@@ -21,7 +21,7 @@ UserImage _$UserImageFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserImage {
   int get id => throw _privateConstructorUsedError;
-  String get displayPic => throw _privateConstructorUsedError;
+  String get displayPicture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $UserImageCopyWith<$Res> {
   factory $UserImageCopyWith(UserImage value, $Res Function(UserImage) then) =
       _$UserImageCopyWithImpl<$Res, UserImage>;
   @useResult
-  $Res call({int id, String displayPic});
+  $Res call({int id, String displayPicture});
 }
 
 /// @nodoc
@@ -51,16 +51,16 @@ class _$UserImageCopyWithImpl<$Res, $Val extends UserImage>
   @override
   $Res call({
     Object? id = null,
-    Object? displayPic = null,
+    Object? displayPicture = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      displayPic: null == displayPic
-          ? _value.displayPic
-          : displayPic // ignore: cast_nullable_to_non_nullable
+      displayPicture: null == displayPicture
+          ? _value.displayPicture
+          : displayPicture // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -74,7 +74,7 @@ abstract class _$$UserImageImplCopyWith<$Res>
       __$$UserImageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String displayPic});
+  $Res call({int id, String displayPicture});
 }
 
 /// @nodoc
@@ -89,16 +89,16 @@ class __$$UserImageImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? displayPic = null,
+    Object? displayPicture = null,
   }) {
     return _then(_$UserImageImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      displayPic: null == displayPic
-          ? _value.displayPic
-          : displayPic // ignore: cast_nullable_to_non_nullable
+      displayPicture: null == displayPicture
+          ? _value.displayPicture
+          : displayPicture // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,7 +107,7 @@ class __$$UserImageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserImageImpl implements _UserImage {
-  const _$UserImageImpl({required this.id, required this.displayPic});
+  const _$UserImageImpl({required this.id, required this.displayPicture});
 
   factory _$UserImageImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImageImplFromJson(json);
@@ -115,11 +115,11 @@ class _$UserImageImpl implements _UserImage {
   @override
   final int id;
   @override
-  final String displayPic;
+  final String displayPicture;
 
   @override
   String toString() {
-    return 'UserImage(id: $id, displayPic: $displayPic)';
+    return 'UserImage(id: $id, displayPicture: $displayPicture)';
   }
 
   @override
@@ -128,13 +128,13 @@ class _$UserImageImpl implements _UserImage {
         (other.runtimeType == runtimeType &&
             other is _$UserImageImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.displayPic, displayPic) ||
-                other.displayPic == displayPic));
+            (identical(other.displayPicture, displayPicture) ||
+                other.displayPicture == displayPicture));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, displayPic);
+  int get hashCode => Object.hash(runtimeType, id, displayPicture);
 
   @JsonKey(ignore: true)
   @override
@@ -153,7 +153,7 @@ class _$UserImageImpl implements _UserImage {
 abstract class _UserImage implements UserImage {
   const factory _UserImage(
       {required final int id,
-      required final String displayPic}) = _$UserImageImpl;
+      required final String displayPicture}) = _$UserImageImpl;
 
   factory _UserImage.fromJson(Map<String, dynamic> json) =
       _$UserImageImpl.fromJson;
@@ -161,7 +161,7 @@ abstract class _UserImage implements UserImage {
   @override
   int get id;
   @override
-  String get displayPic;
+  String get displayPicture;
   @override
   @JsonKey(ignore: true)
   _$$UserImageImplCopyWith<_$UserImageImpl> get copyWith =>

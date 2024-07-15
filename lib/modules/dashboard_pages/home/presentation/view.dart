@@ -81,7 +81,6 @@ class _HomeViewState extends State<HomeView> {
 
   Widget walletSection(HomeViewModel model) {
     return SizedBox(
-      height: 180,
       child: RefreshIndicator(
         onRefresh: () async {
           model.refreshWalletContainer();
@@ -209,7 +208,6 @@ class _HomeViewState extends State<HomeView> {
           8.verticalGap,
           Container(
             width: model.size.width,
-            height: 100,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.midGrey),
@@ -254,7 +252,6 @@ class _HomeViewState extends State<HomeView> {
   }) =>
       Container(
         width: (context.mediaQuery.size.width - 65) / 2,
-        height: 80,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -645,7 +642,6 @@ class _HomeViewState extends State<HomeView> {
   Widget volumeContainer(HomeViewModel model) {
     return Container(
       decoration: const BoxDecoration(),
-      height: 50,
       width: 130,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -654,8 +650,7 @@ class _HomeViewState extends State<HomeView> {
           Text(
             "TRANSACTION VOL.",
             style: AppTextStyles.smallText.copyWith(
-              color: AppColors.brightBlue,
-            ),
+                color: AppColors.brightBlue, height: 1.1, fontSize: 11),
           ),
           4.verticalGap,
           FittedBox(
@@ -712,7 +707,6 @@ class _HomeViewState extends State<HomeView> {
     String balance = format.format(
         double.parse(locator<AppStateValues>().wallet?.balance ?? "0.00"));
     return SizedBox(
-      height: 50,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -873,10 +867,9 @@ class _HomeViewState extends State<HomeView> {
           style:
               AppTextStyles.smallText.copyWith(color: AppColors.bodyTextColor),
         ),
-        4.verticalGap,
         Text(
           locator<AppStateValues>().currentUser!.business.name,
-          style: AppTextStyles.header.copyWith(fontSize: 18.5),
+          style: AppTextStyles.header.copyWith(fontSize: 17.5),
         ),
       ],
     );

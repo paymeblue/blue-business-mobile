@@ -785,7 +785,7 @@ class BlueBottomSheet {
                   ),
                   Text(
                     "To change your phone number, set a recovery code.",
-                    style: AppTextStyles.subHeader,
+                    style: AppTextStyles.subHeader.copyWith(height: 1.1),
                     textAlign: TextAlign.center,
                   )
                 ]),
@@ -906,6 +906,7 @@ class BlueBottomSheet {
             GestureDetector(
               onTap: () {
                 context.pop();
+                passwordController.clear();
               },
               child: Container(
                 height: 34,
@@ -932,7 +933,7 @@ class BlueBottomSheet {
                   ),
                   Text(
                     "This phone number can be used to make sure when you want to reset your PIN.",
-                    style: AppTextStyles.subHeader,
+                    style: AppTextStyles.subHeader.copyWith(height: 1.1),
                     textAlign: TextAlign.center,
                   )
                 ]),
@@ -1030,6 +1031,7 @@ class BlueBottomSheet {
           children: [
             GestureDetector(
               onTap: () {
+                passwordController.clear();
                 context.pop();
               },
               child: Container(
@@ -1057,7 +1059,7 @@ class BlueBottomSheet {
                   ),
                   Text(
                     "Set a security question to protect your blue account and reset PIN when necessary.",
-                    style: AppTextStyles.subHeader,
+                    style: AppTextStyles.subHeader.copyWith(height: 1.1),
                     textAlign: TextAlign.center,
                   )
                 ]),
@@ -1187,7 +1189,6 @@ class BlueBottomSheet {
                         selectedQuestion(question);
                         setState(() {
                           onTap();
-                          question = "";
                         });
                       },
                     ),

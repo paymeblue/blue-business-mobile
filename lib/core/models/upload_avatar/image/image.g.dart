@@ -9,11 +9,11 @@ part of 'image.dart';
 _$UserImageImpl _$$UserImageImplFromJson(Map<String, dynamic> json) =>
     _$UserImageImpl(
       id: json['id'] as int,
-      displayPic: json['display_pic'] as String,
+      displayPicture: json['display_picture'] as String,
     );
 
 Map<String, dynamic> _$$UserImageImplToJson(_$UserImageImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'display_pic': instance.displayPic,
+      'display_picture': instance.displayPicture,
     };

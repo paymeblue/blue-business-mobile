@@ -22,6 +22,13 @@ class BlueApp extends StatelessWidget {
           child: MaterialApp.router(
             routerConfig: router,
             theme: AppTheme.light(),
+            builder: (context, child) {
+              return MediaQuery(
+                data: MediaQuery.of(context)
+                    .copyWith(textScaler: TextScaler.noScaling),
+                child: child ?? ErrorWidget("We could not find this page"),
+              );
+            },
             debugShowCheckedModeBanner: false,
           ),
         ),

@@ -1,8 +1,15 @@
 import 'package:blue_business/core/models/business_category/response/business_category_response.dart';
+import 'package:blue_business/core/models/change_password/request/change_password_request.dart';
+import 'package:blue_business/core/models/change_password/response/change_password_response.dart';
+import 'package:blue_business/core/models/change_pin/request/change_pin_request.dart';
+import 'package:blue_business/core/models/change_pin/response/change_pin_response.dart';
 import 'package:blue_business/core/models/complete_registration/request/complete_registration_request.dart';
 import 'package:blue_business/core/models/complete_registration/response/complete_registration_response.dart';
 import 'package:blue_business/core/models/create_business_profile/request/create_business_profile_request.dart';
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
+import 'package:blue_business/core/models/delete_account/delete/request/delete_request.dart';
+import 'package:blue_business/core/models/delete_account/delete/response/delete_response.dart';
+import 'package:blue_business/core/models/delete_account/get_reasons/response/get_reason_response.dart';
 import 'package:blue_business/core/models/forgot_password/verify/request/verify_forgot_password_request.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
@@ -11,11 +18,16 @@ import 'package:blue_business/core/models/recover_phone/add/response/recover_pho
 import 'package:blue_business/core/models/recover_phone/verify/request/verify_new_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/verify/response/verify_new_phone_response.dart';
 import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
+import 'package:blue_business/core/models/recovery_code/get/response/recovery_code_response.dart';
+import 'package:blue_business/core/models/recovery_code/reset/response/recovery_code_response.dart';
 import 'package:blue_business/core/models/recovery_code/send/response/recovery_code_response.dart';
+import 'package:blue_business/core/models/recovery_phone/set/request/recovery_phone_request.dart';
+import 'package:blue_business/core/models/recovery_phone/set/response/recovery_phone_response.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
 import 'package:blue_business/core/models/reset/password/request/reset_password_request.dart';
 import 'package:blue_business/core/models/reset/pin/request/reset_pin_request.dart';
+import 'package:blue_business/core/models/security_question/create/request/create_question_request.dart';
 import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
 import 'package:blue_business/core/models/security_question/send/request/send_question_request.dart';
 import 'package:blue_business/core/models/security_question/send/response/send_question_request.dart';
@@ -141,4 +153,31 @@ abstract class AuthService {
   Future<SendNewPhoneResponse> resendRecoveryOtp({
     @Query("phone") required String phone,
   });
+
+  @POST("/users/update-password")
+  Future<ChangePasswordResponse> changePassword(
+      @Body() ChangePasswordRequest request);
+
+  @PATCH("/pins")
+  Future<ChangePinResponse> changePin(@Body() ChangePinRequest request);
+
+  @POST("/users/delete-accoun")
+  Future<DeleteResponse> deleteAccount(@Body() DeleteRequest request);
+
+  @GET("/reasons")
+  Future<GetReasonResponse> getReasons();
+
+  @GET("/recovery-info")
+  Future<GetRecoveryCodeResponse> getRecoveryCode();
+
+  @GET("/rrecovery-info/reset")
+  Future<ResetRecoveryCodeResponse> resetRecoveryCode();
+
+  @POST("/recovery-info/set-recovery-phone")
+  Future<SetRecoveryPhoneResponse> updateRecoveryPhone(
+      @Body() SetRecoveryPhoneRequest request);
+
+  @POST("/security-info")
+  Future<SendQuestionResponse> createSecurityQuestion(
+      @Body() CreateQuestionRequest request);
 }

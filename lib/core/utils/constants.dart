@@ -12,7 +12,7 @@ class AppStateValues extends ChangeNotifier {
   String _refreshToken = "ABCDE";
   String _fcmToken = "";
   String _narration = "";
-  String _recoveryCode = "123DF1233";
+  String _recoveryCode = "";
   String _path = RoutePaths.homePath;
   FetchState _todoState = FetchState.loading;
   String _kycLevel = "basic";
