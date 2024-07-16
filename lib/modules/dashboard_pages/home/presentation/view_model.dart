@@ -116,11 +116,17 @@ class HomeViewModel extends BaseViewModel {
   getWalletBalance() async {
     walletState = FetchState.loading;
 
-    WalletResponse resp = await DashService(
-            DioConfig.dio(locator<AppStateValues>().accessToken))
-        .getWalletDetails()
-        .onError((error, stackTrace) =>
-            WalletResponse(message: AppErrorHandler.getErrorMessage(error)));
+    WalletResponse resp =
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getWalletDetails()
+            .onError((error, stackTrace) => WalletResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_wallet_details",
+                    "response_model": "WalletResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       walletState = FetchState.complete;
@@ -137,7 +143,13 @@ class HomeViewModel extends BaseViewModel {
         await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getDashDetails()
             .onError((error, stackTrace) => BusinessDashResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_dash_details",
+                    "response_model": "BusinessDashResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       businessDataState = FetchState.complete;
@@ -197,8 +209,14 @@ class HomeViewModel extends BaseViewModel {
     AnalyticsResponse response = await InsightsService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .getAnalytics("weekly")
-        .onError((error, stackTrace) =>
-            AnalyticsResponse(message: AppErrorHandler.getErrorMessage(error)));
+        .onError((error, stackTrace) => AnalyticsResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_analytics",
+                "response_model": "AnalyticsResponse"
+              },
+            )));
 
     if (response.status == "success") {
       analyticsState = FetchState.complete;
@@ -321,7 +339,13 @@ class HomeViewModel extends BaseViewModel {
     )
         .onError((error, stackTrace) {
       return TransactionDetailResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "get_bill_transaction_details",
+          "response_model": "TransactionDetailResponse"
+        },
+      ));
     });
 
     if (response.status == "success") {

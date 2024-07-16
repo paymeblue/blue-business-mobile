@@ -146,6 +146,10 @@ class AccountRecoveryViewModel extends BaseViewModel {
       return GetRecoveryCodeResponse(
           message: AppErrorHandler.getErrorMessage(
         error,
+        {
+          "request_name": "get_recovery_code",
+          "response_model": "GetRecoveryCodeResponse"
+        },
       ));
     });
 
@@ -174,6 +178,11 @@ class AccountRecoveryViewModel extends BaseViewModel {
       return SetRecoveryPhoneResponse(
           message: AppErrorHandler.getErrorMessage(
         error,
+        {
+          "request_name": "update_recovery_phone",
+          "request": request.toString(),
+          "response_model": "SetRecoveryPhoneResponse"
+        },
       ));
     });
 
@@ -200,6 +209,11 @@ class AccountRecoveryViewModel extends BaseViewModel {
             .onError((error, stackTrace) => SendQuestionResponse(
                     message: AppErrorHandler.getErrorMessage(
                   error,
+                  {
+                    "request_name": "create_security_question",
+                    "request": request.toString(),
+                    "response_model": "SendQuestionResponse"
+                  },
                 )));
 
     if (resp.status == "success") {
@@ -237,6 +251,10 @@ class AccountRecoveryViewModel extends BaseViewModel {
       return ResetRecoveryCodeResponse(
           message: AppErrorHandler.getErrorMessage(
         error,
+        {
+          "request_name": "reset_recovery_code",
+          "response_model": "ResetRecoveryCodeResponse"
+        },
       ));
     });
 

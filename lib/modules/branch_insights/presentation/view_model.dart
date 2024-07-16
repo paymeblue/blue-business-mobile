@@ -124,7 +124,13 @@ class BranchInsightsViewModel extends BaseViewModel {
         .getBranchInsights(
             branchId: branchId, timeInterval: selectedType.toLowerCase())
         .onError((error, stackTrace) => SalesAnalyticsResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_branch_insights",
+                "response_model": "SalesAnalyticsResponse"
+              },
+            )));
 
     if (response.status == "success") {
       if (selectedType == types[0]) {
@@ -223,7 +229,13 @@ class BranchInsightsViewModel extends BaseViewModel {
           )
           .onError(
             (error, stackTrace) => GetStaffResponse(
-                message: AppErrorHandler.getErrorMessage(error)),
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_branch_staff",
+                "response_model": "GetStaffResponse"
+              },
+            )),
           );
 
       if (response.status == "success") {
@@ -263,7 +275,13 @@ class BranchInsightsViewModel extends BaseViewModel {
         await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getStaffRoles()
             .onError((error, stacjtrace) => GetStaffRoleResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_staff_rles",
+                    "response_model": "GetStaffRoleResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       roles = response.data!;

@@ -82,6 +82,11 @@ class ChangePasswordViewModel extends BaseViewModel {
       return ChangePasswordResponse(
           message: AppErrorHandler.getErrorMessage(
         error,
+        {
+          "request_name": "change_password",
+          "request": request.toString(),
+          "response_model": "ChangePasswordResponse"
+        },
       ));
     });
 

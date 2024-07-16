@@ -52,7 +52,14 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .vendElectricity(request)
             .onError((error, stackTrace) => VendElectricityResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "vend_electricity",
+                    "request": request.toString(),
+                    "response_model": "VendElectricityResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       if (context.mounted) {
@@ -84,7 +91,13 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getSecurityQuestion(stateValues.currentUser!.phone)
             .onError((error, stackTrace) => GetQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_security_question",
+                    "response_model": "GetQuestionResponse"
+                  },
+                )));
 
     if (context.mounted) goToForgotPin(context, resp.data?.question);
     AppLoader.stop();

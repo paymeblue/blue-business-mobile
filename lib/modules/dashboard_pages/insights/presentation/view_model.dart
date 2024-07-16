@@ -154,7 +154,13 @@ class InsightsViewModel extends BaseViewModel {
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .getSpending(selectedType.toLowerCase())
         .onError((error, stackTrace) => SpendingAnalyticsResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_spending",
+                "response_model": "SpendingAnalyticsResponse"
+              },
+            )));
 
     if (response.status == "success") {
       totalSpending = double.parse(response.data!.mobileSum) +
@@ -179,7 +185,13 @@ class InsightsViewModel extends BaseViewModel {
           selectedType.toLowerCase(),
         )
         .onError((error, stackTrace) => SalesAnalyticsResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_sales",
+                "response_model": "SalesAnalyticsResponse"
+              },
+            )));
 
     if (response.status == "success") {
       if (selectedType == types[0]) {
@@ -231,7 +243,13 @@ class InsightsViewModel extends BaseViewModel {
         .getBranchInsights(
             branchId: branch!.id, timeInterval: selectedType.toLowerCase())
         .onError((error, stackTrace) => SalesAnalyticsResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_branch_insights",
+                "response_model": "SalesAnalyticsResponse"
+              },
+            )));
 
     if (response.status == "success") {
       // salesData = response.data;
@@ -320,8 +338,14 @@ class InsightsViewModel extends BaseViewModel {
     AnalyticsResponse response = await InsightsService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .getAnalytics(selectedType.toLowerCase())
-        .onError((error, stackTrace) =>
-            AnalyticsResponse(message: AppErrorHandler.getErrorMessage(error)));
+        .onError((error, stackTrace) => AnalyticsResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_analytics",
+                "response_model": "AnalyticsResponse"
+              },
+            )));
 
     if (response.status == "success") {
       salesData = response.data;
@@ -416,7 +440,13 @@ class InsightsViewModel extends BaseViewModel {
           )
           .onError(
             (error, stackTrace) => GetBranchesResponse(
-                message: AppErrorHandler.getErrorMessage(error)),
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_all_branches",
+                "response_model": "GetBranchesResponse"
+              },
+            )),
           );
 
       if (response.status == "success") {
@@ -446,7 +476,13 @@ class InsightsViewModel extends BaseViewModel {
           )
           .onError(
             (error, stackTrace) => GetStaffResponse(
-                message: AppErrorHandler.getErrorMessage(error)),
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_branch_staff",
+                "response_model": "GetStaffResponse"
+              },
+            )),
           );
 
       if (response.status == "success") {

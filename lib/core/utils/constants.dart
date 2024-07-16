@@ -19,6 +19,7 @@ class AppStateValues extends ChangeNotifier {
   bool _hasSavedBeneficiary = true;
   int _count = 0;
   bool _newMessage = false;
+  bool _hasNetwork = true;
   String? _channelId;
   String _token = "";
 
@@ -46,6 +47,7 @@ class AppStateValues extends ChangeNotifier {
   String get resetPath => _path;
   int get unreadCount => _count;
   bool get hasNewMessage => _newMessage;
+  bool get hasNetwork => _hasNetwork;
   String? get channelId => _channelId;
   String get accessToken => _token;
 
@@ -99,6 +101,11 @@ class AppStateValues extends ChangeNotifier {
 
   set resetPath(String path) {
     _path = path;
+    notifyListeners();
+  }
+
+  set hasNetwork(bool v) {
+    _hasNetwork = v;
     notifyListeners();
   }
 

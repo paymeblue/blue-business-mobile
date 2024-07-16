@@ -86,7 +86,13 @@ class InitiateDataViewModel extends BaseViewModel {
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getProviders("data")
             .onError((error, stackTrace) => GetProvidersResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_data_providers",
+                    "response_model": "GetProvidersResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       providers = resp.data ?? [];
@@ -124,7 +130,13 @@ class InitiateDataViewModel extends BaseViewModel {
                 providerNAme: selectedProvider!.name.toLowerCase(),
                 service: "data")
             .onError((error, stackTrace) => GetPackagesResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_data_packages",
+                    "response_model": "GetPackagesResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       packages = resp.data ?? [];
@@ -157,7 +169,14 @@ class InitiateDataViewModel extends BaseViewModel {
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .verifyDataInfo(request)
             .onError((error, stackTrace) => VerifyDataResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "verify_data_info",
+                    "request": request.toString(),
+                    "response_model": "VerifyDataResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       data = response.data;

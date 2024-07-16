@@ -86,7 +86,13 @@ class InitiateAirtimeViewModel extends BaseViewModel {
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getProviders("airtime")
             .onError((error, stackTrace) => GetProvidersResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_airtime_providers",
+                    "response_model": "GetProvidersResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       providersState = FetchState.complete;

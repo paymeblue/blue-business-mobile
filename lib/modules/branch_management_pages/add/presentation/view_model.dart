@@ -73,7 +73,14 @@ class AddBranchViewModel extends BaseViewModel {
         .createBranch(request: request)
         .onError(
           (error, stackTrace) => CreateBranchResponse(
-              message: AppErrorHandler.getErrorMessage(error)),
+              message: AppErrorHandler.getErrorMessage(
+            error,
+            {
+              "request_name": "create_branch",
+              "request": request.toString(),
+              "response_model": "CreateBranchResponse"
+            },
+          )),
         );
 
     if (response.status == "success") {
@@ -97,7 +104,14 @@ class AddBranchViewModel extends BaseViewModel {
         .editBranch(request: request, id: branch.id)
         .onError(
           (error, stackTrace) => CreateBranchResponse(
-              message: AppErrorHandler.getErrorMessage(error)),
+              message: AppErrorHandler.getErrorMessage(
+            error,
+            {
+              "request_name": "edit_branch",
+              "request": request.toString(),
+              "response_model": "CreateResponse"
+            },
+          )),
         );
 
     if (response.status == "success") {

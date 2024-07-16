@@ -47,11 +47,18 @@ class ConfirmDataPinViewModel extends BaseViewModel {
       passcode: pin,
     );
 
-    VendDataResponse response = await BillsService(
-            DioConfig.dio(locator<AppStateValues>().accessToken))
-        .vendData(request)
-        .onError((error, stackTrace) =>
-            VendDataResponse(message: AppErrorHandler.getErrorMessage(error)));
+    VendDataResponse response =
+        await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .vendData(request)
+            .onError((error, stackTrace) => VendDataResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "vend_data",
+                    "request": request.toString(),
+                    "response_model": "VendDataResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       if (context.mounted) {
@@ -82,7 +89,13 @@ class ConfirmDataPinViewModel extends BaseViewModel {
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getSecurityQuestion(stateValues.currentUser!.phone)
             .onError((error, stackTrace) => GetQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_security_question",
+                    "response_model": "GetQuestionResponse"
+                  },
+                )));
 
     if (context.mounted) goToForgotPin(context, resp.data?.question);
     AppLoader.stop();

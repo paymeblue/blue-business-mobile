@@ -108,7 +108,13 @@ class InitiateElectricityViewModel extends BaseViewModel {
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getProviders("power", state!.toLowerCase())
             .onError((error, stackTrace) => GetProvidersResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_power_providers",
+                    "response_model": "GetProvidersResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       providers = resp.data ?? [];
@@ -143,7 +149,14 @@ class InitiateElectricityViewModel extends BaseViewModel {
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .verifyMeter(request)
             .onError((error, stackTrace) => VerifyElectricityResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "verify_meter",
+                    "request": request.toString(),
+                    "response_model": "VerifyElectricityResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       data = response.data;

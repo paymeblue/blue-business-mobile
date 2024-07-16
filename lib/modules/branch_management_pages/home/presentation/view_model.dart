@@ -70,7 +70,13 @@ class BranchHomeViewModel extends BaseViewModel {
           )
           .onError(
             (error, stackTrace) => GetBranchesResponse(
-                message: AppErrorHandler.getErrorMessage(error)),
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_all_branches",
+                "response_model": "GetBranchesResponse"
+              },
+            )),
           );
 
       if (response.status == "success") {
@@ -106,7 +112,13 @@ class BranchHomeViewModel extends BaseViewModel {
         .deleteBranch(id: branch.id)
         .onError(
           (error, stackTrace) => CreateBranchResponse(
-              message: AppErrorHandler.getErrorMessage(error)),
+              message: AppErrorHandler.getErrorMessage(
+            error,
+            {
+              "request_name": "delete_branch",
+              "response_model": "CreateBranchResponse"
+            },
+          )),
         );
 
     if (response.status == "success") {
@@ -125,7 +137,13 @@ class BranchHomeViewModel extends BaseViewModel {
         .getBranchById(id: id)
         .onError(
           (error, stackTrace) => GetBranchResponse(
-              message: AppErrorHandler.getErrorMessage(error)),
+              message: AppErrorHandler.getErrorMessage(
+            error,
+            {
+              "request_name": "get_branch_by_id",
+              "response_model": "GetBranchResponse"
+            },
+          )),
         );
 
     if (response.status == "success") {

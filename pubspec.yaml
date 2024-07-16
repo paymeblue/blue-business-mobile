@@ -37,6 +37,7 @@ dependencies:
   file_picker: ^6.1.1
   local_auth: ^2.1.8
   mobile_scanner: ^3.4.1
+  connectivity_plus: ^6.0.3
 
   #API
   retrofit: ^4.0.3
@@ -45,10 +46,12 @@ dependencies:
   permission_handler: ^11.2.0
   contacts_service: ^0.6.3
 
-  # MESSAGING
+  # FIREBASE AND NOTIFICATIONS
   firebase_core: ^2.24.2
+  firebase_analytics: ^10.8.9
   firebase_messaging: ^14.7.10
   flutter_local_notifications: ^16.3.2
+  cloud_firestore: ^4.14.0
 
   #DEPENDENCY INJECTION
   get_it: ^7.6.4
@@ -74,7 +77,6 @@ dependencies:
   #FORMATTING
   intl: ^0.19.0
   currency_text_input_formatter: ^2.1.11
-  cloud_firestore: ^4.14.0
   syncfusion_flutter_gauges: ^20.4.48
   
 

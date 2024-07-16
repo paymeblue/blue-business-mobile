@@ -88,6 +88,10 @@ class SettingsViewModel extends BaseViewModel {
         .onError((error, stackTrace) => UploadAvatarResponse(
                 message: AppErrorHandler.getErrorMessage(
               error,
+              {
+                "request_name": "upload_display_picture",
+                "response_model": "UploadAvatarResponse"
+              },
             )));
 
     if (resp.status == "success") {
@@ -178,6 +182,7 @@ class SettingsViewModel extends BaseViewModel {
       return GetReasonResponse(
           message: AppErrorHandler.getErrorMessage(
         error,
+        {"request_name": "get_reasons", "response_model": "GetReasonResponse"},
       ));
     });
 
@@ -206,6 +211,11 @@ class SettingsViewModel extends BaseViewModel {
       return DeleteResponse(
           message: AppErrorHandler.getErrorMessage(
         error,
+        {
+          "request_name": "delete_account",
+          "request": request.toString(),
+          "response_model": "DeleteResponse"
+        },
       ));
     });
 
