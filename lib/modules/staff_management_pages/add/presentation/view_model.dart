@@ -72,7 +72,13 @@ class AddStaffViewModel extends BaseViewModel {
         .getBranchById(id: id)
         .onError(
           (error, stackTrace) => GetBranchResponse(
-              message: AppErrorHandler.getErrorMessage(error)),
+              message: AppErrorHandler.getErrorMessage(
+            error,
+            {
+              "request_name": "get_branch_by_id",
+              "response_model": "GetBranchResponse"
+            },
+          )),
         );
 
     if (response.status == "success") {
@@ -260,7 +266,13 @@ class AddStaffViewModel extends BaseViewModel {
           )
           .onError(
             (error, stackTrace) => GetBranchesResponse(
-                message: AppErrorHandler.getErrorMessage(error)),
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_all_branches",
+                "response_model": "GetBranchesResponse"
+              },
+            )),
           );
 
       if (response.status == "success") {
@@ -294,7 +306,13 @@ class AddStaffViewModel extends BaseViewModel {
     )
             .onError((error, stacktrace) {
       return CreateStaffResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "create_staff",
+          "response_model": "CreateStaffResponse"
+        },
+      ));
     });
 
     if (response.status == "success") {
@@ -323,7 +341,10 @@ class AddStaffViewModel extends BaseViewModel {
     )
             .onError((error, stacktrace) {
       return CreateStaffResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {"request_name": "edit_staff", "response_model": "CreateStaffResponse"},
+      ));
     });
 
     if (response.status == "success") {
@@ -356,7 +377,13 @@ class AddStaffViewModel extends BaseViewModel {
         await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getStaffRoles()
             .onError((error, stacjtrace) => GetStaffRoleResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_staff_role",
+                    "response_model": "GetStaffRoleResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       roles = response.data!;

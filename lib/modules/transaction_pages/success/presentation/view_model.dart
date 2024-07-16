@@ -44,7 +44,11 @@ class SuccessViewModel extends BaseViewModel {
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .getReceipt(data.id)
         .onError((error, stackTrace) {
-      return ReceiptResponse(message: AppErrorHandler.getErrorMessage(error));
+      return ReceiptResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {"request_name": "get_receipt", "response_model": "ReceiptResponse"},
+      ));
     });
 
     if (resp.status == "success") {

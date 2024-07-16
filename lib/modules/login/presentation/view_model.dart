@@ -140,7 +140,15 @@ class LoginViewModel extends BaseViewModel {
     LoginResponse resp = await AuthService(DioConfig.dio())
         .login(request: request)
         .onError((error, stackTrace) {
-      return LoginResponse(message: AppErrorHandler.getErrorMessage(error));
+      return LoginResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "login",
+          "request": request.toString(),
+          "response_model": "LoginResponse"
+        },
+      ));
     });
 
     AppLoader.stop();

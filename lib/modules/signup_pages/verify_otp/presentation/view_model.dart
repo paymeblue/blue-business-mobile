@@ -88,8 +88,14 @@ class VerifyRegistrationOtpViewModel extends BaseViewModel {
     AppLoader.start();
     SignupResponse response = await AuthService(DioConfig.dio())
         .resendSignupOtp(phone: phone)
-        .onError((error, stackTrace) =>
-            SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
+        .onError((error, stackTrace) => SignupResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "resend_signup_otp",
+                "response_model": "SignupResponse"
+              },
+            )));
 
     if (response.status == "success") {
       AppNotification.success(message: response.message);
@@ -104,8 +110,14 @@ class VerifyRegistrationOtpViewModel extends BaseViewModel {
     AppLoader.start();
     SignupResponse response = await AuthService(DioConfig.dio())
         .verifySignupOtp(phone: phone.replaceAll("+", ""), otp: pin)
-        .onError((error, stackTrace) =>
-            SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
+        .onError((error, stackTrace) => SignupResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "verify_signup_otp",
+                "response_model": "SignupResponse"
+              },
+            )));
 
     if (response.status == "success") {
       if (context.mounted) goToNext(context, response.data!);

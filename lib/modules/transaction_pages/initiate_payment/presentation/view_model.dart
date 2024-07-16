@@ -104,7 +104,10 @@ class InitiatePaymentViewModel extends BaseViewModel {
     //         .getWithdrawalAccount()
     //         .onError((error, stackTrace) {
     //   return WithdrawalAccountResponse(
-    //       message: AppErrorHandler.getErrorMessage(error));
+    //       message: AppErrorHandler.getErrorMessage(error, {
+    //   "request_name": "get_withdrawal_account",
+    //   "response_model": "WithdrawalAccountResponse"
+    // },));
     // });
 
     // if (resp.status == "success") {

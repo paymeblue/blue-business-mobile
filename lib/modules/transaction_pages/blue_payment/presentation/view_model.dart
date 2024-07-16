@@ -90,7 +90,10 @@ class BluePaymentViewModel extends BaseViewModel {
     //   )
     //       .onError((error, stackTrace) {
     //     return GetBeneficiaryResponse(
-    //         message: AppErrorHandler.getErrorMessage(error));
+    //         message: AppErrorHandler.getErrorMessage(error, {
+    //   "request_name": "search_beneficiaries",
+    //   "response_model": "GetBeneficiaryResponse"
+    // },));
     //   });
     //   if (resp.status == "success") {
     //     List<BlueBeneficiary> t = resp.data!.data;
@@ -115,7 +118,10 @@ class BluePaymentViewModel extends BaseViewModel {
     //     .getRecentlyPaid()
     //     .onError((error, stackTrace) {
     //   return RecentlyPaidResponse(
-    //       message: AppErrorHandler.getErrorMessage(error));
+    //       message: AppErrorHandler.getErrorMessage(error, {
+    //   "request_name": "get_recently_paid",
+    //   "response_model": "RecentlyPaidResponse"
+    // },));
     // });
     // if (resp.status == "success") {
     //   recentlyPaidItems = resp.data!;
@@ -160,7 +166,14 @@ class BluePaymentViewModel extends BaseViewModel {
         .verifyReceiver(request)
         .onError((error, stackTrace) {
       return VerifiedReceiverResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "verify_receiver",
+          "request": request.toString(),
+          "response_model": "VerifiedReceiverResponse"
+        },
+      ));
     });
 
     AppLoader.stop();

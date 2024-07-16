@@ -38,7 +38,13 @@ class EnterRecoveryCodeViewModel extends BaseViewModel {
             .verifyRecoveryCode(recoveryCodeController.text)
             .onError((error, stackTrace) {
       return SendRecoveryCodeResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "verify_recovery_code",
+          "response_model": "SendRecoveryCodeResponse"
+        },
+      ));
     });
 
     if (resp.status == "success") {

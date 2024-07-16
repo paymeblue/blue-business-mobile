@@ -95,7 +95,14 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .sendSecurityAnswer(request)
             .onError((error, stackTrace) => SendQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "send_security_answer",
+                    "request": request.toString(),
+                    "response_model": "SendQuestionResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       if (context.mounted) goToPin(context);
@@ -115,7 +122,14 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .forgotPinWithPhone(request)
             .onError((error, stackTrace) => SendNewPhoneResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "forgot_[in_with_phone",
+                    "request": request.toString(),
+                    "response_model": "SendNewPhoneResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);

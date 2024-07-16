@@ -80,7 +80,13 @@ class StaffHomeViewModel extends BaseViewModel {
           )
           .onError(
             (error, stackTrace) => GetStaffResponse(
-                message: AppErrorHandler.getErrorMessage(error)),
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_all_staff",
+                "response_model": "GetStaffResponse"
+              },
+            )),
           );
 
       if (response.status == "success") {
@@ -107,7 +113,13 @@ class StaffHomeViewModel extends BaseViewModel {
             .deleteStaff(id: staff.id)
             .onError(
               (error, stackTrace) => CreateStaffResponse(
-                  message: AppErrorHandler.getErrorMessage(error)),
+                  message: AppErrorHandler.getErrorMessage(
+                error,
+                {
+                  "request_name": "delete_staff",
+                  "response_model": "CreateStaffResponse"
+                },
+              )),
             );
 
     if (response.status == "success") {

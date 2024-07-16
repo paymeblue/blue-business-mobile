@@ -48,11 +48,17 @@ class ReceiveMoneyViewModel extends BaseViewModel {
   getWalletBalance() async {
     walletState = FetchState.loading;
 
-    WalletResponse resp = await DashService(
-            DioConfig.dio(locator<AppStateValues>().accessToken))
-        .getWalletDetails()
-        .onError((error, stackTrace) =>
-            WalletResponse(message: AppErrorHandler.getErrorMessage(error)));
+    WalletResponse resp =
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getWalletDetails()
+            .onError((error, stackTrace) => WalletResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_wallet_detail",
+                    "response_model": "WalletResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       walletState = FetchState.complete;
@@ -95,8 +101,14 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     TopupResponse resp =
         await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getWalletAccount()
-            .onError((error, stackTrace) =>
-                TopupResponse(message: AppErrorHandler.getErrorMessage(error)));
+            .onError((error, stackTrace) => TopupResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_wallet_account",
+                    "response_model": "TopupResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       accountState = FetchState.complete;

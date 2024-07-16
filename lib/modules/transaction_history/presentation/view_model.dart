@@ -93,7 +93,13 @@ class TransactionHistoryViewModel extends BaseViewModel {
       )
           .onError((error, stackTrace) {
         return TransactionResponse(
-            message: AppErrorHandler.getErrorMessage(error));
+            message: AppErrorHandler.getErrorMessage(
+          error,
+          {
+            "request_name": "get_transactions",
+            "response_model": "TransationResponse"
+          },
+        ));
       });
       if (resp.status == "success") {
         List<TransactionHistory> t = resp.data!.data;
@@ -234,7 +240,13 @@ class TransactionHistoryViewModel extends BaseViewModel {
     )
         .onError((error, stackTrace) {
       return TransactionDetailResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "get_bill_transaction_details",
+          "response_model": "TransactionDetailResponse"
+        },
+      ));
     });
 
     if (response.status == "success") {

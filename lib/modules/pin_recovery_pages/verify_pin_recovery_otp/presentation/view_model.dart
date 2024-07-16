@@ -91,13 +91,20 @@ class VerifyPinRecoveryOtpViewModel extends BaseViewModel {
   }
 
   resendOtp() async {
-    AppLoader.start();
+    // AppLoader.start();
     // SendNewPhoneRequest request = SendNewPhoneRequest(phone: phone);
 
-    // SendNewPhoneResponse resp = await authService
+    // SendNewPhoneResponse resp = await uthService
     //     .forgotPinWithPhone(request)
     //     .onError((error, stackTrace) => SendNewPhoneResponse(
-    //         message: AppErrorHandler.getErrorMessage(error)));
+    //             message: AppErrorHandler.getErrorMessage(
+    //           error,
+    //           {
+    //             "request_name": "forgot_pin_with_phone",
+    //             "request": request.toString(),
+    //             "response_model": "SendNewPhoneResponse"
+    //           },
+    //         )));
 
     // if (resp.status == "success") {
     //   AppNotification.success(message: resp.message);
@@ -114,7 +121,13 @@ class VerifyPinRecoveryOtpViewModel extends BaseViewModel {
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .verifyOtp(otp: pin, phone: phone.replaceFirst("+", ""))
             .onError((error, stackTrace) => SendNewPhoneResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "verify_otp",
+                    "response_model": "SendNewPhoneResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);

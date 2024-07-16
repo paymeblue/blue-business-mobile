@@ -87,6 +87,10 @@ class PersonalInfoViewModel extends BaseViewModel {
         .onError((error, stackTrace) => UploadAvatarResponse(
                 message: AppErrorHandler.getErrorMessage(
               error,
+              {
+                "request_name": "upload_display_picture",
+                "response_model": "UploadAvatarResponse"
+              },
             )));
 
     if (resp.status == "success") {

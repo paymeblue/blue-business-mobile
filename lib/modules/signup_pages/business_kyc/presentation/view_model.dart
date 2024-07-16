@@ -55,8 +55,15 @@ class SignupBusinessKycViewModel extends BaseViewModel {
 
     SignupResponse response = await AuthService(DioConfig.dio())
         .addShareholderBvn(request: request)
-        .onError((error, stackTrace) =>
-            SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
+        .onError((error, stackTrace) => SignupResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "add_shareholder_bvn",
+                "request": request.toString(),
+                "response_model": "SignupResponse"
+              },
+            )));
 
     if (response.status == "success") {
       if (context.mounted) goToNext(context, response.data!);
@@ -78,7 +85,14 @@ class SignupBusinessKycViewModel extends BaseViewModel {
     CreateShareholdersResponse response = await AuthService(DioConfig.dio())
         .createShareholder(request: request)
         .onError((error, stackTrace) => CreateShareholdersResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "create_shareholder",
+                "request": request.toString(),
+                "response_model": "CreateShareholdersResponse"
+              },
+            )));
 
     if (response.status == "success") {
       if (context.mounted) {

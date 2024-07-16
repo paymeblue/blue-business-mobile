@@ -53,7 +53,13 @@ class ShareholderDetailsViewModel extends BaseViewModel {
     GetShareholdersResponse response = await AuthService(DioConfig.dio())
         .getShareholders(userId: data.businessId!)
         .onError((error, stackTrace) => GetShareholdersResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_shareholders",
+                "response_model": "GetshareholdersResponse"
+              },
+            )));
 
     if (response.status == "success") {
       shareholders = response.data ?? [];
