@@ -1,10 +1,17 @@
 import 'dart:async';
 
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/beneficiary/blue_beneficiary.dart';
+import 'package:blue_business/core/models/beneficiary/get/response/get_beneficiary_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -74,10 +81,61 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
 
   int limit = 50;
   getBeneficiaries(int page) async {
-    try {} catch (e) {
+    try {
+      GetBeneficiaryResponse resp = await TransactionService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .searchBeneficiaries(
+        page,
+        limit,
+        query.isEmpty ? null : query,
+      )
+          .onError((error, stackTrace) {
+        return GetBeneficiaryResponse(
+            message: AppErrorHandler.getErrorMessage(
+          error,
+          {
+            "request_name": "search_beneficiary",
+            "response_model": "GetBeneficiaryResponse"
+          },
+        ));
+      });
+      if (resp.status == "success") {
+        List<BlueBeneficiary> t = resp.data!.data;
+
+        if (resp.data!.loadMore) {
+          beneficiaryController.appendPage(t, page + 1);
+        } else {
+          beneficiaryController.appendLastPage(t);
+        }
+      } else {
+        beneficiaryController.error = resp.message;
+      }
+    } catch (e) {
       beneficiaryController.error = AppErrorHandler.getErrorMessage(e);
     }
   }
 
-  deleteBeneficiary(String id) async {}
+  deleteBeneficiary(int id) async {
+    AppLoader.start();
+    String resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .deleteBeneficiary(id)
+        .onError((error, stackTrace) {
+      return AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "delete_beneficiary",
+          "response_model": "DeleteBeneficiaryResponse"
+        },
+      );
+    });
+
+    if (resp.isEmpty) {
+      beneficiaryController.refresh();
+    } else {
+      AppNotification.error(message: resp);
+    }
+
+    AppLoader.stop();
+  }
 }
