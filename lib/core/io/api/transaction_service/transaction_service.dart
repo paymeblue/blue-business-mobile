@@ -1,3 +1,8 @@
+import 'package:blue_business/core/models/beneficiary/get/response/get_beneficiary_response.dart';
+import 'package:blue_business/core/models/beneficiary/set/request/set_beneficiary_request.dart';
+import 'package:blue_business/core/models/beneficiary/set/response/set_beneficiary_response.dart';
+// import 'package:blue_business/core/models/payment_link/response/payment_link_response.dart';
+import 'package:blue_business/core/models/recently_paid/response/recently_paid_response.dart';
 import 'package:blue_business/core/models/transaction/initiate/request/initiate_transaction_request.dart';
 import 'package:blue_business/core/models/transaction/initiate/response/initiate_transaction_response.dart';
 import 'package:blue_business/core/models/transaction/pay/credit/request/credit_request.dart';
@@ -57,4 +62,31 @@ abstract class TransactionService {
   Future<TransactionDetailResponse> getpaymentTransactionDetails({
     @Query("t_id") required String transactionId,
   });
+
+  @GET("/beneficiaries/index")
+  Future<GetBeneficiaryResponse> searchBeneficiaries(
+    @Query("page") int page,
+    @Query("limit") int limit,
+    @Query("search") String? query,
+  );
+
+  @DELETE("/beneficiaries/{id}")
+  Future deleteBeneficiary(
+    @Path() int id,
+  );
+
+  @POST("/beneficiaries")
+  Future<SetBeneficiaryResponse> addBeneficiary(
+    @Body() SetBeneficiaryRequest request,
+  );
+
+  // @GET("/payment-link/history")
+  // Future<PaymentLinkResponse> getPaymentLinkHistory(
+  //   @Query("page") int page,
+  //   @Query("limit") int limit,
+  //   @Query("status") String status,
+  // );
+
+  @GET("/beneficiaries/recently-paid")
+  Future<RecentlyPaidResponse> getRecentlyPaid();
 }
