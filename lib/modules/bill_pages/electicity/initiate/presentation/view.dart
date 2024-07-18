@@ -178,12 +178,14 @@ class _InitiateElectricityViewState extends State<InitiateElectricityView> {
               ],
             ),
           ),
-        20.verticalGap,
-        BlueTextField.currency(
-            hint: "${nairaSymbol()}0.00",
-            title: "Amount",
-            onChanged: model.onChanged,
-            controller: model.amountController),
+        if (model.data != null) ...[
+          20.verticalGap,
+          BlueTextField.currency(
+              hint: "${nairaSymbol()}0.00",
+              title: "Amount",
+              onChanged: model.onChanged,
+              controller: model.amountController),
+        ]
       ],
     );
   }
