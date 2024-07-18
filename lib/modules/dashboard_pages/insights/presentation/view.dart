@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
@@ -69,6 +71,7 @@ class _InsightsViewState extends State<InsightsView> {
   Widget customTab(InsightsViewModel model, int i, BuildContext context) {
     return GestureDetector(
       onTap: () {
+        log(i.toString());
         model.currTab = i;
       },
       child: Container(

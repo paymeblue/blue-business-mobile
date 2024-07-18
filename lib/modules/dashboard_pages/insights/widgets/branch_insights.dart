@@ -4,7 +4,6 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
-import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
@@ -21,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class BranchInsightsPage extends StatefulWidget {
@@ -33,49 +33,46 @@ class BranchInsightsPage extends StatefulWidget {
 class _BranchInsightsPageState extends State<BranchInsightsPage> {
   @override
   Widget build(BuildContext context) {
-    return BaseView<InsightsViewModel>(
-        model: InsightsViewModel(),
-        onModelReady: (model) => model.init(context),
-        builder: (context, model, _) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
+    return Consumer<InsightsViewModel>(builder: (context, model, _) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            branchSelect(model),
+            20.verticalGap,
+            FilterTab(
+              selectedValue: model.selectedType,
+              tabs: model.types,
+              onChanged: model.onTypeChanged,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                branchSelect(model),
-                20.verticalGap,
-                FilterTab(
-                  selectedValue: model.selectedType,
-                  tabs: model.types,
-                  onChanged: model.onTypeChanged,
-                ),
-                25.verticalGap,
-                Expanded(
-                  child: model.branch == null
-                      ? Align(
-                          alignment: Alignment.center,
-                          child: emptyBody(model),
-                        )
-                      : RefreshIndicator(
-                          onRefresh: () async {
-                            model.getAnalytics();
-                          },
-                          child: ListView(
-                            shrinkWrap: true,
-                            children: [
-                              salesStatsContainer(model),
-                              15.verticalGap,
-                              staffList(model)
-                            ],
-                          ),
-                        ),
-                ),
-              ],
+            25.verticalGap,
+            Expanded(
+              child: model.branch == null
+                  ? Align(
+                      alignment: Alignment.center,
+                      child: emptyBody(model),
+                    )
+                  : RefreshIndicator(
+                      onRefresh: () async {
+                        model.getAnalytics();
+                      },
+                      child: ListView(
+                        shrinkWrap: true,
+                        children: [
+                          salesStatsContainer(model),
+                          15.verticalGap,
+                          staffList(model)
+                        ],
+                      ),
+                    ),
             ),
-          );
-        });
+          ],
+        ),
+      );
+    });
   }
 
   Widget branchSelect(InsightsViewModel model) {

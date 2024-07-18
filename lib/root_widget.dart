@@ -25,10 +25,12 @@ class BlueApp extends StatelessWidget {
           child: MaterialApp.router(
             routerConfig: router,
             theme: AppTheme.light(),
+            debugShowCheckedModeBanner: false,
             builder: (context, child) {
               return MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(textScaler: TextScaler.noScaling),
+                data: MediaQuery.of(context).copyWith(
+                    textScaler: context.mediaQuery.textScaler
+                        .clamp(minScaleFactor: 1.0, maxScaleFactor: 1.2)),
                 child: Consumer<AppStateValues>(builder: (context, state, _) {
                   return Stack(
                     children: [
@@ -97,7 +99,6 @@ class BlueApp extends StatelessWidget {
                 }),
               );
             },
-            debugShowCheckedModeBanner: false,
           ),
         ),
       ),

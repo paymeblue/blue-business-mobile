@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
@@ -49,11 +50,13 @@ class InsightsViewModel extends BaseViewModel {
   }
 
   getAnalytics() async {
-    if (branch == null) {
+    if (currTab == 0) {
+      log(currTab.toString());
       getSalesAnalytics();
       await getLineChartData();
       await getSpending();
-    } else {
+    } else if (branch != null) {
+      log(branch.toString());
       getBranchSalesAnalytics();
     }
   }

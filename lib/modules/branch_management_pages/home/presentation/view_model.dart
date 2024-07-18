@@ -32,7 +32,11 @@ class BranchHomeViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.go(RoutePaths.homePath);
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go(RoutePaths.homePath);
+    }
   }
 
   PagingController<int, Branch> branchPagingController =

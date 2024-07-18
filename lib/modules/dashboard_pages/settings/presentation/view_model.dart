@@ -275,7 +275,7 @@ class SettingsViewModel extends BaseViewModel {
           title: "Manage business branch",
           subtitle: "Track and monitor your business branches.",
           onTap: () {
-            context.go(RoutePaths.branchManagementPath);
+            goToBranchManagementHome(context);
           },
         ),
         SettingsOption(
@@ -436,7 +436,11 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToStaffManagementHome(BuildContext context) {
-    context.go(RoutePaths.staffManagementPath);
+    context.push(RoutePaths.staffManagementPath);
+  }
+
+  goToBranchManagementHome(BuildContext context) {
+    context.push(RoutePaths.branchManagementPath);
   }
 
   goToBlueWeb() async {
