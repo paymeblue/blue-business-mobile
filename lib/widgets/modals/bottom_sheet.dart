@@ -1032,6 +1032,8 @@ class BlueBottomSheet {
             GestureDetector(
               onTap: () {
                 passwordController.clear();
+                question = "";
+                answerController.clear();
                 context.pop();
               },
               child: Container(
@@ -1187,8 +1189,11 @@ class BlueBottomSheet {
                       isEnabled: isEnabled(),
                       onTap: () {
                         selectedQuestion(question);
+                        onTap();
                         setState(() {
-                          onTap();
+                          passwordController.clear();
+                          question = "";
+                          answerController.clear();
                         });
                       },
                     ),
