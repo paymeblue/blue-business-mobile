@@ -30,7 +30,7 @@ class BlueApp extends StatelessWidget {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(
                     textScaler: context.mediaQuery.textScaler
-                        .clamp(minScaleFactor: 1.0, maxScaleFactor: 1.2)),
+                        .clamp(minScaleFactor: 1.0, maxScaleFactor: 1.1)),
                 child: Consumer<AppStateValues>(builder: (context, state, _) {
                   return Stack(
                     children: [

@@ -21,7 +21,7 @@ ResetRecoveryCodeData _$ResetRecoveryCodeDataFromJson(
 
 /// @nodoc
 mixin _$ResetRecoveryCodeData {
-  GetRecoveryCodeData get code => throw _privateConstructorUsedError;
+  String get recoveryCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +35,7 @@ abstract class $ResetRecoveryCodeDataCopyWith<$Res> {
           $Res Function(ResetRecoveryCodeData) then) =
       _$ResetRecoveryCodeDataCopyWithImpl<$Res, ResetRecoveryCodeData>;
   @useResult
-  $Res call({GetRecoveryCodeData code});
-
-  $GetRecoveryCodeDataCopyWith<$Res> get code;
+  $Res call({String recoveryCode});
 }
 
 /// @nodoc
@@ -54,22 +52,14 @@ class _$ResetRecoveryCodeDataCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = null,
+    Object? recoveryCode = null,
   }) {
     return _then(_value.copyWith(
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as GetRecoveryCodeData,
+      recoveryCode: null == recoveryCode
+          ? _value.recoveryCode
+          : recoveryCode // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $GetRecoveryCodeDataCopyWith<$Res> get code {
-    return $GetRecoveryCodeDataCopyWith<$Res>(_value.code, (value) {
-      return _then(_value.copyWith(code: value) as $Val);
-    });
   }
 }
 
@@ -82,10 +72,7 @@ abstract class _$$ResetRecoveryCodeDataImplCopyWith<$Res>
       __$$ResetRecoveryCodeDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({GetRecoveryCodeData code});
-
-  @override
-  $GetRecoveryCodeDataCopyWith<$Res> get code;
+  $Res call({String recoveryCode});
 }
 
 /// @nodoc
@@ -100,13 +87,13 @@ class __$$ResetRecoveryCodeDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = null,
+    Object? recoveryCode = null,
   }) {
     return _then(_$ResetRecoveryCodeDataImpl(
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as GetRecoveryCodeData,
+      recoveryCode: null == recoveryCode
+          ? _value.recoveryCode
+          : recoveryCode // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -114,17 +101,17 @@ class __$$ResetRecoveryCodeDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResetRecoveryCodeDataImpl implements _ResetRecoveryCodeData {
-  const _$ResetRecoveryCodeDataImpl({required this.code});
+  const _$ResetRecoveryCodeDataImpl({required this.recoveryCode});
 
   factory _$ResetRecoveryCodeDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResetRecoveryCodeDataImplFromJson(json);
 
   @override
-  final GetRecoveryCodeData code;
+  final String recoveryCode;
 
   @override
   String toString() {
-    return 'ResetRecoveryCodeData(code: $code)';
+    return 'ResetRecoveryCodeData(recoveryCode: $recoveryCode)';
   }
 
   @override
@@ -132,12 +119,13 @@ class _$ResetRecoveryCodeDataImpl implements _ResetRecoveryCodeData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ResetRecoveryCodeDataImpl &&
-            (identical(other.code, code) || other.code == code));
+            (identical(other.recoveryCode, recoveryCode) ||
+                other.recoveryCode == recoveryCode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, code);
+  int get hashCode => Object.hash(runtimeType, recoveryCode);
 
   @JsonKey(ignore: true)
   @override
@@ -155,14 +143,14 @@ class _$ResetRecoveryCodeDataImpl implements _ResetRecoveryCodeData {
 }
 
 abstract class _ResetRecoveryCodeData implements ResetRecoveryCodeData {
-  const factory _ResetRecoveryCodeData(
-      {required final GetRecoveryCodeData code}) = _$ResetRecoveryCodeDataImpl;
+  const factory _ResetRecoveryCodeData({required final String recoveryCode}) =
+      _$ResetRecoveryCodeDataImpl;
 
   factory _ResetRecoveryCodeData.fromJson(Map<String, dynamic> json) =
       _$ResetRecoveryCodeDataImpl.fromJson;
 
   @override
-  GetRecoveryCodeData get code;
+  String get recoveryCode;
   @override
   @JsonKey(ignore: true)
   _$$ResetRecoveryCodeDataImplCopyWith<_$ResetRecoveryCodeDataImpl>

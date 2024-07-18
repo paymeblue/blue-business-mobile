@@ -817,7 +817,9 @@ class BlueBottomSheet {
             children: [
               Expanded(
                 child: Text(
-                  recoveryCode.isEmpty ? "3482JTYW239QWSA" : recoveryCode,
+                  recoveryCode.isEmpty
+                      ? locator<AppStateValues>().recoveryCode
+                      : recoveryCode,
                   style: AppTextStyles.textField.copyWith(
                       color: AppColors.textColor.withOpacity(
                           locator<AppStateValues>().recoveryCode.isEmpty

@@ -260,7 +260,7 @@ class AccountRecoveryViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       AppLoader.stop();
-      return resp.data!;
+      return resp.data!.recoveryCode;
     } else {
       AppLoader.stop();
       AppNotification.error(message: resp.message);

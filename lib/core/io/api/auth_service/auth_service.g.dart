@@ -839,7 +839,7 @@ class _AuthService implements AuthService {
     )
             .compose(
               _dio.options,
-              '/rrecovery-info/reset',
+              '/recovery-info/reset',
               queryParameters: queryParameters,
               data: _data,
             )

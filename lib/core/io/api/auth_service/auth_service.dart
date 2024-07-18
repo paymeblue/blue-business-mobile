@@ -170,7 +170,7 @@ abstract class AuthService {
   @GET("/recovery-info")
   Future<GetRecoveryCodeResponse> getRecoveryCode();
 
-  @GET("/rrecovery-info/reset")
+  @GET("/recovery-info/reset")
   Future<ResetRecoveryCodeResponse> resetRecoveryCode();
 
   @POST("/recovery-info/set-recovery-phone")

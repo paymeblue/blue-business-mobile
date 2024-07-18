@@ -11,7 +11,10 @@ _$ResetRecoveryCodeResponseImpl _$$ResetRecoveryCodeResponseImplFromJson(
     _$ResetRecoveryCodeResponseImpl(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
-      data: json['data'] as String?,
+      data: json['data'] == null
+          ? null
+          : ResetRecoveryCodeData.fromJson(
+              json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ResetRecoveryCodeResponseImplToJson(
