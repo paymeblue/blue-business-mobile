@@ -436,11 +436,11 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToStaffManagementHome(BuildContext context) {
-    context.push(RoutePaths.staffManagementPath);
+    context.go(RoutePaths.staffManagementPath);
   }
 
   goToBranchManagementHome(BuildContext context) {
-    context.push(RoutePaths.branchManagementPath);
+    context.go(RoutePaths.branchManagementPath);
   }
 
   goToBlueWeb() async {
