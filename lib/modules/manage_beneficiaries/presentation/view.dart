@@ -152,7 +152,7 @@ class _ManageBeneficiariesViewState extends State<ManageBeneficiariesView> {
             return BeneficiaryTile(
               beneficiary: item,
               onDelete: () {
-                model.deleteBeneficiary(item.id);
+                model.deleteBeneficiary(int.parse(item.id));
               },
             );
           },
