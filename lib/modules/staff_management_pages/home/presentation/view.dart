@@ -8,10 +8,10 @@ import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/error.dart';
-import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'view_model.dart';
 
@@ -65,15 +65,44 @@ class _StaffHomeViewState extends State<StaffHomeView> {
         builderDelegate: PagedChildBuilderDelegate(
             noItemsFoundIndicatorBuilder: (context) => emptyPage(model),
             firstPageProgressIndicatorBuilder: (context) => Column(
-                  children: List.generate(
-                    4,
-                    (index) => Column(
-                      children: [
-                        BlueLoadingTile.withImage(),
-                        if (index < 3) 6.verticalGap,
-                      ],
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        model.goToAddStaff(context);
+                      },
+                      child: Container(
+                        decoration: const BoxDecoration(),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Icon(
+                              Icons.add,
+                              size: 15,
+                              color: AppColors.primary,
+                            ),
+                            Text(
+                              "Add staff",
+                              style: AppTextStyles.subText.copyWith(
+                                color: AppColors.primary,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    8.verticalGap,
+                    ...List.generate(
+                      4,
+                      (index) => Column(
+                        children: [
+                          staffLoadingTile(model),
+                          if (index < 3) 6.verticalGap,
+                        ],
+                      ),
+                    )
+                  ],
                 ),
             firstPageErrorIndicatorBuilder: (ctx) => Column(
                   children: [
@@ -88,7 +117,7 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                   model.staffPagingController.refresh,
                 ),
             newPageProgressIndicatorBuilder: (context) =>
-                BlueLoadingTile.withImage(),
+                staffLoadingTile(model),
             itemBuilder: (context, item, i) => Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -124,6 +153,92 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                   ],
                 )),
         separatorBuilder: (context, i) => 10.verticalGap,
+      ),
+    );
+  }
+
+  Widget staffLoadingTile(StaffHomeViewModel model) {
+    return Shimmer.fromColors(
+      baseColor: AppColors.brightBlue.withOpacity(.3),
+      highlightColor: AppColors.white,
+      child: Container(
+        height: 180,
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black.withOpacity(.25)),
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 25,
+              width: 100,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(.4),
+              ),
+            ),
+            15.verticalGap,
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    height: 44,
+                    width: 44,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(.6),
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  10.horizontalGap,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 40,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(.6),
+                          ),
+                        ),
+                        4.verticalGap,
+                        Container(
+                          height: 12,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(.6),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            15.verticalGap,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: model.size.width / 2.5,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(.6),
+                  ),
+                ),
+                Container(
+                  width: model.size.width / 2.5,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(.6),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
