@@ -115,7 +115,7 @@ class __$$SendPhoneRecoverPinRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SendPhoneRecoverPinRequestImpl implements _SendPhoneRecoverPinRequest {
   const _$SendPhoneRecoverPinRequestImpl(
-      {required this.phone, this.validationMode = "phone"});
+      {required this.phone, this.validationMode = "recovery-phone"});
 
   factory _$SendPhoneRecoverPinRequestImpl.fromJson(
           Map<String, dynamic> json) =>

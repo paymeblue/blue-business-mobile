@@ -121,19 +121,32 @@ abstract class AuthService {
     @Body() required VerifyForgotPasswordRequest request,
   });
 
-  @PATCH("/pins/recover-by-phone")
+  @POST("/pins/update")
+  Future<ChangePinResponse> changePin(@Body() ChangePinRequest request);
+
+  @POST("/pins/forgot")
   Future<SendNewPhoneResponse> forgotPinWithPhone(
       @Body() SendPhoneRecoverPinRequest request);
+
+  @PATCH("/pins/resend")
+  Future<SendNewPhoneResponse> resendPinOtp(
+      {@Query("phone") required String phone});
+
+  @POST("/pins/verify-otp")
+  Future<SendNewPhoneResponse> verifyPinOtp({
+    @Body() required VerifyForgotPasswordRequest request,
+  });
+
+  @PATCH("/pins/reset")
+  Future<SendQuestionResponse> resetPin(@Body() ResetPinRequest request);
 
   @GET("/security-info")
   Future<GetQuestionResponse> getSecurityQuestion(@Query("phone") String phone);
 
   @PATCH("/security-question/answer")
-  Future<SendQuestionResponse> sendSecurityAnswer(
-      @Body() SendQuestionRequest request);
-
-  @PATCH("/pins/reset")
-  Future<SendQuestionResponse> resetPin(@Body() ResetPinRequest request);
+  Future<SendQuestionResponse> sendSecurityAnswer({
+    @Body() required SendQuestionRequest request,
+  });
 
   @GET("/recovery-info/verify")
   Future<SendRecoveryCodeResponse> verifyRecoveryCode(
@@ -157,9 +170,6 @@ abstract class AuthService {
   @POST("/users/update-password")
   Future<ChangePasswordResponse> changePassword(
       @Body() ChangePasswordRequest request);
-
-  @PATCH("/pins")
-  Future<ChangePinResponse> changePin(@Body() ChangePinRequest request);
 
   @POST("/users/delete-accoun")
   Future<DeleteResponse> deleteAccount(@Body() DeleteRequest request);

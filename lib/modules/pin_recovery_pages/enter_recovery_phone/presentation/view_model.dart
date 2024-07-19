@@ -93,7 +93,7 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
 
     SendQuestionResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .sendSecurityAnswer(request)
+            .sendSecurityAnswer(request: request)
             .onError((error, stackTrace) => SendQuestionResponse(
                     message: AppErrorHandler.getErrorMessage(
                   error,
@@ -115,8 +115,8 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
 
   sendRecoveryPhone(BuildContext context) async {
     AppLoader.start();
-    SendPhoneRecoverPinRequest request =
-        SendPhoneRecoverPinRequest(phone: formatPhone());
+    SendPhoneRecoverPinRequest request = SendPhoneRecoverPinRequest(
+        phone: formatPhone(), validationMode: "recovery-phone");
 
     SendNewPhoneResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))

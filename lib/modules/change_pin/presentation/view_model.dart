@@ -1,10 +1,19 @@
 import 'dart:developer';
 
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
+import 'package:blue_business/core/models/change_pin/request/change_pin_request.dart';
+import 'package:blue_business/core/models/change_pin/response/change_pin_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -94,7 +103,39 @@ class ChangePinViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  changePin(BuildContext context) async {}
+  changePin(BuildContext context) async {
+    AppLoader.start();
+
+    ChangePinRequest request =
+        ChangePinRequest(confirmPin: confirmPin, oldPin: pin, newPin: newPin);
+
+    ChangePinResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .changePin(request)
+            .onError((error, stackTrace) {
+      return ChangePinResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "change_pin",
+          "request": request.toString(),
+          "response_model": "ChangePinResponse"
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      if (StorageValues.pin.isNotEmpty) {
+        await saveInStorage();
+      }
+      AppNotification.success(message: resp.message);
+      if (context.mounted) context.go(RoutePaths.settingsPath);
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    AppLoader.stop();
+  }
 
   saveInStorage() async {
     StorageValues.password = newPin;

@@ -470,6 +470,33 @@ class _AuthService implements AuthService {
   }
 
   @override
+  Future<ChangePinResponse> changePin(ChangePinRequest request) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ChangePinResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/pins/update',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ChangePinResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<SendNewPhoneResponse> forgotPinWithPhone(
       SendPhoneRecoverPinRequest request) async {
     final _extra = <String, dynamic>{};
@@ -478,13 +505,13 @@ class _AuthService implements AuthService {
     final _data = request;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SendNewPhoneResponse>(Options(
-      method: 'PATCH',
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/pins/recover-by-phone',
+              '/pins/forgot',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -494,6 +521,88 @@ class _AuthService implements AuthService {
               baseUrl,
             ))));
     final value = SendNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendNewPhoneResponse> resendPinOtp({required String phone}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'phone': phone};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendNewPhoneResponse>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/pins/resend',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendNewPhoneResponse> verifyPinOtp(
+      {required VerifyForgotPasswordRequest request}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendNewPhoneResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/pins/verify-otp',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendQuestionResponse> resetPin(ResetPinRequest request) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendQuestionResponse>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/pins/reset',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendQuestionResponse.fromJson(_result.data!);
     return value;
   }
 
@@ -526,7 +635,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<SendQuestionResponse> sendSecurityAnswer(
-      SendQuestionRequest request) async {
+      {required SendQuestionRequest request}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -540,33 +649,6 @@ class _AuthService implements AuthService {
             .compose(
               _dio.options,
               '/security-question/answer',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = SendQuestionResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<SendQuestionResponse> resetPin(ResetPinRequest request) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = request;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<SendQuestionResponse>(Options(
-      method: 'PATCH',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/pins/reset',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -714,33 +796,6 @@ class _AuthService implements AuthService {
               baseUrl,
             ))));
     final value = ChangePasswordResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<ChangePinResponse> changePin(ChangePinRequest request) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = request;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ChangePinResponse>(Options(
-      method: 'PATCH',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/pins',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ChangePinResponse.fromJson(_result.data!);
     return value;
   }
 

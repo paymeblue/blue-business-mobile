@@ -7,7 +7,7 @@ part 'recover_phone_request.g.dart';
 class SendPhoneRecoverPinRequest with _$SendPhoneRecoverPinRequest {
   const factory SendPhoneRecoverPinRequest({
     required String phone,
-    @Default("phone") String validationMode,
+    @Default("recovery-phone") String validationMode,
   }) = _SendPhoneRecoverPinRequest;
 
   factory SendPhoneRecoverPinRequest.fromJson(Map<String, dynamic> json) =>

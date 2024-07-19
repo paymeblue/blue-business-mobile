@@ -10,7 +10,7 @@ _$SendPhoneRecoverPinRequestImpl _$$SendPhoneRecoverPinRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$SendPhoneRecoverPinRequestImpl(
       phone: json['phone'] as String,
-      validationMode: json['validation_mode'] as String? ?? "phone",
+      validationMode: json['validation_mode'] as String? ?? "recovery-phone",
     );
 
 Map<String, dynamic> _$$SendPhoneRecoverPinRequestImplToJson(
