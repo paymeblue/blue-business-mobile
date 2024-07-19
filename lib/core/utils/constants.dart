@@ -27,13 +27,7 @@ class AppStateValues extends ChangeNotifier {
   LoginData? _currentUser;
   Wallet? _wallet;
   TopupAccount? _account;
-  WithdrawalAccount? _withdrawalAccount = WithdrawalAccount(
-      id: 2,
-      bankId: 2,
-      bankName: "bankName",
-      accountName: "accountName",
-      accountNumber: "accountNumber",
-      createdAt: DateTime.now().toIso8601String());
+  WithdrawalAccount? _withdrawalAccount;
   Object? _extra;
 
   String get refreshToken => _refreshToken;

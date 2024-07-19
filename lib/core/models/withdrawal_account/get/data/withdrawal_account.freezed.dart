@@ -25,7 +25,7 @@ mixin _$WithdrawalAccount {
   String get bankName => throw _privateConstructorUsedError;
   String get accountName => throw _privateConstructorUsedError;
   String get accountNumber => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +45,7 @@ abstract class $WithdrawalAccountCopyWith<$Res> {
       String bankName,
       String accountName,
       String accountNumber,
-      String createdAt});
+      String? createdAt});
 }
 
 /// @nodoc
@@ -66,7 +66,7 @@ class _$WithdrawalAccountCopyWithImpl<$Res, $Val extends WithdrawalAccount>
     Object? bankName = null,
     Object? accountName = null,
     Object? accountNumber = null,
-    Object? createdAt = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -89,10 +89,10 @@ class _$WithdrawalAccountCopyWithImpl<$Res, $Val extends WithdrawalAccount>
           ? _value.accountNumber
           : accountNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -111,7 +111,7 @@ abstract class _$$WithdrawalAccountImplCopyWith<$Res>
       String bankName,
       String accountName,
       String accountNumber,
-      String createdAt});
+      String? createdAt});
 }
 
 /// @nodoc
@@ -130,7 +130,7 @@ class __$$WithdrawalAccountImplCopyWithImpl<$Res>
     Object? bankName = null,
     Object? accountName = null,
     Object? accountNumber = null,
-    Object? createdAt = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$WithdrawalAccountImpl(
       id: null == id
@@ -153,10 +153,10 @@ class __$$WithdrawalAccountImplCopyWithImpl<$Res>
           ? _value.accountNumber
           : accountNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -186,7 +186,7 @@ class _$WithdrawalAccountImpl implements _WithdrawalAccount {
   @override
   final String accountNumber;
   @override
-  final String createdAt;
+  final String? createdAt;
 
   @override
   String toString() {
@@ -237,7 +237,7 @@ abstract class _WithdrawalAccount implements WithdrawalAccount {
       required final String bankName,
       required final String accountName,
       required final String accountNumber,
-      required final String createdAt}) = _$WithdrawalAccountImpl;
+      required final String? createdAt}) = _$WithdrawalAccountImpl;
 
   factory _WithdrawalAccount.fromJson(Map<String, dynamic> json) =
       _$WithdrawalAccountImpl.fromJson;
@@ -253,7 +253,7 @@ abstract class _WithdrawalAccount implements WithdrawalAccount {
   @override
   String get accountNumber;
   @override
-  String get createdAt;
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$WithdrawalAccountImplCopyWith<_$WithdrawalAccountImpl> get copyWith =>

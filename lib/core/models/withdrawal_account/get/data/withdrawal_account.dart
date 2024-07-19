@@ -11,7 +11,7 @@ class WithdrawalAccount with _$WithdrawalAccount {
     required String bankName,
     required String accountName,
     required String accountNumber,
-    required String createdAt,
+    required String? createdAt,
   }) = _WithdrawalAccount;
 
   factory WithdrawalAccount.fromJson(Map<String, dynamic> json) =>

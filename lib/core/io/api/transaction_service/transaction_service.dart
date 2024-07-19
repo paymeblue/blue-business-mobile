@@ -1,3 +1,4 @@
+import 'package:blue_business/core/models/banks/response/bank_response.dart';
 import 'package:blue_business/core/models/beneficiary/get/response/get_beneficiary_response.dart';
 import 'package:blue_business/core/models/beneficiary/set/request/set_beneficiary_request.dart';
 import 'package:blue_business/core/models/beneficiary/set/response/set_beneficiary_response.dart';
@@ -13,6 +14,11 @@ import 'package:blue_business/core/models/transaction/verify/request/verified_re
 import 'package:blue_business/core/models/transaction/verify/response/verified_receiver_response.dart';
 import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
+import 'package:blue_business/core/models/withdrawal_account/get/response/withdrawal_account_response.dart';
+import 'package:blue_business/core/models/withdrawal_account/set/request/set_payout_request.dart';
+import 'package:blue_business/core/models/withdrawal_account/set/response/set_payout_response.dart';
+import 'package:blue_business/core/models/withdrawal_account/verify/request/verify_payout_request.dart';
+import 'package:blue_business/core/models/withdrawal_account/verify/response/verify_payout_response.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
@@ -89,4 +95,17 @@ abstract class TransactionService {
 
   @GET("/beneficiaries/recently-paid")
   Future<RecentlyPaidResponse> getRecentlyPaid();
+
+  @GET("/settlement-accounts")
+  Future<WithdrawalAccountResponse> getWithdrawalAccount();
+
+  @GET("/banks")
+  Future<BankResponse> getBanks();
+
+  @POST("/settlement-accounts/verify")
+  Future<VerifyPayoutResponse> verifyAccount(
+      @Body() VerifyPayoutRequest request);
+
+  @POST("/settlement-accounts")
+  Future<SetPayoutResponse> addPayout(@Body() SetPayoutRequest request);
 }
