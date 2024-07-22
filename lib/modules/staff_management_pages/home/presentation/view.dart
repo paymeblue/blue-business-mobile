@@ -1,12 +1,14 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
+import 'package:blue_business/widgets/modals/popup_menu.dart';
 import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
@@ -122,30 +124,74 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     if (i == 0) ...[
-                      GestureDetector(
-                        onTap: () {
-                          model.goToAddStaff(context);
-                        },
-                        child: Container(
-                          decoration: const BoxDecoration(),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              const Icon(
-                                Icons.add,
-                                size: 15,
-                                color: AppColors.primary,
-                              ),
-                              Text(
-                                "Add staff",
-                                style: AppTextStyles.subText.copyWith(
-                                  color: AppColors.primary,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          BluePopupMenu(
+                              width: null,
+                              icon: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: AppColors.blue),
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                              )
-                            ],
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 6),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      (model.role?.name ?? "all roles")
+                                          .sentenceCase,
+                                      style: AppTextStyles.subText.copyWith(
+                                        color: AppColors.blue,
+                                      ),
+                                    ),
+                                    const Icon(
+                                      Icons.keyboard_arrow_down_rounded,
+                                      size: 18,
+                                      color: AppColors.blue,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              popupItems: model.roles
+                                  .map(
+                                    (e) => PopupModel(
+                                      title: e.name.sentenceCase,
+                                      onTap: () {
+                                        model.role = e;
+                                        model.staffPagingController.refresh();
+                                      },
+                                    ),
+                                  )
+                                  .toList()),
+                          GestureDetector(
+                            onTap: () {
+                              model.goToAddStaff(context);
+                            },
+                            child: Container(
+                              decoration: const BoxDecoration(),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  const Icon(
+                                    Icons.add,
+                                    size: 15,
+                                    color: AppColors.primary,
+                                  ),
+                                  Text(
+                                    "Add staff",
+                                    style: AppTextStyles.subText.copyWith(
+                                      color: AppColors.primary,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                       8.verticalGap
                     ],

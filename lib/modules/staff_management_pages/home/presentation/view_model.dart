@@ -6,12 +6,15 @@ import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
+import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
+import 'package:blue_business/core/models/staff_roles/get/response/staff_role_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/modals/dialogs.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,6 +30,8 @@ class StaffHomeViewModel extends BaseViewModel {
     staffPagingController.addPageRequestListener((pageKey) {
       getStaff(pageKey);
     });
+
+    getRoles();
   }
 
   Timer? searchTimer;
@@ -128,5 +133,50 @@ class StaffHomeViewModel extends BaseViewModel {
       AppNotification.error(message: response.message);
     }
     AppLoader.stop();
+  }
+
+  FetchState _roleState = FetchState.complete;
+  FetchState get roleState => _roleState;
+  set roleState(FetchState value) {
+    _roleState = value;
+    notifyListeners();
+  }
+
+  List<StaffRole> _roles = [];
+  List<StaffRole> get roles => _roles;
+  set roles(List<StaffRole> value) {
+    _roles = value;
+    notifyListeners();
+  }
+
+  StaffRole? _role;
+  StaffRole? get role => _role;
+  set role(StaffRole? value) {
+    _role = value;
+    notifyListeners();
+  }
+
+  getRoles() async {
+    roleState = FetchState.loading;
+
+    GetStaffRoleResponse response =
+        await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getStaffRoles()
+            .onError((error, stacjtrace) => GetStaffRoleResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_staff_rles",
+                    "response_model": "GetStaffRoleResponse"
+                  },
+                )));
+
+    if (response.status == "success") {
+      roles = response.data!;
+      roleState = FetchState.complete;
+    } else {
+      roleState = FetchState.error;
+      AppNotification.error(message: response.message);
+    }
   }
 }
