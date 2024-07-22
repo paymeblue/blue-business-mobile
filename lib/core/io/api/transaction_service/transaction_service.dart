@@ -70,7 +70,7 @@ abstract class TransactionService {
     @Query("t_id") required String transactionId,
   });
 
-  @GET("/payment-link/history")
+  @GET("/payment-links")
   Future<PaymentLinkResponse> getPaymentLinkHistory(
     @Query("page") int page,
     @Query("limit") int limit,

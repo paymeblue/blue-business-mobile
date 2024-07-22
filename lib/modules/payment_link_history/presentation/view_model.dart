@@ -8,6 +8,7 @@ import 'package:blue_business/core/models/payment_link/payment_link.dart';
 import 'package:blue_business/core/models/payment_link/response/payment_link_response.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
+import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -110,7 +111,7 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
     }
   }
 
-  List<String> statusList = ["All", "Sent", "Withdrawn", "Cancelled"];
+  List<String> statusList = ["All", "Sent", "Withdrawn", "Reversed"];
 
   bool showDate(int i) {
     PaymentLinkItem transaction = paymentLinkController.itemList![i];
@@ -141,7 +142,31 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getTransactionReceipt(PaymentLinkItem data) async {}
+  getTransactionReceipt(PaymentLinkItem data) async {
+    AppLoader.start();
+
+    ReceiptResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getReceipt(data.transactionId)
+        .onError((error, stackTrace) {
+      return ReceiptResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {"request_name": "get_receipt", "response_model": "ReceiptResponse"},
+      ));
+    });
+
+    if (resp.status == "success") {
+      receipt = resp.data!;
+      await Future.delayed(const Duration(milliseconds: 350), () {
+        downloadAndShareQr(data);
+      });
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    AppLoader.stop();
+  }
 
   ScreenshotController screenshotController = ScreenshotController();
 

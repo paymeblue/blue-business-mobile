@@ -140,7 +140,7 @@ class PaymentLinkTile extends StatelessWidget {
       case "fulfilled":
         return "Sent";
       default:
-        return "${item.status[0].toUpperCase()}${item.status.substring(1)}";
+        return item.status.sentenceCase;
     }
   }
 
@@ -148,10 +148,10 @@ class PaymentLinkTile extends StatelessWidget {
     switch (item.status) {
       case "fulfilled":
         return AppColors.otherGreen;
-      case "cancelled":
+      case "reversed":
         return AppColors.error;
       default:
-        return AppColors.green;
+        return AppColors.warning;
     }
   }
 
