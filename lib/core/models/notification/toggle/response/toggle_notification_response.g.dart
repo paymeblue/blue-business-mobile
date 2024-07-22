@@ -1,20 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'notification_response.dart';
+part of 'toggle_notification_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$NotificationResponseImpl _$$NotificationResponseImplFromJson(
+_$ToggleNotificationResponseImpl _$$ToggleNotificationResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$NotificationResponseImpl(
+    _$ToggleNotificationResponseImpl(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$NotificationResponseImplToJson(
-    _$NotificationResponseImpl instance) {
+Map<String, dynamic> _$$ToggleNotificationResponseImplToJson(
+    _$ToggleNotificationResponseImpl instance) {
   final val = <String, dynamic>{
     'status': instance.status,
   };

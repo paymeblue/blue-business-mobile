@@ -1,0 +1,211 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'get_notification_response.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+GetNotificationResponse _$GetNotificationResponseFromJson(
+    Map<String, dynamic> json) {
+  return _GetNotificationResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GetNotificationResponse {
+  String get status => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
+  GetNotificationData? get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GetNotificationResponseCopyWith<GetNotificationResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetNotificationResponseCopyWith<$Res> {
+  factory $GetNotificationResponseCopyWith(GetNotificationResponse value,
+          $Res Function(GetNotificationResponse) then) =
+      _$GetNotificationResponseCopyWithImpl<$Res, GetNotificationResponse>;
+  @useResult
+  $Res call({String status, String? message, GetNotificationData? data});
+
+  $GetNotificationDataCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class _$GetNotificationResponseCopyWithImpl<$Res,
+        $Val extends GetNotificationResponse>
+    implements $GetNotificationResponseCopyWith<$Res> {
+  _$GetNotificationResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? message = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as GetNotificationData?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GetNotificationDataCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $GetNotificationDataCopyWith<$Res>(_value.data!, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$GetNotificationResponseImplCopyWith<$Res>
+    implements $GetNotificationResponseCopyWith<$Res> {
+  factory _$$GetNotificationResponseImplCopyWith(
+          _$GetNotificationResponseImpl value,
+          $Res Function(_$GetNotificationResponseImpl) then) =
+      __$$GetNotificationResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String status, String? message, GetNotificationData? data});
+
+  @override
+  $GetNotificationDataCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class __$$GetNotificationResponseImplCopyWithImpl<$Res>
+    extends _$GetNotificationResponseCopyWithImpl<$Res,
+        _$GetNotificationResponseImpl>
+    implements _$$GetNotificationResponseImplCopyWith<$Res> {
+  __$$GetNotificationResponseImplCopyWithImpl(
+      _$GetNotificationResponseImpl _value,
+      $Res Function(_$GetNotificationResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? message = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_$GetNotificationResponseImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as GetNotificationData?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$GetNotificationResponseImpl implements _GetNotificationResponse {
+  const _$GetNotificationResponseImpl(
+      {this.status = "fail", this.message, this.data});
+
+  factory _$GetNotificationResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GetNotificationResponseImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String status;
+  @override
+  final String? message;
+  @override
+  final GetNotificationData? data;
+
+  @override
+  String toString() {
+    return 'GetNotificationResponse(status: $status, message: $message, data: $data)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetNotificationResponseImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, status, message, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetNotificationResponseImplCopyWith<_$GetNotificationResponseImpl>
+      get copyWith => __$$GetNotificationResponseImplCopyWithImpl<
+          _$GetNotificationResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$GetNotificationResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GetNotificationResponse implements GetNotificationResponse {
+  const factory _GetNotificationResponse(
+      {final String status,
+      final String? message,
+      final GetNotificationData? data}) = _$GetNotificationResponseImpl;
+
+  factory _GetNotificationResponse.fromJson(Map<String, dynamic> json) =
+      _$GetNotificationResponseImpl.fromJson;
+
+  @override
+  String get status;
+  @override
+  String? get message;
+  @override
+  GetNotificationData? get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetNotificationResponseImplCopyWith<_$GetNotificationResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
