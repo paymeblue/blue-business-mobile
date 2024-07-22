@@ -228,7 +228,7 @@ class _TransactionService implements TransactionService {
   }
 
   @override
-  Future<TransactionDetailResponse> getpaymentTransactionDetails(
+  Future<TransactionDetailResponse> getPaymentTransactionDetails(
       {required String transactionId}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r't_id': transactionId};
@@ -252,6 +252,41 @@ class _TransactionService implements TransactionService {
               baseUrl,
             ))));
     final value = TransactionDetailResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<PaymentLinkResponse> getPaymentLinkHistory(
+    int page,
+    int limit,
+    String status,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'limit': limit,
+      r'status': status,
+    };
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<PaymentLinkResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/payment-link/history',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = PaymentLinkResponse.fromJson(_result.data!);
     return value;
   }
 

@@ -2,6 +2,7 @@ import 'package:blue_business/core/models/banks/response/bank_response.dart';
 import 'package:blue_business/core/models/beneficiary/get/response/get_beneficiary_response.dart';
 import 'package:blue_business/core/models/beneficiary/set/request/set_beneficiary_request.dart';
 import 'package:blue_business/core/models/beneficiary/set/response/set_beneficiary_response.dart';
+import 'package:blue_business/core/models/payment_link/response/payment_link_response.dart';
 // import 'package:blue_business/core/models/payment_link/response/payment_link_response.dart';
 import 'package:blue_business/core/models/recently_paid/response/recently_paid_response.dart';
 import 'package:blue_business/core/models/transaction/initiate/request/initiate_transaction_request.dart';
@@ -65,9 +66,16 @@ abstract class TransactionService {
   });
 
   @GET("/payment/receipt")
-  Future<TransactionDetailResponse> getpaymentTransactionDetails({
+  Future<TransactionDetailResponse> getPaymentTransactionDetails({
     @Query("t_id") required String transactionId,
   });
+
+  @GET("/payment-link/history")
+  Future<PaymentLinkResponse> getPaymentLinkHistory(
+    @Query("page") int page,
+    @Query("limit") int limit,
+    @Query("status") String status,
+  );
 
   @GET("/beneficiaries/index")
   Future<GetBeneficiaryResponse> searchBeneficiaries(

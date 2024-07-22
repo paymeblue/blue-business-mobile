@@ -2,12 +2,17 @@ import 'dart:typed_data';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/payment_link/payment_link.dart';
+import 'package:blue_business/core/models/payment_link/response/payment_link_response.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:blue_business/widgets/modals/toast.dart';
@@ -72,6 +77,39 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
   PagingController<int, PaymentLinkItem> paymentLinkController =
       PagingController<int, PaymentLinkItem>(firstPageKey: 1);
 
+  int limit = 50;
+  getPaymentLinkHistory(int page) async {
+    try {
+      PaymentLinkResponse resp = await TransactionService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .getPaymentLinkHistory(page, limit, getStatus(selectedStatus))
+          .onError((error, stackTrace) {
+        return PaymentLinkResponse(
+            message: AppErrorHandler.getErrorMessage(
+          error,
+          {
+            "request_name": "get_payment_link_history",
+            "response_model": "PaymentLinkResponse"
+          },
+        ));
+      });
+
+      if (resp.status != "success") {
+        paymentLinkController.error = resp.message;
+      } else {
+        List<PaymentLinkItem> i = resp.data!.data;
+
+        if (resp.data!.loadMore) {
+          paymentLinkController.appendPage(i, page + 1);
+        } else {
+          paymentLinkController.appendLastPage(i);
+        }
+      }
+    } catch (e) {
+      paymentLinkController.error = AppErrorHandler.getErrorMessage(e);
+    }
+  }
+
   List<String> statusList = ["All", "Sent", "Withdrawn", "Cancelled"];
 
   bool showDate(int i) {
@@ -87,13 +125,6 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
         (previousDate.year != currentDate.year) ||
         (previousDate.month != currentDate.month) ||
         (previousDate.day != currentDate.day);
-  }
-
-  int limit = 50;
-  getPaymentLinkHistory(int page) async {
-    try {} catch (e) {
-      paymentLinkController.error = AppErrorHandler.getErrorMessage(e);
-    }
   }
 
   String getStatus(String v) {
