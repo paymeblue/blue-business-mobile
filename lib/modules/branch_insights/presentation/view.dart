@@ -218,7 +218,9 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                                         .map(
                                           (e) => PopupModel(
                                             title: e.name.sentenceCase,
-                                            onTap: () {},
+                                            onTap: () {
+                                              model.role = e;
+                                            },
                                           ),
                                         )
                                         .toList()),

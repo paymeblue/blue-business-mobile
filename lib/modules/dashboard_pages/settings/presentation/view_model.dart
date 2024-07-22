@@ -434,10 +434,10 @@ class SettingsViewModel extends BaseViewModel {
   toggleNotifications(bool v) async {
     AppLoader.start();
 
-    ToggleNotificationResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .toggleNotificationStatus(status: v ? 1 : 0)
-            .onError((error, stackTrace) {
+    ToggleNotificationResponse resp = await ProfileService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .toggleNotificationStatus(status: v ? 1 : 0)
+        .onError((error, stackTrace) {
       return ToggleNotificationResponse(
           message: AppErrorHandler.getErrorMessage(
         error,

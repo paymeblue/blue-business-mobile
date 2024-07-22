@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/profile_service/profile_service.dart';
 import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
@@ -168,7 +169,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   getNotificationStatus() async {
-    GetNotificationResponse resp = await AuthService(DioConfig.dio())
+    GetNotificationResponse resp = await ProfileService(DioConfig.dio())
         .getNotificationStatus()
         .onError((error, stackTrace) {
       return GetNotificationResponse(

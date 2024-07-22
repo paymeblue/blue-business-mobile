@@ -23,12 +23,14 @@ class _StaffService implements StaffService {
     required int page,
     required int limit,
     String? search,
+    String? role,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
       r'limit': limit,
       r'search': search,
+      r'role': role,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};

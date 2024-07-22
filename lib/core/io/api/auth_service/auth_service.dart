@@ -13,8 +13,6 @@ import 'package:blue_business/core/models/delete_account/get_reasons/response/ge
 import 'package:blue_business/core/models/forgot_password/verify/request/verify_forgot_password_request.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
-import 'package:blue_business/core/models/notification/get/response/get_notification_response.dart';
-import 'package:blue_business/core/models/notification/toggle/response/toggle_notification_response.dart';
 import 'package:blue_business/core/models/recover_phone/add/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/recover_phone/verify/request/verify_new_phone_request.dart';
@@ -93,14 +91,6 @@ abstract class AuthService {
   @POST("/auth")
   Future<LoginResponse> login({
     @Body() required LoginRequest request,
-  });
-
-  @GET("/notifications")
-  Future<GetNotificationResponse> getNotificationStatus();
-
-  @GET("/notifications/toggle")
-  Future<ToggleNotificationResponse> toggleNotificationStatus({
-    @Query("status") required int status,
   });
 
   @POST("/auth/refresh-access-token")

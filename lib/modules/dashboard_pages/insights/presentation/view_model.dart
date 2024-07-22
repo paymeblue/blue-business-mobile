@@ -5,6 +5,7 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
+import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
@@ -18,6 +19,8 @@ import 'package:blue_business/core/models/spending_analytics/data/spending_analy
 import 'package:blue_business/core/models/spending_analytics/response/spending_analytics_response.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
+import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
+import 'package:blue_business/core/models/staff_roles/get/response/staff_role_response.dart';
 import 'package:blue_business/core/models/tab_item/tab_item.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -476,6 +479,7 @@ class InsightsViewModel extends BaseViewModel {
             page: page,
             limit: 50,
             id: branch!.id,
+            role: role?.name,
           )
           .onError(
             (error, stackTrace) => GetStaffResponse(
@@ -501,6 +505,51 @@ class InsightsViewModel extends BaseViewModel {
       }
     } catch (e) {
       staffPagingController.error = AppErrorHandler.getErrorMessage(e);
+    }
+  }
+
+  FetchState _roleState = FetchState.complete;
+  FetchState get roleState => _roleState;
+  set roleState(FetchState value) {
+    _roleState = value;
+    notifyListeners();
+  }
+
+  List<StaffRole> _roles = [];
+  List<StaffRole> get roles => _roles;
+  set roles(List<StaffRole> value) {
+    _roles = value;
+    notifyListeners();
+  }
+
+  StaffRole? _role;
+  StaffRole? get role => _role;
+  set role(StaffRole? value) {
+    _role = value;
+    notifyListeners();
+  }
+
+  getRoles() async {
+    roleState = FetchState.loading;
+
+    GetStaffRoleResponse response =
+        await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getStaffRoles()
+            .onError((error, stacjtrace) => GetStaffRoleResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_staff_rles",
+                    "response_model": "GetStaffRoleResponse"
+                  },
+                )));
+
+    if (response.status == "success") {
+      roles = response.data!;
+      roleState = FetchState.complete;
+    } else {
+      roleState = FetchState.error;
+      AppNotification.error(message: response.message);
     }
   }
 }

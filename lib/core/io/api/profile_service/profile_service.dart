@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:blue_business/core/models/notification/get/response/get_notification_response.dart';
+import 'package:blue_business/core/models/notification/toggle/response/toggle_notification_response.dart';
 import 'package:blue_business/core/models/upload_avatar/response/upload_avatar_response.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
@@ -17,4 +19,12 @@ abstract class ProfileService {
   @MultiPart()
   Future<UploadAvatarResponse> uploadDisplayPicture(
       @Part(name: "display_picture", contentType: "image/png") File displayPic);
+
+  @GET("/notifications")
+  Future<GetNotificationResponse> getNotificationStatus();
+
+  @GET("/notifications/toggle")
+  Future<ToggleNotificationResponse> toggleNotificationStatus({
+    @Query("status") required int status,
+  });
 }

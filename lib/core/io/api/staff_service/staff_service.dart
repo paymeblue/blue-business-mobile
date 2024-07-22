@@ -20,6 +20,7 @@ abstract class StaffService {
     @Query("page") required int page,
     @Query("limit") required int limit,
     @Query("search") String? search,
+    @Query("role") String? role,
   });
 
   @POST("/staff")

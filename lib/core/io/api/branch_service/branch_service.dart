@@ -57,5 +57,6 @@ abstract class BranchService {
     @Path("id") required int id,
     @Query("page") required int page,
     @Query("limit") required int limit,
+    @Query("role_name") String? role,
   });
 }

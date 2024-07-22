@@ -226,6 +226,7 @@ class BranchInsightsViewModel extends BaseViewModel {
             page: page,
             limit: 50,
             id: branchId,
+            role: role?.name,
           )
           .onError(
             (error, stackTrace) => GetStaffResponse(
@@ -265,6 +266,13 @@ class BranchInsightsViewModel extends BaseViewModel {
   List<StaffRole> get roles => _roles;
   set roles(List<StaffRole> value) {
     _roles = value;
+    notifyListeners();
+  }
+
+  StaffRole? _role;
+  StaffRole? get role => _role;
+  set role(StaffRole? value) {
+    _role = value;
     notifyListeners();
   }
 
