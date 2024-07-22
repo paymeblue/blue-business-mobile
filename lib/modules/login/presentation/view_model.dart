@@ -10,6 +10,7 @@ import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/login/data/login_data.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
+import 'package:blue_business/core/models/notification/get/response/get_notification_response.dart';
 import 'package:blue_business/core/models/token/token.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -151,9 +152,9 @@ class LoginViewModel extends BaseViewModel {
       ));
     });
 
-    AppLoader.stop();
     if (resp.status == "success") {
       await setNameInStorage(resp.data!.business.name, p);
+      getNotificationStatus();
       saveTokens(resp.data!.token);
       locator<AppStateValues>().currentUser = resp.data!;
 
@@ -163,6 +164,27 @@ class LoginViewModel extends BaseViewModel {
     } else {
       AppNotification.error(message: resp.message);
     }
+    AppLoader.stop();
+  }
+
+  getNotificationStatus() async {
+    GetNotificationResponse resp = await AuthService(DioConfig.dio())
+        .getNotificationStatus()
+        .onError((error, stackTrace) {
+      return GetNotificationResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "get_notification_status",
+          "response_model": "GetNotificationResponse",
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      locator<AppStateValues>().notificationStatus =
+          resp.data!.notificationStatus == 1;
+    } else {}
   }
 
   checkBiometric(BuildContext context, LoginData user,

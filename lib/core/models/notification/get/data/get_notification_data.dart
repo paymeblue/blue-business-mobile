@@ -5,7 +5,7 @@ part 'get_notification_data.g.dart';
 
 @freezed
 class GetNotificationData with _$GetNotificationData {
-  const factory GetNotificationData({@Default(false) bool notificationStatus}) =
+  const factory GetNotificationData({@Default(0) int notificationStatus}) =
       _GetNotificationData;
 
   factory GetNotificationData.fromJson(Map<String, dynamic> json) =>

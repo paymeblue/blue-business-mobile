@@ -9,7 +9,7 @@ import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/v
 import 'package:flutter/material.dart';
 
 class AppStateValues extends ChangeNotifier {
-  String _refreshToken = "ABCDE";
+  String _refreshToken = "";
   String _fcmToken = "";
   String _narration = "";
   String _recoveryCode = "";
@@ -17,6 +17,7 @@ class AppStateValues extends ChangeNotifier {
   FetchState _todoState = FetchState.loading;
   String _kycLevel = "basic";
   bool _hasSavedBeneficiary = true;
+  bool _notificationStatus = false;
   int _count = 0;
   bool _newMessage = false;
   bool _hasNetwork = true;
@@ -38,6 +39,7 @@ class AppStateValues extends ChangeNotifier {
   FetchState get todoState => _todoState;
   String get kycLevel => _kycLevel;
   bool get hasSavedBeneficiary => _hasSavedBeneficiary;
+  bool get notificationStatus => _notificationStatus;
   String get resetPath => _path;
   int get unreadCount => _count;
   bool get hasNewMessage => _newMessage;
@@ -108,6 +110,11 @@ class AppStateValues extends ChangeNotifier {
     notifyListeners();
   }
 
+  set notificationStatus(bool v) {
+    _notificationStatus = v;
+    notifyListeners();
+  }
+
   set unreadCount(int v) {
     _count = v;
     notifyListeners();
@@ -156,6 +163,8 @@ class AppStateValues extends ChangeNotifier {
     todoState = FetchState.loading;
     kycLevel = "basic";
     hasSavedBeneficiary = true;
+    hasNetwork = true;
+    notificationStatus = false;
     resetPath = RoutePaths.homePath;
     unreadCount = 0;
     hasNewMessage = false;

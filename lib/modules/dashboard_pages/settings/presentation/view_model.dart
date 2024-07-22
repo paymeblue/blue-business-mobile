@@ -14,6 +14,7 @@ import 'package:blue_business/core/models/delete_account/delete/request/delete_r
 import 'package:blue_business/core/models/delete_account/delete/response/delete_response.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/reason/reason.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/response/get_reason_response.dart';
+import 'package:blue_business/core/models/notification/toggle/response/toggle_notification_response.dart';
 import 'package:blue_business/core/models/upload_avatar/response/upload_avatar_response.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/response/withdrawal_account_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
@@ -38,9 +39,8 @@ class SettingsViewModel extends BaseViewModel {
   init(BuildContext context) {
     size = context.mediaQuery.size;
 
-    notificationStatus =
-        // locator<AppStateValues>().currentUser!.notificationStatus == 1;
-        useBiometrics = StorageValues.enableBiometrics == "true";
+    notificationStatus = locator<AppStateValues>().notificationStatus;
+    useBiometrics = StorageValues.enableBiometrics == "true";
   }
 
   bool _useBiometrics = false;
@@ -431,7 +431,33 @@ class SettingsViewModel extends BaseViewModel {
         ),
       ];
 
-  toggleNotifications(bool v) async {}
+  toggleNotifications(bool v) async {
+    AppLoader.start();
+
+    ToggleNotificationResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .toggleNotificationStatus(status: v ? 1 : 0)
+            .onError((error, stackTrace) {
+      return ToggleNotificationResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "toggle_notifications",
+          "response_model": "NotificationResponse"
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      notificationStatus = v;
+      locator<AppStateValues>().notificationStatus = v;
+      AppNotification.success(message: resp.message);
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    AppLoader.stop();
+  }
 
   goToManageBeneficiaries(BuildContext context) {
     context.go(RoutePaths.manageBeneficiaryPath);

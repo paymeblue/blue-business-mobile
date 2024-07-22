@@ -20,7 +20,7 @@ GetNotificationData _$GetNotificationDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GetNotificationData {
-  bool get notificationStatus => throw _privateConstructorUsedError;
+  int get notificationStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $GetNotificationDataCopyWith<$Res> {
           GetNotificationData value, $Res Function(GetNotificationData) then) =
       _$GetNotificationDataCopyWithImpl<$Res, GetNotificationData>;
   @useResult
-  $Res call({bool notificationStatus});
+  $Res call({int notificationStatus});
 }
 
 /// @nodoc
@@ -56,7 +56,7 @@ class _$GetNotificationDataCopyWithImpl<$Res, $Val extends GetNotificationData>
       notificationStatus: null == notificationStatus
           ? _value.notificationStatus
           : notificationStatus // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as int,
     ) as $Val);
   }
 }
@@ -69,7 +69,7 @@ abstract class _$$GetNotificationDataImplCopyWith<$Res>
       __$$GetNotificationDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool notificationStatus});
+  $Res call({int notificationStatus});
 }
 
 /// @nodoc
@@ -89,7 +89,7 @@ class __$$GetNotificationDataImplCopyWithImpl<$Res>
       notificationStatus: null == notificationStatus
           ? _value.notificationStatus
           : notificationStatus // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as int,
     ));
   }
 }
@@ -97,14 +97,14 @@ class __$$GetNotificationDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GetNotificationDataImpl implements _GetNotificationData {
-  const _$GetNotificationDataImpl({this.notificationStatus = false});
+  const _$GetNotificationDataImpl({this.notificationStatus = 0});
 
   factory _$GetNotificationDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetNotificationDataImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool notificationStatus;
+  final int notificationStatus;
 
   @override
   String toString() {
@@ -140,14 +140,14 @@ class _$GetNotificationDataImpl implements _GetNotificationData {
 }
 
 abstract class _GetNotificationData implements GetNotificationData {
-  const factory _GetNotificationData({final bool notificationStatus}) =
+  const factory _GetNotificationData({final int notificationStatus}) =
       _$GetNotificationDataImpl;
 
   factory _GetNotificationData.fromJson(Map<String, dynamic> json) =
       _$GetNotificationDataImpl.fromJson;
 
   @override
-  bool get notificationStatus;
+  int get notificationStatus;
   @override
   @JsonKey(ignore: true)
   _$$GetNotificationDataImplCopyWith<_$GetNotificationDataImpl> get copyWith =>
