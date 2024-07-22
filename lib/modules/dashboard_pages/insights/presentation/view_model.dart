@@ -49,6 +49,8 @@ class InsightsViewModel extends BaseViewModel {
       getBranchStaff(pageKey);
     });
 
+    getRoles();
+
     await getAnalytics();
   }
 

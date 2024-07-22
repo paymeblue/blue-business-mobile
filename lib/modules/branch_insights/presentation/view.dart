@@ -200,7 +200,8 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                                             MainAxisAlignment.end,
                                         children: [
                                           Text(
-                                            "All roles",
+                                            (model.role?.name ?? "all roles")
+                                                .sentenceCase,
                                             style:
                                                 AppTextStyles.subText.copyWith(
                                               color: AppColors.blue,
@@ -220,6 +221,8 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                                             title: e.name.sentenceCase,
                                             onTap: () {
                                               model.role = e;
+                                              model.staffPagingController
+                                                  .refresh();
                                             },
                                           ),
                                         )
@@ -340,7 +343,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${(model.totalIncrease * 100).abs()}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
+                          "${((model.totalIncrease * 100).abs()).toStringAsFixed(2)}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),
@@ -472,7 +475,8 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text: "${percentIncrease.abs() * 100}% ",
+                        text:
+                            "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% ",
                         style: AppTextStyles.smallText.copyWith(
                           color: percentIncrease < 0
                               ? AppColors.error

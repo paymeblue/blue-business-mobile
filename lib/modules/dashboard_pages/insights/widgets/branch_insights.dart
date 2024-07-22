@@ -3,6 +3,7 @@ import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
@@ -11,6 +12,7 @@ import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/v
 import 'package:blue_business/modules/dashboard_pages/insights/presentation/view_model.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/charts/line_chart.dart';
+import 'package:blue_business/widgets/modals/popup_menu.dart';
 import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/paging/no_items.dart';
@@ -305,7 +307,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${(model.totalIncrease * 100).abs()}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
+                          "${((model.totalIncrease * 100).abs()).toStringAsFixed(2)}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),
@@ -437,7 +439,8 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text: "${percentIncrease.abs() * 100}% ",
+                        text:
+                            "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% ",
                         style: AppTextStyles.smallText.copyWith(
                           color: percentIncrease < 0
                               ? AppColors.error
@@ -546,34 +549,49 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                                     ],
                                   ),
                                 ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(color: AppColors.blue),
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 6),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          "All roles",
-                                          style: AppTextStyles.subText.copyWith(
+                                BluePopupMenu(
+                                    width: null,
+                                    icon: Container(
+                                      decoration: BoxDecoration(
+                                        border:
+                                            Border.all(color: AppColors.blue),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 6),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            (model.role?.name ?? "all roles")
+                                                .sentenceCase,
+                                            style:
+                                                AppTextStyles.subText.copyWith(
+                                              color: AppColors.blue,
+                                            ),
+                                          ),
+                                          const Icon(
+                                            Icons.keyboard_arrow_down_rounded,
+                                            size: 18,
                                             color: AppColors.blue,
                                           ),
-                                        ),
-                                        const Icon(
-                                          Icons.keyboard_arrow_down_rounded,
-                                          size: 18,
-                                          color: AppColors.blue,
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ),
+                                    popupItems: model.roles
+                                        .map(
+                                          (e) => PopupModel(
+                                            title: e.name.sentenceCase,
+                                            onTap: () {
+                                              model.role = e;
+                                              model.staffPagingController
+                                                  .refresh();
+                                            },
+                                          ),
+                                        )
+                                        .toList()),
                               ],
                             ),
                             const Divider(
