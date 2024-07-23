@@ -5,11 +5,13 @@ import 'package:blue_business/core/models/payment_option/payment_option.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/initiate/request/initiate_transaction_request.dart';
 import 'package:blue_business/core/models/transaction/initiate/response/initiate_transaction_response.dart';
+import 'package:blue_business/core/models/withdrawal_account/get/response/withdrawal_account_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
@@ -97,31 +99,34 @@ class InitiatePaymentViewModel extends BaseViewModel {
   }
 
   Future getWithdrawalAccount() async {
-    // AppLoader.start();
+    AppLoader.start();
 
-    // WithdrawalAccountResponse resp =
-    //     await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
-    //         .getWithdrawalAccount()
-    //         .onError((error, stackTrace) {
-    //   return WithdrawalAccountResponse(
-    //       message: AppErrorHandler.getErrorMessage(error, {
-    //   "request_name": "get_withdrawal_account",
-    //   "response_model": "WithdrawalAccountResponse"
-    // },));
-    // });
+    WithdrawalAccountResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getWithdrawalAccount()
+        .onError((error, stackTrace) {
+      return WithdrawalAccountResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "get_withdrawal_account",
+          "response_model": "WithdrawalAccountResponse"
+        },
+      ));
+    });
 
-    // if (resp.status == "success") {
-    //   if (resp.data != null) {
-    //     locator<AppStateValues>().withdrawalAccount = resp.data;
-    //   } else {
-    //     AppNotification.error(
-    //         message:
-    //             "You do not have a payout account setup. Please go to Settings > Withdrawal Account to set one up.");
-    //   }
-    // } else {
-    //   AppNotification.error(message: resp.message);
-    // }
-    // AppLoader.stop();
+    if (resp.status == "success") {
+      if (resp.data != null) {
+        locator<AppStateValues>().withdrawalAccount = resp.data;
+      } else {
+        AppNotification.error(
+            message:
+                "You do not have a payout account setup. Please go to Settings > Withdrawal Account to set one up.");
+      }
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+    AppLoader.stop();
   }
 
   String getModeString(PaymentMode value) {
