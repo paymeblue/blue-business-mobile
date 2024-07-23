@@ -283,7 +283,8 @@ class _HomeViewState extends State<HomeView> {
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text: "${percentIncrease.abs() * 100}% ",
+                        text:
+                            "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% ",
                         style: AppTextStyles.smallText.copyWith(
                           color: percentIncrease < 0
                               ? AppColors.error
