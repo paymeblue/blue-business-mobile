@@ -343,7 +343,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${((model.totalIncrease * 100).abs()).toStringAsFixed(2)}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
+                          "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),

@@ -105,7 +105,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${(model.totalIncrease * 100).abs()}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
+                          "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),
@@ -347,7 +347,8 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text: "${percentIncrease.abs() * 100}% ",
+                        text:
+                            "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% ",
                         style: AppTextStyles.smallText.copyWith(
                           color: percentIncrease < 0
                               ? AppColors.error
