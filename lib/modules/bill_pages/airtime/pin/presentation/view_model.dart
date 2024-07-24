@@ -7,7 +7,7 @@ import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/bills/airtime/review_data/review_airtime_data.dart';
 import 'package:blue_business/core/models/bills/airtime/vend/request/vend_airtime_request.dart';
 import 'package:blue_business/core/models/bills/airtime/vend/response/vend_airtime_response.dart';
-import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
+import 'package:blue_business/core/models/security_question/get/data/get_question_data.dart';
 import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -98,11 +98,11 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
                   },
                 )));
 
-    if (context.mounted) goToForgotPin(context, resp.data?.question);
+    if (context.mounted) goToForgotPin(context, resp.data);
     AppLoader.stop();
   }
 
-  goToForgotPin(BuildContext context, SecurityQuestion? question) {
+  goToForgotPin(BuildContext context, GetQuestionData? question) {
     GoRouterState state = GoRouterState.of(context);
     stateValues.resetPath = state.matchedLocation;
     stateValues.extra = state.extra;

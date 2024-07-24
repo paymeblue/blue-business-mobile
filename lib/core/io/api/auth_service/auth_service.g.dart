@@ -497,14 +497,14 @@ class _AuthService implements AuthService {
   }
 
   @override
-  Future<SendNewPhoneResponse> forgotPinWithPhone(
+  Future<ForgotPinResponse> forgotPinWithPhone(
       SendPhoneRecoverPinRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<SendNewPhoneResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ForgotPinResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -520,7 +520,7 @@ class _AuthService implements AuthService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = SendNewPhoneResponse.fromJson(_result.data!);
+    final value = ForgotPinResponse.fromJson(_result.data!);
     return value;
   }
 
@@ -532,13 +532,13 @@ class _AuthService implements AuthService {
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SendNewPhoneResponse>(Options(
-      method: 'PATCH',
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/pins/resend',
+              '/pins/resend-otp',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -552,14 +552,14 @@ class _AuthService implements AuthService {
   }
 
   @override
-  Future<SendNewPhoneResponse> verifyPinOtp(
+  Future<ResetPasswordResponse> verifyPinOtp(
       {required VerifyForgotPasswordRequest request}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<SendNewPhoneResponse>(Options(
+        _setStreamType<ResetPasswordResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -575,7 +575,7 @@ class _AuthService implements AuthService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = SendNewPhoneResponse.fromJson(_result.data!);
+    final value = ResetPasswordResponse.fromJson(_result.data!);
     return value;
   }
 
@@ -587,7 +587,7 @@ class _AuthService implements AuthService {
     final _data = request;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SendQuestionResponse>(Options(
-      method: 'PATCH',
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )

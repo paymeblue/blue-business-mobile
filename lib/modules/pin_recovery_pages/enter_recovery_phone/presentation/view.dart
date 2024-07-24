@@ -1,6 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
-import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
+import 'package:blue_business/core/models/security_question/get/data/get_question_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'view_model.dart';
 
 class EnterPinRecoveryPhoneView extends StatefulWidget {
-  final SecurityQuestion? securityQuestion;
+  final GetQuestionData? securityQuestion;
   const EnterPinRecoveryPhoneView({
     super.key,
     required this.securityQuestion,

@@ -10,7 +10,7 @@ import 'package:blue_business/core/models/bills/electricity/vend/data/vend_elect
 import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/recover_phone/add/data/recover_phone_data.dart';
-import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
+import 'package:blue_business/core/models/security_question/get/data/get_question_data.dart';
 import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
@@ -195,8 +195,9 @@ GoRouter router = GoRouter(
             name: "Enter Pin Recovery Phone Number",
             builder: (context, state) {
               log(state.matchedLocation);
+              log(state.extra.toString());
               return EnterPinRecoveryPhoneView(
-                  securityQuestion: state.extra as SecurityQuestion?);
+                  securityQuestion: state.extra as GetQuestionData?);
             },
           ),
           GoRoute(

@@ -3,9 +3,9 @@ import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
-import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/forgot_pin/response/forgot_pin_response.dart';
 import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
-import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
+import 'package:blue_business/core/models/security_question/get/data/get_question_data.dart';
 import 'package:blue_business/core/models/security_question/send/request/send_question_request.dart';
 import 'package:blue_business/core/models/security_question/send/response/send_question_request.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
@@ -22,7 +22,7 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
 
-  init(BuildContext context, SecurityQuestion? q) {
+  init(BuildContext context, GetQuestionData? q) {
     size = context.mediaQuery.size;
     setSelectedCountry();
 
@@ -49,9 +49,9 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  SecurityQuestion? _q;
-  SecurityQuestion? get question => _q;
-  set question(SecurityQuestion? q) {
+  GetQuestionData? _q;
+  GetQuestionData? get question => _q;
+  set question(GetQuestionData? q) {
     _q = q;
     notifyListeners();
   }
@@ -118,16 +118,16 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
     SendPhoneRecoverPinRequest request = SendPhoneRecoverPinRequest(
         phone: formatPhone(), validationMode: "recovery-phone");
 
-    SendNewPhoneResponse resp =
+    ForgotPinResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .forgotPinWithPhone(request)
-            .onError((error, stackTrace) => SendNewPhoneResponse(
+            .onError((error, stackTrace) => ForgotPinResponse(
                     message: AppErrorHandler.getErrorMessage(
                   error,
                   {
                     "request_name": "forgot_[in_with_phone",
                     "request": request.toString(),
-                    "response_model": "SendNewPhoneResponse"
+                    "response_model": "ForgotPinResponse"
                   },
                 )));
 

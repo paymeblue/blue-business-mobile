@@ -11,6 +11,7 @@ import 'package:blue_business/core/models/delete_account/delete/request/delete_r
 import 'package:blue_business/core/models/delete_account/delete/response/delete_response.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/response/get_reason_response.dart';
 import 'package:blue_business/core/models/forgot_password/verify/request/verify_forgot_password_request.dart';
+import 'package:blue_business/core/models/forgot_pin/response/forgot_pin_response.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
 import 'package:blue_business/core/models/recover_phone/add/request/recover_phone_request.dart';
@@ -26,6 +27,7 @@ import 'package:blue_business/core/models/recovery_phone/set/response/recovery_p
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
 import 'package:blue_business/core/models/reset/password/request/reset_password_request.dart';
+import 'package:blue_business/core/models/reset/password/response/reset_password_response.dart';
 import 'package:blue_business/core/models/reset/pin/request/reset_pin_request.dart';
 import 'package:blue_business/core/models/security_question/create/request/create_question_request.dart';
 import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
@@ -125,19 +127,19 @@ abstract class AuthService {
   Future<ChangePinResponse> changePin(@Body() ChangePinRequest request);
 
   @POST("/pins/forgot")
-  Future<SendNewPhoneResponse> forgotPinWithPhone(
+  Future<ForgotPinResponse> forgotPinWithPhone(
       @Body() SendPhoneRecoverPinRequest request);
 
-  @PATCH("/pins/resend")
+  @GET("/pins/resend-otp")
   Future<SendNewPhoneResponse> resendPinOtp(
       {@Query("phone") required String phone});
 
   @POST("/pins/verify-otp")
-  Future<SendNewPhoneResponse> verifyPinOtp({
+  Future<ResetPasswordResponse> verifyPinOtp({
     @Body() required VerifyForgotPasswordRequest request,
   });
 
-  @PATCH("/pins/reset")
+  @POST("/pins/reset")
   Future<SendQuestionResponse> resetPin(@Body() ResetPinRequest request);
 
   @GET("/security-info")
