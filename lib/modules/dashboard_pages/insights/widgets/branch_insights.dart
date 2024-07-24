@@ -57,18 +57,22 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                       alignment: Alignment.center,
                       child: emptyBody(model),
                     )
-                  : RefreshIndicator(
-                      onRefresh: () async {
-                        model.getAnalytics();
-                      },
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: [
-                          salesStatsContainer(model),
-                          15.verticalGap,
-                          staffList(model)
-                        ],
-                      ),
+                  : ListView(
+                      children: [
+                        RefreshIndicator(
+                          onRefresh: () async {
+                            model.getAnalytics();
+                          },
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              salesStatsContainer(model),
+                            ],
+                          ),
+                        ),
+                        8.verticalGap,
+                        staffList(model)
+                      ],
                     ),
             ),
           ],
@@ -319,33 +323,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
           if (model.branchInputData.isNotEmpty ||
               model.salesState == FetchState.loading) ...[
             lineChart(model),
-            20.verticalGap
           ],
-          model.salesState == FetchState.loading
-              ? salesAmountShimmer()
-              : Container(
-                  padding: const EdgeInsets.symmetric(vertical: 17),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.midGrey),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      analyticsColumn(
-                          title: "Point of Sales",
-                          amount: format.format(double.parse(
-                              model.salesData?.desktop.current ?? "0.00")),
-                          percentIncrease: model.desktopIncrease),
-                      analyticsColumn(
-                        title: "Mobile Account",
-                        amount: format.format(double.parse(
-                            model.salesData?.mobile.current ?? "0.00")),
-                        percentIncrease: model.mobileIncrease,
-                      ),
-                    ],
-                  ),
-                ),
         ],
       ),
     );
@@ -400,68 +378,6 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
     }
   }
 
-  Widget analyticsColumn({
-    required String title,
-    required String amount,
-    double percentIncrease = 0,
-  }) =>
-      Container(
-        width: (context.mediaQuery.size.width - 80) / 2,
-        height: 80,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: AppTextStyles.smallText.copyWith(
-                color: AppColors.bodyTextColor2,
-              ),
-            ),
-            4.verticalGap,
-            Text(
-              "${nairaSymbol()}$amount",
-              style: AppTextStyles.header.copyWith(fontSize: 16.5),
-            ),
-            Row(
-              children: [
-                Icon(
-                  percentIncrease < 0
-                      ? Icons.arrow_downward_rounded
-                      : Icons.arrow_upward_rounded,
-                  color: percentIncrease < 0
-                      ? AppColors.error
-                      : AppColors.otherGreen,
-                  size: 16,
-                ),
-                2.horizontalGap,
-                Expanded(
-                  child: RichText(
-                    text: TextSpan(children: [
-                      TextSpan(
-                        text:
-                            "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% ",
-                        style: AppTextStyles.smallText.copyWith(
-                          color: percentIncrease < 0
-                              ? AppColors.error
-                              : AppColors.otherGreen,
-                        ),
-                      ),
-                      TextSpan(
-                        text: "vs last week",
-                        style: AppTextStyles.smallText.copyWith(
-                          color: AppColors.bodyTextColor,
-                        ),
-                      )
-                    ]),
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
-      );
-
   Widget staffList(InsightsViewModel model) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
@@ -496,15 +412,89 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                     ],
                   ),
               firstPageProgressIndicatorBuilder: (context) => Column(
-                    children: List.generate(
-                      4,
-                      (index) => Column(
+                    children: [
+                      Column(
                         children: [
-                          BlueLoadingTile.withImage(),
-                          if (index < 3) 6.verticalGap,
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Staff and their roles",
+                                      style: AppTextStyles.subText.copyWith(
+                                        color: AppColors.bodyTextColor2,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Staff details",
+                                      style: AppTextStyles.subText.copyWith(
+                                        color: AppColors.textColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              BluePopupMenu(
+                                  width: null,
+                                  icon: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: AppColors.blue),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 6),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          (model.role?.name ?? "all roles")
+                                              .sentenceCase,
+                                          style: AppTextStyles.subText.copyWith(
+                                            color: AppColors.blue,
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.keyboard_arrow_down_rounded,
+                                          size: 18,
+                                          color: AppColors.blue,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  popupItems: model.roles
+                                      .map(
+                                        (e) => PopupModel(
+                                          title: e.name.sentenceCase,
+                                          onTap: () {
+                                            model.role = e;
+                                            model.staffPagingController
+                                                .refresh();
+                                          },
+                                        ),
+                                      )
+                                      .toList()),
+                            ],
+                          ),
+                          const Divider(
+                            color: AppColors.midGrey,
+                          ),
                         ],
                       ),
-                    ),
+                      8.verticalGap,
+                      ...List.generate(
+                        4,
+                        (index) => Column(
+                          children: [
+                            BlueLoadingTile.withImage(),
+                            if (index < 3) 6.verticalGap,
+                          ],
+                        ),
+                      )
+                    ],
                   ),
               firstPageErrorIndicatorBuilder: (ctx) => Column(
                     children: [

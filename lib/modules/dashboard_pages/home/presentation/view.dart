@@ -225,13 +225,13 @@ class _HomeViewState extends State<HomeView> {
                       analyticsColumn(
                         title: "Point of Sales",
                         amount: format.format(double.parse(
-                            model.analyticsData?.desktop.total ?? "0.00")),
+                            model.analyticsData?.desktop.current ?? "0.00")),
                         percentIncrease: model.desktopIncrease,
                       ),
                       analyticsColumn(
                         title: "Mobile Account",
                         amount: format.format(double.parse(
-                            model.analyticsData?.mobile.total ?? "0.00")),
+                            model.analyticsData?.mobile.current ?? "0.00")),
                         percentIncrease: model.mobileIncrease,
                       ),
                     ],

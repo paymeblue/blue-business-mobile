@@ -9,7 +9,7 @@ part of 'get_notification_data.dart';
 _$GetNotificationDataImpl _$$GetNotificationDataImplFromJson(
         Map<String, dynamic> json) =>
     _$GetNotificationDataImpl(
-      notificationStatus: json['notification_status'] as int? ?? 0,
+      notificationStatus: json['notification_status'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$GetNotificationDataImplToJson(

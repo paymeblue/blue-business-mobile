@@ -136,7 +136,9 @@ class LoginViewModel extends BaseViewModel {
     LoginRequest request = LoginRequest(
       phone: p,
       password: passwordController.text,
-      fcmToken: locator<AppStateValues>().fcmToken,
+      fcmToken: locator<AppStateValues>().fcmToken.isEmpty
+          ? null
+          : locator<AppStateValues>().fcmToken,
     );
 
     LoginResponse resp = await AuthService(DioConfig.dio())
@@ -155,8 +157,8 @@ class LoginViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       await setNameInStorage(resp.data!.business.name, p);
-      getNotificationStatus();
       saveTokens(resp.data!.token);
+      getNotificationStatus();
       locator<AppStateValues>().currentUser = resp.data!;
 
       if (context.mounted) {
@@ -169,7 +171,8 @@ class LoginViewModel extends BaseViewModel {
   }
 
   getNotificationStatus() async {
-    GetNotificationResponse resp = await ProfileService(DioConfig.dio())
+    GetNotificationResponse resp = await ProfileService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
         .getNotificationStatus()
         .onError((error, stackTrace) {
       return GetNotificationResponse(
@@ -184,7 +187,7 @@ class LoginViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       locator<AppStateValues>().notificationStatus =
-          resp.data!.notificationStatus == 1;
+          resp.data!.notificationStatus;
     } else {}
   }
 
