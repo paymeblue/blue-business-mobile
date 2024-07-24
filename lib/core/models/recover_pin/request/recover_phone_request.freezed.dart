@@ -21,7 +21,7 @@ SendRecoverPinRequest _$SendRecoverPinRequestFromJson(
 
 /// @nodoc
 mixin _$SendRecoverPinRequest {
-  String get phone => throw _privateConstructorUsedError;
+  String? get recoveryPhone => throw _privateConstructorUsedError;
   String get validationMode => throw _privateConstructorUsedError;
   String? get securityAnswer => throw _privateConstructorUsedError;
 
@@ -37,7 +37,8 @@ abstract class $SendRecoverPinRequestCopyWith<$Res> {
           $Res Function(SendRecoverPinRequest) then) =
       _$SendRecoverPinRequestCopyWithImpl<$Res, SendRecoverPinRequest>;
   @useResult
-  $Res call({String phone, String validationMode, String? securityAnswer});
+  $Res call(
+      {String? recoveryPhone, String validationMode, String? securityAnswer});
 }
 
 /// @nodoc
@@ -54,15 +55,15 @@ class _$SendRecoverPinRequestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? phone = null,
+    Object? recoveryPhone = freezed,
     Object? validationMode = null,
     Object? securityAnswer = freezed,
   }) {
     return _then(_value.copyWith(
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
+      recoveryPhone: freezed == recoveryPhone
+          ? _value.recoveryPhone
+          : recoveryPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
       validationMode: null == validationMode
           ? _value.validationMode
           : validationMode // ignore: cast_nullable_to_non_nullable
@@ -84,7 +85,8 @@ abstract class _$$SendRecoverPinRequestImplCopyWith<$Res>
       __$$SendRecoverPinRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String phone, String validationMode, String? securityAnswer});
+  $Res call(
+      {String? recoveryPhone, String validationMode, String? securityAnswer});
 }
 
 /// @nodoc
@@ -99,15 +101,15 @@ class __$$SendRecoverPinRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? phone = null,
+    Object? recoveryPhone = freezed,
     Object? validationMode = null,
     Object? securityAnswer = freezed,
   }) {
     return _then(_$SendRecoverPinRequestImpl(
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
+      recoveryPhone: freezed == recoveryPhone
+          ? _value.recoveryPhone
+          : recoveryPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
       validationMode: null == validationMode
           ? _value.validationMode
           : validationMode // ignore: cast_nullable_to_non_nullable
@@ -124,7 +126,7 @@ class __$$SendRecoverPinRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SendRecoverPinRequestImpl implements _SendRecoverPinRequest {
   const _$SendRecoverPinRequestImpl(
-      {required this.phone,
+      {this.recoveryPhone,
       this.validationMode = "recovery-phone",
       this.securityAnswer});
 
@@ -132,7 +134,7 @@ class _$SendRecoverPinRequestImpl implements _SendRecoverPinRequest {
       _$$SendRecoverPinRequestImplFromJson(json);
 
   @override
-  final String phone;
+  final String? recoveryPhone;
   @override
   @JsonKey()
   final String validationMode;
@@ -141,7 +143,7 @@ class _$SendRecoverPinRequestImpl implements _SendRecoverPinRequest {
 
   @override
   String toString() {
-    return 'SendRecoverPinRequest(phone: $phone, validationMode: $validationMode, securityAnswer: $securityAnswer)';
+    return 'SendRecoverPinRequest(recoveryPhone: $recoveryPhone, validationMode: $validationMode, securityAnswer: $securityAnswer)';
   }
 
   @override
@@ -149,7 +151,8 @@ class _$SendRecoverPinRequestImpl implements _SendRecoverPinRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SendRecoverPinRequestImpl &&
-            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.recoveryPhone, recoveryPhone) ||
+                other.recoveryPhone == recoveryPhone) &&
             (identical(other.validationMode, validationMode) ||
                 other.validationMode == validationMode) &&
             (identical(other.securityAnswer, securityAnswer) ||
@@ -159,7 +162,7 @@ class _$SendRecoverPinRequestImpl implements _SendRecoverPinRequest {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, phone, validationMode, securityAnswer);
+      Object.hash(runtimeType, recoveryPhone, validationMode, securityAnswer);
 
   @JsonKey(ignore: true)
   @override
@@ -178,7 +181,7 @@ class _$SendRecoverPinRequestImpl implements _SendRecoverPinRequest {
 
 abstract class _SendRecoverPinRequest implements SendRecoverPinRequest {
   const factory _SendRecoverPinRequest(
-      {required final String phone,
+      {final String? recoveryPhone,
       final String validationMode,
       final String? securityAnswer}) = _$SendRecoverPinRequestImpl;
 
@@ -186,7 +189,7 @@ abstract class _SendRecoverPinRequest implements SendRecoverPinRequest {
       _$SendRecoverPinRequestImpl.fromJson;
 
   @override
-  String get phone;
+  String? get recoveryPhone;
   @override
   String get validationMode;
   @override

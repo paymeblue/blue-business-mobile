@@ -6,8 +6,6 @@ import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/forgot_pin/response/forgot_pin_response.dart';
 import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/security_question/get/data/get_question_data.dart';
-import 'package:blue_business/core/models/security_question/send/request/send_question_request.dart';
-import 'package:blue_business/core/models/security_question/send/response/send_question_request.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -80,46 +78,16 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
     }
   }
 
-  sendSecurityQuestion(BuildContext context) async {
-    AppLoader.start();
-
-    SendQuestionRequest request = SendQuestionRequest(
-        phone: "+${stateValues.currentUser!.phone}",
-        answer: answerController.text);
-
-    SendQuestionResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .sendSecurityAnswer(request: request)
-            .onError((error, stackTrace) => SendQuestionResponse(
-                    message: AppErrorHandler.getErrorMessage(
-                  error,
-                  {
-                    "request_name": "send_security_answer",
-                    "request": request.toString(),
-                    "response_model": "SendQuestionResponse"
-                  },
-                )));
-
-    if (resp.status == "success") {
-      if (context.mounted) goToPin(context);
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    AppLoader.stop();
-  }
-
   sendRecoveryPhone(BuildContext context) async {
     AppLoader.start();
     late SendRecoverPinRequest request;
     if (useQuestion) {
       request = SendRecoverPinRequest(
-          phone: locator<AppStateValues>().currentUser!.phone,
           validationMode: "security-answer",
           securityAnswer: answerController.text);
     } else {
       request = SendRecoverPinRequest(
-          phone: formatPhone(), validationMode: "recovery-phone");
+          recoveryPhone: formatPhone(), validationMode: "recovery-phone");
     }
 
     ForgotPinResponse resp =

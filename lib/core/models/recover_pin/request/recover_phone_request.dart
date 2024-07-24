@@ -6,7 +6,7 @@ part 'recover_phone_request.g.dart';
 @freezed
 class SendRecoverPinRequest with _$SendRecoverPinRequest {
   const factory SendRecoverPinRequest({
-    required String phone,
+    String? recoveryPhone,
     @Default("recovery-phone") String validationMode,
     String? securityAnswer,
   }) = _SendRecoverPinRequest;

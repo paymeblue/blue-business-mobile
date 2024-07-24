@@ -48,7 +48,7 @@ class NewPinViewModel extends BaseViewModel {
   resetPin(BuildContext context, String phone) async {
     AppLoader.start();
 
-    ResetPinRequest request = ResetPinRequest(phone: phone, newPin: pin);
+    ResetPinRequest request = ResetPinRequest(newPin: pin);
     SendQuestionResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .resetPin(request)

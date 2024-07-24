@@ -634,34 +634,6 @@ class _AuthService implements AuthService {
   }
 
   @override
-  Future<SendQuestionResponse> sendSecurityAnswer(
-      {required SendQuestionRequest request}) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = request;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<SendQuestionResponse>(Options(
-      method: 'PATCH',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/security-question/answer',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = SendQuestionResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
   Future<SendRecoveryCodeResponse> verifyRecoveryCode(String code) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'code': code};

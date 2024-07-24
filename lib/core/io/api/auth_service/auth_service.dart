@@ -31,7 +31,6 @@ import 'package:blue_business/core/models/reset/password/response/reset_password
 import 'package:blue_business/core/models/reset/pin/request/reset_pin_request.dart';
 import 'package:blue_business/core/models/security_question/create/request/create_question_request.dart';
 import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
-import 'package:blue_business/core/models/security_question/send/request/send_question_request.dart';
 import 'package:blue_business/core/models/security_question/send/response/send_question_request.dart';
 import 'package:blue_business/core/models/shareholders/add/request/add_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/request/create_shareholders_request.dart';
@@ -144,11 +143,6 @@ abstract class AuthService {
 
   @GET("/security-info")
   Future<GetQuestionResponse> getSecurityQuestion(@Query("phone") String phone);
-
-  @PATCH("/security-question/answer")
-  Future<SendQuestionResponse> sendSecurityAnswer({
-    @Body() required SendQuestionRequest request,
-  });
 
   @GET("/recovery-info/verify")
   Future<SendRecoveryCodeResponse> verifyRecoveryCode(
