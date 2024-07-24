@@ -68,11 +68,7 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
   }
 
   onButtonTap(BuildContext context) {
-    if (useQuestion) {
-      sendSecurityQuestion(context);
-    } else {
-      sendRecoveryPhone(context);
-    }
+    sendRecoveryPhone(context);
   }
 
   bool isActive() {
@@ -115,8 +111,16 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
 
   sendRecoveryPhone(BuildContext context) async {
     AppLoader.start();
-    SendPhoneRecoverPinRequest request = SendPhoneRecoverPinRequest(
-        phone: formatPhone(), validationMode: "recovery-phone");
+    late SendRecoverPinRequest request;
+    if (useQuestion) {
+      request = SendRecoverPinRequest(
+          phone: locator<AppStateValues>().currentUser!.phone,
+          validationMode: "security-answer",
+          securityAnswer: answerController.text);
+    } else {
+      request = SendRecoverPinRequest(
+          phone: formatPhone(), validationMode: "recovery-phone");
+    }
 
     ForgotPinResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
@@ -133,11 +137,22 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
-      if (context.mounted) goToOtp(context);
+
+      if (context.mounted) {
+        if (useQuestion) {
+          goToSetPin(context, resp.data!.phone);
+        } else {
+          goToOtp(context);
+        }
+      }
     } else {
       AppNotification.error(message: resp.message);
     }
     AppLoader.stop();
+  }
+
+  goToSetPin(BuildContext context, String phone) {
+    context.go("${RoutePaths.recoverPinPath}/$phone");
   }
 
   goToOtp(BuildContext context) {

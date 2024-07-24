@@ -216,7 +216,7 @@ class _BranchService implements BranchService {
     final queryParameters = <String, dynamic>{
       r'page': page,
       r'limit': limit,
-      r'role_name': role,
+      r'role': role,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};

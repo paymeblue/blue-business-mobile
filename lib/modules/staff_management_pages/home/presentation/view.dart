@@ -10,6 +10,7 @@ import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/modals/popup_menu.dart';
 import 'package:blue_business/widgets/paging/error.dart';
+import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -377,37 +378,116 @@ class _StaffHomeViewState extends State<StaffHomeView> {
   }
 
   Widget emptyPage(StaffHomeViewModel model) {
-    return Container(
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    if (model.role != null) {
+      return Column(
         children: [
-          AppAssets.images.icons.emptyStaff.svg(),
-          SizedBox(
-            width: 179,
-            child: Text(
-              "You have not added any staff yet",
-              style: AppTextStyles.subHeader,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          20.verticalGap,
-          SizedBox(
-            width: 300,
-            child: AppButton.primaryWithIcon(
-              title: "Add Staff",
-              icon: const Icon(
-                Icons.add,
-                color: AppColors.white,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              BluePopupMenu(
+                  width: null,
+                  icon: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.blue),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          (model.role?.name ?? "all roles").sentenceCase,
+                          style: AppTextStyles.subText.copyWith(
+                            color: AppColors.blue,
+                          ),
+                        ),
+                        const Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          size: 18,
+                          color: AppColors.blue,
+                        ),
+                      ],
+                    ),
+                  ),
+                  popupItems: model.roles
+                      .map(
+                        (e) => PopupModel(
+                          title: e.name.sentenceCase,
+                          onTap: () {
+                            model.role = e;
+                            model.staffPagingController.refresh();
+                          },
+                        ),
+                      )
+                      .toList()),
+              GestureDetector(
+                onTap: () {
+                  model.goToAddStaff(context);
+                },
+                child: Container(
+                  decoration: const BoxDecoration(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Icon(
+                        Icons.add,
+                        size: 15,
+                        color: AppColors.primary,
+                      ),
+                      Text(
+                        "Add staff",
+                        style: AppTextStyles.subText.copyWith(
+                          color: AppColors.primary,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
-              onTap: () {
-                model.goToAddStaff(context);
-              },
-            ),
-          )
+            ],
+          ),
+          8.verticalGap,
+          Expanded(
+              child: NoItems.firstPage(
+                  "No staff with the \"${model.role!.name}\" role")),
         ],
-      ),
-    );
+      );
+    } else {
+      return Container(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppAssets.images.icons.emptyStaff.svg(),
+            SizedBox(
+              width: 179,
+              child: Text(
+                "You have not added any staff yet",
+                style: AppTextStyles.subHeader,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            20.verticalGap,
+            SizedBox(
+              width: 300,
+              child: AppButton.primaryWithIcon(
+                title: "Add Staff",
+                icon: const Icon(
+                  Icons.add,
+                  color: AppColors.white,
+                ),
+                onTap: () {
+                  model.goToAddStaff(context);
+                },
+              ),
+            )
+          ],
+        ),
+      );
+    }
   }
 
   List<Widget> titleAndSubtitle(StaffHomeViewModel model) {

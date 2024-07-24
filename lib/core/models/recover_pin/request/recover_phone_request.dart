@@ -4,12 +4,13 @@ part 'recover_phone_request.freezed.dart';
 part 'recover_phone_request.g.dart';
 
 @freezed
-class SendPhoneRecoverPinRequest with _$SendPhoneRecoverPinRequest {
-  const factory SendPhoneRecoverPinRequest({
+class SendRecoverPinRequest with _$SendRecoverPinRequest {
+  const factory SendRecoverPinRequest({
     required String phone,
     @Default("recovery-phone") String validationMode,
-  }) = _SendPhoneRecoverPinRequest;
+    String? securityAnswer,
+  }) = _SendRecoverPinRequest;
 
-  factory SendPhoneRecoverPinRequest.fromJson(Map<String, dynamic> json) =>
-      _$SendPhoneRecoverPinRequestImpl.fromJson(json);
+  factory SendRecoverPinRequest.fromJson(Map<String, dynamic> json) =>
+      _$SendRecoverPinRequestImpl.fromJson(json);
 }

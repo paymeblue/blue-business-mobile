@@ -82,6 +82,7 @@ class StaffHomeViewModel extends BaseViewModel {
             limit: 50,
             search:
                 searchController.text.isEmpty ? null : searchController.text,
+            role: role?.name,
           )
           .onError(
             (error, stackTrace) => GetStaffResponse(

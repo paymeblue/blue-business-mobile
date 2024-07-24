@@ -128,7 +128,7 @@ abstract class AuthService {
 
   @POST("/pins/forgot")
   Future<ForgotPinResponse> forgotPinWithPhone(
-      @Body() SendPhoneRecoverPinRequest request);
+      @Body() SendRecoverPinRequest request);
 
   @GET("/pins/resend-otp")
   Future<SendNewPhoneResponse> resendPinOtp(

@@ -498,7 +498,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<ForgotPinResponse> forgotPinWithPhone(
-      SendPhoneRecoverPinRequest request) async {
+      SendRecoverPinRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
