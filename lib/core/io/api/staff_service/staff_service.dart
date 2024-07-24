@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:blue_business/core/models/staff/create/request/update_staff_request.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
 import 'package:blue_business/core/models/staff_roles/get/response/staff_role_response.dart';
@@ -35,21 +36,10 @@ abstract class StaffService {
     @Part(name: "password") required String password,
   });
 
-  // @GET("/branches/{id}")
-  // Future<GetBranchResponse> getBranchById({
-  //   @Path("id") required int id,
-  // });
-
   @PATCH("/staff/{id}")
-  @MultiPart()
   Future<CreateStaffResponse> editStaff({
     @Path("id") required int id,
-    @Part(name: "display_picture", contentType: "image/png") File? image,
-    @Part(name: "name") required String name,
-    @Part(name: "phone") required String phone,
-    @Part(name: "branch_id") int? branchId,
-    @Part(name: "role") required String role,
-    @Part(name: "password") String? password,
+    @Body() required UpdateStaffRequest request,
   });
 
   @DELETE("/staff/{id}")

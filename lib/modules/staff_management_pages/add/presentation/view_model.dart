@@ -10,6 +10,7 @@ import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/branches/details/response/get_branch_response.dart';
 import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
+import 'package:blue_business/core/models/staff/create/request/update_staff_request.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
@@ -327,17 +328,29 @@ class AddStaffViewModel extends BaseViewModel {
   editStaff(BuildContext context, Staff staff) async {
     AppLoader.start();
 
+    UpdateStaffRequest request = UpdateStaffRequest(
+      name: nameController.text.toLowerCase() != staff.name.toLowerCase()
+          ? nameController.text
+          : null,
+      phone: phoneController.text !=
+              staff.phone
+                  .replaceFirst(selectedCountry!.dialCode, "")
+                  .replaceFirst("+", "")
+          ? formatPhone()
+          : null,
+      branchId: branch?.id != staff.branchId ? branch?.id : null,
+      role: role?.name.toLowerCase() != staff.role.toLowerCase()
+          ? role?.name.toLowerCase()
+          : null,
+      password:
+          passwordController.text.isEmpty ? null : passwordController.text,
+    );
+
     CreateStaffResponse response =
         await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .editStaff(
       id: staff.id,
-      image: path != null ? File(path!) : null,
-      name: nameController.text,
-      phone: formatPhone(),
-      branchId: branch?.id,
-      role: role!.name.toLowerCase(),
-      password:
-          passwordController.text.isEmpty ? null : passwordController.text,
+      request: request,
     )
             .onError((error, stacktrace) {
       return CreateStaffResponse(
@@ -348,7 +361,11 @@ class AddStaffViewModel extends BaseViewModel {
     });
 
     if (response.status == "success") {
-      if (context.mounted) goBack(context);
+      AppNotification.success(
+          message: "Staff information updated successfully");
+      Future.delayed(const Duration(seconds: 3), () {
+        if (context.mounted) goBack(context);
+      });
     } else {
       AppNotification.error(message: response.message);
     }

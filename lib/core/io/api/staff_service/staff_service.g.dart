@@ -122,58 +122,17 @@ class _StaffService implements StaffService {
   @override
   Future<CreateStaffResponse> editStaff({
     required int id,
-    File? image,
-    required String name,
-    required String phone,
-    int? branchId,
-    required String role,
-    String? password,
+    required UpdateStaffRequest request,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = FormData();
-    if (image != null) {
-      _data.files.add(MapEntry(
-        'display_picture',
-        MultipartFile.fromFileSync(
-          image.path,
-          filename: image.path.split(Platform.pathSeparator).last,
-          contentType: MediaType.parse('image/png'),
-        ),
-      ));
-    }
-    _data.fields.add(MapEntry(
-      'name',
-      name,
-    ));
-    _data.fields.add(MapEntry(
-      'phone',
-      phone,
-    ));
-    if (branchId != null) {
-      _data.fields.add(MapEntry(
-        'branch_id',
-        branchId.toString(),
-      ));
-    }
-    _data.fields.add(MapEntry(
-      'role',
-      role,
-    ));
-    if (password != null) {
-      _data.fields.add(MapEntry(
-        'password',
-        password,
-      ));
-    }
+    final _data = request;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<CreateStaffResponse>(Options(
       method: 'PATCH',
       headers: _headers,
       extra: _extra,
-      contentType: 'multipart/form-data',
     )
             .compose(
               _dio.options,
