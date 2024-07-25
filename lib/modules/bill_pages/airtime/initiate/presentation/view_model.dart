@@ -27,7 +27,7 @@ class InitiateAirtimeViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.go(RoutePaths.billsPath);
   }
 
   setSelectedCountry() {

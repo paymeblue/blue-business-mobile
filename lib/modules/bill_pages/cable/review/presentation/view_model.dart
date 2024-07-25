@@ -13,7 +13,7 @@ class ReviewCableViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.go(RoutePaths.initiateCablePath);
   }
 
   goToNext(BuildContext context, VerifyCableData data) {

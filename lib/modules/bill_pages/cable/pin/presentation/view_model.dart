@@ -36,7 +36,8 @@ class ConfirmCablePinViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    GoRouterState state = GoRouterState.of(context);
+    context.go(RoutePaths.reviewCablePath, extra: state.extra);
   }
 
   onButtonTap(BuildContext context, VerifyCableData data) async {
