@@ -54,7 +54,7 @@ class _EnterPinRecoveryPhoneViewState extends State<EnterPinRecoveryPhoneView> {
                 if (widget.securityQuestion != null) subtextAction(model),
                 const Spacer(),
                 AppButton.primary(
-                  title: "Send OTP",
+                  title: "Continue",
                   isEnabled: model.isActive(),
                   onTap: () {
                     model.onButtonTap(context);

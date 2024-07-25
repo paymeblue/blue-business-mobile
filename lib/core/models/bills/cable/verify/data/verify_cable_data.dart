@@ -13,7 +13,7 @@ class VerifyCableData with _$VerifyCableData {
     required String provider,
     required String package,
     @Default("100.00") String serviceCharge,
-    @Default(0) int amount,
+    @Default("0.00") String amount,
     @Default("pending") String status,
     String? createdAt,
   }) = _VerifyCableData;

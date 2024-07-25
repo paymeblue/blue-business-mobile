@@ -10,7 +10,8 @@ import 'package:blue_business/core/models/create_business_profile/response/creat
 import 'package:blue_business/core/models/delete_account/delete/request/delete_request.dart';
 import 'package:blue_business/core/models/delete_account/delete/response/delete_response.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/response/get_reason_response.dart';
-import 'package:blue_business/core/models/forgot_password/verify/request/verify_forgot_password_request.dart';
+import 'package:blue_business/core/models/forgot/password/verify/request/verify_forgot_password_request.dart';
+import 'package:blue_business/core/models/forgot/pin/verify/request/verify_forgot_pin_request.dart';
 import 'package:blue_business/core/models/forgot_pin/response/forgot_pin_response.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
@@ -131,11 +132,11 @@ abstract class AuthService {
 
   @GET("/pins/resend-otp")
   Future<SendNewPhoneResponse> resendPinOtp(
-      {@Query("phone") required String phone});
+      {@Query("recovery_phone") required String phone});
 
   @POST("/pins/verify-otp")
   Future<ResetPasswordResponse> verifyPinOtp({
-    @Body() required VerifyForgotPasswordRequest request,
+    @Body() required VerifyForgotPinRequest request,
   });
 
   @POST("/pins/reset")

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
-import 'package:blue_business/core/models/forgot_password/verify/request/verify_forgot_password_request.dart';
+import 'package:blue_business/core/models/forgot/password/verify/request/verify_forgot_password_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/signup/response/signup_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';

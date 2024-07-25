@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
-import 'package:blue_business/core/models/forgot_password/verify/request/verify_forgot_password_request.dart';
+import 'package:blue_business/core/models/forgot/pin/verify/request/verify_forgot_pin_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/reset/password/response/reset_password_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
@@ -118,8 +118,8 @@ class VerifyPinRecoveryOtpViewModel extends BaseViewModel {
 
   verifyOtp(BuildContext context) async {
     AppLoader.start();
-    VerifyForgotPasswordRequest request =
-        VerifyForgotPasswordRequest(otp: pin, phone: phone);
+    VerifyForgotPinRequest request =
+        VerifyForgotPinRequest(otp: pin, recoveryPhone: phone);
 
     ResetPasswordResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))

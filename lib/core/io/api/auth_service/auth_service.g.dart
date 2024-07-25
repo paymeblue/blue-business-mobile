@@ -527,7 +527,7 @@ class _AuthService implements AuthService {
   @override
   Future<SendNewPhoneResponse> resendPinOtp({required String phone}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'phone': phone};
+    final queryParameters = <String, dynamic>{r'recovery_phone': phone};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -553,7 +553,7 @@ class _AuthService implements AuthService {
 
   @override
   Future<ResetPasswordResponse> verifyPinOtp(
-      {required VerifyForgotPasswordRequest request}) async {
+      {required VerifyForgotPinRequest request}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
