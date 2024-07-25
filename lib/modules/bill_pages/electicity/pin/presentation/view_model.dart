@@ -35,8 +35,13 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goBack(BuildContext context, VerifyElectricityData data, double amount) {
-    context.pop();
+  goBack(BuildContext context) {
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      GoRouterState state = GoRouterState.of(context);
+      context.go(RoutePaths.reviewElectricityPath, extra: state.extra);
+    }
   }
 
   onButtonTap(

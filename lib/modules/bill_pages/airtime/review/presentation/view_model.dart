@@ -13,7 +13,11 @@ class ReviewAirtimeViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.go(RoutePaths.initiateAirtimePath);
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go(RoutePaths.initiateAirtimePath);
+    }
   }
 
   goToNext(BuildContext context, ReviewAirtimeData data) {

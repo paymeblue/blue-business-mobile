@@ -13,7 +13,11 @@ class ReviewDataViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go(RoutePaths.initiateDataPath);
+    }
   }
 
   goToNext(BuildContext context, VerifyDataData data) {

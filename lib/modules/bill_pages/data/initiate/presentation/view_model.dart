@@ -30,7 +30,11 @@ class InitiateDataViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go(RoutePaths.billsPath);
+    }
   }
 
   onChanged(String? v) {

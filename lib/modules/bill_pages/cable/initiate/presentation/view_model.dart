@@ -29,7 +29,11 @@ class InitiateCableViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.go(RoutePaths.billsPath);
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go(RoutePaths.billsPath);
+    }
   }
 
   onChanged(String? v) {

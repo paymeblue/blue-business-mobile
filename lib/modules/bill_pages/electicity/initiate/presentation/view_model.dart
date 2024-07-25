@@ -27,7 +27,11 @@ class InitiateElectricityViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go(RoutePaths.billsPath);
+    }
   }
 
   TextEditingController searchController = TextEditingController();

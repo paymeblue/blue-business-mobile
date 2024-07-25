@@ -36,7 +36,12 @@ class ConfirmDataPinViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      GoRouterState state = GoRouterState.of(context);
+      context.go(RoutePaths.reviewDataPath, extra: state.extra);
+    }
   }
 
   onButtonTap(BuildContext context, VerifyDataData data) async {

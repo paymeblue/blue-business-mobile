@@ -36,8 +36,12 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    GoRouterState state = GoRouterState.of(context);
-    context.go(RoutePaths.reviewAirtimePath, extra: state.extra);
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      GoRouterState state = GoRouterState.of(context);
+      context.go(RoutePaths.reviewAirtimePath, extra: state.extra);
+    }
   }
 
   onButtonTap(BuildContext context, ReviewAirtimeData data) async {

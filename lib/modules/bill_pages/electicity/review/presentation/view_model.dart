@@ -13,7 +13,11 @@ class ReviewElectricityViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go(RoutePaths.initiateElectricityPath);
+    }
   }
 
   goToNext(BuildContext context, VerifyElectricityData data, double amount) {
