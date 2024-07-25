@@ -36,7 +36,8 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    GoRouterState state = GoRouterState.of(context);
+    context.go(RoutePaths.reviewAirtimePath, extra: state.extra);
   }
 
   onButtonTap(BuildContext context, ReviewAirtimeData data) async {
@@ -84,7 +85,7 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
     }
   }
 
-  getSecurityQuestion(BuildContext context) async {
+  getSecurityQuestion(BuildContext context, ReviewAirtimeData data) async {
     AppLoader.start();
     GetQuestionResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
@@ -98,7 +99,10 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
                   },
                 )));
 
-    if (context.mounted) goToForgotPin(context, resp.data);
+    if (context.mounted) {
+      locator<AppStateValues>().resetPath = RoutePaths.airtimePinPath;
+      goToForgotPin(context, resp.data);
+    }
     AppLoader.stop();
   }
 

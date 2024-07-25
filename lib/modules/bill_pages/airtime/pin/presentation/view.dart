@@ -48,7 +48,7 @@ class _ConfirmAirtimePinViewState extends State<ConfirmAirtimePinView> {
                 numberPad(model),
                 55.verticalGap,
                 forgotPinButton(onTap: () {
-                  model.getSecurityQuestion(context);
+                  model.getSecurityQuestion(context, widget.data);
                 }),
                 62.verticalGap,
                 confirmButton(
