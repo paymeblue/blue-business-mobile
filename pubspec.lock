@@ -1224,6 +1224,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  salesiq_mobilisten:
+    dependency: "direct main"
+    description:
+      name: salesiq_mobilisten
+      sha256: a53e347be0faf126d57d023cc6b66fec578f3703b8038686e1011cd67c4de06c
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.0"
   screenshot:
     dependency: "direct main"
     description:

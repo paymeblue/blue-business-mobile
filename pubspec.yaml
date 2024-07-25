@@ -45,6 +45,7 @@ dependencies:
   http_parser: ^4.0.2
   permission_handler: ^11.2.0
   contacts_service: ^0.6.3
+  salesiq_mobilisten: ^6.1.0
 
   # FIREBASE AND NOTIFICATIONS
   firebase_core: ^2.24.2

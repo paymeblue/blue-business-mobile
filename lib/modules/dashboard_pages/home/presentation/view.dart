@@ -163,7 +163,7 @@ class _HomeViewState extends State<HomeView> {
                     itemBuilder: (context, item, i) {
                       return GestureDetector(
                         onTap: () {
-                          model.getBillTransactionDetails(item, context);
+                          model.getTransactionDetails(item, context);
                         },
                         child: TransationTile(
                           transaction: item,

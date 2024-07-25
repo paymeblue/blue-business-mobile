@@ -45,15 +45,15 @@ abstract class TransactionService {
   Future<InitiateTransactionResponse> initiateTransaction(
       @Body() InitiateTransactionRequest request);
 
-  @PATCH("/payments/verify")
+  @POST("/payments/verify")
   Future<VerifiedReceiverResponse> verifyReceiver(
     @Body() VerifiedReceiverRequest request,
   );
 
-  @POST("/withdraws")
+  @POST("/withdraw")
   Future<PayResponse> withdraw(@Body() WithdrawRequest request);
 
-  @PATCH("/payments/verify")
+  @POST("/payments/send-fund")
   Future<PayResponse> pay(@Body() CreditRequest request);
 
   @GET("/payments/receipt")
@@ -63,6 +63,12 @@ abstract class TransactionService {
   Future<TransactionDetailResponse> getBillTransactionDetails({
     @Query("t_id") required String transactionId,
     @Path("service") required String service,
+  });
+
+  @GET("/transaction-histories/details")
+  Future<TransactionDetailResponse> getTransactionDetails({
+    @Query("t_ref") required String transactionReference,
+    @Query("service") required String service,
   });
 
   @GET("/payment/receipt")

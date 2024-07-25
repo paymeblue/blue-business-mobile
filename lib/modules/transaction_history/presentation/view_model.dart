@@ -5,6 +5,7 @@ import 'package:blue_business/core/io/api/transaction_service/transaction_servic
 import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
 import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
 import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
+import 'package:blue_business/core/models/transaction_detail/payment/payment_detail.dart';
 import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
 import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
@@ -218,24 +219,14 @@ class TransactionHistoryViewModel extends BaseViewModel {
     }
   }
 
-  // getPaymentDetails(
-  //     TransactionHistory transaction, BuildContext context) async {
-  //   if (mode == "payment") {
-  //     PaymentDetail paymentDetail = PaymentDetail.fromJson(response.data);
-  //     context.push(
-  //         "${RoutePaths.transactionHistoryPath}/payment/${paymentDetail.transactionId}/$type",
-  //         extra: paymentDetail);
-  //   }
-  // }
-
-  getBillTransactionDetails(
+  getTransactionDetails(
       TransactionHistory transaction, BuildContext context) async {
     AppLoader.start();
 
     TransactionDetailResponse response = await TransactionService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
-        .getBillTransactionDetails(
-      transactionId: transaction.transactionId.toString(),
+        .getTransactionDetails(
+      transactionReference: transaction.transactionId.toString(),
       service: getService(transaction.paymentMode),
     )
         .onError((error, stackTrace) {
@@ -243,7 +234,7 @@ class TransactionHistoryViewModel extends BaseViewModel {
           message: AppErrorHandler.getErrorMessage(
         error,
         {
-          "request_name": "get_bill_transaction_details",
+          "request_name": "get_transaction_details",
           "response_model": "TransactionDetailResponse"
         },
       ));
@@ -252,7 +243,7 @@ class TransactionHistoryViewModel extends BaseViewModel {
     if (response.status == "success") {
       if (context.mounted) {
         handleDetailResponse(getService(transaction.paymentMode),
-            transaction.transactionType ?? 'debit', response, context);
+            transaction.transactionType, response, context);
       }
     } else {
       AppNotification.error(message: response.message);
@@ -263,7 +254,12 @@ class TransactionHistoryViewModel extends BaseViewModel {
 
   handleDetailResponse(String mode, String type,
       TransactionDetailResponse response, BuildContext context) {
-    if (mode == "airtime") {
+    if (mode == "payment") {
+      PaymentDetail paymentDetail = PaymentDetail.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${paymentDetail.transactionId}/$type",
+          extra: paymentDetail);
+    } else if (mode == "airtime") {
       AirtimeDetails airtimeDetails = AirtimeDetails.fromJson(response.data);
       context.push(
           "${RoutePaths.transactionHistoryPath}/$mode/${airtimeDetails.transactionId}",

@@ -24,7 +24,7 @@ mixin _$TransactionHistory {
   String get otherPartyName => throw _privateConstructorUsedError;
   String get transactionAmount => throw _privateConstructorUsedError;
   String get paymentMode => throw _privateConstructorUsedError;
-  String? get transactionType => throw _privateConstructorUsedError;
+  String get transactionType => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get initials => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $TransactionHistoryCopyWith<$Res> {
       String otherPartyName,
       String transactionAmount,
       String paymentMode,
-      String? transactionType,
+      String transactionType,
       String createdAt,
       String status,
       String initials});
@@ -69,7 +69,7 @@ class _$TransactionHistoryCopyWithImpl<$Res, $Val extends TransactionHistory>
     Object? otherPartyName = null,
     Object? transactionAmount = null,
     Object? paymentMode = null,
-    Object? transactionType = freezed,
+    Object? transactionType = null,
     Object? createdAt = null,
     Object? status = null,
     Object? initials = null,
@@ -91,10 +91,10 @@ class _$TransactionHistoryCopyWithImpl<$Res, $Val extends TransactionHistory>
           ? _value.paymentMode
           : paymentMode // ignore: cast_nullable_to_non_nullable
               as String,
-      transactionType: freezed == transactionType
+      transactionType: null == transactionType
           ? _value.transactionType
           : transactionType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -124,7 +124,7 @@ abstract class _$$TransactionHistoryImplCopyWith<$Res>
       String otherPartyName,
       String transactionAmount,
       String paymentMode,
-      String? transactionType,
+      String transactionType,
       String createdAt,
       String status,
       String initials});
@@ -145,7 +145,7 @@ class __$$TransactionHistoryImplCopyWithImpl<$Res>
     Object? otherPartyName = null,
     Object? transactionAmount = null,
     Object? paymentMode = null,
-    Object? transactionType = freezed,
+    Object? transactionType = null,
     Object? createdAt = null,
     Object? status = null,
     Object? initials = null,
@@ -167,10 +167,10 @@ class __$$TransactionHistoryImplCopyWithImpl<$Res>
           ? _value.paymentMode
           : paymentMode // ignore: cast_nullable_to_non_nullable
               as String,
-      transactionType: freezed == transactionType
+      transactionType: null == transactionType
           ? _value.transactionType
           : transactionType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -195,7 +195,7 @@ class _$TransactionHistoryImpl implements _TransactionHistory {
       required this.otherPartyName,
       required this.transactionAmount,
       required this.paymentMode,
-      this.transactionType,
+      this.transactionType = "debit",
       required this.createdAt,
       this.status = "pending",
       this.initials = "N/A"});
@@ -212,7 +212,8 @@ class _$TransactionHistoryImpl implements _TransactionHistory {
   @override
   final String paymentMode;
   @override
-  final String? transactionType;
+  @JsonKey()
+  final String transactionType;
   @override
   final String createdAt;
   @override
@@ -283,7 +284,7 @@ abstract class _TransactionHistory implements TransactionHistory {
       required final String otherPartyName,
       required final String transactionAmount,
       required final String paymentMode,
-      final String? transactionType,
+      final String transactionType,
       required final String createdAt,
       final String status,
       final String initials}) = _$TransactionHistoryImpl;
@@ -300,7 +301,7 @@ abstract class _TransactionHistory implements TransactionHistory {
   @override
   String get paymentMode;
   @override
-  String? get transactionType;
+  String get transactionType;
   @override
   String get createdAt;
   @override

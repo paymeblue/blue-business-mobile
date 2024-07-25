@@ -7,6 +7,7 @@ part 'withdraw_request.g.dart';
 class WithdrawRequest with _$WithdrawRequest {
   const factory WithdrawRequest({
     required String amount,
+    @Default("withdrawal") String paymentMode,
     required String passcode,
   }) = _WithdrawRequest;
 
