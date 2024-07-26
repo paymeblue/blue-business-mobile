@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:blue_business/core/io/api/firebase/config.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
@@ -30,7 +28,6 @@ class ConnectionHelper {
     subscription = Connectivity()
         .onConnectivityChanged
         .listen((List<ConnectivityResult> result) {
-      log(result.toString());
       if (!result.contains(ConnectivityResult.none)) {
         Provider.of<AppStateValues>(ctx, listen: false).hasNetwork = true;
         if (locator<AppStateValues>().fcmToken.isEmpty) {
