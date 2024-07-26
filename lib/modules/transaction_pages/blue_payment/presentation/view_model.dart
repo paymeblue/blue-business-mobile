@@ -159,7 +159,7 @@ class BluePaymentViewModel extends BaseViewModel {
     String identifier = identifierController.text;
     if (!identifierController.text.contains(RegExp(r'[A-Za-z]'))) {
       if (identifier.startsWith("0")) {
-        identifier = identifier.replaceFirst("0", "+234");
+        identifier = identifier.replaceFirst("0", "234");
       }
     }
     AppLoader.start();

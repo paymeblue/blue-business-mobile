@@ -8,7 +8,7 @@ part of 'pay_data.dart';
 
 _$PayDataImpl _$$PayDataImplFromJson(Map<String, dynamic> json) =>
     _$PayDataImpl(
-      id: json['id'] as String,
+      transactionId: json['transaction_id'] as String,
       amount: json['amount'] as String,
       receiverName: json['receiver_name'] as String,
       receiverWallet: json['receiver_wallet'] as String,
@@ -19,7 +19,7 @@ _$PayDataImpl _$$PayDataImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$PayDataImplToJson(_$PayDataImpl instance) {
   final val = <String, dynamic>{
-    'id': instance.id,
+    'transaction_id': instance.transactionId,
     'amount': instance.amount,
     'receiver_name': instance.receiverName,
     'receiver_wallet': instance.receiverWallet,

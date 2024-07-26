@@ -108,7 +108,10 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
 
       if (context.mounted) {
         if (useQuestion) {
-          goToSetPin(context, resp.data!.phone);
+          goToSetPin(
+              context,
+              resp.data?.phone ??
+                  "+${locator<AppStateValues>().currentUser!.phone}");
         } else {
           goToOtp(context);
         }

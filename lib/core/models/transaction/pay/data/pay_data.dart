@@ -6,7 +6,7 @@ part 'pay_data.g.dart';
 @freezed
 class PayData with _$PayData {
   const factory PayData({
-    required String id,
+    required String transactionId,
     required String amount,
     required String receiverName,
     required String receiverWallet,
