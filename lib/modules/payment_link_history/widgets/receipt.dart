@@ -2,13 +2,13 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
-import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
+import 'package:blue_business/core/models/transaction/receipt/data/payment_link/receipt_record.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Receipt extends StatelessWidget {
-  final ReceiptData record;
+  final PaymentLinkReceiptRecord record;
   const Receipt({
     super.key,
     required this.record,
@@ -112,7 +112,7 @@ class Receipt extends StatelessWidget {
     return [
       receiptField(
         title: "Transaction type",
-        data: typeString(),
+        data: "Phone number",
       ),
       16.verticalGap,
       receiptField(
@@ -127,7 +127,7 @@ class Receipt extends StatelessWidget {
       16.verticalGap,
       receiptField(
         title: "Credit Account",
-        data: "+${record.receiverWallet}",
+        data: "+${record.receiverName}",
       ),
       16.verticalGap,
       receiptField(

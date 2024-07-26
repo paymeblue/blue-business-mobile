@@ -7,8 +7,8 @@ import 'package:blue_business/core/io/api/transaction_service/transaction_servic
 import 'package:blue_business/core/models/payment_link/payment_link.dart';
 import 'package:blue_business/core/models/payment_link/response/payment_link_response.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
-import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
-import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
+import 'package:blue_business/core/models/transaction/receipt/data/payment_link/receipt_record.dart';
+import 'package:blue_business/core/models/transaction/receipt/response/paymentLink/receipt_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -135,9 +135,9 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
     return v.toLowerCase();
   }
 
-  ReceiptData? _r;
-  ReceiptData? get receipt => _r;
-  set receipt(ReceiptData? r) {
+  PaymentLinkReceiptRecord? _r;
+  PaymentLinkReceiptRecord? get receipt => _r;
+  set receipt(PaymentLinkReceiptRecord? r) {
     _r = r;
     notifyListeners();
   }
@@ -145,19 +145,22 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
   getTransactionReceipt(PaymentLinkItem data) async {
     AppLoader.start();
 
-    ReceiptResponse resp = await TransactionService(
+    PaymentLinkReceiptResponse resp = await TransactionService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
-        .getReceipt(data.transactionId)
+        .getPaymentLinkReceipt(data.transactionId)
         .onError((error, stackTrace) {
-      return ReceiptResponse(
+      return PaymentLinkReceiptResponse(
           message: AppErrorHandler.getErrorMessage(
         error,
-        {"request_name": "get_receipt", "response_model": "ReceiptResponse"},
+        {
+          "request_name": "get_receipt",
+          "response_model": "PaymentLinkReceiptResponse"
+        },
       ));
     });
 
     if (resp.status == "success") {
-      receipt = resp.data!;
+      receipt = resp.data;
       await Future.delayed(const Duration(milliseconds: 350), () {
         downloadAndShareQr(data);
       });

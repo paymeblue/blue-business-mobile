@@ -10,6 +10,7 @@ import 'package:blue_business/core/models/transaction/initiate/response/initiate
 import 'package:blue_business/core/models/transaction/pay/credit/request/credit_request.dart';
 import 'package:blue_business/core/models/transaction/pay/response/pay_response.dart';
 import 'package:blue_business/core/models/transaction/pay/withdraw/request/withdraw_request.dart';
+import 'package:blue_business/core/models/transaction/receipt/response/paymentLink/receipt_response.dart';
 import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
 import 'package:blue_business/core/models/transaction/verify/request/verified_receiver_request.dart';
 import 'package:blue_business/core/models/transaction/verify/response/verified_receiver_response.dart';
@@ -82,6 +83,10 @@ abstract class TransactionService {
     @Query("limit") int limit,
     @Query("status") String status,
   );
+
+  @GET("/payment-links/details")
+  Future<PaymentLinkReceiptResponse> getPaymentLinkReceipt(
+      @Query("t_ref") String transactionId);
 
   @GET("/beneficiaries/index")
   Future<GetBeneficiaryResponse> searchBeneficiaries(

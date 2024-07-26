@@ -8,8 +8,8 @@ part 'payment_link_data.g.dart';
 class PaymentLinkData with _$PaymentLinkData {
   const factory PaymentLinkData({
     required String total,
-    required String limit,
-    required String page,
+    required int limit,
+    required int page,
     @Default([]) List<PaymentLinkItem> data,
     @Default(false) bool loadMore,
   }) = _PaymentLinkData;
