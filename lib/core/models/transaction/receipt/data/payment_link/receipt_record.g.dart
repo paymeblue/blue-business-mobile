@@ -13,7 +13,7 @@ _$PaymentLinkReceiptRecordImpl _$$PaymentLinkReceiptRecordImplFromJson(
       transactionId: json['transaction_id'] as String,
       amount: json['amount'] as String,
       receiverName: json['receiver_name'] as String,
-      paymentMode: json['payment_mode'] as String?,
+      phone: json['phone'] as String,
       createdAt: json['created_at'] as String,
       status: json['status'] as String? ?? "pending",
       senderName: json['sender_name'] as String?,
@@ -27,6 +27,9 @@ Map<String, dynamic> _$$PaymentLinkReceiptRecordImplToJson(
     'transaction_id': instance.transactionId,
     'amount': instance.amount,
     'receiver_name': instance.receiverName,
+    'phone': instance.phone,
+    'created_at': instance.createdAt,
+    'status': instance.status,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -35,9 +38,6 @@ Map<String, dynamic> _$$PaymentLinkReceiptRecordImplToJson(
     }
   }
 
-  writeNotNull('payment_mode', instance.paymentMode);
-  val['created_at'] = instance.createdAt;
-  val['status'] = instance.status;
   writeNotNull('sender_name', instance.senderName);
   writeNotNull('narration', instance.narration);
   return val;

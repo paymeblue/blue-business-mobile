@@ -10,7 +10,7 @@ class PaymentLinkReceiptRecord with _$PaymentLinkReceiptRecord {
     required String transactionId,
     required String amount,
     required String receiverName,
-    required String? paymentMode,
+    required String phone,
     required String createdAt,
     @Default("pending") String status,
     String? senderName,

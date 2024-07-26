@@ -127,7 +127,7 @@ class Receipt extends StatelessWidget {
       16.verticalGap,
       receiptField(
         title: "Credit Account",
-        data: "+${record.receiverName}",
+        data: "+${record.phone}",
       ),
       16.verticalGap,
       receiptField(
@@ -163,17 +163,6 @@ class Receipt extends StatelessWidget {
         return AppColors.success;
       default:
         return AppColors.error;
-    }
-  }
-
-  String typeString() {
-    switch (record.paymentMode) {
-      case "blue-user":
-        return "Blue to Blue";
-      case "withdrawal":
-        return "Withdrawal";
-      default:
-        return "Phone number";
     }
   }
 

@@ -25,7 +25,7 @@ mixin _$PaymentLinkReceiptRecord {
   String get transactionId => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get receiverName => throw _privateConstructorUsedError;
-  String? get paymentMode => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String? get senderName => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $PaymentLinkReceiptRecordCopyWith<$Res> {
       String transactionId,
       String amount,
       String receiverName,
-      String? paymentMode,
+      String phone,
       String createdAt,
       String status,
       String? senderName,
@@ -73,7 +73,7 @@ class _$PaymentLinkReceiptRecordCopyWithImpl<$Res,
     Object? transactionId = null,
     Object? amount = null,
     Object? receiverName = null,
-    Object? paymentMode = freezed,
+    Object? phone = null,
     Object? createdAt = null,
     Object? status = null,
     Object? senderName = freezed,
@@ -96,10 +96,10 @@ class _$PaymentLinkReceiptRecordCopyWithImpl<$Res,
           ? _value.receiverName
           : receiverName // ignore: cast_nullable_to_non_nullable
               as String,
-      paymentMode: freezed == paymentMode
-          ? _value.paymentMode
-          : paymentMode // ignore: cast_nullable_to_non_nullable
-              as String?,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -134,7 +134,7 @@ abstract class _$$PaymentLinkReceiptRecordImplCopyWith<$Res>
       String transactionId,
       String amount,
       String receiverName,
-      String? paymentMode,
+      String phone,
       String createdAt,
       String status,
       String? senderName,
@@ -158,7 +158,7 @@ class __$$PaymentLinkReceiptRecordImplCopyWithImpl<$Res>
     Object? transactionId = null,
     Object? amount = null,
     Object? receiverName = null,
-    Object? paymentMode = freezed,
+    Object? phone = null,
     Object? createdAt = null,
     Object? status = null,
     Object? senderName = freezed,
@@ -181,10 +181,10 @@ class __$$PaymentLinkReceiptRecordImplCopyWithImpl<$Res>
           ? _value.receiverName
           : receiverName // ignore: cast_nullable_to_non_nullable
               as String,
-      paymentMode: freezed == paymentMode
-          ? _value.paymentMode
-          : paymentMode // ignore: cast_nullable_to_non_nullable
-              as String?,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -213,7 +213,7 @@ class _$PaymentLinkReceiptRecordImpl implements _PaymentLinkReceiptRecord {
       required this.transactionId,
       required this.amount,
       required this.receiverName,
-      required this.paymentMode,
+      required this.phone,
       required this.createdAt,
       this.status = "pending",
       this.senderName,
@@ -231,7 +231,7 @@ class _$PaymentLinkReceiptRecordImpl implements _PaymentLinkReceiptRecord {
   @override
   final String receiverName;
   @override
-  final String? paymentMode;
+  final String phone;
   @override
   final String createdAt;
   @override
@@ -244,7 +244,7 @@ class _$PaymentLinkReceiptRecordImpl implements _PaymentLinkReceiptRecord {
 
   @override
   String toString() {
-    return 'PaymentLinkReceiptRecord(id: $id, transactionId: $transactionId, amount: $amount, receiverName: $receiverName, paymentMode: $paymentMode, createdAt: $createdAt, status: $status, senderName: $senderName, narration: $narration)';
+    return 'PaymentLinkReceiptRecord(id: $id, transactionId: $transactionId, amount: $amount, receiverName: $receiverName, phone: $phone, createdAt: $createdAt, status: $status, senderName: $senderName, narration: $narration)';
   }
 
   @override
@@ -258,8 +258,7 @@ class _$PaymentLinkReceiptRecordImpl implements _PaymentLinkReceiptRecord {
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.receiverName, receiverName) ||
                 other.receiverName == receiverName) &&
-            (identical(other.paymentMode, paymentMode) ||
-                other.paymentMode == paymentMode) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.status, status) || other.status == status) &&
@@ -272,7 +271,7 @@ class _$PaymentLinkReceiptRecordImpl implements _PaymentLinkReceiptRecord {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, transactionId, amount,
-      receiverName, paymentMode, createdAt, status, senderName, narration);
+      receiverName, phone, createdAt, status, senderName, narration);
 
   @JsonKey(ignore: true)
   @override
@@ -295,7 +294,7 @@ abstract class _PaymentLinkReceiptRecord implements PaymentLinkReceiptRecord {
       required final String transactionId,
       required final String amount,
       required final String receiverName,
-      required final String? paymentMode,
+      required final String phone,
       required final String createdAt,
       final String status,
       final String? senderName,
@@ -313,7 +312,7 @@ abstract class _PaymentLinkReceiptRecord implements PaymentLinkReceiptRecord {
   @override
   String get receiverName;
   @override
-  String? get paymentMode;
+  String get phone;
   @override
   String get createdAt;
   @override
