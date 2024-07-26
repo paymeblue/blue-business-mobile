@@ -6,7 +6,7 @@ part 'payment_detail.g.dart';
 @freezed
 class PaymentDetail with _$PaymentDetail {
   const factory PaymentDetail({
-    required int id,
+    required String? id,
     required String amount,
     required String receiver,
     required String details,

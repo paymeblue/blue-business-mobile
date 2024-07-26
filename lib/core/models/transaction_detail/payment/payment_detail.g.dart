@@ -8,7 +8,7 @@ part of 'payment_detail.dart';
 
 _$PaymentDetailImpl _$$PaymentDetailImplFromJson(Map<String, dynamic> json) =>
     _$PaymentDetailImpl(
-      id: json['id'] as int,
+      id: json['id'] as String?,
       amount: json['amount'] as String,
       receiver: json['receiver'] as String,
       details: json['details'] as String,
@@ -19,15 +19,23 @@ _$PaymentDetailImpl _$$PaymentDetailImplFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String? ?? "pending",
     );
 
-Map<String, dynamic> _$$PaymentDetailImplToJson(_$PaymentDetailImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'amount': instance.amount,
-      'receiver': instance.receiver,
-      'details': instance.details,
-      'payment_mode': instance.paymentMode,
-      'created_at': instance.createdAt,
-      'transaction_id': instance.transactionId,
-      'service': instance.service,
-      'status': instance.status,
-    };
+Map<String, dynamic> _$$PaymentDetailImplToJson(_$PaymentDetailImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  val['amount'] = instance.amount;
+  val['receiver'] = instance.receiver;
+  val['details'] = instance.details;
+  val['payment_mode'] = instance.paymentMode;
+  val['created_at'] = instance.createdAt;
+  val['transaction_id'] = instance.transactionId;
+  val['service'] = instance.service;
+  val['status'] = instance.status;
+  return val;
+}
