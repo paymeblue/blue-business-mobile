@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -14,6 +16,7 @@ class AppErrorHandler {
   AppErrorHandler._();
 
   static String getErrorMessage(error, [Map<String, dynamic>? params]) {
+    log(error.toString());
     if (error.toString().toLowerCase().contains("session expired")) {
       logout();
       return error.toString();
