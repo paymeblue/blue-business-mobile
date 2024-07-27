@@ -144,8 +144,8 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
     });
 
     if (resp.status == "success") {
-      accountNameController.text = resp.data!.account.accountName;
-      reference = resp.data!.account.reference;
+      accountNameController.text = resp.data!.accountName;
+      reference = resp.data!.reference;
     } else {
       accountNameController.text = "";
       AppNotification.error(message: resp.message);
@@ -174,8 +174,7 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       reference = "";
-      locator<AppStateValues>().withdrawalAccount =
-          resp.data!.withdrawalAccount;
+      locator<AppStateValues>().withdrawalAccount = resp.data;
       AppNotification.success(message: resp.message);
     } else {
       AppNotification.error(message: resp.message);

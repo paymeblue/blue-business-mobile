@@ -22,7 +22,7 @@ SetPayoutResponse _$SetPayoutResponseFromJson(Map<String, dynamic> json) {
 mixin _$SetPayoutResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  SetPayoutData? get data => throw _privateConstructorUsedError;
+  WithdrawalAccount? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +36,9 @@ abstract class $SetPayoutResponseCopyWith<$Res> {
           SetPayoutResponse value, $Res Function(SetPayoutResponse) then) =
       _$SetPayoutResponseCopyWithImpl<$Res, SetPayoutResponse>;
   @useResult
-  $Res call({String status, String? message, SetPayoutData? data});
+  $Res call({String status, String? message, WithdrawalAccount? data});
 
-  $SetPayoutDataCopyWith<$Res>? get data;
+  $WithdrawalAccountCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -70,18 +70,18 @@ class _$SetPayoutResponseCopyWithImpl<$Res, $Val extends SetPayoutResponse>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as SetPayoutData?,
+              as WithdrawalAccount?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SetPayoutDataCopyWith<$Res>? get data {
+  $WithdrawalAccountCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
-    return $SetPayoutDataCopyWith<$Res>(_value.data!, (value) {
+    return $WithdrawalAccountCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -95,10 +95,10 @@ abstract class _$$SetPayoutResponseImplCopyWith<$Res>
       __$$SetPayoutResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, SetPayoutData? data});
+  $Res call({String status, String? message, WithdrawalAccount? data});
 
   @override
-  $SetPayoutDataCopyWith<$Res>? get data;
+  $WithdrawalAccountCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -128,7 +128,7 @@ class __$$SetPayoutResponseImplCopyWithImpl<$Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as SetPayoutData?,
+              as WithdrawalAccount?,
     ));
   }
 }
@@ -148,7 +148,7 @@ class _$SetPayoutResponseImpl implements _SetPayoutResponse {
   @override
   final String? message;
   @override
-  final SetPayoutData? data;
+  final WithdrawalAccount? data;
 
   @override
   String toString() {
@@ -188,7 +188,7 @@ abstract class _SetPayoutResponse implements SetPayoutResponse {
   const factory _SetPayoutResponse(
       {final String status,
       final String? message,
-      final SetPayoutData? data}) = _$SetPayoutResponseImpl;
+      final WithdrawalAccount? data}) = _$SetPayoutResponseImpl;
 
   factory _SetPayoutResponse.fromJson(Map<String, dynamic> json) =
       _$SetPayoutResponseImpl.fromJson;
@@ -198,7 +198,7 @@ abstract class _SetPayoutResponse implements SetPayoutResponse {
   @override
   String? get message;
   @override
-  SetPayoutData? get data;
+  WithdrawalAccount? get data;
   @override
   @JsonKey(ignore: true)
   _$$SetPayoutResponseImplCopyWith<_$SetPayoutResponseImpl> get copyWith =>

@@ -97,7 +97,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                             )
                           else
                             ...detailsSection(
-                              title: "Recipiente",
+                              title: "Recipient",
                               detail: widget.detail.receiver,
                             ),
                           8.verticalGap,

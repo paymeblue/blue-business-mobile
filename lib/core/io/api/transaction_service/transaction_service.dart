@@ -105,13 +105,6 @@ abstract class TransactionService {
     @Body() SetBeneficiaryRequest request,
   );
 
-  // @GET("/payment-link/history")
-  // Future<PaymentLinkResponse> getPaymentLinkHistory(
-  //   @Query("page") int page,
-  //   @Query("limit") int limit,
-  //   @Query("status") String status,
-  // );
-
   @GET("/beneficiaries/recently-paid")
   Future<RecentlyPaidResponse> getRecentlyPaid();
 
