@@ -78,7 +78,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                   Expanded(
                     child: RefreshIndicator(
                       onRefresh: () async {
-                        model.getSalesAnalytics();
+                        model.getAnalyticsData();
                       },
                       child: ListView(
                         shrinkWrap: true,
@@ -353,35 +353,35 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                   ),
                 ),
           if (model.inputData.isNotEmpty ||
-              model.salesState == FetchState.loading) ...[
+              model.lineState == FetchState.loading) ...[
             lineChart(model),
             20.verticalGap
           ],
-          model.salesState == FetchState.loading
-              ? salesAmountShimmer()
-              : Container(
-                  padding: const EdgeInsets.symmetric(vertical: 17),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.midGrey),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      analyticsColumn(
-                          title: "Point of Sales",
-                          amount: format.format(double.parse(
-                              model.salesData?.desktop.current ?? "0.00")),
-                          percentIncrease: model.desktopIncrease),
-                      analyticsColumn(
-                        title: "Mobile Account",
-                        amount: format.format(double.parse(
-                            model.salesData?.mobile.current ?? "0.00")),
-                        percentIncrease: model.mobileIncrease,
-                      ),
-                    ],
-                  ),
-                ),
+          // model.salesState == FetchState.loading
+          //     ? salesAmountShimmer()
+          //     : Container(
+          //         padding: const EdgeInsets.symmetric(vertical: 17),
+          //         decoration: BoxDecoration(
+          //           border: Border.all(color: AppColors.midGrey),
+          //           borderRadius: BorderRadius.circular(6),
+          //         ),
+          //         child: Row(
+          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //           children: [
+          //             analyticsColumn(
+          //                 title: "Point of Sales",
+          //                 amount: format.format(double.parse(
+          //                     model.salesData?.desktop.current ?? "0.00")),
+          //                 percentIncrease: model.desktopIncrease),
+          //             analyticsColumn(
+          //               title: "Mobile Account",
+          //               amount: format.format(double.parse(
+          //                   model.salesData?.mobile.current ?? "0.00")),
+          //               percentIncrease: model.mobileIncrease,
+          //             ),
+          //           ],
+          //         ),
+          //       ),
         ],
       ),
     );
@@ -422,7 +422,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
   }
 
   Widget lineChart(BranchInsightsViewModel model) {
-    if (model.salesState == FetchState.loading) {
+    if (model.lineState == FetchState.loading) {
       return Container(
         height: 120,
         alignment: Alignment.center,

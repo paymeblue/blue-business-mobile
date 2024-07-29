@@ -4,6 +4,8 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
+import 'package:blue_business/core/models/analytics/branch_data/branch_analytics_data.dart';
+import 'package:blue_business/core/models/analytics/branch_response/branch_analytics_response.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/monthly/monthly_line_chart_data.dart';
@@ -32,12 +34,17 @@ class BranchInsightsViewModel extends BaseViewModel {
 
     branchId = id;
     selectedType = types[0];
-    getSalesAnalytics();
+    getAnalyticsData();
     getRoles();
 
     staffPagingController.addPageRequestListener((pageKey) {
       getBranchStaff(pageKey);
     });
+  }
+
+  getAnalyticsData() {
+    getLineChartData();
+    getBranchSalesAnalytics();
   }
 
   List<String> types = ["Weekly", "Monthly", "Yearly"];
@@ -51,7 +58,14 @@ class BranchInsightsViewModel extends BaseViewModel {
 
   onTypeChanged(String t) {
     selectedType = t;
-    getSalesAnalytics();
+    getLineChartData();
+  }
+
+  FetchState _lineState = FetchState.complete;
+  FetchState get lineState => _lineState;
+  set lineState(FetchState value) {
+    _lineState = value;
+    notifyListeners();
   }
 
   FetchState _salesState = FetchState.complete;
@@ -117,8 +131,8 @@ class BranchInsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getSalesAnalytics() async {
-    salesState = FetchState.loading;
+  getLineChartData() async {
+    lineState = FetchState.loading;
     SalesAnalyticsResponse response = await BranchService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .getBranchInsights(
@@ -163,54 +177,49 @@ class BranchInsightsViewModel extends BaseViewModel {
       }
       log(response.data.toString());
 
-      salesState = FetchState.complete;
+      lineState = FetchState.complete;
     } else {
       AppNotification.error(message: response.message);
 
-      salesState = FetchState.error;
+      lineState = FetchState.error;
     }
   }
 
-  calculateIncrease() {
-    double currentMobile = double.parse(salesData?.mobile.current ?? "0.0");
-    double previousMobile = double.parse(salesData?.mobile.previous ?? "0.0");
-    double currentDesktop = double.parse(salesData?.desktop.current ?? "0.0");
-    double previousDesktop = double.parse(salesData?.desktop.previous ?? "0.0");
+  getBranchSalesAnalytics() async {
+    lineState = FetchState.loading;
+    BranchAnalyticsResponse response = await BranchService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getAnalytics(id: branchId, type: selectedType.toLowerCase())
+        .onError((error, stackTrace) => BranchAnalyticsResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_analytics",
+                "response_model": "AnalyticsResponse"
+              },
+            )));
 
-    double currentTotal = currentMobile + currentDesktop;
-    double previousTotal = previousMobile + previousDesktop;
+    if (response.status == "success") {
+      calculateBranchIncrease(response.data!);
+    } else {
+      AppNotification.error(message: response.message);
+    }
 
-    double mChange = currentMobile - previousMobile;
-    double dChange = currentDesktop - previousDesktop;
-    double tChange = currentTotal - previousTotal;
+    lineState = FetchState.complete;
+  }
 
-    if (tChange == 0) {
+  calculateBranchIncrease(BranchAnalyticsData data) {
+    double current = double.parse(data.transaction.current);
+    double previous = double.parse(data.transaction.previous);
+    final change = current - previous;
+
+    if (change == 0) {
       totalIncrease = 0;
     } else {
-      if (previousTotal == 0) {
-        totalIncrease = tChange / 100;
+      if (previous == 0) {
+        totalIncrease = change / 100;
       } else {
-        totalIncrease = tChange / previousTotal;
-      }
-    }
-
-    if (mChange == 0) {
-      mobileIncrease = 0;
-    } else {
-      if (previousMobile == 0) {
-        mobileIncrease = mChange / 100;
-      } else {
-        mobileIncrease = mChange / previousMobile;
-      }
-    }
-
-    if (dChange == 0) {
-      desktopIncrease = 0;
-    } else {
-      if (previousDesktop == 0) {
-        desktopIncrease = dChange / 100;
-      } else {
-        desktopIncrease = dChange / previousDesktop;
+        totalIncrease = change / previous;
       }
     }
   }

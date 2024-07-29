@@ -62,7 +62,8 @@ abstract class BranchService {
   });
 
   @GET("/branches/{id}/analytics")
-  Future<BranchAnalyticsResponse> getAnalytics(
-    @Query("time_interval") String type,
-  );
+  Future<BranchAnalyticsResponse> getAnalytics({
+    @Path("id") required int id,
+    @Query("time_interval") required String type,
+  });
 }

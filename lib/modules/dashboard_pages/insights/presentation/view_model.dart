@@ -6,6 +6,8 @@ import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
 import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
+import 'package:blue_business/core/models/analytics/branch_data/branch_analytics_data.dart';
+import 'package:blue_business/core/models/analytics/branch_response/branch_analytics_response.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
@@ -61,7 +63,7 @@ class InsightsViewModel extends BaseViewModel {
       await getLineChartData();
       await getSpending();
     } else if (branch != null) {
-      log(branch.toString());
+      getBranchLineChartData();
       getBranchSalesAnalytics();
     }
   }
@@ -244,7 +246,7 @@ class InsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getBranchSalesAnalytics() async {
+  getBranchLineChartData() async {
     salesState = FetchState.loading;
     SalesAnalyticsResponse response = await BranchService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
@@ -362,6 +364,44 @@ class InsightsViewModel extends BaseViewModel {
       AppNotification.error(message: response.message);
     }
     salesLoading = false;
+  }
+
+  getBranchSalesAnalytics() async {
+    salesLoading = true;
+    BranchAnalyticsResponse response = await BranchService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getAnalytics(id: branch!.id, type: selectedType.toLowerCase())
+        .onError((error, stackTrace) => BranchAnalyticsResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_analytics",
+                "response_model": "AnalyticsResponse"
+              },
+            )));
+
+    if (response.status == "success") {
+      calculateBranchIncrease(response.data!);
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    salesLoading = false;
+  }
+
+  calculateBranchIncrease(BranchAnalyticsData data) {
+    double current = double.parse(data.transaction.current);
+    double previous = double.parse(data.transaction.previous);
+    final change = current - previous;
+
+    if (change == 0) {
+      totalIncrease = 0;
+    } else {
+      if (previous == 0) {
+        totalIncrease = change / 100;
+      } else {
+        totalIncrease = change / previous;
+      }
+    }
   }
 
   calculateIncrease() {

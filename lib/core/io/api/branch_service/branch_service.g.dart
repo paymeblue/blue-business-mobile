@@ -243,7 +243,10 @@ class _BranchService implements BranchService {
   }
 
   @override
-  Future<BranchAnalyticsResponse> getAnalytics(String type) async {
+  Future<BranchAnalyticsResponse> getAnalytics({
+    required int id,
+    required String type,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'time_interval': type};
     final _headers = <String, dynamic>{};
@@ -256,7 +259,7 @@ class _BranchService implements BranchService {
     )
             .compose(
               _dio.options,
-              '/branches/{id}/analytics',
+              '/branches/${id}/analytics',
               queryParameters: queryParameters,
               data: _data,
             )
