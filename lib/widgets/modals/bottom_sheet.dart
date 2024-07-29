@@ -359,7 +359,7 @@ class BlueBottomSheet {
               RefreshTimer().resetTimer();
             },
             child: Container(
-              height: 485,
+              height: 470,
               margin: const EdgeInsets.only(left: 17, right: 17, bottom: 35),
               padding: const EdgeInsets.only(
                   left: 20, right: 20, top: 22, bottom: 22),
