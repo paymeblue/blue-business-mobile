@@ -17,6 +17,7 @@ class AppStateValues extends ChangeNotifier {
   FetchState _todoState = FetchState.loading;
   String _kycLevel = "basic";
   bool _hasSavedBeneficiary = true;
+  bool _showLiveChat = false;
   bool _notificationStatus = false;
   int _count = 0;
   bool _newMessage = false;
@@ -43,6 +44,7 @@ class AppStateValues extends ChangeNotifier {
   String get resetPath => _path;
   int get unreadCount => _count;
   bool get hasNewMessage => _newMessage;
+  bool get showLiveChat => _showLiveChat;
   bool get hasNetwork => _hasNetwork;
   String? get channelId => _channelId;
   String get accessToken => _token;
@@ -107,6 +109,11 @@ class AppStateValues extends ChangeNotifier {
 
   set hasSavedBeneficiary(bool v) {
     _hasSavedBeneficiary = v;
+    notifyListeners();
+  }
+
+  set showLiveChat(bool v) {
+    _showLiveChat = v;
     notifyListeners();
   }
 

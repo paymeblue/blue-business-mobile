@@ -1,6 +1,7 @@
 import 'dart:ui';
 
-import 'package:blue_business/core/io/api/firebase/config.dart';
+import 'package:blue_business/core/io/api/config/firebase_config.dart';
+import 'package:blue_business/core/io/api/config/sales_iq_config.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/connection.dart';
 import 'package:blue_business/root_widget.dart';
@@ -15,6 +16,7 @@ void main() async {
   registerErrorHandlers();
   if (await ConnectionHelper.hasNetwork()) {
     FirebaseConfig.init();
+    SalesIqConfig().init();
   }
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

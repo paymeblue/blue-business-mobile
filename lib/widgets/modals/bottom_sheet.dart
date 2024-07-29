@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:salesiq_mobilisten/salesiq_mobilisten.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BlueBottomSheet {
@@ -426,40 +427,23 @@ class BlueBottomSheet {
   }
 
   static Future support() {
-    Widget contactTile(String text, IconData icon, VoidCallback onTap) {
+    Widget contactTile(String text, VoidCallback onTap) {
       return Material(
         type: MaterialType.transparency,
         child: InkWell(
           onTap: onTap,
           splashColor: AppColors.brightBlue,
           child: Container(
-            height: 60,
+            height: 50,
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            decoration: BoxDecoration(
-              color: AppColors.grey,
-              borderRadius: BorderRadius.circular(6),
-            ),
+            decoration: const BoxDecoration(),
+            alignment: Alignment.center,
             child: Row(
               children: [
-                Container(
-                  height: 38,
-                  width: 38,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.midGrey),
-                      shape: BoxShape.circle),
-                  alignment: Alignment.center,
-                  child: Icon(
-                    icon,
-                    color: AppColors.textColor,
-                    size: 20,
-                  ),
-                ),
-                12.horizontalGap,
                 Expanded(
                   child: Text(
                     text,
-                    style: AppTextStyles.header.copyWith(fontSize: 15.5),
+                    style: AppTextStyles.subHeader,
                   ),
                 ),
                 const Icon(
@@ -499,13 +483,13 @@ class BlueBottomSheet {
       useSafeArea: true,
       builder: (BuildContext context) {
         return Container(
-          height: 235 + context.mediaQuery.viewInsets.bottom,
+          height: 250 + context.mediaQuery.viewInsets.bottom,
           margin: EdgeInsets.only(
               left: 17,
               right: 17,
               bottom: 35 + context.mediaQuery.viewInsets.bottom),
           padding:
-              const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 30),
+              const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 15),
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(10),
@@ -513,27 +497,35 @@ class BlueBottomSheet {
           child: Column(
             children: [
               Text(
-                "Contact Support",
-                style: AppTextStyles.header.copyWith(fontSize: 18.5),
+                "CONTACT SUPPORT",
+                style: AppTextStyles.semiLargeHeader.copyWith(fontSize: 18.5),
               ),
-              18.verticalGap,
+              12.verticalGap,
               contactTile(
                 "Call us on 09075561565",
-                Icons.phone_enabled_outlined,
                 () {
                   openDialer();
                   context.pop();
                 },
               ),
-              8.verticalGap,
+              4.verticalGap,
               contactTile(
                 "Contact us via email",
-                Icons.mail_outline_rounded,
                 () {
                   openMail();
                   context.pop();
                 },
               ),
+              if (locator<AppStateValues>().showLiveChat) ...[
+                4.verticalGap,
+                contactTile(
+                  "Chat with us Live",
+                  () {
+                    ZohoSalesIQ.openNewChat();
+                    context.pop();
+                  },
+                ),
+              ]
             ],
           ),
         );

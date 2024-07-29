@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:blue_business/core/io/api/firebase/config.dart';
+import 'package:blue_business/core/io/api/config/firebase_config.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
