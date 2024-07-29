@@ -298,7 +298,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                   child: Column(
                     children: [
                       Text(
-                        "${nairaSymbol()}${format.format(double.parse(model.salesData?.mobile.current ?? "0.0") + double.parse(model.salesData?.desktop.current ?? "0.0"))}",
+                        "${nairaSymbol()}${format.format(double.parse(model.branchSalesData?.transaction.current ?? "0.0"))}",
                         style: AppTextStyles.header.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,

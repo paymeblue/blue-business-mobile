@@ -6,7 +6,6 @@ import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
 import 'package:blue_business/core/models/analytics/branch_data/branch_analytics_data.dart';
 import 'package:blue_business/core/models/analytics/branch_response/branch_analytics_response.dart';
-import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/monthly/monthly_line_chart_data.dart';
 import 'package:blue_business/core/models/sales_analytics/response/sales_analytics_response.dart';
@@ -58,7 +57,7 @@ class BranchInsightsViewModel extends BaseViewModel {
 
   onTypeChanged(String t) {
     selectedType = t;
-    getLineChartData();
+    getAnalyticsData();
   }
 
   FetchState _lineState = FetchState.complete;
@@ -75,9 +74,9 @@ class BranchInsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  AnalyticsData? _d;
-  AnalyticsData? get salesData => _d;
-  set salesData(AnalyticsData? d) {
+  BranchAnalyticsData? _d;
+  BranchAnalyticsData? get salesData => _d;
+  set salesData(BranchAnalyticsData? d) {
     _d = d;
     notifyListeners();
   }
@@ -186,7 +185,7 @@ class BranchInsightsViewModel extends BaseViewModel {
   }
 
   getBranchSalesAnalytics() async {
-    lineState = FetchState.loading;
+    salesState = FetchState.loading;
     BranchAnalyticsResponse response = await BranchService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .getAnalytics(id: branchId, type: selectedType.toLowerCase())
@@ -205,7 +204,7 @@ class BranchInsightsViewModel extends BaseViewModel {
       AppNotification.error(message: response.message);
     }
 
-    lineState = FetchState.complete;
+    salesState = FetchState.complete;
   }
 
   calculateBranchIncrease(BranchAnalyticsData data) {

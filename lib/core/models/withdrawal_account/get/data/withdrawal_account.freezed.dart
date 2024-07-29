@@ -22,7 +22,7 @@ WithdrawalAccount _$WithdrawalAccountFromJson(Map<String, dynamic> json) {
 mixin _$WithdrawalAccount {
   int get id => throw _privateConstructorUsedError;
   int get bankId => throw _privateConstructorUsedError;
-  String? get bankName => throw _privateConstructorUsedError;
+  String get bankName => throw _privateConstructorUsedError;
   String get accountName => throw _privateConstructorUsedError;
   String get accountNumber => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $WithdrawalAccountCopyWith<$Res> {
   $Res call(
       {int id,
       int bankId,
-      String? bankName,
+      String bankName,
       String accountName,
       String accountNumber,
       String? createdAt});
@@ -63,7 +63,7 @@ class _$WithdrawalAccountCopyWithImpl<$Res, $Val extends WithdrawalAccount>
   $Res call({
     Object? id = null,
     Object? bankId = null,
-    Object? bankName = freezed,
+    Object? bankName = null,
     Object? accountName = null,
     Object? accountNumber = null,
     Object? createdAt = freezed,
@@ -77,10 +77,10 @@ class _$WithdrawalAccountCopyWithImpl<$Res, $Val extends WithdrawalAccount>
           ? _value.bankId
           : bankId // ignore: cast_nullable_to_non_nullable
               as int,
-      bankName: freezed == bankName
+      bankName: null == bankName
           ? _value.bankName
           : bankName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       accountName: null == accountName
           ? _value.accountName
           : accountName // ignore: cast_nullable_to_non_nullable
@@ -108,7 +108,7 @@ abstract class _$$WithdrawalAccountImplCopyWith<$Res>
   $Res call(
       {int id,
       int bankId,
-      String? bankName,
+      String bankName,
       String accountName,
       String accountNumber,
       String? createdAt});
@@ -127,7 +127,7 @@ class __$$WithdrawalAccountImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? bankId = null,
-    Object? bankName = freezed,
+    Object? bankName = null,
     Object? accountName = null,
     Object? accountNumber = null,
     Object? createdAt = freezed,
@@ -141,10 +141,10 @@ class __$$WithdrawalAccountImplCopyWithImpl<$Res>
           ? _value.bankId
           : bankId // ignore: cast_nullable_to_non_nullable
               as int,
-      bankName: freezed == bankName
+      bankName: null == bankName
           ? _value.bankName
           : bankName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       accountName: null == accountName
           ? _value.accountName
           : accountName // ignore: cast_nullable_to_non_nullable
@@ -170,7 +170,7 @@ class _$WithdrawalAccountImpl implements _WithdrawalAccount {
       required this.bankName,
       required this.accountName,
       required this.accountNumber,
-      required this.createdAt});
+      this.createdAt});
 
   factory _$WithdrawalAccountImpl.fromJson(Map<String, dynamic> json) =>
       _$$WithdrawalAccountImplFromJson(json);
@@ -180,7 +180,7 @@ class _$WithdrawalAccountImpl implements _WithdrawalAccount {
   @override
   final int bankId;
   @override
-  final String? bankName;
+  final String bankName;
   @override
   final String accountName;
   @override
@@ -234,10 +234,10 @@ abstract class _WithdrawalAccount implements WithdrawalAccount {
   const factory _WithdrawalAccount(
       {required final int id,
       required final int bankId,
-      required final String? bankName,
+      required final String bankName,
       required final String accountName,
       required final String accountNumber,
-      required final String? createdAt}) = _$WithdrawalAccountImpl;
+      final String? createdAt}) = _$WithdrawalAccountImpl;
 
   factory _WithdrawalAccount.fromJson(Map<String, dynamic> json) =
       _$WithdrawalAccountImpl.fromJson;
@@ -247,7 +247,7 @@ abstract class _WithdrawalAccount implements WithdrawalAccount {
   @override
   int get bankId;
   @override
-  String? get bankName;
+  String get bankName;
   @override
   String get accountName;
   @override

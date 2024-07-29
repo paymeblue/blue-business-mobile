@@ -25,7 +25,7 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
     size = context.mediaQuery.size;
 
     getBanks();
-    if (locator<AppStateValues>().withdrawalAccount?.bankName != null) {
+    if (locator<AppStateValues>().withdrawalAccount != null) {
       setBankDetails();
     }
   }
@@ -33,7 +33,7 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
   setBankDetails() {
     selectedBank = BankItem(
         id: locator<AppStateValues>().withdrawalAccount!.bankId,
-        name: locator<AppStateValues>().withdrawalAccount!.bankName!);
+        name: locator<AppStateValues>().withdrawalAccount!.bankName);
 
     accountNumberController.text =
         locator<AppStateValues>().withdrawalAccount!.accountNumber;

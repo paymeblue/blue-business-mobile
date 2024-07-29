@@ -76,18 +76,22 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                   ),
                   25.verticalGap,
                   Expanded(
-                    child: RefreshIndicator(
-                      onRefresh: () async {
-                        model.getAnalyticsData();
-                      },
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: [
-                          salesStatsContainer(model),
-                          15.verticalGap,
-                          staffList(model)
-                        ],
-                      ),
+                    child: ListView(
+                      children: [
+                        RefreshIndicator(
+                          onRefresh: () async {
+                            model.getAnalyticsData();
+                          },
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              salesStatsContainer(model),
+                            ],
+                          ),
+                        ),
+                        8.verticalGap,
+                        staffList(model)
+                      ],
                     ),
                   )
                 ],
@@ -330,7 +334,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                   child: Column(
                     children: [
                       Text(
-                        "${nairaSymbol()}${format.format(double.parse(model.salesData?.mobile.current ?? "0.0") + double.parse(model.salesData?.desktop.current ?? "0.0"))}",
+                        "${nairaSymbol()}${format.format(double.parse(model.salesData?.transaction.current ?? "0.0"))}",
                         style: AppTextStyles.header.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,

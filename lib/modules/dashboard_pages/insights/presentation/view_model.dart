@@ -322,6 +322,13 @@ class InsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  BranchAnalyticsData? _dBranch;
+  BranchAnalyticsData? get branchSalesData => _dBranch;
+  set branchSalesData(BranchAnalyticsData? d) {
+    _dBranch = d;
+    notifyListeners();
+  }
+
   double _mIncrease = 0;
   double get mobileIncrease => _mIncrease;
   set mobileIncrease(double v) {
@@ -381,16 +388,19 @@ class InsightsViewModel extends BaseViewModel {
             )));
 
     if (response.status == "success") {
-      calculateBranchIncrease(response.data!);
+      branchSalesData = response.data!;
+      calculateBranchIncrease();
     } else {
       AppNotification.error(message: response.message);
     }
     salesLoading = false;
   }
 
-  calculateBranchIncrease(BranchAnalyticsData data) {
-    double current = double.parse(data.transaction.current);
-    double previous = double.parse(data.transaction.previous);
+  calculateBranchIncrease() {
+    double current =
+        double.parse(branchSalesData?.transaction.current ?? "0.0");
+    double previous =
+        double.parse(branchSalesData?.transaction.previous ?? "0.00");
     final change = current - previous;
 
     if (change == 0) {
