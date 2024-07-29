@@ -380,13 +380,13 @@ class BlueBottomSheet {
                       type = val ?? "";
                     });
                   }),
-                  12.verticalGap,
-                  textFieldHeader("Transaction staus"),
-                  statusDropdown(context, (val) {
-                    setState(() {
-                      status = val ?? "";
-                    });
-                  }),
+                  // 12.verticalGap,
+                  // textFieldHeader("Transaction staus"),
+                  // statusDropdown(context, (val) {
+                  //   setState(() {
+                  //     status = val ?? "";
+                  //   });
+                  // }),
                   12.verticalGap,
                   textFieldHeader("Date"),
                   datePickerField(context, () async {
