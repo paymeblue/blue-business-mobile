@@ -1,3 +1,4 @@
+import 'package:blue_business/core/models/analytics/branch_response/branch_analytics_response.dart';
 import 'package:blue_business/core/models/branches/create/data/create_branch_request.dart';
 import 'package:blue_business/core/models/branches/create/response/create_branch_response.dart';
 import 'package:blue_business/core/models/branches/details/response/get_branch_response.dart';
@@ -59,4 +60,9 @@ abstract class BranchService {
     @Query("limit") required int limit,
     @Query("role") String? role,
   });
+
+  @GET("/branches/{id}/analytics")
+  Future<BranchAnalyticsResponse> getAnalytics(
+    @Query("time_interval") String type,
+  );
 }

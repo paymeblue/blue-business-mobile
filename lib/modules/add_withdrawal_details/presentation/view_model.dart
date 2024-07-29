@@ -68,16 +68,15 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
   }
 
   onAccountNumberChanged(String? v) {
-    if (v != null && v.length >= 10 && selectedBank != null) {
-      verifyAccount();
-    }
+    notifyListeners();
   }
 
   onBankChanged(BankItem? item) {
     selectedBank = item;
-    if (item != null && accountNumberController.text.length >= 10) {
-      verifyAccount();
-    }
+  }
+
+  bool canVerify() {
+    return selectedBank != null && accountNumberController.text.length >= 10;
   }
 
   BankItem? _bank;
