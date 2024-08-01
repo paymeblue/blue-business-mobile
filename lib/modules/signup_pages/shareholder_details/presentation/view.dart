@@ -177,7 +177,7 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
       SizedBox(
         width: 350,
         child: Text(
-          "Are you a shareholders of Path4Her.org? if so, please select your name.",
+          "Are you a shareholder? if so, please select your name.",
           style: AppTextStyles.subHeader,
           textAlign: TextAlign.start,
         ),

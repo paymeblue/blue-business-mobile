@@ -129,7 +129,7 @@ class SignupBusinessDetailsViewModel extends BaseViewModel {
 
   bool isActive() {
     return nameController.text.isNotEmpty &&
-        cacController.text.length >= 10 &&
+        cacController.text.isNotEmpty &&
         staffSize != null &&
         category != null;
   }
