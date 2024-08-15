@@ -42,14 +42,21 @@ class RefreshTimer {
   }
 
   _refreshToken() async {
+    RefreshTokenRequest request = RefreshTokenRequest(
+        refreshToken: locator<AppStateValues>().refreshToken);
     RefreshTokenResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .refresh(
-                request: RefreshTokenRequest(
-                    refreshToken: locator<AppStateValues>().refreshToken))
+            .refresh(request: request)
             .onError((error, stackTrace) {
       return RefreshTokenResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "refresh_token",
+          "request": request.toString(),
+          "response_model": "RefreshTokenResponse"
+        },
+      ));
     });
 
     if (resp.status == "success") {

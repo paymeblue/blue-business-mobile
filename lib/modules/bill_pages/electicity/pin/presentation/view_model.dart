@@ -7,7 +7,7 @@ import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/bills/electricity/vend/request/vend_electricity_request.dart';
 import 'package:blue_business/core/models/bills/electricity/vend/response/vend_electricity_response.dart';
 import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
-import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
+import 'package:blue_business/core/models/security_question/get/data/get_question_data.dart';
 import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -35,8 +35,13 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goBack(BuildContext context, VerifyElectricityData data, double amount) {
-    context.pop();
+  goBack(BuildContext context) {
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      GoRouterState state = GoRouterState.of(context);
+      context.go(RoutePaths.reviewElectricityPath, extra: state.extra);
+    }
   }
 
   onButtonTap(
@@ -52,7 +57,14 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .vendElectricity(request)
             .onError((error, stackTrace) => VendElectricityResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "vend_electricity",
+                    "request": request.toString(),
+                    "response_model": "VendElectricityResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       if (context.mounted) {
@@ -84,13 +96,19 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getSecurityQuestion(stateValues.currentUser!.phone)
             .onError((error, stackTrace) => GetQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_security_question",
+                    "response_model": "GetQuestionResponse"
+                  },
+                )));
 
-    if (context.mounted) goToForgotPin(context, resp.data?.question);
+    if (context.mounted) goToForgotPin(context, resp.data);
     AppLoader.stop();
   }
 
-  goToForgotPin(BuildContext context, SecurityQuestion? question) {
+  goToForgotPin(BuildContext context, GetQuestionData? question) {
     GoRouterState state = GoRouterState.of(context);
     stateValues.resetPath = state.matchedLocation;
     stateValues.extra = state.extra;

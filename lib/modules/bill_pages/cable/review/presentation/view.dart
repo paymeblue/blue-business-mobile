@@ -49,7 +49,7 @@ class _ReviewCableViewState extends State<ReviewCableView> {
                   style: AppTextStyles.subHeader.copyWith(height: 1.2),
                 ),
                 Text(
-                  "${nairaSymbol()}${format.format(double.parse(widget.data.amount) + double.parse(widget.data.serviceCharge.toString()))}",
+                  "${nairaSymbol()}${format.format(double.parse(widget.data.amount.toString()) + double.parse(widget.data.serviceCharge.toString()))}",
                   style: AppTextStyles.header.copyWith(
                       fontSize: 26, fontWeight: FontWeight.w700, height: 1.2),
                 ),
@@ -73,12 +73,12 @@ class _ReviewCableViewState extends State<ReviewCableView> {
                 ...detailsSection(
                   title: "Amount",
                   detail:
-                      "${nairaSymbol()}${format.format(double.parse(widget.data.amount))}",
+                      "${nairaSymbol()}${format.format(double.parse(widget.data.amount.toString()))}",
                 ),
                 detailRow(
                   title: "Service charge",
                   detail:
-                      "${nairaSymbol()}${format.format(widget.data.serviceCharge)}",
+                      "${nairaSymbol()}${format.format(double.parse(widget.data.serviceCharge))}",
                 ),
                 const Spacer(),
                 AppButton.primary(

@@ -210,12 +210,15 @@ class _BranchService implements BranchService {
     required int id,
     required int page,
     required int limit,
+    String? role,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
       r'limit': limit,
+      r'role': role,
     };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
@@ -236,6 +239,36 @@ class _BranchService implements BranchService {
               baseUrl,
             ))));
     final value = GetStaffResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<BranchAnalyticsResponse> getAnalytics({
+    required int id,
+    required String type,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'time_interval': type};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BranchAnalyticsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/branches/${id}/analytics',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = BranchAnalyticsResponse.fromJson(_result.data!);
     return value;
   }
 

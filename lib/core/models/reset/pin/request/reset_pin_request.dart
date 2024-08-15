@@ -6,7 +6,6 @@ part 'reset_pin_request.g.dart';
 @freezed
 class ResetPinRequest with _$ResetPinRequest {
   const factory ResetPinRequest({
-    required String phone,
     required String newPin,
   }) = _ResetPinRequest;
 

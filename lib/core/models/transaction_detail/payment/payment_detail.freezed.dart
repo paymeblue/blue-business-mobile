@@ -20,7 +20,7 @@ PaymentDetail _$PaymentDetailFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PaymentDetail {
-  int get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get receiver => throw _privateConstructorUsedError;
   String get details => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $PaymentDetailCopyWith<$Res> {
       _$PaymentDetailCopyWithImpl<$Res, PaymentDetail>;
   @useResult
   $Res call(
-      {int id,
+      {String? id,
       String amount,
       String receiver,
       String details,
@@ -67,7 +67,7 @@ class _$PaymentDetailCopyWithImpl<$Res, $Val extends PaymentDetail>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? amount = null,
     Object? receiver = null,
     Object? details = null,
@@ -78,10 +78,10 @@ class _$PaymentDetailCopyWithImpl<$Res, $Val extends PaymentDetail>
     Object? status = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -127,7 +127,7 @@ abstract class _$$PaymentDetailImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {String? id,
       String amount,
       String receiver,
       String details,
@@ -149,7 +149,7 @@ class __$$PaymentDetailImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? amount = null,
     Object? receiver = null,
     Object? details = null,
@@ -160,10 +160,10 @@ class __$$PaymentDetailImplCopyWithImpl<$Res>
     Object? status = null,
   }) {
     return _then(_$PaymentDetailImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -218,7 +218,7 @@ class _$PaymentDetailImpl implements _PaymentDetail {
       _$$PaymentDetailImplFromJson(json);
 
   @override
-  final int id;
+  final String? id;
   @override
   final String amount;
   @override
@@ -284,7 +284,7 @@ class _$PaymentDetailImpl implements _PaymentDetail {
 
 abstract class _PaymentDetail implements PaymentDetail {
   const factory _PaymentDetail(
-      {required final int id,
+      {required final String? id,
       required final String amount,
       required final String receiver,
       required final String details,
@@ -298,7 +298,7 @@ abstract class _PaymentDetail implements PaymentDetail {
       _$PaymentDetailImpl.fromJson;
 
   @override
-  int get id;
+  String? get id;
   @override
   String get amount;
   @override

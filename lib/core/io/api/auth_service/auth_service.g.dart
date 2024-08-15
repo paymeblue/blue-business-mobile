@@ -470,21 +470,75 @@ class _AuthService implements AuthService {
   }
 
   @override
-  Future<SendNewPhoneResponse> forgotPinWithPhone(
-      SendPhoneRecoverPinRequest request) async {
+  Future<ChangePinResponse> changePin(ChangePinRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<SendNewPhoneResponse>(Options(
-      method: 'PATCH',
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ChangePinResponse>(Options(
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/pins/recover-by-phone',
+              '/pins/update',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ChangePinResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ForgotPinResponse> forgotPinWithPhone(
+      SendRecoverPinRequest request) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ForgotPinResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/pins/forgot',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ForgotPinResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendNewPhoneResponse> resendPinOtp({required String phone}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'recovery_phone': phone};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendNewPhoneResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/pins/resend-otp',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -494,6 +548,61 @@ class _AuthService implements AuthService {
               baseUrl,
             ))));
     final value = SendNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ResetPasswordResponse> verifyPinOtp(
+      {required VerifyForgotPinRequest request}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResetPasswordResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/pins/verify-otp',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ResetPasswordResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendQuestionResponse> resetPin(ResetPinRequest request) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendQuestionResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/pins/reset',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendQuestionResponse.fromJson(_result.data!);
     return value;
   }
 
@@ -521,61 +630,6 @@ class _AuthService implements AuthService {
               baseUrl,
             ))));
     final value = GetQuestionResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<SendQuestionResponse> sendSecurityAnswer(
-      SendQuestionRequest request) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = request;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<SendQuestionResponse>(Options(
-      method: 'PATCH',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/security-question/answer',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = SendQuestionResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<SendQuestionResponse> resetPin(ResetPinRequest request) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = request;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<SendQuestionResponse>(Options(
-      method: 'PATCH',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/pins/reset',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = SendQuestionResponse.fromJson(_result.data!);
     return value;
   }
 
@@ -686,6 +740,198 @@ class _AuthService implements AuthService {
               baseUrl,
             ))));
     final value = SendNewPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ChangePasswordResponse> changePassword(
+      ChangePasswordRequest request) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ChangePasswordResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/users/update-password',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ChangePasswordResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<DeleteResponse> deleteAccount(DeleteRequest request) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<DeleteResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/users/delete-accoun',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = DeleteResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<GetReasonResponse> getReasons() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<GetReasonResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/reasons',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = GetReasonResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<GetRecoveryCodeResponse> getRecoveryCode() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GetRecoveryCodeResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/recovery-info',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = GetRecoveryCodeResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ResetRecoveryCodeResponse> resetRecoveryCode() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResetRecoveryCodeResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/recovery-info/reset',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ResetRecoveryCodeResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SetRecoveryPhoneResponse> updateRecoveryPhone(
+      SetRecoveryPhoneRequest request) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SetRecoveryPhoneResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/recovery-info/set-recovery-phone',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SetRecoveryPhoneResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SendQuestionResponse> createSecurityQuestion(
+      CreateQuestionRequest request) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SendQuestionResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/security-info',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SendQuestionResponse.fromJson(_result.data!);
     return value;
   }
 

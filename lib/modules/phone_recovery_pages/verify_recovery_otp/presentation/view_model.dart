@@ -92,7 +92,13 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
             .resendRecoveryOtp(phone: data.newPhone)
             .onError((error, stackTrace) {
       return SendNewPhoneResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "resend_recovery_otp",
+          "response_model": "SendNewPhoneResponse"
+        },
+      ));
     });
 
     if (resp.status == "success") {
@@ -116,7 +122,14 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
             .verifyRecoveryOtp(reguest: request)
             .onError((error, stackTrace) {
       return VerifyNewPhoneResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "verify_recovery_otp",
+          "request": request.toString(),
+          "response_model": "VerifyNewPhoneResponse"
+        },
+      ));
     });
 
     if (resp.status == "success") {

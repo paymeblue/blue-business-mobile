@@ -34,7 +34,7 @@ class _ConfirmElectricityPinViewState extends State<ConfirmElectricityPinView> {
       builder: (context, model, _) {
         return Scaffold(
           appBar: BlueAppBar.primary(
-            onBackTap: () => model.goBack(context, widget.data, widget.amount),
+            onBackTap: () => model.goBack(context),
             icon: Icons.arrow_back_ios_new,
           ),
           body: Container(

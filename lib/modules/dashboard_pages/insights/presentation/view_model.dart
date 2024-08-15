@@ -1,9 +1,13 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/insights_service/insights_service.dart';
+import 'package:blue_business/core/io/api/staff_service/staff_service.dart';
+import 'package:blue_business/core/models/analytics/branch_data/branch_analytics_data.dart';
+import 'package:blue_business/core/models/analytics/branch_response/branch_analytics_response.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
@@ -17,6 +21,8 @@ import 'package:blue_business/core/models/spending_analytics/data/spending_analy
 import 'package:blue_business/core/models/spending_analytics/response/spending_analytics_response.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
+import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
+import 'package:blue_business/core/models/staff_roles/get/response/staff_role_response.dart';
 import 'package:blue_business/core/models/tab_item/tab_item.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -45,15 +51,19 @@ class InsightsViewModel extends BaseViewModel {
       getBranchStaff(pageKey);
     });
 
+    getRoles();
+
     await getAnalytics();
   }
 
   getAnalytics() async {
-    if (branch == null) {
+    if (currTab == 0) {
+      log(currTab.toString());
       getSalesAnalytics();
       await getLineChartData();
       await getSpending();
-    } else {
+    } else if (branch != null) {
+      getBranchLineChartData();
       getBranchSalesAnalytics();
     }
   }
@@ -154,7 +164,13 @@ class InsightsViewModel extends BaseViewModel {
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .getSpending(selectedType.toLowerCase())
         .onError((error, stackTrace) => SpendingAnalyticsResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_spending",
+                "response_model": "SpendingAnalyticsResponse"
+              },
+            )));
 
     if (response.status == "success") {
       totalSpending = double.parse(response.data!.mobileSum) +
@@ -179,7 +195,13 @@ class InsightsViewModel extends BaseViewModel {
           selectedType.toLowerCase(),
         )
         .onError((error, stackTrace) => SalesAnalyticsResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_sales",
+                "response_model": "SalesAnalyticsResponse"
+              },
+            )));
 
     if (response.status == "success") {
       if (selectedType == types[0]) {
@@ -224,14 +246,20 @@ class InsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getBranchSalesAnalytics() async {
+  getBranchLineChartData() async {
     salesState = FetchState.loading;
     SalesAnalyticsResponse response = await BranchService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .getBranchInsights(
             branchId: branch!.id, timeInterval: selectedType.toLowerCase())
         .onError((error, stackTrace) => SalesAnalyticsResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_branch_insights",
+                "response_model": "SalesAnalyticsResponse"
+              },
+            )));
 
     if (response.status == "success") {
       // salesData = response.data;
@@ -294,6 +322,13 @@ class InsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  BranchAnalyticsData? _dBranch;
+  BranchAnalyticsData? get branchSalesData => _dBranch;
+  set branchSalesData(BranchAnalyticsData? d) {
+    _dBranch = d;
+    notifyListeners();
+  }
+
   double _mIncrease = 0;
   double get mobileIncrease => _mIncrease;
   set mobileIncrease(double v) {
@@ -320,8 +355,14 @@ class InsightsViewModel extends BaseViewModel {
     AnalyticsResponse response = await InsightsService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .getAnalytics(selectedType.toLowerCase())
-        .onError((error, stackTrace) =>
-            AnalyticsResponse(message: AppErrorHandler.getErrorMessage(error)));
+        .onError((error, stackTrace) => AnalyticsResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_analytics",
+                "response_model": "AnalyticsResponse"
+              },
+            )));
 
     if (response.status == "success") {
       salesData = response.data;
@@ -330,6 +371,47 @@ class InsightsViewModel extends BaseViewModel {
       AppNotification.error(message: response.message);
     }
     salesLoading = false;
+  }
+
+  getBranchSalesAnalytics() async {
+    salesLoading = true;
+    BranchAnalyticsResponse response = await BranchService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getAnalytics(id: branch!.id, type: selectedType.toLowerCase())
+        .onError((error, stackTrace) => BranchAnalyticsResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_analytics",
+                "response_model": "AnalyticsResponse"
+              },
+            )));
+
+    if (response.status == "success") {
+      branchSalesData = response.data!;
+      calculateBranchIncrease();
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    salesLoading = false;
+  }
+
+  calculateBranchIncrease() {
+    double current =
+        double.parse(branchSalesData?.transaction.current ?? "0.0");
+    double previous =
+        double.parse(branchSalesData?.transaction.previous ?? "0.00");
+    final change = current - previous;
+
+    if (change == 0) {
+      totalIncrease = 0;
+    } else {
+      if (previous == 0) {
+        totalIncrease = change / 100;
+      } else {
+        totalIncrease = change / previous;
+      }
+    }
   }
 
   calculateIncrease() {
@@ -416,7 +498,13 @@ class InsightsViewModel extends BaseViewModel {
           )
           .onError(
             (error, stackTrace) => GetBranchesResponse(
-                message: AppErrorHandler.getErrorMessage(error)),
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_all_branches",
+                "response_model": "GetBranchesResponse"
+              },
+            )),
           );
 
       if (response.status == "success") {
@@ -443,10 +531,17 @@ class InsightsViewModel extends BaseViewModel {
             page: page,
             limit: 50,
             id: branch!.id,
+            role: role?.name,
           )
           .onError(
             (error, stackTrace) => GetStaffResponse(
-                message: AppErrorHandler.getErrorMessage(error)),
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_branch_staff",
+                "response_model": "GetStaffResponse"
+              },
+            )),
           );
 
       if (response.status == "success") {
@@ -462,6 +557,51 @@ class InsightsViewModel extends BaseViewModel {
       }
     } catch (e) {
       staffPagingController.error = AppErrorHandler.getErrorMessage(e);
+    }
+  }
+
+  FetchState _roleState = FetchState.complete;
+  FetchState get roleState => _roleState;
+  set roleState(FetchState value) {
+    _roleState = value;
+    notifyListeners();
+  }
+
+  List<StaffRole> _roles = [];
+  List<StaffRole> get roles => _roles;
+  set roles(List<StaffRole> value) {
+    _roles = value;
+    notifyListeners();
+  }
+
+  StaffRole? _role;
+  StaffRole? get role => _role;
+  set role(StaffRole? value) {
+    _role = value;
+    notifyListeners();
+  }
+
+  getRoles() async {
+    roleState = FetchState.loading;
+
+    GetStaffRoleResponse response =
+        await StaffService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getStaffRoles()
+            .onError((error, stacjtrace) => GetStaffRoleResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_staff_rles",
+                    "response_model": "GetStaffRoleResponse"
+                  },
+                )));
+
+    if (response.status == "success") {
+      roles = response.data!;
+      roleState = FetchState.complete;
+    } else {
+      roleState = FetchState.error;
+      AppNotification.error(message: response.message);
     }
   }
 }

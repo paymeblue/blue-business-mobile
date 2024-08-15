@@ -13,6 +13,7 @@ import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
 import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
 import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
+import 'package:blue_business/core/models/transaction_detail/payment/payment_detail.dart';
 import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
 import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
@@ -116,11 +117,17 @@ class HomeViewModel extends BaseViewModel {
   getWalletBalance() async {
     walletState = FetchState.loading;
 
-    WalletResponse resp = await DashService(
-            DioConfig.dio(locator<AppStateValues>().accessToken))
-        .getWalletDetails()
-        .onError((error, stackTrace) =>
-            WalletResponse(message: AppErrorHandler.getErrorMessage(error)));
+    WalletResponse resp =
+        await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getWalletDetails()
+            .onError((error, stackTrace) => WalletResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_wallet_details",
+                    "response_model": "WalletResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       walletState = FetchState.complete;
@@ -137,7 +144,13 @@ class HomeViewModel extends BaseViewModel {
         await DashService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getDashDetails()
             .onError((error, stackTrace) => BusinessDashResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_dash_details",
+                    "response_model": "BusinessDashResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       businessDataState = FetchState.complete;
@@ -197,8 +210,14 @@ class HomeViewModel extends BaseViewModel {
     AnalyticsResponse response = await InsightsService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .getAnalytics("weekly")
-        .onError((error, stackTrace) =>
-            AnalyticsResponse(message: AppErrorHandler.getErrorMessage(error)));
+        .onError((error, stackTrace) => AnalyticsResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_analytics",
+                "response_model": "AnalyticsResponse"
+              },
+            )));
 
     if (response.status == "success") {
       analyticsState = FetchState.complete;
@@ -309,25 +328,31 @@ class HomeViewModel extends BaseViewModel {
         )
       ];
 
-  getBillTransactionDetails(
+  getTransactionDetails(
       TransactionHistory transaction, BuildContext context) async {
     AppLoader.start();
 
     TransactionDetailResponse response = await TransactionService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
-        .getBillTransactionDetails(
-      transactionId: transaction.transactionId.toString(),
+        .getTransactionDetails(
+      transactionReference: transaction.transactionId.toString(),
       service: getService(transaction.paymentMode),
     )
         .onError((error, stackTrace) {
       return TransactionDetailResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "get_transaction_details",
+          "response_model": "TransactionDetailResponse"
+        },
+      ));
     });
 
     if (response.status == "success") {
       if (context.mounted) {
         handleDetailResponse(getService(transaction.paymentMode),
-            transaction.transactionType ?? 'debit', response, context);
+            transaction.transactionType, response, context);
       }
     } else {
       AppNotification.error(message: response.message);
@@ -338,7 +363,12 @@ class HomeViewModel extends BaseViewModel {
 
   handleDetailResponse(String mode, String type,
       TransactionDetailResponse response, BuildContext context) {
-    if (mode == "airtime") {
+    if (mode == "payment") {
+      PaymentDetail paymentDetail = PaymentDetail.fromJson(response.data);
+      context.push(
+          "${RoutePaths.transactionHistoryPath}/$mode/${paymentDetail.transactionId}/$type",
+          extra: paymentDetail);
+    } else if (mode == "airtime") {
       AirtimeDetails airtimeDetails = AirtimeDetails.fromJson(response.data);
       context.push(
           "${RoutePaths.transactionHistoryPath}/$mode/${airtimeDetails.transactionId}",

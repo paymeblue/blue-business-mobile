@@ -9,13 +9,13 @@ part of 'recovery_code_data.dart';
 _$GetRecoveryCodeDataImpl _$$GetRecoveryCodeDataImplFromJson(
         Map<String, dynamic> json) =>
     _$GetRecoveryCodeDataImpl(
-      id: json['id'] as int,
+      businessId: json['business_id'] as int,
       recoveryCode: json['recovery_code'] as String,
     );
 
 Map<String, dynamic> _$$GetRecoveryCodeDataImplToJson(
         _$GetRecoveryCodeDataImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'business_id': instance.businessId,
       'recovery_code': instance.recoveryCode,
     };

@@ -53,7 +53,13 @@ class EnterPasswordRecoveryPhoneViewModel extends BaseViewModel {
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .forgotPassword(formatPhone())
             .onError((error, stackTrace) => SendNewPhoneResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "forgot_password",
+                    "response_model": "SendNewPhoneResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);

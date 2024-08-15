@@ -55,7 +55,6 @@ class _SignupBusinessDetailsViewState extends State<SignupBusinessDetailsView> {
                         hint: "000000000",
                         controller: model.cacController,
                         onChanged: model.onChanged,
-                        keyboardType: TextInputType.number,
                       ),
                       20.verticalGap,
                       model.gettingCat

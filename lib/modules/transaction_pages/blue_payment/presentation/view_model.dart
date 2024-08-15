@@ -3,7 +3,9 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/beneficiary/blue_beneficiary.dart';
+import 'package:blue_business/core/models/beneficiary/get/response/get_beneficiary_response.dart';
 import 'package:blue_business/core/models/recently_paid/item/recently_paid_item.dart';
+import 'package:blue_business/core/models/recently_paid/response/recently_paid_response.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/verify/request/verified_receiver_request.dart';
 import 'package:blue_business/core/models/transaction/verify/response/verified_receiver_response.dart';
@@ -80,49 +82,61 @@ class BluePaymentViewModel extends BaseViewModel {
 
   int limit = 50;
   getBeneficiaries(int page) async {
-    // try {
-    //   GetBeneficiaryResponse resp = await TransactionService(
-    //           DioConfig.dio(locator<AppStateValues>().accessToken))
-    //       .searchBeneficiaries(
-    //     page,
-    //     limit,
-    //     query.isEmpty ? null : query,
-    //   )
-    //       .onError((error, stackTrace) {
-    //     return GetBeneficiaryResponse(
-    //         message: AppErrorHandler.getErrorMessage(error));
-    //   });
-    //   if (resp.status == "success") {
-    //     List<BlueBeneficiary> t = resp.data!.data;
+    try {
+      GetBeneficiaryResponse resp = await TransactionService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .searchBeneficiaries(
+        page,
+        limit,
+        query.isEmpty ? null : query,
+      )
+          .onError((error, stackTrace) {
+        return GetBeneficiaryResponse(
+            message: AppErrorHandler.getErrorMessage(
+          error,
+          {
+            "request_name": "search_beneficiary",
+            "response_model": "GetBeneficiaryResponse"
+          },
+        ));
+      });
+      if (resp.status == "success") {
+        List<BlueBeneficiary> t = resp.data;
 
-    //     if (resp.data!.loadMore) {
-    //       beneficiaryController.appendPage(t, page + 1);
-    //     } else {
-    //       beneficiaryController.appendLastPage(t);
-    //     }
-    //   } else {
-    //     beneficiaryController.error = resp.message;
-    //   }
-    // } catch (e) {
-    //   beneficiaryController.error = AppErrorHandler.getErrorMessage(e);
-    // }
+        if (resp.paginationInfo!.loadMore) {
+          beneficiaryController.appendPage(t, page + 1);
+        } else {
+          beneficiaryController.appendLastPage(t);
+        }
+      } else {
+        beneficiaryController.error = resp.message;
+      }
+    } catch (e) {
+      beneficiaryController.error = AppErrorHandler.getErrorMessage(e);
+    }
   }
 
   getRecentlyPaid() async {
-    // loading = true;
-    // RecentlyPaidResponse resp = await TransactionService(
-    //         DioConfig.dio(locator<AppStateValues>().accessToken))
-    //     .getRecentlyPaid()
-    //     .onError((error, stackTrace) {
-    //   return RecentlyPaidResponse(
-    //       message: AppErrorHandler.getErrorMessage(error));
-    // });
-    // if (resp.status == "success") {
-    //   recentlyPaidItems = resp.data!;
-    // } else {
-    //   AppNotification.error(message: resp.message);
-    // }
-    // loading = false;
+    loading = true;
+    RecentlyPaidResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getRecentlyPaid()
+        .onError((error, stackTrace) {
+      return RecentlyPaidResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "get_recently_paid",
+          "response_model": "RecentlyPaidResponse"
+        },
+      ));
+    });
+    if (resp.status == "success") {
+      recentlyPaidItems = resp.data!;
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+    loading = false;
   }
 
   onButtonTap(BuildContext context) {
@@ -145,7 +159,7 @@ class BluePaymentViewModel extends BaseViewModel {
     String identifier = identifierController.text;
     if (!identifierController.text.contains(RegExp(r'[A-Za-z]'))) {
       if (identifier.startsWith("0")) {
-        identifier = identifier.replaceFirst("0", "+234");
+        identifier = identifier.replaceFirst("0", "234");
       }
     }
     AppLoader.start();
@@ -160,7 +174,14 @@ class BluePaymentViewModel extends BaseViewModel {
         .verifyReceiver(request)
         .onError((error, stackTrace) {
       return VerifiedReceiverResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "verify_receiver",
+          "request": request.toString(),
+          "response_model": "VerifiedReceiverResponse"
+        },
+      ));
     });
 
     AppLoader.stop();
@@ -175,7 +196,7 @@ class BluePaymentViewModel extends BaseViewModel {
 
   onTapBeneficiaryTile(BlueBeneficiary item) {
     identifierController.text = item.identifier;
-    name = "${item.firstName} ${item.lastName}";
+    name = item.name;
     notifyListeners();
   }
 }

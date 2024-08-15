@@ -76,18 +76,22 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                   ),
                   25.verticalGap,
                   Expanded(
-                    child: RefreshIndicator(
-                      onRefresh: () async {
-                        model.getSalesAnalytics();
-                      },
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: [
-                          salesStatsContainer(model),
-                          15.verticalGap,
-                          staffList(model)
-                        ],
-                      ),
+                    child: ListView(
+                      children: [
+                        RefreshIndicator(
+                          onRefresh: () async {
+                            model.getAnalyticsData();
+                          },
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              salesStatsContainer(model),
+                            ],
+                          ),
+                        ),
+                        8.verticalGap,
+                        staffList(model)
+                      ],
                     ),
                   )
                 ],
@@ -200,7 +204,8 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                                             MainAxisAlignment.end,
                                         children: [
                                           Text(
-                                            "All roles",
+                                            (model.role?.name ?? "all roles")
+                                                .sentenceCase,
                                             style:
                                                 AppTextStyles.subText.copyWith(
                                               color: AppColors.blue,
@@ -218,7 +223,11 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                                         .map(
                                           (e) => PopupModel(
                                             title: e.name.sentenceCase,
-                                            onTap: () {},
+                                            onTap: () {
+                                              model.role = e;
+                                              model.staffPagingController
+                                                  .refresh();
+                                            },
                                           ),
                                         )
                                         .toList()),
@@ -325,7 +334,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                   child: Column(
                     children: [
                       Text(
-                        "${nairaSymbol()}${format.format(double.parse(model.salesData?.mobile.current ?? "0.0") + double.parse(model.salesData?.desktop.current ?? "0.0"))}",
+                        "${nairaSymbol()}${format.format(double.parse(model.salesData?.transaction.current ?? "0.0"))}",
                         style: AppTextStyles.header.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -338,7 +347,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${(model.totalIncrease * 100).abs()}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
+                          "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),
@@ -348,35 +357,35 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                   ),
                 ),
           if (model.inputData.isNotEmpty ||
-              model.salesState == FetchState.loading) ...[
+              model.lineState == FetchState.loading) ...[
             lineChart(model),
             20.verticalGap
           ],
-          model.salesState == FetchState.loading
-              ? salesAmountShimmer()
-              : Container(
-                  padding: const EdgeInsets.symmetric(vertical: 17),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.midGrey),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      analyticsColumn(
-                          title: "Point of Sales",
-                          amount: format.format(double.parse(
-                              model.salesData?.desktop.current ?? "0.00")),
-                          percentIncrease: model.desktopIncrease),
-                      analyticsColumn(
-                        title: "Mobile Account",
-                        amount: format.format(double.parse(
-                            model.salesData?.mobile.current ?? "0.00")),
-                        percentIncrease: model.mobileIncrease,
-                      ),
-                    ],
-                  ),
-                ),
+          // model.salesState == FetchState.loading
+          //     ? salesAmountShimmer()
+          //     : Container(
+          //         padding: const EdgeInsets.symmetric(vertical: 17),
+          //         decoration: BoxDecoration(
+          //           border: Border.all(color: AppColors.midGrey),
+          //           borderRadius: BorderRadius.circular(6),
+          //         ),
+          //         child: Row(
+          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //           children: [
+          //             analyticsColumn(
+          //                 title: "Point of Sales",
+          //                 amount: format.format(double.parse(
+          //                     model.salesData?.desktop.current ?? "0.00")),
+          //                 percentIncrease: model.desktopIncrease),
+          //             analyticsColumn(
+          //               title: "Mobile Account",
+          //               amount: format.format(double.parse(
+          //                   model.salesData?.mobile.current ?? "0.00")),
+          //               percentIncrease: model.mobileIncrease,
+          //             ),
+          //           ],
+          //         ),
+          //       ),
         ],
       ),
     );
@@ -417,7 +426,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
   }
 
   Widget lineChart(BranchInsightsViewModel model) {
-    if (model.salesState == FetchState.loading) {
+    if (model.lineState == FetchState.loading) {
       return Container(
         height: 120,
         alignment: Alignment.center,
@@ -470,7 +479,8 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text: "${percentIncrease.abs() * 100}% ",
+                        text:
+                            "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% ",
                         style: AppTextStyles.smallText.copyWith(
                           color: percentIncrease < 0
                               ? AppColors.error

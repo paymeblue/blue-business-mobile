@@ -20,7 +20,7 @@ PayData _$PayDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PayData {
-  String get id => throw _privateConstructorUsedError;
+  String get transactionId => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get receiverName => throw _privateConstructorUsedError;
   String get receiverWallet => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $PayDataCopyWith<$Res> {
       _$PayDataCopyWithImpl<$Res, PayData>;
   @useResult
   $Res call(
-      {String id,
+      {String transactionId,
       String amount,
       String receiverName,
       String receiverWallet,
@@ -61,7 +61,7 @@ class _$PayDataCopyWithImpl<$Res, $Val extends PayData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? transactionId = null,
     Object? amount = null,
     Object? receiverName = null,
     Object? receiverWallet = null,
@@ -70,9 +70,9 @@ class _$PayDataCopyWithImpl<$Res, $Val extends PayData>
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      transactionId: null == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
               as String,
       amount: null == amount
           ? _value.amount
@@ -110,7 +110,7 @@ abstract class _$$PayDataImplCopyWith<$Res> implements $PayDataCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
+      {String transactionId,
       String amount,
       String receiverName,
       String receiverWallet,
@@ -130,7 +130,7 @@ class __$$PayDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? transactionId = null,
     Object? amount = null,
     Object? receiverName = null,
     Object? receiverWallet = null,
@@ -139,9 +139,9 @@ class __$$PayDataImplCopyWithImpl<$Res>
     Object? createdAt = null,
   }) {
     return _then(_$PayDataImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      transactionId: null == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
               as String,
       amount: null == amount
           ? _value.amount
@@ -175,7 +175,7 @@ class __$$PayDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PayDataImpl implements _PayData {
   const _$PayDataImpl(
-      {required this.id,
+      {required this.transactionId,
       required this.amount,
       required this.receiverName,
       required this.receiverWallet,
@@ -187,7 +187,7 @@ class _$PayDataImpl implements _PayData {
       _$$PayDataImplFromJson(json);
 
   @override
-  final String id;
+  final String transactionId;
   @override
   final String amount;
   @override
@@ -203,7 +203,7 @@ class _$PayDataImpl implements _PayData {
 
   @override
   String toString() {
-    return 'PayData(id: $id, amount: $amount, receiverName: $receiverName, receiverWallet: $receiverWallet, reference: $reference, status: $status, createdAt: $createdAt)';
+    return 'PayData(transactionId: $transactionId, amount: $amount, receiverName: $receiverName, receiverWallet: $receiverWallet, reference: $reference, status: $status, createdAt: $createdAt)';
   }
 
   @override
@@ -211,7 +211,8 @@ class _$PayDataImpl implements _PayData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PayDataImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.receiverName, receiverName) ||
                 other.receiverName == receiverName) &&
@@ -226,8 +227,8 @@ class _$PayDataImpl implements _PayData {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, amount, receiverName,
-      receiverWallet, reference, status, createdAt);
+  int get hashCode => Object.hash(runtimeType, transactionId, amount,
+      receiverName, receiverWallet, reference, status, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -245,7 +246,7 @@ class _$PayDataImpl implements _PayData {
 
 abstract class _PayData implements PayData {
   const factory _PayData(
-      {required final String id,
+      {required final String transactionId,
       required final String amount,
       required final String receiverName,
       required final String receiverWallet,
@@ -256,7 +257,7 @@ abstract class _PayData implements PayData {
   factory _PayData.fromJson(Map<String, dynamic> json) = _$PayDataImpl.fromJson;
 
   @override
-  String get id;
+  String get transactionId;
   @override
   String get amount;
   @override

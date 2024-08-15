@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
-import 'package:blue_business/core/models/forgot_password/verify/request/verify_forgot_password_request.dart';
+import 'package:blue_business/core/models/forgot/password/verify/request/verify_forgot_password_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/signup/response/signup_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
@@ -91,11 +91,17 @@ class VerifyPasswordRecoveryOtpViewModel extends BaseViewModel {
   resendOtp() async {
     AppLoader.start();
 
-    SignupResponse resp = await AuthService(
-            DioConfig.dio(locator<AppStateValues>().accessToken))
-        .resendSignupOtp(phone: phone)
-        .onError((error, stackTrace) =>
-            SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
+    SignupResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resendSignupOtp(phone: phone)
+            .onError((error, stackTrace) => SignupResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "resend_signup_otp",
+                    "response_model": "SignupResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
@@ -116,7 +122,14 @@ class VerifyPasswordRecoveryOtpViewModel extends BaseViewModel {
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .verifyForgotPasswordOtp(request: request)
             .onError((error, stackTrace) => SendNewPhoneResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "verify_forgot_password",
+                    "request": request.toString(),
+                    "response_model": "SendNewPhoneResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);

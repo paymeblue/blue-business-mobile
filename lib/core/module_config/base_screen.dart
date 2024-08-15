@@ -1,4 +1,5 @@
 import 'package:blue_business/core/io/api/timed_refresh.dart';
+import 'package:blue_business/core/utils/connection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,8 @@ class _BaseViewState<T extends ChangeNotifier> extends State<BaseView<T>> {
     super.initState();
     model = widget.model;
 
+    ConnectionHelper.initialiseNetworkCheck();
+
     if (widget.onModelReady != null) {
       widget.onModelReady!(model);
     }
@@ -44,6 +47,8 @@ class _BaseViewState<T extends ChangeNotifier> extends State<BaseView<T>> {
     if (widget.onDispose != null) {
       widget.onDispose!(model);
     }
+
+    ConnectionHelper.subscription.cancel();
 
     super.dispose();
   }

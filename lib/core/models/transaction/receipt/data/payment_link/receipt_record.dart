@@ -7,11 +7,10 @@ part 'receipt_record.g.dart';
 class PaymentLinkReceiptRecord with _$PaymentLinkReceiptRecord {
   const factory PaymentLinkReceiptRecord({
     required int id,
+    required String transactionId,
     required String amount,
-    required String orderReference,
     required String receiverName,
-    required String receivedBy,
-    required String paymentMode,
+    required String phone,
     required String createdAt,
     @Default("pending") String status,
     String? senderName,

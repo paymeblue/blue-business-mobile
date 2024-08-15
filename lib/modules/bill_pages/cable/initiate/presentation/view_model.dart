@@ -29,7 +29,11 @@ class InitiateCableViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go(RoutePaths.billsPath);
+    }
   }
 
   onChanged(String? v) {
@@ -85,7 +89,13 @@ class InitiateCableViewModel extends BaseViewModel {
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getProviders("tv")
             .onError((error, stackTrace) => GetProvidersResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_tv_providers",
+                    "response_model": "GetProvidersResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       providersState = FetchState.complete;
@@ -123,7 +133,13 @@ class InitiateCableViewModel extends BaseViewModel {
                 providerNAme: selectedProvider!.name.toLowerCase(),
                 service: "tv")
             .onError((error, stackTrace) => GetPackagesResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_tv_packages",
+                    "response_model": "GetPackagesResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       packagesState = FetchState.complete;
@@ -163,7 +179,14 @@ class InitiateCableViewModel extends BaseViewModel {
         await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .verifyCableInfo(request)
             .onError((error, stackTrace) => VerifyCableResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "verify_cable_info",
+                    "request": request.toString(),
+                    "response_model": "VerifyCableResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       data = response.data;

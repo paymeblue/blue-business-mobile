@@ -10,11 +10,10 @@ _$PaymentLinkReceiptRecordImpl _$$PaymentLinkReceiptRecordImplFromJson(
         Map<String, dynamic> json) =>
     _$PaymentLinkReceiptRecordImpl(
       id: json['id'] as int,
+      transactionId: json['transaction_id'] as String,
       amount: json['amount'] as String,
-      orderReference: json['order_reference'] as String,
       receiverName: json['receiver_name'] as String,
-      receivedBy: json['received_by'] as String,
-      paymentMode: json['payment_mode'] as String,
+      phone: json['phone'] as String,
       createdAt: json['created_at'] as String,
       status: json['status'] as String? ?? "pending",
       senderName: json['sender_name'] as String?,
@@ -25,11 +24,10 @@ Map<String, dynamic> _$$PaymentLinkReceiptRecordImplToJson(
     _$PaymentLinkReceiptRecordImpl instance) {
   final val = <String, dynamic>{
     'id': instance.id,
+    'transaction_id': instance.transactionId,
     'amount': instance.amount,
-    'order_reference': instance.orderReference,
     'receiver_name': instance.receiverName,
-    'received_by': instance.receivedBy,
-    'payment_mode': instance.paymentMode,
+    'phone': instance.phone,
     'created_at': instance.createdAt,
     'status': instance.status,
   };

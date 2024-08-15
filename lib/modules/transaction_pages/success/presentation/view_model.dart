@@ -42,9 +42,13 @@ class SuccessViewModel extends BaseViewModel {
 
     ReceiptResponse resp = await TransactionService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
-        .getReceipt(data.id)
+        .getReceipt(data.transactionId)
         .onError((error, stackTrace) {
-      return ReceiptResponse(message: AppErrorHandler.getErrorMessage(error));
+      return ReceiptResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {"request_name": "get_receipt", "response_model": "ReceiptResponse"},
+      ));
     });
 
     if (resp.status == "success") {
@@ -69,8 +73,8 @@ class SuccessViewModel extends BaseViewModel {
       AppNotification.error(message: AppErrorHandler.getErrorMessage(onError));
     });
     if (img != null) {
-      XFile image =
-          XFile.fromData(img!, name: "receipt_${data.id}", mimeType: "png");
+      XFile image = XFile.fromData(img!,
+          name: "receipt_${data.transactionId}", mimeType: "png");
 
       Share.shareXFiles(
         [image],

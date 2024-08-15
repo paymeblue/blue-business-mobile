@@ -128,7 +128,7 @@ class _TransactionHistoryViewState extends State<TransactionHistoryView> {
                 4.verticalGap,
                 GestureDetector(
                   onTap: () {
-                    model.getBillTransactionDetails(item, context);
+                    model.getTransactionDetails(item, context);
                   },
                   child: TransationTile(
                     transaction: item,

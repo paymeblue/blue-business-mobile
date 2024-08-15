@@ -13,30 +13,21 @@ _$TransactionHistoryImpl _$$TransactionHistoryImplFromJson(
       otherPartyName: json['other_party_name'] as String,
       transactionAmount: json['transaction_amount'] as String,
       paymentMode: json['payment_mode'] as String,
-      transactionType: json['transaction_type'] as String?,
+      transactionType: json['transaction_type'] as String? ?? "debit",
       createdAt: json['created_at'] as String,
       status: json['status'] as String? ?? "pending",
       initials: json['initials'] as String? ?? "N/A",
     );
 
 Map<String, dynamic> _$$TransactionHistoryImplToJson(
-    _$TransactionHistoryImpl instance) {
-  final val = <String, dynamic>{
-    'transaction_id': instance.transactionId,
-    'other_party_name': instance.otherPartyName,
-    'transaction_amount': instance.transactionAmount,
-    'payment_mode': instance.paymentMode,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('transaction_type', instance.transactionType);
-  val['created_at'] = instance.createdAt;
-  val['status'] = instance.status;
-  val['initials'] = instance.initials;
-  return val;
-}
+        _$TransactionHistoryImpl instance) =>
+    <String, dynamic>{
+      'transaction_id': instance.transactionId,
+      'other_party_name': instance.otherPartyName,
+      'transaction_amount': instance.transactionAmount,
+      'payment_mode': instance.paymentMode,
+      'transaction_type': instance.transactionType,
+      'created_at': instance.createdAt,
+      'status': instance.status,
+      'initials': instance.initials,
+    };

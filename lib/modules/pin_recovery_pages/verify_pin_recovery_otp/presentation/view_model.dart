@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/models/forgot/pin/verify/request/verify_forgot_pin_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/reset/password/response/reset_password_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -92,29 +94,45 @@ class VerifyPinRecoveryOtpViewModel extends BaseViewModel {
 
   resendOtp() async {
     AppLoader.start();
-    // SendNewPhoneRequest request = SendNewPhoneRequest(phone: phone);
 
-    // SendNewPhoneResponse resp = await authService
-    //     .forgotPinWithPhone(request)
-    //     .onError((error, stackTrace) => SendNewPhoneResponse(
-    //         message: AppErrorHandler.getErrorMessage(error)));
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resendPinOtp(phone: phone)
+            .onError((error, stackTrace) => SendNewPhoneResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "forgot_pin_with_phone",
+                    "response_model": "SendNewPhoneResponse"
+                  },
+                )));
 
-    // if (resp.status == "success") {
-    //   AppNotification.success(message: resp.message);
-    //   startCountdown();
-    // } else {
-    //   AppNotification.error(message: resp.message);
-    // }
-    // AppLoader.stop();
+    if (resp.status == "success") {
+      AppNotification.success(message: resp.message);
+      startCountdown();
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+    AppLoader.stop();
   }
 
   verifyOtp(BuildContext context) async {
     AppLoader.start();
-    SendNewPhoneResponse resp =
+    VerifyForgotPinRequest request =
+        VerifyForgotPinRequest(otp: pin, recoveryPhone: phone);
+
+    ResetPasswordResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .verifyOtp(otp: pin, phone: phone.replaceFirst("+", ""))
-            .onError((error, stackTrace) => SendNewPhoneResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+            .verifyPinOtp(request: request)
+            .onError((error, stackTrace) => ResetPasswordResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "verify_otp",
+                    "request": request.toString(),
+                    "response_model": "ResetPasswordResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);

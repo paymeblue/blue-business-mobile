@@ -46,7 +46,7 @@ class _AddWithdrawalDetailsViewState extends State<AddWithdrawalDetailsView> {
                 AppButton.primary(
                   title: "Link Account",
                   isEnabled: model.isActive(),
-                  onTap: () {},
+                  onTap: model.setAccount,
                 )
               ],
             ),
@@ -63,11 +63,30 @@ class _AddWithdrawalDetailsViewState extends State<AddWithdrawalDetailsView> {
             ? BlueLoadingTile.withoutImage()
             : bankDropdown(model),
         20.verticalGap,
-        BlueTextField.plaintext(
-          hint: "1234554321",
-          title: "Bank account number",
-          onChanged: model.onAccountNumberChanged,
-          controller: model.accountNumberController,
+        Row(
+          children: [
+            Expanded(
+              child: BlueTextField.plaintext(
+                hint: "1234554321",
+                title: "Bank account number",
+                onChanged: model.onAccountNumberChanged,
+                controller: model.accountNumberController,
+              ),
+            ),
+            6.horizontalGap,
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: SizedBox(
+                height: 35,
+                width: 110,
+                child: AppButton.ghost(
+                  title: "Verify",
+                  isEnabled: model.canVerify(),
+                  onTap: model.verifyAccount,
+                ),
+              ),
+            )
+          ],
         ),
         if (model.verifyingAccount)
           Text(

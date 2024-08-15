@@ -16,7 +16,7 @@ _$VerifyCableDataImpl _$$VerifyCableDataImplFromJson(
       provider: json['provider'] as String,
       package: json['package'] as String,
       serviceCharge: json['service_charge'] as String? ?? "100.00",
-      amount: json['amount'] as String? ?? ".00",
+      amount: json['amount'] as String? ?? "0.00",
       status: json['status'] as String? ?? "pending",
       createdAt: json['created_at'] as String?,
     );

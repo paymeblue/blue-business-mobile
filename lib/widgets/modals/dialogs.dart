@@ -1,3 +1,4 @@
+import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/reason/reason.dart';
@@ -113,18 +114,17 @@ class BlueDialog {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      height: 38,
-                      width: 38,
+                      height: 32,
+                      width: 32,
                       margin: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.all(6),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: AppColors.error.withOpacity(.15),
                       ),
                       child: AppAssets.images.icons.delete.svg(),
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    15.verticalGap,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
@@ -135,18 +135,17 @@ class BlueDialog {
                             color: AppColors.textColor),
                       ),
                     ),
-                    const SizedBox(
-                      height: 4,
-                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
                         "Please select a reason for deleting your account and leaving us",
                         style: AppTextStyles.subText.copyWith(
-                            fontSize: 13.5, fontWeight: FontWeight.w400),
+                            fontSize: 13.5,
+                            fontWeight: FontWeight.w400,
+                            height: 1.2),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    16.verticalGap,
                     Expanded(
                         child: ListView.builder(
                             itemCount: reasons.length,

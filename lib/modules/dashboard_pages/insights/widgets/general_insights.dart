@@ -1,7 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
-import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/modules/dashboard_pages/insights/presentation/view_model.dart';
 import 'package:blue_business/widgets/charts/line_chart.dart';
@@ -10,6 +9,7 @@ import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class GeneralInsightsPage extends StatefulWidget {
@@ -22,41 +22,38 @@ class GeneralInsightsPage extends StatefulWidget {
 class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
   @override
   Widget build(BuildContext context) {
-    return BaseView<InsightsViewModel>(
-        model: InsightsViewModel(),
-        onModelReady: (model) => model.init(context),
-        builder: (context, model, _) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
+    return Consumer<InsightsViewModel>(builder: (context, model, _) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
+        child: Column(
+          children: [
+            FilterTab(
+              selectedValue: model.selectedType,
+              tabs: model.types,
+              onChanged: model.onTypeChanged,
             ),
-            child: Column(
-              children: [
-                FilterTab(
-                  selectedValue: model.selectedType,
-                  tabs: model.types,
-                  onChanged: model.onTypeChanged,
+            25.verticalGap,
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  model.getAnalytics();
+                },
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    salesStatsContainer(model),
+                    15.verticalGap,
+                    spendingStatsContainer(model),
+                  ],
                 ),
-                25.verticalGap,
-                Expanded(
-                  child: RefreshIndicator(
-                    onRefresh: () async {
-                      model.getAnalytics();
-                    },
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: [
-                        salesStatsContainer(model),
-                        15.verticalGap,
-                        spendingStatsContainer(model),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          );
-        });
+              ),
+            )
+          ],
+        ),
+      );
+    });
   }
 
   Widget salesStatsContainer(InsightsViewModel model) {
@@ -108,7 +105,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${(model.totalIncrease * 100).abs()}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
+                          "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),
@@ -350,7 +347,8 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text: "${percentIncrease.abs() * 100}% ",
+                        text:
+                            "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% ",
                         style: AppTextStyles.smallText.copyWith(
                           color: percentIncrease < 0
                               ? AppColors.error

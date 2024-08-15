@@ -45,7 +45,14 @@ class PinViewModel extends BaseViewModel {
     CompleteRegistrationResponse response = await AuthService(DioConfig.dio())
         .completeRegistration(request: request)
         .onError((error, stackTrace) => CompleteRegistrationResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "complete_registration",
+                "request": request.toString(),
+                "response_model": "CompleteRegistrationResponse"
+              },
+            )));
 
     if (response.status == "success") {
       StorageValues.deleteLoginValues();

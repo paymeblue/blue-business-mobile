@@ -122,7 +122,7 @@ class TransationTile extends StatelessWidget {
   }
 
   TransactionType getTransactionType() {
-    switch (transaction.transactionType?.toLowerCase()) {
+    switch (transaction.transactionType.toLowerCase()) {
       case "credit":
         return TransactionType.credit;
       case "debit":

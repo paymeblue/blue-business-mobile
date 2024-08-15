@@ -20,7 +20,10 @@ VerifyPayoutData _$VerifyPayoutDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$VerifyPayoutData {
-  VerifyPayoutAccount get account => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get reference => throw _privateConstructorUsedError;
+  String get accountNumber => throw _privateConstructorUsedError;
+  String get accountName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +37,8 @@ abstract class $VerifyPayoutDataCopyWith<$Res> {
           VerifyPayoutData value, $Res Function(VerifyPayoutData) then) =
       _$VerifyPayoutDataCopyWithImpl<$Res, VerifyPayoutData>;
   @useResult
-  $Res call({VerifyPayoutAccount account});
-
-  $VerifyPayoutAccountCopyWith<$Res> get account;
+  $Res call(
+      {int id, String reference, String accountNumber, String accountName});
 }
 
 /// @nodoc
@@ -52,22 +54,29 @@ class _$VerifyPayoutDataCopyWithImpl<$Res, $Val extends VerifyPayoutData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? account = null,
+    Object? id = null,
+    Object? reference = null,
+    Object? accountNumber = null,
+    Object? accountName = null,
   }) {
     return _then(_value.copyWith(
-      account: null == account
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as VerifyPayoutAccount,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      reference: null == reference
+          ? _value.reference
+          : reference // ignore: cast_nullable_to_non_nullable
+              as String,
+      accountNumber: null == accountNumber
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      accountName: null == accountName
+          ? _value.accountName
+          : accountName // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $VerifyPayoutAccountCopyWith<$Res> get account {
-    return $VerifyPayoutAccountCopyWith<$Res>(_value.account, (value) {
-      return _then(_value.copyWith(account: value) as $Val);
-    });
   }
 }
 
@@ -79,10 +88,8 @@ abstract class _$$VerifyPayoutDataImplCopyWith<$Res>
       __$$VerifyPayoutDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({VerifyPayoutAccount account});
-
-  @override
-  $VerifyPayoutAccountCopyWith<$Res> get account;
+  $Res call(
+      {int id, String reference, String accountNumber, String accountName});
 }
 
 /// @nodoc
@@ -96,13 +103,28 @@ class __$$VerifyPayoutDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? account = null,
+    Object? id = null,
+    Object? reference = null,
+    Object? accountNumber = null,
+    Object? accountName = null,
   }) {
     return _then(_$VerifyPayoutDataImpl(
-      account: null == account
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as VerifyPayoutAccount,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      reference: null == reference
+          ? _value.reference
+          : reference // ignore: cast_nullable_to_non_nullable
+              as String,
+      accountNumber: null == accountNumber
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      accountName: null == accountName
+          ? _value.accountName
+          : accountName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -110,17 +132,27 @@ class __$$VerifyPayoutDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$VerifyPayoutDataImpl implements _VerifyPayoutData {
-  const _$VerifyPayoutDataImpl({required this.account});
+  const _$VerifyPayoutDataImpl(
+      {required this.id,
+      required this.reference,
+      required this.accountNumber,
+      required this.accountName});
 
   factory _$VerifyPayoutDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$VerifyPayoutDataImplFromJson(json);
 
   @override
-  final VerifyPayoutAccount account;
+  final int id;
+  @override
+  final String reference;
+  @override
+  final String accountNumber;
+  @override
+  final String accountName;
 
   @override
   String toString() {
-    return 'VerifyPayoutData(account: $account)';
+    return 'VerifyPayoutData(id: $id, reference: $reference, accountNumber: $accountNumber, accountName: $accountName)';
   }
 
   @override
@@ -128,12 +160,19 @@ class _$VerifyPayoutDataImpl implements _VerifyPayoutData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VerifyPayoutDataImpl &&
-            (identical(other.account, account) || other.account == account));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.reference, reference) ||
+                other.reference == reference) &&
+            (identical(other.accountNumber, accountNumber) ||
+                other.accountNumber == accountNumber) &&
+            (identical(other.accountName, accountName) ||
+                other.accountName == accountName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, account);
+  int get hashCode =>
+      Object.hash(runtimeType, id, reference, accountNumber, accountName);
 
   @JsonKey(ignore: true)
   @override
@@ -152,13 +191,22 @@ class _$VerifyPayoutDataImpl implements _VerifyPayoutData {
 
 abstract class _VerifyPayoutData implements VerifyPayoutData {
   const factory _VerifyPayoutData(
-      {required final VerifyPayoutAccount account}) = _$VerifyPayoutDataImpl;
+      {required final int id,
+      required final String reference,
+      required final String accountNumber,
+      required final String accountName}) = _$VerifyPayoutDataImpl;
 
   factory _VerifyPayoutData.fromJson(Map<String, dynamic> json) =
       _$VerifyPayoutDataImpl.fromJson;
 
   @override
-  VerifyPayoutAccount get account;
+  int get id;
+  @override
+  String get reference;
+  @override
+  String get accountNumber;
+  @override
+  String get accountName;
   @override
   @JsonKey(ignore: true)
   _$$VerifyPayoutDataImplCopyWith<_$VerifyPayoutDataImpl> get copyWith =>

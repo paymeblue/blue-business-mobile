@@ -44,7 +44,7 @@ class BeneficiaryTile extends StatelessWidget {
           BlueDialog.primary(
             title: "Delete beneficiary",
             subtitle:
-                "Are you sure you want to remove ${beneficiary.firstName} as a beneficiary?",
+                "Are you sure you want to remove ${beneficiary.name} as a beneficiary?",
             onDelete: onDelete!,
           );
         },
@@ -66,7 +66,7 @@ class BeneficiaryTile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "${beneficiary.firstName} ${beneficiary.lastName}",
+          beneficiary.name,
           style: AppTextStyles.header.copyWith(fontSize: 15.5),
         ),
         4.verticalGap,

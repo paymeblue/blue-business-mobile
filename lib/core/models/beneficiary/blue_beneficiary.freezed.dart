@@ -20,9 +20,8 @@ BlueBeneficiary _$BlueBeneficiaryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BlueBeneficiary {
-  String get id => throw _privateConstructorUsedError;
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get identifier => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +36,7 @@ abstract class $BlueBeneficiaryCopyWith<$Res> {
           BlueBeneficiary value, $Res Function(BlueBeneficiary) then) =
       _$BlueBeneficiaryCopyWithImpl<$Res, BlueBeneficiary>;
   @useResult
-  $Res call({String id, String firstName, String lastName, String identifier});
+  $Res call({int id, String name, String identifier});
 }
 
 /// @nodoc
@@ -54,22 +53,17 @@ class _$BlueBeneficiaryCopyWithImpl<$Res, $Val extends BlueBeneficiary>
   @override
   $Res call({
     Object? id = null,
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? name = null,
     Object? identifier = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       identifier: null == identifier
           ? _value.identifier
@@ -87,7 +81,7 @@ abstract class _$$BlueBeneficiaryImplCopyWith<$Res>
       __$$BlueBeneficiaryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String firstName, String lastName, String identifier});
+  $Res call({int id, String name, String identifier});
 }
 
 /// @nodoc
@@ -102,22 +96,17 @@ class __$$BlueBeneficiaryImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? name = null,
     Object? identifier = null,
   }) {
     return _then(_$BlueBeneficiaryImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       identifier: null == identifier
           ? _value.identifier
@@ -131,26 +120,21 @@ class __$$BlueBeneficiaryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BlueBeneficiaryImpl implements _BlueBeneficiary {
   const _$BlueBeneficiaryImpl(
-      {required this.id,
-      required this.firstName,
-      required this.lastName,
-      required this.identifier});
+      {required this.id, required this.name, required this.identifier});
 
   factory _$BlueBeneficiaryImpl.fromJson(Map<String, dynamic> json) =>
       _$$BlueBeneficiaryImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
-  final String firstName;
-  @override
-  final String lastName;
+  final String name;
   @override
   final String identifier;
 
   @override
   String toString() {
-    return 'BlueBeneficiary(id: $id, firstName: $firstName, lastName: $lastName, identifier: $identifier)';
+    return 'BlueBeneficiary(id: $id, name: $name, identifier: $identifier)';
   }
 
   @override
@@ -159,18 +143,14 @@ class _$BlueBeneficiaryImpl implements _BlueBeneficiary {
         (other.runtimeType == runtimeType &&
             other is _$BlueBeneficiaryImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.identifier, identifier) ||
                 other.identifier == identifier));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, firstName, lastName, identifier);
+  int get hashCode => Object.hash(runtimeType, id, name, identifier);
 
   @JsonKey(ignore: true)
   @override
@@ -189,20 +169,17 @@ class _$BlueBeneficiaryImpl implements _BlueBeneficiary {
 
 abstract class _BlueBeneficiary implements BlueBeneficiary {
   const factory _BlueBeneficiary(
-      {required final String id,
-      required final String firstName,
-      required final String lastName,
+      {required final int id,
+      required final String name,
       required final String identifier}) = _$BlueBeneficiaryImpl;
 
   factory _BlueBeneficiary.fromJson(Map<String, dynamic> json) =
       _$BlueBeneficiaryImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
-  String get firstName;
-  @override
-  String get lastName;
+  String get name;
   @override
   String get identifier;
   @override

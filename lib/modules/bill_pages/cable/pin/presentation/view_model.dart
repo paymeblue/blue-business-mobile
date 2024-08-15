@@ -7,7 +7,7 @@ import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/bills/cable/vend/request/vend_cable_request.dart';
 import 'package:blue_business/core/models/bills/cable/vend/response/vend_cable_response.dart';
 import 'package:blue_business/core/models/bills/cable/verify/data/verify_cable_data.dart';
-import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
+import 'package:blue_business/core/models/security_question/get/data/get_question_data.dart';
 import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -36,7 +36,12 @@ class ConfirmCablePinViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      GoRouterState state = GoRouterState.of(context);
+      context.go(RoutePaths.reviewCablePath, extra: state.extra);
+    }
   }
 
   onButtonTap(BuildContext context, VerifyCableData data) async {
@@ -47,11 +52,18 @@ class ConfirmCablePinViewModel extends BaseViewModel {
       passcode: pin,
     );
 
-    VendCableResponse response = await BillsService(
-            DioConfig.dio(locator<AppStateValues>().accessToken))
-        .vendCable(request)
-        .onError((error, stackTrace) =>
-            VendCableResponse(message: AppErrorHandler.getErrorMessage(error)));
+    VendCableResponse response =
+        await BillsService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .vendCable(request)
+            .onError((error, stackTrace) => VendCableResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "vend_cable",
+                    "request": request.toString(),
+                    "response_model": "VendCableResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       if (context.mounted) {
@@ -82,13 +94,19 @@ class ConfirmCablePinViewModel extends BaseViewModel {
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getSecurityQuestion(stateValues.currentUser!.phone)
             .onError((error, stackTrace) => GetQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_security_question",
+                    "response_model": "GetQuestionResponse"
+                  },
+                )));
 
-    if (context.mounted) goToForgotPin(context, resp.data?.question);
+    if (context.mounted) goToForgotPin(context, resp.data);
     AppLoader.stop();
   }
 
-  goToForgotPin(BuildContext context, SecurityQuestion? question) {
+  goToForgotPin(BuildContext context, GetQuestionData? question) {
     GoRouterState state = GoRouterState.of(context);
     stateValues.resetPath = state.matchedLocation;
     stateValues.extra = state.extra;

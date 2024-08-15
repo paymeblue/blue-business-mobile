@@ -58,7 +58,14 @@ class QrPaymentViewModel extends BaseViewModel {
         .verifyReceiver(request)
         .onError((error, stackTrace) {
       return VerifiedReceiverResponse(
-          message: AppErrorHandler.getErrorMessage(error));
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "verify_receiver",
+          "request": request.toString(),
+          "response_model": "VerifiedReceiverResponse"
+        },
+      ));
     });
 
     AppLoader.stop();

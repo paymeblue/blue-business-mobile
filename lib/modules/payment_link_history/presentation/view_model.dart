@@ -2,12 +2,18 @@ import 'dart:typed_data';
 
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/payment_link/payment_link.dart';
+import 'package:blue_business/core/models/payment_link/response/payment_link_response.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
-import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
+import 'package:blue_business/core/models/transaction/receipt/data/payment_link/receipt_record.dart';
+import 'package:blue_business/core/models/transaction/receipt/response/paymentLink/receipt_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:blue_business/widgets/modals/toast.dart';
@@ -72,7 +78,40 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
   PagingController<int, PaymentLinkItem> paymentLinkController =
       PagingController<int, PaymentLinkItem>(firstPageKey: 1);
 
-  List<String> statusList = ["All", "Sent", "Withdrawn", "Cancelled"];
+  int limit = 50;
+  getPaymentLinkHistory(int page) async {
+    try {
+      PaymentLinkResponse resp = await TransactionService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .getPaymentLinkHistory(page, limit, getStatus(selectedStatus))
+          .onError((error, stackTrace) {
+        return PaymentLinkResponse(
+            message: AppErrorHandler.getErrorMessage(
+          error,
+          {
+            "request_name": "get_payment_link_history",
+            "response_model": "PaymentLinkResponse"
+          },
+        ));
+      });
+
+      if (resp.status != "success") {
+        paymentLinkController.error = resp.message;
+      } else {
+        List<PaymentLinkItem> i = resp.data!.data;
+
+        if (resp.data!.loadMore) {
+          paymentLinkController.appendPage(i, page + 1);
+        } else {
+          paymentLinkController.appendLastPage(i);
+        }
+      }
+    } catch (e) {
+      paymentLinkController.error = AppErrorHandler.getErrorMessage(e);
+    }
+  }
+
+  List<String> statusList = ["All", "Sent", "Withdrawn", "Reversed"];
 
   bool showDate(int i) {
     PaymentLinkItem transaction = paymentLinkController.itemList![i];
@@ -89,13 +128,6 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
         (previousDate.day != currentDate.day);
   }
 
-  int limit = 50;
-  getPaymentLinkHistory(int page) async {
-    try {} catch (e) {
-      paymentLinkController.error = AppErrorHandler.getErrorMessage(e);
-    }
-  }
-
   String getStatus(String v) {
     if (v.toLowerCase() == "sent") {
       v = "fulfilled";
@@ -103,14 +135,41 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
     return v.toLowerCase();
   }
 
-  ReceiptData? _r;
-  ReceiptData? get receipt => _r;
-  set receipt(ReceiptData? r) {
+  PaymentLinkReceiptRecord? _r;
+  PaymentLinkReceiptRecord? get receipt => _r;
+  set receipt(PaymentLinkReceiptRecord? r) {
     _r = r;
     notifyListeners();
   }
 
-  getTransactionReceipt(PaymentLinkItem data) async {}
+  getTransactionReceipt(PaymentLinkItem data) async {
+    AppLoader.start();
+
+    PaymentLinkReceiptResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getPaymentLinkReceipt(data.transactionId)
+        .onError((error, stackTrace) {
+      return PaymentLinkReceiptResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "get_receipt",
+          "response_model": "PaymentLinkReceiptResponse"
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      receipt = resp.data;
+      await Future.delayed(const Duration(milliseconds: 350), () {
+        downloadAndShareQr(data);
+      });
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    AppLoader.stop();
+  }
 
   ScreenshotController screenshotController = ScreenshotController();
 

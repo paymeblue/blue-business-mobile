@@ -42,8 +42,6 @@ Future handleForegroundMessages(RemoteMessage message) async {
       });
     }
   } else {
-    // stateValues.isKycComplete = data["kyc_status"].toString() == "1";
-
     AppNotification.notification(
       title: message.notification!.title,
       message: message.notification!.body,

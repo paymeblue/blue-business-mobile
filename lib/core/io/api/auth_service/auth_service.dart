@@ -1,9 +1,18 @@
 import 'package:blue_business/core/models/business_category/response/business_category_response.dart';
+import 'package:blue_business/core/models/change_password/request/change_password_request.dart';
+import 'package:blue_business/core/models/change_password/response/change_password_response.dart';
+import 'package:blue_business/core/models/change_pin/request/change_pin_request.dart';
+import 'package:blue_business/core/models/change_pin/response/change_pin_response.dart';
 import 'package:blue_business/core/models/complete_registration/request/complete_registration_request.dart';
 import 'package:blue_business/core/models/complete_registration/response/complete_registration_response.dart';
 import 'package:blue_business/core/models/create_business_profile/request/create_business_profile_request.dart';
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
-import 'package:blue_business/core/models/forgot_password/verify/request/verify_forgot_password_request.dart';
+import 'package:blue_business/core/models/delete_account/delete/request/delete_request.dart';
+import 'package:blue_business/core/models/delete_account/delete/response/delete_response.dart';
+import 'package:blue_business/core/models/delete_account/get_reasons/response/get_reason_response.dart';
+import 'package:blue_business/core/models/forgot/password/verify/request/verify_forgot_password_request.dart';
+import 'package:blue_business/core/models/forgot/pin/verify/request/verify_forgot_pin_request.dart';
+import 'package:blue_business/core/models/forgot_pin/response/forgot_pin_response.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
 import 'package:blue_business/core/models/recover_phone/add/request/recover_phone_request.dart';
@@ -11,13 +20,18 @@ import 'package:blue_business/core/models/recover_phone/add/response/recover_pho
 import 'package:blue_business/core/models/recover_phone/verify/request/verify_new_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/verify/response/verify_new_phone_response.dart';
 import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
+import 'package:blue_business/core/models/recovery_code/get/response/recovery_code_response.dart';
+import 'package:blue_business/core/models/recovery_code/reset/response/recovery_code_response.dart';
 import 'package:blue_business/core/models/recovery_code/send/response/recovery_code_response.dart';
+import 'package:blue_business/core/models/recovery_phone/set/request/recovery_phone_request.dart';
+import 'package:blue_business/core/models/recovery_phone/set/response/recovery_phone_response.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
 import 'package:blue_business/core/models/reset/password/request/reset_password_request.dart';
+import 'package:blue_business/core/models/reset/password/response/reset_password_response.dart';
 import 'package:blue_business/core/models/reset/pin/request/reset_pin_request.dart';
+import 'package:blue_business/core/models/security_question/create/request/create_question_request.dart';
 import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
-import 'package:blue_business/core/models/security_question/send/request/send_question_request.dart';
 import 'package:blue_business/core/models/security_question/send/response/send_question_request.dart';
 import 'package:blue_business/core/models/shareholders/add/request/add_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/request/create_shareholders_request.dart';
@@ -109,19 +123,27 @@ abstract class AuthService {
     @Body() required VerifyForgotPasswordRequest request,
   });
 
-  @PATCH("/pins/recover-by-phone")
-  Future<SendNewPhoneResponse> forgotPinWithPhone(
-      @Body() SendPhoneRecoverPinRequest request);
+  @POST("/pins/update")
+  Future<ChangePinResponse> changePin(@Body() ChangePinRequest request);
+
+  @POST("/pins/forgot")
+  Future<ForgotPinResponse> forgotPinWithPhone(
+      @Body() SendRecoverPinRequest request);
+
+  @GET("/pins/resend-otp")
+  Future<SendNewPhoneResponse> resendPinOtp(
+      {@Query("recovery_phone") required String phone});
+
+  @POST("/pins/verify-otp")
+  Future<ResetPasswordResponse> verifyPinOtp({
+    @Body() required VerifyForgotPinRequest request,
+  });
+
+  @POST("/pins/reset")
+  Future<SendQuestionResponse> resetPin(@Body() ResetPinRequest request);
 
   @GET("/security-info")
   Future<GetQuestionResponse> getSecurityQuestion(@Query("phone") String phone);
-
-  @PATCH("/security-question/answer")
-  Future<SendQuestionResponse> sendSecurityAnswer(
-      @Body() SendQuestionRequest request);
-
-  @PATCH("/pins/reset")
-  Future<SendQuestionResponse> resetPin(@Body() ResetPinRequest request);
 
   @GET("/recovery-info/verify")
   Future<SendRecoveryCodeResponse> verifyRecoveryCode(
@@ -141,4 +163,28 @@ abstract class AuthService {
   Future<SendNewPhoneResponse> resendRecoveryOtp({
     @Query("phone") required String phone,
   });
+
+  @POST("/users/update-password")
+  Future<ChangePasswordResponse> changePassword(
+      @Body() ChangePasswordRequest request);
+
+  @POST("/users/delete-accoun")
+  Future<DeleteResponse> deleteAccount(@Body() DeleteRequest request);
+
+  @GET("/reasons")
+  Future<GetReasonResponse> getReasons();
+
+  @GET("/recovery-info")
+  Future<GetRecoveryCodeResponse> getRecoveryCode();
+
+  @GET("/recovery-info/reset")
+  Future<ResetRecoveryCodeResponse> resetRecoveryCode();
+
+  @POST("/recovery-info/set-recovery-phone")
+  Future<SetRecoveryPhoneResponse> updateRecoveryPhone(
+      @Body() SetRecoveryPhoneRequest request);
+
+  @POST("/security-info")
+  Future<SendQuestionResponse> createSecurityQuestion(
+      @Body() CreateQuestionRequest request);
 }

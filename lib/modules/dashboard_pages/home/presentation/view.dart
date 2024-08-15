@@ -81,7 +81,6 @@ class _HomeViewState extends State<HomeView> {
 
   Widget walletSection(HomeViewModel model) {
     return SizedBox(
-      height: 180,
       child: RefreshIndicator(
         onRefresh: () async {
           model.refreshWalletContainer();
@@ -164,7 +163,7 @@ class _HomeViewState extends State<HomeView> {
                     itemBuilder: (context, item, i) {
                       return GestureDetector(
                         onTap: () {
-                          model.getBillTransactionDetails(item, context);
+                          model.getTransactionDetails(item, context);
                         },
                         child: TransationTile(
                           transaction: item,
@@ -209,7 +208,6 @@ class _HomeViewState extends State<HomeView> {
           8.verticalGap,
           Container(
             width: model.size.width,
-            height: 100,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.midGrey),
@@ -227,13 +225,13 @@ class _HomeViewState extends State<HomeView> {
                       analyticsColumn(
                         title: "Point of Sales",
                         amount: format.format(double.parse(
-                            model.analyticsData?.desktop.total ?? "0.00")),
+                            model.analyticsData?.desktop.current ?? "0.00")),
                         percentIncrease: model.desktopIncrease,
                       ),
                       analyticsColumn(
                         title: "Mobile Account",
                         amount: format.format(double.parse(
-                            model.analyticsData?.mobile.total ?? "0.00")),
+                            model.analyticsData?.mobile.current ?? "0.00")),
                         percentIncrease: model.mobileIncrease,
                       ),
                     ],
@@ -254,7 +252,6 @@ class _HomeViewState extends State<HomeView> {
   }) =>
       Container(
         width: (context.mediaQuery.size.width - 65) / 2,
-        height: 80,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -286,7 +283,8 @@ class _HomeViewState extends State<HomeView> {
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text: "${percentIncrease.abs() * 100}% ",
+                        text:
+                            "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% ",
                         style: AppTextStyles.smallText.copyWith(
                           color: percentIncrease < 0
                               ? AppColors.error
@@ -645,7 +643,6 @@ class _HomeViewState extends State<HomeView> {
   Widget volumeContainer(HomeViewModel model) {
     return Container(
       decoration: const BoxDecoration(),
-      height: 50,
       width: 130,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -654,8 +651,7 @@ class _HomeViewState extends State<HomeView> {
           Text(
             "TRANSACTION VOL.",
             style: AppTextStyles.smallText.copyWith(
-              color: AppColors.brightBlue,
-            ),
+                color: AppColors.brightBlue, height: 1.1, fontSize: 11),
           ),
           4.verticalGap,
           FittedBox(
@@ -712,7 +708,6 @@ class _HomeViewState extends State<HomeView> {
     String balance = format.format(
         double.parse(locator<AppStateValues>().wallet?.balance ?? "0.00"));
     return SizedBox(
-      height: 50,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -873,10 +868,9 @@ class _HomeViewState extends State<HomeView> {
           style:
               AppTextStyles.smallText.copyWith(color: AppColors.bodyTextColor),
         ),
-        4.verticalGap,
         Text(
           locator<AppStateValues>().currentUser!.business.name,
-          style: AppTextStyles.header.copyWith(fontSize: 18.5),
+          style: AppTextStyles.header.copyWith(fontSize: 17.5),
         ),
       ],
     );

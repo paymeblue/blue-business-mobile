@@ -97,7 +97,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                             )
                           else
                             ...detailsSection(
-                              title: "Recipiente",
+                              title: "Recipient",
                               detail: widget.detail.receiver,
                             ),
                           8.verticalGap,
@@ -124,7 +124,11 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                         ],
                       ),
                     ),
-                    AppButton.primary(title: "Share Receipt", onTap: () {}),
+                    AppButton.primary(
+                        title: "Share Receipt",
+                        onTap: () {
+                          model.getTransactionReceipt(widget.detail);
+                        }),
                     35.verticalGap,
                   ],
                 ),

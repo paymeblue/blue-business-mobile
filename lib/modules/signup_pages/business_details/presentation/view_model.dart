@@ -73,7 +73,13 @@ class SignupBusinessDetailsViewModel extends BaseViewModel {
     BusinessCategoryResponse response = await AuthService(DioConfig.dio())
         .getCategories()
         .onError((error, stackTrace) => BusinessCategoryResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_categories",
+                "response_model": "BusinessCategoryResponse"
+              },
+            )));
 
     if (response.status == "success") {
       categories = response.data ?? [];
@@ -97,7 +103,14 @@ class SignupBusinessDetailsViewModel extends BaseViewModel {
     CreateBusinessProfileResponse response = await AuthService(DioConfig.dio())
         .createBusinessProfile(request: request)
         .onError((error, stackTrace) => CreateBusinessProfileResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "create_business_profile",
+                "request": request.toString(),
+                "response_model": "CreateBusinessProfileResponse"
+              },
+            )));
 
     if (response.status == "success") {
       if (context.mounted) {
@@ -116,7 +129,7 @@ class SignupBusinessDetailsViewModel extends BaseViewModel {
 
   bool isActive() {
     return nameController.text.isNotEmpty &&
-        cacController.text.length >= 10 &&
+        cacController.text.isNotEmpty &&
         staffSize != null &&
         category != null;
   }

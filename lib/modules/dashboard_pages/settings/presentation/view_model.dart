@@ -3,10 +3,20 @@ import 'dart:io';
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/profile_service/profile_service.dart';
 import 'package:blue_business/core/io/api/timed_refresh.dart';
+import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
+import 'package:blue_business/core/models/delete_account/delete/request/delete_request.dart';
+import 'package:blue_business/core/models/delete_account/delete/response/delete_response.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/reason/reason.dart';
+import 'package:blue_business/core/models/delete_account/get_reasons/response/get_reason_response.dart';
+import 'package:blue_business/core/models/notification/toggle/response/toggle_notification_response.dart';
+import 'package:blue_business/core/models/upload_avatar/response/upload_avatar_response.dart';
+import 'package:blue_business/core/models/withdrawal_account/get/response/withdrawal_account_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -29,9 +39,8 @@ class SettingsViewModel extends BaseViewModel {
   init(BuildContext context) {
     size = context.mediaQuery.size;
 
-    notificationStatus =
-        // locator<AppStateValues>().currentUser!.notificationStatus == 1;
-        useBiometrics = StorageValues.enableBiometrics == "true";
+    notificationStatus = locator<AppStateValues>().notificationStatus;
+    useBiometrics = StorageValues.enableBiometrics == "true";
   }
 
   bool _useBiometrics = false;
@@ -72,7 +81,35 @@ class SettingsViewModel extends BaseViewModel {
     }
   }
 
-  uploadImage(File file) async {}
+  uploadImage(File file) async {
+    AppLoader.start();
+
+    UploadAvatarResponse resp = await ProfileService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .uploadDisplayPicture(file)
+        .onError((error, stackTrace) => UploadAvatarResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "upload_display_picture",
+                "response_model": "UploadAvatarResponse"
+              },
+            )));
+
+    if (resp.status == "success") {
+      locator<AppStateValues>().currentUser =
+          locator<AppStateValues>().currentUser!.copyWith(
+                displayPic: resp.data!.displayPicture,
+              );
+      notifyListeners();
+
+      AppNotification.success(message: resp.message);
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    AppLoader.stop();
+  }
 
   goToChangePassword(BuildContext context) {
     context.go(RoutePaths.changePasswordPath);
@@ -137,9 +174,68 @@ class SettingsViewModel extends BaseViewModel {
         )
       ];
 
-  getReasons(BuildContext context) async {}
+  getReasons(BuildContext context) async {
+    AppLoader.start();
 
-  deleteAccount(Reason reason, BuildContext context) async {}
+    GetReasonResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getReasons()
+            .onError((error, stackTrace) {
+      return GetReasonResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {"request_name": "get_reasons", "response_model": "GetReasonResponse"},
+      ));
+    });
+
+    AppLoader.stop();
+    if (resp.status == "success") {
+      BlueDialog.reason(reasons: resp.data!).then((value) {
+        if (value != null) {
+          BlueDialog.deleteAccount(onDelete: () {
+            deleteAccount(value, context);
+          });
+        }
+      });
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+  }
+
+  deleteAccount(Reason reason, BuildContext context) async {
+    AppLoader.start();
+    DeleteRequest request = DeleteRequest(reasonId: reason.id.toString());
+
+    DeleteResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .deleteAccount(request)
+            .onError((error, stackTrace) {
+      return DeleteResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "delete_account",
+          "request": request.toString(),
+          "response_model": "DeleteResponse"
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      if (context.mounted) {
+        await logout(context);
+
+        if (context.mounted) context.go(RoutePaths.welcomePath);
+      }
+      StorageHelpers.deleteAll();
+      StorageValues.deleteLoginValues();
+      locator<AppStateValues>().clear();
+      AppNotification.success(message: resp.message);
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+    AppLoader.stop();
+  }
 
   startLogout(BuildContext context) async {
     BlueDialog.primary(
@@ -170,7 +266,6 @@ class SettingsViewModel extends BaseViewModel {
             icon: AppAssets.images.icons.kyc.svg(),
             title: "Account upgrade",
             onTap: () async {
-              await getKyc();
               if (context.mounted) context.go(RoutePaths.updateKycPath);
             },
             subtitle: "Increase your account limit"),
@@ -182,7 +277,7 @@ class SettingsViewModel extends BaseViewModel {
           title: "Manage business branch",
           subtitle: "Track and monitor your business branches.",
           onTap: () {
-            context.go(RoutePaths.branchManagementPath);
+            goToBranchManagementHome(context);
           },
         ),
         SettingsOption(
@@ -336,7 +431,33 @@ class SettingsViewModel extends BaseViewModel {
         ),
       ];
 
-  toggleNotifications(bool v) async {}
+  toggleNotifications(bool v) async {
+    AppLoader.start();
+
+    ToggleNotificationResponse resp = await ProfileService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .toggleNotificationStatus(status: v ? 1 : 0)
+        .onError((error, stackTrace) {
+      return ToggleNotificationResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "toggle_notifications",
+          "response_model": "NotificationResponse"
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      notificationStatus = v;
+      locator<AppStateValues>().notificationStatus = v;
+      AppNotification.success(message: resp.message);
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    AppLoader.stop();
+  }
 
   goToManageBeneficiaries(BuildContext context) {
     context.go(RoutePaths.manageBeneficiaryPath);
@@ -346,15 +467,44 @@ class SettingsViewModel extends BaseViewModel {
     context.go(RoutePaths.staffManagementPath);
   }
 
+  goToBranchManagementHome(BuildContext context) {
+    context.go(RoutePaths.branchManagementPath);
+  }
+
   goToBlueWeb() async {
     Uri url = Uri.parse("https://paymeblue.com/business");
 
     await launchUrl(url, mode: LaunchMode.inAppWebView);
   }
 
-  getKyc() async {}
+  Future getWithdrawalAccount(BuildContext context) async {
+    AppLoader.start();
 
-  Future getWithdrawalAccount(BuildContext context) async {}
+    WithdrawalAccountResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getWithdrawalAccount()
+        .onError((error, stackTrace) {
+      return WithdrawalAccountResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "get_withdrawal_account",
+          "response_model": "WithdrawalResponse"
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      if (resp.data != null) {
+        locator<AppStateValues>().withdrawalAccount = resp.data;
+      }
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    if (context.mounted) goToWithdrawalBank(context);
+    AppLoader.stop();
+  }
 
   goToPaymentLinkHistory(BuildContext context) {
     context.go(RoutePaths.paymentLinkPath);

@@ -1,7 +1,7 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
-import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
+import 'package:blue_business/core/models/security_question/get/data/get_question_data.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -38,7 +38,7 @@ class PushPaymentPinViewModel extends BaseViewModel {
     }
   }
 
-  goToForgotPin(BuildContext context, SecurityQuestion? question) {
+  goToForgotPin(BuildContext context, GetQuestionData? question) {
     GoRouterState state = GoRouterState.of(context);
     stateValues.resetPath = state.matchedLocation;
     stateValues.extra = state.extra;

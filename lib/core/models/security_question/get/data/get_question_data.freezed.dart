@@ -20,7 +20,10 @@ GetQuestionData _$GetQuestionDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GetQuestionData {
-  SecurityQuestion get question => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
+  String get question => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +37,7 @@ abstract class $GetQuestionDataCopyWith<$Res> {
           GetQuestionData value, $Res Function(GetQuestionData) then) =
       _$GetQuestionDataCopyWithImpl<$Res, GetQuestionData>;
   @useResult
-  $Res call({SecurityQuestion question});
-
-  $SecurityQuestionCopyWith<$Res> get question;
+  $Res call({int id, int userId, String question, String? createdAt});
 }
 
 /// @nodoc
@@ -52,22 +53,29 @@ class _$GetQuestionDataCopyWithImpl<$Res, $Val extends GetQuestionData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? userId = null,
     Object? question = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
       question: null == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
-              as SecurityQuestion,
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SecurityQuestionCopyWith<$Res> get question {
-    return $SecurityQuestionCopyWith<$Res>(_value.question, (value) {
-      return _then(_value.copyWith(question: value) as $Val);
-    });
   }
 }
 
@@ -79,10 +87,7 @@ abstract class _$$GetQuestionDataImplCopyWith<$Res>
       __$$GetQuestionDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({SecurityQuestion question});
-
-  @override
-  $SecurityQuestionCopyWith<$Res> get question;
+  $Res call({int id, int userId, String question, String? createdAt});
 }
 
 /// @nodoc
@@ -96,13 +101,28 @@ class __$$GetQuestionDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? userId = null,
     Object? question = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$GetQuestionDataImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
       question: null == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
-              as SecurityQuestion,
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -110,17 +130,27 @@ class __$$GetQuestionDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GetQuestionDataImpl implements _GetQuestionData {
-  const _$GetQuestionDataImpl({required this.question});
+  const _$GetQuestionDataImpl(
+      {required this.id,
+      required this.userId,
+      required this.question,
+      this.createdAt});
 
   factory _$GetQuestionDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetQuestionDataImplFromJson(json);
 
   @override
-  final SecurityQuestion question;
+  final int id;
+  @override
+  final int userId;
+  @override
+  final String question;
+  @override
+  final String? createdAt;
 
   @override
   String toString() {
-    return 'GetQuestionData(question: $question)';
+    return 'GetQuestionData(id: $id, userId: $userId, question: $question, createdAt: $createdAt)';
   }
 
   @override
@@ -128,13 +158,17 @@ class _$GetQuestionDataImpl implements _GetQuestionData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetQuestionDataImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.question, question) ||
-                other.question == question));
+                other.question == question) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, question);
+  int get hashCode => Object.hash(runtimeType, id, userId, question, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -152,14 +186,23 @@ class _$GetQuestionDataImpl implements _GetQuestionData {
 }
 
 abstract class _GetQuestionData implements GetQuestionData {
-  const factory _GetQuestionData({required final SecurityQuestion question}) =
-      _$GetQuestionDataImpl;
+  const factory _GetQuestionData(
+      {required final int id,
+      required final int userId,
+      required final String question,
+      final String? createdAt}) = _$GetQuestionDataImpl;
 
   factory _GetQuestionData.fromJson(Map<String, dynamic> json) =
       _$GetQuestionDataImpl.fromJson;
 
   @override
-  SecurityQuestion get question;
+  int get id;
+  @override
+  int get userId;
+  @override
+  String get question;
+  @override
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$GetQuestionDataImplCopyWith<_$GetQuestionDataImpl> get copyWith =>

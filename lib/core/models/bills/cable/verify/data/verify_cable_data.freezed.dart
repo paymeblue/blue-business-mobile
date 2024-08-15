@@ -224,7 +224,7 @@ class _$VerifyCableDataImpl implements _VerifyCableData {
       required this.provider,
       required this.package,
       this.serviceCharge = "100.00",
-      this.amount = ".00",
+      this.amount = "0.00",
       this.status = "pending",
       this.createdAt});
 

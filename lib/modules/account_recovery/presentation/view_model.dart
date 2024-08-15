@@ -1,14 +1,25 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
+import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
+import 'package:blue_business/core/models/recovery_code/get/response/recovery_code_response.dart';
+import 'package:blue_business/core/models/recovery_code/reset/response/recovery_code_response.dart';
+import 'package:blue_business/core/models/recovery_phone/set/request/recovery_phone_request.dart';
+import 'package:blue_business/core/models/recovery_phone/set/response/recovery_phone_response.dart';
+import 'package:blue_business/core/models/security_question/create/request/create_question_request.dart';
+import 'package:blue_business/core/models/security_question/send/response/send_question_request.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/modules/dashboard_pages/settings/models/settings_option/settings_option.dart';
 import 'package:blue_business/modules/dashboard_pages/settings/models/settings_section/settings_section.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
+import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -85,7 +96,7 @@ class AccountRecoveryViewModel extends BaseViewModel {
               question: question,
               answerController: answerController,
               passwordController: passwordController,
-              onTap: () {},
+              onTap: createSecurityQuestion,
               selectedQuestion: (value) {
                 question = value;
               },
@@ -103,7 +114,7 @@ class AccountRecoveryViewModel extends BaseViewModel {
               phoneController: phoneController,
               searchController: searchController,
               selectedCountry: selectedCountry,
-              onTap: () async {},
+              onTap: updateRecoveryPhone,
             );
           },
         ),
@@ -126,7 +137,95 @@ class AccountRecoveryViewModel extends BaseViewModel {
   }
 
   getRecoveryCode() async {
-    locator<AppStateValues>().recoveryCode = "WWWWWWW";
+    AppLoader.start();
+
+    GetRecoveryCodeResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getRecoveryCode()
+            .onError((error, stackTrace) {
+      return GetRecoveryCodeResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "get_recovery_code",
+          "response_model": "GetRecoveryCodeResponse"
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      AppLoader.stop();
+      locator<AppStateValues>().recoveryCode = resp.data!.recoveryCode;
+      await BlueBottomSheet.recoveryCode(
+        onTap: regenerateRecoveryCode,
+      );
+    } else {
+      AppLoader.stop();
+      AppNotification.error(message: resp.message);
+    }
+  }
+
+  Future updateRecoveryPhone() async {
+    AppLoader.start();
+
+    SetRecoveryPhoneRequest request = SetRecoveryPhoneRequest(
+        phone: formatPhone(), password: passwordController.text);
+
+    SetRecoveryPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .updateRecoveryPhone(request)
+            .onError((error, stackTrace) {
+      return SetRecoveryPhoneResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "update_recovery_phone",
+          "request": request.toString(),
+          "response_model": "SetRecoveryPhoneResponse"
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      AppNotification.success(message: resp.message);
+      phoneController.clear();
+      passwordController.clear();
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+    AppLoader.stop();
+  }
+
+  createSecurityQuestion() async {
+    AppLoader.start();
+    CreateQuestionRequest request = CreateQuestionRequest(
+        question: question,
+        answer: answerController.text,
+        password: passwordController.text);
+
+    SendQuestionResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .createSecurityQuestion(request)
+            .onError((error, stackTrace) => SendQuestionResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "create_security_question",
+                    "request": request.toString(),
+                    "response_model": "SendQuestionResponse"
+                  },
+                )));
+
+    if (resp.status == "success") {
+      passwordController.clear();
+      answerController.clear();
+      question = "";
+      AppNotification.success(message: resp.message);
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    AppLoader.stop();
   }
 
   String formatPhone() {
@@ -140,5 +239,32 @@ class AccountRecoveryViewModel extends BaseViewModel {
     }
 
     return selectedCountry!.dialCode + number;
+  }
+
+  Future<String?> regenerateRecoveryCode() async {
+    AppLoader.start();
+
+    ResetRecoveryCodeResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resetRecoveryCode()
+            .onError((error, stackTrace) {
+      return ResetRecoveryCodeResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "reset_recovery_code",
+          "response_model": "ResetRecoveryCodeResponse"
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      AppLoader.stop();
+      return resp.data!.recoveryCode;
+    } else {
+      AppLoader.stop();
+      AppNotification.error(message: resp.message);
+    }
+    return null;
   }
 }

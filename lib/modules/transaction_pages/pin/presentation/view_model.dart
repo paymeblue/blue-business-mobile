@@ -4,7 +4,9 @@ import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
-import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
+import 'package:blue_business/core/models/beneficiary/set/request/set_beneficiary_request.dart';
+import 'package:blue_business/core/models/beneficiary/set/response/set_beneficiary_response.dart';
+import 'package:blue_business/core/models/security_question/get/data/get_question_data.dart';
 import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
 import 'package:blue_business/core/models/transaction/pay/credit/request/credit_request.dart';
 import 'package:blue_business/core/models/transaction/pay/data/pay_data.dart';
@@ -18,6 +20,7 @@ import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/biometics.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
+import 'package:blue_business/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -83,7 +86,15 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .withdraw(request)
         .onError((error, stackTrace) {
-      return PayResponse(message: AppErrorHandler.getErrorMessage(error));
+      return PayResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "withdraw",
+          "request": request.toString(),
+          "response_model": "PayResponse"
+        },
+      ));
     });
 
     if (resp.status != "success") {
@@ -108,7 +119,15 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .pay(request)
         .onError((error, stackTrace) {
-      return PayResponse(message: AppErrorHandler.getErrorMessage(error));
+      return PayResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "pay",
+          "request": request.toString(),
+          "response_model": "PayResponse"
+        },
+      ));
     });
     if (!locator<AppStateValues>().hasSavedBeneficiary &&
         resp.status == "success" &&
@@ -132,13 +151,19 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getSecurityQuestion(stateValues.currentUser!.phone)
             .onError((error, stackTrace) => GetQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_security_question",
+                    "response_model": "GetQuestionResponse"
+                  },
+                )));
 
-    if (context.mounted) goToForgotPin(context, resp.data?.question);
+    if (context.mounted) goToForgotPin(context, resp.data);
     AppLoader.stop();
   }
 
-  goToForgotPin(BuildContext context, SecurityQuestion? question) {
+  goToForgotPin(BuildContext context, GetQuestionData? question) {
     GoRouterState state = GoRouterState.of(context);
     stateValues.resetPath = state.matchedLocation;
     stateValues.extra = state.extra;
@@ -151,23 +176,32 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
   }
 
   saveBeneficiary(VerifiedReceiver data) async {
-    // SetBeneficiaryRequest request =
-    //     SetBeneficiaryRequest(identifier: data.walletCode!);
+    SetBeneficiaryRequest request =
+        SetBeneficiaryRequest(identifier: data.walletCode!);
 
-    // SetBeneficiaryResponse resp = await TransactionService(
-    //         DioConfig.dio(locator<AppStateValues>().accessToken))
-    //     .addBeneficiary(request)
-    //     .onError((error, stackTrace) {
-    //   return SetBeneficiaryResponse(
-    //       message: AppErrorHandler.getErrorMessage(error));
-    // });
+    SetBeneficiaryResponse resp = await TransactionService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .addBeneficiary(request)
+        .onError((error, stackTrace) {
+      return SetBeneficiaryResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "add_beneficiary",
+          "request": request.toString(),
+          "response_model": "SetBeneficiaryResponse"
+        },
+      ));
+    });
 
-    // if (resp.status == "success") {
-    //   AppNotification.success(message: resp.message);
-    // } else {
-    //   AppNotification.error(message: resp.message);
-    // }
+    if (resp.status == "success") {
+      BlueToast.primaryWithoutIcon(resp.message ??
+          "This user has been successfully saved as a beneficiary.");
+    } else {
+      BlueToast.primaryWithoutIcon(
+          resp.message ?? "An error occurred. Beneficiary could not be saved");
+    }
 
-    // locator<AppStateValues>().hasSavedBeneficiary = true;
+    locator<AppStateValues>().hasSavedBeneficiary = true;
   }
 }

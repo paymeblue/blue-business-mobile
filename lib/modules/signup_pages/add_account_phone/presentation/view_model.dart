@@ -93,8 +93,15 @@ class EnterAccountPhoneViewModel extends BaseViewModel {
 
     SignupResponse response = await AuthService(DioConfig.dio())
         .register(request: request)
-        .onError((error, stackTrace) =>
-            SignupResponse(message: AppErrorHandler.getErrorMessage(error)));
+        .onError((error, stackTrace) => SignupResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "register",
+                "request": request.toString(),
+                "response_model": "SignupResponse"
+              },
+            )));
 
     if (response.status == "success") {
       formKey.currentState!.reset();

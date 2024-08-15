@@ -3,11 +3,9 @@ import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
-import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
+import 'package:blue_business/core/models/forgot_pin/response/forgot_pin_response.dart';
 import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
-import 'package:blue_business/core/models/security_question/get/question/security_question.dart';
-import 'package:blue_business/core/models/security_question/send/request/send_question_request.dart';
-import 'package:blue_business/core/models/security_question/send/response/send_question_request.dart';
+import 'package:blue_business/core/models/security_question/get/data/get_question_data.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -22,7 +20,7 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
 
-  init(BuildContext context, SecurityQuestion? q) {
+  init(BuildContext context, GetQuestionData? q) {
     size = context.mediaQuery.size;
     setSelectedCountry();
 
@@ -49,9 +47,9 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  SecurityQuestion? _q;
-  SecurityQuestion? get question => _q;
-  set question(SecurityQuestion? q) {
+  GetQuestionData? _q;
+  GetQuestionData? get question => _q;
+  set question(GetQuestionData? q) {
     _q = q;
     notifyListeners();
   }
@@ -68,11 +66,7 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
   }
 
   onButtonTap(BuildContext context) {
-    if (useQuestion) {
-      sendSecurityQuestion(context);
-    } else {
-      sendRecoveryPhone(context);
-    }
+    sendRecoveryPhone(context);
   }
 
   bool isActive() {
@@ -84,46 +78,52 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
     }
   }
 
-  sendSecurityQuestion(BuildContext context) async {
-    AppLoader.start();
-
-    SendQuestionRequest request = SendQuestionRequest(
-        phone: "+${stateValues.currentUser!.phone}",
-        answer: answerController.text);
-
-    SendQuestionResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .sendSecurityAnswer(request)
-            .onError((error, stackTrace) => SendQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
-
-    if (resp.status == "success") {
-      if (context.mounted) goToPin(context);
-    } else {
-      AppNotification.error(message: resp.message);
-    }
-
-    AppLoader.stop();
-  }
-
   sendRecoveryPhone(BuildContext context) async {
     AppLoader.start();
-    SendPhoneRecoverPinRequest request =
-        SendPhoneRecoverPinRequest(phone: formatPhone());
+    late SendRecoverPinRequest request;
+    if (useQuestion) {
+      request = SendRecoverPinRequest(
+          validationMode: "security-answer",
+          securityAnswer: answerController.text);
+    } else {
+      request = SendRecoverPinRequest(
+          recoveryPhone: formatPhone(), validationMode: "recovery-phone");
+    }
 
-    SendNewPhoneResponse resp =
+    ForgotPinResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .forgotPinWithPhone(request)
-            .onError((error, stackTrace) => SendNewPhoneResponse(
-                message: AppErrorHandler.getErrorMessage(error)));
+            .onError((error, stackTrace) => ForgotPinResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "forgot_[in_with_phone",
+                    "request": request.toString(),
+                    "response_model": "ForgotPinResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
-      if (context.mounted) goToOtp(context);
+
+      if (context.mounted) {
+        if (useQuestion) {
+          goToSetPin(
+              context,
+              resp.data?.phone ??
+                  "+${locator<AppStateValues>().currentUser!.phone}");
+        } else {
+          goToOtp(context);
+        }
+      }
     } else {
       AppNotification.error(message: resp.message);
     }
     AppLoader.stop();
+  }
+
+  goToSetPin(BuildContext context, String phone) {
+    context.go("${RoutePaths.recoverPinPath}/$phone");
   }
 
   goToOtp(BuildContext context) {

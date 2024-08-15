@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/io/api/profile_service/profile_service.dart';
 import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
@@ -10,6 +11,7 @@ import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/login/data/login_data.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
+import 'package:blue_business/core/models/notification/get/response/get_notification_response.dart';
 import 'package:blue_business/core/models/token/token.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -134,19 +136,29 @@ class LoginViewModel extends BaseViewModel {
     LoginRequest request = LoginRequest(
       phone: p,
       password: passwordController.text,
-      fcmToken: locator<AppStateValues>().fcmToken,
+      fcmToken: locator<AppStateValues>().fcmToken.isEmpty
+          ? null
+          : locator<AppStateValues>().fcmToken,
     );
 
     LoginResponse resp = await AuthService(DioConfig.dio())
         .login(request: request)
         .onError((error, stackTrace) {
-      return LoginResponse(message: AppErrorHandler.getErrorMessage(error));
+      return LoginResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "login",
+          "request": request.toString(),
+          "response_model": "LoginResponse"
+        },
+      ));
     });
 
-    AppLoader.stop();
     if (resp.status == "success") {
       await setNameInStorage(resp.data!.business.name, p);
       saveTokens(resp.data!.token);
+      getNotificationStatus();
       locator<AppStateValues>().currentUser = resp.data!;
 
       if (context.mounted) {
@@ -155,6 +167,28 @@ class LoginViewModel extends BaseViewModel {
     } else {
       AppNotification.error(message: resp.message);
     }
+    AppLoader.stop();
+  }
+
+  getNotificationStatus() async {
+    GetNotificationResponse resp = await ProfileService(
+            DioConfig.dio(locator<AppStateValues>().accessToken))
+        .getNotificationStatus()
+        .onError((error, stackTrace) {
+      return GetNotificationResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "get_notification_status",
+          "response_model": "GetNotificationResponse",
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      locator<AppStateValues>().notificationStatus =
+          resp.data!.notificationStatus;
+    } else {}
   }
 
   checkBiometric(BuildContext context, LoginData user,

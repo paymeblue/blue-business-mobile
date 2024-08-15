@@ -6,7 +6,7 @@ part 'recovery_code_data.g.dart';
 @freezed
 class GetRecoveryCodeData with _$GetRecoveryCodeData {
   const factory GetRecoveryCodeData({
-    required int id,
+    required int businessId,
     required String recoveryCode,
   }) = _GetRecoveryCodeData;
 

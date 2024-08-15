@@ -9,16 +9,19 @@ import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/v
 import 'package:flutter/material.dart';
 
 class AppStateValues extends ChangeNotifier {
-  String _refreshToken = "ABCDE";
+  String _refreshToken = "";
   String _fcmToken = "";
   String _narration = "";
-  String _recoveryCode = "123DF1233";
+  String _recoveryCode = "";
   String _path = RoutePaths.homePath;
   FetchState _todoState = FetchState.loading;
   String _kycLevel = "basic";
   bool _hasSavedBeneficiary = true;
+  bool _showLiveChat = false;
+  bool _notificationStatus = false;
   int _count = 0;
   bool _newMessage = false;
+  bool _hasNetwork = true;
   String? _channelId;
   String _token = "";
 
@@ -26,13 +29,7 @@ class AppStateValues extends ChangeNotifier {
   LoginData? _currentUser;
   Wallet? _wallet;
   TopupAccount? _account;
-  WithdrawalAccount? _withdrawalAccount = WithdrawalAccount(
-      id: 2,
-      bankId: 2,
-      bankName: "bankName",
-      accountName: "accountName",
-      accountNumber: "accountNumber",
-      createdAt: DateTime.now().toIso8601String());
+  WithdrawalAccount? _withdrawalAccount;
   Object? _extra;
 
   String get refreshToken => _refreshToken;
@@ -43,9 +40,12 @@ class AppStateValues extends ChangeNotifier {
   FetchState get todoState => _todoState;
   String get kycLevel => _kycLevel;
   bool get hasSavedBeneficiary => _hasSavedBeneficiary;
+  bool get notificationStatus => _notificationStatus;
   String get resetPath => _path;
   int get unreadCount => _count;
   bool get hasNewMessage => _newMessage;
+  bool get showLiveChat => _showLiveChat;
+  bool get hasNetwork => _hasNetwork;
   String? get channelId => _channelId;
   String get accessToken => _token;
 
@@ -102,8 +102,23 @@ class AppStateValues extends ChangeNotifier {
     notifyListeners();
   }
 
+  set hasNetwork(bool v) {
+    _hasNetwork = v;
+    notifyListeners();
+  }
+
   set hasSavedBeneficiary(bool v) {
     _hasSavedBeneficiary = v;
+    notifyListeners();
+  }
+
+  set showLiveChat(bool v) {
+    _showLiveChat = v;
+    notifyListeners();
+  }
+
+  set notificationStatus(bool v) {
+    _notificationStatus = v;
     notifyListeners();
   }
 
@@ -155,6 +170,8 @@ class AppStateValues extends ChangeNotifier {
     todoState = FetchState.loading;
     kycLevel = "basic";
     hasSavedBeneficiary = true;
+    hasNetwork = true;
+    notificationStatus = false;
     resetPath = RoutePaths.homePath;
     unreadCount = 0;
     hasNewMessage = false;
