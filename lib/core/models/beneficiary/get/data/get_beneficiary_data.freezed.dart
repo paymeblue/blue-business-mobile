@@ -20,10 +20,9 @@ GetBeneficiaryData _$GetBeneficiaryDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GetBeneficiaryData {
-  String get total => throw _privateConstructorUsedError;
-  String get limit => throw _privateConstructorUsedError;
-  String get page => throw _privateConstructorUsedError;
-  List<BlueBeneficiary> get data => throw _privateConstructorUsedError;
+  int get total => throw _privateConstructorUsedError;
+  int get limit => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
   bool get loadMore => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,12 +37,7 @@ abstract class $GetBeneficiaryDataCopyWith<$Res> {
           GetBeneficiaryData value, $Res Function(GetBeneficiaryData) then) =
       _$GetBeneficiaryDataCopyWithImpl<$Res, GetBeneficiaryData>;
   @useResult
-  $Res call(
-      {String total,
-      String limit,
-      String page,
-      List<BlueBeneficiary> data,
-      bool loadMore});
+  $Res call({int total, int limit, int page, bool loadMore});
 }
 
 /// @nodoc
@@ -62,26 +56,21 @@ class _$GetBeneficiaryDataCopyWithImpl<$Res, $Val extends GetBeneficiaryData>
     Object? total = null,
     Object? limit = null,
     Object? page = null,
-    Object? data = null,
     Object? loadMore = null,
   }) {
     return _then(_value.copyWith(
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as String,
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<BlueBeneficiary>,
+              as int,
       loadMore: null == loadMore
           ? _value.loadMore
           : loadMore // ignore: cast_nullable_to_non_nullable
@@ -98,12 +87,7 @@ abstract class _$$GetBeneficiaryDataImplCopyWith<$Res>
       __$$GetBeneficiaryDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String total,
-      String limit,
-      String page,
-      List<BlueBeneficiary> data,
-      bool loadMore});
+  $Res call({int total, int limit, int page, bool loadMore});
 }
 
 /// @nodoc
@@ -120,26 +104,21 @@ class __$$GetBeneficiaryDataImplCopyWithImpl<$Res>
     Object? total = null,
     Object? limit = null,
     Object? page = null,
-    Object? data = null,
     Object? loadMore = null,
   }) {
     return _then(_$GetBeneficiaryDataImpl(
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as String,
-      data: null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<BlueBeneficiary>,
+              as int,
       loadMore: null == loadMore
           ? _value.loadMore
           : loadMore // ignore: cast_nullable_to_non_nullable
@@ -155,35 +134,24 @@ class _$GetBeneficiaryDataImpl implements _GetBeneficiaryData {
       {required this.total,
       required this.limit,
       required this.page,
-      final List<BlueBeneficiary> data = const [],
-      this.loadMore = false})
-      : _data = data;
+      this.loadMore = false});
 
   factory _$GetBeneficiaryDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetBeneficiaryDataImplFromJson(json);
 
   @override
-  final String total;
+  final int total;
   @override
-  final String limit;
+  final int limit;
   @override
-  final String page;
-  final List<BlueBeneficiary> _data;
-  @override
-  @JsonKey()
-  List<BlueBeneficiary> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
-  }
-
+  final int page;
   @override
   @JsonKey()
   final bool loadMore;
 
   @override
   String toString() {
-    return 'GetBeneficiaryData(total: $total, limit: $limit, page: $page, data: $data, loadMore: $loadMore)';
+    return 'GetBeneficiaryData(total: $total, limit: $limit, page: $page, loadMore: $loadMore)';
   }
 
   @override
@@ -194,15 +162,13 @@ class _$GetBeneficiaryDataImpl implements _GetBeneficiaryData {
             (identical(other.total, total) || other.total == total) &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.page, page) || other.page == page) &&
-            const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.loadMore, loadMore) ||
                 other.loadMore == loadMore));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, total, limit, page,
-      const DeepCollectionEquality().hash(_data), loadMore);
+  int get hashCode => Object.hash(runtimeType, total, limit, page, loadMore);
 
   @JsonKey(ignore: true)
   @override
@@ -221,23 +187,20 @@ class _$GetBeneficiaryDataImpl implements _GetBeneficiaryData {
 
 abstract class _GetBeneficiaryData implements GetBeneficiaryData {
   const factory _GetBeneficiaryData(
-      {required final String total,
-      required final String limit,
-      required final String page,
-      final List<BlueBeneficiary> data,
+      {required final int total,
+      required final int limit,
+      required final int page,
       final bool loadMore}) = _$GetBeneficiaryDataImpl;
 
   factory _GetBeneficiaryData.fromJson(Map<String, dynamic> json) =
       _$GetBeneficiaryDataImpl.fromJson;
 
   @override
-  String get total;
+  int get total;
   @override
-  String get limit;
+  int get limit;
   @override
-  String get page;
-  @override
-  List<BlueBeneficiary> get data;
+  int get page;
   @override
   bool get loadMore;
   @override

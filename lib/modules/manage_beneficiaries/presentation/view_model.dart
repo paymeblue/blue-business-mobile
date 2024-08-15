@@ -100,9 +100,9 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
         ));
       });
       if (resp.status == "success") {
-        List<BlueBeneficiary> t = resp.data!.data;
+        List<BlueBeneficiary> t = resp.data;
 
-        if (resp.data!.loadMore) {
+        if (resp.paginationInfo!.loadMore) {
           beneficiaryController.appendPage(t, page + 1);
         } else {
           beneficiaryController.appendLastPage(t);

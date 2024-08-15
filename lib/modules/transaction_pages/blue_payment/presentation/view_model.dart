@@ -101,9 +101,9 @@ class BluePaymentViewModel extends BaseViewModel {
         ));
       });
       if (resp.status == "success") {
-        List<BlueBeneficiary> t = resp.data!.data;
+        List<BlueBeneficiary> t = resp.data;
 
-        if (resp.data!.loadMore) {
+        if (resp.paginationInfo!.loadMore) {
           beneficiaryController.appendPage(t, page + 1);
         } else {
           beneficiaryController.appendLastPage(t);
@@ -196,7 +196,7 @@ class BluePaymentViewModel extends BaseViewModel {
 
   onTapBeneficiaryTile(BlueBeneficiary item) {
     identifierController.text = item.identifier;
-    name = "${item.firstName} ${item.lastName}";
+    name = item.name;
     notifyListeners();
   }
 }
