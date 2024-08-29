@@ -103,7 +103,8 @@ class SettingsViewModel extends BaseViewModel {
               );
       notifyListeners();
 
-      AppNotification.success(message: resp.message);
+      AppNotification.success(
+          message: "Ypur profile picture has been updated and is loading.");
     } else {
       AppNotification.error(message: resp.message);
     }

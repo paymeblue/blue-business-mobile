@@ -39,8 +39,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
             child: Column(
               children: [
                 const InfoContainer(
-                    text:
-                        "You can only make changes to your number and profile picture"),
+                    text: "You can only make changes to your profile picture"),
                 12.verticalGap,
                 avatarRow(model),
                 15.verticalGap,

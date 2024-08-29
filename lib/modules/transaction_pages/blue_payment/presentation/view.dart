@@ -35,25 +35,28 @@ class _BluePaymentViewState extends State<BluePaymentView> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ...titleAndSubtitle(),
-            35.verticalGap,
-            identifierField(model),
-            if (model.loading)
-              Center(
-                child: LoadingAnimationWidget.prograssiveDots(
-                    color: AppColors.primary, size: 45),
-              )
-            else if (model.recentlyPaidItems.isEmpty)
-              0.verticalGap
-            else ...[
-              20.verticalGap,
-              ...recentlyPaidSection(model),
-            ],
-            18.verticalGap,
-            ...searchBeneficiaryTextField(model),
             Expanded(
-              child: beneficiaryList(model),
-            ),
+                child: ListView(
+              children: [
+                ...titleAndSubtitle(),
+                35.verticalGap,
+                identifierField(model),
+                if (model.loading)
+                  Center(
+                    child: LoadingAnimationWidget.prograssiveDots(
+                        color: AppColors.primary, size: 45),
+                  )
+                else if (model.recentlyPaidItems.isEmpty)
+                  0.verticalGap
+                else ...[
+                  20.verticalGap,
+                  ...recentlyPaidSection(model),
+                ],
+                18.verticalGap,
+                ...searchBeneficiaryTextField(model),
+                beneficiaryList(model)
+              ],
+            )),
             AppButton.primary(
               title: "Continue",
               isEnabled: model.identifierController.text.isNotEmpty,

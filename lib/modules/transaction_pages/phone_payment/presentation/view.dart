@@ -31,25 +31,31 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ...titleAndSubtitle(),
-            35.verticalGap,
-            phoneTextField(model),
-            18.verticalGap,
-            BlueTextField.plaintext(
-              hint: "John Doe",
-              title: "Recipient name",
-              controller: model.recipientController,
-              onChanged: model.onChanged,
+            Expanded(
+              child: ListView(
+                children: [
+                  ...titleAndSubtitle(),
+                  35.verticalGap,
+                  phoneTextField(model),
+                  18.verticalGap,
+                  BlueTextField.plaintext(
+                    hint: "John Doe",
+                    title: "Recipient name",
+                    controller: model.recipientController,
+                    onChanged: model.onChanged,
+                  ),
+                  28.verticalGap,
+                  Text(
+                    "MY CONTACTS",
+                    style: AppTextStyles.subHeader.copyWith(fontSize: 15.5),
+                  ),
+                  BlueTextField.search(
+                    onSearchChanged: model.onSearchContactsChanged,
+                  ),
+                  contactsListSection(model),
+                ],
+              ),
             ),
-            28.verticalGap,
-            Text(
-              "MY CONTACTS",
-              style: AppTextStyles.subHeader.copyWith(fontSize: 15.5),
-            ),
-            BlueTextField.search(
-              onSearchChanged: model.onSearchContactsChanged,
-            ),
-            Expanded(child: contactsListSection(model)),
             4.verticalGap,
             AppButton.primary(
                 title: "Continue",
