@@ -1235,8 +1235,11 @@ List<Map<String, dynamic>> countryDialCodes = [
   },
 ];
 
-List<CountryCode> countryCodes =
-    countryDialCodes.map((e) => CountryCode.fromJson(e)).toList();
+List<CountryCode> countryCodes = countryDialCodes
+    .map((e) => CountryCode.fromJson(e))
+    .toList()
+    .where((country) => country.countryCode == 'NG')
+    .toList();
 
 String nairaSymbol() {
   if (Platform.isAndroid) {

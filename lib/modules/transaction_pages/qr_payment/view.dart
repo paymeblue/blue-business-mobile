@@ -29,7 +29,8 @@ class _QrPaymentViewState extends State<QrPaymentView> {
           controller: model.mobileScannerController,
           errorBuilder: (context, excp, _) {
             return ErrorRouteView(
-              message: excp.errorDetails!.message,
+              message: excp.errorDetails?.message ??
+                  "Something went wrong while trying to complete this action. Please try again later",
               newRoute: "${RoutePaths.initiateTransactionPath}/pay",
             );
           },

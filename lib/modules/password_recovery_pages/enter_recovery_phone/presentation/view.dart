@@ -1,5 +1,4 @@
 import 'package:blue_business/core/extensions.dart';
-import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
@@ -80,7 +79,6 @@ class _EnterPasswordRecoveryPhoneViewState
     return [
       BlueTextField.phone(
         title: "Phone number",
-        countries: countryCodes,
         selectedItem: model.selectedCountry,
         onCountryChanged: (value) {
           model.selectedCountry = value;

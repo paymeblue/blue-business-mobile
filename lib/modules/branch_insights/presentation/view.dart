@@ -361,31 +361,6 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
             lineChart(model),
             20.verticalGap
           ],
-          // model.salesState == FetchState.loading
-          //     ? salesAmountShimmer()
-          //     : Container(
-          //         padding: const EdgeInsets.symmetric(vertical: 17),
-          //         decoration: BoxDecoration(
-          //           border: Border.all(color: AppColors.midGrey),
-          //           borderRadius: BorderRadius.circular(6),
-          //         ),
-          //         child: Row(
-          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //           children: [
-          //             analyticsColumn(
-          //                 title: "Point of Sales",
-          //                 amount: format.format(double.parse(
-          //                     model.salesData?.desktop.current ?? "0.00")),
-          //                 percentIncrease: model.desktopIncrease),
-          //             analyticsColumn(
-          //               title: "Mobile Account",
-          //               amount: format.format(double.parse(
-          //                   model.salesData?.mobile.current ?? "0.00")),
-          //               percentIncrease: model.mobileIncrease,
-          //             ),
-          //           ],
-          //         ),
-          //       ),
         ],
       ),
     );

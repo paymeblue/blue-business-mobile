@@ -78,7 +78,6 @@ class _InitiateAirtimeViewState extends State<InitiateAirtimeView> {
                       20.verticalGap,
                       BlueTextField.phone(
                         title: "Phone",
-                        countries: countryCodes,
                         selectedItem: model.selectedCountry,
                         onCountryChanged: model.onCountryChanged,
                         onChanged: model.onChanged,

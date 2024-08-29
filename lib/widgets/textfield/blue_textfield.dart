@@ -21,7 +21,6 @@ class BlueTextField {
     String searchHint = "Search",
     TextEditingController? controller,
     TextEditingController? searchController,
-    List<CountryCode> countries = const [],
     required ValueChanged<CountryCode?> onCountryChanged,
     String? initialValue,
     String title = "Phone",
@@ -38,7 +37,7 @@ class BlueTextField {
       title: title,
       isOptional: isOptional,
       leading: BlueDropdown.country(
-        countries: countries,
+        countries: countryCodes,
         onChanged: onCountryChanged,
         value: selectedItem,
         searchController: searchController,

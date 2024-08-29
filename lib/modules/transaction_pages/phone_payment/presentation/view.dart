@@ -1,6 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
@@ -187,7 +186,6 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
   Widget phoneTextField(PhonePaymentViewModel model) {
     return BlueTextField.phone(
       title: "Phone number",
-      countries: countryCodes,
       selectedItem: model.selectedCountry,
       onCountryChanged: (value) {
         model.selectedCountry = value;

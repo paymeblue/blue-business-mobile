@@ -623,7 +623,7 @@ class BlueBottomSheet {
       context: locator<NavigationService>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      isDismissible: false,
+      isDismissible: true,
       useSafeArea: true,
       builder: (ctx) {
         return StatefulBuilder(
@@ -973,7 +973,6 @@ class BlueBottomSheet {
                     25.verticalGap,
                     BlueTextField.phone(
                       title: "Phone",
-                      countries: countryCodes,
                       selectedItem: selectedCountry,
                       onCountryChanged: onCountryChanged,
                       onChanged: (v) {
