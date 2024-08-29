@@ -80,7 +80,10 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
         separatorBuilder: (context, index) => 20.verticalGap,
       );
     } else if (model.contacts.isEmpty) {
-      return NoItems.firstPage("You have not completed any transactions yet.");
+      return NoItems.firstPage(
+        "You do not have any contacts yet.",
+        onRefresh: model.getAllContacts,
+      );
     } else {
       return Container(
         width: model.size.width,
@@ -90,6 +93,7 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
           borderRadius: BorderRadius.circular(10),
         ),
         child: ListView.separated(
+          shrinkWrap: true,
           itemBuilder: (context, i) => SizedBox(
             height: 42,
             width: model.size.width,

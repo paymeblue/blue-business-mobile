@@ -72,12 +72,14 @@ class PhonePaymentViewModel extends BaseViewModel {
   getAllContacts() async {
     loadingContacts = true;
     try {
-      PermissionStatus status = await Permission.contacts.status;
+      var status = await Permission.contacts.status;
+      log(status.toString());
       if (status.isGranted) {
         contacts = await ContactsService.getContacts();
       } else {
-        await Permission.contacts.request().then((value) async {
-          if (value.isGranted) {
+        await Permission.contacts.request().then((v) async {
+          log(v.toString());
+          if (v.isGranted) {
             contacts = await ContactsService.getContacts();
           }
         });
