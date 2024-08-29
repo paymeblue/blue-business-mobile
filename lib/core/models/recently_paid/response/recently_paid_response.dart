@@ -1,4 +1,4 @@
-import 'package:blue_business/core/models/recently_paid/item/recently_paid_item.dart';
+import 'package:blue_business/core/models/beneficiary/blue_beneficiary.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'recently_paid_response.freezed.dart';
@@ -9,7 +9,7 @@ class RecentlyPaidResponse with _$RecentlyPaidResponse {
   const factory RecentlyPaidResponse({
     @Default("fail") String status,
     String? message,
-    List<RecentlyPaidItem>? data,
+    List<BlueBeneficiary>? data,
   }) = _RecentlyPaidResponse;
 
   factory RecentlyPaidResponse.fromJson(Map<String, dynamic> json) =>

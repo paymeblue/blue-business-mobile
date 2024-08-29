@@ -44,8 +44,16 @@ class _ShareholderDetailsViewState extends State<ShareholderDetailsView> {
                   child: model.gettingShareholders
                       ? loadingState(model)
                       : model.shareholders.isEmpty
-                          ? NoItems.firstPage(
-                              "We could not get any shareholders")
+                          ? Column(
+                              children: [
+                                NoItems.firstPage(
+                                    "We could not get any shareholders"),
+                                25.verticalGap,
+                                subtext(() {
+                                  model.goToNext(context, data: widget.data);
+                                })
+                              ],
+                            )
                           : ListView.separated(
                               shrinkWrap: true,
                               itemBuilder: (ctx, i) {

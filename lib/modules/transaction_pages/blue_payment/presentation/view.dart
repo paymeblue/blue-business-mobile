@@ -2,7 +2,6 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/beneficiary/blue_beneficiary.dart';
-import 'package:blue_business/core/models/recently_paid/item/recently_paid_item.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
@@ -172,7 +171,7 @@ class _BluePaymentViewState extends State<BluePaymentView> {
   }
 
   Widget recentlyPaidContainer(
-      RecentlyPaidItem item, BluePaymentViewModel model) {
+      BlueBeneficiary item, BluePaymentViewModel model) {
     return GestureDetector(
       onTap: () {
         model.onTapRecentlyPaid(item);
@@ -194,13 +193,13 @@ class _BluePaymentViewState extends State<BluePaymentView> {
             ),
             6.verticalGap,
             Text(
-              "${item.uFirstName} ${item.uLastName}",
+              item.name,
               overflow: TextOverflow.ellipsis,
               style: AppTextStyles.header.copyWith(fontSize: 15.5),
             ),
             FittedBox(
               child: Text(
-                item.wWalletCode,
+                item.identifier,
                 style: AppTextStyles.smallText
                     .copyWith(color: AppColors.bodyTextColor, fontSize: 14.5),
               ),
