@@ -491,69 +491,64 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget walletContainer(HomeViewModel model) {
-    return GestureDetector(
-      onTap: () {
-        model.goToTransactionHistory(context);
-      },
-      child: Container(
-        height: 175,
-        width: model.size.width,
-        margin: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 11),
-        decoration: BoxDecoration(
-          color: AppColors.primary,
-          borderRadius: BorderRadius.circular(11),
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                walletTypeContainer(
-                  kycLevel: locator<AppStateValues>().currentUser!.kyc,
-                ),
-                AppAssets.images.launcher.image(height: 23, width: 23),
-              ],
-            ),
-            const Spacer(
-              flex: 5,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: model.businessDataState == FetchState.loading
-                      ? walletAmountShimmer()
-                      : walletBalanceContainer(model),
-                ),
-                8.horizontalGap,
-                model.businessDataState == FetchState.loading
+    return Container(
+      height: 175,
+      width: model.size.width,
+      margin: const EdgeInsets.only(
+        left: 16,
+        right: 16,
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 11),
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(11),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              walletTypeContainer(
+                kycLevel: locator<AppStateValues>().currentUser!.kyc,
+              ),
+              AppAssets.images.launcher.image(height: 23, width: 23),
+            ],
+          ),
+          const Spacer(
+            flex: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: model.businessDataState == FetchState.loading
                     ? walletAmountShimmer()
-                    : volumeContainer(model),
-              ],
-            ),
-            const Spacer(
-              flex: 3,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: model.businessDataState == FetchState.loading
-                      ? walletAmountShimmer()
-                      : branchContainer(model),
-                ),
-                8.horizontalGap,
-                model.businessDataState == FetchState.loading
+                    : walletBalanceContainer(model),
+              ),
+              8.horizontalGap,
+              model.businessDataState == FetchState.loading
+                  ? walletAmountShimmer()
+                  : volumeContainer(model),
+            ],
+          ),
+          const Spacer(
+            flex: 3,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: model.businessDataState == FetchState.loading
                     ? walletAmountShimmer()
-                    : staffContainer(model),
-              ],
-            )
-          ],
-        ),
+                    : branchContainer(model),
+              ),
+              8.horizontalGap,
+              model.businessDataState == FetchState.loading
+                  ? walletAmountShimmer()
+                  : staffContainer(model),
+            ],
+          )
+        ],
       ),
     );
   }
@@ -835,7 +830,7 @@ class _HomeViewState extends State<HomeView> {
           Expanded(
             child: welcomeMessage(),
           ),
-          transactionHistoryIconButton(onTap),
+          // transactionHistoryIconButton(onTap),
         ],
       ),
     );

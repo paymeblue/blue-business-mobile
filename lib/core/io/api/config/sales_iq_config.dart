@@ -23,12 +23,11 @@ class SalesIqConfig {
     }
 
     ZohoSalesIQ.init(appKey, accessKey).then((_) {
-      ZohoSalesIQ.launcher
-          .setVisibilityModeToCustomLauncher(VisibilityMode.never);
+      ZohoSalesIQ.launcher.show(VisibilityMode.never);
       locator<AppStateValues>().showLiveChat = true;
     }).catchError((error) {
       // initialization failed
-      log(error);
+      log(error.toString());
     });
   }
 }

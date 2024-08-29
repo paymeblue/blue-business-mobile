@@ -1,6 +1,5 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
@@ -32,25 +31,31 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ...titleAndSubtitle(),
-            35.verticalGap,
-            phoneTextField(model),
-            18.verticalGap,
-            BlueTextField.plaintext(
-              hint: "John Doe",
-              title: "Recipient name",
-              controller: model.recipientController,
-              onChanged: model.onChanged,
+            Expanded(
+              child: ListView(
+                children: [
+                  ...titleAndSubtitle(),
+                  35.verticalGap,
+                  phoneTextField(model),
+                  18.verticalGap,
+                  BlueTextField.plaintext(
+                    hint: "John Doe",
+                    title: "Recipient name",
+                    controller: model.recipientController,
+                    onChanged: model.onChanged,
+                  ),
+                  28.verticalGap,
+                  Text(
+                    "MY CONTACTS",
+                    style: AppTextStyles.subHeader.copyWith(fontSize: 15.5),
+                  ),
+                  BlueTextField.search(
+                    onSearchChanged: model.onSearchContactsChanged,
+                  ),
+                  contactsListSection(model),
+                ],
+              ),
             ),
-            28.verticalGap,
-            Text(
-              "MY CONTACTS",
-              style: AppTextStyles.subHeader.copyWith(fontSize: 15.5),
-            ),
-            BlueTextField.search(
-              onSearchChanged: model.onSearchContactsChanged,
-            ),
-            Expanded(child: contactsListSection(model)),
             4.verticalGap,
             AppButton.primary(
                 title: "Continue",
@@ -187,7 +192,6 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
   Widget phoneTextField(PhonePaymentViewModel model) {
     return BlueTextField.phone(
       title: "Phone number",
-      countries: countryCodes,
       selectedItem: model.selectedCountry,
       onCountryChanged: (value) {
         model.selectedCountry = value;

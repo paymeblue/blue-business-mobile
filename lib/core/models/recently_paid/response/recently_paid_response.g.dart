@@ -12,7 +12,7 @@ _$RecentlyPaidResponseImpl _$$RecentlyPaidResponseImplFromJson(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: (json['data'] as List<dynamic>?)
-          ?.map((e) => RecentlyPaidItem.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => BlueBeneficiary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

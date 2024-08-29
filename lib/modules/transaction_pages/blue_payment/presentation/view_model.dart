@@ -4,7 +4,6 @@ import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/beneficiary/blue_beneficiary.dart';
 import 'package:blue_business/core/models/beneficiary/get/response/get_beneficiary_response.dart';
-import 'package:blue_business/core/models/recently_paid/item/recently_paid_item.dart';
 import 'package:blue_business/core/models/recently_paid/response/recently_paid_response.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/verify/request/verified_receiver_request.dart';
@@ -57,9 +56,9 @@ class BluePaymentViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  List<RecentlyPaidItem> _items = [];
-  List<RecentlyPaidItem> get recentlyPaidItems => _items;
-  set recentlyPaidItems(List<RecentlyPaidItem> i) {
+  List<BlueBeneficiary> _items = [];
+  List<BlueBeneficiary> get recentlyPaidItems => _items;
+  set recentlyPaidItems(List<BlueBeneficiary> i) {
     _items = i;
     notifyListeners();
   }
@@ -158,8 +157,9 @@ class BluePaymentViewModel extends BaseViewModel {
   Future<VerifiedReceiverResponse> verify() async {
     String identifier = identifierController.text;
     if (!identifierController.text.contains(RegExp(r'[A-Za-z]'))) {
-      if (identifier.startsWith("0")) {
-        identifier = identifier.replaceFirst("0", "234");
+      if (identifier.startsWith("0") ||
+          identifier.replaceFirst("+", "").startsWith("234")) {
+        identifier = identifier.substring(identifier.length - 10);
       }
     }
     AppLoader.start();
@@ -188,9 +188,9 @@ class BluePaymentViewModel extends BaseViewModel {
     return resp;
   }
 
-  onTapRecentlyPaid(RecentlyPaidItem item) {
-    identifierController.text = item.wWalletCode;
-    name = "${item.uFirstName} ${item.uLastName}";
+  onTapRecentlyPaid(BlueBeneficiary item) {
+    identifierController.text = item.identifier;
+    name = item.name;
     notifyListeners();
   }
 

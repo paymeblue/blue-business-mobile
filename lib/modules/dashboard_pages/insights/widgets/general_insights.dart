@@ -130,14 +130,18 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       analyticsColumn(
-                          title: "Point of Sales",
-                          amount: format.format(double.parse(
-                              model.salesData?.desktop.current ?? "0.00")),
-                          percentIncrease: model.desktopIncrease),
+                        title: "Point of Sales",
+                        amount: format.format(double.parse(
+                            model.salesData?.desktop.current ?? "0.00")),
+                        percentIncrease: model.desktopIncrease,
+                        model: model,
+                      ),
                       analyticsColumn(
                         title: "Mobile Account",
                         amount: format.format(double.parse(
-                            model.salesData?.mobile.current ?? "0.00")),
+                          model.salesData?.mobile.current ?? "0.00",
+                        )),
+                        model: model,
                         percentIncrease: model.mobileIncrease,
                       ),
                     ],
@@ -312,6 +316,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
     required String title,
     required String amount,
     double percentIncrease = 0,
+    required InsightsViewModel model,
   }) =>
       Container(
         width: (context.mediaQuery.size.width - 80) / 2,
@@ -356,7 +361,8 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                         ),
                       ),
                       TextSpan(
-                        text: "vs last week",
+                        text:
+                            "vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                         style: AppTextStyles.smallText.copyWith(
                           color: AppColors.bodyTextColor,
                         ),

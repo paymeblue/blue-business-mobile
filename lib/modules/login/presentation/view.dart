@@ -1,7 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
@@ -174,7 +173,6 @@ class _LoginViewState extends State<LoginView> {
     return [
       BlueTextField.phone(
         title: "Phone",
-        countries: countryCodes,
         selectedItem: model.selectedCountry,
         onCountryChanged: model.onCountryChanged,
         onChanged: model.onChanged,

@@ -22,7 +22,7 @@ RecentlyPaidResponse _$RecentlyPaidResponseFromJson(Map<String, dynamic> json) {
 mixin _$RecentlyPaidResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  List<RecentlyPaidItem>? get data => throw _privateConstructorUsedError;
+  List<BlueBeneficiary>? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $RecentlyPaidResponseCopyWith<$Res> {
           $Res Function(RecentlyPaidResponse) then) =
       _$RecentlyPaidResponseCopyWithImpl<$Res, RecentlyPaidResponse>;
   @useResult
-  $Res call({String status, String? message, List<RecentlyPaidItem>? data});
+  $Res call({String status, String? message, List<BlueBeneficiary>? data});
 }
 
 /// @nodoc
@@ -69,7 +69,7 @@ class _$RecentlyPaidResponseCopyWithImpl<$Res,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<RecentlyPaidItem>?,
+              as List<BlueBeneficiary>?,
     ) as $Val);
   }
 }
@@ -82,7 +82,7 @@ abstract class _$$RecentlyPaidResponseImplCopyWith<$Res>
       __$$RecentlyPaidResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message, List<RecentlyPaidItem>? data});
+  $Res call({String status, String? message, List<BlueBeneficiary>? data});
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ class __$$RecentlyPaidResponseImplCopyWithImpl<$Res>
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<RecentlyPaidItem>?,
+              as List<BlueBeneficiary>?,
     ));
   }
 }
@@ -121,7 +121,7 @@ class __$$RecentlyPaidResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RecentlyPaidResponseImpl implements _RecentlyPaidResponse {
   const _$RecentlyPaidResponseImpl(
-      {this.status = "fail", this.message, final List<RecentlyPaidItem>? data})
+      {this.status = "fail", this.message, final List<BlueBeneficiary>? data})
       : _data = data;
 
   factory _$RecentlyPaidResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -132,9 +132,9 @@ class _$RecentlyPaidResponseImpl implements _RecentlyPaidResponse {
   final String status;
   @override
   final String? message;
-  final List<RecentlyPaidItem>? _data;
+  final List<BlueBeneficiary>? _data;
   @override
-  List<RecentlyPaidItem>? get data {
+  List<BlueBeneficiary>? get data {
     final value = _data;
     if (value == null) return null;
     if (_data is EqualUnmodifiableListView) return _data;
@@ -182,7 +182,7 @@ abstract class _RecentlyPaidResponse implements RecentlyPaidResponse {
   const factory _RecentlyPaidResponse(
       {final String status,
       final String? message,
-      final List<RecentlyPaidItem>? data}) = _$RecentlyPaidResponseImpl;
+      final List<BlueBeneficiary>? data}) = _$RecentlyPaidResponseImpl;
 
   factory _RecentlyPaidResponse.fromJson(Map<String, dynamic> json) =
       _$RecentlyPaidResponseImpl.fromJson;
@@ -192,7 +192,7 @@ abstract class _RecentlyPaidResponse implements RecentlyPaidResponse {
   @override
   String? get message;
   @override
-  List<RecentlyPaidItem>? get data;
+  List<BlueBeneficiary>? get data;
   @override
   @JsonKey(ignore: true)
   _$$RecentlyPaidResponseImplCopyWith<_$RecentlyPaidResponseImpl>

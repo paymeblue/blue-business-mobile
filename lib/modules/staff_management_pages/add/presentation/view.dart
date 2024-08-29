@@ -1,7 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
@@ -160,7 +159,6 @@ class _AddStaffViewState extends State<AddStaffView> {
         12.verticalGap,
         BlueTextField.phone(
           title: "Phone number",
-          countries: countryCodes,
           selectedItem: model.selectedCountry,
           onCountryChanged: model.onCountryChanged,
           onChanged: model.onChanged,

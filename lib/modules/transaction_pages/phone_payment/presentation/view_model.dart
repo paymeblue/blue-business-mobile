@@ -77,7 +77,9 @@ class PhonePaymentViewModel extends BaseViewModel {
         contacts = await ContactsService.getContacts();
       } else {
         await Permission.contacts.request().then((value) async {
-          contacts = await ContactsService.getContacts();
+          if (value.isGranted) {
+            contacts = await ContactsService.getContacts();
+          }
         });
       }
     } catch (e) {

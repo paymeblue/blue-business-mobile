@@ -101,7 +101,7 @@ class _WelcomeViewState extends State<WelcomeView> {
           text: TextSpan(children: [
             TextSpan(
               text:
-                  "By tapping Create an account and using blue, you agree to our ",
+                  "By tapping Create an account and using Blue, you agree to our ",
               style:
                   AppTextStyles.smallText.copyWith(color: AppColors.textColor),
             ),
