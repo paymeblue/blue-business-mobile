@@ -300,6 +300,8 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
 
   Widget salesStatsContainer(BranchInsightsViewModel model) {
     NumberFormat format = NumberFormat("#,##0.00");
+    String amount = format
+        .format(double.parse(model.salesData?.transaction.current ?? "0.0"));
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
@@ -334,7 +336,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                   child: Column(
                     children: [
                       Text(
-                        "${nairaSymbol()}${format.format(double.parse(model.salesData?.transaction.current ?? "0.0"))}",
+                        "${nairaSymbol()}$amount",
                         style: AppTextStyles.header.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -347,7 +349,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
+                          "${model.totalIncrease.abs() == double.parse(amount) ? "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% " : "${nairaSymbol()} $amount"} ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),
@@ -414,66 +416,4 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
       );
     }
   }
-
-  Widget analyticsColumn({
-    required String title,
-    required String amount,
-    double percentIncrease = 0,
-  }) =>
-      Container(
-        width: (context.mediaQuery.size.width - 80) / 2,
-        height: 80,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: AppTextStyles.smallText.copyWith(
-                color: AppColors.bodyTextColor2,
-              ),
-            ),
-            4.verticalGap,
-            Text(
-              "${nairaSymbol()}$amount",
-              style: AppTextStyles.header.copyWith(fontSize: 16.5),
-            ),
-            Row(
-              children: [
-                Icon(
-                  percentIncrease < 0
-                      ? Icons.arrow_downward_rounded
-                      : Icons.arrow_upward_rounded,
-                  color: percentIncrease < 0
-                      ? AppColors.error
-                      : AppColors.otherGreen,
-                  size: 16,
-                ),
-                2.horizontalGap,
-                Expanded(
-                  child: RichText(
-                    text: TextSpan(children: [
-                      TextSpan(
-                        text:
-                            "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% ",
-                        style: AppTextStyles.smallText.copyWith(
-                          color: percentIncrease < 0
-                              ? AppColors.error
-                              : AppColors.otherGreen,
-                        ),
-                      ),
-                      TextSpan(
-                        text: "vs last week",
-                        style: AppTextStyles.smallText.copyWith(
-                          color: AppColors.bodyTextColor,
-                        ),
-                      )
-                    ]),
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
-      );
 }

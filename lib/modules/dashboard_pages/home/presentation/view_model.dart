@@ -245,7 +245,7 @@ class HomeViewModel extends BaseViewModel {
       mobileIncrease = 0;
     } else {
       if (previousMobile == 0) {
-        mobileIncrease = mChange / 100;
+        mobileIncrease = mChange;
       } else {
         mobileIncrease = mChange / previousMobile;
       }
@@ -255,7 +255,7 @@ class HomeViewModel extends BaseViewModel {
       desktopIncrease = 0;
     } else {
       if (previousDesktop == 0) {
-        desktopIncrease = dChange / 100;
+        desktopIncrease = dChange;
       } else {
         desktopIncrease = dChange / previousDesktop;
       }

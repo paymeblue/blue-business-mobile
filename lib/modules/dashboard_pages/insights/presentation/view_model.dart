@@ -262,8 +262,6 @@ class InsightsViewModel extends BaseViewModel {
             )));
 
     if (response.status == "success") {
-      // salesData = response.data;
-      // calculateIncrease();
       if (selectedType == types[0]) {
         weeklyData =
             response.data!.map((e) => WeeklyLineChartData.fromJson(e)).toList();
@@ -407,7 +405,7 @@ class InsightsViewModel extends BaseViewModel {
       totalIncrease = 0;
     } else {
       if (previous == 0) {
-        totalIncrease = change / 100;
+        totalIncrease = change;
       } else {
         totalIncrease = change / previous;
       }
@@ -431,7 +429,7 @@ class InsightsViewModel extends BaseViewModel {
       totalIncrease = 0;
     } else {
       if (previousTotal == 0) {
-        totalIncrease = tChange / 100;
+        totalIncrease = tChange;
       } else {
         totalIncrease = tChange / previousTotal;
       }
@@ -441,7 +439,7 @@ class InsightsViewModel extends BaseViewModel {
       mobileIncrease = 0;
     } else {
       if (previousMobile == 0) {
-        mobileIncrease = mChange / 100;
+        mobileIncrease = mChange;
       } else {
         mobileIncrease = mChange / previousMobile;
       }
@@ -451,7 +449,7 @@ class InsightsViewModel extends BaseViewModel {
       desktopIncrease = 0;
     } else {
       if (previousDesktop == 0) {
-        desktopIncrease = dChange / 100;
+        desktopIncrease = dChange;
       } else {
         desktopIncrease = dChange / previousDesktop;
       }

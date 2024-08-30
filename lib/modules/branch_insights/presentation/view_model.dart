@@ -216,7 +216,7 @@ class BranchInsightsViewModel extends BaseViewModel {
       totalIncrease = 0;
     } else {
       if (previous == 0) {
-        totalIncrease = change / 100;
+        totalIncrease = change;
       } else {
         totalIncrease = change / previous;
       }

@@ -58,6 +58,9 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
 
   Widget salesStatsContainer(InsightsViewModel model) {
     NumberFormat format = NumberFormat("#,##0.00");
+    String amount = format.format(
+        double.parse(model.salesData?.mobile.current ?? "0.0") +
+            double.parse(model.salesData?.desktop.current ?? "0.0"));
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
@@ -92,7 +95,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                   child: Column(
                     children: [
                       Text(
-                        "${nairaSymbol()}${format.format(double.parse(model.salesData?.mobile.current ?? "0.0") + double.parse(model.salesData?.desktop.current ?? "0.0"))}",
+                        "${nairaSymbol()}$amount",
                         style: AppTextStyles.header.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -105,7 +108,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
+                          "${model.totalIncrease.abs() != double.parse(amount) ? "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% " : "${nairaSymbol()} $amount"} ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),
@@ -320,7 +323,6 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
   }) =>
       Container(
         width: (context.mediaQuery.size.width - 80) / 2,
-        height: 80,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -348,12 +350,13 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                   size: 16,
                 ),
                 2.horizontalGap,
-                Expanded(
+                Flexible(
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text:
-                            "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% ",
+                        text: percentIncrease.abs() == double.parse(amount)
+                            ? "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% "
+                            : "${nairaSymbol()} $amount ",
                         style: AppTextStyles.smallText.copyWith(
                           color: percentIncrease < 0
                               ? AppColors.error
@@ -368,6 +371,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                         ),
                       )
                     ]),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
