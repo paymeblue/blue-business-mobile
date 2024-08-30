@@ -123,7 +123,6 @@ GoRouter router = GoRouter(
             path: RoutePaths.enterRecoveryCodePath,
             name: "Enter Recovery Code",
             builder: (context, state) {
-              log(state.fullPath.toString());
               return const EnterRecoveryCodeView();
             },
           ),
@@ -131,7 +130,6 @@ GoRouter router = GoRouter(
             path: "${RoutePaths.recoverPhoneNumberPath}/:id",
             name: "Recover Account Phone Number",
             builder: (context, state) {
-              log(state.fullPath.toString());
               return EnterNewPhoneView(
                 id: int.parse(state.pathParameters["id"] as String),
               );
@@ -141,7 +139,6 @@ GoRouter router = GoRouter(
             path: RoutePaths.phoneRecoveryOtpPath,
             name: "Verify Recovery Otp",
             builder: (context, state) {
-              log(state.fullPath.toString());
               return VerifyRecoveryOtpView(
                 data: state.extra as SendNewPhoneData,
               );
@@ -159,7 +156,6 @@ GoRouter router = GoRouter(
             path: RoutePaths.passwordRecoveryPhonePath,
             name: "Enter Recovery Phone Number",
             builder: (context, state) {
-              log(state.fullPath.toString());
               return const EnterPasswordRecoveryPhoneView();
             },
           ),
@@ -168,7 +164,6 @@ GoRouter router = GoRouter(
             name: "Verify Password Recovery Otp",
             builder: (context, state) {
               String phone = state.pathParameters["phone"] as String;
-              log(state.fullPath.toString());
               return VerifyPasswordRecoveryOtpView(phone: phone);
             },
           ),
@@ -176,7 +171,6 @@ GoRouter router = GoRouter(
             path: "${RoutePaths.recoverPasswordPath}/:phone",
             name: "Create New Password",
             builder: (context, state) {
-              log(state.fullPath.toString());
               return AddNewPasswordView(
                 phone: state.pathParameters["phone"].toString(),
               );
@@ -194,8 +188,6 @@ GoRouter router = GoRouter(
             path: RoutePaths.pinRecoveryPhonePath,
             name: "Enter Pin Recovery Phone Number",
             builder: (context, state) {
-              log(state.matchedLocation);
-              log(state.extra.toString());
               return EnterPinRecoveryPhoneView(
                   securityQuestion: state.extra as GetQuestionData?);
             },
@@ -205,7 +197,6 @@ GoRouter router = GoRouter(
             name: "Verify Pin Recovery Otp",
             builder: (context, state) {
               String phone = state.pathParameters["phone"] as String;
-              log(state.fullPath.toString());
               return VerifyPinRecoveryOtpView(phone: phone);
             },
           ),
@@ -213,7 +204,6 @@ GoRouter router = GoRouter(
             path: "${RoutePaths.recoverPinPath}/:phone",
             name: "Create New Pin",
             builder: (context, state) {
-              log(state.fullPath.toString());
               return AddNewPinView(
                 phone: state.pathParameters["phone"].toString(),
               );
@@ -223,7 +213,6 @@ GoRouter router = GoRouter(
     GoRoute(
       path: "/register${RoutePaths.pinPath}",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return PinView(
           data: state.extra as SignupData,
         );
@@ -242,7 +231,6 @@ GoRouter router = GoRouter(
               path: RoutePaths.homePath,
               name: "Home",
               builder: (context, state) {
-                log(state.fullPath.toString());
                 return const HomeView();
               },
             ),
@@ -254,7 +242,6 @@ GoRouter router = GoRouter(
               path: RoutePaths.insightsPath,
               name: "Insights",
               builder: (context, state) {
-                log(state.fullPath.toString());
                 return const InsightsView();
               },
             ),
@@ -266,7 +253,6 @@ GoRouter router = GoRouter(
               path: RoutePaths.loansPath,
               name: "Loans",
               builder: (context, state) {
-                log(state.fullPath.toString());
                 return const LoansView();
               },
             ),
@@ -278,7 +264,6 @@ GoRouter router = GoRouter(
               path: RoutePaths.settingsPath,
               name: "Settings",
               builder: (context, state) {
-                log(state.fullPath.toString());
                 return const SettingsView();
               },
             ),
@@ -290,7 +275,6 @@ GoRouter router = GoRouter(
       path: RoutePaths.receiveMoneyPath,
       name: "Receive Money",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return const ReceiveMoneyView();
       },
     ),
@@ -298,7 +282,6 @@ GoRouter router = GoRouter(
       path: RoutePaths.transactionHistoryPath,
       name: "Transaction History",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return const TransactionHistoryView();
       },
     ),
@@ -306,7 +289,6 @@ GoRouter router = GoRouter(
       path: RoutePaths.paymentLinkPath,
       name: "Payment Link History",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return const PaymentLinkHistoryView();
       },
     ),
@@ -314,7 +296,6 @@ GoRouter router = GoRouter(
       path: RoutePaths.manageBeneficiaryPath,
       name: "Manage Beneficiaries",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return const ManageBeneficiariesView();
       },
     ),
@@ -322,7 +303,6 @@ GoRouter router = GoRouter(
       path: RoutePaths.updateKycPath,
       name: "Update KYC",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return const UpdateKycView();
       },
     ),
@@ -330,7 +310,6 @@ GoRouter router = GoRouter(
       path: RoutePaths.changePinPath,
       name: "Change PIN",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return const ChangePinView();
       },
     ),
@@ -338,7 +317,6 @@ GoRouter router = GoRouter(
       path: RoutePaths.changePasswordPath,
       name: "Change Password",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return const ChangePasswordView();
       },
     ),
@@ -364,7 +342,6 @@ GoRouter router = GoRouter(
           path: "${RoutePaths.initiateTransactionPath}/:action",
           name: "Initiate Transaction",
           builder: (context, state) {
-            log(state.fullPath.toString());
             return InitiatePaymentView(
               isWithdrawal: state.pathParameters["action"] == "withdraw",
             );
@@ -374,7 +351,6 @@ GoRouter router = GoRouter(
           path: "${RoutePaths.verifyReceiverPath}/offline",
           name: "Pay Offline",
           builder: (context, state) {
-            log(state.fullPath.toString());
             return const OfflinePaymentView();
           },
         ),
@@ -382,7 +358,6 @@ GoRouter router = GoRouter(
           path: "${RoutePaths.verifyReceiverPath}/blue-user",
           name: "Verify Blue Receiver",
           builder: (context, state) {
-            log(state.uri.toString());
             return BluePaymentView(
               data: state.extra as InitiateTransactionData,
             );
@@ -392,7 +367,6 @@ GoRouter router = GoRouter(
           path: "${RoutePaths.verifyReceiverPath}/qr",
           name: "Scan QR Code",
           builder: (context, state) {
-            log(state.uri.toString());
             return QrPaymentView(
               data: state.extra as InitiateTransactionData,
             );
@@ -402,7 +376,6 @@ GoRouter router = GoRouter(
           path: "${RoutePaths.verifyReceiverPath}/phone",
           name: "Verify Phone Receiver",
           builder: (context, state) {
-            log(state.fullPath.toString());
             return PhonePaymentView(
               data: state.extra as InitiateTransactionData,
             );
@@ -412,7 +385,6 @@ GoRouter router = GoRouter(
           path: "${RoutePaths.confirmPaymentPath}/:action/:transaction_id",
           name: "Confirm Transaction",
           builder: (context, state) {
-            log(state.matchedLocation.toString());
             int? amount;
             VerifiedReceiver? data;
             if (state.pathParameters["action"] == "withdraw") {
@@ -432,7 +404,6 @@ GoRouter router = GoRouter(
           path: "${RoutePaths.transactionPinPath}/:action/:transaction_id",
           name: "Enter Transaction Pin",
           builder: (context, state) {
-            log(state.matchedLocation.toString());
             int? amount;
             VerifiedReceiver? data;
             if (state.pathParameters["action"] == "withdraw") {
@@ -454,7 +425,6 @@ GoRouter router = GoRouter(
       path: "${RoutePaths.successPath}/:transaction_id/:action",
       name: "Success",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return SuccessView(
           mode: state.pathParameters["action"] as String,
           data: state.extra as PayData,
@@ -465,7 +435,6 @@ GoRouter router = GoRouter(
       path: RoutePaths.viewPersonalInfoPath,
       name: "View Personal Info",
       builder: (context, state) {
-        log(state.matchedLocation.toString());
         return const PersonalInfoView();
       },
     ),
@@ -473,7 +442,6 @@ GoRouter router = GoRouter(
       path: RoutePaths.addWithdrawalBankPath,
       name: "Add Withdrawal Details",
       builder: (context, state) {
-        log(state.matchedLocation.toString());
         return const AddWithdrawalDetailsView();
       },
     ),
@@ -481,7 +449,6 @@ GoRouter router = GoRouter(
       path: RoutePaths.accountRecoveryPath,
       name: "Account Recovery",
       builder: (context, state) {
-        log(state.matchedLocation.toString());
         String? type = state.extra as String?;
         return AccountRecoveryView(
           type: type,
@@ -560,14 +527,12 @@ List<GoRoute> electricityRoutes = [
   GoRoute(
     path: RoutePaths.initiateElectricityPath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return const InitiateElectricityView();
     },
   ),
   GoRoute(
     path: RoutePaths.reviewElectricityPath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       Map<String, dynamic> extra = state.extra as Map<String, dynamic>;
       double amount = extra["amount"];
       VerifyElectricityData data = extra["verify_data"];
@@ -580,7 +545,6 @@ List<GoRoute> electricityRoutes = [
   GoRoute(
     path: RoutePaths.electricityPinPath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       Map<String, dynamic> extra = state.extra as Map<String, dynamic>;
       double amount = extra["amount"];
       VerifyElectricityData data = extra["verify_data"];
@@ -593,7 +557,6 @@ List<GoRoute> electricityRoutes = [
   GoRoute(
     path: RoutePaths.electricitySuccessPath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       VendElectricityData extra = state.extra as VendElectricityData;
       return VendElectricitySuccessView(
         data: extra,
@@ -606,14 +569,12 @@ List<GoRoute> airtimeRoutes = [
   GoRoute(
     path: RoutePaths.initiateAirtimePath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return const InitiateAirtimeView();
     },
   ),
   GoRoute(
     path: RoutePaths.reviewAirtimePath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return ReviewAirtimeView(
         data: state.extra as ReviewAirtimeData,
       );
@@ -622,7 +583,6 @@ List<GoRoute> airtimeRoutes = [
   GoRoute(
     path: RoutePaths.airtimePinPath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return ConfirmAirtimePinView(
         data: state.extra as ReviewAirtimeData,
       );
@@ -631,7 +591,6 @@ List<GoRoute> airtimeRoutes = [
   GoRoute(
     path: RoutePaths.airtimeSuccessPath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       VendAirtimeData extra = state.extra as VendAirtimeData;
       return VendAirtimeSuccessView(
         data: extra,
@@ -658,7 +617,6 @@ ShellRoute signupShellRoute = ShellRoute(
       path: RoutePaths.addAccountPhonePath,
       name: "Add Account Phone Number",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return const EnterAccountPhoneView();
       },
     ),
@@ -666,7 +624,6 @@ ShellRoute signupShellRoute = ShellRoute(
       path: RoutePaths.registerProgressPath,
       name: "Signup Progress",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return SignupProgressView(
           data: state.extra as SignupData,
         );
@@ -676,7 +633,6 @@ ShellRoute signupShellRoute = ShellRoute(
       path: RoutePaths.registerShareholdersPath,
       name: "Shareholder Details",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return ShareholderDetailsView(
           data: state.extra as SignupData,
         );
@@ -686,7 +642,6 @@ ShellRoute signupShellRoute = ShellRoute(
       path: RoutePaths.registerBusinessDetailsPath,
       name: "Signup Business Details",
       builder: (context, state) {
-        log(state.fullPath.toString());
         return SignupBusinessDetailsView(
           data: state.extra as SignupData,
         );
@@ -696,7 +651,6 @@ ShellRoute signupShellRoute = ShellRoute(
       path: RoutePaths.addShareholdersKycPath,
       name: "Signup Shareholder Kyc",
       builder: (context, state) {
-        log(state.fullPath.toString());
         Shareholders? shareholder;
         SignupData data =
             (state.extra as Map<String, dynamic>)["data"] as SignupData;
@@ -715,7 +669,6 @@ ShellRoute signupShellRoute = ShellRoute(
       name: "Verify Registration Otp",
       builder: (context, state) {
         String phone = state.pathParameters["phone"] as String;
-        log(state.fullPath.toString());
         return VerifyRegistrationOtpView(
           phone: phone,
         );
@@ -728,14 +681,12 @@ List<GoRoute> dataRoutes = [
   GoRoute(
     path: RoutePaths.initiateDataPath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return const InitiateDataView();
     },
   ),
   GoRoute(
     path: RoutePaths.reviewDataPath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return ReviewDataView(
         data: state.extra as VerifyDataData,
       );
@@ -744,7 +695,6 @@ List<GoRoute> dataRoutes = [
   GoRoute(
     path: RoutePaths.dataPinPath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return ConfirmDataPinView(
         data: state.extra as VerifyDataData,
       );
@@ -753,7 +703,6 @@ List<GoRoute> dataRoutes = [
   GoRoute(
     path: RoutePaths.dataSuccessPath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return VendDataSuccessView(
         data: state.extra as VendDataData,
       );
@@ -765,14 +714,12 @@ List<GoRoute> cableRoutes = [
   GoRoute(
     path: RoutePaths.initiateCablePath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return const InitiateCableView();
     },
   ),
   GoRoute(
     path: RoutePaths.reviewCablePath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return ReviewCableView(
         data: state.extra as VerifyCableData,
       );
@@ -781,7 +728,6 @@ List<GoRoute> cableRoutes = [
   GoRoute(
     path: RoutePaths.cablePinPath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return ConfirmCablePinView(
         data: state.extra as VerifyCableData,
       );
@@ -790,7 +736,6 @@ List<GoRoute> cableRoutes = [
   GoRoute(
     path: RoutePaths.cableSuccessPath,
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return VendCableSuccessView(
         data: state.extra as VendCableData,
       );
@@ -802,35 +747,30 @@ List<GoRoute> transactionDetailRoutes = [
   GoRoute(
     path: "${RoutePaths.transactionHistoryPath}/airtime/:id",
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return AirtimeDetailsView(detail: state.extra as AirtimeDetails);
     },
   ),
   GoRoute(
     path: "${RoutePaths.transactionHistoryPath}/power/:id",
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return PowerDetailsView(detail: state.extra as PowerDetails);
     },
   ),
   GoRoute(
     path: "${RoutePaths.transactionHistoryPath}/data/:id",
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return DataDetailsView(detail: state.extra as DataDetails);
     },
   ),
   GoRoute(
     path: "${RoutePaths.transactionHistoryPath}/tv/:id",
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return CableDetailsView(detail: state.extra as CableDetails);
     },
   ),
   GoRoute(
     path: "${RoutePaths.transactionHistoryPath}/payment/:id/:type",
     builder: (context, state) {
-      log(state.matchedLocation.toString());
       return PaymentDetailsView(
         detail: state.extra as PaymentDetail,
         type: state.pathParameters["type"]!,
