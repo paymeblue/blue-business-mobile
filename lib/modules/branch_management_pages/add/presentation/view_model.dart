@@ -35,16 +35,16 @@ class AddBranchViewModel extends BaseViewModel {
             (branch.name != nameController.text ||
                 branch.staffSize != staffSize ||
                 branch.location != locationController.text)) ||
-        (nameController.text.isNotEmpty &&
+        (nameController.text.trimRight().isNotEmpty &&
             staffSize != null &&
-            locationController.text.isNotEmpty);
+            locationController.text.trimRight().isNotEmpty);
   }
 
   goBack(BuildContext context) {
     context.pop();
   }
 
-  List<String> sizes = ["< 9", "10 - 49", "50 - 249", "> 250"];
+  List<String> sizes = ["1 - 9", "10 - 49", "50 - 249", "> 250"];
 
   String? _staffSize;
   String? get staffSize => _staffSize;
