@@ -40,9 +40,9 @@ class SignupBusinessKycViewModel extends BaseViewModel {
 
   bool isActive(Shareholders? shareholder) {
     return (shareholder != null ||
-            (firstNameController.text.isNotEmpty &&
-                lastNameController.text.isNotEmpty)) &&
-        bvnController.text.length >= 10;
+            (firstNameController.text.trimRight().isNotEmpty &&
+                lastNameController.text.trimRight().isNotEmpty)) &&
+        bvnController.text.trimRight().length >= 10;
   }
 
   addShareholderBvn(

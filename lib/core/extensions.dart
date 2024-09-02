@@ -18,7 +18,7 @@ extension StringEx on String? {
   String get sentenceCase =>
       this![0].toUpperCase() + this!.substring(1).toLowerCase();
   String get initials =>
-      "${this!.split(" ").first[0].toUpperCase()}${this!.split(" ").length > 1 ? this!.split(" ").last[0].toUpperCase() : ""}";
+      "${this!.trimRight().split(" ").first[0].toUpperCase()}${this!.trimRight().split(" ").length > 1 ? this!.trimRight().split(" ").last[0].toUpperCase() : ""}";
   String get nameCase =>
-      "${this!.split(" ").first.sentenceCase} ${this!.split(" ").last.sentenceCase}";
+      "${this!.trimRight().split(" ").first.sentenceCase}${this!.trimRight().split(" ").length > 1 ? " ${this!.trimRight().split(" ").last.sentenceCase}" : ""}";
 }

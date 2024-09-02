@@ -185,8 +185,8 @@ class AddStaffViewModel extends BaseViewModel {
   }
 
   bool canCreate() {
-    return nameController.text.isNotEmpty &&
-        phoneController.text.isNotEmpty &&
+    return nameController.text.trimRight().isNotEmpty &&
+        phoneController.text.trimRight().isNotEmpty &&
         branch != null &&
         role != null &&
         isValidPassword();

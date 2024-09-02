@@ -279,12 +279,13 @@ class _HomeViewState extends State<HomeView> {
                   size: 16,
                 ),
                 2.horizontalGap,
-                Expanded(
+                Flexible(
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text:
-                            "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% ",
+                        text: percentIncrease.abs() == double.parse(amount)
+                            ? "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% "
+                            : "${nairaSymbol()} $amount ",
                         style: AppTextStyles.smallText.copyWith(
                           color: percentIncrease < 0
                               ? AppColors.error
@@ -298,6 +299,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       )
                     ]),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],

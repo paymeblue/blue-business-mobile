@@ -264,6 +264,8 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
 
   Widget salesStatsContainer(InsightsViewModel model) {
     NumberFormat format = NumberFormat("#,##0.00");
+    String amount = format.format(
+        double.parse(model.branchSalesData?.transaction.current ?? "0.0"));
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
@@ -298,7 +300,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                   child: Column(
                     children: [
                       Text(
-                        "${nairaSymbol()}${format.format(double.parse(model.branchSalesData?.transaction.current ?? "0.0"))}",
+                        "${nairaSymbol()}$amount",
                         style: AppTextStyles.header.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -311,7 +313,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
+                          "${model.totalIncrease.abs() == double.parse(amount) ? "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% " : "${nairaSymbol()} $amount"} ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),
