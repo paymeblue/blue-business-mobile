@@ -15,10 +15,13 @@ extension Gap on num {
 
 extension StringEx on String? {
   String get orEmpty => this ?? "";
-  String get sentenceCase =>
-      this![0].toUpperCase() + this!.substring(1).toLowerCase();
-  String get initials =>
-      "${this!.trimRight().split(" ").first[0].toUpperCase()}${this!.trimRight().split(" ").length > 1 ? this!.trimRight().split(" ").last[0].toUpperCase() : ""}";
-  String get nameCase =>
-      "${this!.trimRight().split(" ").first.sentenceCase}${this!.trimRight().split(" ").length > 1 ? " ${this!.trimRight().split(" ").last.sentenceCase}" : ""}";
+  String get sentenceCase => orEmpty.trim().isNotEmpty
+      ? orEmpty[0].toUpperCase() + orEmpty.substring(1).toLowerCase()
+      : "";
+  String get initials => orEmpty.trim().isNotEmpty
+      ? "${this!.trimRight().split(" ").first[0].toUpperCase()}${this!.trimRight().split(" ").length > 1 ? this!.trimRight().split(" ").last[0].toUpperCase() : ""}"
+      : "";
+  String get nameCase => orEmpty.trim().isNotEmpty
+      ? "${this!.trimRight().split(" ").first.sentenceCase}${this!.trimRight().split(" ").length > 1 ? " ${this!.trimRight().split(" ").last.sentenceCase}" : ""}"
+      : "";
 }
