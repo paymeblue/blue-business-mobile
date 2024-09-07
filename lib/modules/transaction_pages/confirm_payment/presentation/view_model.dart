@@ -14,7 +14,7 @@ class TransactionShellViewModel extends BaseViewModel {
   init(BuildContext context, VerifiedReceiver? data) {
     size = context.mediaQuery.size;
 
-    if (data?.walletCode == null) {
+    if (data == null || data.walletCode == null) {
       AppNotification.warning(
           message: "You're about to send money to a non-blue user");
     }

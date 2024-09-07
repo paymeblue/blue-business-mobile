@@ -1,4 +1,5 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -16,6 +17,7 @@ class AppNotification {
       shouldIconPulse: true,
       isDismissible: true,
       boxShadows: kElevationToShadow[3],
+      mainButton: 0.horizontalGap,
       messageText: Text(
         message,
         style: AppTextStyles.subText
@@ -46,6 +48,7 @@ class AppNotification {
     Flushbar flush = Flushbar(
       shouldIconPulse: true,
       isDismissible: true,
+      mainButton: 0.horizontalGap,
       messageText: Text(
         message ?? "Something went wrong. Please try again later.",
         style: AppTextStyles.subText
@@ -84,6 +87,7 @@ class AppNotification {
     Flushbar flush = Flushbar(
       shouldIconPulse: true,
       isDismissible: true,
+      mainButton: 0.horizontalGap,
       messageText: Text(
         message,
         style: AppTextStyles.subText
@@ -111,6 +115,7 @@ class AppNotification {
     Flushbar flush = Flushbar(
       shouldIconPulse: true,
       isDismissible: true,
+      mainButton: 0.horizontalGap,
       boxShadows: kElevationToShadow[3],
       titleText: Text(
         title,
@@ -146,6 +151,7 @@ class AppNotification {
     Flushbar flush = Flushbar(
       shouldIconPulse: true,
       isDismissible: true,
+      mainButton: 0.horizontalGap,
       boxShadows: kElevationToShadow[3],
       titleText: Text(
         title,

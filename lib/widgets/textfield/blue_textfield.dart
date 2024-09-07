@@ -6,7 +6,7 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
-import 'package:blue_business/widgets/textfield/dropdown.dart';
+import 'package:country_flags/country_flags.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,18 +30,42 @@ class BlueTextField {
     Widget? leading,
     bool isEnabled = true,
   }) {
+    Widget selectedItem() {
+      return Container(
+        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        width: 60,
+        height: 25,
+        decoration: BoxDecoration(
+            color: AppColors.grey, borderRadius: BorderRadius.circular(4)),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        child: Container(
+          height: 25,
+          width: 45,
+          margin: const EdgeInsets.symmetric(vertical: 5),
+          decoration: BoxDecoration(
+              color: AppColors.white, borderRadius: BorderRadius.circular(4)),
+          child: CountryFlag.fromCountryCode(
+            "NG",
+            height: 25,
+            width: 20,
+          ),
+        ),
+      );
+    }
+
     return _BluePhoneTextField(
       hint: hint,
       controller: controller,
       initialValue: initialValue,
       title: title,
       isOptional: isOptional,
-      leading: BlueDropdown.country(
-        countries: countryCodes,
-        onChanged: onCountryChanged,
-        value: selectedItem,
-        searchController: searchController,
-      ),
+      // leading: BlueDropdown.country(
+      //   countries: countryCodes,
+      //   onChanged: onCountryChanged,
+      //   value: selectedItem,
+      //   searchController: searchController,
+      // ),
+      leading: selectedItem(),
       isEnabled: isEnabled,
       onChanged: onChanged,
     );
