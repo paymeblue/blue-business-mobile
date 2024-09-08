@@ -313,7 +313,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${model.totalIncrease.abs() == double.parse(amount) ? "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% " : "${nairaSymbol()} $amount"} ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
+                          "${model.totalIncrease.abs() == double.parse(amount.replaceAll(",", "")) ? "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% " : "${nairaSymbol()} $amount"} ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),

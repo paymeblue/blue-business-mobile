@@ -395,10 +395,10 @@ class InsightsViewModel extends BaseViewModel {
   }
 
   calculateBranchIncrease() {
-    double current =
-        double.parse(branchSalesData?.transaction.current ?? "0.0");
-    double previous =
-        double.parse(branchSalesData?.transaction.previous ?? "0.00");
+    double current = double.parse(
+        branchSalesData?.transaction.current.replaceAll(",", "") ?? "0.0");
+    double previous = double.parse(
+        branchSalesData?.transaction.previous.replaceAll(",", "") ?? "0.00");
     final change = current - previous;
 
     if (change == 0) {
@@ -413,6 +413,7 @@ class InsightsViewModel extends BaseViewModel {
   }
 
   calculateIncrease() {
+    log(salesData.toString());
     double currentMobile = double.parse(salesData?.mobile.current ?? "0.0");
     double previousMobile = double.parse(salesData?.mobile.previous ?? "0.0");
     double currentDesktop = double.parse(salesData?.desktop.current ?? "0.0");
@@ -424,6 +425,8 @@ class InsightsViewModel extends BaseViewModel {
     double mChange = currentMobile - previousMobile;
     double dChange = currentDesktop - previousDesktop;
     double tChange = currentTotal - previousTotal;
+
+    log(previousTotal.toString());
 
     if (tChange == 0) {
       totalIncrease = 0;

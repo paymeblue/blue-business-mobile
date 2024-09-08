@@ -58,9 +58,10 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
 
   Widget salesStatsContainer(InsightsViewModel model) {
     NumberFormat format = NumberFormat("#,##0.00");
-    String amount = format.format(
-        double.parse(model.salesData?.mobile.current ?? "0.0") +
-            double.parse(model.salesData?.desktop.current ?? "0.0"));
+    String amount = format.format(double.parse(
+            model.salesData?.mobile.current.replaceAll(",", "") ?? "0.0") +
+        double.parse(
+            model.salesData?.desktop.current.replaceAll(",", "") ?? "0.0"));
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
@@ -108,7 +109,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${model.totalIncrease.abs() != double.parse(amount) ? "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% " : "${nairaSymbol()} $amount"} ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
+                          "${model.totalIncrease.abs() != double.parse(amount.replaceAll(",", "")) ? "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% " : "${nairaSymbol()} $amount"} ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),
@@ -354,7 +355,8 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text: percentIncrease.abs() == double.parse(amount)
+                        text: percentIncrease.abs() ==
+                                double.parse(amount.replaceAll(",", ""))
                             ? "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% "
                             : "${nairaSymbol()} $amount ",
                         style: AppTextStyles.smallText.copyWith(
