@@ -109,7 +109,8 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          "${model.totalIncrease.abs() != double.parse(amount.replaceAll(",", "")) ? "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% " : "${nairaSymbol()} $amount"} ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
+                          "${model.totalIncrease.abs() != double.parse(amount.replaceAll(",", "")) ? "${(model.totalIncrease.abs() * 100).toStringAsFixed(2)}% " : "${nairaSymbol()}"
+                              " $amount"} ${model.totalIncrease > 0 ? "increase" : "decrease"} vs last ${model.selectedType.toLowerCase().replaceAll("ly", "")}",
                           style: AppTextStyles.subHeader.copyWith(
                             color: AppColors.primary,
                           ),
@@ -355,7 +356,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text: percentIncrease.abs() ==
+                        text: percentIncrease.abs() !=
                                 double.parse(amount.replaceAll(",", ""))
                             ? "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% "
                             : "${nairaSymbol()} $amount ",
