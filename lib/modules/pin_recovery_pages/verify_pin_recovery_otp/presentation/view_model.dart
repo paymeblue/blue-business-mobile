@@ -42,7 +42,7 @@ class VerifyPinRecoveryOtpViewModel extends BaseViewModel {
   }
 
   onChanged(String v) {
-    canContinue = false;
+    _continue = false;
   }
 
   onSubmit(String otp) {

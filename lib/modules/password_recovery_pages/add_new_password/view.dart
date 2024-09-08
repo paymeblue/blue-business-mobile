@@ -33,29 +33,34 @@ class _AddNewPasswordViewState extends State<AddNewPasswordView> {
             padding:
                 const EdgeInsets.only(left: 16, right: 16, bottom: 35, top: 35),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ...titleAndSubtitle(),
-                50.verticalGap,
-                BlueTextField.password(
-                  title: "Choose a password",
-                  controller: model.passwordController,
-                  onChanged: model.onChanged,
+                Expanded(
+                  child: ListView(
+                    children: [
+                      ...titleAndSubtitle(),
+                      50.verticalGap,
+                      BlueTextField.password(
+                        title: "Choose a password",
+                        controller: model.passwordController,
+                        onChanged: model.onChanged,
+                      ),
+                      20.verticalGap,
+                      ...List.generate(
+                        model.conditions().length,
+                        (i) => PasswordCheckOption(
+                            isComplete: model.conditions()[i]["isComplete"],
+                            condition: model.conditions()[i]["condition"]),
+                      ),
+                      20.verticalGap,
+                      BlueTextField.password(
+                        title: "Confirm password",
+                        controller: model.confirmPasswordController,
+                        onChanged: model.onChanged,
+                      ),
+                    ],
+                  ),
                 ),
-                20.verticalGap,
-                ...List.generate(
-                  model.conditions().length,
-                  (i) => PasswordCheckOption(
-                      isComplete: model.conditions()[i]["isComplete"],
-                      condition: model.conditions()[i]["condition"]),
-                ),
-                20.verticalGap,
-                BlueTextField.password(
-                  title: "Confirm password",
-                  controller: model.confirmPasswordController,
-                  onChanged: model.onChanged,
-                ),
-                const Spacer(),
+                35.verticalGap,
                 AppButton.primary(
                   title: "Reset password",
                   isEnabled: model.isActive(),
