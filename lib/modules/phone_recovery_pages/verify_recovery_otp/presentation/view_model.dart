@@ -42,7 +42,7 @@ class VerifyRecoveryOtpViewModel extends BaseViewModel {
   }
 
   onChanged(String v) {
-    _continue = false;
+    canContinue = false;
   }
 
   onSubmit(String otp) {

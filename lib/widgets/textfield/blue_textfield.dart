@@ -10,7 +10,6 @@ import 'package:country_flags/country_flags.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BlueTextField {
@@ -107,21 +106,10 @@ class BlueTextField {
     Function(String)? onSubmit,
     int length = 4,
   }) {
-    return OtpTextField(
-      numberOfFields: length,
-      fieldWidth: 65,
-      showFieldAsBox: true,
-      mainAxisAlignment: MainAxisAlignment.start,
-      filled: true,
-      textStyle: AppTextStyles.textField,
-      onSubmit: onSubmit,
-      onCodeChanged: onChanged,
-      fillColor: AppColors.grey,
-      enabledBorderColor: AppColors.grey,
-      focusedBorderColor: AppColors.primary,
-      disabledBorderColor: AppColors.grey,
-      borderRadius: BorderRadius.circular(5),
-      autoFocus: true,
+    return _BlueOTPField(
+      onSubmit: onSubmit ?? (v) {},
+      length: length,
+      onChanged: onChanged,
     );
   }
 
@@ -135,6 +123,8 @@ class BlueTextField {
     bool isOptional = false,
     bool isEnabled = true,
     String? initialValue,
+    int? maxLength,
+    TextAlign textAlign = TextAlign.start,
   }) {
     return _BluePlaintextTextField(
       title: title,
@@ -144,6 +134,8 @@ class BlueTextField {
       controller: controller,
       hint: hint,
       isEnabled: isEnabled,
+      maxLength: maxLength,
+      textAlign: textAlign,
       initialValue: initialValue,
       keyboardType: keyboardType,
     );
@@ -223,6 +215,74 @@ class BlueTextField {
           locale: Platform.localeName,
         )
       ],
+    );
+  }
+}
+
+class _BlueOTPField extends StatefulWidget {
+  final int length;
+  final ValueChanged<String> onSubmit;
+  final ValueChanged<String>? onChanged;
+  const _BlueOTPField(
+      {this.length = 6, required this.onSubmit, this.onChanged});
+
+  @override
+  State<_BlueOTPField> createState() => __BlueOTPFieldState();
+}
+
+class __BlueOTPFieldState extends State<_BlueOTPField> {
+  List<FocusNode> nodes = List.empty();
+  List<String> controllers = List.empty();
+
+  @override
+  void initState() {
+    super.initState();
+    nodes = List.generate(widget.length, (i) => FocusNode());
+    controllers = List.generate(widget.length, (i) => "");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: List.generate(widget.length, (i) {
+        return Row(
+          children: [
+            SizedBox(
+              width: 60 * widget.length > context.mediaQuery.size.width
+                  ? context.mediaQuery.size.width / (widget.length - 35)
+                  : 60,
+              child: BlueTextField.plaintext(
+                hint: "",
+                node: nodes[i],
+                maxLength: 1,
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  if (value.orEmpty.isEmpty) {
+                    if (i > 0) {
+                      nodes[i - 1].requestFocus();
+                    }
+                    controllers[i] = "";
+                  } else {
+                    if (i < widget.length - 1) {
+                      nodes[i + 1].requestFocus();
+                    }
+                    controllers[i] = value!;
+                  }
+                  if (controllers.join().length == widget.length) {
+                    widget.onSubmit(controllers.join());
+                  } else {
+                    if (widget.onChanged != null) {
+                      widget.onChanged!(controllers.join());
+                    }
+                  }
+                },
+              ),
+            ),
+            10.horizontalGap,
+          ],
+        );
+      }),
     );
   }
 }
@@ -342,6 +402,8 @@ class _BluePlaintextTextField extends StatelessWidget {
     this.initialValue,
     this.isMessage = false,
     this.capitalization = TextCapitalization.none,
+    this.textAlign = TextAlign.start,
+    this.maxLength,
   });
 
   final String? hint;
@@ -356,6 +418,8 @@ class _BluePlaintextTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final bool isMessage;
   final TextCapitalization capitalization;
+  final int? maxLength;
+  final TextAlign textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -372,6 +436,8 @@ class _BluePlaintextTextField extends StatelessWidget {
       inputFormatters: inputFormatters,
       isMessage: isMessage,
       capitalization: capitalization,
+      maxLength: maxLength,
+      textAlign: textAlign,
     );
   }
 }
@@ -394,6 +460,8 @@ class _$BlueTextField extends StatefulWidget {
     this.inputFormatters,
     this.isMessage = false,
     this.capitalization = TextCapitalization.none,
+    this.maxLength,
+    this.textAlign = TextAlign.start,
   });
 
   final String? hint;
@@ -412,6 +480,8 @@ class _$BlueTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final bool isMessage;
   final TextCapitalization capitalization;
+  final int? maxLength;
+  final TextAlign textAlign;
 
   @override
   State<_$BlueTextField> createState() => _$BlueTextFieldState();
@@ -448,7 +518,7 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.isMessage ? null : 75,
+      height: widget.isMessage ? null : 85,
       width: context.mediaQuery.size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -480,6 +550,7 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
             decoration: InputDecoration(
               isCollapsed: true,
               hintText: widget.hint,
+              counter: 0.verticalGap,
               contentPadding: EdgeInsets.symmetric(
                   horizontal: widget.isMessage ? 8 : 15,
                   vertical: widget.isMessage ? 6 : 10),
