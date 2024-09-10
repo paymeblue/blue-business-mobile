@@ -431,33 +431,43 @@ class SettingsViewModel extends BaseViewModel {
               "*Please note: Deleting your account means you might permanently lose access to your data",
         ),
       ];
+  bool _isChanging = false;
+  bool get isChanging => _isChanging;
+  set isChanging(bool v) {
+    _isChanging = v;
+    notifyListeners();
+  }
 
   toggleNotifications(bool v) async {
-    AppLoader.start();
+    if (!isChanging) {
+      isChanging = true;
+      AppLoader.start();
 
-    ToggleNotificationResponse resp = await ProfileService(
-            DioConfig.dio(locator<AppStateValues>().accessToken))
-        .toggleNotificationStatus(status: v ? 1 : 0)
-        .onError((error, stackTrace) {
-      return ToggleNotificationResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "toggle_notifications",
-          "response_model": "NotificationResponse"
-        },
-      ));
-    });
+      ToggleNotificationResponse resp = await ProfileService(
+              DioConfig.dio(locator<AppStateValues>().accessToken))
+          .toggleNotificationStatus(status: v ? 1 : 0)
+          .onError((error, stackTrace) {
+        return ToggleNotificationResponse(
+            message: AppErrorHandler.getErrorMessage(
+          error,
+          {
+            "request_name": "toggle_notifications",
+            "response_model": "NotificationResponse"
+          },
+        ));
+      });
 
-    if (resp.status == "success") {
-      notificationStatus = v;
-      locator<AppStateValues>().notificationStatus = v;
-      AppNotification.success(message: resp.message);
-    } else {
-      AppNotification.error(message: resp.message);
+      if (resp.status == "success") {
+        notificationStatus = v;
+        locator<AppStateValues>().notificationStatus = v;
+        AppNotification.success(message: resp.message);
+      } else {
+        AppNotification.error(message: resp.message);
+      }
+
+      AppLoader.stop();
+      isChanging = false;
     }
-
-    AppLoader.stop();
   }
 
   goToManageBeneficiaries(BuildContext context) {
