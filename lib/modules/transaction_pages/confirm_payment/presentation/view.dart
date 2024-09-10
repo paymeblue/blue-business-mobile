@@ -36,7 +36,7 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
   Widget build(BuildContext context) {
     return BaseView<TransactionShellViewModel>(
       model: TransactionShellViewModel(),
-      onModelReady: (model) => model.init(context, widget.data),
+      onModelReady: (model) => model.init(context, widget.data, widget.mode),
       builder: (context, model, _) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,

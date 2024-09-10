@@ -11,12 +11,14 @@ import 'package:go_router/go_router.dart';
 class TransactionShellViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context, VerifiedReceiver? data) {
+  init(BuildContext context, VerifiedReceiver? data, String mode) {
     size = context.mediaQuery.size;
 
-    if (data == null || data.walletCode == null) {
-      AppNotification.warning(
-          message: "You're about to send money to a non-blue user");
+    if (mode != "withdraw") {
+      if (data == null || data.walletCode == null) {
+        AppNotification.warning(
+            message: "You're about to send money to a non-blue user");
+      }
     }
   }
 

@@ -105,7 +105,7 @@ class AppNotification {
         child: AppAssets.images.icons.warning.svg(),
       ),
       duration: const Duration(milliseconds: 6000),
-      animationDuration: const Duration(milliseconds: 1000),
+      animationDuration: const Duration(milliseconds: 350),
     );
 
     return flush.show(context);
