@@ -8,7 +8,7 @@ part of 'image.dart';
 
 _$UserImageImpl _$$UserImageImplFromJson(Map<String, dynamic> json) =>
     _$UserImageImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       displayPicture: json['display_picture'] as String,
     );
 

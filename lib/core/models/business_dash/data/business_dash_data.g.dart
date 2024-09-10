@@ -9,9 +9,9 @@ part of 'business_dash_data.dart';
 _$BusinessDashDataImpl _$$BusinessDashDataImplFromJson(
         Map<String, dynamic> json) =>
     _$BusinessDashDataImpl(
-      totalBranches: json['total_branches'] as int? ?? 0,
-      totalStaff: json['total_staff'] as int? ?? 0,
-      transactionVolume: json['transaction_volume'] as int? ?? 0,
+      totalBranches: (json['total_branches'] as num?)?.toInt() ?? 0,
+      totalStaff: (json['total_staff'] as num?)?.toInt() ?? 0,
+      transactionVolume: (json['transaction_volume'] as num?)?.toInt() ?? 0,
       walletBalance: json['wallet_balance'] as String? ?? "0.00",
     );
 

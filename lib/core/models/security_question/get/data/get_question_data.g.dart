@@ -9,8 +9,8 @@ part of 'get_question_data.dart';
 _$GetQuestionDataImpl _$$GetQuestionDataImplFromJson(
         Map<String, dynamic> json) =>
     _$GetQuestionDataImpl(
-      id: json['id'] as int,
-      userId: json['user_id'] as int,
+      id: (json['id'] as num).toInt(),
+      userId: (json['user_id'] as num).toInt(),
       question: json['question'] as String,
       createdAt: json['created_at'] as String?,
     );

@@ -8,7 +8,7 @@ part of 'staff_role.dart';
 
 _$StaffRoleImpl _$$StaffRoleImplFromJson(Map<String, dynamic> json) =>
     _$StaffRoleImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );
 

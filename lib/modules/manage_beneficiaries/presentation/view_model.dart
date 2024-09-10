@@ -5,6 +5,7 @@ import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/models/beneficiary/blue_beneficiary.dart';
 import 'package:blue_business/core/models/beneficiary/get/response/get_beneficiary_response.dart';
+import 'package:blue_business/core/models/beneficiary/set/response/set_beneficiary_response.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
@@ -117,20 +118,21 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
 
   deleteBeneficiary(int id) async {
     AppLoader.start();
-    String resp = await TransactionService(
+    SetBeneficiaryResponse resp = await TransactionService(
             DioConfig.dio(locator<AppStateValues>().accessToken))
         .deleteBeneficiary(id)
         .onError((error, stackTrace) {
-      return AppErrorHandler.getErrorMessage(
+      return SetBeneficiaryResponse(
+          message: AppErrorHandler.getErrorMessage(
         error,
         {
           "request_name": "delete_beneficiary",
           "response_model": "DeleteBeneficiaryResponse"
         },
-      );
+      ));
     });
 
-    if (resp.isEmpty) {
+    if (resp.status == "success") {
       beneficiaryController.refresh();
     } else {
       AppNotification.error(message: resp);

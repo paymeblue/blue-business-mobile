@@ -9,7 +9,7 @@ part of 'recovery_code_data.dart';
 _$GetRecoveryCodeDataImpl _$$GetRecoveryCodeDataImplFromJson(
         Map<String, dynamic> json) =>
     _$GetRecoveryCodeDataImpl(
-      businessId: json['business_id'] as int,
+      businessId: (json['business_id'] as num).toInt(),
       recoveryCode: json['recovery_code'] as String,
     );
 

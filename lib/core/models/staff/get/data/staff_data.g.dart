@@ -8,15 +8,15 @@ part of 'staff_data.dart';
 
 _$GetStaffDataImpl _$$GetStaffDataImplFromJson(Map<String, dynamic> json) =>
     _$GetStaffDataImpl(
-      total: json['total'] as int,
-      limit: json['limit'] as int,
-      page: json['page'] as int,
+      total: (json['total'] as num).toInt(),
+      limit: (json['limit'] as num).toInt(),
+      page: (json['page'] as num).toInt(),
       data: (json['data'] as List<dynamic>?)
               ?.map((e) => Staff.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       loadMore: json['load_more'] as bool? ?? false,
-      perPage: json['per_page'] as int?,
+      perPage: (json['per_page'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$GetStaffDataImplToJson(_$GetStaffDataImpl instance) {

@@ -10,8 +10,8 @@ _$PaymentLinkDataImpl _$$PaymentLinkDataImplFromJson(
         Map<String, dynamic> json) =>
     _$PaymentLinkDataImpl(
       total: json['total'] as String,
-      limit: json['limit'] as int,
-      page: json['page'] as int,
+      limit: (json['limit'] as num).toInt(),
+      page: (json['page'] as num).toInt(),
       data: (json['data'] as List<dynamic>?)
               ?.map((e) => PaymentLinkItem.fromJson(e as Map<String, dynamic>))
               .toList() ??

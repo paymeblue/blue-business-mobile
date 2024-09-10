@@ -8,7 +8,7 @@ part of 'providers.dart';
 
 _$BillProviderImpl _$$BillProviderImplFromJson(Map<String, dynamic> json) =>
     _$BillProviderImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       image: json['image'] as String?,
     );

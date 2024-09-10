@@ -8,7 +8,7 @@ part of 'packages.dart';
 
 _$BillPackageImpl _$$BillPackageImplFromJson(Map<String, dynamic> json) =>
     _$BillPackageImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       amount: json['amount'] as String,
     );

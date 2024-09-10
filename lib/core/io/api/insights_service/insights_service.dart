@@ -3,6 +3,7 @@ import 'package:blue_business/core/models/sales_analytics/response/sales_analyti
 import 'package:blue_business/core/models/spending_analytics/response/spending_analytics_response.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
+import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
 part 'insights_service.g.dart';

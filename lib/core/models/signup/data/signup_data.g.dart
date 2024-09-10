@@ -8,15 +8,15 @@ part of 'signup_data.dart';
 
 _$SignupDataImpl _$$SignupDataImplFromJson(Map<String, dynamic> json) =>
     _$SignupDataImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       phone: json['phone'] as String,
-      level: json['level'] as int,
+      level: (json['level'] as num).toInt(),
       businessProfileCompleted:
           json['business_profile_completed'] as bool? ?? false,
       businessDetailsCompleted:
           json['business_details_completed'] as bool? ?? false,
       businessKycCompleted: json['business_kyc_completed'] as bool? ?? false,
-      businessId: json['business_id'] as int?,
+      businessId: (json['business_id'] as num?)?.toInt(),
       createdAt: json['created_at'] as String?,
     );
 

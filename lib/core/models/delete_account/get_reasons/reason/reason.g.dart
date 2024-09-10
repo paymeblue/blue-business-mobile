@@ -7,7 +7,7 @@ part of 'reason.dart';
 // **************************************************************************
 
 _$ReasonImpl _$$ReasonImplFromJson(Map<String, dynamic> json) => _$ReasonImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       content: json['content'] as String,
     );
 

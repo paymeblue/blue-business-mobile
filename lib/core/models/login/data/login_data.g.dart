@@ -8,7 +8,7 @@ part of 'login_data.dart';
 
 _$LoginDataImpl _$$LoginDataImplFromJson(Map<String, dynamic> json) =>
     _$LoginDataImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       phone: json['phone'] as String,
       business: BusinessData.fromJson(json['business'] as Map<String, dynamic>),
       dashboardData: DashboardData.fromJson(

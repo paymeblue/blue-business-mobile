@@ -9,8 +9,8 @@ part of 'verified_receiver.dart';
 _$VerifiedReceiverImpl _$$VerifiedReceiverImplFromJson(
         Map<String, dynamic> json) =>
     _$VerifiedReceiverImpl(
-      id: json['id'] as int,
-      userId: json['user_id'] as int?,
+      id: (json['id'] as num).toInt(),
+      userId: (json['user_id'] as num?)?.toInt(),
       walletCode: json['wallet_code'] as String?,
       receiverName: json['receiver_name'] as String,
       phone: json['phone'] as String,

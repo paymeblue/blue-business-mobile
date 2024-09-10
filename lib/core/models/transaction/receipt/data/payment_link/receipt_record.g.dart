@@ -9,7 +9,7 @@ part of 'receipt_record.dart';
 _$PaymentLinkReceiptRecordImpl _$$PaymentLinkReceiptRecordImplFromJson(
         Map<String, dynamic> json) =>
     _$PaymentLinkReceiptRecordImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       transactionId: json['transaction_id'] as String,
       amount: json['amount'] as String,
       receiverName: json['receiver_name'] as String,

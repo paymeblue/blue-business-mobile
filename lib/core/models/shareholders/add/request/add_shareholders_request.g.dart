@@ -10,8 +10,8 @@ _$AddShareholdersRequestImpl _$$AddShareholdersRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$AddShareholdersRequestImpl(
       bvn: json['bvn'] as String,
-      shareholderId: json['shareholder_id'] as int,
-      userId: json['user_id'] as int,
+      shareholderId: (json['shareholder_id'] as num).toInt(),
+      userId: (json['user_id'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$AddShareholdersRequestImplToJson(

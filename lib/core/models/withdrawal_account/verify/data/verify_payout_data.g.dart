@@ -9,7 +9,7 @@ part of 'verify_payout_data.dart';
 _$VerifyPayoutDataImpl _$$VerifyPayoutDataImplFromJson(
         Map<String, dynamic> json) =>
     _$VerifyPayoutDataImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       reference: json['reference'] as String,
       accountNumber: json['account_number'] as String,
       accountName: json['account_name'] as String,

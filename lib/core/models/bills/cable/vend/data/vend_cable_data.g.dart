@@ -15,8 +15,8 @@ _$VendCableDataImpl _$$VendCableDataImplFromJson(Map<String, dynamic> json) =>
       provider: json['provider'] as String,
       package: json['package'] as String,
       paymentReference: json['payment_reference'] as String,
-      amount: json['amount'] as int,
-      serviceCharget: json['service_charget'] as int? ?? 0,
+      amount: (json['amount'] as num).toInt(),
+      serviceCharget: (json['service_charget'] as num?)?.toInt() ?? 0,
       status: json['status'] as String? ?? "pending",
       createdAt: json['created_at'] as String?,
     );

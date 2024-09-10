@@ -16,7 +16,7 @@ _$ChatImpl _$$ChatImplFromJson(Map<String, dynamic> json) => _$ChatImpl(
       peerToken: json['peer_token'] as String,
       updateType: json['update_type'] as String? ?? "message",
       message: json['message'] as String?,
-      unreadCount: json['unread_count'] as int? ?? 0,
+      unreadCount: (json['unread_count'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$ChatImplToJson(_$ChatImpl instance) {

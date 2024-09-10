@@ -16,6 +16,7 @@ import 'package:blue_business/core/models/bills/electricity/verify/request/verif
 import 'package:blue_business/core/models/bills/electricity/verify/response/verify_electricity_response.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
+import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
 part 'bills_service.g.dart';

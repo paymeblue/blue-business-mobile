@@ -8,7 +8,7 @@ part of 'bank.dart';
 
 _$BankItemImpl _$$BankItemImplFromJson(Map<String, dynamic> json) =>
     _$BankItemImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       logoUrl: json['logo_url'] as String?,
     );

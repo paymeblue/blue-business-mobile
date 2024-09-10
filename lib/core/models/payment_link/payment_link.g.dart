@@ -9,7 +9,7 @@ part of 'payment_link.dart';
 _$PaymentLinkItemImpl _$$PaymentLinkItemImplFromJson(
         Map<String, dynamic> json) =>
     _$PaymentLinkItemImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       transactionId: json['transaction_id'] as String,
       amount: json['amount'] as String,
       phone: json['phone'] as String,

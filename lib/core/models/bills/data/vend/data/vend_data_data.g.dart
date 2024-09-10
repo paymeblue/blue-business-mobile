@@ -13,7 +13,7 @@ _$VendDataDataImpl _$$VendDataDataImplFromJson(Map<String, dynamic> json) =>
       provider: json['provider'] as String,
       package: json['package'] as String,
       paymentReference: json['payment_reference'] as String,
-      amount: json['amount'] as int,
+      amount: (json['amount'] as num).toInt(),
       status: json['status'] as String? ?? "pending",
       createdAt: json['created_at'] as String?,
     );

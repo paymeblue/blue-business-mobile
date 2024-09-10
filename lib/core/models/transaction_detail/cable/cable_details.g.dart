@@ -8,7 +8,7 @@ part of 'cable_details.dart';
 
 _$CableDetailsImpl _$$CableDetailsImplFromJson(Map<String, dynamic> json) =>
     _$CableDetailsImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       amount: json['amount'] as String,
       serviceCharge: json['service_charge'] as String,
       receiver: json['receiver'] as String,

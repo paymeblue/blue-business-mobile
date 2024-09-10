@@ -8,10 +8,10 @@ part of 'dashboard_data.dart';
 
 _$DashboardDataImpl _$$DashboardDataImplFromJson(Map<String, dynamic> json) =>
     _$DashboardDataImpl(
-      totalStaff: json['total_staff'] as int? ?? 0,
-      totalBranches: json['total_branches'] as int? ?? 0,
-      transactionVolume: json['transaction_volume'] as int? ?? 0,
-      netProfit: json['net_profit'] as int? ?? 0,
+      totalStaff: (json['total_staff'] as num?)?.toInt() ?? 0,
+      totalBranches: (json['total_branches'] as num?)?.toInt() ?? 0,
+      transactionVolume: (json['transaction_volume'] as num?)?.toInt() ?? 0,
+      netProfit: (json['net_profit'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$DashboardDataImplToJson(_$DashboardDataImpl instance) =>

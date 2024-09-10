@@ -9,9 +9,9 @@ part of 'create_business_profile_request.dart';
 _$CreateBusinessProfileRequestImpl _$$CreateBusinessProfileRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateBusinessProfileRequestImpl(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as num).toInt(),
       name: json['name'] as String,
-      categoryId: json['category_id'] as int,
+      categoryId: (json['category_id'] as num).toInt(),
       cacNumber: json['cac_number'] as String,
       staffSize: json['staff_size'] as String,
     );

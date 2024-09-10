@@ -8,7 +8,7 @@ part of 'airtime_details.dart';
 
 _$AirtimeDetailsImpl _$$AirtimeDetailsImplFromJson(Map<String, dynamic> json) =>
     _$AirtimeDetailsImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       amount: json['amount'] as String,
       receiver: json['receiver'] as String,
       transactionId: json['transaction_id'] as String,

@@ -13,7 +13,7 @@ _$UpdateStaffRequestImpl _$$UpdateStaffRequestImplFromJson(
       phone: json['phone'] as String?,
       password: json['password'] as String?,
       role: json['role'] as String?,
-      branchId: json['branch_id'] as int?,
+      branchId: (json['branch_id'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$UpdateStaffRequestImplToJson(

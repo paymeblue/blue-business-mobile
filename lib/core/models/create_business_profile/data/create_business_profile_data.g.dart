@@ -9,10 +9,10 @@ part of 'create_business_profile_data.dart';
 _$CreateBusinessProfileDataImpl _$$CreateBusinessProfileDataImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateBusinessProfileDataImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       phone: json['phone'] as String,
-      level: json['level'] as int,
-      businessId: json['business_id'] as int,
+      level: (json['level'] as num).toInt(),
+      businessId: (json['business_id'] as num).toInt(),
       businessProfileCompleted:
           json['business_profile_completed'] as bool? ?? false,
       businessDetailsCompleted:

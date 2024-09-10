@@ -11,7 +11,7 @@ _$CreateShareholdersDataImpl _$$CreateShareholdersDataImplFromJson(
     _$CreateShareholdersDataImpl(
       name: json['name'] as String,
       bvn: json['bvn'] as String,
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       verified: json['verified'] as bool? ?? false,
       createdAt: json['created_at'] as String?,
     );

@@ -8,8 +8,8 @@ part of 'shareholders.dart';
 
 _$ShareholdersImpl _$$ShareholdersImplFromJson(Map<String, dynamic> json) =>
     _$ShareholdersImpl(
-      id: json['id'] as int,
-      businessId: json['business_id'] as int,
+      id: (json['id'] as num).toInt(),
+      businessId: (json['business_id'] as num).toInt(),
       name: json['name'] as String,
       verified: json['verified'] as bool? ?? false,
       designation: json['designation'] as String? ?? "WITNESS",

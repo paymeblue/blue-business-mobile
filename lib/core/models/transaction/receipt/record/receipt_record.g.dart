@@ -8,7 +8,7 @@ part of 'receipt_record.dart';
 
 _$ReceiptRecordImpl _$$ReceiptRecordImplFromJson(Map<String, dynamic> json) =>
     _$ReceiptRecordImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       amount: json['amount'] as String,
       orderReference: json['order_reference'] as String,
       receiverName: json['receiver_name'] as String,

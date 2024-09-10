@@ -11,8 +11,8 @@ _$CreateShareholdersRequestImpl _$$CreateShareholdersRequestImplFromJson(
     _$CreateShareholdersRequestImpl(
       name: json['name'] as String,
       bvn: json['bvn'] as String,
-      businessId: json['business_id'] as int,
-      userId: json['user_id'] as int,
+      businessId: (json['business_id'] as num).toInt(),
+      userId: (json['user_id'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$CreateShareholdersRequestImplToJson(

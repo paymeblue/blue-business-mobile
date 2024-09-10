@@ -9,7 +9,7 @@ part of 'blue_beneficiary.dart';
 _$BlueBeneficiaryImpl _$$BlueBeneficiaryImplFromJson(
         Map<String, dynamic> json) =>
     _$BlueBeneficiaryImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       identifier: json['identifier'] as String,
     );

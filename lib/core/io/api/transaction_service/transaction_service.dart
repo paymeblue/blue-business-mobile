@@ -23,6 +23,7 @@ import 'package:blue_business/core/models/withdrawal_account/verify/request/veri
 import 'package:blue_business/core/models/withdrawal_account/verify/response/verify_payout_response.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
+import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
 part 'transaction_service.g.dart';
@@ -96,7 +97,7 @@ abstract class TransactionService {
   );
 
   @DELETE("/beneficiaries/{id}")
-  Future deleteBeneficiary(
+  Future<SetBeneficiaryResponse> deleteBeneficiary(
     @Path() int id,
   );
 

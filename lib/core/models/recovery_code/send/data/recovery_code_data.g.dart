@@ -9,7 +9,7 @@ part of 'recovery_code_data.dart';
 _$SendRecoveryCodeDataImpl _$$SendRecoveryCodeDataImplFromJson(
         Map<String, dynamic> json) =>
     _$SendRecoveryCodeDataImpl(
-      userId: json['user_id'] as int,
+      userId: (json['user_id'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$SendRecoveryCodeDataImplToJson(

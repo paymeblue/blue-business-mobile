@@ -8,7 +8,7 @@ part of 'power_details.dart';
 
 _$PowerDetailsImpl _$$PowerDetailsImplFromJson(Map<String, dynamic> json) =>
     _$PowerDetailsImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       amount: json['amount'] as String,
       serviceCharge: json['service_charge'] as String,
       transactionId: json['transaction_id'] as String,

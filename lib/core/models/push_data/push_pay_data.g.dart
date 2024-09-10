@@ -8,7 +8,7 @@ part of 'push_pay_data.dart';
 
 _$PushPayDataImpl _$$PushPayDataImplFromJson(Map<String, dynamic> json) =>
     _$PushPayDataImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       amount: json['amount'] as String,
       receiverName: json['receiver_name'] as String,
       receiverWallet: json['receiver_wallet'] as String,
