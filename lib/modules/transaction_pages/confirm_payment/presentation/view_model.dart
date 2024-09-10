@@ -31,7 +31,7 @@ class TransactionShellViewModel extends BaseViewModel {
 
   goToNext(BuildContext context, String? id, String mode, int? amount,
       VerifiedReceiver? data) {
-    locator<AppStateValues>().hasSavedBeneficiary = false;
+    locator<AppStateValues>().hasSavedBeneficiary = !saveBeneficiary;
     context.go("${RoutePaths.transactionPinPath}/$mode/$id",
         extra: mode == "withdraw" ? amount : data);
   }
