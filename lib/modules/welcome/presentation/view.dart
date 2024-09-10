@@ -1,7 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/gen/fonts.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
@@ -51,7 +50,7 @@ class _WelcomeViewState extends State<WelcomeView> {
   AnimatedContainer onboardingContainer(WelcomeViewModel model) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 350),
-      height: 390,
+      height: 420,
       padding: const EdgeInsets.symmetric(vertical: 35),
       width: model.size.width,
       decoration: const BoxDecoration(
@@ -65,9 +64,9 @@ class _WelcomeViewState extends State<WelcomeView> {
         child: Column(
           children: [
             onboardingSlider(model),
-            28.verticalGap,
+            24.verticalGap,
             onboardingText(model),
-            15.verticalGap,
+            12.verticalGap,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 45),
               child: AppButton.primary(
@@ -138,12 +137,11 @@ class _WelcomeViewState extends State<WelcomeView> {
         children: [
           Text(
             model.onboardingText[model.index],
-            style: const TextStyle(
-                fontFamily: AppFonts.satoshi,
-                color: AppColors.textColor,
-                fontSize: 24.5,
-                height: 1.2,
-                fontWeight: FontWeight.w600),
+            style: AppTextStyles.header.copyWith(
+              fontSize: 24,
+              height: 1.1,
+              fontWeight: FontWeight.w500,
+            ),
             textAlign: TextAlign.center,
           ),
           5.verticalGap,
@@ -169,7 +167,8 @@ class _WelcomeViewState extends State<WelcomeView> {
           return AnimatedContainer(
             duration: const Duration(milliseconds: 350),
             height: 7,
-            width: (MediaQuery.of(context).size.width * .8) / 3,
+            width: (MediaQuery.of(context).size.width * .8) /
+                model.onboardingText.length,
             decoration: containerDecoration(index, model),
           );
         }),
