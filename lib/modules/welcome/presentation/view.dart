@@ -131,17 +131,31 @@ class _WelcomeViewState extends State<WelcomeView> {
 
   Container onboardingText(WelcomeViewModel model) {
     return Container(
-      height: 90,
+      height: 120,
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.symmetric(horizontal: model.size.width / 8),
-      child: Text(
-        model.onboardingText[model.index],
-        style: const TextStyle(
-            fontFamily: AppFonts.satoshi,
-            color: AppColors.textColor,
-            fontSize: 24.5,
-            fontWeight: FontWeight.w600),
-        textAlign: TextAlign.center,
+      child: Column(
+        children: [
+          Text(
+            model.onboardingText[model.index],
+            style: const TextStyle(
+                fontFamily: AppFonts.satoshi,
+                color: AppColors.textColor,
+                fontSize: 24.5,
+                height: 1.2,
+                fontWeight: FontWeight.w600),
+            textAlign: TextAlign.center,
+          ),
+          5.verticalGap,
+          Text(
+            model.onboardingSubtext[model.index],
+            style: AppTextStyles.subText.copyWith(
+              fontWeight: FontWeight.w400,
+              height: 1,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
