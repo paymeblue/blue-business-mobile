@@ -38,37 +38,43 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
       model: TransactionShellViewModel(),
       onModelReady: (model) => model.init(context, widget.data, widget.mode),
       builder: (context, model, _) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (widget.mode == "withdraw")
-              ...withdrawalTitleAndSubtitle()
-            else
-              ...paymentTitleAndSubtitle(),
-            35.verticalGap,
-            Text(
-              "To:",
-              style: AppTextStyles.subHeader,
-            ),
-            4.verticalGap,
-            recipientContainer(model),
-            8.verticalGap,
-            if (widget.data != null && widget.data!.walletCode != null)
-              saveBeneficiaryRow(model),
-            4.verticalGap,
-            InfoContainer(
-              text:
-                  "You will be charged ${nairaSymbol()}${widget.data != null ? (widget.data!.charge.toDouble()).toStringAsFixed(2) : "20.00"} for this ${tText()}",
-            ),
-            const Spacer(),
-            AppButton.primary(
-              title: "Continue",
-              onTap: () {
-                model.goToNext(context, widget.transactionId, widget.mode,
-                    widget.amount, widget.data);
-              },
-            )
-          ],
+        return Container(
+          height: model.size.height,
+          width: model.size.width,
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, bottom: 35, top: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (widget.mode == "withdraw")
+                ...withdrawalTitleAndSubtitle()
+              else
+                ...paymentTitleAndSubtitle(),
+              35.verticalGap,
+              Text(
+                "To:",
+                style: AppTextStyles.subHeader,
+              ),
+              4.verticalGap,
+              recipientContainer(model),
+              8.verticalGap,
+              if (widget.data != null && widget.data!.walletCode != null)
+                saveBeneficiaryRow(model),
+              4.verticalGap,
+              InfoContainer(
+                text:
+                    "You will be charged ${nairaSymbol()}${widget.data != null ? (widget.data!.charge.toDouble()).toStringAsFixed(2) : "20.00"} for this ${tText()}",
+              ),
+              const Spacer(),
+              AppButton.primary(
+                title: "Continue",
+                onTap: () {
+                  model.goToNext(context, widget.transactionId, widget.mode,
+                      widget.amount, widget.data);
+                },
+              )
+            ],
+          ),
         );
       },
     );

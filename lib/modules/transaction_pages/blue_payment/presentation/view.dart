@@ -32,39 +32,45 @@ class _BluePaymentViewState extends State<BluePaymentView> {
       model: BluePaymentViewModel(),
       onModelReady: (model) => model.init(context, widget.data),
       builder: (context, model, _) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-                child: ListView(
-              children: [
-                ...titleAndSubtitle(),
-                35.verticalGap,
-                identifierField(model),
-                if (model.loading)
-                  Center(
-                    child: LoadingAnimationWidget.prograssiveDots(
-                        color: AppColors.primary, size: 45),
-                  )
-                else if (model.recentlyPaidItems.isEmpty)
-                  0.verticalGap
-                else ...[
-                  20.verticalGap,
-                  ...recentlyPaidSection(model),
+        return Container(
+          height: model.size.height,
+          width: model.size.width,
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, bottom: 35, top: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                  child: ListView(
+                children: [
+                  ...titleAndSubtitle(),
+                  35.verticalGap,
+                  identifierField(model),
+                  if (model.loading)
+                    Center(
+                      child: LoadingAnimationWidget.prograssiveDots(
+                          color: AppColors.primary, size: 45),
+                    )
+                  else if (model.recentlyPaidItems.isEmpty)
+                    0.verticalGap
+                  else ...[
+                    20.verticalGap,
+                    ...recentlyPaidSection(model),
+                  ],
+                  18.verticalGap,
+                  ...searchBeneficiaryTextField(model),
+                  beneficiaryList(model)
                 ],
-                18.verticalGap,
-                ...searchBeneficiaryTextField(model),
-                beneficiaryList(model)
-              ],
-            )),
-            AppButton.primary(
-              title: "Continue",
-              isEnabled: model.identifierController.text.isNotEmpty,
-              onTap: () {
-                model.onButtonTap(context);
-              },
-            )
-          ],
+              )),
+              AppButton.primary(
+                title: "Continue",
+                isEnabled: model.identifierController.text.isNotEmpty,
+                onTap: () {
+                  model.onButtonTap(context);
+                },
+              )
+            ],
+          ),
         );
       },
     );

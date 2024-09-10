@@ -33,15 +33,7 @@ class _TransactionShellViewState extends State<TransactionShellView> {
                 ? Icons.close
                 : Icons.arrow_back_ios_new,
           ),
-          body: SingleChildScrollView(
-            child: Container(
-              height: model.size.height - (model.size.height >= 900 ? 115 : 80),
-              width: model.size.width,
-              padding: const EdgeInsets.only(
-                  left: 16, right: 16, bottom: 35, top: 20),
-              child: widget.child,
-            ),
-          ),
+          body: widget.child,
         );
       },
     );

@@ -38,27 +38,33 @@ class _ConfirmTransactionPinViewState extends State<ConfirmTransactionPinView> {
       model: ConfirmTransactionPinViewModel(),
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ...regidterTitleAndSubtitle(),
-            const Spacer(),
-            pinFields(model),
-            const Spacer(),
-            numberPad(model),
-            55.verticalGap,
-            forgotPinButton(onTap: () {
-              model.getSecurityQuestion(context);
-            }),
-            62.verticalGap,
-            confirmButton(
-              onTap: () {
-                model.onButtonTap(context, widget.mode, widget.amount,
-                    widget.transactionId, widget.data);
-              },
-              isActive: model.pin.length >= 4,
-            ),
-          ],
+        return Container(
+          height: model.size.height,
+          width: model.size.width,
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, bottom: 35, top: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ...regidterTitleAndSubtitle(),
+              const Spacer(),
+              pinFields(model),
+              const Spacer(),
+              numberPad(model),
+              55.verticalGap,
+              forgotPinButton(onTap: () {
+                model.getSecurityQuestion(context);
+              }),
+              62.verticalGap,
+              confirmButton(
+                onTap: () {
+                  model.onButtonTap(context, widget.mode, widget.amount,
+                      widget.transactionId, widget.data);
+                },
+                isActive: model.pin.length >= 4,
+              ),
+            ],
+          ),
         );
       },
     );

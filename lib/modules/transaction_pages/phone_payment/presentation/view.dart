@@ -28,43 +28,49 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
       model: PhonePaymentViewModel(),
       onModelReady: (model) => model.init(context, widget.data),
       builder: (context, model, _) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  ...titleAndSubtitle(),
-                  35.verticalGap,
-                  phoneTextField(model),
-                  18.verticalGap,
-                  BlueTextField.plaintext(
-                    hint: "John Doe",
-                    title: "Recipient name",
-                    controller: model.recipientController,
-                    onChanged: model.onChanged,
-                  ),
-                  28.verticalGap,
-                  Text(
-                    "MY CONTACTS",
-                    style: AppTextStyles.subHeader.copyWith(fontSize: 15.5),
-                  ),
-                  BlueTextField.search(
-                    onSearchChanged: model.onSearchContactsChanged,
-                  ),
-                  contactsListSection(model),
-                ],
+        return Container(
+          height: model.size.height,
+          width: model.size.width,
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, bottom: 35, top: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    ...titleAndSubtitle(),
+                    35.verticalGap,
+                    phoneTextField(model),
+                    18.verticalGap,
+                    BlueTextField.plaintext(
+                      hint: "John Doe",
+                      title: "Recipient name",
+                      controller: model.recipientController,
+                      onChanged: model.onChanged,
+                    ),
+                    28.verticalGap,
+                    Text(
+                      "MY CONTACTS",
+                      style: AppTextStyles.subHeader.copyWith(fontSize: 15.5),
+                    ),
+                    BlueTextField.search(
+                      onSearchChanged: model.onSearchContactsChanged,
+                    ),
+                    contactsListSection(model),
+                  ],
+                ),
               ),
-            ),
-            4.verticalGap,
-            AppButton.primary(
-                title: "Continue",
-                isEnabled: model.phoneController.text.isNotEmpty &&
-                    model.recipientController.text.isNotEmpty,
-                onTap: () {
-                  model.onButtonTap(context);
-                })
-          ],
+              4.verticalGap,
+              AppButton.primary(
+                  title: "Continue",
+                  isEnabled: model.phoneController.text.isNotEmpty &&
+                      model.recipientController.text.isNotEmpty,
+                  onTap: () {
+                    model.onButtonTap(context);
+                  })
+            ],
+          ),
         );
       },
     );

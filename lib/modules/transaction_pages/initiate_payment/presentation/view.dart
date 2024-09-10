@@ -27,35 +27,42 @@ class _InitiatePaymentViewState extends State<InitiatePaymentView> {
       model: InitiatePaymentViewModel(),
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  if (widget.isWithdrawal)
-                    ...withdrawalTitleAndSubtitle()
-                  else
-                    ...paymentTitleAndSubtitle(),
-                  50.verticalGap,
-                  currencyField(model),
-                  4.verticalGap,
-                  InfoContainer(
-                    text:
-                        "The minimum ${tText()} amount is ${nairaSymbol()}200.00",
-                  ),
-                  if (!widget.isWithdrawal) ...spaceAndDescriptionField(model),
-                ],
+        return Container(
+          height: model.size.height,
+          width: model.size.width,
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, bottom: 35, top: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    if (widget.isWithdrawal)
+                      ...withdrawalTitleAndSubtitle()
+                    else
+                      ...paymentTitleAndSubtitle(),
+                    50.verticalGap,
+                    currencyField(model),
+                    4.verticalGap,
+                    InfoContainer(
+                      text:
+                          "The minimum ${tText()} amount is ${nairaSymbol()}200.00",
+                    ),
+                    if (!widget.isWithdrawal)
+                      ...spaceAndDescriptionField(model),
+                  ],
+                ),
               ),
-            ),
-            AppButton.primary(
-              title: "Continue",
-              isEnabled: model.isActive(),
-              onTap: () {
-                model.startTransaction(context, widget.isWithdrawal);
-              },
-            )
-          ],
+              AppButton.primary(
+                title: "Continue",
+                isEnabled: model.isActive(),
+                onTap: () {
+                  model.startTransaction(context, widget.isWithdrawal);
+                },
+              )
+            ],
+          ),
         );
       },
     );

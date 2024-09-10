@@ -25,25 +25,31 @@ class _QrPaymentViewState extends State<QrPaymentView> {
       model: QrPaymentViewModel(),
       onModelReady: (model) => model.init(context, widget.data),
       builder: (context, model, _) {
-        return MobileScanner(
-          controller: model.mobileScannerController,
-          errorBuilder: (context, excp, _) {
-            return ErrorRouteView(
-              message: excp.errorDetails?.message ??
-                  "Something went wrong while trying to complete this action. Please try again later",
-              newRoute: "${RoutePaths.initiateTransactionPath}/pay",
-            );
-          },
-          scanWindow: Rect.fromCenter(
-              center: Offset(context.mediaQuery.size.width / 2,
-                  context.mediaQuery.size.height / 2),
-              width: 250,
-              height: 250),
-          onDetect: (capture) {
-            model.detect(capture, context);
-          },
-          overlay:
-              QRScannerOverlay(overlayColour: Colors.black.withOpacity(.2)),
+        return Container(
+          height: model.size.height,
+          width: model.size.width,
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, bottom: 35, top: 20),
+          child: MobileScanner(
+            controller: model.mobileScannerController,
+            errorBuilder: (context, excp, _) {
+              return ErrorRouteView(
+                message: excp.errorDetails?.message ??
+                    "Something went wrong while trying to complete this action. Please try again later",
+                newRoute: "${RoutePaths.initiateTransactionPath}/pay",
+              );
+            },
+            scanWindow: Rect.fromCenter(
+                center: Offset(context.mediaQuery.size.width / 2,
+                    context.mediaQuery.size.height / 2),
+                width: 250,
+                height: 250),
+            onDetect: (capture) {
+              model.detect(capture, context);
+            },
+            overlay:
+                QRScannerOverlay(overlayColour: Colors.black.withOpacity(.2)),
+          ),
         );
       },
     );
