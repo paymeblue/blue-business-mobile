@@ -5,7 +5,7 @@ export '../../modules/signup_pages/add_account_phone/presentation/view.dart';
 export '../../modules/signup_shell/presentation/view.dart';
 export '../../modules/signup_pages/verify_otp/presentation/view.dart';
 export '../../modules/dashboard_shell/presentation/view.dart';
-export '../../modules/signup_pages/pin/presentation/view.dart';
+export '../../modules/signup_pages/create_pin/presentation/view.dart';
 export '../../modules/dashboard_pages/home/presentation/view.dart';
 export '../../modules/phone_recovery_pages/enter_new_phone/presentation/view.dart';
 export '../../modules/phone_recovery_pages/verify_recovery_otp/presentation/view.dart';

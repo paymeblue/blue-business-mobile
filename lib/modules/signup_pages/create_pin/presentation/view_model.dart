@@ -26,14 +26,65 @@ class PinViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context, SignupData data) {
-    context.go(RoutePaths.registerProgressPath, extra: data);
+    if (pageIndex == 0) {
+      if (context.canPop()) {
+        context.pop();
+      } else {
+        context.go(RoutePaths.registerProgressPath, extra: data);
+      }
+    } else {
+      pageController.jumpToPage(0);
+    }
   }
 
-  String _pin = "";
+  String _pin = "", _confirmPin = "";
   String get pin => _pin;
   set pin(String p) {
     _pin = p;
     notifyListeners();
+  }
+
+  String get confirmPin => _confirmPin;
+  set confirmPin(String p) {
+    _confirmPin = p;
+    notifyListeners();
+  }
+
+  setNewPinAndNavigate(String v, int i) {
+    pin = v;
+    pageController.animateToPage(2,
+        duration: const Duration(milliseconds: 350), curve: Curves.easeInOut);
+  }
+
+  int _index = 0;
+  int get pageIndex => _index;
+  set pageIndex(int i) {
+    _index = i;
+    notifyListeners();
+  }
+
+  PageController pageController = PageController();
+
+  onPageChanged(int i) {
+    pageIndex = i;
+  }
+
+  onNewPinSet(String v, int i, BuildContext context, SignupData data) {
+    switch (i) {
+      case 0:
+        setNewPinAndNavigate(v, i);
+      default:
+        setConfirmPinAndNavigate(v, context, data);
+    }
+  }
+
+  setConfirmPinAndNavigate(String v, BuildContext context, SignupData data) {
+    if (v == pin) {
+      confirmPin = v;
+      completeRegistration(data, context);
+    } else {
+      AppNotification.error(message: "Pins do not match");
+    }
   }
 
   completeRegistration(SignupData data, BuildContext context) async {

@@ -213,7 +213,7 @@ GoRouter router = GoRouter(
     GoRoute(
       path: "/register${RoutePaths.pinPath}",
       builder: (context, state) {
-        return PinView(
+        return CreatePinView(
           data: state.extra as SignupData,
         );
       },

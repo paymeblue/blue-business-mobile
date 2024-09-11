@@ -3,6 +3,7 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/modules/signup_pages/create_pin/pages/pin/view.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/textfield/num_pad.dart';
@@ -10,15 +11,15 @@ import 'package:flutter/material.dart';
 
 import 'view_model.dart';
 
-class PinView extends StatefulWidget {
+class CreatePinView extends StatefulWidget {
   final SignupData data;
-  const PinView({super.key, required this.data});
+  const CreatePinView({super.key, required this.data});
 
   @override
-  State<PinView> createState() => _PinViewState();
+  State<CreatePinView> createState() => _CreatePinViewState();
 }
 
-class _PinViewState extends State<PinView> {
+class _CreatePinViewState extends State<CreatePinView> {
   @override
   Widget build(BuildContext context) {
     return BaseView<PinViewModel>(
@@ -30,26 +31,25 @@ class _PinViewState extends State<PinView> {
             onBackTap: () {
               model.goBack(context, widget.data);
             },
-            icon: Icons.arrow_back_ios_new,
+            icon: model.pageIndex == 0
+                ? Icons.close
+                : Icons.arrow_back_ios_new_rounded,
           ),
-          body: Padding(
-            padding:
-                const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 35),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ...regidterTitleAndSubtitle(),
-                const Spacer(),
-                pinFields(model),
-                const Spacer(),
-                numberPad(model),
-                120.verticalGap,
-                registerButton(
-                    onTap: () {
-                      model.completeRegistration(widget.data, context);
-                    },
-                    isActive: model.pin.length >= 4),
-              ],
+          body: Container(
+            height: model.size.height,
+            width: model.size.height,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 35),
+            child: PageView.builder(
+              controller: model.pageController,
+              onPageChanged: model.onPageChanged,
+              itemBuilder: (context, index) {
+                return CreatePinContent(
+                  onNewPinSet: (v) {
+                    model.onNewPinSet(v, index, context, widget.data);
+                  },
+                  index: index,
+                );
+              },
             ),
           ),
         );
