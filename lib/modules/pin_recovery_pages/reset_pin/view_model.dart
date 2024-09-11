@@ -15,7 +15,7 @@ import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class NewPinViewModel extends BaseViewModel {
+class ResetPinViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
 
@@ -74,10 +74,65 @@ class NewPinViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  String _pin = "";
+  onNewPinSet(String v, int i, BuildContext context, String phone) {
+    switch (i) {
+      case 0:
+        setNewPinAndNavigate(v, i);
+      default:
+        setConfirmPinAndNavigate(v, context, phone);
+    }
+  }
+
+  goBack(BuildContext context) {
+    if (pageIndex == 0) {
+      if (context.canPop()) {
+        context.pop();
+      } else {
+        getSecurityQuestion(context);
+      }
+    } else {
+      pageController.jumpToPage(0);
+    }
+  }
+
+  String _pin = "", _confirmPin = "";
   String get pin => _pin;
   set pin(String p) {
     _pin = p;
     notifyListeners();
+  }
+
+  String get confirmPin => _confirmPin;
+  set confirmPin(String p) {
+    _confirmPin = p;
+    notifyListeners();
+  }
+
+  setNewPinAndNavigate(String v, int i) {
+    pin = v;
+    pageController.animateToPage(2,
+        duration: const Duration(milliseconds: 350), curve: Curves.easeInOut);
+  }
+
+  int _index = 0;
+  int get pageIndex => _index;
+  set pageIndex(int i) {
+    _index = i;
+    notifyListeners();
+  }
+
+  PageController pageController = PageController();
+
+  onPageChanged(int i) {
+    pageIndex = i;
+  }
+
+  setConfirmPinAndNavigate(String v, BuildContext context, String phone) {
+    if (v == pin) {
+      confirmPin = v;
+      resetPin(context, phone);
+    } else {
+      AppNotification.error(message: "Pins do not match");
+    }
   }
 }

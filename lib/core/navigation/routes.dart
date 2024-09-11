@@ -204,7 +204,7 @@ GoRouter router = GoRouter(
             path: "${RoutePaths.recoverPinPath}/:phone",
             name: "Create New Pin",
             builder: (context, state) {
-              return AddNewPinView(
+              return ResetPinView(
                 phone: state.pathParameters["phone"].toString(),
               );
             },

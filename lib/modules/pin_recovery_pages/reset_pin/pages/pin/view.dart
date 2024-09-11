@@ -2,68 +2,57 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
-import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/textfield/num_pad.dart';
 import 'package:flutter/material.dart';
 
 import 'view_model.dart';
 
-class AddNewPinView extends StatefulWidget {
-  final String phone;
-  const AddNewPinView({
+class ResetPinContent extends StatefulWidget {
+  final ValueChanged<String> onNewPinSet;
+  final int index;
+  const ResetPinContent({
     super.key,
-    required this.phone,
+    required this.onNewPinSet,
+    this.index = 0,
   });
 
   @override
-  State<AddNewPinView> createState() => _AddNewPinViewState();
+  State<ResetPinContent> createState() => _ResetPinContentState();
 }
 
-class _AddNewPinViewState extends State<AddNewPinView> {
+class _ResetPinContentState extends State<ResetPinContent> {
   @override
   Widget build(BuildContext context) {
-    return BaseView<NewPinViewModel>(
-      model: NewPinViewModel(),
+    return BaseView<ResetPinContentViewModel>(
+      model: ResetPinContentViewModel(),
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
         return Scaffold(
-          appBar: BlueAppBar.primary(
-            onBackTap: () {
-              model.getSecurityQuestion(context);
-            },
-            icon: Icons.arrow_back_ios_new,
-          ),
-          body: Container(
-            height: model.size.height,
-            width: model.size.width,
-            padding:
-                const EdgeInsets.only(left: 16, right: 16, bottom: 35, top: 35),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ...newPinTitleAndSubtitle(),
-                const Spacer(),
-                pinFields(model),
-                const Spacer(),
-                numberPad(model),
-                120.verticalGap,
-                AppButton.primary(
-                  title: "Continue",
-                  isEnabled: model.pin.length == 4,
-                  onTap: () {
-                    model.resetPin(context, widget.phone);
-                  },
-                )
-              ],
-            ),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ...newPinTitleAndSubtitle(),
+              const Spacer(),
+              pinFields(model),
+              const Spacer(),
+              numberPad(model),
+              120.verticalGap,
+              AppButton.primary(
+                title: widget.index == 0 ? "Continue" : "Reset PIN",
+                isEnabled: model.pin.length == 4,
+                onTap: () {
+                  widget.onNewPinSet(model.pin);
+                },
+              )
+            ],
           ),
         );
       },
     );
   }
 
-  Widget numberPad(NewPinViewModel model) {
+  Widget numberPad(ResetPinContentViewModel model) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: NumPad(
@@ -75,7 +64,7 @@ class _AddNewPinViewState extends State<AddNewPinView> {
     );
   }
 
-  Widget pinFields(NewPinViewModel model) {
+  Widget pinFields(ResetPinContentViewModel model) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(4, (index) {
@@ -109,12 +98,12 @@ class _AddNewPinViewState extends State<AddNewPinView> {
   List<Widget> newPinTitleAndSubtitle() {
     return [
       Text(
-        "Reset PIN",
+        titleString(),
         style: AppTextStyles.header,
       ),
       8.verticalGap,
       subtitle(
-        "Enter a 4 - digit PIN you won’t forget. Do not share this PIN to anyone.",
+        subtitleString(),
       ),
     ];
   }
@@ -128,5 +117,23 @@ class _AddNewPinViewState extends State<AddNewPinView> {
         textAlign: TextAlign.start,
       ),
     );
+  }
+
+  String titleString() {
+    switch (widget.index) {
+      case 0:
+        return "Create your new PIN";
+      default:
+        return "Confirm your new PIN";
+    }
+  }
+
+  String subtitleString() {
+    switch (widget.index) {
+      case 0:
+        return "Enter a 4 - digit PIN you won’t forget. Do not share this PIN to anyone.";
+      default:
+        return "Re - enter your new 4 - digit PIN. Do not share this PIN to anyone";
+    }
   }
 }

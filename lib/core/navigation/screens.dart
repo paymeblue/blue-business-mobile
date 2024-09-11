@@ -34,7 +34,7 @@ export '../../modules/transaction_pages/qr_payment/view.dart';
 export '../../modules/add_withdrawal_details/presentation/view.dart';
 export '../../modules/personal_info/presentation/view.dart';
 export '../../modules/account_recovery/presentation/view.dart';
-export '../../modules/pin_recovery_pages/add_new_pin/view.dart';
+export '../../modules/pin_recovery_pages/reset_pin/view.dart';
 export '../../modules/pin_recovery_pages/enter_recovery_phone/presentation/view.dart';
 export '../../modules/pin_recovery_pages/verify_pin_recovery_otp/presentation/view.dart';
 export '../../modules/pin_recovery_shell/presentation/view.dart';
