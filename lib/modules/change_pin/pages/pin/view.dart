@@ -8,24 +8,24 @@ import 'package:flutter/material.dart';
 
 import 'view_model.dart';
 
-class NewPinView extends StatefulWidget {
+class ChangePinContent extends StatefulWidget {
   final ValueChanged<String> onNewPinSet;
   final int index;
-  const NewPinView({
+  const ChangePinContent({
     super.key,
     required this.onNewPinSet,
     this.index = 0,
   });
 
   @override
-  State<NewPinView> createState() => _NewPinViewState();
+  State<ChangePinContent> createState() => _ChangePinContentState();
 }
 
-class _NewPinViewState extends State<NewPinView> {
+class _ChangePinContentState extends State<ChangePinContent> {
   @override
   Widget build(BuildContext context) {
-    return BaseView<NewPinViewModel>(
-      model: NewPinViewModel(),
+    return BaseView<ChangePinContentViewModel>(
+      model: ChangePinContentViewModel(),
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
         return Scaffold(
@@ -52,7 +52,7 @@ class _NewPinViewState extends State<NewPinView> {
     );
   }
 
-  Widget numberPad(NewPinViewModel model) {
+  Widget numberPad(ChangePinContentViewModel model) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: NumPad(
@@ -64,7 +64,7 @@ class _NewPinViewState extends State<NewPinView> {
     );
   }
 
-  Widget pinFields(NewPinViewModel model) {
+  Widget pinFields(ChangePinContentViewModel model) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(4, (index) {

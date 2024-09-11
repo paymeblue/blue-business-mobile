@@ -36,7 +36,7 @@ class _ChangePinViewState extends State<ChangePinView> {
               controller: model.pageController,
               onPageChanged: model.onPageChanged,
               itemBuilder: (context, index) {
-                return NewPinView(
+                return ChangePinContent(
                   onNewPinSet: (v) {
                     model.onNewPinSet(v, index, context);
                   },
