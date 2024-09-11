@@ -102,19 +102,13 @@ class AppErrorHandler {
     }
   }
 
-  static logout() async {
+  static logout() {
     BuildContext context =
         locator<NavigationService>().navigatorKey.currentContext!;
     if (context.mounted) {
-      GoRouterState state = GoRouterState.of(context);
-      if (state.matchedLocation.contains("/dash") &&
-          locator<AppStateValues>().notificationState == null) {
-        locator<AppStateValues>().notificationState = NotificationState.error;
-      }
+      locator<AppStateValues>().notificationState = NotificationState.error;
 
-      if (state.matchedLocation.contains("/dash")) {
-        context.go(RoutePaths.loginPath);
-      }
+      context.go(RoutePaths.loginPath);
     }
   }
 }
