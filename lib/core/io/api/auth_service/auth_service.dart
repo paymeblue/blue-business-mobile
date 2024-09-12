@@ -168,7 +168,7 @@ abstract class AuthService {
   Future<ChangePasswordResponse> changePassword(
       @Body() ChangePasswordRequest request);
 
-  @POST("/users/delete-accoun")
+  @POST("/users/delete-account")
   Future<DeleteResponse> deleteAccount(@Body() DeleteRequest request);
 
   @GET("/reasons")

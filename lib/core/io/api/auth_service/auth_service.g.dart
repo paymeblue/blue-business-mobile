@@ -949,7 +949,7 @@ class _AuthService implements AuthService {
     )
         .compose(
           _dio.options,
-          '/users/delete-accoun',
+          '/users/delete-account',
           queryParameters: queryParameters,
           data: _data,
         )

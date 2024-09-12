@@ -23,6 +23,10 @@ class $AssetsImagesGen {
   AssetGenImage get blueLauncher =>
       const AssetGenImage('assets/images/blue_launcher.png');
 
+  /// File path: assets/images/blue_launcher_white.png
+  AssetGenImage get blueLauncherWhite =>
+      const AssetGenImage('assets/images/blue_launcher_white.png');
+
   /// Directory path: assets/images/icons
   $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
 
@@ -59,6 +63,7 @@ class $AssetsImagesGen {
   List<dynamic> get values => [
         avatarPlaceholder,
         blueLauncher,
+        blueLauncherWhite,
         launcher,
         loader,
         notificationMessage,
