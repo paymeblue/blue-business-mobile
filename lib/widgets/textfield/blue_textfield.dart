@@ -537,11 +537,13 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
             obscureText: widget.isPassword ? isObscured : false,
             enabled: widget.isEnabled,
             maxLength: widget.maxLength,
+            textAlign: widget.textAlign,
             inputFormatters: widget.inputFormatters,
             textAlignVertical: TextAlignVertical.center,
             keyboardType: widget.keyboardType,
             onChanged: widget.onChanged,
             minLines: 1,
+            focusNode: widget.node,
             maxLines: widget.isMessage
                 ? 3
                 : widget.isPassword

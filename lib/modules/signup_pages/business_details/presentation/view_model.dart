@@ -26,9 +26,7 @@ class SignupBusinessDetailsViewModel extends BaseViewModel {
   TextEditingController cacController = TextEditingController();
   TextEditingController searchController = TextEditingController();
 
-  onChanged(String? v) {
-    notifyListeners();
-  }
+  onChanged(String? v) {}
 
   goToNext(BuildContext context, SignupData data) {
     context.go(RoutePaths.registerShareholdersPath, extra: data);

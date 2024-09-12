@@ -44,7 +44,7 @@ class SignupProgressViewModel extends BaseViewModel {
     }
   }
 
-  int _progress = 0;
+  int _progress = 1;
   int get progress => _progress;
   set progress(int n) {
     _progress = n;
