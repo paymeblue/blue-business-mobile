@@ -85,7 +85,7 @@ class _$NoItemsContainer extends StatelessWidget {
                               onRefresh!();
                             },
                           style: AppTextStyles.subText.copyWith(
-                            color: AppColors.primary,
+                            color: AppColors.blue,
                           ),
                         ),
                     ],

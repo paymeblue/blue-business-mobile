@@ -120,7 +120,7 @@ class PaymentLinkTile extends StatelessWidget {
                       });
                     },
                   style: AppTextStyles.smallText.copyWith(
-                    color: AppColors.primary,
+                    color: AppColors.blue,
                     fontWeight: FontWeight.w500,
                     decoration: TextDecoration.underline,
                   ),

@@ -109,7 +109,7 @@ class _WelcomeViewState extends State<WelcomeView> {
               recognizer: TapGestureRecognizer()..onTap = model.launchTerms,
               style: AppTextStyles.smallText.copyWith(
                 fontWeight: FontWeight.w500,
-                color: AppColors.primary,
+                color: AppColors.blue,
               ),
             ),
             TextSpan(
@@ -120,8 +120,8 @@ class _WelcomeViewState extends State<WelcomeView> {
             TextSpan(
               text: "Privacy policy",
               recognizer: TapGestureRecognizer()..onTap = model.launchPrivacy,
-              style: AppTextStyles.smallText.copyWith(
-                  fontWeight: FontWeight.w500, color: AppColors.primary),
+              style: AppTextStyles.smallText
+                  .copyWith(fontWeight: FontWeight.w500, color: AppColors.blue),
             )
           ]),
           textAlign: TextAlign.center,

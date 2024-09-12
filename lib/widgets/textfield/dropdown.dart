@@ -32,6 +32,7 @@ class BlueDropdown {
     required TextEditingController? searchController,
     CountryCode? value,
   }) {
+    FocusManager.instance.primaryFocus?.unfocus();
     return _BlueCountryDropdown(
       items: countries,
       onChanged: onChanged,
@@ -44,6 +45,7 @@ class BlueDropdown {
     required ValueChanged<String?> onChanged,
     String? value,
   }) {
+    FocusManager.instance.primaryFocus?.unfocus();
     return _BlueMeterTypeDropdown(
       onChanged: onChanged,
       value: value,
@@ -56,6 +58,7 @@ class BlueDropdown {
     required TextEditingController? searchController,
     BankItem? value,
   }) {
+    FocusManager.instance.primaryFocus?.unfocus();
     return _BlueBankDropdown(
       items: banks,
       onChanged: onChanged,
@@ -71,6 +74,7 @@ class BlueDropdown {
     BillProvider? value,
     required String title,
   }) {
+    FocusManager.instance.primaryFocus?.unfocus();
     return _BlueBillProviderDropdown(
         items: banks,
         onChanged: onChanged,
@@ -86,6 +90,7 @@ class BlueDropdown {
     BillPackage? value,
     required String title,
   }) {
+    FocusManager.instance.primaryFocus?.unfocus();
     return _BlueBillPackageDropdown(
         items: banks,
         onChanged: onChanged,
@@ -100,6 +105,7 @@ class BlueDropdown {
     required TextEditingController? searchController,
     BusinessCategory? value,
   }) {
+    FocusManager.instance.primaryFocus?.unfocus();
     return _BlueBusinessCategoryDropdown(
       items: categories,
       onChanged: onChanged,
@@ -115,6 +121,7 @@ class BlueDropdown {
     String? value,
     required String title,
   }) {
+    FocusManager.instance.primaryFocus?.unfocus();
     return _BlueStringDropdown(
       items: values,
       onChanged: onChanged,
@@ -131,6 +138,7 @@ class BlueDropdown {
     TextEditingController? searchController,
     String title = 'Branch',
   }) {
+    FocusManager.instance.primaryFocus?.unfocus();
     return _BlueBranchDropdown(
       controller: controller,
       onChanged: onChanged,

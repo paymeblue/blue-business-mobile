@@ -159,7 +159,7 @@ class _LoginViewState extends State<LoginView> {
         TextSpan(
             text: " Sign up",
             style: AppTextStyles.subText.copyWith(
-              color: AppColors.primary,
+              color: AppColors.blue,
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
@@ -228,7 +228,7 @@ class _LoginViewState extends State<LoginView> {
                 text: actionText,
                 recognizer: TapGestureRecognizer()..onTap = action,
                 style: AppTextStyles.subHeader.copyWith(
-                  color: AppColors.primary,
+                  color: AppColors.blue,
                 ),
               )
           ],

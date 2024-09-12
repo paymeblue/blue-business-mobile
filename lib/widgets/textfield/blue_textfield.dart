@@ -536,6 +536,7 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
             textCapitalization: widget.capitalization,
             obscureText: widget.isPassword ? isObscured : false,
             enabled: widget.isEnabled,
+            maxLength: widget.maxLength,
             inputFormatters: widget.inputFormatters,
             textAlignVertical: TextAlignVertical.center,
             keyboardType: widget.keyboardType,
