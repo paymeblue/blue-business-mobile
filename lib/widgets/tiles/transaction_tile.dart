@@ -75,9 +75,7 @@ class TransationTile extends StatelessWidget {
     switch (getPaymentMode()) {
       case PaymentMode.blue:
       case PaymentMode.qr:
-        return transaction.otherPartyName;
       case PaymentMode.topup:
-        return transaction.otherPartyName;
       case PaymentMode.withdrawal:
         return transaction.otherPartyName;
       case PaymentMode.phone:
