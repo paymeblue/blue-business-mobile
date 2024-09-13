@@ -15,6 +15,7 @@ class PaymentDetail with _$PaymentDetail {
     required String transactionId,
     @Default("payment") String service,
     @Default("pending") String status,
+    String? narration,
   }) = _PaymentDetail;
 
   factory PaymentDetail.fromJson(Map<String, dynamic> json) =>

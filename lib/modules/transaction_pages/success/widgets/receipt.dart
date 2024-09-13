@@ -134,13 +134,11 @@ class Receipt extends StatelessWidget {
         title: "Beneficiary name",
         data: record.receiverName,
       ),
-      if (record.narration != null) ...[
-        16.verticalGap,
-        receiptField(
-          title: "Narration",
-          data: record.narration!,
-        ),
-      ],
+      16.verticalGap,
+      receiptField(
+        title: "Narration",
+        data: record.narration ?? "N?A",
+      ),
       16.verticalGap,
       receiptField(
         title: "Status",

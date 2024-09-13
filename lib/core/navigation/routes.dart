@@ -770,6 +770,7 @@ List<GoRoute> transactionDetailRoutes = [
   ),
   GoRoute(
     path: "${RoutePaths.transactionHistoryPath}/payment/:id/:type",
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
     builder: (context, state) {
       return PaymentDetailsView(
         detail: state.extra as PaymentDetail,

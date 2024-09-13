@@ -112,6 +112,11 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                           ),
                           8.verticalGap,
                           ...detailsSection(
+                            title: "Narration",
+                            detail: widget.detail.narration ?? "N/A",
+                          ),
+                          8.verticalGap,
+                          ...detailsSection(
                             title: "Transaction date & time",
                             detail: dateAndTime(),
                           ),
