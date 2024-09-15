@@ -137,7 +137,7 @@ class Receipt extends StatelessWidget {
       16.verticalGap,
       receiptField(
         title: "Narration",
-        data: record.narration ?? "N?A",
+        data: record.narration ?? "N/A",
       ),
       16.verticalGap,
       receiptField(
