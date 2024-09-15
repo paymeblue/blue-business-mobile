@@ -42,7 +42,7 @@ class _PaymentLinkHistoryViewState extends State<PaymentLinkHistoryView> {
                 if (model.receipt != null)
                   Screenshot(
                     controller: model.screenshotController,
-                    child: Receipt(record: model.receipt!),
+                    child: PaymentLinkReceipt(record: model.receipt!),
                   ),
                 Container(
                   height: model.size.height,

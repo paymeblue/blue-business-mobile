@@ -7,9 +7,9 @@ import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class Receipt extends StatelessWidget {
+class PaymentLinkReceipt extends StatelessWidget {
   final PaymentLinkReceiptRecord record;
-  const Receipt({
+  const PaymentLinkReceipt({
     super.key,
     required this.record,
   });
