@@ -42,9 +42,13 @@ class ChangePinViewModel extends BaseViewModel {
   }
 
   setNewPinAndNavigate(String v, int i) {
-    newPin = v;
-    pageController.animateToPage(2,
-        duration: const Duration(milliseconds: 350), curve: Curves.easeInOut);
+    if (v == pin) {
+      newPin = v;
+      pageController.animateToPage(2,
+          duration: const Duration(milliseconds: 350), curve: Curves.easeInOut);
+    } else {
+      AppNotification.error(message: "New pin cannot be the same as old pin");
+    }
   }
 
   setConfirmPinAndNavigate(String v, BuildContext context) {
