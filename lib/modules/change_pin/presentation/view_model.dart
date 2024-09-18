@@ -42,7 +42,7 @@ class ChangePinViewModel extends BaseViewModel {
   }
 
   setNewPinAndNavigate(String v, int i) {
-    if (v == pin) {
+    if (v != pin) {
       newPin = v;
       pageController.animateToPage(2,
           duration: const Duration(milliseconds: 350), curve: Curves.easeInOut);
