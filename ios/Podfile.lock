@@ -1015,7 +1015,7 @@ PODS:
   - firebase_core (2.32.0):
     - Firebase/CoreOnly (= 10.25.0)
     - Flutter
-  - firebase_messaging (14.9.4):
+  - firebase_messaging (14.7.10):
     - Firebase/Messaging (= 10.25.0)
     - firebase_core
     - Flutter
@@ -1395,7 +1395,7 @@ SPEC CHECKSUMS:
   Firebase: 0312a2352584f782ea56f66d91606891d4607f06
   firebase_analytics: cc06e24d6a2343c44f845b3112143db72d10ef78
   firebase_core: a626d00494efa398e7c54f25f1454a64c8abf197
-  firebase_messaging: 06391e8f35dc65a00c56580266285263d2861f10
+  firebase_messaging: 1541105e2a2a6ef8bd869bcc44157d31e82f3a50
   FirebaseAnalytics: ec00fe8b93b41dc6fe4a28784b8e51da0647a248
   FirebaseAppCheckInterop: 6a1757cfd4067d8e00fccd14fcc1b8fd78cfac07
   FirebaseCore: 7ec4d0484817f12c3373955bc87762d96842d483
@@ -1437,6 +1437,6 @@ SPEC CHECKSUMS:
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
 
-PODFILE CHECKSUM: 6d4a462e27d96cf0a11a67c3d8d1bd9077f4f1b5
+PODFILE CHECKSUM: 95d4ac97d7150550917d71f6c9445bf4ca0f7afb
 
 COCOAPODS: 1.13.0
