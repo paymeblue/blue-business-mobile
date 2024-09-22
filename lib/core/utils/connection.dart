@@ -29,12 +29,16 @@ class ConnectionHelper {
         .onConnectivityChanged
         .listen((List<ConnectivityResult> result) {
       if (!result.contains(ConnectivityResult.none)) {
-        Provider.of<AppStateValues>(ctx, listen: false).hasNetwork = true;
+        if (ctx.mounted) {
+          Provider.of<AppStateValues>(ctx, listen: false).hasNetwork = true;
+        }
         if (locator<AppStateValues>().fcmToken.isEmpty) {
           FirebaseConfig.init();
         }
       } else {
-        Provider.of<AppStateValues>(ctx, listen: false).hasNetwork = false;
+        if (ctx.mounted) {
+          Provider.of<AppStateValues>(ctx, listen: false).hasNetwork = false;
+        }
       }
     });
   }

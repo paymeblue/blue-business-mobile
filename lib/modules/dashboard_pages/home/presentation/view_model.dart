@@ -170,7 +170,10 @@ class HomeViewModel extends BaseViewModel {
         PushPayment payment = PushPayment.fromJson(todo.data!);
         BlueBottomSheet.paymentRequest(payment).then((value) {
           if (value) {
-            context.go("/${payment.transactionId}${RoutePaths.pushPaymentPin}");
+            if (context.mounted) {
+              context
+                  .go("/${payment.transactionId}${RoutePaths.pushPaymentPin}");
+            }
           }
         });
       }

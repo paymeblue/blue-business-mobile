@@ -48,7 +48,9 @@ class UpdateKycViewModel extends BaseViewModel {
       uri,
       mode: LaunchMode.inAppWebView,
     ).whenComplete(() {
-      context.go(RoutePaths.settingsPath);
+      if (context.mounted) {
+        context.go(RoutePaths.settingsPath);
+      }
     });
   }
 
@@ -59,7 +61,9 @@ class UpdateKycViewModel extends BaseViewModel {
       uri,
       mode: LaunchMode.inAppWebView,
     ).whenComplete(() {
-      context.go(RoutePaths.settingsPath);
+      if (context.mounted) {
+        context.go(RoutePaths.settingsPath);
+      }
     });
   }
 }

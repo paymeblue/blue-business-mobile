@@ -141,9 +141,11 @@ class BluePaymentViewModel extends BaseViewModel {
   onButtonTap(BuildContext context) {
     verify().then((value) {
       if (value.status == "success") {
-        context.go(
-            "${RoutePaths.confirmPaymentPath}/blue-user/${data.transactionId}",
-            extra: value.data);
+        if (context.mounted) {
+          context.go(
+              "${RoutePaths.confirmPaymentPath}/blue-user/${data.transactionId}",
+              extra: value.data);
+        }
       } else {
         AppNotification.error(message: value.message);
       }

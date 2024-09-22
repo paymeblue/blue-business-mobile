@@ -48,8 +48,10 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
           if (StorageValues.enableBiometrics == "true") {
             savePin();
           }
-          context.go("${RoutePaths.successPath}/$transactionId/$mode",
-              extra: value);
+          if (context.mounted) {
+            context.go("${RoutePaths.successPath}/$transactionId/$mode",
+                extra: value);
+          }
         }
       });
     } else {
@@ -58,8 +60,10 @@ class ConfirmTransactionPinViewModel extends BaseViewModel {
           if (StorageValues.enableBiometrics == "true") {
             savePin();
           }
-          context.go("${RoutePaths.successPath}/$transactionId/$mode",
-              extra: value);
+          if (context.mounted) {
+            context.go("${RoutePaths.successPath}/$transactionId/$mode",
+                extra: value);
+          }
         }
       });
     }

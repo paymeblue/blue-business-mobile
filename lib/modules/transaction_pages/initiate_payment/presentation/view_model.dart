@@ -43,17 +43,21 @@ class InitiatePaymentViewModel extends BaseViewModel {
     if (!isWithdrawal) {
       BlueBottomSheet.paymentMethod(amountController.text).then((value) {
         if (value == PaymentMode.offline) {
-          context.go(
-            "${RoutePaths.verifyReceiverPath}/${getModeString(value)}",
-          );
+          if (context.mounted) {
+            context.go(
+              "${RoutePaths.verifyReceiverPath}/${getModeString(value)}",
+            );
+          }
         } else {
           initiateTransaction(getModeString(value)).then((val) {
             if (val != null) {
               locator<AppStateValues>().narration = descriptionController.text;
-              context.go(
-                "${RoutePaths.verifyReceiverPath}/${getModeString(value)}",
-                extra: val,
-              );
+              if (context.mounted) {
+                context.go(
+                  "${RoutePaths.verifyReceiverPath}/${getModeString(value)}",
+                  extra: val,
+                );
+              }
             }
           });
         }
@@ -64,8 +68,10 @@ class InitiatePaymentViewModel extends BaseViewModel {
       if (locator<AppStateValues>().withdrawalAccount == null) {
         getWithdrawalAccount().then((value) {
           if (locator<AppStateValues>().withdrawalAccount != null) {
-            context.go("${RoutePaths.confirmPaymentPath}/withdraw/0",
-                extra: amountInKobo);
+            if (context.mounted) {
+              context.go("${RoutePaths.confirmPaymentPath}/withdraw/0",
+                  extra: amountInKobo);
+            }
           }
         });
       } else {

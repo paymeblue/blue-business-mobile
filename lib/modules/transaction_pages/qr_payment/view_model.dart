@@ -35,9 +35,11 @@ class QrPaymentViewModel extends BaseViewModel {
 
     verify(val).then((value) {
       if (value.status == "success") {
-        context.go(
-            "${RoutePaths.confirmPaymentPath}/blue-user/${data.transactionId}",
-            extra: value.data);
+        if (context.mounted) {
+          context.go(
+              "${RoutePaths.confirmPaymentPath}/blue-user/${data.transactionId}",
+              extra: value.data);
+        }
       } else {
         AppNotification.error(message: value.message);
         mobileScannerController.start();

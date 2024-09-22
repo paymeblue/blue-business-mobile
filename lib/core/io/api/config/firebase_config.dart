@@ -37,7 +37,9 @@ Future handleForegroundMessages(RemoteMessage message) async {
       PushPayment payment = PushPayment.fromJson(data);
       BlueBottomSheet.paymentRequest(payment).then((value) {
         if (value) {
-          context.go("/${payment.transactionId}${RoutePaths.pushPaymentPin}");
+          if (context.mounted) {
+            context.go("/${payment.transactionId}${RoutePaths.pushPaymentPin}");
+          }
         }
       });
     }
