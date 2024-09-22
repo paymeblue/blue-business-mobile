@@ -8,8 +8,8 @@ import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
-import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 
 import 'view_model.dart';
 
@@ -170,7 +170,7 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "${model.contacts[i].prefix == null ? "" : "${model.contacts[i].prefix} "}${model.contacts[i].givenName ?? ""} ${model.contacts[i].familyName ?? ""}",
+          model.contacts[i].displayName,
           style: AppTextStyles.header.copyWith(
             fontSize: 16.5,
           ),
@@ -191,7 +191,7 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
         padding: const EdgeInsets.all(6),
         child: FittedBox(
           child: Text(
-            model.contacts[i].initials(),
+            model.contacts[i].displayName.initials,
             style: AppTextStyles.header.copyWith(
               color: AppColors.white,
             ),

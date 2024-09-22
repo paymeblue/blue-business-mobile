@@ -44,7 +44,7 @@ dependencies:
   dio: ^5.4.0
   http_parser: ^4.0.2
   permission_handler: ^11.2.0
-  contacts_service: ^0.6.3
+  flutter_contacts: ^1.1.9+2
   salesiq_mobilisten: ^6.1.0
 
   # FIREBASE AND NOTIFICATIONS
