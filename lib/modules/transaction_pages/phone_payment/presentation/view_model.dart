@@ -18,8 +18,8 @@ import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
-import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -62,6 +62,13 @@ class PhonePaymentViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  List<Contact> _allContacts = [];
+  List<Contact> get allContacts => _allContacts;
+  set allContacts(List<Contact> c) {
+    _allContacts = c;
+    notifyListeners();
+  }
+
   bool _loading = false;
   bool get loadingContacts => _loading;
   set loadingContacts(bool ld) {
@@ -69,33 +76,11 @@ class PhonePaymentViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getAllContacts() async {
-    loadingContacts = true;
-    try {
-      var status = await Permission.contacts.status;
-      log(status.toString());
-      if (status.isGranted) {
-        contacts = await ContactsService.getContacts();
-      } else {
-        await Permission.contacts.request().then((v) async {
-          log(v.toString());
-          if (v.isGranted) {
-            contacts = await ContactsService.getContacts();
-          }
-        });
-      }
-    } catch (e) {
-      AppNotification.error(message: AppErrorHandler.getErrorMessage(e));
-    }
-
-    loadingContacts = false;
-  }
-
   List<PopupModel> popupItems(Contact contact) {
-    return contact.phones!
+    return contact.phones
         .map(
           (e) => PopupModel(
-            title: e.value ?? "",
+            title: e.number,
             icon: const SizedBox(
               height: 18,
               width: 18,
@@ -106,19 +91,16 @@ class PhonePaymentViewModel extends BaseViewModel {
               ),
             ),
             onTap: () {
-              if (e.value != null) {
-                String phone = e.value!;
-                if (phone.startsWith(selectedCountry!.dialCode)) {
-                  phone = phone.replaceFirst(selectedCountry!.dialCode, "");
-                }
-                if (phone.startsWith("0")) {
-                  phone = phone.substring(1);
-                }
-                phoneController.text =
-                    phone.replaceAll((RegExp(r'[^0-9]')), "");
-                recipientController.text = contact.displayName ?? "";
-                notifyListeners();
+              String phone = e.number;
+              if (phone.startsWith(selectedCountry!.dialCode)) {
+                phone = phone.replaceFirst(selectedCountry!.dialCode, "");
               }
+              if (phone.startsWith("0")) {
+                phone = phone.substring(1);
+              }
+              phoneController.text = phone.replaceAll((RegExp(r'[^0-9]')), "");
+              recipientController.text = contact.displayName;
+              notifyListeners();
             },
           ),
         )
@@ -134,13 +116,38 @@ class PhonePaymentViewModel extends BaseViewModel {
     searchTimer = Timer(const Duration(milliseconds: 1500), () async {
       loadingContacts = true;
       if (val != null && val.isNotEmpty) {
-        contacts = await ContactsService.getContacts(query: val);
+        contacts = allContacts
+            .where(
+                (v) => v.displayName.toLowerCase().contains(val.toLowerCase()))
+            .toList();
       } else {
-        contacts = await ContactsService.getContacts();
+        contacts = allContacts;
       }
       loadingContacts = false;
     });
     return val;
+  }
+
+  Future getAllContacts() async {
+    loadingContacts = true;
+    try {
+      var status = await Permission.contacts.status;
+      if (status.isGranted) {
+        allContacts = await FlutterContacts.getContacts(withProperties: true);
+      } else {
+        await Permission.contacts.request().then((v) async {
+          if (v.isGranted) {
+            allContacts = await FlutterContacts.getContacts();
+          }
+        });
+      }
+    } catch (e) {
+      AppNotification.error(message: AppErrorHandler.getErrorMessage(e));
+    }
+
+    contacts = allContacts;
+
+    loadingContacts = false;
   }
 
   onButtonTap(BuildContext context) {
