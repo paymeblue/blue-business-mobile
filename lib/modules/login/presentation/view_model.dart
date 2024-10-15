@@ -155,6 +155,8 @@ class LoginViewModel extends BaseViewModel {
       ));
     });
 
+    AppLoader.stop();
+
     if (resp.status == "success") {
       await setNameInStorage(resp.data!.business.name, p);
       saveTokens(resp.data!.token);
@@ -167,7 +169,6 @@ class LoginViewModel extends BaseViewModel {
     } else {
       AppNotification.error(message: resp.message);
     }
-    AppLoader.stop();
   }
 
   getNotificationStatus() async {

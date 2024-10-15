@@ -1,4 +1,3 @@
-import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/reason/reason.dart';
@@ -18,7 +17,6 @@ class BlueDialog {
     required String subtitle,
     required VoidCallback onDelete,
     String confirmText = "Delete",
-    Color? confirmColor,
   }) {
     return showDialog(
         context: locator<NavigationService>().navigatorKey.currentContext!,
@@ -26,7 +24,7 @@ class BlueDialog {
         builder: (context) {
           return Dialog(
             child: Container(
-              height: 140,
+              height: 150,
               width: 273,
               padding: const EdgeInsets.only(top: 16),
               decoration: BoxDecoration(
@@ -54,39 +52,43 @@ class BlueDialog {
                   const SizedBox(height: 16),
                   Expanded(
                     child: Row(children: [
-                      GestureDetector(
-                        onTap: () {
-                          context.pop();
-                        },
-                        child: Container(
-                            width: 273 / 2,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: AppColors.bgGrey),
-                                borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(5))),
-                            child: Text(
-                              "Cancel",
-                              style: AppTextStyles.largeButtonText,
-                            )),
+                      Flexible(
+                        child: GestureDetector(
+                          onTap: () {
+                            context.pop();
+                          },
+                          child: Container(
+                              height: 35,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: AppColors.bgGrey),
+                                  borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(5))),
+                              child: Text(
+                                "Cancel",
+                                style: AppTextStyles.largeButtonText,
+                              )),
+                        ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          context.pop();
-                          onDelete();
-                        },
-                        child: Container(
-                            width: 273 / 2,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: AppColors.bgGrey),
-                                borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(5))),
-                            child: Text(
-                              confirmText,
-                              style: AppTextStyles.largeButtonText.copyWith(
-                                  color: confirmColor ?? AppColors.error),
-                            )),
+                      Flexible(
+                        child: GestureDetector(
+                          onTap: () {
+                            context.pop();
+                            onDelete();
+                          },
+                          child: Container(
+                              height: 35,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: AppColors.bgGrey),
+                                  borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(5))),
+                              child: Text(
+                                confirmText,
+                                style: AppTextStyles.largeButtonText
+                                    .copyWith(color: AppColors.error),
+                              )),
+                        ),
                       )
                     ]),
                   )
@@ -115,17 +117,19 @@ class BlueDialog {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      height: 32,
-                      width: 32,
+                      height: 38,
+                      width: 38,
                       margin: const EdgeInsets.symmetric(horizontal: 16),
-                      padding: const EdgeInsets.all(6),
+                      padding: const EdgeInsets.all(9),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: AppColors.error.withOpacity(.15),
                       ),
                       child: AppAssets.images.icons.delete.svg(),
                     ),
-                    15.verticalGap,
+                    const SizedBox(
+                      height: 15,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
@@ -136,17 +140,18 @@ class BlueDialog {
                             color: AppColors.textColor),
                       ),
                     ),
+                    const SizedBox(
+                      height: 4,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
                         "Please select a reason for deleting your account and leaving us",
                         style: AppTextStyles.subText.copyWith(
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w400,
-                            height: 1.2),
+                            fontSize: 13.sp, fontWeight: FontWeight.w400),
                       ),
                     ),
-                    16.verticalGap,
+                    const SizedBox(height: 16),
                     Expanded(
                         child: ListView.builder(
                             itemCount: reasons.length,
@@ -204,7 +209,7 @@ class BlueDialog {
             child: StatefulBuilder(builder: (context, setState) {
               return Container(
                 height: 230,
-                width: 300,
+                width: 320,
                 padding: const EdgeInsets.only(top: 16),
                 decoration: BoxDecoration(
                     color: AppColors.white,
@@ -222,7 +227,7 @@ class BlueDialog {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: Text(
-                        "Type \"delete\" to confirm your ext",
+                        "Type \"delete\" to confirm your exit",
                         textAlign: TextAlign.center,
                         style: AppTextStyles.subText.copyWith(
                             fontSize: 13.sp, fontWeight: FontWeight.w400),
@@ -245,43 +250,47 @@ class BlueDialog {
                     ),
                     Expanded(
                       child: Row(children: [
-                        GestureDetector(
-                          onTap: () {
-                            context.pop();
-                          },
-                          child: Container(
-                              width: 300 / 2,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: AppColors.bgGrey),
-                                  borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(5))),
-                              child: Text(
-                                "Cancel",
-                                style: AppTextStyles.largeButtonText,
-                              )),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            if (deleteString == "delete") {
+                        Flexible(
+                          child: GestureDetector(
+                            onTap: () {
                               context.pop();
-                              onDelete();
-                            }
-                          },
-                          child: Container(
-                              width: 300 / 2,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: AppColors.bgGrey),
-                                  borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(5))),
-                              child: Text(
-                                "Confirm",
-                                style: AppTextStyles.largeButtonText.copyWith(
-                                    color: deleteString == "delete"
-                                        ? AppColors.error
-                                        : AppColors.bgGrey),
-                              )),
+                            },
+                            child: Container(
+                                height: 35,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: AppColors.bgGrey),
+                                    borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(5))),
+                                child: Text(
+                                  "Cancel",
+                                  style: AppTextStyles.largeButtonText,
+                                )),
+                          ),
+                        ),
+                        Flexible(
+                          child: GestureDetector(
+                            onTap: () {
+                              if (deleteString == "delete") {
+                                context.pop();
+                                onDelete();
+                              }
+                            },
+                            child: Container(
+                                height: 35,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: AppColors.bgGrey),
+                                    borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(5))),
+                                child: Text(
+                                  "Confirm",
+                                  style: AppTextStyles.largeButtonText.copyWith(
+                                      color: deleteString == "delete"
+                                          ? AppColors.error
+                                          : AppColors.bgGrey),
+                                )),
+                          ),
                         )
                       ]),
                     )

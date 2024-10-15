@@ -42,15 +42,15 @@ class _ConfirmCablePinViewState extends State<ConfirmCablePinView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ...regidterTitleAndSubtitle(),
-                const Spacer(),
+                const Spacer(flex: 2),
                 pinFields(model),
-                const Spacer(),
+                const Spacer(flex: 2),
                 numberPad(model),
-                55.verticalGap,
+                const Spacer(flex: 2),
                 forgotPinButton(onTap: () {
                   model.getSecurityQuestion(context);
                 }),
-                62.verticalGap,
+                const Spacer(flex: 3),
                 confirmButton(
                   onTap: () {
                     model.onButtonTap(context, widget.data);

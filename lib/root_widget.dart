@@ -33,12 +33,12 @@ class BlueApp extends StatelessWidget {
                     textScaler: context.mediaQuery.textScaler
                         .clamp(minScaleFactor: .9, maxScaleFactor: 1)),
                 child: ScreenUtilInit(
-                    designSize: const Size(390, 844),
-                    minTextAdapt: true,
-                    useInheritedMediaQuery: true,
-                    builder: (context, c) {
-                      return Consumer<AppStateValues>(
-                          builder: (context, state, _) {
+                  designSize: const Size(390, 844),
+                  minTextAdapt: true,
+                  useInheritedMediaQuery: true,
+                  builder: (context, c) {
+                    return Consumer<AppStateValues>(
+                      builder: (context, state, _) {
                         return Stack(
                           children: [
                             child ??
@@ -111,8 +111,10 @@ class BlueApp extends StatelessWidget {
                               ),
                           ],
                         );
-                      });
-                    }),
+                      },
+                    );
+                  },
+                ),
               );
             },
           ),
