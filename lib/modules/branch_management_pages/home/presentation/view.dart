@@ -10,6 +10,7 @@ import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
@@ -197,7 +198,7 @@ class _BranchHomeViewState extends State<BranchHomeView> {
     NumberFormat format = NumberFormat("#,##0.00");
     String amount = format.format(double.parse(item.totalAmount));
     return Container(
-      width: model.size.width,
+      width: model.size.width.w,
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.bgGrey),
@@ -230,8 +231,8 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: model.size.width / 2.6,
-                      height: 40,
+                      width: model.size.width.w / 2.6,
+                      height: 40.h,
                       child: AppButton.primary(
                         title: "View Insights",
                         onTap: () {
@@ -240,8 +241,8 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                       ),
                     ),
                     SizedBox(
-                      width: model.size.width / 2.6,
-                      height: 40,
+                      width: model.size.width.w / 2.6,
+                      height: 40.h,
                       child: AppButton.ghostPrimary(
                         title: "Edit branch",
                         onTap: () {
@@ -260,8 +261,8 @@ class _BranchHomeViewState extends State<BranchHomeView> {
               model.onDeleteBranch(context, item);
             },
             child: Container(
-              height: 25,
-              width: 25,
+              height: 25.w,
+              width: 25.h,
               decoration: const BoxDecoration(),
               padding: const EdgeInsets.all(4),
               child: AppAssets.images.icons.delete.svg(),

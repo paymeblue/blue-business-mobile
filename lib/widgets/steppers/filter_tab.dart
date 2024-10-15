@@ -18,8 +18,8 @@ class FilterTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      width: context.mediaQuery.size.width,
+      height: 50.h,
+      width: context.mediaQuery.size.width.w,
       decoration: BoxDecoration(
         color: AppColors.grey,
         borderRadius: BorderRadius.circular(6),
@@ -34,8 +34,8 @@ class FilterTab extends StatelessWidget {
               tab(index, context),
               if (index < tabs.length - 1)
                 Container(
-                  height: 50,
-                  width: 1.5,
+                  height: 50.h,
+                  width: 1.5.w,
                   decoration: const BoxDecoration(
                     color: AppColors.bgGrey,
                   ),
@@ -54,8 +54,8 @@ class FilterTab extends StatelessWidget {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),
-        height: 50,
-        width: (context.mediaQuery.size.width - 40) / tabs.length,
+        height: 50.h,
+        width: ((context.mediaQuery.size.width - 40) / tabs.length).w,
         decoration: BoxDecoration(
           color: selectedValue == tabs[index]
               ? AppColors.primary

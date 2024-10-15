@@ -45,7 +45,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             branchSelect(model),
-            20.verticalGap,
+            10.verticalGap,
             FilterTab(
               selectedValue: model.selectedType,
               tabs: model.types,
@@ -89,7 +89,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
       },
       splashColor: AppColors.primary.withOpacity(.15),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.blue),
           borderRadius: BorderRadius.circular(24),

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
@@ -35,13 +33,13 @@ class _InsightsViewState extends State<InsightsView> {
             leading: 0.horizontalGap,
           ),
           body: Container(
-            height: model.size.height,
-            width: model.size.width,
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            height: model.size.height.h,
+            width: model.size.width.w,
+            padding: EdgeInsets.only(bottom: 20.h, top: 10.h),
             child: Column(
               children: [
                 tabs(model),
-                35.verticalGap,
+                25.verticalGap,
                 Expanded(
                   child: model.currTab == 0
                       ? const GeneralInsightsPage()
@@ -57,8 +55,8 @@ class _InsightsViewState extends State<InsightsView> {
 
   Widget tabs(InsightsViewModel model) {
     return SizedBox(
-      height: 40,
-      width: context.mediaQuery.size.width,
+      height: 40.h,
+      width: context.mediaQuery.size.width.w,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: model.tabs().length,
@@ -72,7 +70,6 @@ class _InsightsViewState extends State<InsightsView> {
   Widget customTab(InsightsViewModel model, int i, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        log(i.toString());
         model.currTab = i;
       },
       child: Container(
@@ -89,8 +86,8 @@ class _InsightsViewState extends State<InsightsView> {
             5.verticalGap,
             AnimatedContainer(
               duration: const Duration(milliseconds: 350),
-              height: model.tabs()[i] == model.tabs()[model.currTab] ? 4 : 2.2,
-              width: model.size.width / 2,
+              height: i == model.currTab ? 3.h : 2.2.h,
+              width: (model.size.width / 2).w,
               decoration: BoxDecoration(
                 color: i == model.currTab ? AppColors.primary : null,
                 borderRadius: BorderRadius.circular(2),

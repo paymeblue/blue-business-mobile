@@ -28,8 +28,8 @@ class DashboardShellViewModel extends BaseViewModel {
       case 1:
         context.push(RoutePaths.insightsPath);
       case 2:
-        context.push(RoutePaths.loansPath);
-      case 3:
+        //   context.push(RoutePaths.loansPath);
+        // case 3:
         context.push(RoutePaths.settingsPath);
     }
     currentIndex = index;

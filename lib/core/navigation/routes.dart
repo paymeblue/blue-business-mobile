@@ -46,7 +46,7 @@ import 'package:blue_business/modules/bills/presentation/view.dart';
 import 'package:blue_business/modules/branch_insights/presentation/view.dart';
 import 'package:blue_business/modules/branch_management_pages/add/presentation/view.dart';
 import 'package:blue_business/modules/branch_management_pages/home/presentation/view.dart';
-import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.dart';
+// import 'package:blue_business/modules/dashboard_pages/loans/presentation/view.dart';
 import 'package:blue_business/modules/push_payment_pin/presentation/view.dart';
 import 'package:blue_business/modules/signup_pages/business_details/presentation/view.dart';
 import 'package:blue_business/modules/signup_pages/business_kyc/presentation/view.dart';
@@ -247,17 +247,17 @@ GoRouter router = GoRouter(
             ),
           ],
         ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: RoutePaths.loansPath,
-              name: "Loans",
-              builder: (context, state) {
-                return const LoansView();
-              },
-            ),
-          ],
-        ),
+        // StatefulShellBranch(
+        //   routes: [
+        //     GoRoute(
+        //       path: RoutePaths.loansPath,
+        //       name: "Loans",
+        //       builder: (context, state) {
+        //         return const LoansView();
+        //       },
+        //     ),
+        //   ],
+        // ),
         StatefulShellBranch(
           routes: [
             GoRoute(
