@@ -5,6 +5,7 @@ import 'package:blue_business/core/models/beneficiary/blue_beneficiary.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/modals/dialogs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BeneficiaryTile extends StatelessWidget {
   final BlueBeneficiary beneficiary;
@@ -67,7 +68,7 @@ class BeneficiaryTile extends StatelessWidget {
       children: [
         Text(
           beneficiary.name,
-          style: AppTextStyles.header.copyWith(fontSize: 15.5),
+          style: AppTextStyles.header.copyWith(fontSize: 15.sp),
         ),
         4.verticalGap,
         Text(

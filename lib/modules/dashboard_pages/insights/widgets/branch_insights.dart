@@ -19,6 +19,7 @@ import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -100,7 +101,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
               model.branch?.name.toUpperCase() ?? "SELECT A BRANCH",
               style: AppTextStyles.smallText.copyWith(
                 color: AppColors.blue,
-                fontSize: 11,
+                fontSize: 11.sp,
               ),
             ),
             8.horizontalGap,
@@ -284,7 +285,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
             "${model.selectedType} Sales",
             style: AppTextStyles.smallText.copyWith(
                 color: AppColors.neutralColorBlack,
-                fontSize: 14,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w500),
           ),
           const Divider(
@@ -302,7 +303,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                       Text(
                         "${nairaSymbol()}$amount",
                         style: AppTextStyles.header.copyWith(
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -622,7 +623,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                 Text(
                   item.name,
                   style: AppTextStyles.header.copyWith(
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -634,7 +635,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                     style: AppTextStyles.smallText.copyWith(
                         fontWeight: FontWeight.w500,
                         color: AppColors.textColor,
-                        fontSize: 10),
+                        fontSize: 10.sp),
                   ),
                 ),
                 Text(

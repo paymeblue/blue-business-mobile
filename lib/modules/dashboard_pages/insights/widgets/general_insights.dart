@@ -7,6 +7,7 @@ import 'package:blue_business/widgets/charts/line_chart.dart';
 import 'package:blue_business/widgets/charts/pie_chart.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +81,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
             "${model.selectedType} Sales",
             style: AppTextStyles.smallText.copyWith(
                 color: AppColors.neutralColorBlack,
-                fontSize: 14,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w500),
           ),
           const Divider(
@@ -98,7 +99,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
                       Text(
                         "${nairaSymbol()}$amount",
                         style: AppTextStyles.header.copyWith(
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -225,7 +226,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
             "${model.selectedType} Spending",
             style: AppTextStyles.smallText.copyWith(
                 color: AppColors.neutralColorBlack,
-                fontSize: 14,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w500),
           ),
           const Divider(
@@ -338,7 +339,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
             4.verticalGap,
             Text(
               "${nairaSymbol()}$amount",
-              style: AppTextStyles.header.copyWith(fontSize: 16.5),
+              style: AppTextStyles.header.copyWith(fontSize: 16.sp),
             ),
             Row(
               children: [
@@ -396,12 +397,12 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
               "Total Expenses",
               style: AppTextStyles.smallText.copyWith(
                 color: AppColors.neutralTextGrey,
-                fontSize: 12,
+                fontSize: 12.sp,
               ),
             ),
             Text(
               "${nairaSymbol()}${format.format(model.totalSpending)}",
-              style: AppTextStyles.header.copyWith(fontSize: 20),
+              style: AppTextStyles.header.copyWith(fontSize: 20.sp),
             ),
           ],
         ),

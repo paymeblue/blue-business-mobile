@@ -5,6 +5,7 @@ import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class TransationTile extends StatelessWidget {
@@ -60,12 +61,12 @@ class TransationTile extends StatelessWidget {
       children: [
         Text(
           columnTitle(),
-          style: AppTextStyles.header.copyWith(fontSize: 15.5),
+          style: AppTextStyles.header.copyWith(fontSize: 15.sp),
         ),
         Text(
           "${methodString()}, ${timeString()}",
           style: AppTextStyles.smallText
-              .copyWith(color: AppColors.bodyTextColor, fontSize: 14.5),
+              .copyWith(color: AppColors.bodyTextColor, fontSize: 14.sp),
         )
       ],
     );

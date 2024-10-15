@@ -5,6 +5,7 @@ import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class CableReceipt extends StatelessWidget {
@@ -48,26 +49,26 @@ class CableReceipt extends StatelessWidget {
           TextSpan(
             text: "Need help? Kindly contact us on ",
             style: AppTextStyles.receiptFieldTitle.copyWith(
-                color: AppColors.bodyTextColor, fontSize: 14.5, height: 1.5),
+                color: AppColors.bodyTextColor, fontSize: 14.sp, height: 1.5),
           ),
           TextSpan(
             text: "hello@paymeblue.com ",
             style: AppTextStyles.receiptFieldTitle.copyWith(
                 color: AppColors.primary,
-                fontSize: 14.5,
+                fontSize: 14.sp,
                 decoration: TextDecoration.underline,
                 height: 1.5),
           ),
           TextSpan(
             text: "and ",
             style: AppTextStyles.receiptFieldTitle.copyWith(
-                color: AppColors.bodyTextColor, fontSize: 14.5, height: 1.5),
+                color: AppColors.bodyTextColor, fontSize: 14.sp, height: 1.5),
           ),
           TextSpan(
             text: "+2349075561565",
             style: AppTextStyles.receiptFieldTitle.copyWith(
                 color: AppColors.primary,
-                fontSize: 14.5,
+                fontSize: 14.sp,
                 decoration: TextDecoration.underline,
                 height: 1.5),
           )
@@ -82,7 +83,7 @@ class CableReceipt extends StatelessWidget {
       child: Text(
         "Best Reagards,\nBluePay Team",
         style: AppTextStyles.receiptFieldbody
-            .copyWith(fontSize: 15.5, fontWeight: FontWeight.w400),
+            .copyWith(fontSize: 15.sp, fontWeight: FontWeight.w400),
       ),
     );
   }
@@ -168,7 +169,7 @@ class CableReceipt extends StatelessWidget {
           Text(
             "Transaction Receipt",
             style: AppTextStyles.receiptFieldTitle.copyWith(
-                fontSize: 18.5,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.w500,
                 color: AppColors.white),
           ),

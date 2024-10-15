@@ -12,6 +12,7 @@ import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
@@ -112,7 +113,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
           Text(
             "BUSINESS CREDENTIALS",
             style: AppTextStyles.header
-                .copyWith(fontSize: 15, fontWeight: FontWeight.w500),
+                .copyWith(fontSize: 15.sp, fontWeight: FontWeight.w500),
           ),
           RichText(
             text: TextSpan(
@@ -121,11 +122,11 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
                   text: "",
                   // "${locator<AppStateValues>().currentUser!.businessProfile!.name} ",
                   style: AppTextStyles.subHeader
-                      .copyWith(fontSize: 14.5, color: AppColors.blue),
+                      .copyWith(fontSize: 14.sp, color: AppColors.blue),
                 ),
                 TextSpan(
                   text: "Topup Account and Blue ID",
-                  style: AppTextStyles.subHeader.copyWith(fontSize: 14.5),
+                  style: AppTextStyles.subHeader.copyWith(fontSize: 14.sp),
                 )
               ],
             ),
@@ -232,7 +233,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
         Text(
           "Topup Account",
           style: AppTextStyles.header
-              .copyWith(fontSize: 15.5, fontWeight: FontWeight.w500),
+              .copyWith(fontSize: 15.sp, fontWeight: FontWeight.w500),
         ),
         Row(
           children: [
@@ -242,20 +243,20 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
                   text: "$bank ",
                   style: AppTextStyles.smallText.copyWith(
                     color: AppColors.bodyTextColor,
-                    fontSize: 14.5,
+                    fontSize: 14.sp,
                   ),
                 ),
                 TextSpan(
                   text: "| ",
                   style: AppTextStyles.smallText.copyWith(
                       color: AppColors.bodyTextColor.withOpacity(.35),
-                      fontSize: 14.5),
+                      fontSize: 14.sp),
                 ),
                 TextSpan(
                   text: "$accountNumber ",
                   style: AppTextStyles.smallText.copyWith(
                       color: AppColors.bodyTextColor.withOpacity(.7),
-                      fontSize: 14.5),
+                      fontSize: 14.sp),
                 )
               ]),
             ),
@@ -287,7 +288,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
             Text(
               subtitle,
               style: AppTextStyles.smallText
-                  .copyWith(color: AppColors.bodyTextColor, fontSize: 14.5),
+                  .copyWith(color: AppColors.bodyTextColor, fontSize: 14.sp),
             ),
             2.horizontalGap,
             Container(

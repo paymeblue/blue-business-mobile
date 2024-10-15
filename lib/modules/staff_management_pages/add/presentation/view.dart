@@ -15,6 +15,7 @@ import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:blue_business/widgets/textfield/dropdown.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -203,7 +204,7 @@ class _AddStaffViewState extends State<AddStaffView> {
                   style: AppTextStyles.subHeader.copyWith(
                       color: AppColors.textColor,
                       fontWeight: FontWeight.w400,
-                      fontSize: 13.5),
+                      fontSize: 13.sp),
                 ),
                 TextSpan(
                   text: "add branches",
@@ -215,14 +216,14 @@ class _AddStaffViewState extends State<AddStaffView> {
                       color: AppColors.blue,
                       fontWeight: FontWeight.w400,
                       decoration: TextDecoration.underline,
-                      fontSize: 13.5),
+                      fontSize: 13.sp),
                 ),
                 TextSpan(
                   text: " to your account.",
                   style: AppTextStyles.subHeader.copyWith(
                       color: AppColors.textColor,
                       fontWeight: FontWeight.w400,
-                      fontSize: 13.5),
+                      fontSize: 13.sp),
                 ),
               ]),
             ),

@@ -6,6 +6,7 @@ import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppNotification {
   AppNotification._();
@@ -21,7 +22,7 @@ class AppNotification {
       messageText: Text(
         message,
         style: AppTextStyles.subText
-            .copyWith(fontSize: 14.7, color: AppColors.textColor),
+            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 12),
       borderColor: const Color(0xFF2FB9AC),
@@ -52,7 +53,7 @@ class AppNotification {
       messageText: Text(
         message ?? "Something went wrong. Please try again later.",
         style: AppTextStyles.subText
-            .copyWith(fontSize: 14.7, color: AppColors.textColor),
+            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 12),
       borderColor: const Color(0xFFEF2A5A),
@@ -91,7 +92,7 @@ class AppNotification {
       messageText: Text(
         message,
         style: AppTextStyles.subText
-            .copyWith(fontSize: 14.7, color: AppColors.textColor),
+            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 12),
       borderColor: const Color(0xFFFF9601),
@@ -127,7 +128,7 @@ class AppNotification {
       messageText: Text(
         message,
         style: AppTextStyles.subText
-            .copyWith(fontSize: 14.7, color: AppColors.textColor),
+            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 6),
       borderColor: AppColors.midGrey,
@@ -163,7 +164,7 @@ class AppNotification {
       messageText: Text(
         message,
         style: AppTextStyles.subText
-            .copyWith(fontSize: 14.7, color: AppColors.textColor),
+            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 6),
       borderColor: AppColors.midGrey,

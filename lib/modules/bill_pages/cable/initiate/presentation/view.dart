@@ -10,6 +10,7 @@ import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:blue_business/widgets/textfield/dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -200,7 +201,7 @@ class _InitiateCableViewState extends State<InitiateCableView> {
         "Pay Cable TV Bills",
         style: AppTextStyles.header.copyWith(
           fontWeight: FontWeight.w500,
-          fontSize: 20,
+          fontSize: 20.sp,
         ),
       ),
       SizedBox(

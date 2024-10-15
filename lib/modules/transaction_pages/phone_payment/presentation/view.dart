@@ -10,6 +10,7 @@ import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -52,7 +53,7 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
                     28.verticalGap,
                     Text(
                       "MY CONTACTS",
-                      style: AppTextStyles.subHeader.copyWith(fontSize: 15.5),
+                      style: AppTextStyles.subHeader.copyWith(fontSize: 15.sp),
                     ),
                     BlueTextField.search(
                       onSearchChanged: model.onSearchContactsChanged,
@@ -155,7 +156,7 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
             Text(
               e.title,
               style: AppTextStyles.header.copyWith(
-                fontSize: 15.5,
+                fontSize: 15.sp,
               ),
             )
           ],
@@ -172,7 +173,7 @@ class _PhonePaymentViewState extends State<PhonePaymentView> {
         Text(
           model.contacts[i].displayName,
           style: AppTextStyles.header.copyWith(
-            fontSize: 16.5,
+            fontSize: 16.sp,
           ),
         ),
       ],

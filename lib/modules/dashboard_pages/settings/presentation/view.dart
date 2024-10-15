@@ -9,6 +9,7 @@ import 'package:blue_business/modules/dashboard_pages/settings/widgets/setting_s
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -84,7 +85,7 @@ class _SettingsViewState extends State<SettingsView> {
   Widget nameText() {
     return Text(
       locator<AppStateValues>().currentUser!.business.name,
-      style: AppTextStyles.header.copyWith(fontSize: 18.5),
+      style: AppTextStyles.header.copyWith(fontSize: 18.sp),
     );
   }
 

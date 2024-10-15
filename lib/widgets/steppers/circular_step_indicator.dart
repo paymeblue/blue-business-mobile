@@ -1,4 +1,5 @@
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -40,7 +41,7 @@ class CircularStepIndicator extends StatelessWidget {
                     angle: 90,
                     widget: Text(
                       '${progress.toStringAsFixed(0)} / ${max.toInt().toString()}',
-                      style: const TextStyle(fontSize: 22),
+                      style: AppTextStyles.semiLargeHeader,
                     ))
               ])
         ],

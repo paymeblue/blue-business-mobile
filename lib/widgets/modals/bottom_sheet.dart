@@ -18,6 +18,7 @@ import 'package:blue_business/widgets/modals/toast.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:salesiq_mobilisten/salesiq_mobilisten.dart';
@@ -54,7 +55,7 @@ class BlueBottomSheet {
               Text(
                 "Enable Face/Finger ID",
                 style: AppTextStyles.header.copyWith(
-                  fontSize: 20.5,
+                  fontSize: 20.sp,
                 ),
               ),
               15.verticalGap,
@@ -120,7 +121,7 @@ class BlueBottomSheet {
             children: [
               Text(
                 "Top up Account",
-                style: AppTextStyles.header.copyWith(fontSize: 18.5),
+                style: AppTextStyles.header.copyWith(fontSize: 18.sp),
               ),
               23.verticalGap,
               InkWell(
@@ -161,15 +162,15 @@ class BlueBottomSheet {
                           children: [
                             Text(
                               locator<AppStateValues>().account!.bankName,
-                              style:
-                                  AppTextStyles.header.copyWith(fontSize: 15.5),
+                              style: AppTextStyles.header
+                                  .copyWith(fontSize: 15.sp),
                             ),
                             4.verticalGap,
                             Text(
                               locator<AppStateValues>().account!.accountNumber,
                               style: AppTextStyles.smallText.copyWith(
                                   color: AppColors.bodyTextColor,
-                                  fontSize: 14.5),
+                                  fontSize: 14.sp),
                             )
                           ],
                         ),
@@ -236,7 +237,7 @@ class BlueBottomSheet {
           underline: const SizedBox(),
           icon: const Icon(Icons.keyboard_arrow_down_rounded),
           style: TextStyle(
-              fontSize: 13.5,
+              fontSize: 13.sp,
               // fontWeight: FontWeight.w300,
               color: Theme.of(context).highlightColor.withOpacity(.8)),
           items: alertTypes
@@ -253,45 +254,6 @@ class BlueBottomSheet {
         ),
       );
     }
-
-    // Widget statusDropdown(
-    //     BuildContext context, void Function(String?)? onChanged) {
-    //   return Container(
-    //     margin: const EdgeInsets.only(top: 10, bottom: 10),
-    //     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-    //     width: context.mediaQuery.size.width,
-    //     decoration: BoxDecoration(
-    //       color: AppColors.grey,
-    //       borderRadius: BorderRadius.circular(5),
-    //     ),
-    //     child: DropdownButton<String>(
-    //       hint: Text(
-    //         status.isEmpty ? "--Select a status--" : status,
-    //         style: status.isNotEmpty
-    //             ? AppTextStyles.textField
-    //             : AppTextStyles.subText
-    //                 .copyWith(color: AppColors.textColor.withOpacity(.5)),
-    //       ),
-    //       underline: const SizedBox(),
-    //       icon: const Icon(Icons.keyboard_arrow_down_rounded),
-    //       style: TextStyle(
-    //           fontSize: 13.5,
-    //           // fontWeight: FontWeight.w300,
-    //           color: Theme.of(context).highlightColor.withOpacity(.8)),
-    //       items: statuses
-    //           .map((q) => DropdownMenuItem<String>(
-    //                 value: q,
-    //                 child: Text(
-    //                   q,
-    //                   style: AppTextStyles.textField,
-    //                 ),
-    //               ))
-    //           .toList(),
-    //       isExpanded: true,
-    //       onChanged: onChanged,
-    //     ),
-    //   );
-    // }
 
     Widget textFieldHeader(String text) {
       return Align(
@@ -371,7 +333,7 @@ class BlueBottomSheet {
                 children: [
                   Text(
                     "Filter Transactions",
-                    style: AppTextStyles.header.copyWith(fontSize: 18.5),
+                    style: AppTextStyles.header.copyWith(fontSize: 18.sp),
                   ),
                   14.verticalGap,
                   textFieldHeader("Alert type"),
@@ -498,7 +460,7 @@ class BlueBottomSheet {
             children: [
               Text(
                 "CONTACT SUPPORT",
-                style: AppTextStyles.semiLargeHeader.copyWith(fontSize: 18.5),
+                style: AppTextStyles.semiLargeHeader.copyWith(fontSize: 18.sp),
               ),
               12.verticalGap,
               contactTile(
@@ -571,7 +533,7 @@ class BlueBottomSheet {
         children: [
           Text(
             e.title,
-            style: AppTextStyles.header.copyWith(fontSize: 16.5),
+            style: AppTextStyles.header.copyWith(fontSize: 16.sp),
           ),
           Text(
             e.subtitle,
@@ -652,7 +614,7 @@ class BlueBottomSheet {
                                 Text(
                                   "Send $amount via",
                                   style: AppTextStyles.header
-                                      .copyWith(fontSize: 18.5),
+                                      .copyWith(fontSize: 18.sp),
                                 ),
                                 22.verticalGap,
                               ],
@@ -696,7 +658,7 @@ class BlueBottomSheet {
                       child: Text(
                         "New Contact",
                         style: AppTextStyles.subHeader.copyWith(
-                            fontSize: 16.5, fontWeight: FontWeight.w700),
+                            fontSize: 16.sp, fontWeight: FontWeight.w700),
                       ),
                     ),
                     const SizedBox(
@@ -1092,7 +1054,7 @@ class BlueBottomSheet {
           underline: const SizedBox(),
           icon: const Icon(Icons.keyboard_arrow_down_rounded),
           style: TextStyle(
-              fontSize: 13.5,
+              fontSize: 13.sp,
               // fontWeight: FontWeight.w300,
               color: Theme.of(context).highlightColor.withOpacity(.8)),
           items: questions
@@ -1243,7 +1205,7 @@ class BlueBottomSheet {
                   Text(
                     "${payment.businessName} ${payment.lga} is requesting a payment",
                     style: AppTextStyles.header
-                        .copyWith(fontSize: 18, height: 1.4),
+                        .copyWith(fontSize: 18.sp, height: 1.4),
                   ),
                   20.verticalGap,
                   Container(

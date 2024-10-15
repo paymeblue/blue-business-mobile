@@ -9,6 +9,7 @@ import 'package:blue_business/widgets/modals/toast.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class PaymentLinkTile extends StatelessWidget {
@@ -72,7 +73,7 @@ class PaymentLinkTile extends StatelessWidget {
             Text(
               e.title,
               style: AppTextStyles.header.copyWith(
-                fontSize: 15.5,
+                fontSize: 15.sp,
               ),
             )
           ],
@@ -88,7 +89,7 @@ class PaymentLinkTile extends StatelessWidget {
       children: [
         Text(
           "${item.receiverName} | ${nairaSymbol()}${item.amount}",
-          style: AppTextStyles.header.copyWith(fontSize: 15.5),
+          style: AppTextStyles.header.copyWith(fontSize: 15.sp),
         ),
         4.verticalGap,
         Row(

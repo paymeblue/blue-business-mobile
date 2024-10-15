@@ -5,6 +5,7 @@ import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -132,12 +133,12 @@ class _WalletViewState extends State<WalletView> {
       children: [
         Text(
           title,
-          style: AppTextStyles.header.copyWith(fontSize: 15.5),
+          style: AppTextStyles.header.copyWith(fontSize: 15.sp),
         ),
         Text(
           subtitle,
           style: AppTextStyles.smallText.copyWith(
-              color: AppColors.bodyTextColor, fontSize: 14.5, height: 1.2),
+              color: AppColors.bodyTextColor, fontSize: 14.sp, height: 1.2),
         )
       ],
     );
@@ -149,7 +150,7 @@ class _WalletViewState extends State<WalletView> {
       child: Text(
         "Wallets",
         style: AppTextStyles.header
-            .copyWith(fontSize: 20, fontWeight: FontWeight.w500),
+            .copyWith(fontSize: 20.sp, fontWeight: FontWeight.w500),
       ),
     );
   }

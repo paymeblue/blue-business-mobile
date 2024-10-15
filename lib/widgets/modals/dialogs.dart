@@ -7,6 +7,7 @@ import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class BlueDialog {
@@ -36,7 +37,7 @@ class BlueDialog {
                   Text(
                     title,
                     style: AppTextStyles.subHeader.copyWith(
-                        fontSize: 18.5,
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.w700,
                         color: AppColors.error),
                   ),
@@ -47,7 +48,7 @@ class BlueDialog {
                       subtitle,
                       textAlign: TextAlign.center,
                       style: AppTextStyles.subText.copyWith(
-                          fontSize: 13.5, fontWeight: FontWeight.w400),
+                          fontSize: 13.sp, fontWeight: FontWeight.w400),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -130,7 +131,7 @@ class BlueDialog {
                       child: Text(
                         "Delete Account",
                         style: AppTextStyles.subHeader.copyWith(
-                            fontSize: 18.5,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.w700,
                             color: AppColors.textColor),
                       ),
@@ -140,7 +141,7 @@ class BlueDialog {
                       child: Text(
                         "Please select a reason for deleting your account and leaving us",
                         style: AppTextStyles.subText.copyWith(
-                            fontSize: 13.5,
+                            fontSize: 13.sp,
                             fontWeight: FontWeight.w400,
                             height: 1.2),
                       ),
@@ -213,7 +214,7 @@ class BlueDialog {
                     Text(
                       "Confirm Deactivation",
                       style: AppTextStyles.subHeader.copyWith(
-                          fontSize: 18.5,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.w700,
                           color: AppColors.error),
                     ),
@@ -224,7 +225,7 @@ class BlueDialog {
                         "Type \"delete\" to confirm your ext",
                         textAlign: TextAlign.center,
                         style: AppTextStyles.subText.copyWith(
-                            fontSize: 13.5, fontWeight: FontWeight.w400),
+                            fontSize: 13.sp, fontWeight: FontWeight.w400),
                       ),
                     ),
                     const SizedBox(height: 16),

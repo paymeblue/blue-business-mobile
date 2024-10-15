@@ -6,6 +6,7 @@ import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -138,7 +139,7 @@ class _WelcomeViewState extends State<WelcomeView> {
           Text(
             model.onboardingText[model.index],
             style: AppTextStyles.header.copyWith(
-              fontSize: 24,
+              fontSize: 24.sp,
               height: 1.1,
               fontWeight: FontWeight.w500,
             ),

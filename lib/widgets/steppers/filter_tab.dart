@@ -2,6 +2,7 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FilterTab extends StatelessWidget {
   final List<String> tabs;
@@ -75,7 +76,7 @@ class FilterTab extends StatelessWidget {
           child: Text(
             tabs[index],
             style: AppTextStyles.largeButtonText.copyWith(
-              fontSize: 15,
+              fontSize: 15.sp,
               color: selectedValue == tabs[index]
                   ? AppColors.white
                   : AppColors.textColor,

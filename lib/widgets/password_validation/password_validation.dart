@@ -3,6 +3,7 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PasswordCheckOption extends StatelessWidget {
   const PasswordCheckOption({
@@ -34,7 +35,7 @@ class PasswordCheckOption extends StatelessWidget {
               condition,
               style: AppTextStyles.subHeader.copyWith(
                   color: AppColors.textColor,
-                  fontSize: 13.5,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w400),
             ),
           ],

@@ -8,6 +8,7 @@ import 'package:blue_business/modules/dashboard_pages/insights/widgets/branch_in
 import 'package:blue_business/modules/dashboard_pages/insights/widgets/general_insights.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -29,7 +30,7 @@ class _InsightsViewState extends State<InsightsView> {
           appBar: BlueAppBar.primary(
             title: Text(
               "Insights",
-              style: AppTextStyles.subHeader.copyWith(fontSize: 20.5),
+              style: AppTextStyles.subHeader.copyWith(fontSize: 20.sp),
             ),
             leading: 0.horizontalGap,
           ),
