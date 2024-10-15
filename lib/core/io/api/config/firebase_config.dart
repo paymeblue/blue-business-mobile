@@ -10,7 +10,9 @@ import 'package:blue_business/firebase_options.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -76,15 +78,39 @@ class FirebaseConfig {
     AppStateValues stateValues = locator<AppStateValues>();
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
+
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-    try {
-      await messaging.requestPermission();
-      stateValues.fcmToken = await messaging.getToken() ?? "";
-    } catch (e) {
-      AppNotification.error(message: AppErrorHandler.getErrorMessage(e));
-    }
+    setupCrashlytics();
+
+    messaging.requestPermission().then((v) async {
+      if (v.authorizationStatus == AuthorizationStatus.authorized) {
+        try {
+          stateValues.fcmToken = await messaging.getToken() ?? "";
+        } catch (e) {
+          AppNotification.error(message: AppErrorHandler.getErrorMessage(e));
+        }
+
+        await initNotification();
+      }
+    });
 
     await initNotification();
+  }
+
+  static setupCrashlytics() async {
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+    FlutterError.onError = (errorDetails) {
+      if (!kDebugMode) {
+        FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+      }
+    };
+
+    PlatformDispatcher.instance.onError = (error, stack) {
+      if (!kDebugMode) {
+        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      }
+      return true;
+    };
   }
 }

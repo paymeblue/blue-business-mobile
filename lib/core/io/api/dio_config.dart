@@ -1,5 +1,7 @@
 import 'package:blue_business/core/utils/response_handlers.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 
 class DioConfig {
   DioConfig._();
@@ -37,6 +39,10 @@ class DioConfig {
         return handler.next(resp);
       },
       onError: (DioException e, handler) {
+        if (!kDebugMode) {
+          FirebaseCrashlytics.instance
+              .recordError(e.error, e.stackTrace, fatal: true);
+        }
         return handler.next(e);
       },
     ));
