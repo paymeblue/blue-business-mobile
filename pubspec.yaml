@@ -28,6 +28,7 @@ dependencies:
   nigerian_states_and_lga: ^1.0.0
   fl_chart: ^0.66.2
   custom_date_range_picker: ^1.1.0
+  flutter_screenutil: ^5.9.3
 
   #MEDIA UTILS
   barcode: ^2.2.6
