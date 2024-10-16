@@ -25,8 +25,12 @@ mixin _$VerifiedReceiverResponse {
   String? get message => throw _privateConstructorUsedError;
   VerifiedReceiver? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifiedReceiverResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifiedReceiverResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifiedReceiverResponseCopyWith<VerifiedReceiverResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$VerifiedReceiverResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifiedReceiverResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -76,6 +82,8 @@ class _$VerifiedReceiverResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of VerifiedReceiverResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $VerifiedReceiverCopyWith<$Res>? get data {
@@ -114,6 +122,8 @@ class __$$VerifiedReceiverResponseImplCopyWithImpl<$Res>
       $Res Function(_$VerifiedReceiverResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifiedReceiverResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,11 +180,13 @@ class _$VerifiedReceiverResponseImpl implements _VerifiedReceiverResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifiedReceiverResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifiedReceiverResponseImplCopyWith<_$VerifiedReceiverResponseImpl>
@@ -204,8 +216,11 @@ abstract class _VerifiedReceiverResponse implements VerifiedReceiverResponse {
   String? get message;
   @override
   VerifiedReceiver? get data;
+
+  /// Create a copy of VerifiedReceiverResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifiedReceiverResponseImplCopyWith<_$VerifiedReceiverResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -28,8 +28,12 @@ mixin _$VerifyPayoutAccount {
   String get name => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifyPayoutAccount to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifyPayoutAccount
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifyPayoutAccountCopyWith<VerifyPayoutAccount> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +64,8 @@ class _$VerifyPayoutAccountCopyWithImpl<$Res, $Val extends VerifyPayoutAccount>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifyPayoutAccount
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,6 +136,8 @@ class __$$VerifyPayoutAccountImplCopyWithImpl<$Res>
       $Res Function(_$VerifyPayoutAccountImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifyPayoutAccount
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -227,12 +235,14 @@ class _$VerifyPayoutAccountImpl implements _VerifyPayoutAccount {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, reference, accountNumber,
       accountName, bankId, name, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifyPayoutAccount
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifyPayoutAccountImplCopyWith<_$VerifyPayoutAccountImpl> get copyWith =>
@@ -274,8 +284,11 @@ abstract class _VerifyPayoutAccount implements VerifyPayoutAccount {
   String get name;
   @override
   String get createdAt;
+
+  /// Create a copy of VerifyPayoutAccount
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifyPayoutAccountImplCopyWith<_$VerifyPayoutAccountImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

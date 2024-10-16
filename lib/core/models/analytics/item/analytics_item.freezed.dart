@@ -24,8 +24,12 @@ mixin _$AnalyticsItem {
   String get current => throw _privateConstructorUsedError;
   String get previous => throw _privateConstructorUsedError;
 
+  /// Serializes this AnalyticsItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AnalyticsItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AnalyticsItemCopyWith<AnalyticsItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$AnalyticsItemCopyWithImpl<$Res, $Val extends AnalyticsItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AnalyticsItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$AnalyticsItemImplCopyWithImpl<$Res>
       _$AnalyticsItemImpl _value, $Res Function(_$AnalyticsItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AnalyticsItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -151,11 +159,13 @@ class _$AnalyticsItemImpl implements _AnalyticsItem {
                 other.previous == previous));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, total, current, previous);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AnalyticsItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AnalyticsItemImplCopyWith<_$AnalyticsItemImpl> get copyWith =>
@@ -184,8 +194,11 @@ abstract class _AnalyticsItem implements AnalyticsItem {
   String get current;
   @override
   String get previous;
+
+  /// Create a copy of AnalyticsItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AnalyticsItemImplCopyWith<_$AnalyticsItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

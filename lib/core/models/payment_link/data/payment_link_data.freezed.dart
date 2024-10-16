@@ -26,8 +26,12 @@ mixin _$PaymentLinkData {
   List<PaymentLinkItem> get data => throw _privateConstructorUsedError;
   bool get loadMore => throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentLinkData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentLinkData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentLinkDataCopyWith<PaymentLinkData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$PaymentLinkDataCopyWithImpl<$Res, $Val extends PaymentLinkData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentLinkData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,6 +120,8 @@ class __$$PaymentLinkDataImplCopyWithImpl<$Res>
       _$PaymentLinkDataImpl _value, $Res Function(_$PaymentLinkDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentLinkData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -199,12 +207,14 @@ class _$PaymentLinkDataImpl implements _PaymentLinkData {
                 other.loadMore == loadMore));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, total, limit, page,
       const DeepCollectionEquality().hash(_data), loadMore);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentLinkData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentLinkDataImplCopyWith<_$PaymentLinkDataImpl> get copyWith =>
@@ -240,8 +250,11 @@ abstract class _PaymentLinkData implements PaymentLinkData {
   List<PaymentLinkItem> get data;
   @override
   bool get loadMore;
+
+  /// Create a copy of PaymentLinkData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentLinkDataImplCopyWith<_$PaymentLinkDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

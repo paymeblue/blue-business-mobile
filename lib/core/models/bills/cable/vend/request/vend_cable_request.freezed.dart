@@ -23,8 +23,12 @@ mixin _$VendCableRequest {
   String get transactionId => throw _privateConstructorUsedError;
   String get passcode => throw _privateConstructorUsedError;
 
+  /// Serializes this VendCableRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VendCableRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VendCableRequestCopyWith<VendCableRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$VendCableRequestCopyWithImpl<$Res, $Val extends VendCableRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VendCableRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$VendCableRequestImplCopyWithImpl<$Res>
       $Res Function(_$VendCableRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VendCableRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,11 +143,13 @@ class _$VendCableRequestImpl implements _VendCableRequest {
                 other.passcode == passcode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, transactionId, passcode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VendCableRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VendCableRequestImplCopyWith<_$VendCableRequestImpl> get copyWith =>
@@ -166,8 +176,11 @@ abstract class _VendCableRequest implements VendCableRequest {
   String get transactionId;
   @override
   String get passcode;
+
+  /// Create a copy of VendCableRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VendCableRequestImplCopyWith<_$VendCableRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

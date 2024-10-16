@@ -31,8 +31,12 @@ mixin _$PaymentLinkReceiptRecord {
   String? get senderName => throw _privateConstructorUsedError;
   String? get narration => throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentLinkReceiptRecord to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentLinkReceiptRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentLinkReceiptRecordCopyWith<PaymentLinkReceiptRecord> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -66,6 +70,8 @@ class _$PaymentLinkReceiptRecordCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentLinkReceiptRecord
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -151,6 +157,8 @@ class __$$PaymentLinkReceiptRecordImplCopyWithImpl<$Res>
       $Res Function(_$PaymentLinkReceiptRecordImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentLinkReceiptRecord
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -268,12 +276,14 @@ class _$PaymentLinkReceiptRecordImpl implements _PaymentLinkReceiptRecord {
                 other.narration == narration));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, transactionId, amount,
       receiverName, phone, createdAt, status, senderName, narration);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentLinkReceiptRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentLinkReceiptRecordImplCopyWith<_$PaymentLinkReceiptRecordImpl>
@@ -321,8 +331,11 @@ abstract class _PaymentLinkReceiptRecord implements PaymentLinkReceiptRecord {
   String? get senderName;
   @override
   String? get narration;
+
+  /// Create a copy of PaymentLinkReceiptRecord
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentLinkReceiptRecordImplCopyWith<_$PaymentLinkReceiptRecordImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

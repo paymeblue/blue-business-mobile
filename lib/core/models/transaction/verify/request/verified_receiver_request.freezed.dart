@@ -25,8 +25,12 @@ mixin _$VerifiedReceiverRequest {
   String get receiver => throw _privateConstructorUsedError;
   String? get receiverName => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifiedReceiverRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifiedReceiverRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifiedReceiverRequestCopyWith<VerifiedReceiverRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$VerifiedReceiverRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifiedReceiverRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -97,6 +103,8 @@ class __$$VerifiedReceiverRequestImplCopyWithImpl<$Res>
       $Res Function(_$VerifiedReceiverRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifiedReceiverRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -155,12 +163,14 @@ class _$VerifiedReceiverRequestImpl implements _VerifiedReceiverRequest {
                 other.receiverName == receiverName));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, transactionId, receiver, receiverName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifiedReceiverRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifiedReceiverRequestImplCopyWith<_$VerifiedReceiverRequestImpl>
@@ -190,8 +200,11 @@ abstract class _VerifiedReceiverRequest implements VerifiedReceiverRequest {
   String get receiver;
   @override
   String? get receiverName;
+
+  /// Create a copy of VerifiedReceiverRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifiedReceiverRequestImplCopyWith<_$VerifiedReceiverRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

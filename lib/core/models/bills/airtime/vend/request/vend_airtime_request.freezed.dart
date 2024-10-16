@@ -25,8 +25,12 @@ mixin _$VendAirtimeRequest {
   String get amount => throw _privateConstructorUsedError;
   String get providerId => throw _privateConstructorUsedError;
 
+  /// Serializes this VendAirtimeRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VendAirtimeRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VendAirtimeRequestCopyWith<VendAirtimeRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$VendAirtimeRequestCopyWithImpl<$Res, $Val extends VendAirtimeRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VendAirtimeRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -100,6 +106,8 @@ class __$$VendAirtimeRequestImplCopyWithImpl<$Res>
       $Res Function(_$VendAirtimeRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VendAirtimeRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -169,12 +177,14 @@ class _$VendAirtimeRequestImpl implements _VendAirtimeRequest {
                 other.providerId == providerId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, receiver, passcode, amount, providerId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VendAirtimeRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VendAirtimeRequestImplCopyWith<_$VendAirtimeRequestImpl> get copyWith =>
@@ -207,8 +217,11 @@ abstract class _VendAirtimeRequest implements VendAirtimeRequest {
   String get amount;
   @override
   String get providerId;
+
+  /// Create a copy of VendAirtimeRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VendAirtimeRequestImplCopyWith<_$VendAirtimeRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

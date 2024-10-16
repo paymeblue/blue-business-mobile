@@ -26,8 +26,12 @@ mixin _$GetBeneficiaryResponse {
   List<BlueBeneficiary> get data => throw _privateConstructorUsedError;
   GetBeneficiaryData? get paginationInfo => throw _privateConstructorUsedError;
 
+  /// Serializes this GetBeneficiaryResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetBeneficiaryResponseCopyWith<GetBeneficiaryResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$GetBeneficiaryResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class _$GetBeneficiaryResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of GetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $GetBeneficiaryDataCopyWith<$Res>? get paginationInfo {
@@ -128,6 +136,8 @@ class __$$GetBeneficiaryResponseImplCopyWithImpl<$Res>
       $Res Function(_$GetBeneficiaryResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -204,12 +214,14 @@ class _$GetBeneficiaryResponseImpl implements _GetBeneficiaryResponse {
                 other.paginationInfo == paginationInfo));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message,
       const DeepCollectionEquality().hash(_data), paginationInfo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetBeneficiaryResponseImplCopyWith<_$GetBeneficiaryResponseImpl>
@@ -242,8 +254,11 @@ abstract class _GetBeneficiaryResponse implements GetBeneficiaryResponse {
   List<BlueBeneficiary> get data;
   @override
   GetBeneficiaryData? get paginationInfo;
+
+  /// Create a copy of GetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetBeneficiaryResponseImplCopyWith<_$GetBeneficiaryResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

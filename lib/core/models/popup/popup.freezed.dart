@@ -20,7 +20,9 @@ mixin _$PopupModel {
   Widget? get icon => throw _privateConstructorUsedError;
   Function get onTap => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PopupModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PopupModelCopyWith<PopupModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$PopupModelCopyWithImpl<$Res, $Val extends PopupModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PopupModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$PopupModelImplCopyWithImpl<$Res>
       _$PopupModelImpl _value, $Res Function(_$PopupModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PopupModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -141,7 +147,9 @@ class _$PopupModelImpl implements _PopupModel {
   @override
   int get hashCode => Object.hash(runtimeType, title, icon, onTap);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PopupModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PopupModelImplCopyWith<_$PopupModelImpl> get copyWith =>
@@ -160,8 +168,11 @@ abstract class _PopupModel implements PopupModel {
   Widget? get icon;
   @override
   Function get onTap;
+
+  /// Create a copy of PopupModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PopupModelImplCopyWith<_$PopupModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

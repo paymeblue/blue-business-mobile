@@ -24,8 +24,12 @@ mixin _$ResetPasswordRequest {
   String get password => throw _privateConstructorUsedError;
   String get passwordConfirmation => throw _privateConstructorUsedError;
 
+  /// Serializes this ResetPasswordRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ResetPasswordRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ResetPasswordRequestCopyWith<ResetPasswordRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$ResetPasswordRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ResetPasswordRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +99,8 @@ class __$$ResetPasswordRequestImplCopyWithImpl<$Res>
       $Res Function(_$ResetPasswordRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResetPasswordRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -152,12 +160,14 @@ class _$ResetPasswordRequestImpl implements _ResetPasswordRequest {
                 other.passwordConfirmation == passwordConfirmation));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, phone, password, passwordConfirmation);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResetPasswordRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResetPasswordRequestImplCopyWith<_$ResetPasswordRequestImpl>
@@ -188,8 +198,11 @@ abstract class _ResetPasswordRequest implements ResetPasswordRequest {
   String get password;
   @override
   String get passwordConfirmation;
+
+  /// Create a copy of ResetPasswordRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResetPasswordRequestImplCopyWith<_$ResetPasswordRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

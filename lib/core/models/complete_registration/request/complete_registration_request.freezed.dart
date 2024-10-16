@@ -24,8 +24,12 @@ mixin _$CompleteRegistrationRequest {
   int get userId => throw _privateConstructorUsedError;
   String get pin => throw _privateConstructorUsedError;
 
+  /// Serializes this CompleteRegistrationRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CompleteRegistrationRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CompleteRegistrationRequestCopyWith<CompleteRegistrationRequest>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$CompleteRegistrationRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CompleteRegistrationRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +99,8 @@ class __$$CompleteRegistrationRequestImplCopyWithImpl<$Res>
       $Res Function(_$CompleteRegistrationRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CompleteRegistrationRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -142,11 +150,13 @@ class _$CompleteRegistrationRequestImpl
             (identical(other.pin, pin) || other.pin == pin));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, userId, pin);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CompleteRegistrationRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CompleteRegistrationRequestImplCopyWith<_$CompleteRegistrationRequestImpl>
@@ -174,8 +184,11 @@ abstract class _CompleteRegistrationRequest
   int get userId;
   @override
   String get pin;
+
+  /// Create a copy of CompleteRegistrationRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CompleteRegistrationRequestImplCopyWith<_$CompleteRegistrationRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -27,8 +27,12 @@ mixin _$CreateShareholdersData {
   bool get verified => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this CreateShareholdersData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CreateShareholdersData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CreateShareholdersDataCopyWith<CreateShareholdersData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$CreateShareholdersDataCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CreateShareholdersData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -111,6 +117,8 @@ class __$$CreateShareholdersDataImplCopyWithImpl<$Res>
       $Res Function(_$CreateShareholdersDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CreateShareholdersData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -189,12 +197,14 @@ class _$CreateShareholdersDataImpl implements _CreateShareholdersData {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, name, bvn, id, verified, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreateShareholdersData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateShareholdersDataImplCopyWith<_$CreateShareholdersDataImpl>
@@ -230,8 +240,11 @@ abstract class _CreateShareholdersData implements CreateShareholdersData {
   bool get verified;
   @override
   String? get createdAt;
+
+  /// Create a copy of CreateShareholdersData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateShareholdersDataImplCopyWith<_$CreateShareholdersDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

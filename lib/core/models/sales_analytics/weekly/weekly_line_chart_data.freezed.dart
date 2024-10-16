@@ -24,8 +24,12 @@ mixin _$WeeklyLineChartData {
   double get amount => throw _privateConstructorUsedError;
   String? get date => throw _privateConstructorUsedError;
 
+  /// Serializes this WeeklyLineChartData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WeeklyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WeeklyLineChartDataCopyWith<WeeklyLineChartData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$WeeklyLineChartDataCopyWithImpl<$Res, $Val extends WeeklyLineChartData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WeeklyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$WeeklyLineChartDataImplCopyWithImpl<$Res>
       $Res Function(_$WeeklyLineChartDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WeeklyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -147,11 +155,13 @@ class _$WeeklyLineChartDataImpl implements _WeeklyLineChartData {
             (identical(other.date, date) || other.date == date));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, label, amount, date);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WeeklyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WeeklyLineChartDataImplCopyWith<_$WeeklyLineChartDataImpl> get copyWith =>
@@ -181,8 +191,11 @@ abstract class _WeeklyLineChartData implements WeeklyLineChartData {
   double get amount;
   @override
   String? get date;
+
+  /// Create a copy of WeeklyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WeeklyLineChartDataImplCopyWith<_$WeeklyLineChartDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

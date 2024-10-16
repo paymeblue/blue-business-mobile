@@ -25,7 +25,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return BaseView<LoginViewModel>(
         model: LoginViewModel(),
-        onModelReady: (model) => model.init(),
+        onModelReady: (model) => model.init(context, widget.onComplete),
         builder: (context, model, _) {
           return Scaffold(
             appBar: BlueAppBar.primary(

@@ -23,8 +23,12 @@ mixin _$SendNewPhoneRequest {
   String get phone => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
 
+  /// Serializes this SendNewPhoneRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SendNewPhoneRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SendNewPhoneRequestCopyWith<SendNewPhoneRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$SendNewPhoneRequestCopyWithImpl<$Res, $Val extends SendNewPhoneRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SendNewPhoneRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$SendNewPhoneRequestImplCopyWithImpl<$Res>
       $Res Function(_$SendNewPhoneRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SendNewPhoneRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,11 +140,13 @@ class _$SendNewPhoneRequestImpl implements _SendNewPhoneRequest {
             (identical(other.userId, userId) || other.userId == userId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, phone, userId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendNewPhoneRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SendNewPhoneRequestImplCopyWith<_$SendNewPhoneRequestImpl> get copyWith =>
@@ -163,8 +173,11 @@ abstract class _SendNewPhoneRequest implements SendNewPhoneRequest {
   String get phone;
   @override
   String get userId;
+
+  /// Create a copy of SendNewPhoneRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SendNewPhoneRequestImplCopyWith<_$SendNewPhoneRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -28,8 +28,12 @@ mixin _$Branch {
   int? get businessId => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this Branch to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Branch
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BranchCopyWith<Branch> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -58,6 +62,8 @@ class _$BranchCopyWithImpl<$Res, $Val extends Branch>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Branch
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -127,6 +133,8 @@ class __$$BranchImplCopyWithImpl<$Res>
       _$BranchImpl _value, $Res Function(_$BranchImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Branch
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -227,12 +235,14 @@ class _$BranchImpl implements _Branch {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, location, staffSize,
       totalAmount, businessId, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Branch
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BranchImplCopyWith<_$BranchImpl> get copyWith =>
@@ -272,8 +282,11 @@ abstract class _Branch implements Branch {
   int? get businessId;
   @override
   String? get createdAt;
+
+  /// Create a copy of Branch
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BranchImplCopyWith<_$BranchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

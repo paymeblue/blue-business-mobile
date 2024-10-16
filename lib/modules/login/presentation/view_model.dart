@@ -28,7 +28,7 @@ import 'package:go_router/go_router.dart';
 class LoginViewModel extends BaseViewModel {
   late Size size;
 
-  init() {
+  init(BuildContext context, VoidCallback? onComplete) {
     size = MediaQuery.sizeOf(globalContext!);
 
     setSelectedCountry();
@@ -40,6 +40,10 @@ class LoginViewModel extends BaseViewModel {
         showNotification();
       }
     });
+
+    if (useBiometrics && StorageValues.password.isNotEmpty) {
+      completeWithBiometrics(context, onComplete: onComplete);
+    }
   }
 
   showNotification() {
@@ -117,7 +121,8 @@ class LoginViewModel extends BaseViewModel {
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  goBack() {
+  goBack() async {
+    await StorageHelpers.setVal(StorageKeys.skipWelcomeKey, false.toString());
     if (globalContext!.canPop()) {
       globalContext!.pop();
     } else {

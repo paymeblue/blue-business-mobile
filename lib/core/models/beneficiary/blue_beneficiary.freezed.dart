@@ -24,8 +24,12 @@ mixin _$BlueBeneficiary {
   String get name => throw _privateConstructorUsedError;
   String get identifier => throw _privateConstructorUsedError;
 
+  /// Serializes this BlueBeneficiary to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BlueBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BlueBeneficiaryCopyWith<BlueBeneficiary> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$BlueBeneficiaryCopyWithImpl<$Res, $Val extends BlueBeneficiary>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BlueBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$BlueBeneficiaryImplCopyWithImpl<$Res>
       _$BlueBeneficiaryImpl _value, $Res Function(_$BlueBeneficiaryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BlueBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,11 +156,13 @@ class _$BlueBeneficiaryImpl implements _BlueBeneficiary {
                 other.identifier == identifier));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, identifier);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BlueBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BlueBeneficiaryImplCopyWith<_$BlueBeneficiaryImpl> get copyWith =>
@@ -182,8 +192,11 @@ abstract class _BlueBeneficiary implements BlueBeneficiary {
   String get name;
   @override
   String get identifier;
+
+  /// Create a copy of BlueBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BlueBeneficiaryImplCopyWith<_$BlueBeneficiaryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

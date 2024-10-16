@@ -25,8 +25,12 @@ mixin _$TopupAccount {
   String get bankName => throw _privateConstructorUsedError;
   String get accountNumber => throw _privateConstructorUsedError;
 
+  /// Serializes this TopupAccount to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TopupAccount
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TopupAccountCopyWith<TopupAccount> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$TopupAccountCopyWithImpl<$Res, $Val extends TopupAccount>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TopupAccount
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -100,6 +106,8 @@ class __$$TopupAccountImplCopyWithImpl<$Res>
       _$TopupAccountImpl _value, $Res Function(_$TopupAccountImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TopupAccount
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -169,12 +177,14 @@ class _$TopupAccountImpl implements _TopupAccount {
                 other.accountNumber == accountNumber));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, accountName, bankName, accountNumber);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopupAccount
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TopupAccountImplCopyWith<_$TopupAccountImpl> get copyWith =>
@@ -206,8 +216,11 @@ abstract class _TopupAccount implements TopupAccount {
   String get bankName;
   @override
   String get accountNumber;
+
+  /// Create a copy of TopupAccount
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TopupAccountImplCopyWith<_$TopupAccountImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

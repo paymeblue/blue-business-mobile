@@ -1,3 +1,4 @@
+import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
@@ -11,6 +12,16 @@ class SplashViewModel extends BaseViewModel {
     size = MediaQuery.sizeOf(globalContext!);
 
     await StorageValues.getLoginValues();
-    if (context.mounted) context.go(RoutePaths.welcomePath);
+    if (StorageValues.username.isNotEmpty) {
+      if (StorageValues.skipWelcome == "true") {
+        if (context.mounted) context.go(RoutePaths.loginPath);
+      } else {
+        await StorageHelpers.setVal(
+            StorageKeys.skipWelcomeKey, true.toString());
+        if (context.mounted) context.go(RoutePaths.welcomePath);
+      }
+    } else {
+      if (context.mounted) context.go(RoutePaths.welcomePath);
+    }
   }
 }

@@ -22,8 +22,12 @@ TodoData _$TodoDataFromJson(Map<String, dynamic> json) {
 mixin _$TodoData {
   List<TodoOption> get todos => throw _privateConstructorUsedError;
 
+  /// Serializes this TodoData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TodoData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TodoDataCopyWith<TodoData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,6 +50,8 @@ class _$TodoDataCopyWithImpl<$Res, $Val extends TodoData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TodoData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -79,6 +85,8 @@ class __$$TodoDataImplCopyWithImpl<$Res>
       _$TodoDataImpl _value, $Res Function(_$TodoDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TodoData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -123,12 +131,14 @@ class _$TodoDataImpl implements _TodoData {
             const DeepCollectionEquality().equals(other._todos, _todos));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_todos));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TodoData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TodoDataImplCopyWith<_$TodoDataImpl> get copyWith =>
@@ -151,8 +161,11 @@ abstract class _TodoData implements TodoData {
 
   @override
   List<TodoOption> get todos;
+
+  /// Create a copy of TodoData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TodoDataImplCopyWith<_$TodoDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

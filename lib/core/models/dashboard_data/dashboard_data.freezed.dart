@@ -25,8 +25,12 @@ mixin _$DashboardData {
   int get transactionVolume => throw _privateConstructorUsedError;
   int get netProfit => throw _privateConstructorUsedError;
 
+  /// Serializes this DashboardData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DashboardData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DashboardDataCopyWith<DashboardData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$DashboardDataCopyWithImpl<$Res, $Val extends DashboardData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DashboardData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,6 +112,8 @@ class __$$DashboardDataImplCopyWithImpl<$Res>
       _$DashboardDataImpl _value, $Res Function(_$DashboardDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DashboardData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -180,12 +188,14 @@ class _$DashboardDataImpl implements _DashboardData {
                 other.netProfit == netProfit));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, totalStaff, totalBranches, transactionVolume, netProfit);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DashboardData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DashboardDataImplCopyWith<_$DashboardDataImpl> get copyWith =>
@@ -217,8 +227,11 @@ abstract class _DashboardData implements DashboardData {
   int get transactionVolume;
   @override
   int get netProfit;
+
+  /// Create a copy of DashboardData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DashboardDataImplCopyWith<_$DashboardDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

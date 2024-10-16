@@ -23,8 +23,12 @@ mixin _$VerifyDataRequest {
   String get receiver => throw _privateConstructorUsedError;
   String get packageId => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifyDataRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifyDataRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifyDataRequestCopyWith<VerifyDataRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$VerifyDataRequestCopyWithImpl<$Res, $Val extends VerifyDataRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifyDataRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$VerifyDataRequestImplCopyWithImpl<$Res>
       $Res Function(_$VerifyDataRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifyDataRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,11 +143,13 @@ class _$VerifyDataRequestImpl implements _VerifyDataRequest {
                 other.packageId == packageId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, receiver, packageId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifyDataRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifyDataRequestImplCopyWith<_$VerifyDataRequestImpl> get copyWith =>
@@ -166,8 +176,11 @@ abstract class _VerifyDataRequest implements VerifyDataRequest {
   String get receiver;
   @override
   String get packageId;
+
+  /// Create a copy of VerifyDataRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifyDataRequestImplCopyWith<_$VerifyDataRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

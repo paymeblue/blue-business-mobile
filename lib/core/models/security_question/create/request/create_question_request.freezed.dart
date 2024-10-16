@@ -25,8 +25,12 @@ mixin _$CreateQuestionRequest {
   String get answer => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
+  /// Serializes this CreateQuestionRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CreateQuestionRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CreateQuestionRequestCopyWith<CreateQuestionRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$CreateQuestionRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CreateQuestionRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -96,6 +102,8 @@ class __$$CreateQuestionRequestImplCopyWithImpl<$Res>
       $Res Function(_$CreateQuestionRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CreateQuestionRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -153,11 +161,13 @@ class _$CreateQuestionRequestImpl implements _CreateQuestionRequest {
                 other.password == password));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, question, answer, password);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreateQuestionRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateQuestionRequestImplCopyWith<_$CreateQuestionRequestImpl>
@@ -187,8 +197,11 @@ abstract class _CreateQuestionRequest implements CreateQuestionRequest {
   String get answer;
   @override
   String get password;
+
+  /// Create a copy of CreateQuestionRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateQuestionRequestImplCopyWith<_$CreateQuestionRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

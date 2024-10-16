@@ -26,8 +26,12 @@ mixin _$TransactionData {
   List<TransactionHistory> get data => throw _privateConstructorUsedError;
   bool get loadMore => throw _privateConstructorUsedError;
 
+  /// Serializes this TransactionData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TransactionData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TransactionDataCopyWith<TransactionData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$TransactionDataCopyWithImpl<$Res, $Val extends TransactionData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TransactionData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,6 +120,8 @@ class __$$TransactionDataImplCopyWithImpl<$Res>
       _$TransactionDataImpl _value, $Res Function(_$TransactionDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TransactionData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -199,12 +207,14 @@ class _$TransactionDataImpl implements _TransactionData {
                 other.loadMore == loadMore));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, total, limit, page,
       const DeepCollectionEquality().hash(_data), loadMore);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TransactionData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TransactionDataImplCopyWith<_$TransactionDataImpl> get copyWith =>
@@ -240,8 +250,11 @@ abstract class _TransactionData implements TransactionData {
   List<TransactionHistory> get data;
   @override
   bool get loadMore;
+
+  /// Create a copy of TransactionData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TransactionDataImplCopyWith<_$TransactionDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

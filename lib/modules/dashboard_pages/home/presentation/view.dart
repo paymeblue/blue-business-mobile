@@ -386,7 +386,7 @@ class _HomeViewState extends State<HomeView> {
             height: 62,
             width: 62,
             decoration: BoxDecoration(
-                border: Border.all(color: AppColors.bgGrey),
+                border: Border.all(color: AppColors.midGrey),
                 borderRadius: BorderRadius.circular(20)),
             child: option.icon,
           ),
@@ -649,7 +649,7 @@ class _HomeViewState extends State<HomeView> {
           Text(
             "TRANSACTION VOL.",
             style: AppTextStyles.smallText.copyWith(
-                color: AppColors.brightBlue, height: 1.1, fontSize: 11.sp),
+                color: AppColors.bodyTextColor2, height: 1.1, fontSize: 11.sp),
           ),
           4.verticalGap,
           FittedBox(
@@ -715,7 +715,7 @@ class _HomeViewState extends State<HomeView> {
               Text(
                 "WALLET BALANCE",
                 style: AppTextStyles.subHeader
-                    .copyWith(color: AppColors.brightBlue, fontSize: 11.sp),
+                    .copyWith(color: AppColors.bodyTextColor2, fontSize: 11.sp),
               ),
               6.horizontalGap,
               balanceVisibilitySwitch(model)
@@ -745,7 +745,7 @@ class _HomeViewState extends State<HomeView> {
           Text(
             "TOTAL BRANCHES",
             style: AppTextStyles.subHeader
-                .copyWith(color: AppColors.brightBlue, fontSize: 11.sp),
+                .copyWith(color: AppColors.bodyTextColor2, fontSize: 11.sp),
           ),
           FittedBox(
             child: Text(
@@ -776,7 +776,7 @@ class _HomeViewState extends State<HomeView> {
           Text(
             "TOTAL STAFF",
             style: AppTextStyles.subHeader
-                .copyWith(color: AppColors.brightBlue, fontSize: 11.sp),
+                .copyWith(color: AppColors.bodyTextColor2, fontSize: 11.sp),
           ),
           FittedBox(
             child: Text(

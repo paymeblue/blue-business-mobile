@@ -24,8 +24,12 @@ mixin _$ReceiptResponse {
   String? get message => throw _privateConstructorUsedError;
   ReceiptData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this ReceiptResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ReceiptResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ReceiptResponseCopyWith<ReceiptResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$ReceiptResponseCopyWithImpl<$Res, $Val extends ReceiptResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ReceiptResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$ReceiptResponseCopyWithImpl<$Res, $Val extends ReceiptResponse>
     ) as $Val);
   }
 
+  /// Create a copy of ReceiptResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReceiptDataCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$ReceiptResponseImplCopyWithImpl<$Res>
       _$ReceiptResponseImpl _value, $Res Function(_$ReceiptResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ReceiptResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -164,11 +174,13 @@ class _$ReceiptResponseImpl implements _ReceiptResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ReceiptResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReceiptResponseImplCopyWith<_$ReceiptResponseImpl> get copyWith =>
@@ -198,8 +210,11 @@ abstract class _ReceiptResponse implements ReceiptResponse {
   String? get message;
   @override
   ReceiptData? get data;
+
+  /// Create a copy of ReceiptResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReceiptResponseImplCopyWith<_$ReceiptResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

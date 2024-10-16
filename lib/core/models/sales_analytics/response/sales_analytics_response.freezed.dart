@@ -25,8 +25,12 @@ mixin _$SalesAnalyticsResponse {
   String? get message => throw _privateConstructorUsedError;
   List<Map<String, dynamic>>? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this SalesAnalyticsResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SalesAnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SalesAnalyticsResponseCopyWith<SalesAnalyticsResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$SalesAnalyticsResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SalesAnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -97,6 +103,8 @@ class __$$SalesAnalyticsResponseImplCopyWithImpl<$Res>
       $Res Function(_$SalesAnalyticsResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SalesAnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -163,12 +171,14 @@ class _$SalesAnalyticsResponseImpl implements _SalesAnalyticsResponse {
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SalesAnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SalesAnalyticsResponseImplCopyWith<_$SalesAnalyticsResponseImpl>
@@ -198,8 +208,11 @@ abstract class _SalesAnalyticsResponse implements SalesAnalyticsResponse {
   String? get message;
   @override
   List<Map<String, dynamic>>? get data;
+
+  /// Create a copy of SalesAnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SalesAnalyticsResponseImplCopyWith<_$SalesAnalyticsResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

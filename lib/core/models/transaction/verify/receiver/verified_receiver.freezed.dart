@@ -28,8 +28,12 @@ mixin _$VerifiedReceiver {
   String get amount => throw _privateConstructorUsedError;
   double get charge => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifiedReceiver to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifiedReceiver
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifiedReceiverCopyWith<VerifiedReceiver> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +64,8 @@ class _$VerifiedReceiverCopyWithImpl<$Res, $Val extends VerifiedReceiver>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifiedReceiver
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,6 +136,8 @@ class __$$VerifiedReceiverImplCopyWithImpl<$Res>
       $Res Function(_$VerifiedReceiverImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifiedReceiver
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -225,12 +233,14 @@ class _$VerifiedReceiverImpl implements _VerifiedReceiver {
             (identical(other.charge, charge) || other.charge == charge));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, userId, walletCode, receiverName, phone, amount, charge);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifiedReceiver
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifiedReceiverImplCopyWith<_$VerifiedReceiverImpl> get copyWith =>
@@ -272,8 +282,11 @@ abstract class _VerifiedReceiver implements VerifiedReceiver {
   String get amount;
   @override
   double get charge;
+
+  /// Create a copy of VerifiedReceiver
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifiedReceiverImplCopyWith<_$VerifiedReceiverImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -22,8 +22,12 @@ ForgotPinData _$ForgotPinDataFromJson(Map<String, dynamic> json) {
 mixin _$ForgotPinData {
   String get phone => throw _privateConstructorUsedError;
 
+  /// Serializes this ForgotPinData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ForgotPinData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ForgotPinDataCopyWith<ForgotPinData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$ForgotPinDataCopyWithImpl<$Res, $Val extends ForgotPinData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ForgotPinData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$ForgotPinDataImplCopyWithImpl<$Res>
       _$ForgotPinDataImpl _value, $Res Function(_$ForgotPinDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ForgotPinData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -118,11 +126,13 @@ class _$ForgotPinDataImpl implements _ForgotPinData {
             (identical(other.phone, phone) || other.phone == phone));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, phone);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ForgotPinData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ForgotPinDataImplCopyWith<_$ForgotPinDataImpl> get copyWith =>
@@ -145,8 +155,11 @@ abstract class _ForgotPinData implements ForgotPinData {
 
   @override
   String get phone;
+
+  /// Create a copy of ForgotPinData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ForgotPinDataImplCopyWith<_$ForgotPinDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

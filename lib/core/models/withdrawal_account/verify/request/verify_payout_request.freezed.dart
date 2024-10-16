@@ -23,8 +23,12 @@ mixin _$VerifyPayoutRequest {
   String get bankId => throw _privateConstructorUsedError;
   String get accountNumber => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifyPayoutRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifyPayoutRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifyPayoutRequestCopyWith<VerifyPayoutRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$VerifyPayoutRequestCopyWithImpl<$Res, $Val extends VerifyPayoutRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifyPayoutRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$VerifyPayoutRequestImplCopyWithImpl<$Res>
       $Res Function(_$VerifyPayoutRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifyPayoutRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,11 +142,13 @@ class _$VerifyPayoutRequestImpl implements _VerifyPayoutRequest {
                 other.accountNumber == accountNumber));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, bankId, accountNumber);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifyPayoutRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifyPayoutRequestImplCopyWith<_$VerifyPayoutRequestImpl> get copyWith =>
@@ -165,8 +175,11 @@ abstract class _VerifyPayoutRequest implements VerifyPayoutRequest {
   String get bankId;
   @override
   String get accountNumber;
+
+  /// Create a copy of VerifyPayoutRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifyPayoutRequestImplCopyWith<_$VerifyPayoutRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

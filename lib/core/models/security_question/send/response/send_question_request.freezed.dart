@@ -23,8 +23,12 @@ mixin _$SendQuestionResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
+  /// Serializes this SendQuestionResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SendQuestionResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SendQuestionResponseCopyWith<SendQuestionResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$SendQuestionResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SendQuestionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +93,8 @@ class __$$SendQuestionResponseImplCopyWithImpl<$Res>
       $Res Function(_$SendQuestionResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SendQuestionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,11 +142,13 @@ class _$SendQuestionResponseImpl implements _SendQuestionResponse {
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendQuestionResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SendQuestionResponseImplCopyWith<_$SendQuestionResponseImpl>
@@ -166,8 +176,11 @@ abstract class _SendQuestionResponse implements SendQuestionResponse {
   String get status;
   @override
   String? get message;
+
+  /// Create a copy of SendQuestionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SendQuestionResponseImplCopyWith<_$SendQuestionResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

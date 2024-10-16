@@ -24,8 +24,12 @@ mixin _$RecentlyPaidResponse {
   String? get message => throw _privateConstructorUsedError;
   List<BlueBeneficiary>? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this RecentlyPaidResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RecentlyPaidResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RecentlyPaidResponseCopyWith<RecentlyPaidResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$RecentlyPaidResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RecentlyPaidResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +99,8 @@ class __$$RecentlyPaidResponseImplCopyWithImpl<$Res>
       $Res Function(_$RecentlyPaidResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RecentlyPaidResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,12 +165,14 @@ class _$RecentlyPaidResponseImpl implements _RecentlyPaidResponse {
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RecentlyPaidResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RecentlyPaidResponseImplCopyWith<_$RecentlyPaidResponseImpl>
@@ -193,8 +203,11 @@ abstract class _RecentlyPaidResponse implements RecentlyPaidResponse {
   String? get message;
   @override
   List<BlueBeneficiary>? get data;
+
+  /// Create a copy of RecentlyPaidResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RecentlyPaidResponseImplCopyWith<_$RecentlyPaidResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

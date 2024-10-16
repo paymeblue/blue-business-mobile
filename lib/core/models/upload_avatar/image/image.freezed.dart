@@ -23,8 +23,12 @@ mixin _$UserImage {
   int get id => throw _privateConstructorUsedError;
   String get displayPicture => throw _privateConstructorUsedError;
 
+  /// Serializes this UserImage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserImage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserImageCopyWith<UserImage> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$UserImageCopyWithImpl<$Res, $Val extends UserImage>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserImage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,6 +91,8 @@ class __$$UserImageImplCopyWithImpl<$Res>
       _$UserImageImpl _value, $Res Function(_$UserImageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserImage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,11 +140,13 @@ class _$UserImageImpl implements _UserImage {
                 other.displayPicture == displayPicture));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, displayPicture);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserImage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserImageImplCopyWith<_$UserImageImpl> get copyWith =>
@@ -162,8 +172,11 @@ abstract class _UserImage implements UserImage {
   int get id;
   @override
   String get displayPicture;
+
+  /// Create a copy of UserImage
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserImageImplCopyWith<_$UserImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

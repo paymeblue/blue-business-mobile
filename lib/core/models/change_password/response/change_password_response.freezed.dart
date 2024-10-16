@@ -24,8 +24,12 @@ mixin _$ChangePasswordResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
+  /// Serializes this ChangePasswordResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChangePasswordResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChangePasswordResponseCopyWith<ChangePasswordResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$ChangePasswordResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChangePasswordResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,6 +97,8 @@ class __$$ChangePasswordResponseImplCopyWithImpl<$Res>
       $Res Function(_$ChangePasswordResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChangePasswordResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,11 +146,13 @@ class _$ChangePasswordResponseImpl implements _ChangePasswordResponse {
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChangePasswordResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChangePasswordResponseImplCopyWith<_$ChangePasswordResponseImpl>
@@ -169,8 +179,11 @@ abstract class _ChangePasswordResponse implements ChangePasswordResponse {
   String get status;
   @override
   String? get message;
+
+  /// Create a copy of ChangePasswordResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangePasswordResponseImplCopyWith<_$ChangePasswordResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

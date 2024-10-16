@@ -24,8 +24,12 @@ mixin _$CreateBranchRequest {
   String get staffSize => throw _privateConstructorUsedError;
   String get location => throw _privateConstructorUsedError;
 
+  /// Serializes this CreateBranchRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CreateBranchRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CreateBranchRequestCopyWith<CreateBranchRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$CreateBranchRequestCopyWithImpl<$Res, $Val extends CreateBranchRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CreateBranchRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$CreateBranchRequestImplCopyWithImpl<$Res>
       $Res Function(_$CreateBranchRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CreateBranchRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,11 +157,13 @@ class _$CreateBranchRequestImpl implements _CreateBranchRequest {
                 other.location == location));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, staffSize, location);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreateBranchRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateBranchRequestImplCopyWith<_$CreateBranchRequestImpl> get copyWith =>
@@ -183,8 +193,11 @@ abstract class _CreateBranchRequest implements CreateBranchRequest {
   String get staffSize;
   @override
   String get location;
+
+  /// Create a copy of CreateBranchRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateBranchRequestImplCopyWith<_$CreateBranchRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

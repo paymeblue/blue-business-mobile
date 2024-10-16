@@ -23,8 +23,12 @@ mixin _$LineInputData {
   String get label => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
 
+  /// Serializes this LineInputData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LineInputData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LineInputDataCopyWith<LineInputData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$LineInputDataCopyWithImpl<$Res, $Val extends LineInputData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LineInputData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$LineInputDataImplCopyWithImpl<$Res>
       _$LineInputDataImpl _value, $Res Function(_$LineInputDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LineInputData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,11 +140,13 @@ class _$LineInputDataImpl implements _LineInputData {
             (identical(other.amount, amount) || other.amount == amount));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, label, amount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LineInputData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LineInputDataImplCopyWith<_$LineInputDataImpl> get copyWith =>
@@ -162,8 +172,11 @@ abstract class _LineInputData implements LineInputData {
   String get label;
   @override
   double get amount;
+
+  /// Create a copy of LineInputData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LineInputDataImplCopyWith<_$LineInputDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

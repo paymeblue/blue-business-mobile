@@ -24,8 +24,12 @@ mixin _$ForgotPinResponse {
   String? get message => throw _privateConstructorUsedError;
   ForgotPinData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this ForgotPinResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ForgotPinResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ForgotPinResponseCopyWith<ForgotPinResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$ForgotPinResponseCopyWithImpl<$Res, $Val extends ForgotPinResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ForgotPinResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$ForgotPinResponseCopyWithImpl<$Res, $Val extends ForgotPinResponse>
     ) as $Val);
   }
 
+  /// Create a copy of ForgotPinResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ForgotPinDataCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$ForgotPinResponseImplCopyWithImpl<$Res>
       $Res Function(_$ForgotPinResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ForgotPinResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,11 +175,13 @@ class _$ForgotPinResponseImpl implements _ForgotPinResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ForgotPinResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ForgotPinResponseImplCopyWith<_$ForgotPinResponseImpl> get copyWith =>
@@ -199,8 +211,11 @@ abstract class _ForgotPinResponse implements ForgotPinResponse {
   String? get message;
   @override
   ForgotPinData? get data;
+
+  /// Create a copy of ForgotPinResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ForgotPinResponseImplCopyWith<_$ForgotPinResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

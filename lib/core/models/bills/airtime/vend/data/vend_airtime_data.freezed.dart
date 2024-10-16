@@ -28,8 +28,12 @@ mixin _$VendAirtimeData {
   String get status => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this VendAirtimeData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VendAirtimeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VendAirtimeDataCopyWith<VendAirtimeData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +64,8 @@ class _$VendAirtimeDataCopyWithImpl<$Res, $Val extends VendAirtimeData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VendAirtimeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,6 +136,8 @@ class __$$VendAirtimeDataImplCopyWithImpl<$Res>
       _$VendAirtimeDataImpl _value, $Res Function(_$VendAirtimeDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VendAirtimeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -229,12 +237,14 @@ class _$VendAirtimeDataImpl implements _VendAirtimeData {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, transactionId, receiver,
       provider, paymentReference, amount, status, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VendAirtimeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VendAirtimeDataImplCopyWith<_$VendAirtimeDataImpl> get copyWith =>
@@ -276,8 +286,11 @@ abstract class _VendAirtimeData implements VendAirtimeData {
   String get status;
   @override
   String? get createdAt;
+
+  /// Create a copy of VendAirtimeData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VendAirtimeDataImplCopyWith<_$VendAirtimeDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

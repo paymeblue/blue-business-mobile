@@ -24,8 +24,12 @@ mixin _$WalletResponse {
   String? get message => throw _privateConstructorUsedError;
   Wallet? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this WalletResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WalletResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WalletResponseCopyWith<WalletResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$WalletResponseCopyWithImpl<$Res, $Val extends WalletResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WalletResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$WalletResponseCopyWithImpl<$Res, $Val extends WalletResponse>
     ) as $Val);
   }
 
+  /// Create a copy of WalletResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WalletCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$WalletResponseImplCopyWithImpl<$Res>
       _$WalletResponseImpl _value, $Res Function(_$WalletResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WalletResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -164,11 +174,13 @@ class _$WalletResponseImpl implements _WalletResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WalletResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WalletResponseImplCopyWith<_$WalletResponseImpl> get copyWith =>
@@ -198,8 +210,11 @@ abstract class _WalletResponse implements WalletResponse {
   String? get message;
   @override
   Wallet? get data;
+
+  /// Create a copy of WalletResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WalletResponseImplCopyWith<_$WalletResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

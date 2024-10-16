@@ -25,8 +25,12 @@ mixin _$TodoOption {
   String? get route => throw _privateConstructorUsedError;
   Map<String, dynamic>? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this TodoOption to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TodoOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TodoOptionCopyWith<TodoOption> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$TodoOptionCopyWithImpl<$Res, $Val extends TodoOption>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TodoOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -100,6 +106,8 @@ class __$$TodoOptionImplCopyWithImpl<$Res>
       _$TodoOptionImpl _value, $Res Function(_$TodoOptionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TodoOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -175,12 +183,14 @@ class _$TodoOptionImpl implements _TodoOption {
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, title, status, route,
       const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TodoOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TodoOptionImplCopyWith<_$TodoOptionImpl> get copyWith =>
@@ -212,8 +222,11 @@ abstract class _TodoOption implements TodoOption {
   String? get route;
   @override
   Map<String, dynamic>? get data;
+
+  /// Create a copy of TodoOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TodoOptionImplCopyWith<_$TodoOptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

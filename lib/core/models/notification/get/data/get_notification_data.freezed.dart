@@ -22,8 +22,12 @@ GetNotificationData _$GetNotificationDataFromJson(Map<String, dynamic> json) {
 mixin _$GetNotificationData {
   bool get notificationStatus => throw _privateConstructorUsedError;
 
+  /// Serializes this GetNotificationData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetNotificationData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetNotificationDataCopyWith<GetNotificationData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$GetNotificationDataCopyWithImpl<$Res, $Val extends GetNotificationData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetNotificationData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$GetNotificationDataImplCopyWithImpl<$Res>
       $Res Function(_$GetNotificationDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetNotificationData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -120,11 +128,13 @@ class _$GetNotificationDataImpl implements _GetNotificationData {
                 other.notificationStatus == notificationStatus));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, notificationStatus);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetNotificationData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetNotificationDataImplCopyWith<_$GetNotificationDataImpl> get copyWith =>
@@ -148,8 +158,11 @@ abstract class _GetNotificationData implements GetNotificationData {
 
   @override
   bool get notificationStatus;
+
+  /// Create a copy of GetNotificationData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetNotificationDataImplCopyWith<_$GetNotificationDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

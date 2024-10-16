@@ -29,8 +29,12 @@ mixin _$AirtimeDetails {
   String get service => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
 
+  /// Serializes this AirtimeDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AirtimeDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AirtimeDetailsCopyWith<AirtimeDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -62,6 +66,8 @@ class _$AirtimeDetailsCopyWithImpl<$Res, $Val extends AirtimeDetails>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AirtimeDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,6 +144,8 @@ class __$$AirtimeDetailsImplCopyWithImpl<$Res>
       _$AirtimeDetailsImpl _value, $Res Function(_$AirtimeDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AirtimeDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -246,12 +254,14 @@ class _$AirtimeDetailsImpl implements _AirtimeDetails {
             (identical(other.status, status) || other.status == status));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, amount, receiver,
       transactionId, provider, createdAt, service, status);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AirtimeDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AirtimeDetailsImplCopyWith<_$AirtimeDetailsImpl> get copyWith =>
@@ -296,8 +306,11 @@ abstract class _AirtimeDetails implements AirtimeDetails {
   String get service;
   @override
   String get status;
+
+  /// Create a copy of AirtimeDetails
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AirtimeDetailsImplCopyWith<_$AirtimeDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

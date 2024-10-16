@@ -24,8 +24,12 @@ mixin _$WithdrawRequest {
   String get paymentMode => throw _privateConstructorUsedError;
   String get passcode => throw _privateConstructorUsedError;
 
+  /// Serializes this WithdrawRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WithdrawRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WithdrawRequestCopyWith<WithdrawRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$WithdrawRequestCopyWithImpl<$Res, $Val extends WithdrawRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WithdrawRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$WithdrawRequestImplCopyWithImpl<$Res>
       _$WithdrawRequestImpl _value, $Res Function(_$WithdrawRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WithdrawRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -152,11 +160,13 @@ class _$WithdrawRequestImpl implements _WithdrawRequest {
                 other.passcode == passcode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, amount, paymentMode, passcode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WithdrawRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WithdrawRequestImplCopyWith<_$WithdrawRequestImpl> get copyWith =>
@@ -186,8 +196,11 @@ abstract class _WithdrawRequest implements WithdrawRequest {
   String get paymentMode;
   @override
   String get passcode;
+
+  /// Create a copy of WithdrawRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WithdrawRequestImplCopyWith<_$WithdrawRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

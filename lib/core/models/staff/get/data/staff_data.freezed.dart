@@ -27,8 +27,12 @@ mixin _$GetStaffData {
   bool get loadMore => throw _privateConstructorUsedError;
   int? get perPage => throw _privateConstructorUsedError;
 
+  /// Serializes this GetStaffData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetStaffData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetStaffDataCopyWith<GetStaffData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$GetStaffDataCopyWithImpl<$Res, $Val extends GetStaffData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetStaffData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,6 +128,8 @@ class __$$GetStaffDataImplCopyWithImpl<$Res>
       _$GetStaffDataImpl _value, $Res Function(_$GetStaffDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetStaffData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -216,12 +224,14 @@ class _$GetStaffDataImpl implements _GetStaffData {
             (identical(other.perPage, perPage) || other.perPage == perPage));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, total, limit, page,
       const DeepCollectionEquality().hash(_data), loadMore, perPage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetStaffData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetStaffDataImplCopyWith<_$GetStaffDataImpl> get copyWith =>
@@ -259,8 +269,11 @@ abstract class _GetStaffData implements GetStaffData {
   bool get loadMore;
   @override
   int? get perPage;
+
+  /// Create a copy of GetStaffData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetStaffDataImplCopyWith<_$GetStaffDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

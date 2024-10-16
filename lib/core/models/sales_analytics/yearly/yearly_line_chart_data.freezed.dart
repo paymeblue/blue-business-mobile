@@ -23,8 +23,12 @@ mixin _$YearlyLineChartData {
   String get label => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
 
+  /// Serializes this YearlyLineChartData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of YearlyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $YearlyLineChartDataCopyWith<YearlyLineChartData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$YearlyLineChartDataCopyWithImpl<$Res, $Val extends YearlyLineChartData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of YearlyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$YearlyLineChartDataImplCopyWithImpl<$Res>
       $Res Function(_$YearlyLineChartDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of YearlyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,11 +140,13 @@ class _$YearlyLineChartDataImpl implements _YearlyLineChartData {
             (identical(other.amount, amount) || other.amount == amount));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, label, amount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of YearlyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$YearlyLineChartDataImplCopyWith<_$YearlyLineChartDataImpl> get copyWith =>
@@ -163,8 +173,11 @@ abstract class _YearlyLineChartData implements YearlyLineChartData {
   String get label;
   @override
   double get amount;
+
+  /// Create a copy of YearlyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$YearlyLineChartDataImplCopyWith<_$YearlyLineChartDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

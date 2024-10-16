@@ -25,8 +25,12 @@ mixin _$WithdrawalAccountResponse {
   String? get message => throw _privateConstructorUsedError;
   WithdrawalAccount? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this WithdrawalAccountResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WithdrawalAccountResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WithdrawalAccountResponseCopyWith<WithdrawalAccountResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$WithdrawalAccountResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WithdrawalAccountResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -76,6 +82,8 @@ class _$WithdrawalAccountResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of WithdrawalAccountResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WithdrawalAccountCopyWith<$Res>? get data {
@@ -114,6 +122,8 @@ class __$$WithdrawalAccountResponseImplCopyWithImpl<$Res>
       $Res Function(_$WithdrawalAccountResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WithdrawalAccountResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,11 +180,13 @@ class _$WithdrawalAccountResponseImpl implements _WithdrawalAccountResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WithdrawalAccountResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WithdrawalAccountResponseImplCopyWith<_$WithdrawalAccountResponseImpl>
@@ -204,8 +216,11 @@ abstract class _WithdrawalAccountResponse implements WithdrawalAccountResponse {
   String? get message;
   @override
   WithdrawalAccount? get data;
+
+  /// Create a copy of WithdrawalAccountResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WithdrawalAccountResponseImplCopyWith<_$WithdrawalAccountResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

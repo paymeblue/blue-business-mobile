@@ -25,8 +25,12 @@ mixin _$InitiateTransactionResponse {
   String? get message => throw _privateConstructorUsedError;
   InitiateTransactionData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this InitiateTransactionResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of InitiateTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $InitiateTransactionResponseCopyWith<InitiateTransactionResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -55,6 +59,8 @@ class _$InitiateTransactionResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of InitiateTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -78,6 +84,8 @@ class _$InitiateTransactionResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of InitiateTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $InitiateTransactionDataCopyWith<$Res>? get data {
@@ -116,6 +124,8 @@ class __$$InitiateTransactionResponseImplCopyWithImpl<$Res>
       $Res Function(_$InitiateTransactionResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of InitiateTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -174,11 +184,13 @@ class _$InitiateTransactionResponseImpl
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InitiateTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitiateTransactionResponseImplCopyWith<_$InitiateTransactionResponseImpl>
@@ -209,8 +221,11 @@ abstract class _InitiateTransactionResponse
   String? get message;
   @override
   InitiateTransactionData? get data;
+
+  /// Create a copy of InitiateTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitiateTransactionResponseImplCopyWith<_$InitiateTransactionResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
