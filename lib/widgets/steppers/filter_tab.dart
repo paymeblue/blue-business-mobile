@@ -54,8 +54,8 @@ class FilterTab extends StatelessWidget {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),
-        height: 50.h,
-        width: ((context.mediaQuery.size.width - 40) / tabs.length).w,
+        height: 45.h,
+        width: (context.mediaQuery.size.width - 60).w / tabs.length,
         decoration: BoxDecoration(
           color: selectedValue == tabs[index]
               ? AppColors.primary

@@ -34,7 +34,7 @@ class _InsightsViewState extends State<InsightsView> {
           ),
           body: Container(
             height: model.size.height.h,
-            width: model.size.width.w,
+            width: model.size.width,
             padding: EdgeInsets.only(bottom: 20.h, top: 10.h),
             child: Column(
               children: [
@@ -56,7 +56,7 @@ class _InsightsViewState extends State<InsightsView> {
   Widget tabs(InsightsViewModel model) {
     return SizedBox(
       height: 40.h,
-      width: context.mediaQuery.size.width.w,
+      width: context.mediaQuery.size.width,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: model.tabs().length,
@@ -87,7 +87,7 @@ class _InsightsViewState extends State<InsightsView> {
             AnimatedContainer(
               duration: const Duration(milliseconds: 350),
               height: i == model.currTab ? 3.h : 2.2.h,
-              width: (model.size.width / 2).w,
+              width: (model.size.width / 2),
               decoration: BoxDecoration(
                 color: i == model.currTab ? AppColors.primary : null,
                 borderRadius: BorderRadius.circular(2),
