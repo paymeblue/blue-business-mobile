@@ -15,7 +15,7 @@ class _SignupShellViewState extends State<SignupShellView> {
   @override
   Widget build(BuildContext context) {
     return BaseView<SignupShellViewModel>(
-      onModelReady: (model) => model.init(),
+      onModelReady: (model) => model.init(context),
       model: SignupShellViewModel(),
       builder: (context, model, _) {
         return Scaffold(

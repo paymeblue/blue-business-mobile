@@ -14,10 +14,10 @@ import 'package:go_router/go_router.dart';
 class ShareholderDetailsViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context, SignupData data) {
+  init(BuildContext context, SignupData data) async {
     size = context.mediaQuery.size;
 
-    getShareholders(data);
+    await getShareholders(data);
   }
 
   goBack(BuildContext context, SignupData data) {

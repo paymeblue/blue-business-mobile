@@ -606,7 +606,6 @@ List<GoRoute> airtimeRoutes = [
 ];
 
 ShellRoute signupShellRoute = ShellRoute(
-  navigatorKey: locator<NavigationService>().shellKey,
   builder: (context, state, child) {
     return SignupShellView(
       child: child,

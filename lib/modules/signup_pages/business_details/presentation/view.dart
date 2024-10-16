@@ -26,6 +26,11 @@ class _SignupBusinessDetailsViewState extends State<SignupBusinessDetailsView> {
     return BaseView<SignupBusinessDetailsViewModel>(
       model: SignupBusinessDetailsViewModel(),
       onModelReady: (model) => model.init(context),
+      onDispose: (model) {
+        model.nameController.dispose();
+        model.cacController.dispose();
+        model.searchController.dispose();
+      },
       builder: (context, model, _) {
         return Scaffold(
           appBar: BlueAppBar.primary(
@@ -34,7 +39,8 @@ class _SignupBusinessDetailsViewState extends State<SignupBusinessDetailsView> {
             },
             icon: Icons.arrow_back_ios_new,
           ),
-          body: Padding(
+          body: Container(
+            decoration: const BoxDecoration(),
             padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
             child: Column(
               children: [
@@ -48,6 +54,7 @@ class _SignupBusinessDetailsViewState extends State<SignupBusinessDetailsView> {
                         hint: "Dev Factory",
                         controller: model.nameController,
                         onChanged: model.onChanged,
+                        node: FocusNode(),
                       ),
                       20.verticalGap,
                       BlueTextField.plaintext(
@@ -55,6 +62,7 @@ class _SignupBusinessDetailsViewState extends State<SignupBusinessDetailsView> {
                         hint: "000000000",
                         controller: model.cacController,
                         onChanged: model.onChanged,
+                        node: FocusNode(),
                       ),
                       20.verticalGap,
                       model.gettingCat
