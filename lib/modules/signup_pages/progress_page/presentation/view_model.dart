@@ -65,7 +65,7 @@ class SignupProgressViewModel extends BaseViewModel {
     {
       "title": "Business & Owner Details",
       "subtitle":
-          "Provide us with your business name, size, CAC number and address.",
+          "Provide us with your business name, category, size and CAC number.",
     },
     {
       "title": "KYC Verification",
