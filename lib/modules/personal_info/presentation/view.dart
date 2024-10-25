@@ -38,19 +38,24 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 35),
             child: Column(
               children: [
-                const InfoContainer(
-                    text: "You can only make changes to your profile picture"),
-                12.verticalGap,
-                avatarRow(model),
-                15.verticalGap,
-                businessNameField(),
-                20.verticalGap,
-                cacField(),
-                20.verticalGap,
-                businesCategoryField(),
-                20.verticalGap,
-                phoneField(model),
-                const Spacer(),
+                Expanded(
+                    child: ListView(
+                  children: [
+                    const InfoContainer(
+                        text:
+                            "You can only make changes to your profile picture"),
+                    12.verticalGap,
+                    avatarRow(model),
+                    15.verticalGap,
+                    businessNameField(),
+                    20.verticalGap,
+                    cacField(),
+                    20.verticalGap,
+                    businesCategoryField(),
+                    20.verticalGap,
+                    phoneField(model),
+                  ],
+                )),
                 AppButton.primary(
                   title: "Save changes",
                   onTap: model.uploadImage,

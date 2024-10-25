@@ -231,7 +231,7 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: model.size.width.w / 2.6,
+                      width: 135.w,
                       height: 40.h,
                       child: AppButton.primary(
                         title: "View Insights",
@@ -241,7 +241,7 @@ class _BranchHomeViewState extends State<BranchHomeView> {
                       ),
                     ),
                     SizedBox(
-                      width: model.size.width.w / 2.6,
+                      width: 135.w,
                       height: 40.h,
                       child: AppButton.ghostPrimary(
                         title: "Edit branch",

@@ -75,9 +75,9 @@ class AccountRecoveryViewModel extends BaseViewModel {
             if (locator<AppStateValues>().recoveryCode.isEmpty) {
               getRecoveryCode();
             } else {
-              await BlueBottomSheet.recoveryCode(onTap: () async {
-                return "";
-              });
+              await BlueBottomSheet.recoveryCode(
+                onTap: regenerateRecoveryCode,
+              );
             }
           },
           subtitle:

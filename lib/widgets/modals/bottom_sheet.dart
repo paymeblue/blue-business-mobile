@@ -833,6 +833,7 @@ class BlueBottomSheet {
                         title: "Generate new code",
                         onTap: () async {
                           recoveryCode = await onTap() ?? "";
+                          locator<AppStateValues>().recoveryCode = recoveryCode;
                           setState(() {});
                         }),
                   ],

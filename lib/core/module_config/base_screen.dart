@@ -31,9 +31,8 @@ class _BaseViewState<T extends ChangeNotifier> extends State<BaseView<T>> {
   @override
   void initState() {
     super.initState();
-    model = widget.model;
-
     ConnectionHelper.initialiseNetworkCheck();
+    model = widget.model;
 
     if (widget.onModelReady != null) {
       widget.onModelReady!(model);
@@ -49,7 +48,6 @@ class _BaseViewState<T extends ChangeNotifier> extends State<BaseView<T>> {
     }
 
     ConnectionHelper.subscription.cancel();
-
     super.dispose();
   }
 

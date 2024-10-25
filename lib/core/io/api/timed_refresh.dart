@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
@@ -21,11 +20,9 @@ class RefreshTimer {
 
   resetTimer() async {
     if (_logoutTimer != null) {
-      log("<====================CANCELLING LOGOUT TIMER====================>");
       _logoutTimer!.cancel();
     }
 
-    log("<====================RESETTING TIMER====================>");
     _logoutTimer = Timer(const Duration(seconds: 300), () {
       locator<AppStateValues>().notificationState = NotificationState.warning;
       _logout();
@@ -36,7 +33,6 @@ class RefreshTimer {
 
   _setupRefresh() {
     _refreshTimer ??= Timer(const Duration(seconds: 285), () async {
-      log("<====================REFRESHING TOKEN====================>");
       await _refreshToken();
     });
   }
@@ -47,17 +43,20 @@ class RefreshTimer {
     RefreshTokenResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .refresh(request: request)
-            .onError((error, stackTrace) {
-      return RefreshTokenResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "refresh_token",
-          "request": request.toString(),
-          "response_model": "RefreshTokenResponse"
-        },
-      ));
-    });
+            .onError(
+      (error, stackTrace) {
+        return RefreshTokenResponse(
+            status: "fail",
+            message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "refresh_token",
+                "request": request.toString(),
+                "response_model": "RefreshTokenResponse"
+              },
+            ));
+      },
+    );
 
     if (resp.status == "success") {
       locator<AppStateValues>().accessToken = resp.data!.accessToken;
@@ -74,8 +73,6 @@ class RefreshTimer {
   }
 
   _logout() async {
-    log("<====================LOGGING OUT====================>");
-
     BuildContext context =
         locator<NavigationService>().navigatorKey.currentContext!;
 
@@ -90,8 +87,6 @@ class RefreshTimer {
   }
 
   cancelTimer() {
-    log("<====================CANCELLING TIMERS====================>");
-
     _refreshTimer?.cancel();
     _logoutTimer?.cancel();
   }
