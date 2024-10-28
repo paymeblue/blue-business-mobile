@@ -397,17 +397,76 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Staff and their roles",
-                        style: AppTextStyles.subText.copyWith(
-                          color: AppColors.bodyTextColor2,
-                        ),
-                      ),
-                      Text(
-                        "Staff details",
-                        style: AppTextStyles.subText.copyWith(
-                          color: AppColors.textColor,
-                        ),
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Staff and their roles",
+                                      style: AppTextStyles.subText.copyWith(
+                                        color: AppColors.bodyTextColor2,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Staff details",
+                                      style: AppTextStyles.subText.copyWith(
+                                        color: AppColors.textColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              BluePopupMenu(
+                                  width: null,
+                                  icon: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: AppColors.blue),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 6),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          (model.role?.name ?? "all roles")
+                                              .sentenceCase,
+                                          style: AppTextStyles.subText.copyWith(
+                                            color: AppColors.blue,
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.keyboard_arrow_down_rounded,
+                                          size: 18,
+                                          color: AppColors.blue,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  popupItems: model.roles
+                                      .map(
+                                        (e) => PopupModel(
+                                          title: e.name.sentenceCase,
+                                          onTap: () {
+                                            model.role = e;
+                                            model.staffPagingController
+                                                .refresh();
+                                          },
+                                        ),
+                                      )
+                                      .toList()),
+                            ],
+                          ),
+                          const Divider(
+                            color: AppColors.midGrey,
+                          ),
+                        ],
                       ),
                       25.verticalGap,
                       NoItems.firstPage(

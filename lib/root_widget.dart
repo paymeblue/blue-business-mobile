@@ -31,7 +31,7 @@ class BlueApp extends StatelessWidget {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(
                     textScaler: context.mediaQuery.textScaler
-                        .clamp(minScaleFactor: .9, maxScaleFactor: 1)),
+                        .clamp(minScaleFactor: 0.9, maxScaleFactor: 1.0)),
                 child: ScreenUtilInit(
                   designSize: const Size(390, 844),
                   minTextAdapt: true,

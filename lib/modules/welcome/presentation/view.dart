@@ -96,7 +96,7 @@ class _WelcomeViewState extends State<WelcomeView> {
 
   SizedBox onboardingLegalText(WelcomeViewModel model) {
     return SizedBox(
-        width: MediaQuery.of(context).size.width * .8,
+        width: context.mediaQuery.size.width * .8,
         child: RichText(
           text: TextSpan(children: [
             TextSpan(
@@ -132,7 +132,7 @@ class _WelcomeViewState extends State<WelcomeView> {
   Container onboardingText(WelcomeViewModel model) {
     return Container(
       height: 120,
-      width: MediaQuery.of(context).size.width,
+      width: context.mediaQuery.size.width,
       padding: EdgeInsets.symmetric(horizontal: model.size.width / 8),
       child: Column(
         children: [
@@ -161,14 +161,14 @@ class _WelcomeViewState extends State<WelcomeView> {
 
   Widget onboardingSlider(WelcomeViewModel model) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * .8,
+      width: context.mediaQuery.size.width * .8,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(model.onboardingText.length, (index) {
           return AnimatedContainer(
             duration: const Duration(milliseconds: 350),
             height: 7,
-            width: (MediaQuery.of(context).size.width * .8) /
+            width: (context.mediaQuery.size.width * .8) /
                 model.onboardingText.length,
             decoration: containerDecoration(index, model),
           );
