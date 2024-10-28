@@ -1,3 +1,4 @@
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,5 +13,3 @@ class PaymentOption with _$PaymentOption {
     required PaymentMode mode,
   }) = _PaymentOption;
 }
-
-enum PaymentMode { blue, qr, phone, offline }

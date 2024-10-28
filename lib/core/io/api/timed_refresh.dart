@@ -7,6 +7,7 @@ import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -91,5 +92,3 @@ class RefreshTimer {
     _logoutTimer?.cancel();
   }
 }
-
-enum NotificationState { signupSuccess, logoutSuccess, error, warning }

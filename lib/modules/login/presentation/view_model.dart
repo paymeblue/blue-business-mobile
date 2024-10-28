@@ -4,7 +4,6 @@ import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/profile_service/profile_service.dart';
-import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
@@ -19,6 +18,7 @@ import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/biometics.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
@@ -263,8 +263,12 @@ class LoginViewModel extends BaseViewModel {
       number = number.replaceFirst("0", "");
       log(number);
     }
-    if (number.startsWith(selectedCountry!.dialCode)) {
-      number = number.replaceFirst(selectedCountry!.dialCode, "");
+    if (number
+        .replaceFirst("+", "")
+        .startsWith(selectedCountry!.dialCode.replaceFirst("+", ""))) {
+      number = number
+          .replaceFirst("+", "")
+          .replaceFirst(selectedCountry!.dialCode.replaceFirst("+", ""), "");
     }
 
     return selectedCountry!.dialCode + number;

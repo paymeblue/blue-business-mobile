@@ -7,7 +7,7 @@ import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';

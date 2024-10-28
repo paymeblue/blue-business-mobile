@@ -141,8 +141,12 @@ class EnterPinRecoveryPhoneViewModel extends BaseViewModel {
     if (number.startsWith("0")) {
       number = number.replaceFirst("0", "");
     }
-    if (number.startsWith(selectedCountry!.dialCode)) {
-      number = number.replaceFirst(selectedCountry!.dialCode, "");
+    if (number
+        .replaceFirst("+", "")
+        .startsWith(selectedCountry!.dialCode.replaceFirst("+", ""))) {
+      number = number
+          .replaceFirst("+", "")
+          .replaceFirst(selectedCountry!.dialCode.replaceFirst("+", ""), "");
     }
 
     return selectedCountry!.dialCode + number;

@@ -5,7 +5,7 @@ import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
-import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';

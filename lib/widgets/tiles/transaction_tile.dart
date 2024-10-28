@@ -4,6 +4,7 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
