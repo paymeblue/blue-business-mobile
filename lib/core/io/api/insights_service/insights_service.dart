@@ -23,7 +23,7 @@ abstract class InsightsService {
     @Query("time_interval") String type,
   );
 
-  @GET("/analytics")
+  @GET("/analytic")
   Future<AnalyticsResponse> getAnalytics(
     @Query("time_interval") String type,
   );
