@@ -116,6 +116,7 @@ class _InitiateDataViewState extends State<InitiateDataView> {
                         onChanged: model.onChanged,
                         controller: model.phoneController,
                         keyboardType: TextInputType.number,
+                        node: FocusNode(),
                       ),
                     ],
                   ),

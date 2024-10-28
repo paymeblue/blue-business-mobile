@@ -54,6 +54,7 @@ class _SignupBusinessDetailsViewState extends State<SignupBusinessDetailsView> {
                         hint: "Dev Factory",
                         controller: model.nameController,
                         onChanged: model.onChanged,
+                        node: FocusNode(),
                       ),
                       20.verticalGap,
                       BlueTextField.plaintext(
@@ -61,6 +62,7 @@ class _SignupBusinessDetailsViewState extends State<SignupBusinessDetailsView> {
                         hint: "000000000",
                         controller: model.cacController,
                         onChanged: model.onChanged,
+                        node: FocusNode(),
                       ),
                       20.verticalGap,
                       model.gettingCat

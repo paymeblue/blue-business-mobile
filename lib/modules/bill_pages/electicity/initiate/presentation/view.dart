@@ -123,6 +123,7 @@ class _InitiateElectricityViewState extends State<InitiateElectricityView> {
                 keyboardType: TextInputType.number,
                 controller: model.meterNumberController,
                 onChanged: model.onChanged,
+                node: FocusNode(),
               ),
             ),
             6.horizontalGap,
@@ -182,10 +183,12 @@ class _InitiateElectricityViewState extends State<InitiateElectricityView> {
         if (model.data != null) ...[
           20.verticalGap,
           BlueTextField.currency(
-              hint: "${nairaSymbol()}0.00",
-              title: "Amount",
-              onChanged: model.onChanged,
-              controller: model.amountController),
+            hint: "${nairaSymbol()}0.00",
+            title: "Amount",
+            onChanged: model.onChanged,
+            controller: model.amountController,
+            node: FocusNode(),
+          ),
         ]
       ],
     );

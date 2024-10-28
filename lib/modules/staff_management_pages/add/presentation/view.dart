@@ -127,6 +127,7 @@ class _AddStaffViewState extends State<AddStaffView> {
           title: "Staff name",
           onChanged: model.onChanged,
           controller: model.nameController,
+          node: FocusNode(),
         ),
         12.verticalGap,
         model.roleState == FetchState.loading
@@ -171,6 +172,7 @@ class _AddStaffViewState extends State<AddStaffView> {
           controller: model.passwordController,
           onChanged: model.onChanged,
           title: "Set password",
+          node: FocusNode(),
         ),
         10.verticalGap,
         ...List.generate(

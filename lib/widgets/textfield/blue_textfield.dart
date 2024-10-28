@@ -26,6 +26,7 @@ class BlueTextField {
     String title = "Phone",
     bool isOptional = false,
     ValueChanged<String?>? onChanged,
+    FocusNode? node,
     CountryCode? selectedItem,
     Widget? leading,
     bool isEnabled = true,
@@ -67,6 +68,7 @@ class BlueTextField {
       //   value: selectedItem,
       //   searchController: searchController,
       // ),
+      node: node,
       leading: selectedItem(),
       isEnabled: isEnabled,
       onChanged: onChanged,
@@ -300,6 +302,7 @@ class _BluePhoneTextField extends StatelessWidget {
     this.onChanged,
     this.isEnabled = true,
     this.leading,
+    this.node,
   });
 
   final String? hint;
@@ -310,6 +313,7 @@ class _BluePhoneTextField extends StatelessWidget {
   final bool isOptional;
   final bool isEnabled;
   final Widget? leading;
+  final FocusNode? node;
 
   @override
   Widget build(BuildContext context) {
@@ -323,6 +327,7 @@ class _BluePhoneTextField extends StatelessWidget {
       leading: leading,
       isEnabled: isEnabled,
       onChanged: onChanged,
+      node: node,
     );
   }
 }

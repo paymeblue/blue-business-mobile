@@ -119,6 +119,7 @@ class _InitiateCableViewState extends State<InitiateCableView> {
                               title: "Smartcard/IUC number",
                               controller: model.cardNumberController,
                               onChanged: model.onChanged,
+                              node: FocusNode(),
                             ),
                           ),
                           6.horizontalGap,

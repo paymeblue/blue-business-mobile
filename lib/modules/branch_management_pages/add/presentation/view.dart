@@ -76,6 +76,7 @@ class _AddBranchViewState extends State<AddBranchView> {
         title: "Branch name",
         onChanged: model.onChanged,
         controller: model.nameController,
+        node: FocusNode(),
       ),
       12.verticalGap,
       BlueDropdown.show(
@@ -92,6 +93,7 @@ class _AddBranchViewState extends State<AddBranchView> {
         title: "Location",
         onChanged: model.onChanged,
         controller: model.locationController,
+        node: FocusNode(),
       )
     ]);
   }

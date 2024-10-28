@@ -84,6 +84,7 @@ class _InitiateAirtimeViewState extends State<InitiateAirtimeView> {
                         onChanged: model.onChanged,
                         controller: model.phoneController,
                         searchController: model.searchController,
+                        node: FocusNode(),
                       ),
                       20.verticalGap,
                       BlueTextField.currency(
@@ -91,6 +92,7 @@ class _InitiateAirtimeViewState extends State<InitiateAirtimeView> {
                         controller: model.amountController,
                         onChanged: model.onChanged,
                         title: "Amount",
+                        node: FocusNode(),
                       ),
                     ],
                   ),
