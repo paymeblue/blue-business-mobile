@@ -149,134 +149,20 @@ class BlueDropdown {
   }
 }
 
-class _BlueBranchDropdown extends StatefulWidget {
-  const _BlueBranchDropdown({
-    required this.controller,
-    required this.onChanged,
-    required this.value,
-    this.searchController,
-    this.title = "Branch",
-  });
-  final PagingController<int, Branch> controller;
-  final ValueChanged<Branch?> onChanged;
-  final Branch? value;
-  final TextEditingController? searchController;
-  final String title;
-
-  @override
-  State<_BlueBranchDropdown> createState() => _BlueBranchDropdownState();
-}
-
-class _BlueBranchDropdownState extends State<_BlueBranchDropdown> {
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: context.mediaQuery.size.width,
-      height: 85,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          textFieldHeader(),
-          _$BluePagedDropdown<Branch>(
-            controller: widget.controller,
-            selectedValue: widget.value,
-            title: Text(
-              "Select from the list below",
-              style: AppTextStyles.midHeader,
-            ),
-            selectedItemBuilder: selectedItem(),
-            itemBuilder: itemBuilder,
-            onChanged: widget.onChanged,
-            onSearchChanged: onSearchChanged,
-            searchController: widget.searchController,
-            searchHint: "Search List",
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget itemBuilder(Branch item) {
-    return Container(
-      height: 45,
-      decoration: const BoxDecoration(),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              item.name,
-              style: AppTextStyles.textField.copyWith(height: 1),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget textFieldHeader() {
-    return Text(
-      widget.title,
-      style: AppTextStyles.subHeader.copyWith(color: AppColors.textColor),
-    );
-  }
-
-  Timer? searchTimer;
-
-  String? onSearchChanged(String? val) {
-    if (searchTimer != null) {
-      searchTimer!.cancel();
-    }
-
-    searchTimer = Timer(const Duration(milliseconds: 1500), () async {
-      widget.controller.refresh();
-    });
-    return val;
-  }
-
-  Widget selectedItem() {
-    return Container(
-      height: 50,
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: AppColors.grey)),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              widget.value?.name ?? "--Select from the options below--",
-              style: widget.value == null
-                  ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacity(.3))
-                  : AppTextStyles.textField,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          const Spacer(),
-          const Icon(
-            Icons.keyboard_arrow_down_rounded,
-            color: AppColors.textColor,
-          )
-        ],
-      ),
-    );
-  }
-}
-
 class _BlueStringDropdown extends StatelessWidget {
   const _BlueStringDropdown({
     required this.items,
     required this.onChanged,
     this.value,
     required this.searchController,
-    required this.title,
+    this.title,
   });
 
   final List<String> items;
   final ValueChanged<String?> onChanged;
   final String? value;
   final TextEditingController? searchController;
-  final String title;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -286,15 +172,11 @@ class _BlueStringDropdown extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          textFieldHeader(),
+          if (title != null) textFieldHeader(),
           _$BlueDropdown<String>(
             items: items.map((e) => DropdownType(label: e, value: e)).toList(),
             selectedValue: value,
-            canSearch: true,
-            title: Text(
-              "Select from the list below",
-              style: AppTextStyles.midHeader,
-            ),
+            canSearch: searchController != null,
             selectedItemBuilder: selectedItem(),
             itemBuilder: itemBuilder,
             onChanged: onChanged,
@@ -309,7 +191,7 @@ class _BlueStringDropdown extends StatelessWidget {
 
   Widget textFieldHeader() {
     return Text(
-      title,
+      title!,
       style: AppTextStyles.subHeader.copyWith(color: AppColors.textColor),
     );
   }
@@ -400,7 +282,9 @@ class _BlueCountryDropdown extends StatelessWidget {
       child: _$BlueDropdown<CountryCode>(
         items: items.map((e) => DropdownType(label: e.name, value: e)).toList(),
         selectedValue: value,
-        canSearch: true,
+        //NOTE: canSearch should be true when more countries are added
+        // height: .15,
+        canSearch: false,
         selectedItemBuilder: selectedItem(),
         itemBuilder: itemBuilder,
         onChanged: onChanged,
@@ -471,112 +355,6 @@ class _BlueCountryDropdown extends StatelessWidget {
               width: 20,
             ),
           4.horizontalGap,
-          const Icon(
-            Icons.keyboard_arrow_down_rounded,
-            color: AppColors.textColor,
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class _BlueBusinessCategoryDropdown extends StatelessWidget {
-  const _BlueBusinessCategoryDropdown({
-    required this.items,
-    required this.onChanged,
-    this.value,
-    required this.searchController,
-  });
-
-  final List<BusinessCategory> items;
-  final ValueChanged<BusinessCategory?> onChanged;
-  final BusinessCategory? value;
-  final TextEditingController? searchController;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: context.mediaQuery.size.width,
-      height: 85,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          textFieldHeader(),
-          _$BlueDropdown<BusinessCategory>(
-            items: items
-                .map((e) => DropdownType(label: e.title, value: e))
-                .toList(),
-            selectedValue: value,
-            canSearch: true,
-            selectedItemBuilder: selectedItem(),
-            itemBuilder: itemBuilder,
-            onChanged: onChanged,
-            onSearchChanged: onSearchChanged,
-            searchController: searchController,
-            searchHint: "Search Banks",
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget textFieldHeader() {
-    return Text(
-      "Business category",
-      style: AppTextStyles.subHeader.copyWith(color: AppColors.textColor),
-    );
-  }
-
-  Widget itemBuilder(BusinessCategory item) {
-    return Container(
-      height: 45,
-      decoration: const BoxDecoration(),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              item.title,
-              style: AppTextStyles.textField.copyWith(height: 1),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  List<BusinessCategory> onSearchChanged(String? v) {
-    List<BusinessCategory> temp = [];
-    if (v != null && v.isNotEmpty) {
-      for (BusinessCategory category in items) {
-        if (category.title.toLowerCase().contains(v.toLowerCase())) {
-          temp.add(category);
-        }
-      }
-    } else {
-      temp = items;
-    }
-
-    return temp;
-  }
-
-  Widget selectedItem() {
-    return Container(
-      height: 50,
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: AppColors.grey)),
-      child: Row(
-        children: [
-          Text(
-            value?.title ?? "--Select a category--",
-            style: value == null
-                ? AppTextStyles.textField
-                    .copyWith(color: AppColors.textColor.withOpacity(.3))
-                : AppTextStyles.textField,
-          ),
-          const Spacer(),
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
@@ -1121,10 +899,11 @@ class _$BlueDropdownState<T> extends State<_$BlueDropdown<T>> {
       builder: (context) {
         return StatefulBuilder(builder: (context, setState) {
           return DraggableScrollableSheet(
-              initialChildSize: widget.height ??
-                  .5 +
-                      (context.mediaQuery.viewInsets.bottom /
-                          context.mediaQuery.size.height),
+              minChildSize: .1,
+              maxChildSize: .75,
+              initialChildSize: (widget.height ?? .5) +
+                  (context.mediaQuery.viewInsets.bottom /
+                      context.mediaQuery.size.height),
               expand: false,
               builder: (context, controller) {
                 return Container(
@@ -1145,7 +924,7 @@ class _$BlueDropdownState<T> extends State<_$BlueDropdown<T>> {
                         widget.title!,
                         12.verticalGap,
                       ],
-                      if (widget.canSearch && widget.searchController != null)
+                      if (widget.canSearch)
                         BlueTextField.search(
                           controller: widget.searchController,
                           hint: widget.searchHint,
@@ -1221,6 +1000,226 @@ class _$BlueDropdownState<T> extends State<_$BlueDropdown<T>> {
     }
 
     return t;
+  }
+}
+
+class _BlueBranchDropdown extends StatefulWidget {
+  const _BlueBranchDropdown({
+    required this.controller,
+    required this.onChanged,
+    required this.value,
+    this.searchController,
+    this.title = "Branch",
+  });
+  final PagingController<int, Branch> controller;
+  final ValueChanged<Branch?> onChanged;
+  final Branch? value;
+  final TextEditingController? searchController;
+  final String title;
+
+  @override
+  State<_BlueBranchDropdown> createState() => _BlueBranchDropdownState();
+}
+
+class _BlueBranchDropdownState extends State<_BlueBranchDropdown> {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: context.mediaQuery.size.width,
+      height: 85,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          textFieldHeader(),
+          _$BluePagedDropdown<Branch>(
+            controller: widget.controller,
+            selectedValue: widget.value,
+            title: Text(
+              "Select from the list below",
+              style: AppTextStyles.midHeader,
+            ),
+            selectedItemBuilder: selectedItem(),
+            itemBuilder: itemBuilder,
+            onChanged: widget.onChanged,
+            onSearchChanged: onSearchChanged,
+            searchController: widget.searchController,
+            searchHint: "Search List",
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget itemBuilder(Branch item) {
+    return Container(
+      height: 45,
+      decoration: const BoxDecoration(),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              item.name,
+              style: AppTextStyles.textField.copyWith(height: 1),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget textFieldHeader() {
+    return Text(
+      widget.title,
+      style: AppTextStyles.subHeader.copyWith(color: AppColors.textColor),
+    );
+  }
+
+  Timer? searchTimer;
+
+  String? onSearchChanged(String? val) {
+    if (searchTimer != null) {
+      searchTimer!.cancel();
+    }
+
+    searchTimer = Timer(const Duration(milliseconds: 1500), () async {
+      widget.controller.refresh();
+    });
+    return val;
+  }
+
+  Widget selectedItem() {
+    return Container(
+      height: 50,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(color: AppColors.grey)),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              widget.value?.name ?? "--Select from the options below--",
+              style: widget.value == null
+                  ? AppTextStyles.textField
+                      .copyWith(color: AppColors.textColor.withOpacity(.3))
+                  : AppTextStyles.textField,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          const Spacer(),
+          const Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: AppColors.textColor,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _BlueBusinessCategoryDropdown extends StatelessWidget {
+  const _BlueBusinessCategoryDropdown({
+    required this.items,
+    required this.onChanged,
+    this.value,
+    required this.searchController,
+  });
+
+  final List<BusinessCategory> items;
+  final ValueChanged<BusinessCategory?> onChanged;
+  final BusinessCategory? value;
+  final TextEditingController? searchController;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: context.mediaQuery.size.width,
+      height: 85,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          textFieldHeader(),
+          _$BlueDropdown<BusinessCategory>(
+            items: items
+                .map((e) => DropdownType(label: e.title, value: e))
+                .toList(),
+            selectedValue: value,
+            canSearch: true,
+            selectedItemBuilder: selectedItem(),
+            itemBuilder: itemBuilder,
+            onChanged: onChanged,
+            onSearchChanged: onSearchChanged,
+            searchController: searchController,
+            searchHint: "Search Banks",
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget textFieldHeader() {
+    return Text(
+      "Business category",
+      style: AppTextStyles.subHeader.copyWith(color: AppColors.textColor),
+    );
+  }
+
+  Widget itemBuilder(BusinessCategory item) {
+    return Container(
+      height: 45,
+      decoration: const BoxDecoration(),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              item.title,
+              style: AppTextStyles.textField.copyWith(height: 1),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<BusinessCategory> onSearchChanged(String? v) {
+    List<BusinessCategory> temp = [];
+    if (v != null && v.isNotEmpty) {
+      for (BusinessCategory category in items) {
+        if (category.title.toLowerCase().contains(v.toLowerCase())) {
+          temp.add(category);
+        }
+      }
+    } else {
+      temp = items;
+    }
+
+    return temp;
+  }
+
+  Widget selectedItem() {
+    return Container(
+      height: 50,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(color: AppColors.grey)),
+      child: Row(
+        children: [
+          Text(
+            value?.title ?? "--Select a category--",
+            style: value == null
+                ? AppTextStyles.textField
+                    .copyWith(color: AppColors.textColor.withOpacity(.3))
+                : AppTextStyles.textField,
+          ),
+          const Spacer(),
+          const Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: AppColors.textColor,
+          )
+        ],
+      ),
+    );
   }
 }
 

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:blue_business/core/models/bills/airtime/review_data/review_airtime_data.dart';
 import 'package:blue_business/core/models/bills/airtime/vend/data/vend_airtime_data.dart';
 import 'package:blue_business/core/models/bills/cable/vend/data/vend_cable_data.dart';
@@ -26,6 +24,7 @@ import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/navigation/screens.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view.dart';
 import 'package:blue_business/modules/bill_pages/airtime/pin/presentation/view.dart';
 import 'package:blue_business/modules/bill_pages/airtime/review/presentation/view.dart';
@@ -69,8 +68,6 @@ late StatefulNavigationShell signupChild;
 
 GoRouter router = GoRouter(
   errorBuilder: (context, state) {
-    log(state.error?.message ?? "");
-    log(state.matchedLocation);
     return ErrorRouteView(
       message: state.error?.message,
       newRoute: state.matchedLocation.startsWith("/dash")
@@ -79,11 +76,11 @@ GoRouter router = GoRouter(
     );
   },
   redirect: (context, state) {
-    // AppStateValues stateValues = locator<AppStateValues>();
-    // if (stateValues.currentUser == null &&
-    //     state.matchedLocation.contains("/dash")) {
-    //   return RoutePaths.loginPath;
-    // }
+    AppStateValues stateValues = locator<AppStateValues>();
+    if (stateValues.currentUser == null &&
+        state.matchedLocation.contains("/dash")) {
+      return RoutePaths.loginPath;
+    }
     return state.matchedLocation;
   },
   initialLocation: "/",
@@ -568,12 +565,14 @@ List<GoRoute> electricityRoutes = [
 List<GoRoute> airtimeRoutes = [
   GoRoute(
     path: RoutePaths.initiateAirtimePath,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
     builder: (context, state) {
       return const InitiateAirtimeView();
     },
   ),
   GoRoute(
     path: RoutePaths.reviewAirtimePath,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
     builder: (context, state) {
       return ReviewAirtimeView(
         data: state.extra as ReviewAirtimeData,
@@ -582,6 +581,7 @@ List<GoRoute> airtimeRoutes = [
   ),
   GoRoute(
     path: RoutePaths.airtimePinPath,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
     builder: (context, state) {
       return ConfirmAirtimePinView(
         data: state.extra as ReviewAirtimeData,
@@ -590,6 +590,7 @@ List<GoRoute> airtimeRoutes = [
   ),
   GoRoute(
     path: RoutePaths.airtimeSuccessPath,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
     builder: (context, state) {
       VendAirtimeData extra = state.extra as VendAirtimeData;
       return VendAirtimeSuccessView(
@@ -606,6 +607,7 @@ List<GoRoute> airtimeRoutes = [
 ];
 
 ShellRoute signupShellRoute = ShellRoute(
+  navigatorKey: locator<NavigationService>().shellKey,
   builder: (context, state, child) {
     return SignupShellView(
       child: child,
