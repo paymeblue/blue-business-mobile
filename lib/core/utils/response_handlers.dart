@@ -1,8 +1,8 @@
-import 'package:blue_business/core/io/api/timed_refresh.dart';
-import 'package:blue_business/core/navigation/route_names.dart';
-import 'package:blue_business/core/services/locator.dart';
-import 'package:blue_business/core/services/navigation_service.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/injection/navigation_service.dart';
+import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -29,7 +29,7 @@ class ResponseHandlers {
     if (context.mounted) {
       locator<AppStateValues>().notificationState = NotificationState.error;
 
-      context.go(RoutePaths.loginPath);
+      context.go(RoutePaths.login);
     }
   }
 }

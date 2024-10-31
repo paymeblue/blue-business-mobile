@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:blue_business/core/io/api/config/firebase_config.dart';
-import 'package:blue_business/core/services/locator.dart';
-import 'package:blue_business/core/services/navigation_service.dart';
+import 'package:blue_business/core/config/firebase_config.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/injection/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';

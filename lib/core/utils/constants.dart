@@ -1,11 +1,10 @@
-import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/models/login/data/login_data.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/topup_account/topup_account.dart';
 import 'package:blue_business/core/models/wallet/wallet.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/data/withdrawal_account.dart';
-import 'package:blue_business/core/navigation/route_names.dart';
-import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
+import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 
 class AppStateValues extends ChangeNotifier {
@@ -13,7 +12,7 @@ class AppStateValues extends ChangeNotifier {
   String _fcmToken = "";
   String _narration = "";
   String _recoveryCode = "";
-  String _path = RoutePaths.homePath;
+  String _path = RoutePaths.home;
   FetchState _todoState = FetchState.loading;
   String _kycLevel = "basic";
   bool _hasSavedBeneficiary = true;
@@ -172,7 +171,7 @@ class AppStateValues extends ChangeNotifier {
     hasSavedBeneficiary = true;
     hasNetwork = true;
     notificationStatus = false;
-    resetPath = RoutePaths.homePath;
+    resetPath = RoutePaths.home;
     unreadCount = 0;
     hasNewMessage = false;
 
