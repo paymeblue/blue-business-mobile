@@ -48,7 +48,7 @@ class AppErrorHandler {
     await analytics.resetAnalyticsData();
     await analytics.setAnalyticsCollectionEnabled(true);
 
-    Map<String, Object?> params;
+    Map<String, Object> params;
 
     if (parameters == null) {
       params = {
