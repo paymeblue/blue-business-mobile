@@ -24,12 +24,12 @@ class _SignupProgressViewState extends State<SignupProgressView> {
   Widget build(BuildContext context) {
     return BaseView<SignupProgressViewModel>(
       model: SignupProgressViewModel(),
-      onModelReady: (model) => model.init(context),
+      onModelReady: (model) => model.init(context, widget.data),
       builder: (context, model, _) {
         return Scaffold(
           appBar: BlueAppBar.primary(
             onBackTap: () {
-              // model.goBack(context);
+              model.goBack(context);
             },
             icon: Icons.arrow_back_ios_new,
           ),

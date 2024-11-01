@@ -13,6 +13,7 @@ class RoutePaths {
   static String businessDetails = '/signup/business-details';
   static String shareholders = '/signup/shareholders';
   static String shareholderKyc = '/signup/shareholders/kyc';
+  static String createPin = "/signup/create-pin";
 
   //HOME
   static String home = "/dash/home";

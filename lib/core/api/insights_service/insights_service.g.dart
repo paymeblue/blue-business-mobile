@@ -34,7 +34,7 @@ class _InsightsService implements InsightsService {
     )
         .compose(
           _dio.options,
-          '/credit',
+          '/insights/credit',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -67,7 +67,7 @@ class _InsightsService implements InsightsService {
     )
         .compose(
           _dio.options,
-          '/debit',
+          '/insights/debit',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -100,7 +100,7 @@ class _InsightsService implements InsightsService {
     )
         .compose(
           _dio.options,
-          '/analytic',
+          '/insights/analytic',
           queryParameters: queryParameters,
           data: _data,
         )

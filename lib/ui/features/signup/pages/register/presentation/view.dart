@@ -1,6 +1,5 @@
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
@@ -71,12 +70,7 @@ class InitiateSignupView extends StatelessWidget {
                     title: "Send OTP",
                     isEnabled: model.isActive(),
                     onTap: () {
-                      SignupData data = SignupData(
-                          id: 13,
-                          phone: model.phoneController.text
-                              .validPhone(model.selectedCountry),
-                          level: 1);
-                      model.goToNext(context, data);
+                      model.register(context);
                     },
                   ),
                 ],

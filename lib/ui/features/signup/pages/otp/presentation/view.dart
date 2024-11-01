@@ -60,7 +60,9 @@ class VerifySignupOtpView extends StatelessWidget {
                 AppButton.primary(
                   title: "Verify OTP",
                   isEnabled: model.canContinue,
-                  onTap: () {},
+                  onTap: () {
+                    model.verifyOtp(context);
+                  },
                 ),
               ],
             ),
