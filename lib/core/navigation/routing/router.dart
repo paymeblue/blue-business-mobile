@@ -2,6 +2,8 @@ import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/injection/navigation_service.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/ui/features/welcome/presentation/view.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 GoRouter router = GoRouter(
@@ -21,7 +23,23 @@ GoRouter router = GoRouter(
     }
     return state.matchedLocation;
   },
-  initialLocation: "/",
+  initialLocation: "/welcome",
   navigatorKey: locator<NavigationService>().navigatorKey,
-  routes: [],
+  routes: [
+    GoRoute(
+      path: RoutePaths.welcome,
+      name: "Welcome",
+      builder: (context, state) {
+        return const WelcomeView();
+      },
+      pageBuilder: (context, state) => CustomTransitionPage(
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            FadeTransition(
+          opacity: animation,
+          child: child,
+        ),
+        child: const WelcomeView(),
+      ),
+    ),
+  ],
 );

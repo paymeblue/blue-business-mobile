@@ -1,10 +1,7 @@
 import 'dart:ui';
 
-import 'package:blue_business/core/config/firebase_config.dart';
 import 'package:blue_business/core/config/logger/logger_factory.dart';
-import 'package:blue_business/core/config/sales_iq_config.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/utils/connection.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/root_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +11,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setUpLocator();
   registerErrorHandlers();
-  if (await ConnectionHelper.hasNetwork()) {
-    FirebaseConfig.init();
-    SalesIqConfig().init();
-  }
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 

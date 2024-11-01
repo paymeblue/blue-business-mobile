@@ -9,11 +9,11 @@ import 'package:go_router/go_router.dart';
 
 class ResponseHandlers {
   static Response handleDioResponse(Response<dynamic> response) {
-    if (response.statusCode == 401 &&
-            response.data["message"]
-                .toString()
-                .toLowerCase()
-                .contains("session expired") ||
+    if (response.statusCode == 401 ||
+        response.data["message"]
+            .toString()
+            .toLowerCase()
+            .contains("session expired") ||
         response.data["message"]
             .toString()
             .toLowerCase()

@@ -76,11 +76,24 @@ class FirebaseConfig {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
     try {
-      await messaging.requestPermission();
-      stateValues.fcmToken = await messaging.getToken() ?? "";
+      NotificationSettings settings = await messaging.getNotificationSettings();
+      log(settings.authorizationStatus.toString());
+
+      if (settings.authorizationStatus == AuthorizationStatus.denied ||
+          settings.authorizationStatus == AuthorizationStatus.notDetermined) {
+        messaging.requestPermission().then((s) async {
+          if (s.authorizationStatus == AuthorizationStatus.authorized) {
+            stateValues.fcmToken = await messaging.getToken() ?? "";
+          }
+        });
+      } else {
+        stateValues.fcmToken = await messaging.getToken() ?? "";
+      }
     } catch (e) {
       AppNotification.error(message: AppErrorHandler.getErrorMessage(e));
     }
+
+    log(stateValues.fcmToken);
 
     await initNotification();
   }

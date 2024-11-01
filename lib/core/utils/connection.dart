@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:blue_business/core/config/firebase_config.dart';
+import 'package:blue_business/core/config/sales_iq_config.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/injection/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -34,6 +35,9 @@ class ConnectionHelper {
         }
         if (locator<AppStateValues>().fcmToken.isEmpty) {
           FirebaseConfig.init();
+        }
+        if (!locator<AppStateValues>().showLiveChat) {
+          SalesIqConfig().init();
         }
       } else {
         if (ctx.mounted) {

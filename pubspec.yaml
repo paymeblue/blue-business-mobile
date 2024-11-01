@@ -80,6 +80,7 @@ dependencies:
   syncfusion_flutter_gauges: ^20.4.48
   webview_flutter_wkwebview: ^3.14.0
   flutter_screenutil: ^5.9.3
+  firebase_crashlytics: ^3.5.7
   
 
 dev_dependencies:

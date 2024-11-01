@@ -1,13 +1,12 @@
-import 'dart:developer';
-
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/injection/navigation_service.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:dio/dio.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +15,6 @@ class AppErrorHandler {
   AppErrorHandler._();
 
   static String getErrorMessage(error, [Map<String, dynamic>? params]) {
-    log(error.toString());
     if (error.toString().toLowerCase().contains("session expired")) {
       logout();
       return error.toString();
@@ -33,7 +31,6 @@ class AppErrorHandler {
           error is RangeError ||
           error is IndexError) {
         recordErrorInFirebase(error, params);
-        // return error.toString();
         return "Processing error: This error has been recorded and will be attended to as soon as possible.";
       } else {
         recordErrorInFirebase(error, params);
@@ -44,11 +41,7 @@ class AppErrorHandler {
   }
 
   static recordErrorInFirebase(error, Map<String, dynamic>? parameters) async {
-    FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-    await analytics.resetAnalyticsData();
-    await analytics.setAnalyticsCollectionEnabled(true);
-
-    Map<String, Object> params;
+    Map<String, Object?> params;
 
     if (parameters == null) {
       params = {
@@ -63,13 +56,9 @@ class AppErrorHandler {
       };
     }
 
-    await analytics.setUserId(
-        id: locator<AppStateValues>().currentUser?.id.toString());
-
-    await analytics.logEvent(
-      name: "request_error",
-      parameters: params,
-    );
+    if (!kDebugMode) {
+      FirebaseCrashlytics.instance.recordError(params, null, fatal: true);
+    }
   }
 
   static String errorType(error) {
