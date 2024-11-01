@@ -5,6 +5,7 @@ import 'package:blue_business/core/models/business_category/response/business_ca
 import 'package:blue_business/core/models/create_business_profile/request/create_business_profile_request.dart';
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
+import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
@@ -124,17 +125,15 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
           businessDetailsCompleted: true,
           businessId: response.data!.businessId);
 
-      if (context.mounted) {
-        //   goToNext(
-        //       context,
-        //       data.copyWith(
-        //           businessDetailsCompleted: true,
-        //           businessId: response.data!.businessId));
-      }
+      if (context.mounted) goToNext(context);
     } else {
       AppNotification.error(message: response.message);
     }
 
     AppLoader.stop();
+  }
+
+  goToNext(BuildContext context) {
+    context.pushReplacement(RoutePaths.shareholders, extra: data);
   }
 }
