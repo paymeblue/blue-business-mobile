@@ -1,5 +1,5 @@
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/navigation/routing/router.dart';
+import 'package:blue_business/core/navigation/routing/base_router.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/extensions.dart';

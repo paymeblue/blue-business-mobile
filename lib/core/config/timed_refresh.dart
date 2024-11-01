@@ -12,7 +12,7 @@ import 'package:go_router/go_router.dart';
 class RefreshTimer {
   static Timer? _refreshTimer;
   static Timer? _logoutTimer;
-  int _count = 0;
+  // int _count = 0;
 
   resetTimer() async {
     if (_logoutTimer != null) {
