@@ -28,3 +28,5 @@ enum PaymentMode {
 }
 
 enum FetchState { error, complete, loading, empty }
+
+enum SlideDirections { rtl, ltr, ttb, btt }

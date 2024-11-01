@@ -1,8 +1,11 @@
+import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/injection/navigation_service.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/routing/signup_router.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/ui/features/error/presentation/view.dart';
+import 'package:blue_business/ui/features/signup/pages/progress/presentation/view.dart';
 import 'package:blue_business/ui/features/splash/presentation/view.dart';
 import 'package:blue_business/ui/features/welcome/presentation/view.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +60,24 @@ GoRouter router = GoRouter(
         ),
         child: const WelcomeView(),
       ),
+    ),
+    GoRoute(
+      path: RoutePaths.signup,
+      name: "Signup",
+      builder: (context, state) {
+        return const WelcomeView();
+      },
+      pageBuilder: (context, state) => CustomTransitionPage(
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            FadeTransition(
+          opacity: animation,
+          child: child,
+        ),
+        child: SignupProgressView(
+          data: state.extra as SignupData,
+        ),
+      ),
+      routes: sigupRoutes,
     ),
   ],
 );

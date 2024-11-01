@@ -64,6 +64,6 @@ class WelcomeViewModel extends BaseViewModel {
   }
 
   goToSignup(BuildContext context) {
-    // context.go(RoutePaths.addAccountPhonePath);
+    context.push(RoutePaths.initiateSignup);
   }
 }
