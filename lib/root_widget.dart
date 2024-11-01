@@ -54,7 +54,7 @@ class BlueBusinessApp extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       Container(
-                                        height: 65,
+                                        height: 65.h,
                                         width: context.mediaQuery.size.width,
                                         decoration: BoxDecoration(
                                           color: const Color(0xFFFEE5E5),
@@ -71,8 +71,8 @@ class BlueBusinessApp extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             Container(
-                                                height: 36,
-                                                width: 36,
+                                                height: 36.h,
+                                                width: 36.w,
                                                 padding:
                                                     const EdgeInsets.all(4),
                                                 decoration: BoxDecoration(

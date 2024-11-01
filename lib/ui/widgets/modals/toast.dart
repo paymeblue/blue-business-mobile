@@ -3,6 +3,7 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 
 class BlueToast {
@@ -114,7 +115,7 @@ class _$AppToast extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 40.h,
       padding: const EdgeInsets.symmetric(
         horizontal: 24.0,
       ),
@@ -140,8 +141,8 @@ class _$AppToast extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-            height: 24,
-            width: 24,
+            height: 24.h,
+            width: 24.w,
             child: icon ?? AppAssets.images.logos.blueBgLogo.image()),
         12.horizontalGap,
         textWidget(),
@@ -156,8 +157,8 @@ class _$AppToast extends StatelessWidget {
         textWidget(),
         12.horizontalGap,
         SizedBox(
-            height: 24,
-            width: 24,
+            height: 24.h,
+            width: 24.w,
             child: icon ?? AppAssets.images.logos.blueBgLogo.image()),
       ],
     );

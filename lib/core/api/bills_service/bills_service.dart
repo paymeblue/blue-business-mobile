@@ -1,3 +1,4 @@
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/models/bills/airtime/vend/request/vend_airtime_request.dart';
 import 'package:blue_business/core/models/bills/airtime/vend/response/vend_airtime_response.dart';
 import 'package:blue_business/core/models/bills/cable/vend/request/vend_cable_request.dart';
@@ -14,6 +15,7 @@ import 'package:blue_business/core/models/bills/electricity/vend/request/vend_el
 import 'package:blue_business/core/models/bills/electricity/vend/response/vend_electricity_response.dart';
 import 'package:blue_business/core/models/bills/electricity/verify/request/verify_electricity_request.dart';
 import 'package:blue_business/core/models/bills/electricity/verify/response/verify_electricity_response.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
@@ -23,8 +25,10 @@ part 'bills_service.g.dart';
 
 @RestApi()
 abstract class BillsService {
-  factory BillsService(Dio dio) =>
-      _BillsService(dio, baseUrl: AppConstants.baseUrl);
+  factory BillsService() => _BillsService(
+        DioConfig.dio(locator<AppStateValues>().accessToken),
+        baseUrl: AppConstants.baseUrl,
+      );
 
   @GET("/{service}/packages")
   Future<GetPackagesResponse> getPackages({

@@ -6,6 +6,7 @@ import 'package:blue_business/core/navigation/injection/navigation_service.dart'
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppNotification {
   AppNotification._();
@@ -21,7 +22,7 @@ class AppNotification {
       messageText: Text(
         message,
         style: AppTextStyles.subText
-            .copyWith(fontSize: 14.7, color: AppColors.textColor),
+            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 12),
       borderColor: const Color(0xFF2FB9AC),
@@ -30,8 +31,8 @@ class AppNotification {
       margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
       borderRadius: BorderRadius.circular(6),
       icon: Container(
-          height: 36,
-          width: 36,
+          height: 36.h,
+          width: 36.w,
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
               color: const Color(0xFF2FB9AC).withOpacity(.2),
@@ -52,7 +53,7 @@ class AppNotification {
       messageText: Text(
         message ?? "Something went wrong. Please try again later.",
         style: AppTextStyles.subText
-            .copyWith(fontSize: 14.7, color: AppColors.textColor),
+            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 12),
       borderColor: const Color(0xFFEF2A5A),
@@ -61,8 +62,8 @@ class AppNotification {
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
       borderRadius: BorderRadius.circular(6),
       icon: Container(
-          height: 36,
-          width: 36,
+          height: 36.h,
+          width: 36.w,
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
               color: const Color(0xFFEF2A5A).withOpacity(.2),
@@ -91,7 +92,7 @@ class AppNotification {
       messageText: Text(
         message,
         style: AppTextStyles.subText
-            .copyWith(fontSize: 14.7, color: AppColors.textColor),
+            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 12),
       borderColor: const Color(0xFFFF9601),
@@ -100,8 +101,8 @@ class AppNotification {
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
       borderRadius: BorderRadius.circular(4),
       icon: SizedBox(
-        height: 36,
-        width: 36,
+        height: 36.h,
+        width: 36.w,
         child: AppAssets.images.icons.warning.svg(),
       ),
       duration: const Duration(milliseconds: 6000),
@@ -127,7 +128,7 @@ class AppNotification {
       messageText: Text(
         message,
         style: AppTextStyles.subText
-            .copyWith(fontSize: 14.7, color: AppColors.textColor),
+            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 6),
       borderColor: AppColors.midGrey,
@@ -137,8 +138,8 @@ class AppNotification {
       borderRadius: BorderRadius.circular(6),
       icon: AppAssets.images.icons.aboutBlue.image(
         fit: BoxFit.scaleDown,
-        height: 35,
-        width: 35,
+        height: 36.h,
+        width: 36.w,
       ),
       duration: const Duration(milliseconds: 6000),
       animationDuration: const Duration(milliseconds: 1000),
@@ -163,7 +164,7 @@ class AppNotification {
       messageText: Text(
         message,
         style: AppTextStyles.subText
-            .copyWith(fontSize: 14.7, color: AppColors.textColor),
+            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 6),
       borderColor: AppColors.midGrey,
@@ -173,8 +174,8 @@ class AppNotification {
       borderRadius: BorderRadius.circular(6),
       icon: AppAssets.images.notificationMessage.image(
         fit: BoxFit.scaleDown,
-        height: 35,
-        width: 35,
+        height: 36.h,
+        width: 36.w,
       ),
       duration: const Duration(milliseconds: 6000),
       animationDuration: const Duration(milliseconds: 1000),

@@ -1,6 +1,7 @@
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StepIndicator extends StatelessWidget {
   const StepIndicator(
@@ -24,8 +25,8 @@ class StepIndicator extends StatelessWidget {
           return Row(
             children: [
               Container(
-                  height: 40,
-                  width: 40,
+                  height: 40.h,
+                  width: 40.w,
                   decoration: BoxDecoration(
                       color: index > i ? AppColors.primary : null,
                       shape: BoxShape.circle,
@@ -53,8 +54,8 @@ class StepIndicator extends StatelessWidget {
                         double.parse(((28 / indicatorCount - 1) + 4).toString())
                             .toInt(), (ix) {
                       return Container(
-                        height: 3,
-                        width: 5,
+                        height: 3.h,
+                        width: 5.w,
                         color: index > i || (index == i && isActive)
                             ? AppColors.primary
                             : AppColors.midGrey,

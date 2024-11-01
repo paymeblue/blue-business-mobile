@@ -6,6 +6,7 @@ import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/buttons/app_buttons.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -50,7 +51,7 @@ class _WelcomeViewState extends State<WelcomeView> {
   AnimatedContainer onboardingContainer(WelcomeViewModel model) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 350),
-      height: 420,
+      height: 420.h,
       padding: const EdgeInsets.symmetric(vertical: 35),
       width: model.size.width,
       decoration: const BoxDecoration(
@@ -130,7 +131,7 @@ class _WelcomeViewState extends State<WelcomeView> {
 
   Container onboardingText(WelcomeViewModel model) {
     return Container(
-      height: 120,
+      height: 120.h,
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.symmetric(horizontal: model.size.width / 8),
       child: Column(
@@ -138,7 +139,7 @@ class _WelcomeViewState extends State<WelcomeView> {
           Text(
             model.onboardingText[model.index],
             style: AppTextStyles.header.copyWith(
-              fontSize: 24,
+              fontSize: 24.sp,
               height: 1.1,
               fontWeight: FontWeight.w500,
             ),
@@ -160,14 +161,14 @@ class _WelcomeViewState extends State<WelcomeView> {
 
   Widget onboardingSlider(WelcomeViewModel model) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * .8,
+      width: (MediaQuery.of(context).size.width * .8).w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(model.onboardingText.length, (index) {
           return AnimatedContainer(
             duration: const Duration(milliseconds: 350),
-            height: 7,
-            width: (MediaQuery.of(context).size.width * .8) /
+            height: 7.h,
+            width: (MediaQuery.of(context).size.width * .8).w /
                 model.onboardingText.length,
             decoration: containerDecoration(index, model),
           );
@@ -196,7 +197,7 @@ class _WelcomeViewState extends State<WelcomeView> {
 
   Widget splashLogo() {
     return SizedBox(
-      height: 70,
+      height: 70.h,
       child: Image.asset(
         AppAssets.images.logos.splashLogo.path,
         fit: BoxFit.contain,

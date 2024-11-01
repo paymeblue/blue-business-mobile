@@ -1,3 +1,4 @@
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/models/analytics/branch_response/branch_analytics_response.dart';
 import 'package:blue_business/core/models/branches/create/data/create_branch_request.dart';
 import 'package:blue_business/core/models/branches/create/response/create_branch_response.dart';
@@ -5,6 +6,7 @@ import 'package:blue_business/core/models/branches/details/response/get_branch_r
 import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
 import 'package:blue_business/core/models/sales_analytics/response/sales_analytics_response.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -13,8 +15,10 @@ part 'branch_service.g.dart';
 
 @RestApi()
 abstract class BranchService {
-  factory BranchService(Dio dio) =>
-      _BranchService(dio, baseUrl: AppConstants.baseUrl);
+  factory BranchService() => _BranchService(
+        DioConfig.dio(locator<AppStateValues>().accessToken),
+        baseUrl: AppConstants.baseUrl,
+      );
 
   @GET("/branches")
   Future<GetBranchesResponse> getAllBranches({

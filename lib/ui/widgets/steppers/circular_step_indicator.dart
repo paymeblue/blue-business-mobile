@@ -1,5 +1,6 @@
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class CircularStepIndicator extends StatelessWidget {
@@ -11,7 +12,7 @@ class CircularStepIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 100.h,
       child: SfRadialGauge(
         axes: <RadialAxis>[
           RadialAxis(
@@ -40,7 +41,7 @@ class CircularStepIndicator extends StatelessWidget {
                     angle: 90,
                     widget: Text(
                       '${progress.toStringAsFixed(0)} / ${max.toInt().toString()}',
-                      style: const TextStyle(fontSize: 22),
+                      style: TextStyle(fontSize: 22.sp),
                     ))
               ])
         ],

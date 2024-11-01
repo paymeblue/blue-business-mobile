@@ -14,6 +14,7 @@ import 'package:blue_business/ui/widgets/avatar/avatar.dart';
 import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class BlueDropdown {
@@ -285,7 +286,7 @@ class _BlueStringDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.mediaQuery.size.width,
-      height: 85,
+      height: 85.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -315,7 +316,7 @@ class _BlueStringDropdown extends StatelessWidget {
 
   Widget itemBuilder(String item) {
     return Container(
-      height: 45,
+      height: 45.h,
       decoration: const BoxDecoration(),
       child: Row(
         children: [
@@ -347,7 +348,7 @@ class _BlueStringDropdown extends StatelessWidget {
 
   Widget selectedItem() {
     return Container(
-      height: 50,
+      height: 50.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
@@ -392,8 +393,8 @@ class _BlueCountryDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-      width: 60,
-      height: 25,
+      width: 60.w,
+      height: 25.h,
       decoration: BoxDecoration(
           color: AppColors.grey, borderRadius: BorderRadius.circular(4)),
       child: _$BlueDropdown<CountryCode>(
@@ -414,14 +415,14 @@ class _BlueCountryDropdown extends StatelessWidget {
 
   Widget itemBuilder(CountryCode item) {
     return Container(
-      height: 45,
+      height: 45.h,
       decoration: const BoxDecoration(),
       child: Row(
         children: [
           CountryFlag.fromCountryCode(
             item.countryCode,
-            height: 25,
-            width: 20,
+            height: 25.h,
+            width: 20.w,
           ),
           10.horizontalGap,
           Expanded(
@@ -457,8 +458,8 @@ class _BlueCountryDropdown extends StatelessWidget {
 
   Widget selectedItem() {
     return Container(
-      height: 25,
-      width: 45,
+      height: 25.h,
+      width: 45.w,
       margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
           color: AppColors.white, borderRadius: BorderRadius.circular(4)),
@@ -468,8 +469,8 @@ class _BlueCountryDropdown extends StatelessWidget {
           if (value != null)
             CountryFlag.fromCountryCode(
               value!.countryCode,
-              height: 25,
-              width: 20,
+              height: 25.h,
+              width: 20.w,
             ),
           4.horizontalGap,
           const Icon(
@@ -495,7 +496,7 @@ class _BlueMeterTypeDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.mediaQuery.size.width,
-      height: 85,
+      height: 85.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -531,7 +532,7 @@ class _BlueMeterTypeDropdown extends StatelessWidget {
 
   Widget itemBuilder(String item) {
     return Container(
-      height: 45,
+      height: 45.h,
       decoration: const BoxDecoration(),
       child: Row(
         children: [
@@ -563,7 +564,7 @@ class _BlueMeterTypeDropdown extends StatelessWidget {
 
   Widget selectedItem() {
     return Container(
-      height: 50,
+      height: 50.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
@@ -610,7 +611,7 @@ class _BlueBankDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.mediaQuery.size.width,
-      height: 85,
+      height: 85.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -642,7 +643,7 @@ class _BlueBankDropdown extends StatelessWidget {
 
   Widget itemBuilder(BankItem item) {
     return Container(
-      height: 45,
+      height: 45.h,
       decoration: const BoxDecoration(),
       child: Row(
         children: [
@@ -674,7 +675,7 @@ class _BlueBankDropdown extends StatelessWidget {
 
   Widget selectedItem() {
     return Container(
-      height: 50,
+      height: 50.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
@@ -721,7 +722,7 @@ class _BlueBillPackageDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.mediaQuery.size.width,
-      height: 85,
+      height: 85.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -766,8 +767,8 @@ class _BlueBillPackageDropdown extends StatelessWidget {
     NumberFormat format = NumberFormat("#,##0.00");
     return Container(
       // height: 60,
-      constraints: const BoxConstraints(
-        minHeight: 55,
+      constraints: BoxConstraints(
+        minHeight: 55.h,
       ),
       decoration: const BoxDecoration(),
       child: RichText(
@@ -804,7 +805,7 @@ class _BlueBillPackageDropdown extends StatelessWidget {
 
   Widget selectedItem() {
     return Container(
-      height: 50,
+      height: 50.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
@@ -851,7 +852,7 @@ class _BlueBillProviderDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.mediaQuery.size.width,
-      height: 85,
+      height: 85.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -894,7 +895,7 @@ class _BlueBillProviderDropdown extends StatelessWidget {
 
   Widget itemBuilder(BillProvider item) {
     return Container(
-      height: 55,
+      height: 55.h,
       decoration: const BoxDecoration(),
       child: Row(
         children: [
@@ -933,7 +934,7 @@ class _BlueBillProviderDropdown extends StatelessWidget {
 
   Widget selectedItem() {
     return Container(
-      height: 50,
+      height: 50.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),

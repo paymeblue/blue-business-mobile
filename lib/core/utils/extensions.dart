@@ -1,6 +1,7 @@
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 extension BuildContextEx on BuildContext {
@@ -9,10 +10,10 @@ extension BuildContextEx on BuildContext {
 
 extension Gap on num {
   Widget get verticalGap => SizedBox(
-        height: toDouble(),
+        height: toDouble().h,
       );
   Widget get horizontalGap => SizedBox(
-        width: toDouble(),
+        width: toDouble().w,
       );
 }
 

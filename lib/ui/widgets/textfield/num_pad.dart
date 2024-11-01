@@ -3,6 +3,7 @@ import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // KeyPad widget
 // This widget is reusable and its buttons are customizable (color, size)
@@ -202,8 +203,8 @@ class FaceIdButton extends StatelessWidget {
         decoration: const BoxDecoration(),
         child: useBiometrics
             ? AppAssets.images.icons.faceId.svg(
-                height: 41,
-                width: 41,
+                height: 41.h,
+                width: 41.w,
               )
             : const SizedBox(),
       ),

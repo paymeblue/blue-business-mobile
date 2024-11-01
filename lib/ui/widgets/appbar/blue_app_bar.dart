@@ -1,5 +1,6 @@
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BlueAppBar {
   BlueAppBar._();
@@ -84,8 +85,8 @@ class _$AppBar extends StatelessWidget implements PreferredSizeWidget {
             },
             child: Container(
               margin: const EdgeInsets.only(left: 16),
-              height: 34,
-              width: 34,
+              height: 34.h,
+              width: 34.w,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(color: const Color(0xFFE5E6E8)),

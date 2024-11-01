@@ -7,6 +7,7 @@ import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/ui/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/ui/widgets/steppers/circular_step_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -114,8 +115,8 @@ class _SignupProgressViewState extends State<SignupProgressView> {
           ),
           16.horizontalGap,
           Container(
-            height: 40,
-            width: 40,
+            height: 40.h,
+            width: 40.w,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: index < progress ? AppColors.blue : Colors.transparent,

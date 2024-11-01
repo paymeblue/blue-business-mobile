@@ -1,3 +1,4 @@
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/models/banks/response/bank_response.dart';
 import 'package:blue_business/core/models/beneficiary/get/response/get_beneficiary_response.dart';
 import 'package:blue_business/core/models/beneficiary/set/request/set_beneficiary_request.dart';
@@ -21,6 +22,7 @@ import 'package:blue_business/core/models/withdrawal_account/set/request/set_pay
 import 'package:blue_business/core/models/withdrawal_account/set/response/set_payout_response.dart';
 import 'package:blue_business/core/models/withdrawal_account/verify/request/verify_payout_request.dart';
 import 'package:blue_business/core/models/withdrawal_account/verify/response/verify_payout_response.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
@@ -30,8 +32,10 @@ part 'transaction_service.g.dart';
 
 @RestApi()
 abstract class TransactionService {
-  factory TransactionService(Dio dio) =>
-      _TransactionService(dio, baseUrl: AppConstants.baseUrl);
+  factory TransactionService() => _TransactionService(
+        DioConfig.dio(locator<AppStateValues>().accessToken),
+        baseUrl: AppConstants.baseUrl,
+      );
 
   @GET("/transaction-histories")
   Future<TransactionResponse> getTransactions(

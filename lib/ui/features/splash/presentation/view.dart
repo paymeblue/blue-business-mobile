@@ -2,6 +2,7 @@ import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -35,7 +36,7 @@ class _SplashViewState extends State<SplashView> {
 
   Widget splashLogo() {
     return SizedBox(
-      height: 70,
+      height: 70.h,
       child: Image.asset(
         AppAssets.images.logos.splashLogo.path,
         fit: BoxFit.contain,

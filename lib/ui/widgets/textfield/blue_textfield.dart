@@ -32,23 +32,23 @@ class BlueTextField {
     Widget selectedItem() {
       return Container(
         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-        width: 60,
-        height: 25,
+        width: 60.w,
+        height: 25.h,
         decoration: BoxDecoration(
           color: AppColors.grey,
           borderRadius: BorderRadius.circular(4),
         ),
         child: Container(
-          height: 25,
-          width: 45,
+          height: 25.h,
+          width: 45.w,
           margin: const EdgeInsets.symmetric(vertical: 5),
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           decoration: BoxDecoration(
               color: AppColors.white, borderRadius: BorderRadius.circular(4)),
           child: CountryFlag.fromCountryCode(
             "NG",
-            height: 25,
-            width: 20,
+            height: 25.h,
+            width: 20.w,
           ),
         ),
       );
@@ -508,8 +508,8 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
               )
             : SvgPicture.asset(
                 AppAssets.images.icons.hide.path,
-                height: 8,
-                width: 8,
+                height: 8.h,
+                width: 8.w,
                 fit: BoxFit.scaleDown,
               ),
       ),
@@ -519,7 +519,7 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.isMessage ? null : 85,
+      height: widget.isMessage ? null : 85.h,
       width: context.mediaQuery.size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -530,7 +530,7 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
           ],
           TextFormField(
             style: widget.isMessage
-                ? AppTextStyles.textField.copyWith(fontSize: 14)
+                ? AppTextStyles.textField.copyWith(fontSize: 14.sp)
                 : AppTextStyles.textField,
             controller: widget.controller,
             initialValue: widget.initialValue,

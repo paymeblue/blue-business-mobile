@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/models/staff/create/request/update_staff_request.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
 import 'package:blue_business/core/models/staff_roles/get/response/staff_role_response.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
@@ -13,8 +15,10 @@ part 'staff_service.g.dart';
 
 @RestApi()
 abstract class StaffService {
-  factory StaffService(Dio dio) =>
-      _StaffService(dio, baseUrl: AppConstants.baseUrl);
+  factory StaffService() => _StaffService(
+        DioConfig.dio(locator<AppStateValues>().accessToken),
+        baseUrl: AppConstants.baseUrl,
+      );
 
   @GET("/staffs")
   Future<GetStaffResponse> getAllStaff({
