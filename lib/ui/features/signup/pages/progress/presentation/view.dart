@@ -33,48 +33,50 @@ class _SignupProgressViewState extends State<SignupProgressView> {
             },
             icon: Icons.arrow_back_ios_new,
           ),
-          body: Column(
-            children: [
-              CircularStepIndicator(
-                max: model.progressSteps.length.toDouble(),
-                progress: model.progress.toDouble(),
-              ),
-              Text(
-                "Complete account setup",
-                style: AppTextStyles.midHeader,
-              ),
-              Text(
-                "${model.progress} out of ${model.progressSteps.length} complete",
-                style: AppTextStyles.smallText
-                    .copyWith(color: AppColors.bodyTextColor2),
-              ),
-              20.verticalGap,
-              const Divider(
-                color: AppColors.midGrey,
-              ),
-              Expanded(
-                child: ListView.separated(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
-                  itemBuilder: (ctx, i) => signupStep(
-                    index: i,
-                    progress: model.progress,
-                    title: model.progressSteps[i]["title"],
-                    subtitle: model.progressSteps[i]["subtitle"],
-                  ),
-                  separatorBuilder: (ctx, i) => 18.verticalGap,
-                  itemCount: model.progressSteps.length,
+          body: Padding(
+            padding: const EdgeInsets.only(bottom: 35),
+            child: Column(
+              children: [
+                CircularStepIndicator(
+                  max: model.progressSteps.length.toDouble(),
+                  progress: model.progress.toDouble(),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: AppButton.primary(
-                    title: "Continue",
-                    onTap: () {
-                      // model.goToNext(context, widget.data);
-                    }),
-              )
-            ],
+                Text(
+                  "Complete account setup",
+                  style: AppTextStyles.midHeader,
+                ),
+                Text(
+                  "${model.progress} out of ${model.progressSteps.length} complete",
+                  style: AppTextStyles.smallText
+                      .copyWith(color: AppColors.bodyTextColor2),
+                ),
+                20.verticalGap,
+                const Divider(
+                  color: AppColors.midGrey,
+                ),
+                Expanded(
+                  child: ListView.separated(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemBuilder: (ctx, i) => signupStep(
+                      index: i,
+                      progress: model.progress,
+                      title: model.progressSteps[i]["title"],
+                      subtitle: model.progressSteps[i]["subtitle"],
+                    ),
+                    separatorBuilder: (ctx, i) => 18.verticalGap,
+                    itemCount: model.progressSteps.length,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: AppButton.primary(
+                      title: "Continue",
+                      onTap: () {
+                        model.goToNext(context);
+                      }),
+                )
+              ],
+            ),
           ),
         );
       },

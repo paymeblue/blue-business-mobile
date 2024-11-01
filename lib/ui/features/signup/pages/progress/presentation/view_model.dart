@@ -7,27 +7,42 @@ import 'package:go_router/go_router.dart';
 
 class SignupProgressViewModel extends BaseViewModel {
   late Size size;
+  late SignupData data;
 
-  init(BuildContext context, SignupData data) {
+  init(BuildContext context, SignupData d) {
     size = context.mediaQuery.size;
-    setProgress(data);
+    data = d;
+    setProgress();
   }
 
   goBack(BuildContext context) {
     context.pop();
   }
 
-  goToNext(BuildContext context, SignupData data) {
+  goToNext(BuildContext context) {
     if (progress == 1) {
-      context.push(RoutePaths.businessDetails, extra: data);
+      context.push<SignupData>(RoutePaths.businessDetails, extra: data).then(
+            onSignupDataReturned,
+          );
     } else if (progress == 2) {
-      context.push(RoutePaths.shareholders, extra: data);
+      context.push<SignupData>(RoutePaths.shareholders, extra: data).then(
+            onSignupDataReturned,
+          );
     } else {
-      context.push(RoutePaths.createPin, extra: data);
+      context.push<SignupData>(RoutePaths.createPin, extra: data).then(
+            onSignupDataReturned,
+          );
     }
   }
 
-  setProgress(SignupData data) {
+  onSignupDataReturned(SignupData? val) {
+    if (val != null) {
+      data = val;
+      setProgress();
+    }
+  }
+
+  setProgress() {
     if (data.businessProfileCompleted) {
       progress = 1;
     }

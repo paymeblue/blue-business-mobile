@@ -17,7 +17,7 @@ GoRouter router = GoRouter(
       message: state.error?.message,
       newRoute: state.matchedLocation.startsWith("/dash")
           ? RoutePaths.home
-          : RoutePaths.login,
+          : RoutePaths.initial,
     );
   },
   redirect: (context, state) {

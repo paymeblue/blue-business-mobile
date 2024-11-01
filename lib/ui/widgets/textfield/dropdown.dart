@@ -4,6 +4,7 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/banks/item/bank.dart';
 import 'package:blue_business/core/models/bills/get_packages/packages/packages.dart';
 import 'package:blue_business/core/models/bills/get_providers/providers/providers.dart';
+import 'package:blue_business/core/models/business_category/category/business_category.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/dropdown_type/dropdown_type.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
@@ -88,6 +89,20 @@ class BlueDropdown {
         title: title);
   }
 
+  static Widget businessCategories({
+    required List<BusinessCategory> values,
+    required ValueChanged<BusinessCategory?> onChanged,
+    TextEditingController? searchController,
+    BusinessCategory? value,
+  }) {
+    return _BlueBusinessCategoryDropdown(
+      items: values,
+      onChanged: onChanged,
+      value: value,
+      searchController: searchController,
+    );
+  }
+
   static Widget show({
     required List<String> values,
     required ValueChanged<String?> onChanged,
@@ -105,167 +120,114 @@ class BlueDropdown {
   }
 }
 
-// class _BlueTagsDropdown extends StatelessWidget {
-//   const _BlueTagsDropdown({
-//     required this.items,
-//     required this.onChanged,
-//     required this.searchController,
-//     required this.title,
-//   });
+class _BlueBusinessCategoryDropdown extends StatelessWidget {
+  const _BlueBusinessCategoryDropdown({
+    required this.items,
+    required this.onChanged,
+    this.value,
+    required this.searchController,
+  });
 
-//   final List<String> items;
-//   final ValueChanged<String?> onChanged;
-//   final String? value;
-//   final TextEditingController? searchController;
-//   final String title;
-//   final bool isOptional;
+  final List<BusinessCategory> items;
+  final ValueChanged<BusinessCategory?> onChanged;
+  final BusinessCategory? value;
+  final TextEditingController? searchController;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       width: context.mediaQuery.size.width,
-//       height: 85,
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           textFieldHeader(),
-//           _$BlueDropdown<String>(
-//             items: items.map((e) => DropdownType(label: e, value: e)).toList(),
-//             selectedValue: value,
-//             canSearch: false,
-//             selectedItemBuilder: selectedItem(),
-//             itemBuilder: itemBuilder,
-//             onChanged: onChanged,
-//             height: .4,
-//             title: Text(
-//               "Add a Tag",
-//               style: AppTextStyles.midHeader,
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: context.mediaQuery.size.width,
+      height: 85.h,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          textFieldHeader(),
+          _$BlueDropdown<BusinessCategory>(
+            items: items
+                .map((e) => DropdownType(label: e.title, value: e))
+                .toList(),
+            selectedValue: value,
+            canSearch: searchController != null,
+            selectedItemBuilder: selectedItem(),
+            itemBuilder: itemBuilder,
+            onChanged: onChanged,
+            onSearchChanged: onSearchChanged,
+            searchController: searchController,
+            searchHint: "Search Categories",
+          ),
+        ],
+      ),
+    );
+  }
 
-//   Widget textFieldHeader() {
-//     return RichText(
-//         text: TextSpan(
-//       children: [
-//         TextSpan(
-//           text: "$title ",
-//           style: AppTextStyles.subHeader.copyWith(color: AppColors.textColor),
-//         ),
-//         if (isOptional)
-//           TextSpan(
-//             text: "(Optional)",
-//             style: AppTextStyles.subHeader
-//                 .copyWith(color: AppColors.bodyTextColor2),
-//           ),
-//       ],
-//     ));
-//   }
+  Widget textFieldHeader() {
+    return Text(
+      "Business category",
+      style: AppTextStyles.subHeader.copyWith(color: AppColors.textColor),
+    );
+  }
 
-//   Widget itemBuilder(String item) {
-//     return Container(
-//       height: 45,
-//       decoration: const BoxDecoration(),
-//       child: Row(
-//         children: [
-//           Expanded(
-//             child: Row(
-//               children: [
-//                 Container(
-//                   padding:
-//                       const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-//                   decoration: BoxDecoration(
-//                     color: const Color(0xFFDEEDDE),
-//                     borderRadius: BorderRadius.circular(20),
-//                   ),
-//                   child: Text(
-//                     item,
-//                     style: AppTextStyles.smallText.copyWith(
-//                       height: 1,
-//                       color: const Color(0xFF244224),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//           if (value == item) ...[
-//             10.horizontalGap,
-//             const Icon(
-//               Icons.check,
-//               size: 16,
-//               color: AppColors.primary,
-//             )
-//           ]
-//         ],
-//       ),
-//     );
-//   }
+  Widget itemBuilder(BusinessCategory item) {
+    return Container(
+      height: 45.h,
+      decoration: const BoxDecoration(),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              item.title,
+              style: AppTextStyles.textField.copyWith(height: 1),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
-//   List<String> onSearchChanged(String? v) {
-//     List<String> temp = [];
-//     if (v != null && v.isNotEmpty) {
-//       for (String item in items) {
-//         if (item.toLowerCase().contains(v.toLowerCase())) {
-//           temp.add(item);
-//         }
-//       }
-//     } else {
-//       temp = items;
-//     }
+  List<BusinessCategory> onSearchChanged(String? v) {
+    List<BusinessCategory> temp = [];
+    if (v != null && v.isNotEmpty) {
+      for (BusinessCategory item in items) {
+        if (item.title.toLowerCase().contains(v.toLowerCase())) {
+          temp.add(item);
+        }
+      }
+    } else {
+      temp = items;
+    }
 
-//     return temp;
-//   }
+    return temp;
+  }
 
-//   Widget selectedItem() {
-//     return Container(
-//       height: 50,
-//       padding: const EdgeInsets.symmetric(horizontal: 12),
-//       decoration: BoxDecoration(
-//           borderRadius: BorderRadius.circular(6),
-//           border: Border.all(color: AppColors.grey)),
-//       child: Row(
-//         children: [
-//           Expanded(
-//             child: value == null
-//                 ? Text(
-//                     "--Select a tag--",
-//                     style: AppTextStyles.textField
-//                         .copyWith(color: AppColors.textColor.withOpacity(.3)),
-//                     overflow: TextOverflow.ellipsis,
-//                   )
-//                 : Row(
-//                     children: [
-//                       Container(
-//                         padding: const EdgeInsets.symmetric(
-//                             horizontal: 8, vertical: 4),
-//                         decoration: BoxDecoration(
-//                           color: const Color(0xFFDEEDDE),
-//                           borderRadius: BorderRadius.circular(20),
-//                         ),
-//                         child: Text(
-//                           value!,
-//                           style: AppTextStyles.smallText.copyWith(
-//                             height: 1,
-//                             color: const Color(0xFF244224),
-//                           ),
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//           ),
-//           const Icon(
-//             Icons.keyboard_arrow_down_rounded,
-//             color: AppColors.textColor,
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
+  Widget selectedItem() {
+    return Container(
+      height: 50.h,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(color: AppColors.grey)),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              value?.title ?? "--Select from the options below--",
+              style: value == null
+                  ? AppTextStyles.textField
+                      .copyWith(color: AppColors.textColor.withOpacity(.3))
+                  : AppTextStyles.textField,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          const Spacer(),
+          const Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: AppColors.textColor,
+          )
+        ],
+      ),
+    );
+  }
+}
 
 class _BlueStringDropdown extends StatelessWidget {
   const _BlueStringDropdown({
@@ -1018,8 +980,8 @@ class _$BlueDropdownState<T> extends State<_$BlueDropdown<T>> {
         return StatefulBuilder(builder: (context, setState) {
           return DraggableScrollableSheet(
               minChildSize: .1,
-              maxChildSize: .75,
-              initialChildSize: (widget.height ?? .5) +
+              maxChildSize: .9,
+              initialChildSize: (widget.height ?? .4) +
                   (context.mediaQuery.viewInsets.bottom /
                       context.mediaQuery.size.height),
               expand: false,
