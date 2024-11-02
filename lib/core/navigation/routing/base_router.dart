@@ -3,6 +3,7 @@ import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/injection/navigation_service.dart';
 import 'package:blue_business/core/navigation/routing/home_routes.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/routing/settings_routes.dart';
 import 'package:blue_business/core/navigation/routing/signup_router.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -100,6 +101,7 @@ GoRouter router = GoRouter(
               path: RoutePaths.settings,
               name: RoutePaths.settings,
               pageBuilder: (context, state) => const SettingsView().slide(),
+              routes: settingsRoutes,
             )
           ],
         )

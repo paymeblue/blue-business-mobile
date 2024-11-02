@@ -16,7 +16,7 @@ _$LoginDataImpl _$$LoginDataImplFromJson(Map<String, dynamic> json) =>
       kyc: json['kyc'] as String? ?? "basic",
       token: Token.fromJson(json['token'] as Map<String, dynamic>),
       createdAt: json['created_at'] as String?,
-      displayPic: json['display_pic'] as String?,
+      displayPicture: json['display_picture'] as String?,
     );
 
 Map<String, dynamic> _$$LoginDataImplToJson(_$LoginDataImpl instance) {
@@ -36,6 +36,6 @@ Map<String, dynamic> _$$LoginDataImplToJson(_$LoginDataImpl instance) {
   }
 
   writeNotNull('created_at', instance.createdAt);
-  writeNotNull('display_pic', instance.displayPic);
+  writeNotNull('display_picture', instance.displayPicture);
   return val;
 }

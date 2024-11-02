@@ -16,7 +16,7 @@ class LoginData with _$LoginData {
     @Default("basic") String kyc,
     required Token token,
     String? createdAt,
-    String? displayPic,
+    String? displayPicture,
   }) = _LoginData;
 
   factory LoginData.fromJson(Map<String, dynamic> json) =>

@@ -75,7 +75,7 @@ class HomeView extends StatelessWidget {
         children: [
           BlueAvatar(
             radius: 20.w,
-            imageUrl: locator<AppStateValues>().currentUser!.displayPic,
+            imageUrl: locator<AppStateValues>().currentUser!.displayPicture,
           ),
           12.horizontalGap,
           Expanded(

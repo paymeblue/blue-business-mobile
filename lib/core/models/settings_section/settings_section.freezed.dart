@@ -19,9 +19,7 @@ mixin _$SettingsSection {
   String get sectionTitle => throw _privateConstructorUsedError;
   List<SettingsOption> get options => throw _privateConstructorUsedError;
 
-  /// Create a copy of SettingsSection
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SettingsSectionCopyWith<SettingsSection> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,8 +43,6 @@ class _$SettingsSectionCopyWithImpl<$Res, $Val extends SettingsSection>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SettingsSection
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,8 +81,6 @@ class __$$SettingsSectionImplCopyWithImpl<$Res>
       _$SettingsSectionImpl _value, $Res Function(_$SettingsSectionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SettingsSection
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -142,9 +136,7 @@ class _$SettingsSectionImpl implements _SettingsSection {
   int get hashCode => Object.hash(
       runtimeType, sectionTitle, const DeepCollectionEquality().hash(_options));
 
-  /// Create a copy of SettingsSection
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SettingsSectionImplCopyWith<_$SettingsSectionImpl> get copyWith =>
@@ -161,11 +153,8 @@ abstract class _SettingsSection implements SettingsSection {
   String get sectionTitle;
   @override
   List<SettingsOption> get options;
-
-  /// Create a copy of SettingsSection
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SettingsSectionImplCopyWith<_$SettingsSectionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

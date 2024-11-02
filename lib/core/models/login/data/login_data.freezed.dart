@@ -27,7 +27,7 @@ mixin _$LoginData {
   String get kyc => throw _privateConstructorUsedError;
   Token get token => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
-  String? get displayPic => throw _privateConstructorUsedError;
+  String? get displayPicture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +48,7 @@ abstract class $LoginDataCopyWith<$Res> {
       String kyc,
       Token token,
       String? createdAt,
-      String? displayPic});
+      String? displayPicture});
 
   $BusinessDataCopyWith<$Res> get business;
   $DashboardDataCopyWith<$Res> get dashboardData;
@@ -75,7 +75,7 @@ class _$LoginDataCopyWithImpl<$Res, $Val extends LoginData>
     Object? kyc = null,
     Object? token = null,
     Object? createdAt = freezed,
-    Object? displayPic = freezed,
+    Object? displayPicture = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -106,9 +106,9 @@ class _$LoginDataCopyWithImpl<$Res, $Val extends LoginData>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
-      displayPic: freezed == displayPic
-          ? _value.displayPic
-          : displayPic // ignore: cast_nullable_to_non_nullable
+      displayPicture: freezed == displayPicture
+          ? _value.displayPicture
+          : displayPicture // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -154,7 +154,7 @@ abstract class _$$LoginDataImplCopyWith<$Res>
       String kyc,
       Token token,
       String? createdAt,
-      String? displayPic});
+      String? displayPicture});
 
   @override
   $BusinessDataCopyWith<$Res> get business;
@@ -182,7 +182,7 @@ class __$$LoginDataImplCopyWithImpl<$Res>
     Object? kyc = null,
     Object? token = null,
     Object? createdAt = freezed,
-    Object? displayPic = freezed,
+    Object? displayPicture = freezed,
   }) {
     return _then(_$LoginDataImpl(
       id: null == id
@@ -213,9 +213,9 @@ class __$$LoginDataImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
-      displayPic: freezed == displayPic
-          ? _value.displayPic
-          : displayPic // ignore: cast_nullable_to_non_nullable
+      displayPicture: freezed == displayPicture
+          ? _value.displayPicture
+          : displayPicture // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -232,7 +232,7 @@ class _$LoginDataImpl implements _LoginData {
       this.kyc = "basic",
       required this.token,
       this.createdAt,
-      this.displayPic});
+      this.displayPicture});
 
   factory _$LoginDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginDataImplFromJson(json);
@@ -253,11 +253,11 @@ class _$LoginDataImpl implements _LoginData {
   @override
   final String? createdAt;
   @override
-  final String? displayPic;
+  final String? displayPicture;
 
   @override
   String toString() {
-    return 'LoginData(id: $id, phone: $phone, business: $business, dashboardData: $dashboardData, kyc: $kyc, token: $token, createdAt: $createdAt, displayPic: $displayPic)';
+    return 'LoginData(id: $id, phone: $phone, business: $business, dashboardData: $dashboardData, kyc: $kyc, token: $token, createdAt: $createdAt, displayPicture: $displayPicture)';
   }
 
   @override
@@ -275,14 +275,14 @@ class _$LoginDataImpl implements _LoginData {
             (identical(other.token, token) || other.token == token) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
-            (identical(other.displayPic, displayPic) ||
-                other.displayPic == displayPic));
+            (identical(other.displayPicture, displayPicture) ||
+                other.displayPicture == displayPicture));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, phone, business,
-      dashboardData, kyc, token, createdAt, displayPic);
+      dashboardData, kyc, token, createdAt, displayPicture);
 
   @JsonKey(ignore: true)
   @override
@@ -307,7 +307,7 @@ abstract class _LoginData implements LoginData {
       final String kyc,
       required final Token token,
       final String? createdAt,
-      final String? displayPic}) = _$LoginDataImpl;
+      final String? displayPicture}) = _$LoginDataImpl;
 
   factory _LoginData.fromJson(Map<String, dynamic> json) =
       _$LoginDataImpl.fromJson;
@@ -327,7 +327,7 @@ abstract class _LoginData implements LoginData {
   @override
   String? get createdAt;
   @override
-  String? get displayPic;
+  String? get displayPicture;
   @override
   @JsonKey(ignore: true)
   _$$LoginDataImplCopyWith<_$LoginDataImpl> get copyWith =>

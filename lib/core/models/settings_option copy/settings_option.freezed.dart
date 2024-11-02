@@ -22,9 +22,7 @@ mixin _$SettingsOption {
   String? get subtitle => throw _privateConstructorUsedError;
   Widget? get trailing => throw _privateConstructorUsedError;
 
-  /// Create a copy of SettingsOption
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SettingsOptionCopyWith<SettingsOption> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,8 +51,6 @@ class _$SettingsOptionCopyWithImpl<$Res, $Val extends SettingsOption>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SettingsOption
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,8 +109,6 @@ class __$$SettingsOptionImplCopyWithImpl<$Res>
       _$SettingsOptionImpl _value, $Res Function(_$SettingsOptionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SettingsOption
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -193,9 +187,7 @@ class _$SettingsOptionImpl implements _SettingsOption {
   int get hashCode =>
       Object.hash(runtimeType, icon, title, onTap, subtitle, trailing);
 
-  /// Create a copy of SettingsOption
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SettingsOptionImplCopyWith<_$SettingsOptionImpl> get copyWith =>
@@ -221,11 +213,8 @@ abstract class _SettingsOption implements SettingsOption {
   String? get subtitle;
   @override
   Widget? get trailing;
-
-  /// Create a copy of SettingsOption
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SettingsOptionImplCopyWith<_$SettingsOptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

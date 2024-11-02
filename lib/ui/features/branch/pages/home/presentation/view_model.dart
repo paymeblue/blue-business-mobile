@@ -146,7 +146,7 @@ class BranchHomeViewModel extends BaseViewModel {
     context.push(
       state.matchedLocation.startsWith(RoutePaths.home)
           ? RoutePaths.homeToBranchesToDetails
-          : RoutePaths.homeToStaffToDetails,
+          : RoutePaths.settingsToBranchesToDetails,
       extra: data,
     );
   }

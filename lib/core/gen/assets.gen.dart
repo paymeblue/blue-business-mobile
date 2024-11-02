@@ -87,6 +87,10 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/alert.svg
   SvgGenImage get alert => const SvgGenImage('assets/images/icons/alert.svg');
 
+  /// File path: assets/images/icons/attach_blue.svg
+  SvgGenImage get attachBlue =>
+      const SvgGenImage('assets/images/icons/attach_blue.svg');
+
   /// File path: assets/images/icons/beneficiaries.svg
   SvgGenImage get beneficiaries =>
       const SvgGenImage('assets/images/icons/beneficiaries.svg');
@@ -343,6 +347,7 @@ class $AssetsImagesIconsGen {
         aboutBlue,
         airtime,
         alert,
+        attachBlue,
         beneficiaries,
         bills,
         biometrics,
