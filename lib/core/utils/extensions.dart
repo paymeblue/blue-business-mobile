@@ -74,15 +74,16 @@ extension StringEx on String? {
   String validPhone(CountryCode selectedCountry) {
     String number = orEmpty.replaceAll(" ", "");
 
-    if (number.startsWith("0")) {
-      number = number.replaceFirst("0", "");
-    }
     if (number
         .replaceFirst("+", "")
         .startsWith(selectedCountry.dialCode.replaceFirst("+", ""))) {
       number = number
           .replaceFirst("+", "")
           .replaceFirst(selectedCountry.dialCode.replaceFirst("+", ""), "");
+    }
+
+    if (number.startsWith("0")) {
+      number = number.replaceFirst("0", "");
     }
 
     return selectedCountry.dialCode + number;

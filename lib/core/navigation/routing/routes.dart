@@ -15,7 +15,8 @@ class RoutePaths {
   static String shareholderKyc = '/signup/shareholders/kyc';
   static String createPin = "/signup/create-pin";
 
-  //HOME
+  //DASHBOARD
+  static String dash = "/dash";
   static String home = "/dash/home";
   static String insights = "/dash/inisghts";
   static String settings = "/dash/settings";
