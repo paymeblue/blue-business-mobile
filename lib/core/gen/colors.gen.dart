@@ -109,6 +109,12 @@ class AppColors {
   /// Color: #FF5F8FF
   static const Color lightBlue = Color(0xFF5F8FF);
 
+  /// Color: #FF5F8FF
+  static const Color lightOverlay = Color(0xFF5F8FF);
+
+  /// Color: #F3F3FE
+  static const Color lightOverlay2 = Color(0xFFF3F3FE);
+
   /// Color: #E5E6E8
   static const Color midGrey = Color(0xFFE5E6E8);
 

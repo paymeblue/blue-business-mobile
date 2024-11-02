@@ -19,17 +19,3 @@ class TransactionHistory with _$TransactionHistory {
   factory TransactionHistory.fromJson(Map<String, dynamic> json) =>
       _$TransactionHistoryImpl.fromJson(json);
 }
-
-enum TransactionType { debit, credit }
-
-enum PaymentMode {
-  blue,
-  phone,
-  qr,
-  withdrawal,
-  topup,
-  airtime,
-  data,
-  electricity,
-  tv
-}

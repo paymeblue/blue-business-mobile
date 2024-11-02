@@ -1,5 +1,4 @@
 import 'package:blue_business/core/models/login/data/login_data.dart';
-import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/topup_account/topup_account.dart';
 import 'package:blue_business/core/models/wallet/wallet.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/data/withdrawal_account.dart';
@@ -13,7 +12,6 @@ class AppStateValues extends ChangeNotifier {
   String _narration = "";
   String _recoveryCode = "";
   String _path = RoutePaths.home;
-  FetchState _todoState = FetchState.loading;
   String _kycLevel = "basic";
   bool _hasSavedBeneficiary = true;
   bool _showLiveChat = false;
@@ -23,8 +21,6 @@ class AppStateValues extends ChangeNotifier {
   bool _hasNetwork = true;
   String? _channelId;
   String _token = "";
-
-  List<TodoOption> _todos = [];
   LoginData? _currentUser;
   Wallet? _wallet;
   TopupAccount? _account;
@@ -35,8 +31,6 @@ class AppStateValues extends ChangeNotifier {
   String get fcmToken => _fcmToken;
   String get narration => _narration;
   String get recoveryCode => _recoveryCode;
-  List<TodoOption> get todos => _todos;
-  FetchState get todoState => _todoState;
   String get kycLevel => _kycLevel;
   bool get hasSavedBeneficiary => _hasSavedBeneficiary;
   bool get notificationStatus => _notificationStatus;
@@ -78,16 +72,6 @@ class AppStateValues extends ChangeNotifier {
 
   set recoveryCode(String v) {
     _recoveryCode = v;
-    notifyListeners();
-  }
-
-  set todos(List<TodoOption> t) {
-    _todos = t;
-    notifyListeners();
-  }
-
-  set todoState(FetchState v) {
-    _todoState = v;
     notifyListeners();
   }
 
@@ -165,8 +149,6 @@ class AppStateValues extends ChangeNotifier {
     accessToken = "";
     refreshToken = "";
     narration = "";
-    todos = [];
-    todoState = FetchState.loading;
     kycLevel = "basic";
     hasSavedBeneficiary = true;
     hasNetwork = true;
