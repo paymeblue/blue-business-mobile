@@ -24,6 +24,7 @@ class RoutePaths {
   static String homeToStaffToDetails = "/dash/home/staff/enter-staff-details";
   static String homeToStaffToDetailsToBranchDetails =
       "$homeToStaffToDetails/add-branch";
+  static String homeToRecive = "/dash/home/receive-money";
 
   //INSIGHTS
   static String insights = "/dash/insights";

@@ -263,7 +263,7 @@ class HomeViewModel extends BaseViewModel {
                 locator<AppStateValues>().wallet == null) {
               BlueToast.primaryWithcon("Please wait...");
             } else {
-              // goToReceiveMoney(context);
+              goToReceiveMoney(context);
             }
           },
         ),
@@ -380,5 +380,9 @@ class HomeViewModel extends BaseViewModel {
 
   goToStaffManagementHome(BuildContext context) {
     context.push(RoutePaths.homeToStaff);
+  }
+
+  void goToReceiveMoney(BuildContext context) {
+    context.push(RoutePaths.homeToRecive);
   }
 }
