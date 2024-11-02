@@ -18,6 +18,7 @@ class RoutePaths {
   //HOME
   static String home = "/dash/home";
   static String homeToBranches = "/dash/home/branches";
+  static String homeToBranchesToDetails = "/dash/home/branches/enter-details";
   static String homeToStaff = "/dash/home/staff";
 
   //INSIGHTS

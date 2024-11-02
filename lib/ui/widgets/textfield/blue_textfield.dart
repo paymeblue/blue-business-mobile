@@ -501,10 +501,10 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
       child: Container(
         padding: const EdgeInsets.all(10),
         child: isObscured
-            ? const Icon(
+            ? Icon(
                 Icons.visibility_outlined,
                 color: AppColors.textColor,
-                size: 24,
+                size: 24.h,
               )
             : SvgPicture.asset(
                 AppAssets.images.icons.hide.path,
@@ -546,7 +546,7 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
             minLines: 1,
             focusNode: widget.node,
             maxLines: widget.isMessage ? 3 : 1,
-            cursorHeight: widget.isMessage ? 15 : null,
+            cursorHeight: widget.isMessage ? 15.h : null,
             decoration: InputDecoration(
               isCollapsed: true,
               counter: 0.verticalGap,
