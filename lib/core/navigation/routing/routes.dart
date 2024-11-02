@@ -39,4 +39,6 @@ class RoutePaths {
   static String settingsToStaffToDetailsToBranchDetails =
       "$settingsToStaffToDetails/add-branch";
   static String paymentLinkHistory = "/dash/settings/payment-link-history";
+  static String personalInfo = "/dash/settings/personal-info";
+  static String beneficiary = "/dash/settings/manage-beneficiaries";
 }

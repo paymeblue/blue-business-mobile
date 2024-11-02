@@ -6,7 +6,9 @@ import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/branch/pages/enter_details/view.dart';
 import 'package:blue_business/ui/features/branch/pages/home/presentation/view.dart';
+import 'package:blue_business/ui/features/manage_beneficiaries/presentation/view.dart';
 import 'package:blue_business/ui/features/payment_link_history/presentation/view.dart';
+import 'package:blue_business/ui/features/personal_info/presentation/view.dart';
 import 'package:blue_business/ui/features/staff/pages/enter_details/presentation/view.dart';
 import 'package:blue_business/ui/features/staff/pages/home/presentation/view.dart';
 import 'package:go_router/go_router.dart';
@@ -53,5 +55,15 @@ List<GoRoute> settingsRoutes = [
     path: RoutePaths.paymentLinkHistory.routeSplitter,
     parentNavigatorKey: locator<NavigationService>().navigatorKey,
     pageBuilder: (context, state) => const PaymentLinkHistoryView().slide(),
+  ),
+  GoRoute(
+    path: RoutePaths.personalInfo.routeSplitter,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
+    pageBuilder: (context, state) => const PersonalInfoView().slide(),
+  ),
+  GoRoute(
+    path: RoutePaths.beneficiary.routeSplitter,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
+    pageBuilder: (context, state) => const ManageBeneficiariesView().slide(),
   ),
 ];

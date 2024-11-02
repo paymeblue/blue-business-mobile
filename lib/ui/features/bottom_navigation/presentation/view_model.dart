@@ -21,10 +21,9 @@ class DashboardShellViewModel extends BaseViewModel {
   }
 
   goToPage(BuildContext context, int index) {
-    // child.goBranch(index);
     switch (index) {
       case 0:
-        context.push(RoutePaths.home);
+        context.pushReplacement(RoutePaths.home);
       case 1:
         context.push(RoutePaths.insights);
       case 2:

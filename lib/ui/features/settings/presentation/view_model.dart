@@ -288,7 +288,7 @@ class SettingsViewModel extends BaseViewModel {
           icon: AppAssets.images.icons.editInfo.svg(),
           title: "Personal details",
           onTap: () {
-            // goToPersonalInfo(context);
+            goToPersonalInfo(context);
           },
         ),
         SettingsOption(
@@ -318,7 +318,7 @@ class SettingsViewModel extends BaseViewModel {
           icon: AppAssets.images.icons.beneficiaries.svg(),
           title: "Manage your beneficiaries",
           onTap: () {
-            // goToManageBeneficiaries(context);
+            goToManageBeneficiaries(context);
           },
         ),
         SettingsOption(
@@ -461,7 +461,9 @@ class SettingsViewModel extends BaseViewModel {
     }
   }
 
-  goToManageBeneficiaries(BuildContext context) {}
+  goToManageBeneficiaries(BuildContext context) {
+    context.push(RoutePaths.beneficiary);
+  }
 
   goToBranchManagementHome(BuildContext context) {
     context.push(RoutePaths.settingsToBranches);
@@ -510,7 +512,7 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToPersonalInfo(BuildContext context) {
-    // context.go(RoutePaths.viewPersonalInfoPath);
+    context.push(RoutePaths.personalInfo);
   }
 
   goToWithdrawalBank(BuildContext context) {
