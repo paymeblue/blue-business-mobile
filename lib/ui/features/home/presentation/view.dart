@@ -370,7 +370,7 @@ class HomeView extends StatelessWidget {
           ),
           FittedBox(
             child: Text(
-              "${nairaSymbol()} ${model.hideBalance ? '****' : balance}",
+              "${nairaSymbol()}${model.hideBalance ? '****' : balance}",
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
                 fontSize: 18.sp,
@@ -626,7 +626,7 @@ class HomeView extends StatelessWidget {
                       TextSpan(
                         text: percentIncrease.abs() == double.parse(amount)
                             ? "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% "
-                            : "${nairaSymbol()} $amount ",
+                            : "${nairaSymbol()}$amount ",
                         style: AppTextStyles.smallText.copyWith(
                           color: percentIncrease < 0
                               ? AppColors.error

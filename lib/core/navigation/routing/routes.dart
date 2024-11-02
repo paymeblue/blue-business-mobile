@@ -18,8 +18,11 @@ class RoutePaths {
   //HOME
   static String home = "/dash/home";
   static String homeToBranches = "/dash/home/branches";
-  static String homeToBranchesToDetails = "/dash/home/branches/enter-details";
+  static String homeToBranchesToDetails =
+      "/dash/home/branches/enter-branch-details";
   static String homeToStaff = "/dash/home/staff";
+  static String homeToStaffToDetails = "/dash/home/staff/enter-staff-details";
+  static String staffToBranchDetails = "$homeToStaffToDetails/add-branch";
 
   //INSIGHTS
   static String insights = "/dash/insights";

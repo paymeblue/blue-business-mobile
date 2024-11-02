@@ -284,7 +284,7 @@ class HomeViewModel extends BaseViewModel {
           ),
           title: "Staff",
           onTap: () {
-            // goToStaffManagementHome(context);
+            goToStaffManagementHome(context);
           },
         ),
         TransactionOption(
@@ -376,5 +376,9 @@ class HomeViewModel extends BaseViewModel {
 
   goToBranchManagementHome(BuildContext context) {
     context.push(RoutePaths.homeToBranches);
+  }
+
+  goToStaffManagementHome(BuildContext context) {
+    context.push(RoutePaths.homeToStaff);
   }
 }

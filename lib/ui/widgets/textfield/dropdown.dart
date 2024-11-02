@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/banks/item/bank.dart';
 import 'package:blue_business/core/models/bills/get_packages/packages/packages.dart';
 import 'package:blue_business/core/models/bills/get_providers/providers/providers.dart';
+import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/business_category/category/business_category.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/dropdown_type/dropdown_type.dart';
@@ -12,10 +15,13 @@ import 'package:blue_business/core/navigation/injection/navigation_service.dart'
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/avatar/avatar.dart';
+import 'package:blue_business/ui/widgets/paging/error.dart';
+import 'package:blue_business/ui/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 
 class BlueDropdown {
@@ -103,12 +109,27 @@ class BlueDropdown {
     );
   }
 
+  static Widget branch({
+    required PagingController<int, Branch> controller,
+    required ValueChanged<Branch?> onChanged,
+    TextEditingController? searchController,
+    Branch? value,
+  }) {
+    return _BlueBranchDropdown(
+      controller: controller,
+      onChanged: onChanged,
+      value: value,
+      searchController: searchController,
+    );
+  }
+
   static Widget show({
     required List<String> values,
     required ValueChanged<String?> onChanged,
     TextEditingController? searchController,
     String? value,
     String? title,
+    double? height,
   }) {
     return _BlueStringDropdown(
       items: values,
@@ -116,6 +137,116 @@ class BlueDropdown {
       value: value,
       searchController: searchController,
       title: title,
+      height: height,
+    );
+  }
+}
+
+class _BlueBranchDropdown extends StatefulWidget {
+  const _BlueBranchDropdown({
+    required this.controller,
+    required this.onChanged,
+    this.value,
+    required this.searchController,
+  });
+
+  final PagingController<int, Branch> controller;
+  final ValueChanged<Branch?> onChanged;
+  final Branch? value;
+  final TextEditingController? searchController;
+
+  @override
+  State<_BlueBranchDropdown> createState() => _BlueBranchDropdownState();
+}
+
+class _BlueBranchDropdownState extends State<_BlueBranchDropdown> {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: context.mediaQuery.size.width,
+      height: 85.h,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          textFieldHeader(),
+          _$BluePagedDropdown<Branch>(
+            controller: widget.controller,
+            selectedValue: widget.value,
+            selectedItemBuilder: selectedItem(),
+            itemBuilder: itemBuilder,
+            onChanged: widget.onChanged,
+            onSearchChanged: onSearchChanged,
+            searchController: widget.searchController,
+            searchHint: "Search Categories",
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget textFieldHeader() {
+    return Text(
+      "Business category",
+      style: AppTextStyles.subHeader.copyWith(color: AppColors.textColor),
+    );
+  }
+
+  Widget itemBuilder(Branch item) {
+    return Container(
+      height: 45.h,
+      decoration: const BoxDecoration(),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              item.name,
+              style: AppTextStyles.textField.copyWith(height: 1),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Timer? searchTimer;
+
+  onSearchChanged(String? val) async {
+    if (searchTimer != null) {
+      searchTimer!.cancel();
+    }
+
+    searchTimer = Timer(const Duration(milliseconds: 1500), () async {
+      widget.controller.refresh();
+    });
+    return val;
+  }
+
+  Widget selectedItem() {
+    return Container(
+      height: 50.h,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(color: AppColors.grey)),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              widget.value?.name ?? "--Select from the options below--",
+              style: widget.value == null
+                  ? AppTextStyles.textField
+                      .copyWith(color: AppColors.textColor.withOpacity(.3))
+                  : AppTextStyles.textField,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          const Spacer(),
+          const Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: AppColors.textColor,
+          )
+        ],
+      ),
     );
   }
 }
@@ -230,19 +361,20 @@ class _BlueBusinessCategoryDropdown extends StatelessWidget {
 }
 
 class _BlueStringDropdown extends StatelessWidget {
-  const _BlueStringDropdown({
-    required this.items,
-    required this.onChanged,
-    this.value,
-    required this.searchController,
-    this.title,
-  });
+  const _BlueStringDropdown(
+      {required this.items,
+      required this.onChanged,
+      this.value,
+      required this.searchController,
+      this.title,
+      this.height});
 
   final List<String> items;
   final ValueChanged<String?> onChanged;
   final String? value;
   final TextEditingController? searchController;
   final String? title;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -256,6 +388,7 @@ class _BlueStringDropdown extends StatelessWidget {
           _$BlueDropdown<String>(
             items: items.map((e) => DropdownType(label: e, value: e)).toList(),
             selectedValue: value,
+            height: height,
             canSearch: searchController != null,
             selectedItemBuilder: selectedItem(),
             itemBuilder: itemBuilder,
@@ -1080,5 +1213,157 @@ class _$BlueDropdownState<T> extends State<_$BlueDropdown<T>> {
     }
 
     return t;
+  }
+}
+
+class _$BluePagedDropdown<T> extends StatefulWidget {
+  const _$BluePagedDropdown({
+    required this.controller,
+    required this.onChanged,
+    this.selectedValue,
+    required this.selectedItemBuilder,
+    required this.itemBuilder,
+    this.onSearchChanged,
+    this.searchController,
+    this.searchHint = "Search",
+    this.height,
+    this.title,
+  });
+
+  final PagingController<int, T> controller;
+  final T? selectedValue;
+  final Widget selectedItemBuilder;
+  final Widget Function(T) itemBuilder;
+  final ValueChanged<T?> onChanged;
+  final ValueChanged<String?>? onSearchChanged;
+  final TextEditingController? searchController;
+  final String searchHint;
+  final double? height;
+  final Widget? title;
+
+  @override
+  State<_$BluePagedDropdown<T>> createState() => _$BluePagedDropdownState<T>();
+}
+
+class _$BluePagedDropdownState<T> extends State<_$BluePagedDropdown<T>> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () async {
+        widget.onChanged(await onTap());
+      },
+      splashColor: AppColors.primary.withOpacity(.15),
+      child: widget.selectedItemBuilder,
+    );
+  }
+
+  Future<T?> onTap() async {
+    T? val = widget.selectedValue;
+    await showModalBottomSheet(
+      context: locator<NavigationService>().navigatorKey.currentContext!,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      useSafeArea: true,
+      builder: (context) {
+        return StatefulBuilder(builder: (context, setState) {
+          return DraggableScrollableSheet(
+              initialChildSize: widget.height ??
+                  .4 +
+                      (context.mediaQuery.viewInsets.bottom /
+                          context.mediaQuery.size.height),
+              expand: false,
+              builder: (context, controller) {
+                return Container(
+                  height: context.mediaQuery.size.height / 2 +
+                      context.mediaQuery.viewInsets.bottom,
+                  margin: EdgeInsets.only(
+                      left: 17,
+                      right: 17,
+                      bottom: 35 + context.mediaQuery.viewInsets.bottom),
+                  padding: const EdgeInsets.only(left: 17, right: 17, top: 15),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    children: [
+                      if (widget.title != null) ...[
+                        widget.title!,
+                        12.verticalGap,
+                      ],
+                      if (widget.searchController != null)
+                        BlueTextField.search(
+                          controller: widget.searchController,
+                          hint: widget.searchHint,
+                          onSearchChanged: widget.onSearchChanged,
+                        ),
+                      Expanded(
+                        child: PagedListView<int, T>.separated(
+                            pagingController: widget.controller,
+                            builderDelegate: PagedChildBuilderDelegate(
+                                noItemsFoundIndicatorBuilder: (context) =>
+                                    SizedBox(
+                                      width: context.mediaQuery.size.width,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          AppAssets.images.icons.error.image(),
+                                          12.verticalGap,
+                                          Text(
+                                            "Wow, such empty...",
+                                            style: AppTextStyles.header,
+                                          ),
+                                          8.verticalGap,
+                                          Text(
+                                            "Looks like nothing matches \"${widget.searchController?.text ?? ""}\"",
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                firstPageProgressIndicatorBuilder: (context) =>
+                                    Column(
+                                      children: List.generate(
+                                        4,
+                                        (index) => Column(
+                                          children: [
+                                            BlueLoadingTile.withoutImage(),
+                                            if (index < 3) 6.verticalGap,
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                firstPageErrorIndicatorBuilder: (ctx) => Column(
+                                      children: [
+                                        PagingError.firstPage(
+                                          widget.controller.error.toString(),
+                                          widget.controller.refresh,
+                                        ),
+                                      ],
+                                    ),
+                                newPageErrorIndicatorBuilder: (ctx) =>
+                                    PagingError.firstPage(
+                                      widget.controller.error.toString(),
+                                      widget.controller.refresh,
+                                    ),
+                                newPageProgressIndicatorBuilder: (context) =>
+                                    BlueLoadingTile.withImage(),
+                                itemBuilder: (ctx, item, i) => GestureDetector(
+                                      onTap: () {
+                                        val = item;
+                                        Navigator.pop(context);
+                                      },
+                                      child: widget.itemBuilder(item),
+                                    )),
+                            separatorBuilder: (ctx, i) => 6.verticalGap),
+                      ),
+                    ],
+                  ),
+                );
+              });
+        });
+      },
+    );
+    return val;
   }
 }
