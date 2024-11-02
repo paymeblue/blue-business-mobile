@@ -63,7 +63,15 @@ class StaffHomeViewModel extends BaseViewModel {
   }
 
   goToAddStaff(BuildContext context, {Staff? staff}) {
-    context.push(RoutePaths.homeToStaffToDetails, extra: staff).then((v) {
+    GoRouterState state = GoRouterState.of(context);
+
+    context
+        .push(
+            state.matchedLocation.startsWith(RoutePaths.home)
+                ? RoutePaths.homeToStaffToDetails
+                : RoutePaths.settingsToStaffToDetails,
+            extra: staff)
+        .then((v) {
       staffPagingController.refresh();
     });
   }

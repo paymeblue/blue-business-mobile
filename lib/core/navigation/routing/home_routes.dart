@@ -42,8 +42,8 @@ List<GoRoute> homeRoutes = [
         ).slide(),
         routes: [
           GoRoute(
-            path: RoutePaths.staffToBranchDetails.routeSplitter,
-            name: RoutePaths.staffToBranchDetails.routeSplitter,
+            path: RoutePaths.homeToStaffToDetailsToBranchDetails.routeSplitter,
+            name: RoutePaths.homeToStaffToDetailsToBranchDetails.routeSplitter,
             parentNavigatorKey: locator<NavigationService>().navigatorKey,
             pageBuilder: (context, state) =>
                 const EnterBranchDetailsView().slide(),

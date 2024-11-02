@@ -91,7 +91,18 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
   }
 
   goToAddBranch(BuildContext context) {
-    context.push(RoutePaths.staffToBranchDetails);
+    GoRouterState state = GoRouterState.of(context);
+    if (state.matchedLocation.startsWith(RoutePaths.home)) {
+      context.push(RoutePaths.homeToStaffToDetailsToBranchDetails).then((val) {
+        branchPagingController.refresh();
+      });
+    } else {
+      context
+          .push(RoutePaths.settingsToStaffToDetailsToBranchDetails)
+          .then((val) {
+        branchPagingController.refresh();
+      });
+    }
   }
 
   String? _path;

@@ -22,7 +22,8 @@ class RoutePaths {
       "/dash/home/branches/enter-branch-details";
   static String homeToStaff = "/dash/home/staff";
   static String homeToStaffToDetails = "/dash/home/staff/enter-staff-details";
-  static String staffToBranchDetails = "$homeToStaffToDetails/add-branch";
+  static String homeToStaffToDetailsToBranchDetails =
+      "$homeToStaffToDetails/add-branch";
 
   //INSIGHTS
   static String insights = "/dash/insights";
@@ -30,5 +31,11 @@ class RoutePaths {
   //SETTINGS
   static String settings = "/dash/settings";
   static String settingsToBranches = "/dash/settings/branches";
+  static String settingsToBranchesToDetails =
+      "/dash/settings/branches/enter-branch-details";
   static String settingsToStaff = "/dash/settings/staff";
+  static String settingsToStaffToDetails =
+      "/dash/settings/staff/enter-staff-details";
+  static String settingsToStaffToDetailsToBranchDetails =
+      "$settingsToStaffToDetails/add-branch";
 }
