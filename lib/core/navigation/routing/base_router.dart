@@ -4,22 +4,21 @@ import 'package:blue_business/core/navigation/injection/navigation_service.dart'
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/navigation/routing/signup_router.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/error/presentation/view.dart';
+import 'package:blue_business/ui/features/login/presentation/view.dart';
 import 'package:blue_business/ui/features/signup/pages/progress/presentation/view.dart';
 import 'package:blue_business/ui/features/splash/presentation/view.dart';
 import 'package:blue_business/ui/features/welcome/presentation/view.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 GoRouter router = GoRouter(
-  errorBuilder: (context, state) {
-    return ErrorRouteView(
-      message: state.error?.message,
-      newRoute: state.matchedLocation.startsWith("/dash")
-          ? RoutePaths.home
-          : RoutePaths.initial,
-    );
-  },
+  errorPageBuilder: (context, state) => ErrorRouteView(
+    message: state.error?.message,
+    newRoute: state.matchedLocation.startsWith("/dash")
+        ? RoutePaths.home
+        : RoutePaths.initial,
+  ).fade,
   redirect: (context, state) {
     AppStateValues stateValues = locator<AppStateValues>();
     if (stateValues.currentUser == null &&
@@ -33,51 +32,26 @@ GoRouter router = GoRouter(
   routes: [
     GoRoute(
       path: RoutePaths.initial,
-      name: "Splash",
-      builder: (context, state) {
-        return const WelcomeView();
-      },
-      pageBuilder: (context, state) => CustomTransitionPage(
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FadeTransition(
-          opacity: animation,
-          child: child,
-        ),
-        child: const SplashView(),
-      ),
+      name: RoutePaths.initial,
+      pageBuilder: (context, state) => const SplashView().fade,
     ),
     GoRoute(
       path: RoutePaths.welcome,
-      name: "Welcome",
-      builder: (context, state) {
-        return const WelcomeView();
-      },
-      pageBuilder: (context, state) => CustomTransitionPage(
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FadeTransition(
-          opacity: animation,
-          child: child,
-        ),
-        child: const WelcomeView(),
-      ),
+      name: RoutePaths.welcome,
+      pageBuilder: (context, state) => const WelcomeView().fade,
     ),
     GoRoute(
       path: RoutePaths.signup,
-      name: "Signup",
-      builder: (context, state) {
-        return const WelcomeView();
-      },
-      pageBuilder: (context, state) => CustomTransitionPage(
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FadeTransition(
-          opacity: animation,
-          child: child,
-        ),
-        child: SignupProgressView(
-          data: state.extra as SignupData,
-        ),
-      ),
+      name: RoutePaths.signup,
+      pageBuilder: (context, state) => SignupProgressView(
+        data: state.extra as SignupData,
+      ).fade,
       routes: sigupRoutes,
+    ),
+    GoRoute(
+      path: RoutePaths.login,
+      name: RoutePaths.login,
+      pageBuilder: (context, state) => const LoginView().fade,
     ),
   ],
 );

@@ -15,8 +15,7 @@ class SplashViewModel extends BaseViewModel {
 
     if (StorageValues.username.isNotEmpty) {
       if (StorageValues.skipWelcome == "true") {
-        //TODO: change back to login
-        if (context.mounted) context.go(RoutePaths.welcome);
+        if (context.mounted) context.go(RoutePaths.login);
       } else {
         await StorageHelpers.setVal(
             StorageKeys.skipWelcomeKey, true.toString());

@@ -46,6 +46,15 @@ extension Transition on Widget {
       child: this,
     );
   }
+
+  Page get fade => CustomTransitionPage(
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            FadeTransition(
+          opacity: animation,
+          child: child,
+        ),
+        child: this,
+      );
 }
 
 extension StringEx on String? {

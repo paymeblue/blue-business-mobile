@@ -17,4 +17,6 @@ class RoutePaths {
 
   //HOME
   static String home = "/dash/home";
+  static String insights = "/dash/inisghts";
+  static String settings = "/dash/settings";
 }

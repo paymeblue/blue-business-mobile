@@ -46,7 +46,7 @@ class WelcomeViewModel extends BaseViewModel {
   }
 
   goToLogin(BuildContext context) {
-    globalContext!.go(RoutePaths.login);
+    context.push(RoutePaths.login);
   }
 
   launchTerms() async {

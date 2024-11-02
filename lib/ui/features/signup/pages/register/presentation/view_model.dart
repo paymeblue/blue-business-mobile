@@ -76,7 +76,7 @@ class InitiateSignupViewModel extends BaseViewModel {
   }
 
   goToLogin(BuildContext context) {
-    context.go(RoutePaths.login);
+    context.push(RoutePaths.login);
   }
 
   onChanged(String? c) {
