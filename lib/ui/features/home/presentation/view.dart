@@ -35,7 +35,7 @@ class HomeView extends StatelessWidget {
           child: Scaffold(
             body: RefreshIndicator(
               onRefresh: () async {
-                model.getDashData();
+                model.refreshDashData();
               },
               child: SingleChildScrollView(
                 child: SizedBox(
@@ -465,7 +465,7 @@ class HomeView extends StatelessWidget {
 
   Widget transactionOptionSection(HomeViewModel model, BuildContext context) {
     return Container(
-      height: 100,
+      height: 100.h,
       margin: const EdgeInsets.only(
         left: 16,
         right: 16,
@@ -489,8 +489,8 @@ class HomeView extends StatelessWidget {
         GestureDetector(
           onTap: option.onTap,
           child: Container(
-            height: 62,
-            width: 62,
+            height: 62.h,
+            width: 62.w,
             decoration: BoxDecoration(
                 border: Border.all(color: AppColors.midGrey),
                 borderRadius: BorderRadius.circular(20)),
@@ -521,7 +521,7 @@ class HomeView extends StatelessWidget {
           8.verticalGap,
           Container(
             width: model.size.width,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            padding: const EdgeInsets.symmetric(vertical: 8),
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.midGrey),
               borderRadius: BorderRadius.circular(6),
@@ -567,31 +567,21 @@ class HomeView extends StatelessWidget {
         color: AppColors.bgGrey,
         borderRadius: BorderRadius.circular(4),
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            "This week",
-            style: AppTextStyles.subHeader.copyWith(
-              color: AppColors.primary,
-            ),
-          ),
-        ],
+      child: Text(
+        "This week",
+        style: AppTextStyles.subHeader
+            .copyWith(color: AppColors.primary, fontSize: 12.5.sp),
       ),
     );
   }
 
   Widget totalSalesHeader() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          "Total Sales",
-          style: AppTextStyles.header.copyWith(
-            fontSize: 18.sp,
-          ),
-        ),
-      ],
+    return Text(
+      "Sale Analytics",
+      style: AppTextStyles.header.copyWith(
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w500,
+      ),
     );
   }
 
@@ -602,7 +592,7 @@ class HomeView extends StatelessWidget {
     double percentIncrease = 0,
   }) =>
       Container(
-        width: (context.mediaQuery.size.width - 65) / 2,
+        width: ((context.mediaQuery.size.width - 65) / 2).w,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

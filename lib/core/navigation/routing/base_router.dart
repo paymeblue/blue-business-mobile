@@ -1,6 +1,7 @@
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/injection/navigation_service.dart';
+import 'package:blue_business/core/navigation/routing/home_routes.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/navigation/routing/signup_router.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -69,6 +70,7 @@ GoRouter router = GoRouter(
     StatefulShellRoute.indexedStack(
       pageBuilder: (context, state, child) =>
           DashboardShellView(child: child).fade,
+      parentNavigatorKey: locator<NavigationService>().navigatorKey,
       branches: [
         StatefulShellBranch(
           initialLocation: RoutePaths.home,
@@ -77,6 +79,7 @@ GoRouter router = GoRouter(
               path: RoutePaths.home,
               name: RoutePaths.home,
               pageBuilder: (context, state) => const HomeView().slide(),
+              routes: homeRoutes,
             )
           ],
         ),
