@@ -6,6 +6,7 @@ import 'package:blue_business/core/models/shareholders/create/response/create_sh
 import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/models/signup/response/signup_response.dart';
+import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -34,7 +35,13 @@ class SignupBusinessKycViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    // context.go("/register${RoutePaths.pinPath}", extra: data);
+    context.push<SignupData>(RoutePaths.createPin, extra: data).then(
+      (val) {
+        if (val != null) {
+          data = val;
+        }
+      },
+    );
   }
 
   goBack(BuildContext context) {
@@ -98,8 +105,8 @@ class SignupBusinessKycViewModel extends BaseViewModel {
             )));
 
     if (response.status == "success") {
+      data = data.copyWith(businessKycCompleted: true);
       if (context.mounted) {
-        data = data.copyWith(businessKycCompleted: true);
         goToNext(context);
       }
     } else {

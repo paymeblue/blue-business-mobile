@@ -40,23 +40,27 @@ class VerifySignupOtpView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ...titleAndSubtitle(),
-                50.verticalGap,
-                BlueTextField.otp(
-                  onChanged: model.onChanged,
-                  onSubmit: model.onSubmit,
-                ),
-                subtextAndTimeAction(
-                  "Didn’t receive a code?",
-                  resendButton(
-                    model.canResend
-                        ? "Resend code"
-                        : "Resend in ${model.timeString()}",
-                    model.canResend,
-                    model.resendOtp,
-                  ),
-                ),
-                const Spacer(),
+                Expanded(
+                    child: ListView(
+                  children: [
+                    ...titleAndSubtitle(),
+                    50.verticalGap,
+                    BlueTextField.otp(
+                      onChanged: model.onChanged,
+                      onSubmit: model.onSubmit,
+                    ),
+                    subtextAndTimeAction(
+                      "Didn’t receive a code?",
+                      resendButton(
+                        model.canResend
+                            ? "Resend code"
+                            : "Resend in ${model.timeString()}",
+                        model.canResend,
+                        model.resendOtp,
+                      ),
+                    ),
+                  ],
+                )),
                 AppButton.primary(
                   title: "Verify OTP",
                   isEnabled: model.canContinue,

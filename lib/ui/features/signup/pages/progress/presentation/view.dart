@@ -70,7 +70,7 @@ class _SignupProgressViewState extends State<SignupProgressView> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: AppButton.primary(
-                      title: "Continue",
+                      title: model.progress == 3 ? "Create PIN" : "Continue",
                       onTap: () {
                         model.goToNext(context);
                       }),

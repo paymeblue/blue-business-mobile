@@ -50,6 +50,7 @@ class StorageValues {
   static deleteLoginValues() async {
     name = "";
     username = "";
+    pin = "";
 
     selectedCountryCode = null;
 

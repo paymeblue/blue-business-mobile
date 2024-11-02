@@ -1,4 +1,4 @@
-enum NotificationState { success, error, warning }
+enum NotificationState { logoutSuccess, error, warning, signupSuccess }
 
 enum LogLevel {
   debug('DEBUG'),
