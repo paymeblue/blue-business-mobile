@@ -717,22 +717,22 @@ class BlueBottomSheet {
                 context.pop();
               },
               child: Container(
-                height: 34,
-                width: 34,
+                height: 34.h,
+                width: 34.w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: const Color(0xFFE5E6E8)),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.close,
-                  size: 19,
+                  size: 19.sp,
                   color: AppColors.textColor,
                 ),
               ),
             ),
             Center(
               child: SizedBox(
-                width: 265,
+                width: 265.w,
                 child:
                     Column(mainAxisAlignment: MainAxisAlignment.end, children: [
                   Text(
@@ -762,7 +762,7 @@ class BlueBottomSheet {
           }
         },
         child: Container(
-          height: 50,
+          height: 50.h,
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           decoration: BoxDecoration(
@@ -868,15 +868,15 @@ class BlueBottomSheet {
                 passwordController.clear();
               },
               child: Container(
-                height: 34,
-                width: 34,
+                height: 34.h,
+                width: 34.w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: const Color(0xFFE5E6E8)),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.close,
-                  size: 19,
+                  size: 19.sp,
                   color: AppColors.textColor,
                 ),
               ),
@@ -995,15 +995,15 @@ class BlueBottomSheet {
                 context.pop();
               },
               child: Container(
-                height: 34,
-                width: 34,
+                height: 34.h,
+                width: 34.w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: const Color(0xFFE5E6E8)),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.close,
-                  size: 19,
+                  size: 19.sp,
                   color: AppColors.textColor,
                 ),
               ),

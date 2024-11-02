@@ -240,7 +240,7 @@ class _BlueBranchDropdownState extends State<_BlueBranchDropdown> {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          const Spacer(),
+          10.horizontalGap,
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
@@ -349,7 +349,7 @@ class _BlueBusinessCategoryDropdown extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          const Spacer(),
+          10.horizontalGap,
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
@@ -460,7 +460,7 @@ class _BlueStringDropdown extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          const Spacer(),
+          10.horizontalGap,
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
@@ -567,7 +567,7 @@ class _BlueCountryDropdown extends StatelessWidget {
               height: 25.h,
               width: 20.w,
             ),
-          4.horizontalGap,
+          10.horizontalGap,
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
@@ -678,7 +678,7 @@ class _BlueMeterTypeDropdown extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          const Spacer(),
+          10.horizontalGap,
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
@@ -787,7 +787,7 @@ class _BlueBankDropdown extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          const Spacer(),
+          10.horizontalGap,
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
@@ -917,7 +917,7 @@ class _BlueBillPackageDropdown extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          const Spacer(),
+          10.horizontalGap,
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
@@ -1046,7 +1046,7 @@ class _BlueBillProviderDropdown extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          const Spacer(),
+          10.horizontalGap,
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,

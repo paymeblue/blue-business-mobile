@@ -296,7 +296,7 @@ class SettingsViewModel extends BaseViewModel {
           title: "Account recovery",
           subtitle: "Recovery your account anytime",
           onTap: () {
-            // goToAccountRecovery(context);
+            goToAccountRecovery(context);
           },
         ),
       ];
@@ -307,11 +307,11 @@ class SettingsViewModel extends BaseViewModel {
           title: "Withdrawal bank",
           subtitle: "Link your personal bank account to make easy withdrawals",
           onTap: () {
-            // if (locator<AppStateValues>().withdrawalAccount == null) {
-            //   getWithdrawalAccount(context);
-            // } else {
-            //   goToWithdrawalBank(context);
-            // }
+            if (locator<AppStateValues>().withdrawalAccount == null) {
+              getWithdrawalAccount(context);
+            } else {
+              goToWithdrawalBank(context);
+            }
           },
         ),
         SettingsOption(
@@ -516,10 +516,10 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToWithdrawalBank(BuildContext context) {
-    // context.go(RoutePaths.addWithdrawalBankPath);
+    context.push(RoutePaths.withdrawalInfo);
   }
 
   goToAccountRecovery(BuildContext context) {
-    // context.go("${RoutePaths.accountRecoveryPath}/");
+    context.push(RoutePaths.accountRecovery);
   }
 }
