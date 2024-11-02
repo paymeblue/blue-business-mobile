@@ -200,11 +200,7 @@ class TransactionHistoryViewModel extends BaseViewModel {
       },
     );
 
-    if (selectedDate != null) {
-      return selectedDate.toIso8601String();
-    } else {
-      return null;
-    }
+    return selectedDate?.toIso8601String();
   }
 
   String getType(String t) {

@@ -1,15 +1,16 @@
 import 'dart:io';
 
+import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
-import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BlueTextField {
@@ -25,22 +26,25 @@ class BlueTextField {
     String title = "Phone",
     bool isOptional = false,
     ValueChanged<String?>? onChanged,
+    FocusNode? node,
     CountryCode? selectedItem,
     Widget? leading,
     bool isEnabled = true,
   }) {
     Widget selectedItem() {
       return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
         width: 60,
         height: 25,
         decoration: BoxDecoration(
-            color: AppColors.grey, borderRadius: BorderRadius.circular(4)),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          color: AppColors.grey,
+          borderRadius: BorderRadius.circular(4),
+        ),
         child: Container(
           height: 25,
           width: 45,
           margin: const EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           decoration: BoxDecoration(
               color: AppColors.white, borderRadius: BorderRadius.circular(4)),
           child: CountryFlag.fromCountryCode(
@@ -64,6 +68,7 @@ class BlueTextField {
       //   value: selectedItem,
       //   searchController: searchController,
       // ),
+      node: node,
       leading: selectedItem(),
       isEnabled: isEnabled,
       onChanged: onChanged,
@@ -134,10 +139,10 @@ class BlueTextField {
       controller: controller,
       hint: hint,
       isEnabled: isEnabled,
-      maxLength: maxLength,
-      textAlign: textAlign,
       initialValue: initialValue,
       keyboardType: keyboardType,
+      maxLength: maxLength,
+      textAlign: textAlign,
     );
   }
 
@@ -297,6 +302,7 @@ class _BluePhoneTextField extends StatelessWidget {
     this.onChanged,
     this.isEnabled = true,
     this.leading,
+    this.node,
   });
 
   final String? hint;
@@ -307,6 +313,7 @@ class _BluePhoneTextField extends StatelessWidget {
   final bool isOptional;
   final bool isEnabled;
   final Widget? leading;
+  final FocusNode? node;
 
   @override
   Widget build(BuildContext context) {
@@ -320,6 +327,7 @@ class _BluePhoneTextField extends StatelessWidget {
       leading: leading,
       isEnabled: isEnabled,
       onChanged: onChanged,
+      node: node,
     );
   }
 }
@@ -389,22 +397,21 @@ class _BlueSearchTextField extends StatelessWidget {
 }
 
 class _BluePlaintextTextField extends StatelessWidget {
-  const _BluePlaintextTextField({
-    this.hint,
-    this.controller,
-    this.node,
-    this.isEnabled = true,
-    this.isOptional = false,
-    required this.title,
-    this.keyboardType,
-    this.onChanged,
-    this.inputFormatters,
-    this.initialValue,
-    this.isMessage = false,
-    this.capitalization = TextCapitalization.none,
-    this.textAlign = TextAlign.start,
-    this.maxLength,
-  });
+  const _BluePlaintextTextField(
+      {this.hint,
+      this.controller,
+      this.node,
+      this.isEnabled = true,
+      this.isOptional = false,
+      required this.title,
+      this.keyboardType,
+      this.onChanged,
+      this.inputFormatters,
+      this.initialValue,
+      this.isMessage = false,
+      this.capitalization = TextCapitalization.none,
+      this.maxLength,
+      this.textAlign = TextAlign.start});
 
   final String? hint;
   final TextEditingController? controller;
@@ -529,7 +536,7 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
           ],
           TextFormField(
             style: widget.isMessage
-                ? AppTextStyles.textField.copyWith(fontSize: 14.5)
+                ? AppTextStyles.textField.copyWith(fontSize: 14.sp)
                 : AppTextStyles.textField,
             controller: widget.controller,
             initialValue: widget.initialValue,
@@ -544,16 +551,12 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
             onChanged: widget.onChanged,
             minLines: 1,
             focusNode: widget.node,
-            maxLines: widget.isMessage
-                ? 3
-                : widget.isPassword
-                    ? 1
-                    : null,
+            maxLines: widget.isMessage ? 3 : 1,
             cursorHeight: widget.isMessage ? 15 : null,
             decoration: InputDecoration(
               isCollapsed: true,
-              hintText: widget.hint,
               counter: 0.verticalGap,
+              hintText: widget.hint,
               contentPadding: EdgeInsets.symmetric(
                   horizontal: widget.isMessage ? 8 : 15,
                   vertical: widget.isMessage ? 6 : 10),
@@ -613,7 +616,7 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
         TextSpan(
             text: " (Optional)",
             style: AppTextStyles.subHeader
-                .copyWith(fontWeight: FontWeight.w400, fontSize: 13.5))
+                .copyWith(fontWeight: FontWeight.w400, fontSize: 13.sp))
     ]));
   }
 }

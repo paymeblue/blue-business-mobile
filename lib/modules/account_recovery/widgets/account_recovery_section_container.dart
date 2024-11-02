@@ -4,6 +4,7 @@ import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/modules/dashboard_pages/settings/models/settings_option/settings_option.dart';
 import 'package:blue_business/modules/dashboard_pages/settings/models/settings_section/settings_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AccountRecoverySectionContainer extends StatelessWidget {
   final SettingsSection section;
@@ -81,7 +82,7 @@ class AccountRecoverySectionContainer extends StatelessWidget {
         Text(
           option.title,
           style: AppTextStyles.header.copyWith(
-            fontSize: 15.5,
+            fontSize: 15.sp,
             fontWeight: FontWeight.w600,
             color: AppColors.textColor,
           ),
@@ -91,7 +92,7 @@ class AccountRecoverySectionContainer extends StatelessWidget {
           Text(
             option.subtitle!,
             style: AppTextStyles.subHeader.copyWith(
-              fontSize: 13.5,
+              fontSize: 13.sp,
               height: 1,
               fontWeight: FontWeight.w400,
               color: AppColors.bodyTextColor,

@@ -31,8 +31,12 @@ mixin _$CreateBusinessProfileData {
   List<Shareholders> get shareholders => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this CreateBusinessProfileData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CreateBusinessProfileData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CreateBusinessProfileDataCopyWith<CreateBusinessProfileData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -66,6 +70,8 @@ class _$CreateBusinessProfileDataCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CreateBusinessProfileData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -151,6 +157,8 @@ class __$$CreateBusinessProfileDataImplCopyWithImpl<$Res>
       $Res Function(_$CreateBusinessProfileDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CreateBusinessProfileData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -281,7 +289,7 @@ class _$CreateBusinessProfileDataImpl implements _CreateBusinessProfileData {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -295,7 +303,9 @@ class _$CreateBusinessProfileDataImpl implements _CreateBusinessProfileData {
       const DeepCollectionEquality().hash(_shareholders),
       createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreateBusinessProfileData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateBusinessProfileDataImplCopyWith<_$CreateBusinessProfileDataImpl>
@@ -343,8 +353,11 @@ abstract class _CreateBusinessProfileData implements CreateBusinessProfileData {
   List<Shareholders> get shareholders;
   @override
   String? get createdAt;
+
+  /// Create a copy of CreateBusinessProfileData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateBusinessProfileDataImplCopyWith<_$CreateBusinessProfileDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

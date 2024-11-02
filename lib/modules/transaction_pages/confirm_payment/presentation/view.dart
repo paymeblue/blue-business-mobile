@@ -10,6 +10,7 @@ import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/modals/info_container.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -118,12 +119,12 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
       children: [
         Text(
           widget.data!.receiverName,
-          style: AppTextStyles.header.copyWith(fontSize: 15.5),
+          style: AppTextStyles.header.copyWith(fontSize: 15.sp),
         ),
         Text(
           modeSubString(),
           style: AppTextStyles.smallText
-              .copyWith(color: AppColors.bodyTextColor, fontSize: 14.5),
+              .copyWith(color: AppColors.bodyTextColor, fontSize: 14.sp),
         )
       ],
     );
@@ -136,12 +137,12 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
       children: [
         Text(
           locator<AppStateValues>().withdrawalAccount!.accountName,
-          style: AppTextStyles.header.copyWith(fontSize: 15.5),
+          style: AppTextStyles.header.copyWith(fontSize: 15.sp),
         ),
         Text(
           modeSubString(),
           style: AppTextStyles.smallText
-              .copyWith(color: AppColors.bodyTextColor, fontSize: 14.5),
+              .copyWith(color: AppColors.bodyTextColor, fontSize: 14.sp),
         )
       ],
     );
@@ -247,7 +248,7 @@ class _ConfirmPaymentViewState extends State<ConfirmPaymentView> {
           child: Text(
             widget.data!.receiverName.initials,
             style: AppTextStyles.header
-                .copyWith(color: AppColors.white, fontSize: 17.5),
+                .copyWith(color: AppColors.white, fontSize: 17.sp),
           ),
         );
       case "blue-user":

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
@@ -8,6 +6,7 @@ import 'package:blue_business/modules/dashboard_pages/insights/widgets/branch_in
 import 'package:blue_business/modules/dashboard_pages/insights/widgets/general_insights.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -29,18 +28,18 @@ class _InsightsViewState extends State<InsightsView> {
           appBar: BlueAppBar.primary(
             title: Text(
               "Insights",
-              style: AppTextStyles.subHeader.copyWith(fontSize: 20.5),
+              style: AppTextStyles.subHeader.copyWith(fontSize: 20.sp),
             ),
             leading: 0.horizontalGap,
           ),
           body: Container(
-            height: model.size.height,
+            height: model.size.height.h,
             width: model.size.width,
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: EdgeInsets.only(bottom: 20.h, top: 10.h),
             child: Column(
               children: [
                 tabs(model),
-                35.verticalGap,
+                25.verticalGap,
                 Expanded(
                   child: model.currTab == 0
                       ? const GeneralInsightsPage()
@@ -56,7 +55,7 @@ class _InsightsViewState extends State<InsightsView> {
 
   Widget tabs(InsightsViewModel model) {
     return SizedBox(
-      height: 40,
+      height: 40.h,
       width: context.mediaQuery.size.width,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -71,7 +70,6 @@ class _InsightsViewState extends State<InsightsView> {
   Widget customTab(InsightsViewModel model, int i, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        log(i.toString());
         model.currTab = i;
       },
       child: Container(
@@ -88,8 +86,8 @@ class _InsightsViewState extends State<InsightsView> {
             5.verticalGap,
             AnimatedContainer(
               duration: const Duration(milliseconds: 350),
-              height: model.tabs()[i] == model.tabs()[model.currTab] ? 4 : 2.2,
-              width: model.size.width / 2,
+              height: i == model.currTab ? 3.h : 2.2.h,
+              width: (model.size.width / 2),
               decoration: BoxDecoration(
                 color: i == model.currTab ? AppColors.primary : null,
                 borderRadius: BorderRadius.circular(2),

@@ -22,8 +22,12 @@ BankData _$BankDataFromJson(Map<String, dynamic> json) {
 mixin _$BankData {
   List<BankItem> get banks => throw _privateConstructorUsedError;
 
+  /// Serializes this BankData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BankData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BankDataCopyWith<BankData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,6 +50,8 @@ class _$BankDataCopyWithImpl<$Res, $Val extends BankData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BankData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -79,6 +85,8 @@ class __$$BankDataImplCopyWithImpl<$Res>
       _$BankDataImpl _value, $Res Function(_$BankDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BankData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,12 +130,14 @@ class _$BankDataImpl implements _BankData {
             const DeepCollectionEquality().equals(other._banks, _banks));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_banks));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BankData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BankDataImplCopyWith<_$BankDataImpl> get copyWith =>
@@ -150,8 +160,11 @@ abstract class _BankData implements BankData {
 
   @override
   List<BankItem> get banks;
+
+  /// Create a copy of BankData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BankDataImplCopyWith<_$BankDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

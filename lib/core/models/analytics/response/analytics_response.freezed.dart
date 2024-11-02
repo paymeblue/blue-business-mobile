@@ -24,8 +24,12 @@ mixin _$AnalyticsResponse {
   String? get message => throw _privateConstructorUsedError;
   AnalyticsData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this AnalyticsResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AnalyticsResponseCopyWith<AnalyticsResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$AnalyticsResponseCopyWithImpl<$Res, $Val extends AnalyticsResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$AnalyticsResponseCopyWithImpl<$Res, $Val extends AnalyticsResponse>
     ) as $Val);
   }
 
+  /// Create a copy of AnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AnalyticsDataCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$AnalyticsResponseImplCopyWithImpl<$Res>
       $Res Function(_$AnalyticsResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,11 +175,13 @@ class _$AnalyticsResponseImpl implements _AnalyticsResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AnalyticsResponseImplCopyWith<_$AnalyticsResponseImpl> get copyWith =>
@@ -199,8 +211,11 @@ abstract class _AnalyticsResponse implements AnalyticsResponse {
   String? get message;
   @override
   AnalyticsData? get data;
+
+  /// Create a copy of AnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AnalyticsResponseImplCopyWith<_$AnalyticsResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

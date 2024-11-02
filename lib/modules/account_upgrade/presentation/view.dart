@@ -6,6 +6,7 @@ import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -95,7 +96,7 @@ class _UpdateKycViewState extends State<UpdateKycView> {
           Text(
             "Requirements",
             style: AppTextStyles.subHeader.copyWith(
-              fontSize: 15,
+              fontSize: 15.sp,
               color: AppColors.textColor,
             ),
           ),
@@ -112,7 +113,7 @@ class _UpdateKycViewState extends State<UpdateKycView> {
           Text(
             "Benefits",
             style: AppTextStyles.subHeader.copyWith(
-              fontSize: 15,
+              fontSize: 15.sp,
               color: AppColors.textColor,
             ),
           ),
@@ -124,14 +125,14 @@ class _UpdateKycViewState extends State<UpdateKycView> {
                 TextSpan(
                     text: "• Daily Transfer Limit | ",
                     style: AppTextStyles.smallText.copyWith(
-                      fontSize: 15,
+                      fontSize: 15.sp,
                       color: AppColors.bodyTextColor,
                     )),
                 TextSpan(
                     text:
                         level == "intermediate" ? "₦5,000,000.00" : "No limit",
                     style: AppTextStyles.header.copyWith(
-                      fontSize: 15,
+                      fontSize: 15.sp,
                       color: AppColors.primary,
                     )),
               ]),
@@ -148,7 +149,7 @@ class _UpdateKycViewState extends State<UpdateKycView> {
       child: Text(
         "• $text",
         style: AppTextStyles.smallText
-            .copyWith(fontSize: 15, color: AppColors.bodyTextColor),
+            .copyWith(fontSize: 15.sp, color: AppColors.bodyTextColor),
       ),
     );
   }
@@ -157,7 +158,7 @@ class _UpdateKycViewState extends State<UpdateKycView> {
     return [
       Text(
         "KYC Tier ${level == "intermediate" ? "1" : "2"}",
-        style: AppTextStyles.header.copyWith(fontSize: 15),
+        style: AppTextStyles.header.copyWith(fontSize: 15.sp),
       ),
       Row(
         children: [

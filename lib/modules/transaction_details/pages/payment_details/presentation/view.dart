@@ -8,6 +8,7 @@ import 'package:blue_business/modules/transaction_pages/success/widgets/receipt.
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:screenshot/screenshot.dart';
 
@@ -67,8 +68,8 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                     ),
                     Text(
                       "${nairaSymbol()}${widget.detail.amount}",
-                      style: AppTextStyles.header
-                          .copyWith(fontSize: 26, fontWeight: FontWeight.w700),
+                      style: AppTextStyles.header.copyWith(
+                          fontSize: 26.sp, fontWeight: FontWeight.w700),
                     ),
                     15.verticalGap,
                     Expanded(

@@ -24,8 +24,12 @@ mixin _$VendCableResponse {
   String? get message => throw _privateConstructorUsedError;
   VendCableData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this VendCableResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VendCableResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VendCableResponseCopyWith<VendCableResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$VendCableResponseCopyWithImpl<$Res, $Val extends VendCableResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VendCableResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$VendCableResponseCopyWithImpl<$Res, $Val extends VendCableResponse>
     ) as $Val);
   }
 
+  /// Create a copy of VendCableResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $VendCableDataCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$VendCableResponseImplCopyWithImpl<$Res>
       $Res Function(_$VendCableResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VendCableResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,11 +175,13 @@ class _$VendCableResponseImpl implements _VendCableResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VendCableResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VendCableResponseImplCopyWith<_$VendCableResponseImpl> get copyWith =>
@@ -199,8 +211,11 @@ abstract class _VendCableResponse implements VendCableResponse {
   String? get message;
   @override
   VendCableData? get data;
+
+  /// Create a copy of VendCableResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VendCableResponseImplCopyWith<_$VendCableResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

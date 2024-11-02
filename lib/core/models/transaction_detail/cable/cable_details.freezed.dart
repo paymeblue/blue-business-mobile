@@ -32,8 +32,12 @@ mixin _$CableDetails {
   String get service => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
 
+  /// Serializes this CableDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CableDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CableDetailsCopyWith<CableDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -68,6 +72,8 @@ class _$CableDetailsCopyWithImpl<$Res, $Val extends CableDetails>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CableDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -162,6 +168,8 @@ class __$$CableDetailsImplCopyWithImpl<$Res>
       _$CableDetailsImpl _value, $Res Function(_$CableDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CableDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -299,7 +307,7 @@ class _$CableDetailsImpl implements _CableDetails {
             (identical(other.status, status) || other.status == status));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -315,7 +323,9 @@ class _$CableDetailsImpl implements _CableDetails {
       service,
       status);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CableDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CableDetailsImplCopyWith<_$CableDetailsImpl> get copyWith =>
@@ -368,8 +378,11 @@ abstract class _CableDetails implements CableDetails {
   String get service;
   @override
   String get status;
+
+  /// Create a copy of CableDetails
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CableDetailsImplCopyWith<_$CableDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

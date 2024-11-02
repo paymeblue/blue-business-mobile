@@ -24,8 +24,12 @@ mixin _$GetReasonResponse {
   String? get message => throw _privateConstructorUsedError;
   List<Reason>? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this GetReasonResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetReasonResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetReasonResponseCopyWith<GetReasonResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$GetReasonResponseCopyWithImpl<$Res, $Val extends GetReasonResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetReasonResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$GetReasonResponseImplCopyWithImpl<$Res>
       $Res Function(_$GetReasonResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetReasonResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -156,12 +164,14 @@ class _$GetReasonResponseImpl implements _GetReasonResponse {
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetReasonResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetReasonResponseImplCopyWith<_$GetReasonResponseImpl> get copyWith =>
@@ -191,8 +201,11 @@ abstract class _GetReasonResponse implements GetReasonResponse {
   String? get message;
   @override
   List<Reason>? get data;
+
+  /// Create a copy of GetReasonResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetReasonResponseImplCopyWith<_$GetReasonResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

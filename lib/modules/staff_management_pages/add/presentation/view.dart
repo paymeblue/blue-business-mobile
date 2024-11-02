@@ -5,7 +5,7 @@ import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
-import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
@@ -15,6 +15,7 @@ import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:blue_business/widgets/textfield/dropdown.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -126,6 +127,7 @@ class _AddStaffViewState extends State<AddStaffView> {
           title: "Staff name",
           onChanged: model.onChanged,
           controller: model.nameController,
+          node: FocusNode(),
         ),
         12.verticalGap,
         model.roleState == FetchState.loading
@@ -170,6 +172,7 @@ class _AddStaffViewState extends State<AddStaffView> {
           controller: model.passwordController,
           onChanged: model.onChanged,
           title: "Set password",
+          node: FocusNode(),
         ),
         10.verticalGap,
         ...List.generate(
@@ -203,7 +206,7 @@ class _AddStaffViewState extends State<AddStaffView> {
                   style: AppTextStyles.subHeader.copyWith(
                       color: AppColors.textColor,
                       fontWeight: FontWeight.w400,
-                      fontSize: 13.5),
+                      fontSize: 13.sp),
                 ),
                 TextSpan(
                   text: "add branches",
@@ -215,14 +218,14 @@ class _AddStaffViewState extends State<AddStaffView> {
                       color: AppColors.blue,
                       fontWeight: FontWeight.w400,
                       decoration: TextDecoration.underline,
-                      fontSize: 13.5),
+                      fontSize: 13.sp),
                 ),
                 TextSpan(
                   text: " to your account.",
                   style: AppTextStyles.subHeader.copyWith(
                       color: AppColors.textColor,
                       fontWeight: FontWeight.w400,
-                      fontSize: 13.5),
+                      fontSize: 13.sp),
                 ),
               ]),
             ),

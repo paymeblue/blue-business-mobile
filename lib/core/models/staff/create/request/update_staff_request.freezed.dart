@@ -26,8 +26,12 @@ mixin _$UpdateStaffRequest {
   String? get role => throw _privateConstructorUsedError;
   int? get branchId => throw _privateConstructorUsedError;
 
+  /// Serializes this UpdateStaffRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UpdateStaffRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UpdateStaffRequestCopyWith<UpdateStaffRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$UpdateStaffRequestCopyWithImpl<$Res, $Val extends UpdateStaffRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UpdateStaffRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,6 +120,8 @@ class __$$UpdateStaffRequestImplCopyWithImpl<$Res>
       $Res Function(_$UpdateStaffRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UpdateStaffRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -187,12 +195,14 @@ class _$UpdateStaffRequestImpl implements _UpdateStaffRequest {
                 other.branchId == branchId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, name, phone, password, role, branchId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UpdateStaffRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdateStaffRequestImplCopyWith<_$UpdateStaffRequestImpl> get copyWith =>
@@ -228,8 +238,11 @@ abstract class _UpdateStaffRequest implements UpdateStaffRequest {
   String? get role;
   @override
   int? get branchId;
+
+  /// Create a copy of UpdateStaffRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateStaffRequestImplCopyWith<_$UpdateStaffRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

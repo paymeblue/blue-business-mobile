@@ -24,8 +24,12 @@ mixin _$ChangePinRequest {
   String get newPin => throw _privateConstructorUsedError;
   String get confirmPin => throw _privateConstructorUsedError;
 
+  /// Serializes this ChangePinRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChangePinRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChangePinRequestCopyWith<ChangePinRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$ChangePinRequestCopyWithImpl<$Res, $Val extends ChangePinRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChangePinRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$ChangePinRequestImplCopyWithImpl<$Res>
       $Res Function(_$ChangePinRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChangePinRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,11 +156,13 @@ class _$ChangePinRequestImpl implements _ChangePinRequest {
                 other.confirmPin == confirmPin));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, oldPin, newPin, confirmPin);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChangePinRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChangePinRequestImplCopyWith<_$ChangePinRequestImpl> get copyWith =>
@@ -182,8 +192,11 @@ abstract class _ChangePinRequest implements ChangePinRequest {
   String get newPin;
   @override
   String get confirmPin;
+
+  /// Create a copy of ChangePinRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangePinRequestImplCopyWith<_$ChangePinRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

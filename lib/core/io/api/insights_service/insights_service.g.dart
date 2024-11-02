@@ -100,7 +100,7 @@ class _InsightsService implements InsightsService {
     )
         .compose(
           _dio.options,
-          '/analytics',
+          '/analytic',
           queryParameters: queryParameters,
           data: _data,
         )

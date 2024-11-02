@@ -1,7 +1,6 @@
 import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/transaction_service/transaction_service.dart';
-import 'package:blue_business/core/models/payment_option/payment_option.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/initiate/request/initiate_transaction_request.dart';
 import 'package:blue_business/core/models/transaction/initiate/response/initiate_transaction_response.dart';
@@ -11,6 +10,7 @@ import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
@@ -145,6 +145,8 @@ class InitiatePaymentViewModel extends BaseViewModel {
         return "phone";
       case PaymentMode.offline:
         return "offline";
+      default:
+        return "";
     }
   }
 }

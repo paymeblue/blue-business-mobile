@@ -8,7 +8,7 @@ import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
-import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/modules/dashboard_pages/insights/presentation/view_model.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/charts/line_chart.dart';
@@ -19,6 +19,7 @@ import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -44,7 +45,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             branchSelect(model),
-            20.verticalGap,
+            10.verticalGap,
             FilterTab(
               selectedValue: model.selectedType,
               tabs: model.types,
@@ -88,7 +89,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
       },
       splashColor: AppColors.primary.withOpacity(.15),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.blue),
           borderRadius: BorderRadius.circular(24),
@@ -100,7 +101,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
               model.branch?.name.toUpperCase() ?? "SELECT A BRANCH",
               style: AppTextStyles.smallText.copyWith(
                 color: AppColors.blue,
-                fontSize: 11,
+                fontSize: 11.sp,
               ),
             ),
             8.horizontalGap,
@@ -284,7 +285,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
             "${model.selectedType} Sales",
             style: AppTextStyles.smallText.copyWith(
                 color: AppColors.neutralColorBlack,
-                fontSize: 14,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w500),
           ),
           const Divider(
@@ -302,7 +303,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                       Text(
                         "${nairaSymbol()}$amount",
                         style: AppTextStyles.header.copyWith(
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -396,17 +397,76 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Staff and their roles",
-                        style: AppTextStyles.subText.copyWith(
-                          color: AppColors.bodyTextColor2,
-                        ),
-                      ),
-                      Text(
-                        "Staff details",
-                        style: AppTextStyles.subText.copyWith(
-                          color: AppColors.textColor,
-                        ),
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Staff and their roles",
+                                      style: AppTextStyles.subText.copyWith(
+                                        color: AppColors.bodyTextColor2,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Staff details",
+                                      style: AppTextStyles.subText.copyWith(
+                                        color: AppColors.textColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              BluePopupMenu(
+                                  width: null,
+                                  icon: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: AppColors.blue),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 6),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          (model.role?.name ?? "all roles")
+                                              .sentenceCase,
+                                          style: AppTextStyles.subText.copyWith(
+                                            color: AppColors.blue,
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.keyboard_arrow_down_rounded,
+                                          size: 18,
+                                          color: AppColors.blue,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  popupItems: model.roles
+                                      .map(
+                                        (e) => PopupModel(
+                                          title: e.name.sentenceCase,
+                                          onTap: () {
+                                            model.role = e;
+                                            model.staffPagingController
+                                                .refresh();
+                                          },
+                                        ),
+                                      )
+                                      .toList()),
+                            ],
+                          ),
+                          const Divider(
+                            color: AppColors.midGrey,
+                          ),
+                        ],
                       ),
                       25.verticalGap,
                       NoItems.firstPage(
@@ -622,7 +682,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                 Text(
                   item.name,
                   style: AppTextStyles.header.copyWith(
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -634,7 +694,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
                     style: AppTextStyles.smallText.copyWith(
                         fontWeight: FontWeight.w500,
                         color: AppColors.textColor,
-                        fontSize: 10),
+                        fontSize: 10.sp),
                   ),
                 ),
                 Text(

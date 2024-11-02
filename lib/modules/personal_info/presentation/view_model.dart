@@ -65,9 +65,7 @@ class PersonalInfoViewModel extends BaseViewModel {
 
       if (result != null) {
         String? p = result.files.single.path;
-        if (p != null) {
-          path = p;
-        }
+        path = p ?? "";
       } else {
         AppNotification.error(message: "No image selected");
       }

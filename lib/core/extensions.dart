@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 extension BuildContextEx on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);
@@ -6,10 +7,10 @@ extension BuildContextEx on BuildContext {
 
 extension Gap on num {
   Widget get verticalGap => SizedBox(
-        height: toDouble(),
+        height: toDouble().h,
       );
   Widget get horizontalGap => SizedBox(
-        width: toDouble(),
+        width: toDouble().w,
       );
 }
 

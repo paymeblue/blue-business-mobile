@@ -1,97 +1,98 @@
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextStyles {
   AppTextStyles._();
 
-  static TextStyle header = const TextStyle(
+  static TextStyle header = TextStyle(
       fontFamily: AppFonts.satoshi,
-      fontSize: 23.5,
+      fontSize: 23.sp,
       fontWeight: FontWeight.w600,
       color: AppColors.textColor);
 
-  static TextStyle semiLargeHeader = const TextStyle(
+  static TextStyle semiLargeHeader = TextStyle(
       fontFamily: AppFonts.satoshi,
-      fontSize: 20,
+      fontSize: 20.sp,
       fontWeight: FontWeight.w500,
       color: AppColors.textColor);
 
-  static TextStyle midHeader = const TextStyle(
+  static TextStyle midHeader = TextStyle(
       fontFamily: AppFonts.satoshi,
-      fontSize: 18,
+      fontSize: 18.sp,
       fontWeight: FontWeight.w500,
       color: AppColors.bodyTextColor);
 
-  static TextStyle smallHeader = const TextStyle(
+  static TextStyle smallHeader = TextStyle(
       fontFamily: AppFonts.satoshi,
-      fontSize: 15,
+      fontSize: 15.sp,
       fontWeight: FontWeight.w500,
       color: AppColors.bodyTextColor);
 
-  static TextStyle numberButton = const TextStyle(
-      fontSize: 31.5,
+  static TextStyle numberButton = TextStyle(
+      fontSize: 31.sp,
       fontFamily: AppFonts.satoshi,
       fontWeight: FontWeight.w700,
       color: AppColors.textColor);
 
-  static TextStyle subHeader = const TextStyle(
-    fontSize: 16.5,
+  static TextStyle subHeader = TextStyle(
+    fontSize: 16.sp,
     fontFamily: AppFonts.satoshi,
     letterSpacing: -0.02,
     fontWeight: FontWeight.w500,
     color: AppColors.bodyTextColor,
   );
 
-  static TextStyle textField = const TextStyle(
-    fontSize: 17.5,
+  static TextStyle textField = TextStyle(
+    fontSize: 17.sp,
     fontFamily: AppFonts.satoshi,
     fontWeight: FontWeight.w600,
     color: AppColors.textColor,
   );
 
-  static TextStyle disabledTextField = const TextStyle(
-    fontSize: 17.5,
+  static TextStyle disabledTextField = TextStyle(
+    fontSize: 17.sp,
     fontFamily: AppFonts.satoshi,
     fontWeight: FontWeight.w400,
     color: AppColors.textColor,
   );
 
-  static TextStyle indicatorText = const TextStyle(
-      fontSize: 16.5, fontFamily: AppFonts.satoshi, color: AppColors.primary);
+  static TextStyle indicatorText = TextStyle(
+      fontSize: 16.sp, fontFamily: AppFonts.satoshi, color: AppColors.primary);
 
-  static TextStyle subText = const TextStyle(
-      fontSize: 15.5,
+  static TextStyle subText = TextStyle(
+      fontSize: 15.sp,
       fontFamily: AppFonts.satoshi,
       color: AppColors.bodyTextColor,
       fontWeight: FontWeight.w500);
 
-  static TextStyle smallButtonText = const TextStyle(
-      fontSize: 15.5,
+  static TextStyle smallButtonText = TextStyle(
+      fontSize: 15.sp,
       fontFamily: AppFonts.satoshi,
       fontWeight: FontWeight.w500,
       color: AppColors.primary);
 
-  static TextStyle smallText = const TextStyle(
-      fontSize: 13.5,
+  static TextStyle smallText = TextStyle(
+      fontSize: 13.sp,
       fontFamily: AppFonts.satoshi,
       fontWeight: FontWeight.w400,
       color: AppColors.offWhite);
 
-  static TextStyle largeButtonText = const TextStyle(
-      fontSize: 17.5,
+  static TextStyle largeButtonText = TextStyle(
+      fontSize: 17.sp,
       fontFamily: AppFonts.satoshi,
       fontWeight: FontWeight.w500,
       color: AppColors.primary);
 
-  static TextStyle receiptFieldTitle = const TextStyle(
-    fontSize: 13.5,
+  static TextStyle receiptFieldTitle = TextStyle(
+    fontSize: 13.sp,
     color: AppColors.bodyTextColor,
     fontWeight: FontWeight.w400,
     fontFamily: "GT Walsheim Pro",
   );
-  static TextStyle receiptFieldbody = const TextStyle(
-    fontSize: 14.5,
+  static TextStyle receiptFieldbody = TextStyle(
+    fontSize: 14.sp,
     color: AppColors.textColor,
     fontWeight: FontWeight.w400,
     fontFamily: "GT Walsheim Pro",

@@ -29,8 +29,12 @@ mixin _$VendDataData {
   String get status => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this VendDataData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VendDataData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VendDataDataCopyWith<VendDataData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -62,6 +66,8 @@ class _$VendDataDataCopyWithImpl<$Res, $Val extends VendDataData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VendDataData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,6 +144,8 @@ class __$$VendDataDataImplCopyWithImpl<$Res>
       _$VendDataDataImpl _value, $Res Function(_$VendDataDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VendDataData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -246,12 +254,14 @@ class _$VendDataDataImpl implements _VendDataData {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, transactionId, receiver,
       provider, package, paymentReference, amount, status, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VendDataData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VendDataDataImplCopyWith<_$VendDataDataImpl> get copyWith =>
@@ -295,8 +305,11 @@ abstract class _VendDataData implements VendDataData {
   String get status;
   @override
   String? get createdAt;
+
+  /// Create a copy of VendDataData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VendDataDataImplCopyWith<_$VendDataDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

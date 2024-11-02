@@ -23,8 +23,12 @@ mixin _$RecentlyPaidData {
   List<RecentlyPaidItem> get beneficiaries =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this RecentlyPaidData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RecentlyPaidData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RecentlyPaidDataCopyWith<RecentlyPaidData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$RecentlyPaidDataCopyWithImpl<$Res, $Val extends RecentlyPaidData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RecentlyPaidData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +87,8 @@ class __$$RecentlyPaidDataImplCopyWithImpl<$Res>
       $Res Function(_$RecentlyPaidDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RecentlyPaidData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -127,12 +135,14 @@ class _$RecentlyPaidDataImpl implements _RecentlyPaidData {
                 .equals(other._beneficiaries, _beneficiaries));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_beneficiaries));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RecentlyPaidData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RecentlyPaidDataImplCopyWith<_$RecentlyPaidDataImpl> get copyWith =>
@@ -157,8 +167,11 @@ abstract class _RecentlyPaidData implements RecentlyPaidData {
 
   @override
   List<RecentlyPaidItem> get beneficiaries;
+
+  /// Create a copy of RecentlyPaidData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RecentlyPaidDataImplCopyWith<_$RecentlyPaidDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

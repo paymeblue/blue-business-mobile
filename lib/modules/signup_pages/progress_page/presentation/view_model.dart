@@ -1,7 +1,13 @@
 import 'package:blue_business/core/extensions.dart';
+import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/io/api/dio_config.dart';
+import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
+import 'package:blue_business/core/models/shareholders/get/response/get_shareholders_response.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -59,7 +65,7 @@ class SignupProgressViewModel extends BaseViewModel {
     {
       "title": "Business & Owner Details",
       "subtitle":
-          "Provide us with your business name, size, CAC number and address.",
+          "Provide us with your business name, category, size and CAC number.",
     },
     {
       "title": "KYC Verification",
@@ -67,4 +73,23 @@ class SignupProgressViewModel extends BaseViewModel {
           "Verify your identify as the owner/shareholder of the business.",
     }
   ];
+
+  Future<List<Shareholders>?> getShareHolers(
+      BuildContext context, int userId) async {
+    AppLoader.start();
+    GetShareholdersResponse response = await AuthService(DioConfig.dio())
+        .getShareholders(userId: userId)
+        .onError(
+          (error, stackTrace) => GetShareholdersResponse(
+              message: AppErrorHandler.getErrorMessage(
+            error,
+            {
+              "request_name": "get_shareholders",
+              "response_model": "GetShareHoldersResponse"
+            },
+          )),
+        );
+
+    return response.data;
+  }
 }

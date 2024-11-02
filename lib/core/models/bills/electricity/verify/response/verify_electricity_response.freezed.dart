@@ -25,8 +25,12 @@ mixin _$VerifyElectricityResponse {
   String? get message => throw _privateConstructorUsedError;
   VerifyElectricityData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifyElectricityResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifyElectricityResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifyElectricityResponseCopyWith<VerifyElectricityResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$VerifyElectricityResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifyElectricityResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -76,6 +82,8 @@ class _$VerifyElectricityResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of VerifyElectricityResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $VerifyElectricityDataCopyWith<$Res>? get data {
@@ -114,6 +122,8 @@ class __$$VerifyElectricityResponseImplCopyWithImpl<$Res>
       $Res Function(_$VerifyElectricityResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifyElectricityResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,11 +180,13 @@ class _$VerifyElectricityResponseImpl implements _VerifyElectricityResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifyElectricityResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifyElectricityResponseImplCopyWith<_$VerifyElectricityResponseImpl>
@@ -204,8 +216,11 @@ abstract class _VerifyElectricityResponse implements VerifyElectricityResponse {
   String? get message;
   @override
   VerifyElectricityData? get data;
+
+  /// Create a copy of VerifyElectricityResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifyElectricityResponseImplCopyWith<_$VerifyElectricityResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

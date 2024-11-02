@@ -12,6 +12,7 @@ import 'package:blue_business/widgets/tiles/beneficiary_tile.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -204,13 +205,13 @@ class _BluePaymentViewState extends State<BluePaymentView> {
             Text(
               item.name,
               overflow: TextOverflow.ellipsis,
-              style: AppTextStyles.header.copyWith(fontSize: 15.5),
+              style: AppTextStyles.header.copyWith(fontSize: 15.sp),
             ),
             FittedBox(
               child: Text(
                 item.identifier,
                 style: AppTextStyles.smallText
-                    .copyWith(color: AppColors.bodyTextColor, fontSize: 14.5),
+                    .copyWith(color: AppColors.bodyTextColor, fontSize: 14.sp),
               ),
             )
           ],

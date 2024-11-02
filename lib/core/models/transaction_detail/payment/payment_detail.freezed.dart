@@ -31,8 +31,12 @@ mixin _$PaymentDetail {
   String get status => throw _privateConstructorUsedError;
   String? get narration => throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentDetail to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentDetailCopyWith<PaymentDetail> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -66,6 +70,8 @@ class _$PaymentDetailCopyWithImpl<$Res, $Val extends PaymentDetail>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentDetail
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -154,6 +160,8 @@ class __$$PaymentDetailImplCopyWithImpl<$Res>
       _$PaymentDetailImpl _value, $Res Function(_$PaymentDetailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentDetail
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -281,12 +289,14 @@ class _$PaymentDetailImpl implements _PaymentDetail {
                 other.narration == narration));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, amount, receiver, details,
       paymentMode, createdAt, transactionId, service, status, narration);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentDetailImplCopyWith<_$PaymentDetailImpl> get copyWith =>
@@ -336,8 +346,11 @@ abstract class _PaymentDetail implements PaymentDetail {
   String get status;
   @override
   String? get narration;
+
+  /// Create a copy of PaymentDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentDetailImplCopyWith<_$PaymentDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

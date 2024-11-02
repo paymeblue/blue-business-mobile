@@ -23,8 +23,12 @@ mixin _$CreditRequest {
   String get transactionId => throw _privateConstructorUsedError;
   String get passcode => throw _privateConstructorUsedError;
 
+  /// Serializes this CreditRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CreditRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CreditRequestCopyWith<CreditRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$CreditRequestCopyWithImpl<$Res, $Val extends CreditRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CreditRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$CreditRequestImplCopyWithImpl<$Res>
       _$CreditRequestImpl _value, $Res Function(_$CreditRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CreditRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,11 +143,13 @@ class _$CreditRequestImpl implements _CreditRequest {
                 other.passcode == passcode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, transactionId, passcode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreditRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreditRequestImplCopyWith<_$CreditRequestImpl> get copyWith =>
@@ -165,8 +175,11 @@ abstract class _CreditRequest implements CreditRequest {
   String get transactionId;
   @override
   String get passcode;
+
+  /// Create a copy of CreditRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreditRequestImplCopyWith<_$CreditRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -24,8 +24,12 @@ mixin _$PayResponse {
   String? get message => throw _privateConstructorUsedError;
   PayData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this PayResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PayResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PayResponseCopyWith<PayResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$PayResponseCopyWithImpl<$Res, $Val extends PayResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PayResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$PayResponseCopyWithImpl<$Res, $Val extends PayResponse>
     ) as $Val);
   }
 
+  /// Create a copy of PayResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PayDataCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$PayResponseImplCopyWithImpl<$Res>
       _$PayResponseImpl _value, $Res Function(_$PayResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PayResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -164,11 +174,13 @@ class _$PayResponseImpl implements _PayResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PayResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PayResponseImplCopyWith<_$PayResponseImpl> get copyWith =>
@@ -197,8 +209,11 @@ abstract class _PayResponse implements PayResponse {
   String? get message;
   @override
   PayData? get data;
+
+  /// Create a copy of PayResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PayResponseImplCopyWith<_$PayResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

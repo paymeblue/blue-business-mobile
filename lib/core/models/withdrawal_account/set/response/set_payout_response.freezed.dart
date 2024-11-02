@@ -24,8 +24,12 @@ mixin _$SetPayoutResponse {
   String? get message => throw _privateConstructorUsedError;
   WithdrawalAccount? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this SetPayoutResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SetPayoutResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SetPayoutResponseCopyWith<SetPayoutResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$SetPayoutResponseCopyWithImpl<$Res, $Val extends SetPayoutResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SetPayoutResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$SetPayoutResponseCopyWithImpl<$Res, $Val extends SetPayoutResponse>
     ) as $Val);
   }
 
+  /// Create a copy of SetPayoutResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WithdrawalAccountCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$SetPayoutResponseImplCopyWithImpl<$Res>
       $Res Function(_$SetPayoutResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SetPayoutResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,11 +175,13 @@ class _$SetPayoutResponseImpl implements _SetPayoutResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SetPayoutResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SetPayoutResponseImplCopyWith<_$SetPayoutResponseImpl> get copyWith =>
@@ -199,8 +211,11 @@ abstract class _SetPayoutResponse implements SetPayoutResponse {
   String? get message;
   @override
   WithdrawalAccount? get data;
+
+  /// Create a copy of SetPayoutResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SetPayoutResponseImplCopyWith<_$SetPayoutResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

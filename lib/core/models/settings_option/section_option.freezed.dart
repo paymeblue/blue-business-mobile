@@ -22,7 +22,9 @@ mixin _$SectionOption {
   String? get subtitle => throw _privateConstructorUsedError;
   Widget? get trailing => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SectionOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SectionOptionCopyWith<SectionOption> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +53,8 @@ class _$SectionOptionCopyWithImpl<$Res, $Val extends SectionOption>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SectionOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -109,6 +113,8 @@ class __$$SectionOptionImplCopyWithImpl<$Res>
       _$SectionOptionImpl _value, $Res Function(_$SectionOptionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SectionOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -187,7 +193,9 @@ class _$SectionOptionImpl implements _SectionOption {
   int get hashCode =>
       Object.hash(runtimeType, icon, title, onTap, subtitle, trailing);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SectionOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SectionOptionImplCopyWith<_$SectionOptionImpl> get copyWith =>
@@ -212,8 +220,11 @@ abstract class _SectionOption implements SectionOption {
   String? get subtitle;
   @override
   Widget? get trailing;
+
+  /// Create a copy of SectionOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SectionOptionImplCopyWith<_$SectionOptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

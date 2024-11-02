@@ -2,6 +2,7 @@ import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InfoContainer extends StatelessWidget {
   const InfoContainer({super.key, required this.text});
@@ -27,7 +28,7 @@ class InfoContainer extends StatelessWidget {
               style: AppTextStyles.subHeader.copyWith(
                   color: AppColors.textColor,
                   fontWeight: FontWeight.w400,
-                  fontSize: 13.5),
+                  fontSize: 13.sp),
             ),
           ),
         ],

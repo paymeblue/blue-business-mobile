@@ -24,8 +24,12 @@ mixin _$BusinessDashResponse {
   String? get message => throw _privateConstructorUsedError;
   BusinessDashData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this BusinessDashResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BusinessDashResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BusinessDashResponseCopyWith<BusinessDashResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$BusinessDashResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BusinessDashResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +81,8 @@ class _$BusinessDashResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of BusinessDashResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BusinessDashDataCopyWith<$Res>? get data {
@@ -110,6 +118,8 @@ class __$$BusinessDashResponseImplCopyWithImpl<$Res>
       $Res Function(_$BusinessDashResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BusinessDashResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -166,11 +176,13 @@ class _$BusinessDashResponseImpl implements _BusinessDashResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BusinessDashResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BusinessDashResponseImplCopyWith<_$BusinessDashResponseImpl>
@@ -201,8 +213,11 @@ abstract class _BusinessDashResponse implements BusinessDashResponse {
   String? get message;
   @override
   BusinessDashData? get data;
+
+  /// Create a copy of BusinessDashResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BusinessDashResponseImplCopyWith<_$BusinessDashResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

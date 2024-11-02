@@ -31,8 +31,12 @@ mixin _$DataDetails {
   String get service => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
 
+  /// Serializes this DataDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DataDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DataDetailsCopyWith<DataDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -66,6 +70,8 @@ class _$DataDetailsCopyWithImpl<$Res, $Val extends DataDetails>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DataDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -154,6 +160,8 @@ class __$$DataDetailsImplCopyWithImpl<$Res>
       _$DataDetailsImpl _value, $Res Function(_$DataDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DataDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -281,7 +289,7 @@ class _$DataDetailsImpl implements _DataDetails {
             (identical(other.status, status) || other.status == status));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -296,7 +304,9 @@ class _$DataDetailsImpl implements _DataDetails {
       service,
       status);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DataDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DataDetailsImplCopyWith<_$DataDetailsImpl> get copyWith =>
@@ -346,8 +356,11 @@ abstract class _DataDetails implements DataDetails {
   String get service;
   @override
   String get status;
+
+  /// Create a copy of DataDetails
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DataDetailsImplCopyWith<_$DataDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

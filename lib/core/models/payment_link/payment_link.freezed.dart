@@ -29,8 +29,12 @@ mixin _$PaymentLinkItem {
   String get originalUrl => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentLinkItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentLinkItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentLinkItemCopyWith<PaymentLinkItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -62,6 +66,8 @@ class _$PaymentLinkItemCopyWithImpl<$Res, $Val extends PaymentLinkItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentLinkItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,6 +144,8 @@ class __$$PaymentLinkItemImplCopyWithImpl<$Res>
       _$PaymentLinkItemImpl _value, $Res Function(_$PaymentLinkItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentLinkItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -244,12 +252,14 @@ class _$PaymentLinkItemImpl implements _PaymentLinkItem {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, transactionId, amount, phone,
       receiverName, status, originalUrl, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentLinkItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentLinkItemImplCopyWith<_$PaymentLinkItemImpl> get copyWith =>
@@ -294,8 +304,11 @@ abstract class _PaymentLinkItem implements PaymentLinkItem {
   String get originalUrl;
   @override
   String get createdAt;
+
+  /// Create a copy of PaymentLinkItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentLinkItemImplCopyWith<_$PaymentLinkItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

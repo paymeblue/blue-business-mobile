@@ -8,7 +8,7 @@ import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/modules/dashboard_pages/home/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/paging/error.dart';
@@ -16,6 +16,7 @@ import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/tiles/transaction_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -188,7 +189,7 @@ class _HomeViewState extends State<HomeView> {
         Text(
           "Transactions",
           style: AppTextStyles.header.copyWith(
-            fontSize: 18.5,
+            fontSize: 18.sp,
           ),
         ),
         viewAllButton(onTap)
@@ -265,7 +266,7 @@ class _HomeViewState extends State<HomeView> {
             4.verticalGap,
             Text(
               "${nairaSymbol()}$amount",
-              style: AppTextStyles.header.copyWith(fontSize: 16.5),
+              style: AppTextStyles.header.copyWith(fontSize: 16.sp),
             ),
             Row(
               children: [
@@ -336,7 +337,7 @@ class _HomeViewState extends State<HomeView> {
         Text(
           "Total Sales",
           style: AppTextStyles.header.copyWith(
-            fontSize: 18.5,
+            fontSize: 18.sp,
           ),
         ),
       ],
@@ -385,7 +386,7 @@ class _HomeViewState extends State<HomeView> {
             height: 62,
             width: 62,
             decoration: BoxDecoration(
-                border: Border.all(color: AppColors.bgGrey),
+                border: Border.all(color: AppColors.midGrey),
                 borderRadius: BorderRadius.circular(20)),
             child: option.icon,
           ),
@@ -417,7 +418,7 @@ class _HomeViewState extends State<HomeView> {
               child: Text(
                 "To do",
                 style: AppTextStyles.header.copyWith(
-                  fontSize: 18.5,
+                  fontSize: 18.sp,
                 ),
               ),
             ),
@@ -648,7 +649,7 @@ class _HomeViewState extends State<HomeView> {
           Text(
             "TRANSACTION VOL.",
             style: AppTextStyles.smallText.copyWith(
-                color: AppColors.brightBlue, height: 1.1, fontSize: 11),
+                color: AppColors.bodyTextColor2, height: 1.1, fontSize: 11.sp),
           ),
           4.verticalGap,
           FittedBox(
@@ -659,7 +660,7 @@ class _HomeViewState extends State<HomeView> {
                   .transactionVolume
                   .toString(),
               style: AppTextStyles.header
-                  .copyWith(color: AppColors.grey, fontSize: 16.5),
+                  .copyWith(color: AppColors.grey, fontSize: 16.sp),
             ),
           ),
         ],
@@ -714,7 +715,7 @@ class _HomeViewState extends State<HomeView> {
               Text(
                 "WALLET BALANCE",
                 style: AppTextStyles.subHeader
-                    .copyWith(color: AppColors.brightBlue, fontSize: 11),
+                    .copyWith(color: AppColors.bodyTextColor2, fontSize: 11.sp),
               ),
               6.horizontalGap,
               balanceVisibilitySwitch(model)
@@ -725,7 +726,7 @@ class _HomeViewState extends State<HomeView> {
               "${nairaSymbol()}${model.hideBalance ? balance.replaceAll(RegExp(r"[0-9]"), "*") : balance}",
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
-                fontSize: 18,
+                fontSize: 18.sp,
               ),
             ),
           ),
@@ -744,7 +745,7 @@ class _HomeViewState extends State<HomeView> {
           Text(
             "TOTAL BRANCHES",
             style: AppTextStyles.subHeader
-                .copyWith(color: AppColors.brightBlue, fontSize: 11),
+                .copyWith(color: AppColors.bodyTextColor2, fontSize: 11.sp),
           ),
           FittedBox(
             child: Text(
@@ -755,7 +756,7 @@ class _HomeViewState extends State<HomeView> {
                   .toString(),
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
-                fontSize: 18,
+                fontSize: 18.sp,
               ),
             ),
           ),
@@ -775,7 +776,7 @@ class _HomeViewState extends State<HomeView> {
           Text(
             "TOTAL STAFF",
             style: AppTextStyles.subHeader
-                .copyWith(color: AppColors.brightBlue, fontSize: 11),
+                .copyWith(color: AppColors.bodyTextColor2, fontSize: 11.sp),
           ),
           FittedBox(
             child: Text(
@@ -786,7 +787,7 @@ class _HomeViewState extends State<HomeView> {
                   .toString(),
               style: AppTextStyles.header.copyWith(
                 color: AppColors.grey,
-                fontSize: 18,
+                fontSize: 18.sp,
               ),
             ),
           ),
@@ -807,7 +808,7 @@ class _HomeViewState extends State<HomeView> {
       child: Text(
         "${kycLevel[0].toUpperCase()}${kycLevel.substring(1)} wallet",
         style: AppTextStyles.smallText.copyWith(
-          fontSize: 12.5,
+          fontSize: 12.sp,
           fontWeight: FontWeight.w500,
           color: kycLevel == "pro" ? AppColors.white : const Color(0xFFFF9601),
         ),
@@ -867,7 +868,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         Text(
           locator<AppStateValues>().currentUser!.business.name,
-          style: AppTextStyles.header.copyWith(fontSize: 17.5),
+          style: AppTextStyles.header.copyWith(fontSize: 17.sp),
         ),
       ],
     );

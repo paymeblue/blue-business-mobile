@@ -27,8 +27,12 @@ mixin _$PushPayment {
   String get dueDate => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this PushPayment to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PushPayment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PushPaymentCopyWith<PushPayment> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$PushPaymentCopyWithImpl<$Res, $Val extends PushPayment>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PushPayment
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,6 +128,8 @@ class __$$PushPaymentImplCopyWithImpl<$Res>
       _$PushPaymentImpl _value, $Res Function(_$PushPaymentImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PushPayment
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -209,12 +217,14 @@ class _$PushPaymentImpl implements _PushPayment {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, businessName, lga, amount,
       transactionId, dueDate, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PushPayment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PushPaymentImplCopyWith<_$PushPaymentImpl> get copyWith =>
@@ -252,8 +262,11 @@ abstract class _PushPayment implements PushPayment {
   String get dueDate;
   @override
   String get createdAt;
+
+  /// Create a copy of PushPayment
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PushPaymentImplCopyWith<_$PushPaymentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -29,8 +29,12 @@ mixin _$TransactionHistory {
   String get status => throw _privateConstructorUsedError;
   String get initials => throw _privateConstructorUsedError;
 
+  /// Serializes this TransactionHistory to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TransactionHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TransactionHistoryCopyWith<TransactionHistory> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -62,6 +66,8 @@ class _$TransactionHistoryCopyWithImpl<$Res, $Val extends TransactionHistory>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TransactionHistory
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,6 +144,8 @@ class __$$TransactionHistoryImplCopyWithImpl<$Res>
       $Res Function(_$TransactionHistoryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TransactionHistory
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -250,7 +258,7 @@ class _$TransactionHistoryImpl implements _TransactionHistory {
                 other.initials == initials));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -263,7 +271,9 @@ class _$TransactionHistoryImpl implements _TransactionHistory {
       status,
       initials);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TransactionHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TransactionHistoryImplCopyWith<_$TransactionHistoryImpl> get copyWith =>
@@ -308,8 +318,11 @@ abstract class _TransactionHistory implements TransactionHistory {
   String get status;
   @override
   String get initials;
+
+  /// Create a copy of TransactionHistory
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TransactionHistoryImplCopyWith<_$TransactionHistoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

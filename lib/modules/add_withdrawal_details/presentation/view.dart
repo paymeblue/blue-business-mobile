@@ -71,6 +71,7 @@ class _AddWithdrawalDetailsViewState extends State<AddWithdrawalDetailsView> {
                 title: "Bank account number",
                 onChanged: model.onAccountNumberChanged,
                 controller: model.accountNumberController,
+                node: FocusNode(),
               ),
             ),
             6.horizontalGap,

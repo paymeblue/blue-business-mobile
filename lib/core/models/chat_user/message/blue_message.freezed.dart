@@ -24,8 +24,12 @@ mixin _$BlueMessage {
   String get senderId => throw _privateConstructorUsedError;
   String get timeStamp => throw _privateConstructorUsedError;
 
+  /// Serializes this BlueMessage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BlueMessage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BlueMessageCopyWith<BlueMessage> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$BlueMessageCopyWithImpl<$Res, $Val extends BlueMessage>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BlueMessage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$BlueMessageImplCopyWithImpl<$Res>
       _$BlueMessageImpl _value, $Res Function(_$BlueMessageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BlueMessage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,11 +157,13 @@ class _$BlueMessageImpl implements _BlueMessage {
                 other.timeStamp == timeStamp));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, message, senderId, timeStamp);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BlueMessage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BlueMessageImplCopyWith<_$BlueMessageImpl> get copyWith =>
@@ -182,8 +192,11 @@ abstract class _BlueMessage implements BlueMessage {
   String get senderId;
   @override
   String get timeStamp;
+
+  /// Create a copy of BlueMessage
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BlueMessageImplCopyWith<_$BlueMessageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

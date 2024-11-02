@@ -23,8 +23,12 @@ mixin _$CreateStaffResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
+  /// Serializes this CreateStaffResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CreateStaffResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CreateStaffResponseCopyWith<CreateStaffResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$CreateStaffResponseCopyWithImpl<$Res, $Val extends CreateStaffResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CreateStaffResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$CreateStaffResponseImplCopyWithImpl<$Res>
       $Res Function(_$CreateStaffResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CreateStaffResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,11 +141,13 @@ class _$CreateStaffResponseImpl implements _CreateStaffResponse {
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreateStaffResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateStaffResponseImplCopyWith<_$CreateStaffResponseImpl> get copyWith =>
@@ -163,8 +173,11 @@ abstract class _CreateStaffResponse implements CreateStaffResponse {
   String get status;
   @override
   String? get message;
+
+  /// Create a copy of CreateStaffResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateStaffResponseImplCopyWith<_$CreateStaffResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

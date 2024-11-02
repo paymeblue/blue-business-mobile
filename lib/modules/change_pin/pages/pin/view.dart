@@ -33,11 +33,11 @@ class _ChangePinContentState extends State<ChangePinContent> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ...newPinTitleAndSubtitle(),
-              const Spacer(),
+              const Spacer(flex: 2),
               pinFields(model),
-              const Spacer(),
+              const Spacer(flex: 2),
               numberPad(model),
-              120.verticalGap,
+              const Spacer(flex: 3),
               AppButton.primary(
                 title: "Continue",
                 isEnabled: model.pin.length == 4,

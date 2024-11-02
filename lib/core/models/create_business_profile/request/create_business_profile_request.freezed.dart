@@ -27,8 +27,12 @@ mixin _$CreateBusinessProfileRequest {
   String get cacNumber => throw _privateConstructorUsedError;
   String get staffSize => throw _privateConstructorUsedError;
 
+  /// Serializes this CreateBusinessProfileRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CreateBusinessProfileRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CreateBusinessProfileRequestCopyWith<CreateBusinessProfileRequest>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -60,6 +64,8 @@ class _$CreateBusinessProfileRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CreateBusinessProfileRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -121,6 +127,8 @@ class __$$CreateBusinessProfileRequestImplCopyWithImpl<$Res>
       $Res Function(_$CreateBusinessProfileRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CreateBusinessProfileRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -201,12 +209,14 @@ class _$CreateBusinessProfileRequestImpl
                 other.staffSize == staffSize));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, userId, name, categoryId, cacNumber, staffSize);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreateBusinessProfileRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateBusinessProfileRequestImplCopyWith<
@@ -244,8 +254,11 @@ abstract class _CreateBusinessProfileRequest
   String get cacNumber;
   @override
   String get staffSize;
+
+  /// Create a copy of CreateBusinessProfileRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateBusinessProfileRequestImplCopyWith<
           _$CreateBusinessProfileRequestImpl>
       get copyWith => throw _privateConstructorUsedError;

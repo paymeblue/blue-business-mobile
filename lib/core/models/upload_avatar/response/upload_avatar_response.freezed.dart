@@ -24,8 +24,12 @@ mixin _$UploadAvatarResponse {
   String? get message => throw _privateConstructorUsedError;
   UserImage? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this UploadAvatarResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UploadAvatarResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UploadAvatarResponseCopyWith<UploadAvatarResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$UploadAvatarResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UploadAvatarResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +81,8 @@ class _$UploadAvatarResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of UploadAvatarResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserImageCopyWith<$Res>? get data {
@@ -110,6 +118,8 @@ class __$$UploadAvatarResponseImplCopyWithImpl<$Res>
       $Res Function(_$UploadAvatarResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UploadAvatarResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -166,11 +176,13 @@ class _$UploadAvatarResponseImpl implements _UploadAvatarResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UploadAvatarResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UploadAvatarResponseImplCopyWith<_$UploadAvatarResponseImpl>
@@ -201,8 +213,11 @@ abstract class _UploadAvatarResponse implements UploadAvatarResponse {
   String? get message;
   @override
   UserImage? get data;
+
+  /// Create a copy of UploadAvatarResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UploadAvatarResponseImplCopyWith<_$UploadAvatarResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

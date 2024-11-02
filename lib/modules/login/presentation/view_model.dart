@@ -4,7 +4,6 @@ import 'package:blue_business/core/io/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/io/api/dio_config.dart';
 import 'package:blue_business/core/io/api/profile_service/profile_service.dart';
-import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/io/storage/functions.dart';
 import 'package:blue_business/core/io/storage/keys.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
@@ -19,6 +18,7 @@ import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/biometics.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
@@ -28,7 +28,7 @@ import 'package:go_router/go_router.dart';
 class LoginViewModel extends BaseViewModel {
   late Size size;
 
-  init() {
+  init(BuildContext context, VoidCallback? onComplete) {
     size = MediaQuery.sizeOf(globalContext!);
 
     setSelectedCountry();
@@ -40,6 +40,10 @@ class LoginViewModel extends BaseViewModel {
         showNotification();
       }
     });
+
+    if (useBiometrics && StorageValues.password.isNotEmpty) {
+      completeWithBiometrics(context, onComplete: onComplete);
+    }
   }
 
   showNotification() {
@@ -117,7 +121,8 @@ class LoginViewModel extends BaseViewModel {
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  goBack() {
+  goBack() async {
+    await StorageHelpers.setVal(StorageKeys.skipWelcomeKey, false.toString());
     if (globalContext!.canPop()) {
       globalContext!.pop();
     } else {
@@ -155,6 +160,8 @@ class LoginViewModel extends BaseViewModel {
       ));
     });
 
+    AppLoader.stop();
+
     if (resp.status == "success") {
       await setNameInStorage(resp.data!.business.name, p);
       saveTokens(resp.data!.token);
@@ -167,7 +174,6 @@ class LoginViewModel extends BaseViewModel {
     } else {
       AppNotification.error(message: resp.message);
     }
-    AppLoader.stop();
   }
 
   getNotificationStatus() async {
@@ -257,8 +263,12 @@ class LoginViewModel extends BaseViewModel {
       number = number.replaceFirst("0", "");
       log(number);
     }
-    if (number.startsWith(selectedCountry!.dialCode)) {
-      number = number.replaceFirst(selectedCountry!.dialCode, "");
+    if (number
+        .replaceFirst("+", "")
+        .startsWith(selectedCountry!.dialCode.replaceFirst("+", ""))) {
+      number = number
+          .replaceFirst("+", "")
+          .replaceFirst(selectedCountry!.dialCode.replaceFirst("+", ""), "");
     }
 
     return selectedCountry!.dialCode + number;

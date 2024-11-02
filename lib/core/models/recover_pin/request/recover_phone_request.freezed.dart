@@ -25,8 +25,12 @@ mixin _$SendRecoverPinRequest {
   String get validationMode => throw _privateConstructorUsedError;
   String? get securityAnswer => throw _privateConstructorUsedError;
 
+  /// Serializes this SendRecoverPinRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SendRecoverPinRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SendRecoverPinRequestCopyWith<SendRecoverPinRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$SendRecoverPinRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SendRecoverPinRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,6 +104,8 @@ class __$$SendRecoverPinRequestImplCopyWithImpl<$Res>
       $Res Function(_$SendRecoverPinRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SendRecoverPinRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -159,12 +167,14 @@ class _$SendRecoverPinRequestImpl implements _SendRecoverPinRequest {
                 other.securityAnswer == securityAnswer));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, recoveryPhone, validationMode, securityAnswer);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendRecoverPinRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SendRecoverPinRequestImplCopyWith<_$SendRecoverPinRequestImpl>
@@ -194,8 +204,11 @@ abstract class _SendRecoverPinRequest implements SendRecoverPinRequest {
   String get validationMode;
   @override
   String? get securityAnswer;
+
+  /// Create a copy of SendRecoverPinRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SendRecoverPinRequestImplCopyWith<_$SendRecoverPinRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

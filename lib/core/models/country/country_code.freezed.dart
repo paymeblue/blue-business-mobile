@@ -24,8 +24,12 @@ mixin _$CountryCode {
   String get name => throw _privateConstructorUsedError;
   String get dialCode => throw _privateConstructorUsedError;
 
+  /// Serializes this CountryCode to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CountryCode
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CountryCodeCopyWith<CountryCode> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$CountryCodeCopyWithImpl<$Res, $Val extends CountryCode>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CountryCode
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$CountryCodeImplCopyWithImpl<$Res>
       _$CountryCodeImpl _value, $Res Function(_$CountryCodeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CountryCode
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,11 +157,13 @@ class _$CountryCodeImpl implements _CountryCode {
                 other.dialCode == dialCode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, countryCode, name, dialCode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CountryCode
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CountryCodeImplCopyWith<_$CountryCodeImpl> get copyWith =>
@@ -182,8 +192,11 @@ abstract class _CountryCode implements CountryCode {
   String get name;
   @override
   String get dialCode;
+
+  /// Create a copy of CountryCode
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CountryCodeImplCopyWith<_$CountryCodeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -7,6 +7,7 @@ import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -51,7 +52,9 @@ class _ReviewElectricityViewState extends State<ReviewElectricityView> {
                 Text(
                   "${nairaSymbol()}${(widget.amount + double.parse(widget.data.serviceCharge)).toStringAsFixed(2)}",
                   style: AppTextStyles.header.copyWith(
-                      fontSize: 26, fontWeight: FontWeight.w700, height: 1.2),
+                      fontSize: 26.sp,
+                      fontWeight: FontWeight.w700,
+                      height: 1.2),
                 ),
                 20.verticalGap,
                 ...detailsSection(

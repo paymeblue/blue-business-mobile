@@ -13,6 +13,7 @@ import 'package:blue_business/widgets/paging/error.dart';
 import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -308,7 +309,7 @@ class _StaffHomeViewState extends State<StaffHomeView> {
               style: AppTextStyles.smallText.copyWith(
                   fontWeight: FontWeight.w500,
                   color: AppColors.textColor,
-                  fontSize: 10),
+                  fontSize: 10.sp),
             ),
           ),
           8.verticalGap,
@@ -326,7 +327,7 @@ class _StaffHomeViewState extends State<StaffHomeView> {
                     Text(
                       item.name,
                       style: AppTextStyles.header.copyWith(
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

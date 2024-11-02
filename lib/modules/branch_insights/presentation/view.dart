@@ -6,7 +6,7 @@ import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
-import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/avatar/avatar.dart';
 import 'package:blue_business/widgets/charts/line_chart.dart';
@@ -16,6 +16,7 @@ import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/paging/no_items.dart';
 import 'package:blue_business/widgets/steppers/filter_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
@@ -269,7 +270,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                 Text(
                   item.name,
                   style: AppTextStyles.header.copyWith(
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -281,7 +282,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                     style: AppTextStyles.smallText.copyWith(
                         fontWeight: FontWeight.w500,
                         color: AppColors.textColor,
-                        fontSize: 10),
+                        fontSize: 10.sp),
                   ),
                 ),
                 Text(
@@ -320,7 +321,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
             "${model.selectedType} Sales",
             style: AppTextStyles.smallText.copyWith(
                 color: AppColors.neutralColorBlack,
-                fontSize: 14,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w500),
           ),
           const Divider(
@@ -338,7 +339,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
                       Text(
                         "${nairaSymbol()}$amount",
                         style: AppTextStyles.header.copyWith(
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),

@@ -25,8 +25,12 @@ mixin _$CreateBusinessProfileResponse {
   String? get message => throw _privateConstructorUsedError;
   CreateBusinessProfileData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this CreateBusinessProfileResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CreateBusinessProfileResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CreateBusinessProfileResponseCopyWith<CreateBusinessProfileResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -55,6 +59,8 @@ class _$CreateBusinessProfileResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CreateBusinessProfileResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -78,6 +84,8 @@ class _$CreateBusinessProfileResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of CreateBusinessProfileResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CreateBusinessProfileDataCopyWith<$Res>? get data {
@@ -116,6 +124,8 @@ class __$$CreateBusinessProfileResponseImplCopyWithImpl<$Res>
       $Res Function(_$CreateBusinessProfileResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CreateBusinessProfileResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -174,11 +184,13 @@ class _$CreateBusinessProfileResponseImpl
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreateBusinessProfileResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateBusinessProfileResponseImplCopyWith<
@@ -211,8 +223,11 @@ abstract class _CreateBusinessProfileResponse
   String? get message;
   @override
   CreateBusinessProfileData? get data;
+
+  /// Create a copy of CreateBusinessProfileResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateBusinessProfileResponseImplCopyWith<
           _$CreateBusinessProfileResponseImpl>
       get copyWith => throw _privateConstructorUsedError;

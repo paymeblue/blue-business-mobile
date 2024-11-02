@@ -13,6 +13,7 @@ class StorageKeys {
   static String passwordKey = "password";
   static String enableBiometricsKey = "enable_biometrics";
   static String hasRequestedBiometricsKey = "hasAsked";
+  static String skipWelcomeKey = "skipWelcome";
 }
 
 class StorageValues {
@@ -23,6 +24,7 @@ class StorageValues {
   static String enableBiometrics = "";
   static String hasRequestedBiometrics = "";
   static CountryCode? selectedCountryCode;
+  static String skipWelcome = "";
 
   static getLoginValues() async {
     name = await StorageHelpers.getVal(StorageKeys.nameKey);
@@ -33,6 +35,8 @@ class StorageValues {
     if (countryCodeString.isNotEmpty) {
       selectedCountryCode = CountryCode.fromJson(jsonDecode(countryCodeString));
     }
+
+    skipWelcome = await StorageHelpers.getVal(StorageKeys.skipWelcomeKey);
 
     password = await StorageHelpers.getVal(StorageKeys.passwordKey);
     pin = await StorageHelpers.getVal(StorageKeys.pinKey);

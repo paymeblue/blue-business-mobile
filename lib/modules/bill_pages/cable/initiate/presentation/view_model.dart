@@ -11,8 +11,8 @@ import 'package:blue_business/core/models/bills/get_providers/response/get_provi
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
-import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

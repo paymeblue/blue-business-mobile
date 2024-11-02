@@ -24,8 +24,12 @@ mixin _$TopupResponse {
   String? get message => throw _privateConstructorUsedError;
   TopupAccount? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this TopupResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TopupResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TopupResponseCopyWith<TopupResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$TopupResponseCopyWithImpl<$Res, $Val extends TopupResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TopupResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$TopupResponseCopyWithImpl<$Res, $Val extends TopupResponse>
     ) as $Val);
   }
 
+  /// Create a copy of TopupResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TopupAccountCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$TopupResponseImplCopyWithImpl<$Res>
       _$TopupResponseImpl _value, $Res Function(_$TopupResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TopupResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -164,11 +174,13 @@ class _$TopupResponseImpl implements _TopupResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopupResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TopupResponseImplCopyWith<_$TopupResponseImpl> get copyWith =>
@@ -197,8 +209,11 @@ abstract class _TopupResponse implements TopupResponse {
   String? get message;
   @override
   TopupAccount? get data;
+
+  /// Create a copy of TopupResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TopupResponseImplCopyWith<_$TopupResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -5,6 +5,7 @@ import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -36,7 +37,7 @@ class _BillsViewState extends State<BillsView> {
                 Text(
                   "Internet & Bills",
                   style: AppTextStyles.header
-                      .copyWith(fontWeight: FontWeight.w500, fontSize: 20),
+                      .copyWith(fontWeight: FontWeight.w500, fontSize: 20.sp),
                 ),
                 20.verticalGap,
                 Expanded(
@@ -90,7 +91,7 @@ class _BillsViewState extends State<BillsView> {
         Text(
           option.title,
           style: AppTextStyles.header
-              .copyWith(fontWeight: FontWeight.w500, fontSize: 15),
+              .copyWith(fontWeight: FontWeight.w500, fontSize: 15.sp),
         ),
         Text(
           option.subtitle!,

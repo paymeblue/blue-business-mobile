@@ -31,8 +31,12 @@ mixin _$ReceiptRecord {
   String? get senderName => throw _privateConstructorUsedError;
   String? get narration => throw _privateConstructorUsedError;
 
+  /// Serializes this ReceiptRecord to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ReceiptRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ReceiptRecordCopyWith<ReceiptRecord> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -66,6 +70,8 @@ class _$ReceiptRecordCopyWithImpl<$Res, $Val extends ReceiptRecord>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ReceiptRecord
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -154,6 +160,8 @@ class __$$ReceiptRecordImplCopyWithImpl<$Res>
       _$ReceiptRecordImpl _value, $Res Function(_$ReceiptRecordImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ReceiptRecord
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -282,7 +290,7 @@ class _$ReceiptRecordImpl implements _ReceiptRecord {
                 other.narration == narration));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -297,7 +305,9 @@ class _$ReceiptRecordImpl implements _ReceiptRecord {
       senderName,
       narration);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ReceiptRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReceiptRecordImplCopyWith<_$ReceiptRecordImpl> get copyWith =>
@@ -347,8 +357,11 @@ abstract class _ReceiptRecord implements ReceiptRecord {
   String? get senderName;
   @override
   String? get narration;
+
+  /// Create a copy of ReceiptRecord
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReceiptRecordImplCopyWith<_$ReceiptRecordImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

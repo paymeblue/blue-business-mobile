@@ -24,8 +24,12 @@ mixin _$VendAirtimeResponse {
   String? get message => throw _privateConstructorUsedError;
   VendAirtimeData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this VendAirtimeResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VendAirtimeResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VendAirtimeResponseCopyWith<VendAirtimeResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$VendAirtimeResponseCopyWithImpl<$Res, $Val extends VendAirtimeResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VendAirtimeResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$VendAirtimeResponseCopyWithImpl<$Res, $Val extends VendAirtimeResponse>
     ) as $Val);
   }
 
+  /// Create a copy of VendAirtimeResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $VendAirtimeDataCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$VendAirtimeResponseImplCopyWithImpl<$Res>
       $Res Function(_$VendAirtimeResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VendAirtimeResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,11 +175,13 @@ class _$VendAirtimeResponseImpl implements _VendAirtimeResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VendAirtimeResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VendAirtimeResponseImplCopyWith<_$VendAirtimeResponseImpl> get copyWith =>
@@ -199,8 +211,11 @@ abstract class _VendAirtimeResponse implements VendAirtimeResponse {
   String? get message;
   @override
   VendAirtimeData? get data;
+
+  /// Create a copy of VendAirtimeResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VendAirtimeResponseImplCopyWith<_$VendAirtimeResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

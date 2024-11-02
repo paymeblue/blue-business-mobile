@@ -23,8 +23,12 @@ mixin _$SignupOtpResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
+  /// Serializes this SignupOtpResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SignupOtpResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SignupOtpResponseCopyWith<SignupOtpResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$SignupOtpResponseCopyWithImpl<$Res, $Val extends SignupOtpResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SignupOtpResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$SignupOtpResponseImplCopyWithImpl<$Res>
       $Res Function(_$SignupOtpResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SignupOtpResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,11 +141,13 @@ class _$SignupOtpResponseImpl implements _SignupOtpResponse {
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SignupOtpResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SignupOtpResponseImplCopyWith<_$SignupOtpResponseImpl> get copyWith =>
@@ -163,8 +173,11 @@ abstract class _SignupOtpResponse implements SignupOtpResponse {
   String get status;
   @override
   String? get message;
+
+  /// Create a copy of SignupOtpResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SignupOtpResponseImplCopyWith<_$SignupOtpResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

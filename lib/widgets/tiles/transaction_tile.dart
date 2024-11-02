@@ -4,7 +4,9 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class TransationTile extends StatelessWidget {
@@ -21,13 +23,16 @@ class TransationTile extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
           vertical: colored ? 14 : 6, horizontal: colored ? 17 : 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        color: colored ? AppColors.inputField : null,
-      ),
       child: Row(
         children: [
-          transactionImage(),
+          Container(
+            height: 38,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColors.lightOverlay2,
+            ),
+            child: transactionImage,
+          ),
           10.horizontalGap,
           Expanded(
             child: textColumn(),
@@ -60,12 +65,13 @@ class TransationTile extends StatelessWidget {
       children: [
         Text(
           columnTitle(),
-          style: AppTextStyles.header.copyWith(fontSize: 15.5),
+          style: AppTextStyles.header.copyWith(fontSize: 15.sp, height: 1.1),
         ),
+        2.verticalGap,
         Text(
           "${methodString()}, ${timeString()}",
           style: AppTextStyles.smallText
-              .copyWith(color: AppColors.bodyTextColor, fontSize: 14.5),
+              .copyWith(color: AppColors.bodyTextColor, fontSize: 14.sp),
         )
       ],
     );
@@ -94,6 +100,8 @@ class TransationTile extends StatelessWidget {
         return "Electricity Bill";
       case PaymentMode.tv:
         return "Cable TV bill";
+      default:
+        return "";
     }
   }
 
@@ -102,6 +110,7 @@ class TransationTile extends StatelessWidget {
       case "withdrawal":
         return PaymentMode.withdrawal;
       case "wallet_topup":
+      case "card":
         return PaymentMode.topup;
       case "blue-user":
         return PaymentMode.blue;
@@ -129,12 +138,13 @@ class TransationTile extends StatelessWidget {
     }
   }
 
-  Widget transactionImage() {
+  Widget get transactionImage {
     switch (getPaymentMode()) {
       case PaymentMode.blue:
       case PaymentMode.qr:
         return bluePaymentImage();
       case PaymentMode.topup:
+      // return AppAssets.images.icons.topup.svg();
       case PaymentMode.withdrawal:
         return AppAssets.images.icons.virtualBank.svg();
       case PaymentMode.phone:
@@ -147,6 +157,8 @@ class TransationTile extends StatelessWidget {
         return AppAssets.images.icons.electricity.svg();
       case PaymentMode.tv:
         return AppAssets.images.icons.tv.svg();
+      default:
+        return defaultImage();
     }
   }
 
@@ -172,7 +184,7 @@ class TransationTile extends StatelessWidget {
       width: 38,
       padding: const EdgeInsets.all(10),
       decoration: const BoxDecoration(
-        color: AppColors.bgGrey,
+        color: AppColors.lightOverlay,
         shape: BoxShape.circle,
       ),
       child: AppAssets.images.logos.blueBgLogo.image(),
@@ -189,15 +201,21 @@ class TransationTile extends StatelessWidget {
       case PaymentMode.withdrawal:
         return "Withdrawal";
       case PaymentMode.phone:
-      default:
         return "Phone number";
+      case PaymentMode.airtime:
+      case PaymentMode.data:
+      case PaymentMode.electricity:
+      case PaymentMode.tv:
+        return "Bill payment";
+      default:
+        return "";
     }
   }
 
   String amountString() {
     final formatCurrency = NumberFormat.simpleCurrency(name: nairaSymbol());
 
-    return formatCurrency.format(double.parse(transaction.transactionAmount));
+    return formatCurrency.format(transaction.transactionAmount);
   }
 
   String typeSymbol() {

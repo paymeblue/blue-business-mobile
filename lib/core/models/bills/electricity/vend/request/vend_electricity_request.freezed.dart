@@ -25,8 +25,12 @@ mixin _$VendElectricityRequest {
   String get passcode => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
 
+  /// Serializes this VendElectricityRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VendElectricityRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VendElectricityRequestCopyWith<VendElectricityRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$VendElectricityRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VendElectricityRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -97,6 +103,8 @@ class __$$VendElectricityRequestImplCopyWithImpl<$Res>
       $Res Function(_$VendElectricityRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VendElectricityRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -156,11 +164,13 @@ class _$VendElectricityRequestImpl implements _VendElectricityRequest {
             (identical(other.amount, amount) || other.amount == amount));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, transactionId, passcode, amount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VendElectricityRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VendElectricityRequestImplCopyWith<_$VendElectricityRequestImpl>
@@ -190,8 +200,11 @@ abstract class _VendElectricityRequest implements VendElectricityRequest {
   String get passcode;
   @override
   String get amount;
+
+  /// Create a copy of VendElectricityRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VendElectricityRequestImplCopyWith<_$VendElectricityRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

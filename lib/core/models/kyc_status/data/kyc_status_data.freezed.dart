@@ -23,8 +23,12 @@ mixin _$KycStatusData {
   String? get type => throw _privateConstructorUsedError;
   String get kyc => throw _privateConstructorUsedError;
 
+  /// Serializes this KycStatusData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of KycStatusData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $KycStatusDataCopyWith<KycStatusData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$KycStatusDataCopyWithImpl<$Res, $Val extends KycStatusData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of KycStatusData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$KycStatusDataImplCopyWithImpl<$Res>
       _$KycStatusDataImpl _value, $Res Function(_$KycStatusDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of KycStatusData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,11 +140,13 @@ class _$KycStatusDataImpl implements _KycStatusData {
             (identical(other.kyc, kyc) || other.kyc == kyc));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, type, kyc);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of KycStatusData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$KycStatusDataImplCopyWith<_$KycStatusDataImpl> get copyWith =>
@@ -161,8 +171,11 @@ abstract class _KycStatusData implements KycStatusData {
   String? get type;
   @override
   String get kyc;
+
+  /// Create a copy of KycStatusData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$KycStatusDataImplCopyWith<_$KycStatusDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

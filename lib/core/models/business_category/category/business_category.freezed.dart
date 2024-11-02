@@ -23,8 +23,12 @@ mixin _$BusinessCategory {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
 
+  /// Serializes this BusinessCategory to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BusinessCategory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BusinessCategoryCopyWith<BusinessCategory> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$BusinessCategoryCopyWithImpl<$Res, $Val extends BusinessCategory>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BusinessCategory
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$BusinessCategoryImplCopyWithImpl<$Res>
       $Res Function(_$BusinessCategoryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BusinessCategory
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,11 +140,13 @@ class _$BusinessCategoryImpl implements _BusinessCategory {
             (identical(other.title, title) || other.title == title));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, title);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BusinessCategory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BusinessCategoryImplCopyWith<_$BusinessCategoryImpl> get copyWith =>
@@ -163,8 +173,11 @@ abstract class _BusinessCategory implements BusinessCategory {
   int get id;
   @override
   String get title;
+
+  /// Create a copy of BusinessCategory
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BusinessCategoryImplCopyWith<_$BusinessCategoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

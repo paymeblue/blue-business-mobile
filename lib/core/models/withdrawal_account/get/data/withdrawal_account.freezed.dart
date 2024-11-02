@@ -27,8 +27,12 @@ mixin _$WithdrawalAccount {
   String get accountNumber => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this WithdrawalAccount to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WithdrawalAccount
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WithdrawalAccountCopyWith<WithdrawalAccount> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$WithdrawalAccountCopyWithImpl<$Res, $Val extends WithdrawalAccount>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WithdrawalAccount
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,6 +128,8 @@ class __$$WithdrawalAccountImplCopyWithImpl<$Res>
       $Res Function(_$WithdrawalAccountImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WithdrawalAccount
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -210,12 +218,14 @@ class _$WithdrawalAccountImpl implements _WithdrawalAccount {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, bankId, bankName, accountName, accountNumber, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WithdrawalAccount
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WithdrawalAccountImplCopyWith<_$WithdrawalAccountImpl> get copyWith =>
@@ -254,8 +264,11 @@ abstract class _WithdrawalAccount implements WithdrawalAccount {
   String get accountNumber;
   @override
   String? get createdAt;
+
+  /// Create a copy of WithdrawalAccount
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WithdrawalAccountImplCopyWith<_$WithdrawalAccountImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

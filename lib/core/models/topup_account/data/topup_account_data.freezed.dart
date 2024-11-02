@@ -22,8 +22,12 @@ TopupAccountData _$TopupAccountDataFromJson(Map<String, dynamic> json) {
 mixin _$TopupAccountData {
   TopupAccount get account => throw _privateConstructorUsedError;
 
+  /// Serializes this TopupAccountData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TopupAccountData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TopupAccountDataCopyWith<TopupAccountData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$TopupAccountDataCopyWithImpl<$Res, $Val extends TopupAccountData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TopupAccountData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -62,6 +68,8 @@ class _$TopupAccountDataCopyWithImpl<$Res, $Val extends TopupAccountData>
     ) as $Val);
   }
 
+  /// Create a copy of TopupAccountData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TopupAccountCopyWith<$Res> get account {
@@ -93,6 +101,8 @@ class __$$TopupAccountDataImplCopyWithImpl<$Res>
       $Res Function(_$TopupAccountDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TopupAccountData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -131,11 +141,13 @@ class _$TopupAccountDataImpl implements _TopupAccountData {
             (identical(other.account, account) || other.account == account));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, account);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopupAccountData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TopupAccountDataImplCopyWith<_$TopupAccountDataImpl> get copyWith =>
@@ -159,8 +171,11 @@ abstract class _TopupAccountData implements TopupAccountData {
 
   @override
   TopupAccount get account;
+
+  /// Create a copy of TopupAccountData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TopupAccountDataImplCopyWith<_$TopupAccountDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -8,6 +8,7 @@ import 'package:blue_business/modules/transaction_details/pages/data_details/wid
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:screenshot/screenshot.dart';
 
@@ -65,7 +66,7 @@ class _DataDetailsViewState extends State<DataDetailsView> {
                       Text(
                         "${nairaSymbol()}${widget.detail.amount}",
                         style: AppTextStyles.header.copyWith(
-                            fontSize: 26, fontWeight: FontWeight.w700),
+                            fontSize: 26.sp, fontWeight: FontWeight.w700),
                       ),
                       25.verticalGap,
                       Expanded(

@@ -25,8 +25,12 @@ mixin _$BusinessDashData {
   int get transactionVolume => throw _privateConstructorUsedError;
   String get walletBalance => throw _privateConstructorUsedError;
 
+  /// Serializes this BusinessDashData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BusinessDashData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BusinessDashDataCopyWith<BusinessDashData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$BusinessDashDataCopyWithImpl<$Res, $Val extends BusinessDashData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BusinessDashData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,6 +112,8 @@ class __$$BusinessDashDataImplCopyWithImpl<$Res>
       $Res Function(_$BusinessDashDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BusinessDashData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -180,12 +188,14 @@ class _$BusinessDashDataImpl implements _BusinessDashData {
                 other.walletBalance == walletBalance));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, totalBranches, totalStaff, transactionVolume, walletBalance);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BusinessDashData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BusinessDashDataImplCopyWith<_$BusinessDashDataImpl> get copyWith =>
@@ -218,8 +228,11 @@ abstract class _BusinessDashData implements BusinessDashData {
   int get transactionVolume;
   @override
   String get walletBalance;
+
+  /// Create a copy of BusinessDashData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BusinessDashDataImplCopyWith<_$BusinessDashDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

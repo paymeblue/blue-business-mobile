@@ -25,8 +25,12 @@ mixin _$GetBeneficiaryData {
   int get page => throw _privateConstructorUsedError;
   bool get loadMore => throw _privateConstructorUsedError;
 
+  /// Serializes this GetBeneficiaryData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetBeneficiaryData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetBeneficiaryDataCopyWith<GetBeneficiaryData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$GetBeneficiaryDataCopyWithImpl<$Res, $Val extends GetBeneficiaryData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetBeneficiaryData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,6 +104,8 @@ class __$$GetBeneficiaryDataImplCopyWithImpl<$Res>
       $Res Function(_$GetBeneficiaryDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetBeneficiaryData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -166,11 +174,13 @@ class _$GetBeneficiaryDataImpl implements _GetBeneficiaryData {
                 other.loadMore == loadMore));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, total, limit, page, loadMore);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetBeneficiaryData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetBeneficiaryDataImplCopyWith<_$GetBeneficiaryDataImpl> get copyWith =>
@@ -203,8 +213,11 @@ abstract class _GetBeneficiaryData implements GetBeneficiaryData {
   int get page;
   @override
   bool get loadMore;
+
+  /// Create a copy of GetBeneficiaryData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetBeneficiaryDataImplCopyWith<_$GetBeneficiaryDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

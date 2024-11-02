@@ -1,13 +1,15 @@
 import 'dart:developer';
 
-import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/services/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -63,13 +65,9 @@ class AppErrorHandler {
       };
     }
 
-    await analytics.setUserId(
-        id: locator<AppStateValues>().currentUser?.id.toString());
-
-    await analytics.logEvent(
-      name: "request_error",
-      parameters: params,
-    );
+    if (!kDebugMode) {
+      FirebaseCrashlytics.instance.recordError(params, null, fatal: true);
+    }
   }
 
   static String errorType(error) {

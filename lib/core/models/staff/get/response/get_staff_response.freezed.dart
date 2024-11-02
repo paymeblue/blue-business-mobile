@@ -24,8 +24,12 @@ mixin _$GetStaffResponse {
   GetStaffData? get data => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
+  /// Serializes this GetStaffResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetStaffResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetStaffResponseCopyWith<GetStaffResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$GetStaffResponseCopyWithImpl<$Res, $Val extends GetStaffResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetStaffResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$GetStaffResponseCopyWithImpl<$Res, $Val extends GetStaffResponse>
     ) as $Val);
   }
 
+  /// Create a copy of GetStaffResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $GetStaffDataCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$GetStaffResponseImplCopyWithImpl<$Res>
       $Res Function(_$GetStaffResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetStaffResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -164,11 +174,13 @@ class _$GetStaffResponseImpl implements _GetStaffResponse {
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, data, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetStaffResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetStaffResponseImplCopyWith<_$GetStaffResponseImpl> get copyWith =>
@@ -198,8 +210,11 @@ abstract class _GetStaffResponse implements GetStaffResponse {
   GetStaffData? get data;
   @override
   String? get message;
+
+  /// Create a copy of GetStaffResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetStaffResponseImplCopyWith<_$GetStaffResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

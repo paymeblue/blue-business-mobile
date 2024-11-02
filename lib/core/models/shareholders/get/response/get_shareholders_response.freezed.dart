@@ -25,8 +25,12 @@ mixin _$GetShareholdersResponse {
   String? get message => throw _privateConstructorUsedError;
   List<Shareholders>? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this GetShareholdersResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetShareholdersResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetShareholdersResponseCopyWith<GetShareholdersResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$GetShareholdersResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetShareholdersResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -97,6 +103,8 @@ class __$$GetShareholdersResponseImplCopyWithImpl<$Res>
       $Res Function(_$GetShareholdersResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetShareholdersResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -161,12 +169,14 @@ class _$GetShareholdersResponseImpl implements _GetShareholdersResponse {
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetShareholdersResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetShareholdersResponseImplCopyWith<_$GetShareholdersResponseImpl>
@@ -196,8 +206,11 @@ abstract class _GetShareholdersResponse implements GetShareholdersResponse {
   String? get message;
   @override
   List<Shareholders>? get data;
+
+  /// Create a copy of GetShareholdersResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetShareholdersResponseImplCopyWith<_$GetShareholdersResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

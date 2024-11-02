@@ -3,13 +3,14 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/io/api/country_code.dart';
 import 'package:blue_business/core/module_config/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
-import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/widgets/textfield/blue_textfield.dart';
 import 'package:blue_business/widgets/textfield/dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nigerian_states_and_lga/nigerian_states_and_lga.dart';
 
 import 'view_model.dart';
@@ -122,6 +123,7 @@ class _InitiateElectricityViewState extends State<InitiateElectricityView> {
                 keyboardType: TextInputType.number,
                 controller: model.meterNumberController,
                 onChanged: model.onChanged,
+                node: FocusNode(),
               ),
             ),
             6.horizontalGap,
@@ -181,10 +183,12 @@ class _InitiateElectricityViewState extends State<InitiateElectricityView> {
         if (model.data != null) ...[
           20.verticalGap,
           BlueTextField.currency(
-              hint: "${nairaSymbol()}0.00",
-              title: "Amount",
-              onChanged: model.onChanged,
-              controller: model.amountController),
+            hint: "${nairaSymbol()}0.00",
+            title: "Amount",
+            onChanged: model.onChanged,
+            controller: model.amountController,
+            node: FocusNode(),
+          ),
         ]
       ],
     );
@@ -206,7 +210,7 @@ class _InitiateElectricityViewState extends State<InitiateElectricityView> {
         "Pay Electricity Bill",
         style: AppTextStyles.header.copyWith(
           fontWeight: FontWeight.w500,
-          fontSize: 20,
+          fontSize: 20.sp,
         ),
       ),
       SizedBox(

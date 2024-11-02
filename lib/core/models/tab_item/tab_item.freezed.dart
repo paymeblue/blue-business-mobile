@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TabItem {
   String get name => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TabItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TabItemCopyWith<TabItem> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -40,6 +42,8 @@ class _$TabItemCopyWithImpl<$Res, $Val extends TabItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TabItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -72,6 +76,8 @@ class __$$TabItemImplCopyWithImpl<$Res>
       _$TabItemImpl _value, $Res Function(_$TabItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TabItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -110,7 +116,9 @@ class _$TabItemImpl implements _TabItem {
   @override
   int get hashCode => Object.hash(runtimeType, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TabItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TabItemImplCopyWith<_$TabItemImpl> get copyWith =>
@@ -122,8 +130,11 @@ abstract class _TabItem implements TabItem {
 
   @override
   String get name;
+
+  /// Create a copy of TabItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TabItemImplCopyWith<_$TabItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

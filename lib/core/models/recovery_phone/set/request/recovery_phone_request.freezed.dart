@@ -24,8 +24,12 @@ mixin _$SetRecoveryPhoneRequest {
   String get phone => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
+  /// Serializes this SetRecoveryPhoneRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SetRecoveryPhoneRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SetRecoveryPhoneRequestCopyWith<SetRecoveryPhoneRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$SetRecoveryPhoneRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SetRecoveryPhoneRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,6 +97,8 @@ class __$$SetRecoveryPhoneRequestImplCopyWithImpl<$Res>
       $Res Function(_$SetRecoveryPhoneRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SetRecoveryPhoneRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -139,11 +147,13 @@ class _$SetRecoveryPhoneRequestImpl implements _SetRecoveryPhoneRequest {
                 other.password == password));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, phone, password);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SetRecoveryPhoneRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SetRecoveryPhoneRequestImplCopyWith<_$SetRecoveryPhoneRequestImpl>
@@ -170,8 +180,11 @@ abstract class _SetRecoveryPhoneRequest implements SetRecoveryPhoneRequest {
   String get phone;
   @override
   String get password;
+
+  /// Create a copy of SetRecoveryPhoneRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SetRecoveryPhoneRequestImplCopyWith<_$SetRecoveryPhoneRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -24,8 +24,12 @@ mixin _$GetBranchResponse {
   String? get message => throw _privateConstructorUsedError;
   Branch? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this GetBranchResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetBranchResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetBranchResponseCopyWith<GetBranchResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$GetBranchResponseCopyWithImpl<$Res, $Val extends GetBranchResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetBranchResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$GetBranchResponseCopyWithImpl<$Res, $Val extends GetBranchResponse>
     ) as $Val);
   }
 
+  /// Create a copy of GetBranchResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BranchCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$GetBranchResponseImplCopyWithImpl<$Res>
       $Res Function(_$GetBranchResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetBranchResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,11 +175,13 @@ class _$GetBranchResponseImpl implements _GetBranchResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetBranchResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetBranchResponseImplCopyWith<_$GetBranchResponseImpl> get copyWith =>
@@ -199,8 +211,11 @@ abstract class _GetBranchResponse implements GetBranchResponse {
   String? get message;
   @override
   Branch? get data;
+
+  /// Create a copy of GetBranchResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetBranchResponseImplCopyWith<_$GetBranchResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

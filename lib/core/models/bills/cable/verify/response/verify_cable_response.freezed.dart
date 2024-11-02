@@ -24,8 +24,12 @@ mixin _$VerifyCableResponse {
   String? get message => throw _privateConstructorUsedError;
   VerifyCableData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifyCableResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifyCableResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifyCableResponseCopyWith<VerifyCableResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$VerifyCableResponseCopyWithImpl<$Res, $Val extends VerifyCableResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifyCableResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$VerifyCableResponseCopyWithImpl<$Res, $Val extends VerifyCableResponse>
     ) as $Val);
   }
 
+  /// Create a copy of VerifyCableResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $VerifyCableDataCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$VerifyCableResponseImplCopyWithImpl<$Res>
       $Res Function(_$VerifyCableResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifyCableResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,11 +175,13 @@ class _$VerifyCableResponseImpl implements _VerifyCableResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifyCableResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifyCableResponseImplCopyWith<_$VerifyCableResponseImpl> get copyWith =>
@@ -199,8 +211,11 @@ abstract class _VerifyCableResponse implements VerifyCableResponse {
   String? get message;
   @override
   VerifyCableData? get data;
+
+  /// Create a copy of VerifyCableResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifyCableResponseImplCopyWith<_$VerifyCableResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

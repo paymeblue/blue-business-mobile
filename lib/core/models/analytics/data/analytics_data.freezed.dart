@@ -23,8 +23,12 @@ mixin _$AnalyticsData {
   AnalyticsItem get desktop => throw _privateConstructorUsedError;
   AnalyticsItem get mobile => throw _privateConstructorUsedError;
 
+  /// Serializes this AnalyticsData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AnalyticsData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AnalyticsDataCopyWith<AnalyticsData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$AnalyticsDataCopyWithImpl<$Res, $Val extends AnalyticsData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AnalyticsData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -69,6 +75,8 @@ class _$AnalyticsDataCopyWithImpl<$Res, $Val extends AnalyticsData>
     ) as $Val);
   }
 
+  /// Create a copy of AnalyticsData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AnalyticsItemCopyWith<$Res> get desktop {
@@ -77,6 +85,8 @@ class _$AnalyticsDataCopyWithImpl<$Res, $Val extends AnalyticsData>
     });
   }
 
+  /// Create a copy of AnalyticsData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AnalyticsItemCopyWith<$Res> get mobile {
@@ -110,6 +120,8 @@ class __$$AnalyticsDataImplCopyWithImpl<$Res>
       _$AnalyticsDataImpl _value, $Res Function(_$AnalyticsDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AnalyticsData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -156,11 +168,13 @@ class _$AnalyticsDataImpl implements _AnalyticsData {
             (identical(other.mobile, mobile) || other.mobile == mobile));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, desktop, mobile);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AnalyticsData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AnalyticsDataImplCopyWith<_$AnalyticsDataImpl> get copyWith =>
@@ -186,8 +200,11 @@ abstract class _AnalyticsData implements AnalyticsData {
   AnalyticsItem get desktop;
   @override
   AnalyticsItem get mobile;
+
+  /// Create a copy of AnalyticsData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AnalyticsDataImplCopyWith<_$AnalyticsDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

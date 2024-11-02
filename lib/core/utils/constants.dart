@@ -1,11 +1,10 @@
-import 'package:blue_business/core/io/api/timed_refresh.dart';
 import 'package:blue_business/core/models/login/data/login_data.dart';
 import 'package:blue_business/core/models/todo/todo.dart';
 import 'package:blue_business/core/models/topup_account/topup_account.dart';
 import 'package:blue_business/core/models/wallet/wallet.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/data/withdrawal_account.dart';
 import 'package:blue_business/core/navigation/route_names.dart';
-import 'package:blue_business/modules/bill_pages/airtime/initiate/presentation/view_model.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 
 class AppStateValues extends ChangeNotifier {

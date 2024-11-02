@@ -9,6 +9,7 @@ import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/module_config/base_view_model.dart';
 import 'package:blue_business/core/services/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
@@ -125,8 +126,12 @@ class InitiateAirtimeViewModel extends BaseViewModel {
     if (number.startsWith("0")) {
       number = number.replaceFirst("0", "");
     }
-    if (number.startsWith(selectedCountry!.dialCode)) {
-      number = number.replaceFirst(selectedCountry!.dialCode, "");
+    if (number
+        .replaceFirst("+", "")
+        .startsWith(selectedCountry!.dialCode.replaceFirst("+", ""))) {
+      number = number
+          .replaceFirst("+", "")
+          .replaceFirst(selectedCountry!.dialCode.replaceFirst("+", ""), "");
     }
 
     return selectedCountry!.dialCode + number;
@@ -143,5 +148,3 @@ class InitiateAirtimeViewModel extends BaseViewModel {
     context.push(RoutePaths.reviewAirtimePath, extra: data);
   }
 }
-
-enum FetchState { error, complete, loading, empty }

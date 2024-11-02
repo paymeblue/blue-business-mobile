@@ -2,6 +2,7 @@ import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FilterTab extends StatelessWidget {
   final List<String> tabs;
@@ -17,8 +18,8 @@ class FilterTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      width: context.mediaQuery.size.width,
+      height: 50.h,
+      width: context.mediaQuery.size.width.w,
       decoration: BoxDecoration(
         color: AppColors.grey,
         borderRadius: BorderRadius.circular(6),
@@ -33,8 +34,8 @@ class FilterTab extends StatelessWidget {
               tab(index, context),
               if (index < tabs.length - 1)
                 Container(
-                  height: 50,
-                  width: 1.5,
+                  height: 50.h,
+                  width: 1.5.w,
                   decoration: const BoxDecoration(
                     color: AppColors.bgGrey,
                   ),
@@ -53,8 +54,8 @@ class FilterTab extends StatelessWidget {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),
-        height: 50,
-        width: (context.mediaQuery.size.width - 40) / tabs.length,
+        height: 45.h,
+        width: (context.mediaQuery.size.width - 60).w / tabs.length,
         decoration: BoxDecoration(
           color: selectedValue == tabs[index]
               ? AppColors.primary
@@ -75,7 +76,7 @@ class FilterTab extends StatelessWidget {
           child: Text(
             tabs[index],
             style: AppTextStyles.largeButtonText.copyWith(
-              fontSize: 15,
+              fontSize: 15.sp,
               color: selectedValue == tabs[index]
                   ? AppColors.white
                   : AppColors.textColor,

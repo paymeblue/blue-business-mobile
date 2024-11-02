@@ -25,8 +25,12 @@ mixin _$GetRecoveryCodeResponse {
   String? get message => throw _privateConstructorUsedError;
   GetRecoveryCodeData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this GetRecoveryCodeResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetRecoveryCodeResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetRecoveryCodeResponseCopyWith<GetRecoveryCodeResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$GetRecoveryCodeResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetRecoveryCodeResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -76,6 +82,8 @@ class _$GetRecoveryCodeResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of GetRecoveryCodeResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $GetRecoveryCodeDataCopyWith<$Res>? get data {
@@ -114,6 +122,8 @@ class __$$GetRecoveryCodeResponseImplCopyWithImpl<$Res>
       $Res Function(_$GetRecoveryCodeResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetRecoveryCodeResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,11 +180,13 @@ class _$GetRecoveryCodeResponseImpl implements _GetRecoveryCodeResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetRecoveryCodeResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetRecoveryCodeResponseImplCopyWith<_$GetRecoveryCodeResponseImpl>
@@ -204,8 +216,11 @@ abstract class _GetRecoveryCodeResponse implements GetRecoveryCodeResponse {
   String? get message;
   @override
   GetRecoveryCodeData? get data;
+
+  /// Create a copy of GetRecoveryCodeResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetRecoveryCodeResponseImplCopyWith<_$GetRecoveryCodeResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
