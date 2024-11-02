@@ -7,14 +7,14 @@ import 'package:webview_flutter/webview_flutter.dart';
 class BlueWebViewArgs {
   BlueWebViewArgs(
     this.url, {
-    required this.successMessage,
-    required this.failureMessage,
+    this.successMessage,
+    this.failureMessage,
     this.onLeadingPressed,
   });
 
   final String url;
-  final String successMessage;
-  final String failureMessage;
+  final String? successMessage;
+  final String? failureMessage;
   final Function()? onLeadingPressed;
 }
 

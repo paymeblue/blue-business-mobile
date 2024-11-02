@@ -9,6 +9,7 @@ import 'package:blue_business/ui/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/ui/widgets/modals/info_container.dart';
 import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
@@ -112,7 +113,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
           onTap: model.pickImage,
           //FIX: the imageUr;
           child: BlueAvatar(
-            radius: 31,
+            radius: 31.sp,
             imageUrl: model.path.isEmpty
                 ? locator<AppStateValues>().currentUser!.displayPicture
                 : model.path,

@@ -76,6 +76,7 @@ class BlueBottomSheet {
                     child: AppButton.primary(
                       title: "Yes, enable",
                       onTap: () {
+                        context.pop();
                         onContinue();
                       },
                     ),

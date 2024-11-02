@@ -15,6 +15,7 @@ import 'package:blue_business/ui/features/login/presentation/view.dart';
 import 'package:blue_business/ui/features/settings/presentation/view.dart';
 import 'package:blue_business/ui/features/signup/pages/progress/presentation/view.dart';
 import 'package:blue_business/ui/features/splash/presentation/view.dart';
+import 'package:blue_business/ui/features/webview/view.dart';
 import 'package:blue_business/ui/features/welcome/presentation/view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -39,21 +40,18 @@ GoRouter router = GoRouter(
     //Splash
     GoRoute(
       path: RoutePaths.initial,
-      name: RoutePaths.initial,
       pageBuilder: (context, state) => const SplashView().fade,
     ),
 
     //Welcome
     GoRoute(
       path: RoutePaths.welcome,
-      name: RoutePaths.welcome,
       pageBuilder: (context, state) => const WelcomeView().fade,
     ),
 
     //Signup
     GoRoute(
       path: RoutePaths.signup,
-      name: RoutePaths.signup,
       pageBuilder: (context, state) => SignupProgressView(
         data: state.extra as SignupData,
       ).fade,
@@ -63,7 +61,6 @@ GoRouter router = GoRouter(
     //Login
     GoRoute(
       path: RoutePaths.login,
-      name: RoutePaths.login,
       pageBuilder: (context, state) => const LoginView().fade,
     ),
 
@@ -78,7 +75,6 @@ GoRouter router = GoRouter(
           routes: [
             GoRoute(
               path: RoutePaths.home,
-              name: RoutePaths.home,
               pageBuilder: (context, state) => const HomeView().slide(),
               routes: homeRoutes,
             )
@@ -89,7 +85,6 @@ GoRouter router = GoRouter(
           routes: [
             GoRoute(
               path: RoutePaths.insights,
-              name: RoutePaths.insights,
               pageBuilder: (context, state) => const InsightsView().slide(),
             )
           ],
@@ -106,6 +101,12 @@ GoRouter router = GoRouter(
           ],
         )
       ],
+    ),
+    GoRoute(
+      path: RoutePaths.webview,
+      parentNavigatorKey: locator<NavigationService>().navigatorKey,
+      pageBuilder: (context, state) =>
+          BlueWebview(args: state.extra as BlueWebViewArgs).fade,
     )
   ],
 );

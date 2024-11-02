@@ -4,8 +4,8 @@
 -keep class androidx.lifecycle.DefaultLifecycleObserver
 
 # Prevent obfuscating main entry points
--keep class com.roman_dev.blue_mobile.MainActivity { *; }
--keep class com.roman_dev.blue_mobile.MainApplication { *; }
+-keep class com.roman_dev.blue_business.MainActivity { *; }
+-keep class com.roman_dev.blue_business.MainApplication { *; }
 
 # Parcelize and other Kotlin-related classes
 -keep class kotlinx.parcelize.** { *; }

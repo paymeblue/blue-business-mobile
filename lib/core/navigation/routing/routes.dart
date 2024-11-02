@@ -41,4 +41,11 @@ class RoutePaths {
   static String paymentLinkHistory = "/dash/settings/payment-link-history";
   static String personalInfo = "/dash/settings/personal-info";
   static String beneficiary = "/dash/settings/manage-beneficiaries";
+  static String accountRecovery = "/dash/settings/account-recovery";
+  static String withdrawalInfo = "/dash/settings/withdrawal-info";
+  static String changePin = "/dash/settings/change-pin";
+  static String changePassword = "/dash/settings/change-password";
+
+  //WEBVIEW
+  static String webview = "/webview";
 }

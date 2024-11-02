@@ -4,6 +4,8 @@ import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/injection/navigation_service.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/extensions.dart';
+import 'package:blue_business/ui/features/account_recovery/presentation/view.dart';
+import 'package:blue_business/ui/features/add_withdrawal_details/presentation/view.dart';
 import 'package:blue_business/ui/features/branch/pages/enter_details/view.dart';
 import 'package:blue_business/ui/features/branch/pages/home/presentation/view.dart';
 import 'package:blue_business/ui/features/manage_beneficiaries/presentation/view.dart';
@@ -65,5 +67,15 @@ List<GoRoute> settingsRoutes = [
     path: RoutePaths.beneficiary.routeSplitter,
     parentNavigatorKey: locator<NavigationService>().navigatorKey,
     pageBuilder: (context, state) => const ManageBeneficiariesView().slide(),
+  ),
+  GoRoute(
+    path: RoutePaths.accountRecovery.routeSplitter,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
+    pageBuilder: (context, state) => const AccountRecoveryView().slide(),
+  ),
+  GoRoute(
+    path: RoutePaths.withdrawalInfo.routeSplitter,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
+    pageBuilder: (context, state) => const AddWithdrawalDetailsView().slide(),
   ),
 ];
