@@ -8,6 +8,7 @@ import 'package:blue_business/ui/features/account_recovery/presentation/view.dar
 import 'package:blue_business/ui/features/add_withdrawal_details/presentation/view.dart';
 import 'package:blue_business/ui/features/branch/pages/enter_details/view.dart';
 import 'package:blue_business/ui/features/branch/pages/home/presentation/view.dart';
+import 'package:blue_business/ui/features/branch_insights/presentation/view.dart';
 import 'package:blue_business/ui/features/manage_beneficiaries/presentation/view.dart';
 import 'package:blue_business/ui/features/payment_link_history/presentation/view.dart';
 import 'package:blue_business/ui/features/personal_info/presentation/view.dart';

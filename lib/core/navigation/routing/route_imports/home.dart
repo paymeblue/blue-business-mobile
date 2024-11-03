@@ -12,6 +12,7 @@ import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/branch/pages/enter_details/view.dart';
 import 'package:blue_business/ui/features/branch/pages/home/presentation/view.dart';
+import 'package:blue_business/ui/features/branch_insights/presentation/view.dart';
 import 'package:blue_business/ui/features/receive_money/presentation/view.dart';
 import 'package:blue_business/ui/features/staff/pages/enter_details/presentation/view.dart';
 import 'package:blue_business/ui/features/staff/pages/home/presentation/view.dart';
@@ -21,6 +22,7 @@ import 'package:blue_business/ui/features/transaction_details/pages/data_details
 import 'package:blue_business/ui/features/transaction_details/pages/payment_details/presentation/view.dart';
 import 'package:blue_business/ui/features/transaction_details/pages/power_details/presentation/view.dart';
 import 'package:blue_business/ui/features/transaction_history/presentation/view.dart';
+import 'package:blue_business/ui/features/wallet/presentation/view.dart';
 import 'package:go_router/go_router.dart';
 
 part '../home_routes.dart';

@@ -13,6 +13,13 @@ List<GoRoute> homeRoutes = [
           branch: state.extra as Branch?,
         ).slide(),
       ),
+      GoRoute(
+        path: RoutePaths.homeToBranchInsights.routeSplitter,
+        parentNavigatorKey: locator<NavigationService>().navigatorKey,
+        pageBuilder: (context, state) => BranchInsightsView(
+          branch: state.extra as Branch,
+        ).slide(),
+      ),
     ],
   ),
   GoRoute(
@@ -33,6 +40,11 @@ List<GoRoute> homeRoutes = [
     path: RoutePaths.homeToRecive.routeSplitter,
     parentNavigatorKey: locator<NavigationService>().navigatorKey,
     pageBuilder: (context, state) => const ReceiveMoneyView().slide(),
+  ),
+  GoRoute(
+    path: RoutePaths.wallet.routeSplitter,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
+    pageBuilder: (context, state) => const WalletView().slide(),
   ),
   GoRoute(
     path: RoutePaths.transactionHistory.routeSplitter,

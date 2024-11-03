@@ -294,7 +294,7 @@ class HomeViewModel extends BaseViewModel {
           ),
           title: "Wallet",
           onTap: () {
-            // goToWallet(context);
+            goToWallet(context);
           },
         )
       ];
@@ -388,5 +388,9 @@ class HomeViewModel extends BaseViewModel {
 
   goToTransactionHistory(BuildContext context) {
     context.push(RoutePaths.transactionHistory);
+  }
+
+  goToWallet(BuildContext context) {
+    context.push(RoutePaths.wallet);
   }
 }

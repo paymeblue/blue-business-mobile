@@ -18,11 +18,13 @@ class RoutePaths {
   //HOME
   static String home = "/dash/home";
   static String homeToBranches = "/dash/home/branches";
+  static String homeToBranchInsights = "/dash/home/branches/insights";
   static String homeToBranchesToDetails = "/dash/home/branches/details";
   static String homeToStaff = "/dash/home/staff";
   static String homeToStaffToDetails = "/dash/home/staff/details";
   static String homeToRecive = "/dash/home/receive-money";
   static String transactionHistory = "/dash/home/transactions";
+  static String wallet = "/dash/home/wallet";
   static String initiateTransaction = "/dash/home/transactions/initiate";
   static String verifyReceiver = "/dash/home/transactions/verify-receiver";
   static String confirmTransaction = "/dash/home/transactions/confirm";
@@ -36,6 +38,7 @@ class RoutePaths {
   //SETTINGS
   static String settings = "/dash/settings";
   static String settingsToBranches = "/dash/settings/branches";
+  static String settingsToBranchInsights = "/dash/settings/branches/insights";
   static String settingsToBranchesToDetails = "/dash/settings/branches/details";
   static String settingsToStaff = "/dash/settings/staff";
   static String settingsToStaffToDetails = "/dash/settings/staff/details";

@@ -138,7 +138,16 @@ class BranchHomeViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  goToBranchInsights(BuildContext context, Branch branch) {}
+  goToBranchInsights(BuildContext context, Branch branch) {
+    GoRouterState state = GoRouterState.of(context);
+
+    context.push<bool>(
+      state.matchedLocation.startsWith(RoutePaths.home)
+          ? RoutePaths.homeToBranchInsights
+          : RoutePaths.settingsToBranchInsights,
+      extra: branch,
+    );
+  }
 
   goToAddBranch(BuildContext context, [Branch? data]) {
     GoRouterState state = GoRouterState.of(context);

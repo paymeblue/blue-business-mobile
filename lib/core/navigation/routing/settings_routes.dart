@@ -13,6 +13,13 @@ List<GoRoute> settingsRoutes = [
           branch: state.extra as Branch?,
         ).slide(),
       ),
+      GoRoute(
+        path: RoutePaths.settingsToBranchInsights.routeSplitter,
+        parentNavigatorKey: locator<NavigationService>().navigatorKey,
+        pageBuilder: (context, state) => BranchInsightsView(
+          branch: state.extra as Branch,
+        ).slide(),
+      ),
     ],
   ),
   GoRoute(
