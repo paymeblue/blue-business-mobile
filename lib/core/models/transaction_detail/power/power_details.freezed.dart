@@ -20,7 +20,7 @@ PowerDetails _$PowerDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PowerDetails {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get serviceCharge => throw _privateConstructorUsedError;
   String get transactionId => throw _privateConstructorUsedError;
@@ -30,6 +30,9 @@ mixin _$PowerDetails {
   String get service => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
+  String get balanceBefore => throw _privateConstructorUsedError;
+  String get balanceAfter => throw _privateConstructorUsedError;
+  String get units => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +47,7 @@ abstract class $PowerDetailsCopyWith<$Res> {
       _$PowerDetailsCopyWithImpl<$Res, PowerDetails>;
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String amount,
       String serviceCharge,
       String transactionId,
@@ -53,7 +56,10 @@ abstract class $PowerDetailsCopyWith<$Res> {
       String receiver,
       String service,
       String status,
-      String? token});
+      String? token,
+      String balanceBefore,
+      String balanceAfter,
+      String units});
 }
 
 /// @nodoc
@@ -69,7 +75,7 @@ class _$PowerDetailsCopyWithImpl<$Res, $Val extends PowerDetails>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? amount = null,
     Object? serviceCharge = null,
     Object? transactionId = null,
@@ -79,12 +85,15 @@ class _$PowerDetailsCopyWithImpl<$Res, $Val extends PowerDetails>
     Object? service = null,
     Object? status = null,
     Object? token = freezed,
+    Object? balanceBefore = null,
+    Object? balanceAfter = null,
+    Object? units = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -121,6 +130,18 @@ class _$PowerDetailsCopyWithImpl<$Res, $Val extends PowerDetails>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
+      balanceBefore: null == balanceBefore
+          ? _value.balanceBefore
+          : balanceBefore // ignore: cast_nullable_to_non_nullable
+              as String,
+      balanceAfter: null == balanceAfter
+          ? _value.balanceAfter
+          : balanceAfter // ignore: cast_nullable_to_non_nullable
+              as String,
+      units: null == units
+          ? _value.units
+          : units // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -134,7 +155,7 @@ abstract class _$$PowerDetailsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String amount,
       String serviceCharge,
       String transactionId,
@@ -143,7 +164,10 @@ abstract class _$$PowerDetailsImplCopyWith<$Res>
       String receiver,
       String service,
       String status,
-      String? token});
+      String? token,
+      String balanceBefore,
+      String balanceAfter,
+      String units});
 }
 
 /// @nodoc
@@ -157,7 +181,7 @@ class __$$PowerDetailsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? amount = null,
     Object? serviceCharge = null,
     Object? transactionId = null,
@@ -167,12 +191,15 @@ class __$$PowerDetailsImplCopyWithImpl<$Res>
     Object? service = null,
     Object? status = null,
     Object? token = freezed,
+    Object? balanceBefore = null,
+    Object? balanceAfter = null,
+    Object? units = null,
   }) {
     return _then(_$PowerDetailsImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -209,6 +236,18 @@ class __$$PowerDetailsImplCopyWithImpl<$Res>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
+      balanceBefore: null == balanceBefore
+          ? _value.balanceBefore
+          : balanceBefore // ignore: cast_nullable_to_non_nullable
+              as String,
+      balanceAfter: null == balanceAfter
+          ? _value.balanceAfter
+          : balanceAfter // ignore: cast_nullable_to_non_nullable
+              as String,
+      units: null == units
+          ? _value.units
+          : units // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -217,7 +256,7 @@ class __$$PowerDetailsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PowerDetailsImpl implements _PowerDetails {
   const _$PowerDetailsImpl(
-      {required this.id,
+      {this.id,
       required this.amount,
       required this.serviceCharge,
       required this.transactionId,
@@ -226,13 +265,16 @@ class _$PowerDetailsImpl implements _PowerDetails {
       required this.receiver,
       this.service = "power",
       this.status = "successful",
-      this.token});
+      this.token,
+      this.balanceBefore = "0.00",
+      this.balanceAfter = "0.00",
+      this.units = "0.0"});
 
   factory _$PowerDetailsImpl.fromJson(Map<String, dynamic> json) =>
       _$$PowerDetailsImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String amount;
   @override
@@ -253,10 +295,19 @@ class _$PowerDetailsImpl implements _PowerDetails {
   final String status;
   @override
   final String? token;
+  @override
+  @JsonKey()
+  final String balanceBefore;
+  @override
+  @JsonKey()
+  final String balanceAfter;
+  @override
+  @JsonKey()
+  final String units;
 
   @override
   String toString() {
-    return 'PowerDetails(id: $id, amount: $amount, serviceCharge: $serviceCharge, transactionId: $transactionId, provider: $provider, createdAt: $createdAt, receiver: $receiver, service: $service, status: $status, token: $token)';
+    return 'PowerDetails(id: $id, amount: $amount, serviceCharge: $serviceCharge, transactionId: $transactionId, provider: $provider, createdAt: $createdAt, receiver: $receiver, service: $service, status: $status, token: $token, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter, units: $units)';
   }
 
   @override
@@ -278,13 +329,31 @@ class _$PowerDetailsImpl implements _PowerDetails {
                 other.receiver == receiver) &&
             (identical(other.service, service) || other.service == service) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.balanceBefore, balanceBefore) ||
+                other.balanceBefore == balanceBefore) &&
+            (identical(other.balanceAfter, balanceAfter) ||
+                other.balanceAfter == balanceAfter) &&
+            (identical(other.units, units) || other.units == units));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, amount, serviceCharge,
-      transactionId, provider, createdAt, receiver, service, status, token);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      amount,
+      serviceCharge,
+      transactionId,
+      provider,
+      createdAt,
+      receiver,
+      service,
+      status,
+      token,
+      balanceBefore,
+      balanceAfter,
+      units);
 
   @JsonKey(ignore: true)
   @override
@@ -302,7 +371,7 @@ class _$PowerDetailsImpl implements _PowerDetails {
 
 abstract class _PowerDetails implements PowerDetails {
   const factory _PowerDetails(
-      {required final int id,
+      {final int? id,
       required final String amount,
       required final String serviceCharge,
       required final String transactionId,
@@ -311,13 +380,16 @@ abstract class _PowerDetails implements PowerDetails {
       required final String receiver,
       final String service,
       final String status,
-      final String? token}) = _$PowerDetailsImpl;
+      final String? token,
+      final String balanceBefore,
+      final String balanceAfter,
+      final String units}) = _$PowerDetailsImpl;
 
   factory _PowerDetails.fromJson(Map<String, dynamic> json) =
       _$PowerDetailsImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String get amount;
   @override
@@ -336,6 +408,12 @@ abstract class _PowerDetails implements PowerDetails {
   String get status;
   @override
   String? get token;
+  @override
+  String get balanceBefore;
+  @override
+  String get balanceAfter;
+  @override
+  String get units;
   @override
   @JsonKey(ignore: true)
   _$$PowerDetailsImplCopyWith<_$PowerDetailsImpl> get copyWith =>

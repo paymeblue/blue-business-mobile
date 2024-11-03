@@ -20,7 +20,7 @@ CableDetails _$CableDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CableDetails {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get serviceCharge => throw _privateConstructorUsedError;
   String get receiver => throw _privateConstructorUsedError;
@@ -31,6 +31,8 @@ mixin _$CableDetails {
   String get createdAt => throw _privateConstructorUsedError;
   String get service => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  String get balanceBefore => throw _privateConstructorUsedError;
+  String get balanceAfter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +47,7 @@ abstract class $CableDetailsCopyWith<$Res> {
       _$CableDetailsCopyWithImpl<$Res, CableDetails>;
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String amount,
       String serviceCharge,
       String receiver,
@@ -55,7 +57,9 @@ abstract class $CableDetailsCopyWith<$Res> {
       String paymentMode,
       String createdAt,
       String service,
-      String status});
+      String status,
+      String balanceBefore,
+      String balanceAfter});
 }
 
 /// @nodoc
@@ -71,7 +75,7 @@ class _$CableDetailsCopyWithImpl<$Res, $Val extends CableDetails>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? amount = null,
     Object? serviceCharge = null,
     Object? receiver = null,
@@ -82,12 +86,14 @@ class _$CableDetailsCopyWithImpl<$Res, $Val extends CableDetails>
     Object? createdAt = null,
     Object? service = null,
     Object? status = null,
+    Object? balanceBefore = null,
+    Object? balanceAfter = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -127,6 +133,14 @@ class _$CableDetailsCopyWithImpl<$Res, $Val extends CableDetails>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      balanceBefore: null == balanceBefore
+          ? _value.balanceBefore
+          : balanceBefore // ignore: cast_nullable_to_non_nullable
+              as String,
+      balanceAfter: null == balanceAfter
+          ? _value.balanceAfter
+          : balanceAfter // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -141,7 +155,7 @@ abstract class _$$CableDetailsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String amount,
       String serviceCharge,
       String receiver,
@@ -151,7 +165,9 @@ abstract class _$$CableDetailsImplCopyWith<$Res>
       String paymentMode,
       String createdAt,
       String service,
-      String status});
+      String status,
+      String balanceBefore,
+      String balanceAfter});
 }
 
 /// @nodoc
@@ -165,7 +181,7 @@ class __$$CableDetailsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? amount = null,
     Object? serviceCharge = null,
     Object? receiver = null,
@@ -176,12 +192,14 @@ class __$$CableDetailsImplCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? service = null,
     Object? status = null,
+    Object? balanceBefore = null,
+    Object? balanceAfter = null,
   }) {
     return _then(_$CableDetailsImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -222,6 +240,14 @@ class __$$CableDetailsImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      balanceBefore: null == balanceBefore
+          ? _value.balanceBefore
+          : balanceBefore // ignore: cast_nullable_to_non_nullable
+              as String,
+      balanceAfter: null == balanceAfter
+          ? _value.balanceAfter
+          : balanceAfter // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -230,7 +256,7 @@ class __$$CableDetailsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CableDetailsImpl implements _CableDetails {
   const _$CableDetailsImpl(
-      {required this.id,
+      {this.id,
       required this.amount,
       required this.serviceCharge,
       required this.receiver,
@@ -240,13 +266,15 @@ class _$CableDetailsImpl implements _CableDetails {
       required this.paymentMode,
       required this.createdAt,
       this.service = "data",
-      this.status = "successful"});
+      this.status = "successful",
+      this.balanceBefore = "0.00",
+      this.balanceAfter = "0.00"});
 
   factory _$CableDetailsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CableDetailsImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String amount;
   @override
@@ -269,10 +297,16 @@ class _$CableDetailsImpl implements _CableDetails {
   @override
   @JsonKey()
   final String status;
+  @override
+  @JsonKey()
+  final String balanceBefore;
+  @override
+  @JsonKey()
+  final String balanceAfter;
 
   @override
   String toString() {
-    return 'CableDetails(id: $id, amount: $amount, serviceCharge: $serviceCharge, receiver: $receiver, transactionId: $transactionId, provider: $provider, package: $package, paymentMode: $paymentMode, createdAt: $createdAt, service: $service, status: $status)';
+    return 'CableDetails(id: $id, amount: $amount, serviceCharge: $serviceCharge, receiver: $receiver, transactionId: $transactionId, provider: $provider, package: $package, paymentMode: $paymentMode, createdAt: $createdAt, service: $service, status: $status, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter)';
   }
 
   @override
@@ -296,7 +330,11 @@ class _$CableDetailsImpl implements _CableDetails {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.service, service) || other.service == service) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.balanceBefore, balanceBefore) ||
+                other.balanceBefore == balanceBefore) &&
+            (identical(other.balanceAfter, balanceAfter) ||
+                other.balanceAfter == balanceAfter));
   }
 
   @JsonKey(ignore: true)
@@ -313,7 +351,9 @@ class _$CableDetailsImpl implements _CableDetails {
       paymentMode,
       createdAt,
       service,
-      status);
+      status,
+      balanceBefore,
+      balanceAfter);
 
   @JsonKey(ignore: true)
   @override
@@ -331,7 +371,7 @@ class _$CableDetailsImpl implements _CableDetails {
 
 abstract class _CableDetails implements CableDetails {
   const factory _CableDetails(
-      {required final int id,
+      {final int? id,
       required final String amount,
       required final String serviceCharge,
       required final String receiver,
@@ -341,13 +381,15 @@ abstract class _CableDetails implements CableDetails {
       required final String paymentMode,
       required final String createdAt,
       final String service,
-      final String status}) = _$CableDetailsImpl;
+      final String status,
+      final String balanceBefore,
+      final String balanceAfter}) = _$CableDetailsImpl;
 
   factory _CableDetails.fromJson(Map<String, dynamic> json) =
       _$CableDetailsImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String get amount;
   @override
@@ -368,6 +410,10 @@ abstract class _CableDetails implements CableDetails {
   String get service;
   @override
   String get status;
+  @override
+  String get balanceBefore;
+  @override
+  String get balanceAfter;
   @override
   @JsonKey(ignore: true)
   _$$CableDetailsImplCopyWith<_$CableDetailsImpl> get copyWith =>

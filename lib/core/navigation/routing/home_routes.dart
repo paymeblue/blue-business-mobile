@@ -1,17 +1,4 @@
-import 'package:blue_business/core/models/branches/branch.dart';
-import 'package:blue_business/core/models/staff/get/item/staff.dart';
-import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
-import 'package:blue_business/core/utils/enums.dart';
-import 'package:blue_business/core/utils/extensions.dart';
-import 'package:blue_business/ui/features/branch/pages/enter_details/view.dart';
-import 'package:blue_business/ui/features/branch/pages/home/presentation/view.dart';
-import 'package:blue_business/ui/features/receive_money/presentation/view.dart';
-import 'package:blue_business/ui/features/staff/pages/enter_details/presentation/view.dart';
-import 'package:blue_business/ui/features/staff/pages/home/presentation/view.dart';
-import 'package:blue_business/ui/features/transaction_history/presentation/view.dart';
-import 'package:go_router/go_router.dart';
+part of 'route_imports/home.dart';
 
 List<GoRoute> homeRoutes = [
   GoRoute(
@@ -52,6 +39,29 @@ List<GoRoute> homeRoutes = [
     parentNavigatorKey: locator<NavigationService>().navigatorKey,
     pageBuilder: (context, state) =>
         const TransactionHistoryView().slide(dir: SlideDirections.btt),
-    //TODO : Add routes
+    routes: [
+      GoRoute(
+        path: RoutePaths.transactionDetails(method: ":method").routeSplitter,
+        parentNavigatorKey: locator<NavigationService>().navigatorKey,
+        pageBuilder: (context, state) {
+          final method = state.pathParameters['method'];
+          if (method == "airtime") {
+            return AirtimeDetailsView(detail: state.extra as AirtimeDetails)
+                .slide();
+          } else if (method == "tv") {
+            return CableDetailsView(detail: state.extra as CableDetails)
+                .slide();
+          } else if (method == "data") {
+            return DataDetailsView(detail: state.extra as DataDetails).slide();
+          } else if (method == "power") {
+            return PowerDetailsView(detail: state.extra as PowerDetails)
+                .slide();
+          } else {
+            return PaymentDetailsView(detail: state.extra as PaymentDetail)
+                .slide();
+          }
+        },
+      ),
+    ],
   ),
 ];

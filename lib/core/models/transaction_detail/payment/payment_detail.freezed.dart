@@ -30,6 +30,8 @@ mixin _$PaymentDetail {
   String get service => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String? get narration => throw _privateConstructorUsedError;
+  String get balanceBefore => throw _privateConstructorUsedError;
+  String get balanceAfter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +55,9 @@ abstract class $PaymentDetailCopyWith<$Res> {
       String transactionId,
       String service,
       String status,
-      String? narration});
+      String? narration,
+      String balanceBefore,
+      String balanceAfter});
 }
 
 /// @nodoc
@@ -79,6 +83,8 @@ class _$PaymentDetailCopyWithImpl<$Res, $Val extends PaymentDetail>
     Object? service = null,
     Object? status = null,
     Object? narration = freezed,
+    Object? balanceBefore = null,
+    Object? balanceAfter = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -121,6 +127,14 @@ class _$PaymentDetailCopyWithImpl<$Res, $Val extends PaymentDetail>
           ? _value.narration
           : narration // ignore: cast_nullable_to_non_nullable
               as String?,
+      balanceBefore: null == balanceBefore
+          ? _value.balanceBefore
+          : balanceBefore // ignore: cast_nullable_to_non_nullable
+              as String,
+      balanceAfter: null == balanceAfter
+          ? _value.balanceAfter
+          : balanceAfter // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -143,7 +157,9 @@ abstract class _$$PaymentDetailImplCopyWith<$Res>
       String transactionId,
       String service,
       String status,
-      String? narration});
+      String? narration,
+      String balanceBefore,
+      String balanceAfter});
 }
 
 /// @nodoc
@@ -167,6 +183,8 @@ class __$$PaymentDetailImplCopyWithImpl<$Res>
     Object? service = null,
     Object? status = null,
     Object? narration = freezed,
+    Object? balanceBefore = null,
+    Object? balanceAfter = null,
   }) {
     return _then(_$PaymentDetailImpl(
       id: freezed == id
@@ -209,6 +227,14 @@ class __$$PaymentDetailImplCopyWithImpl<$Res>
           ? _value.narration
           : narration // ignore: cast_nullable_to_non_nullable
               as String?,
+      balanceBefore: null == balanceBefore
+          ? _value.balanceBefore
+          : balanceBefore // ignore: cast_nullable_to_non_nullable
+              as String,
+      balanceAfter: null == balanceAfter
+          ? _value.balanceAfter
+          : balanceAfter // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -217,7 +243,7 @@ class __$$PaymentDetailImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PaymentDetailImpl implements _PaymentDetail {
   const _$PaymentDetailImpl(
-      {required this.id,
+      {this.id,
       required this.amount,
       required this.receiver,
       required this.details,
@@ -226,7 +252,9 @@ class _$PaymentDetailImpl implements _PaymentDetail {
       required this.transactionId,
       this.service = "payment",
       this.status = "pending",
-      this.narration});
+      this.narration,
+      this.balanceBefore = "0.00",
+      this.balanceAfter = "0.00"});
 
   factory _$PaymentDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$PaymentDetailImplFromJson(json);
@@ -253,10 +281,16 @@ class _$PaymentDetailImpl implements _PaymentDetail {
   final String status;
   @override
   final String? narration;
+  @override
+  @JsonKey()
+  final String balanceBefore;
+  @override
+  @JsonKey()
+  final String balanceAfter;
 
   @override
   String toString() {
-    return 'PaymentDetail(id: $id, amount: $amount, receiver: $receiver, details: $details, paymentMode: $paymentMode, createdAt: $createdAt, transactionId: $transactionId, service: $service, status: $status, narration: $narration)';
+    return 'PaymentDetail(id: $id, amount: $amount, receiver: $receiver, details: $details, paymentMode: $paymentMode, createdAt: $createdAt, transactionId: $transactionId, service: $service, status: $status, narration: $narration, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter)';
   }
 
   @override
@@ -278,13 +312,29 @@ class _$PaymentDetailImpl implements _PaymentDetail {
             (identical(other.service, service) || other.service == service) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.narration, narration) ||
-                other.narration == narration));
+                other.narration == narration) &&
+            (identical(other.balanceBefore, balanceBefore) ||
+                other.balanceBefore == balanceBefore) &&
+            (identical(other.balanceAfter, balanceAfter) ||
+                other.balanceAfter == balanceAfter));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, amount, receiver, details,
-      paymentMode, createdAt, transactionId, service, status, narration);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      amount,
+      receiver,
+      details,
+      paymentMode,
+      createdAt,
+      transactionId,
+      service,
+      status,
+      narration,
+      balanceBefore,
+      balanceAfter);
 
   @JsonKey(ignore: true)
   @override
@@ -302,7 +352,7 @@ class _$PaymentDetailImpl implements _PaymentDetail {
 
 abstract class _PaymentDetail implements PaymentDetail {
   const factory _PaymentDetail(
-      {required final String? id,
+      {final String? id,
       required final String amount,
       required final String receiver,
       required final String details,
@@ -311,7 +361,9 @@ abstract class _PaymentDetail implements PaymentDetail {
       required final String transactionId,
       final String service,
       final String status,
-      final String? narration}) = _$PaymentDetailImpl;
+      final String? narration,
+      final String balanceBefore,
+      final String balanceAfter}) = _$PaymentDetailImpl;
 
   factory _PaymentDetail.fromJson(Map<String, dynamic> json) =
       _$PaymentDetailImpl.fromJson;
@@ -336,6 +388,10 @@ abstract class _PaymentDetail implements PaymentDetail {
   String get status;
   @override
   String? get narration;
+  @override
+  String get balanceBefore;
+  @override
+  String get balanceAfter;
   @override
   @JsonKey(ignore: true)
   _$$PaymentDetailImplCopyWith<_$PaymentDetailImpl> get copyWith =>

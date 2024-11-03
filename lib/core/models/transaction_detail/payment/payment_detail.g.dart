@@ -18,6 +18,8 @@ _$PaymentDetailImpl _$$PaymentDetailImplFromJson(Map<String, dynamic> json) =>
       service: json['service'] as String? ?? "payment",
       status: json['status'] as String? ?? "pending",
       narration: json['narration'] as String?,
+      balanceBefore: json['balance_before'] as String? ?? "0.00",
+      balanceAfter: json['balance_after'] as String? ?? "0.00",
     );
 
 Map<String, dynamic> _$$PaymentDetailImplToJson(_$PaymentDetailImpl instance) {
@@ -39,5 +41,7 @@ Map<String, dynamic> _$$PaymentDetailImplToJson(_$PaymentDetailImpl instance) {
   val['service'] = instance.service;
   val['status'] = instance.status;
   writeNotNull('narration', instance.narration);
+  val['balance_before'] = instance.balanceBefore;
+  val['balance_after'] = instance.balanceAfter;
   return val;
 }

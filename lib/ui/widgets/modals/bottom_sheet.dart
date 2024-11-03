@@ -257,6 +257,45 @@ class BlueBottomSheet {
       );
     }
 
+    // Widget statusDropdown(
+    //     BuildContext context, void Function(String?)? onChanged) {
+    //   return Container(
+    //     margin: const EdgeInsets.only(top: 10, bottom: 10),
+    //     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+    //     width: context.mediaQuery.size.width,
+    //     decoration: BoxDecoration(
+    //       color: AppColors.grey,
+    //       borderRadius: BorderRadius.circular(5),
+    //     ),
+    //     child: DropdownButton<String>(
+    //       hint: Text(
+    //         status.isEmpty ? "--Select a status--" : status,
+    //         style: status.isNotEmpty
+    //             ? AppTextStyles.textField
+    //             : AppTextStyles.subText
+    //                 .copyWith(color: AppColors.textColor.withOpacity(.5)),
+    //       ),
+    //       underline: const SizedBox(),
+    //       icon: const Icon(Icons.keyboard_arrow_down_rounded),
+    //       style: TextStyle(
+    //           fontSize: 13.sp,
+    //           // fontWeight: FontWeight.w300,
+    //           color: Theme.of(context).highlightColor.withOpacity(.8)),
+    //       items: statuses
+    //           .map((q) => DropdownMenuItem<String>(
+    //                 value: q,
+    //                 child: Text(
+    //                   q,
+    //                   style: AppTextStyles.textField,
+    //                 ),
+    //               ))
+    //           .toList(),
+    //       isExpanded: true,
+    //       onChanged: onChanged,
+    //     ),
+    //   );
+    // }
+
     Widget textFieldHeader(String text) {
       return Align(
         alignment: Alignment.centerLeft,
@@ -272,7 +311,7 @@ class BlueBottomSheet {
         onTap: onTap,
         child: Focus(
           child: Container(
-            height: 55,
+            height: 55.h,
             width: context.mediaQuery.size.width,
             padding: const EdgeInsets.symmetric(
               horizontal: 10,
@@ -284,8 +323,8 @@ class BlueBottomSheet {
             child: Row(
               children: [
                 SizedBox(
-                  height: 26,
-                  width: 26,
+                  height: 26.h,
+                  width: 26.w,
                   child: AppAssets.images.icons.calendar.svg(),
                 ),
                 10.horizontalGap,
@@ -323,7 +362,7 @@ class BlueBottomSheet {
               RefreshTimer().resetTimer();
             },
             child: Container(
-              height: 400,
+              height: 535.h,
               margin: const EdgeInsets.only(left: 17, right: 17, bottom: 35),
               padding: const EdgeInsets.only(
                   left: 20, right: 20, top: 22, bottom: 22),
@@ -345,13 +384,13 @@ class BlueBottomSheet {
                     });
                   }),
                   // 12.verticalGap,
-                  // textFieldHeader("Transaction staus"),
+                  // textFieldHeader("Transaction status"),
                   // statusDropdown(context, (val) {
                   //   setState(() {
                   //     status = val ?? "";
                   //   });
                   // }),
-                  6.verticalGap,
+                  12.verticalGap,
                   textFieldHeader("Date"),
                   datePickerField(context, () async {
                     String d = await pickDate() ?? "";

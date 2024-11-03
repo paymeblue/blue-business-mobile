@@ -1,19 +1,4 @@
-import 'package:blue_business/core/models/branches/branch.dart';
-import 'package:blue_business/core/models/staff/get/item/staff.dart';
-import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
-import 'package:blue_business/core/utils/extensions.dart';
-import 'package:blue_business/ui/features/account_recovery/presentation/view.dart';
-import 'package:blue_business/ui/features/add_withdrawal_details/presentation/view.dart';
-import 'package:blue_business/ui/features/branch/pages/enter_details/view.dart';
-import 'package:blue_business/ui/features/branch/pages/home/presentation/view.dart';
-import 'package:blue_business/ui/features/manage_beneficiaries/presentation/view.dart';
-import 'package:blue_business/ui/features/payment_link_history/presentation/view.dart';
-import 'package:blue_business/ui/features/personal_info/presentation/view.dart';
-import 'package:blue_business/ui/features/staff/pages/enter_details/presentation/view.dart';
-import 'package:blue_business/ui/features/staff/pages/home/presentation/view.dart';
-import 'package:go_router/go_router.dart';
+part of 'route_imports/settings.dart';
 
 List<GoRoute> settingsRoutes = [
   GoRoute(

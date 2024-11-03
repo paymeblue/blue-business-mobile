@@ -6,7 +6,7 @@ part 'airtime_details.g.dart';
 @freezed
 class AirtimeDetails with _$AirtimeDetails {
   const factory AirtimeDetails({
-    required int id,
+    int? id,
     required String amount,
     required String receiver,
     required String transactionId,
@@ -14,6 +14,8 @@ class AirtimeDetails with _$AirtimeDetails {
     required String createdAt,
     @Default("airtime") String service,
     @Default("successful") String status,
+    @Default("0.00") String balanceBefore,
+    @Default("0.00") String balanceAfter,
   }) = _AirtimeDetails;
 
   factory AirtimeDetails.fromJson(Map<String, dynamic> json) =>

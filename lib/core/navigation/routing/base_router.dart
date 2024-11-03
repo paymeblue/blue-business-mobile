@@ -1,23 +1,4 @@
-import 'package:blue_business/core/models/signup/data/signup_data.dart';
-import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
-import 'package:blue_business/core/navigation/routing/home_routes.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
-import 'package:blue_business/core/navigation/routing/settings_routes.dart';
-import 'package:blue_business/core/navigation/routing/signup_router.dart';
-import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/extensions.dart';
-import 'package:blue_business/ui/features/bottom_navigation/presentation/view.dart';
-import 'package:blue_business/ui/features/error/presentation/view.dart';
-import 'package:blue_business/ui/features/home/presentation/view.dart';
-import 'package:blue_business/ui/features/insights/presentation/view.dart';
-import 'package:blue_business/ui/features/login/presentation/view.dart';
-import 'package:blue_business/ui/features/settings/presentation/view.dart';
-import 'package:blue_business/ui/features/signup/pages/progress/presentation/view.dart';
-import 'package:blue_business/ui/features/splash/presentation/view.dart';
-import 'package:blue_business/ui/features/webview/view.dart';
-import 'package:blue_business/ui/features/welcome/presentation/view.dart';
-import 'package:go_router/go_router.dart';
+part of 'route_imports/base.dart';
 
 GoRouter router = GoRouter(
   errorPageBuilder: (context, state) => ErrorRouteView(

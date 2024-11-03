@@ -20,7 +20,7 @@ AirtimeDetails _$AirtimeDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AirtimeDetails {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get receiver => throw _privateConstructorUsedError;
   String get transactionId => throw _privateConstructorUsedError;
@@ -28,6 +28,8 @@ mixin _$AirtimeDetails {
   String get createdAt => throw _privateConstructorUsedError;
   String get service => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  String get balanceBefore => throw _privateConstructorUsedError;
+  String get balanceAfter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,14 +44,16 @@ abstract class $AirtimeDetailsCopyWith<$Res> {
       _$AirtimeDetailsCopyWithImpl<$Res, AirtimeDetails>;
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String amount,
       String receiver,
       String transactionId,
       String provider,
       String createdAt,
       String service,
-      String status});
+      String status,
+      String balanceBefore,
+      String balanceAfter});
 }
 
 /// @nodoc
@@ -65,7 +69,7 @@ class _$AirtimeDetailsCopyWithImpl<$Res, $Val extends AirtimeDetails>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? amount = null,
     Object? receiver = null,
     Object? transactionId = null,
@@ -73,12 +77,14 @@ class _$AirtimeDetailsCopyWithImpl<$Res, $Val extends AirtimeDetails>
     Object? createdAt = null,
     Object? service = null,
     Object? status = null,
+    Object? balanceBefore = null,
+    Object? balanceAfter = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -106,6 +112,14 @@ class _$AirtimeDetailsCopyWithImpl<$Res, $Val extends AirtimeDetails>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      balanceBefore: null == balanceBefore
+          ? _value.balanceBefore
+          : balanceBefore // ignore: cast_nullable_to_non_nullable
+              as String,
+      balanceAfter: null == balanceAfter
+          ? _value.balanceAfter
+          : balanceAfter // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -120,14 +134,16 @@ abstract class _$$AirtimeDetailsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String amount,
       String receiver,
       String transactionId,
       String provider,
       String createdAt,
       String service,
-      String status});
+      String status,
+      String balanceBefore,
+      String balanceAfter});
 }
 
 /// @nodoc
@@ -141,7 +157,7 @@ class __$$AirtimeDetailsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? amount = null,
     Object? receiver = null,
     Object? transactionId = null,
@@ -149,12 +165,14 @@ class __$$AirtimeDetailsImplCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? service = null,
     Object? status = null,
+    Object? balanceBefore = null,
+    Object? balanceAfter = null,
   }) {
     return _then(_$AirtimeDetailsImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -183,6 +201,14 @@ class __$$AirtimeDetailsImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      balanceBefore: null == balanceBefore
+          ? _value.balanceBefore
+          : balanceBefore // ignore: cast_nullable_to_non_nullable
+              as String,
+      balanceAfter: null == balanceAfter
+          ? _value.balanceAfter
+          : balanceAfter // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -191,20 +217,22 @@ class __$$AirtimeDetailsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AirtimeDetailsImpl implements _AirtimeDetails {
   const _$AirtimeDetailsImpl(
-      {required this.id,
+      {this.id,
       required this.amount,
       required this.receiver,
       required this.transactionId,
       required this.provider,
       required this.createdAt,
       this.service = "airtime",
-      this.status = "successful"});
+      this.status = "successful",
+      this.balanceBefore = "0.00",
+      this.balanceAfter = "0.00"});
 
   factory _$AirtimeDetailsImpl.fromJson(Map<String, dynamic> json) =>
       _$$AirtimeDetailsImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String amount;
   @override
@@ -221,10 +249,16 @@ class _$AirtimeDetailsImpl implements _AirtimeDetails {
   @override
   @JsonKey()
   final String status;
+  @override
+  @JsonKey()
+  final String balanceBefore;
+  @override
+  @JsonKey()
+  final String balanceAfter;
 
   @override
   String toString() {
-    return 'AirtimeDetails(id: $id, amount: $amount, receiver: $receiver, transactionId: $transactionId, provider: $provider, createdAt: $createdAt, service: $service, status: $status)';
+    return 'AirtimeDetails(id: $id, amount: $amount, receiver: $receiver, transactionId: $transactionId, provider: $provider, createdAt: $createdAt, service: $service, status: $status, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter)';
   }
 
   @override
@@ -243,13 +277,27 @@ class _$AirtimeDetailsImpl implements _AirtimeDetails {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.service, service) || other.service == service) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.balanceBefore, balanceBefore) ||
+                other.balanceBefore == balanceBefore) &&
+            (identical(other.balanceAfter, balanceAfter) ||
+                other.balanceAfter == balanceAfter));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, amount, receiver,
-      transactionId, provider, createdAt, service, status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      amount,
+      receiver,
+      transactionId,
+      provider,
+      createdAt,
+      service,
+      status,
+      balanceBefore,
+      balanceAfter);
 
   @JsonKey(ignore: true)
   @override
@@ -268,20 +316,22 @@ class _$AirtimeDetailsImpl implements _AirtimeDetails {
 
 abstract class _AirtimeDetails implements AirtimeDetails {
   const factory _AirtimeDetails(
-      {required final int id,
+      {final int? id,
       required final String amount,
       required final String receiver,
       required final String transactionId,
       required final String provider,
       required final String createdAt,
       final String service,
-      final String status}) = _$AirtimeDetailsImpl;
+      final String status,
+      final String balanceBefore,
+      final String balanceAfter}) = _$AirtimeDetailsImpl;
 
   factory _AirtimeDetails.fromJson(Map<String, dynamic> json) =
       _$AirtimeDetailsImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String get amount;
   @override
@@ -296,6 +346,10 @@ abstract class _AirtimeDetails implements AirtimeDetails {
   String get service;
   @override
   String get status;
+  @override
+  String get balanceBefore;
+  @override
+  String get balanceAfter;
   @override
   @JsonKey(ignore: true)
   _$$AirtimeDetailsImplCopyWith<_$AirtimeDetailsImpl> get copyWith =>

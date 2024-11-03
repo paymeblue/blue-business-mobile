@@ -1,0 +1,26 @@
+import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/models/staff/get/item/staff.dart';
+import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
+import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
+import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
+import 'package:blue_business/core/models/transaction_detail/payment/payment_detail.dart';
+import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/injection/navigation_service.dart';
+import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/utils/enums.dart';
+import 'package:blue_business/core/utils/extensions.dart';
+import 'package:blue_business/ui/features/branch/pages/enter_details/view.dart';
+import 'package:blue_business/ui/features/branch/pages/home/presentation/view.dart';
+import 'package:blue_business/ui/features/receive_money/presentation/view.dart';
+import 'package:blue_business/ui/features/staff/pages/enter_details/presentation/view.dart';
+import 'package:blue_business/ui/features/staff/pages/home/presentation/view.dart';
+import 'package:blue_business/ui/features/transaction_details/pages/airtime_details/presentation/view.dart';
+import 'package:blue_business/ui/features/transaction_details/pages/cable_details/presentation/view.dart';
+import 'package:blue_business/ui/features/transaction_details/pages/data_details/presentation/view.dart';
+import 'package:blue_business/ui/features/transaction_details/pages/payment_details/presentation/view.dart';
+import 'package:blue_business/ui/features/transaction_details/pages/power_details/presentation/view.dart';
+import 'package:blue_business/ui/features/transaction_history/presentation/view.dart';
+import 'package:go_router/go_router.dart';
+
+part '../home_routes.dart';
