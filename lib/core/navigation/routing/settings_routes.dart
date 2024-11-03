@@ -61,4 +61,14 @@ List<GoRoute> settingsRoutes = [
     parentNavigatorKey: locator<NavigationService>().navigatorKey,
     pageBuilder: (context, state) => const AddWithdrawalDetailsView().slide(),
   ),
+  GoRoute(
+    path: RoutePaths.changePassword.routeSplitter,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
+    pageBuilder: (context, state) => const ChangePasswordView().slide(),
+  ),
+  GoRoute(
+    path: RoutePaths.changePin.routeSplitter,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
+    pageBuilder: (context, state) => const ChangePinView().slide(),
+  ),
 ];

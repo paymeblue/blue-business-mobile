@@ -113,7 +113,7 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToChangePassword(BuildContext context) {
-    // context.go(RoutePaths.changePasswordPath);
+    context.push(RoutePaths.changePassword);
   }
 
   denyBiometrics() async {
@@ -141,7 +141,7 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToChangePin(BuildContext context) {
-    // context.go(RoutePaths.changePinPath);
+    context.push(RoutePaths.changePin);
   }
 
   List<SettingsSection> sections(BuildContext context) => [

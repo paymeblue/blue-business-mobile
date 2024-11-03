@@ -54,8 +54,12 @@ class CreatePinViewModel extends BaseViewModel {
 
   setPinAndNext(BuildContext context) {
     if (isConfirm) {
-      confirmPin = tempPin;
-      completeRegistration(context);
+      if (pin == tempPin) {
+        confirmPin = tempPin;
+        completeRegistration(context);
+      } else {
+        AppNotification.error(message: "Pins do not match");
+      }
     } else {
       pin = tempPin;
       tempPin = "";
