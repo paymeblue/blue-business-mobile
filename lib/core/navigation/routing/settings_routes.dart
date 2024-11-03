@@ -41,15 +41,6 @@ List<GoRoute> settingsRoutes = [
         pageBuilder: (context, state) => EnterStaffDetailsView(
           staff: state.extra as Staff?,
         ).slide(),
-        routes: [
-          GoRoute(
-            path: RoutePaths
-                .settingsToStaffToDetailsToBranchDetails.routeSplitter,
-            parentNavigatorKey: locator<NavigationService>().navigatorKey,
-            pageBuilder: (context, state) =>
-                const EnterBranchDetailsView().slide(),
-          ),
-        ],
       ),
     ],
   ),

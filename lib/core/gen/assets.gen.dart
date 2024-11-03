@@ -325,6 +325,9 @@ class $AssetsImagesIconsGen {
   SvgGenImage get support =>
       const SvgGenImage('assets/images/icons/support.svg');
 
+  /// File path: assets/images/icons/topup.svg
+  SvgGenImage get topup => const SvgGenImage('assets/images/icons/topup.svg');
+
   /// File path: assets/images/icons/tv.svg
   SvgGenImage get tv => const SvgGenImage('assets/images/icons/tv.svg');
 
@@ -411,6 +414,7 @@ class $AssetsImagesIconsGen {
         staffManagement,
         success,
         support,
+        topup,
         tv,
         user,
         virtualBank,

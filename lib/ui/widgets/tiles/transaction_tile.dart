@@ -26,7 +26,7 @@ class TransationTile extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            height: 38,
+            height: 38.h,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.lightOverlay2,
@@ -46,7 +46,7 @@ class TransationTile extends StatelessWidget {
 
   Widget amountWidget() {
     return SizedBox(
-      height: 20,
+      height: 20.h,
       child: FittedBox(
         child: Text(
           "${typeSymbol()}${transaction.transactionAmount}",
@@ -144,7 +144,7 @@ class TransationTile extends StatelessWidget {
       case PaymentMode.qr:
         return bluePaymentImage();
       case PaymentMode.topup:
-      // return AppAssets.images.icons.topup.svg();
+        return AppAssets.images.icons.topup.svg();
       case PaymentMode.withdrawal:
         return AppAssets.images.icons.virtualBank.svg();
       case PaymentMode.phone:
@@ -164,8 +164,8 @@ class TransationTile extends StatelessWidget {
 
   Container defaultImage() {
     return Container(
-      height: 38,
-      width: 38,
+      height: 38.h,
+      width: 38.w,
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
         color: AppColors.success,

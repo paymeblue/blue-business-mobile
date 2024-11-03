@@ -143,11 +143,15 @@ class BranchHomeViewModel extends BaseViewModel {
   goToAddBranch(BuildContext context, [Branch? data]) {
     GoRouterState state = GoRouterState.of(context);
 
-    context.push(
+    context
+        .push<bool>(
       state.matchedLocation.startsWith(RoutePaths.home)
           ? RoutePaths.homeToBranchesToDetails
           : RoutePaths.settingsToBranchesToDetails,
       extra: data,
-    );
+    )
+        .then((val) {
+      if (val == true) branchPagingController.refresh;
+    });
   }
 }

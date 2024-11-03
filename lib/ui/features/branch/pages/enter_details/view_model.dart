@@ -39,8 +39,8 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
         locationController.text.trimRight().isNotEmpty;
   }
 
-  goBack(BuildContext context) {
-    context.pop();
+  goBack(BuildContext context, [bool refresh = false]) {
+    context.pop(refresh);
   }
 
   List<String> sizes = ["1 - 9", "10 - 49", "50 - 249", "> 250"];
@@ -81,7 +81,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
             );
 
     if (response.status == "success") {
-      if (context.mounted) goBack(context);
+      if (context.mounted) goBack(context, true);
     } else {
       AppNotification.error(message: response.message);
     }
@@ -111,7 +111,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
         );
 
     if (response.status == "success") {
-      if (context.mounted) goBack(context);
+      if (context.mounted) goBack(context, true);
     } else {
       AppNotification.error(message: response.message);
     }

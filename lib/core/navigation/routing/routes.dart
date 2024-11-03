@@ -18,13 +18,17 @@ class RoutePaths {
   //HOME
   static String home = "/dash/home";
   static String homeToBranches = "/dash/home/branches";
-  static String homeToBranchesToDetails =
-      "/dash/home/branches/enter-branch-details";
+  static String homeToBranchesToDetails = "/dash/home/branches/details";
   static String homeToStaff = "/dash/home/staff";
-  static String homeToStaffToDetails = "/dash/home/staff/enter-staff-details";
-  static String homeToStaffToDetailsToBranchDetails =
-      "$homeToStaffToDetails/add-branch";
+  static String homeToStaffToDetails = "/dash/home/staff/details";
   static String homeToRecive = "/dash/home/receive-money";
+  static String transactionHistory = "/dash/home/transactions";
+  static String initiateTransaction = "/dash/home/transactions/initiate";
+  static String verifyReceiver = "/dash/home/transactions/verify-receiver";
+  static String confirmTransaction = "/dash/home/transactions/confirm";
+  static String transactionPin = "/dash/home/transactions/pin";
+  static String transactionDetails({required String method}) =>
+      "/dash/home/transactions/$method-details";
 
   //INSIGHTS
   static String insights = "/dash/insights";
@@ -32,13 +36,9 @@ class RoutePaths {
   //SETTINGS
   static String settings = "/dash/settings";
   static String settingsToBranches = "/dash/settings/branches";
-  static String settingsToBranchesToDetails =
-      "/dash/settings/branches/enter-branch-details";
+  static String settingsToBranchesToDetails = "/dash/settings/branches/details";
   static String settingsToStaff = "/dash/settings/staff";
-  static String settingsToStaffToDetails =
-      "/dash/settings/staff/enter-staff-details";
-  static String settingsToStaffToDetailsToBranchDetails =
-      "$settingsToStaffToDetails/add-branch";
+  static String settingsToStaffToDetails = "/dash/settings/staff/details";
   static String paymentLinkHistory = "/dash/settings/payment-link-history";
   static String personalInfo = "/dash/settings/personal-info";
   static String beneficiary = "/dash/settings/manage-beneficiaries";

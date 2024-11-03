@@ -51,7 +51,7 @@ class HomeView extends StatelessWidget {
                       totalSalesSection(model, context),
                       12.verticalGap,
                       Expanded(
-                        child: transactionSection(model),
+                        child: transactionSection(model, context),
                       ),
                     ],
                   ),
@@ -649,13 +649,13 @@ class HomeView extends StatelessWidget {
         ),
       );
 
-  Widget transactionSection(HomeViewModel model) {
+  Widget transactionSection(HomeViewModel model, BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
           transactionHeader(() {
-            // model.goToTransactionHistory(context);
+            model.goToTransactionHistory(context);
           }),
           14.verticalGap,
           Expanded(

@@ -86,20 +86,18 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     branch = response.data;
   }
 
-  goBack(BuildContext context) {
-    context.pop();
+  goBack(BuildContext context, [bool refresh = false]) {
+    context.pop(refresh);
   }
 
   goToAddBranch(BuildContext context) {
     GoRouterState state = GoRouterState.of(context);
     if (state.matchedLocation.startsWith(RoutePaths.home)) {
-      context.push(RoutePaths.homeToStaffToDetailsToBranchDetails).then((val) {
-        branchPagingController.refresh();
+      context.push<bool>(RoutePaths.homeToBranchesToDetails).then((val) {
+        if (val == true) branchPagingController.refresh();
       });
     } else {
-      context
-          .push(RoutePaths.settingsToStaffToDetailsToBranchDetails)
-          .then((val) {
+      context.push(RoutePaths.settingsToBranchesToDetails).then((val) {
         branchPagingController.refresh();
       });
     }
@@ -325,7 +323,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     });
 
     if (response.status == "success") {
-      if (context.mounted) goBack(context);
+      if (context.mounted) goBack(context, true);
     } else {
       AppNotification.error(message: response.message);
     }
@@ -371,7 +369,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
       AppNotification.success(
           message: "Staff information updated successfully");
       Future.delayed(const Duration(seconds: 3), () {
-        if (context.mounted) goBack(context);
+        if (context.mounted) goBack(context, true);
       });
     } else {
       AppNotification.error(message: response.message);

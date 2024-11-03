@@ -350,7 +350,7 @@ class StaffHomeView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: (model.size.width / 2.5).w,
+                width: 135.w,
                 height: 40.h,
                 child: AppButton.primary(
                   title: "Edit staff",
@@ -360,7 +360,7 @@ class StaffHomeView extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: (model.size.width / 2.5).w,
+                width: 135.w,
                 height: 40.h,
                 child: AppButton.ghostPrimary(
                     title: "Delete",
