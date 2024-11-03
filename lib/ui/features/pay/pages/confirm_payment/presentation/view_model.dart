@@ -8,4 +8,11 @@ class ConfirmTransactionViewModel extends BaseViewModel {
   init(BuildContext context) {
     size = context.mediaQuery.size;
   }
+
+  bool _saveBeneficiary = false;
+  bool get saveBeneficiary => _saveBeneficiary;
+  set saveBeneficiary(bool v) {
+    _saveBeneficiary = v;
+    notifyListeners();
+  }
 }

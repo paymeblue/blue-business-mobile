@@ -53,6 +53,7 @@ class InitiateTransactionViewModel extends BaseViewModel {
       BlueBottomSheet.paymentMethod(amountController.text).then(
         (value) {
           if (value != null) {
+            paymentMode = value;
             initiateTransaction(context);
           }
         },
@@ -127,6 +128,7 @@ class InitiateTransactionViewModel extends BaseViewModel {
       mode: paymentMode!,
       amount: amountInKobo,
     );
+
     context.push(RoutePaths.confirmTransaction, extra: args);
   }
 

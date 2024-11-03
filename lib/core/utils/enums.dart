@@ -18,7 +18,7 @@ enum PaymentMode {
   blue("blue-user"),
   phone("phone"),
   qr("blue-user"),
-  withdrawal("withraw"),
+  withdrawal("withdraw"),
   topup("wallet_topup"),
   airtime("airtime"),
   data("data"),

@@ -49,14 +49,16 @@ List<GoRoute> homeRoutes = [
         GoRoute(
           path: RoutePaths.initiateTransaction.routeSplitter,
           parentNavigatorKey: locator<NavigationService>().navigatorKey,
-          pageBuilder: (context, state) =>
-              const InitiateTransactionView().slide(),
+          pageBuilder: (context, state) => InitiateTransactionView(
+            mode: state.extra as PaymentMode?,
+          ).slide(),
         ),
         GoRoute(
           path: RoutePaths.confirmTransaction.routeSplitter,
           parentNavigatorKey: locator<NavigationService>().navigatorKey,
-          pageBuilder: (context, state) =>
-              const ConfirmTransactionView().slide(),
+          pageBuilder: (context, state) => ConfirmTransactionView(
+            args: state.extra as ConfirmTransactionViewArgs,
+          ).slide(),
         ),
       ]),
   GoRoute(
