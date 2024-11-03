@@ -536,8 +536,8 @@ class BlueBottomSheet {
     );
   }
 
-  static Future<PaymentMode> paymentMethod(String amount) async {
-    late PaymentMode mode;
+  static Future<PaymentMode?> paymentMethod(String amount) async {
+    PaymentMode? mode;
 
     List<PaymentOption> options = [
       PaymentOption(
@@ -558,12 +558,12 @@ class BlueBottomSheet {
         subtitle: "Send to any phone number",
         mode: PaymentMode.phone,
       ),
-      PaymentOption(
-        icon: AppAssets.images.icons.payOffline.svg(),
-        title: "Offline mode",
-        subtitle: "No smart device? no worries",
-        mode: PaymentMode.offline,
-      )
+      // PaymentOption(
+      //   icon: AppAssets.images.icons.payOffline.svg(),
+      //   title: "Offline mode",
+      //   subtitle: "No smart device? no worries",
+      //   mode: PaymentMode.offline,
+      // )
     ];
 
     Widget textColumn(PaymentOption e) {
@@ -596,14 +596,14 @@ class BlueBottomSheet {
           });
         },
         child: Container(
-          height: 45,
+          height: 45.h,
           width: double.infinity,
           decoration: const BoxDecoration(),
           child: Row(
             children: [
               SizedBox(
-                height: 38,
-                width: 38,
+                height: 38.h,
+                width: 38.w,
                 child: e.icon,
               ),
               12.horizontalGap,
@@ -611,9 +611,9 @@ class BlueBottomSheet {
                 child: textColumn(e),
               ),
               10.horizontalGap,
-              const Icon(
+              Icon(
                 Icons.arrow_forward_ios_rounded,
-                size: 16,
+                size: 16.sp,
                 color: AppColors.textColor,
               )
             ],
@@ -639,7 +639,7 @@ class BlueBottomSheet {
                 RefreshTimer().resetTimer();
               },
               child: Container(
-                height: 335,
+                height: 290.h,
                 margin: const EdgeInsets.only(left: 17, right: 17, bottom: 35),
                 padding: const EdgeInsets.only(
                     left: 20, right: 20, top: 20, bottom: 15),

@@ -33,11 +33,10 @@ class RoutePaths {
       "/dash/home/transactions/$method-details";
 
   static String wallet = "/dash/home/wallet";
-  static String initiateTransaction = "/dash/home/wallettransactions/initiate";
-  static String verifyReceiver =
-      "/dash/home/wallettransactions/verify-receiver";
-  static String confirmTransaction = "/dash/home/wallettransactions/confirm";
-  static String transactionPin = "/dash/home/wallettransactions/pin";
+  static String initiateTransaction = "/dash/home/wallet/initiate-transaction";
+  static String verifyReceiver = "/dash/home/wallet/verify-receiver";
+  static String confirmTransaction = "/dash/home/wallet/confirm-transaction";
+  static String transactionPin = "/dash/home/wallet/pin";
 
   static String receive = "/dash/home/receive-money";
 

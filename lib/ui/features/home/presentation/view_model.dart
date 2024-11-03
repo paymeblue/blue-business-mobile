@@ -7,6 +7,11 @@ import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
 import 'package:blue_business/core/models/business_dash/data/business_dash_data.dart';
 import 'package:blue_business/core/models/business_dash/response/business_dash_response.dart';
+import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
+import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
+import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
+import 'package:blue_business/core/models/transaction_detail/payment/payment_detail.dart';
+import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
 import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
@@ -333,32 +338,20 @@ class HomeViewModel extends BaseViewModel {
 
   handleDetailResponse(String mode, String type,
       TransactionDetailResponse response, BuildContext context) {
+    dynamic extra;
     if (mode == "payment") {
-      // PaymentDetail paymentDetail = PaymentDetail.fromJson(response.data);
-      // context.push(
-      //     "${RoutePaths.transactionHistoryPath}/$mode/${paymentDetail.transactionId}/$type",
-      //     extra: paymentDetail);
+      extra = PaymentDetail.fromJson(response.data);
     } else if (mode == "airtime") {
-      // AirtimeDetails airtimeDetails = AirtimeDetails.fromJson(response.data);
-      // context.push(
-      //     "${RoutePaths.transactionHistoryPath}/$mode/${airtimeDetails.transactionId}",
-      // extra: airtimeDetails);
+      extra = AirtimeDetails.fromJson(response.data);
     } else if (mode == "power") {
-      // PowerDetails powerDetails = PowerDetails.fromJson(response.data);
-      // context.push(
-      //     "${RoutePaths.transactionHistoryPath}/$mode/${powerDetails.transactionId}",
-      //     extra: powerDetails);
+      extra = PowerDetails.fromJson(response.data);
     } else if (mode == "data") {
-      // DataDetails dataDetails = DataDetails.fromJson(response.data);
-      // context.push(
-      //     "${RoutePaths.transactionHistoryPath}/$mode/${dataDetails.transactionId}",
-      //     extra: dataDetails);
+      extra = DataDetails.fromJson(response.data);
     } else if (mode == "tv") {
-      // CableDetails cableDetails = CableDetails.fromJson(response.data);
-      // context.push(
-      //     "${RoutePaths.transactionHistoryPath}/$mode/${cableDetails.transactionId}",
-      //     extra: cableDetails);
+      extra = CableDetails.fromJson(response.data);
     }
+
+    context.push(RoutePaths.transactionDetails(method: mode), extra: extra);
   }
 
   String getService(String mode) {

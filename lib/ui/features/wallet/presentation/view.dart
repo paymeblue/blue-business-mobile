@@ -96,29 +96,32 @@ class _WalletViewState extends State<WalletView> {
               AppTextStyles.smallText.copyWith(color: AppColors.bodyTextColor),
         ),
         8.verticalGap,
-        InkWell(
-          onTap: onTap,
-          splashColor: AppColors.paleBlue,
-          borderRadius: BorderRadius.circular(5),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-              border: Border.all(color: AppColors.bgGrey),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  height: 45.h,
-                  width: 45.w,
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle, color: AppColors.primary),
-                  alignment: Alignment.center,
-                  child: icon,
-                ),
-                10.horizontalGap,
-                Expanded(child: textColumn(title: title, subtitle: subtitle)),
-              ],
+        Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            onTap: onTap,
+            splashColor: AppColors.paleBlue,
+            borderRadius: BorderRadius.circular(5),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                border: Border.all(color: AppColors.bgGrey),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    height: 45.h,
+                    width: 45.w,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: AppColors.primary),
+                    alignment: Alignment.center,
+                    child: icon,
+                  ),
+                  10.horizontalGap,
+                  Expanded(child: textColumn(title: title, subtitle: subtitle)),
+                ],
+              ),
             ),
           ),
         ),

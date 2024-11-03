@@ -42,10 +42,23 @@ List<GoRoute> homeRoutes = [
     pageBuilder: (context, state) => const ReceiveMoneyView().slide(),
   ),
   GoRoute(
-    path: RoutePaths.wallet.routeSplitter,
-    parentNavigatorKey: locator<NavigationService>().navigatorKey,
-    pageBuilder: (context, state) => const WalletView().slide(),
-  ),
+      path: RoutePaths.wallet.routeSplitter,
+      parentNavigatorKey: locator<NavigationService>().navigatorKey,
+      pageBuilder: (context, state) => const WalletView().slide(),
+      routes: [
+        GoRoute(
+          path: RoutePaths.initiateTransaction.routeSplitter,
+          parentNavigatorKey: locator<NavigationService>().navigatorKey,
+          pageBuilder: (context, state) =>
+              const InitiateTransactionView().slide(),
+        ),
+        GoRoute(
+          path: RoutePaths.confirmTransaction.routeSplitter,
+          parentNavigatorKey: locator<NavigationService>().navigatorKey,
+          pageBuilder: (context, state) =>
+              const ConfirmTransactionView().slide(),
+        ),
+      ]),
   GoRoute(
     path: RoutePaths.transactionHistory.routeSplitter,
     parentNavigatorKey: locator<NavigationService>().navigatorKey,
