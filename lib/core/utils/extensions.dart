@@ -17,6 +17,18 @@ extension Gap on num {
       );
 }
 
+extension GoRouterExtension on GoRouter {
+  void popUntilPath(String ancestorPath, Object? result) {
+    while (routerDelegate.currentConfiguration.matches.last.matchedLocation !=
+        ancestorPath) {
+      if (!canPop()) {
+        return;
+      }
+      pop(result);
+    }
+  }
+}
+
 extension Transition on Widget {
   Page slide({SlideDirections dir = SlideDirections.rtl}) {
     return CustomTransitionPage(

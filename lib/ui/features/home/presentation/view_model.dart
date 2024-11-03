@@ -383,7 +383,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   void goToReceiveMoney(BuildContext context) {
-    context.push(RoutePaths.homeToRecive);
+    context.push(RoutePaths.receive);
   }
 
   goToTransactionHistory(BuildContext context) {

@@ -31,12 +31,12 @@ class HomeView extends StatelessWidget {
       model: HomeViewModel(),
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
-        return SafeArea(
-          child: Scaffold(
-            body: RefreshIndicator(
-              onRefresh: () async {
-                model.refreshDashData();
-              },
+        return Scaffold(
+          body: RefreshIndicator(
+            onRefresh: () async {
+              model.refreshDashData();
+            },
+            child: SafeArea(
               child: SingleChildScrollView(
                 child: SizedBox(
                   height: (model.size.height + 100).h,

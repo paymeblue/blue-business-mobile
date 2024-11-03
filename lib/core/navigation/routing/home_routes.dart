@@ -37,7 +37,7 @@ List<GoRoute> homeRoutes = [
     ],
   ),
   GoRoute(
-    path: RoutePaths.homeToRecive.routeSplitter,
+    path: RoutePaths.receive.routeSplitter,
     parentNavigatorKey: locator<NavigationService>().navigatorKey,
     pageBuilder: (context, state) => const ReceiveMoneyView().slide(),
   ),
