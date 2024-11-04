@@ -3,8 +3,8 @@ import 'package:blue_business/core/api/transaction_service/transaction_service.d
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
-import 'package:blue_business/core/models/beneficiary/set/request/set_beneficiary_request.dart';
-import 'package:blue_business/core/models/beneficiary/set/response/set_beneficiary_response.dart';
+import 'package:blue_business/core/models/beneficiary/payment/set/request/set_beneficiary_request.dart';
+import 'package:blue_business/core/models/beneficiary/payment/set/response/set_beneficiary_response.dart';
 import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
 import 'package:blue_business/core/models/transaction/pay/credit/request/credit_request.dart';
 import 'package:blue_business/core/models/transaction/pay/response/pay_response.dart';

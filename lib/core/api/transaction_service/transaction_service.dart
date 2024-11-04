@@ -1,8 +1,8 @@
 import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/models/banks/response/bank_response.dart';
-import 'package:blue_business/core/models/beneficiary/get/response/get_beneficiary_response.dart';
-import 'package:blue_business/core/models/beneficiary/set/request/set_beneficiary_request.dart';
-import 'package:blue_business/core/models/beneficiary/set/response/set_beneficiary_response.dart';
+import 'package:blue_business/core/models/beneficiary/payment/get/response/get_beneficiary_response.dart';
+import 'package:blue_business/core/models/beneficiary/payment/set/request/set_beneficiary_request.dart';
+import 'package:blue_business/core/models/beneficiary/payment/set/response/set_beneficiary_response.dart';
 import 'package:blue_business/core/models/payment_link/response/payment_link_response.dart';
 // import 'package:blue_business/core/models/payment_link/response/payment_link_response.dart';
 import 'package:blue_business/core/models/recently_paid/response/recently_paid_response.dart';
