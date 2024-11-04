@@ -23,10 +23,15 @@ mixin _$GetBeneficiaryData {
   int get total => throw _privateConstructorUsedError;
   int get limit => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
+  List<BlueBeneficiary> get data => throw _privateConstructorUsedError;
   bool get loadMore => throw _privateConstructorUsedError;
 
+  /// Serializes this GetBeneficiaryData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetBeneficiaryData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetBeneficiaryDataCopyWith<GetBeneficiaryData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -37,7 +42,12 @@ abstract class $GetBeneficiaryDataCopyWith<$Res> {
           GetBeneficiaryData value, $Res Function(GetBeneficiaryData) then) =
       _$GetBeneficiaryDataCopyWithImpl<$Res, GetBeneficiaryData>;
   @useResult
-  $Res call({int total, int limit, int page, bool loadMore});
+  $Res call(
+      {int total,
+      int limit,
+      int page,
+      List<BlueBeneficiary> data,
+      bool loadMore});
 }
 
 /// @nodoc
@@ -50,12 +60,15 @@ class _$GetBeneficiaryDataCopyWithImpl<$Res, $Val extends GetBeneficiaryData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetBeneficiaryData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? total = null,
     Object? limit = null,
     Object? page = null,
+    Object? data = null,
     Object? loadMore = null,
   }) {
     return _then(_value.copyWith(
@@ -71,6 +84,10 @@ class _$GetBeneficiaryDataCopyWithImpl<$Res, $Val extends GetBeneficiaryData>
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<BlueBeneficiary>,
       loadMore: null == loadMore
           ? _value.loadMore
           : loadMore // ignore: cast_nullable_to_non_nullable
@@ -87,7 +104,12 @@ abstract class _$$GetBeneficiaryDataImplCopyWith<$Res>
       __$$GetBeneficiaryDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int total, int limit, int page, bool loadMore});
+  $Res call(
+      {int total,
+      int limit,
+      int page,
+      List<BlueBeneficiary> data,
+      bool loadMore});
 }
 
 /// @nodoc
@@ -98,12 +120,15 @@ class __$$GetBeneficiaryDataImplCopyWithImpl<$Res>
       $Res Function(_$GetBeneficiaryDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetBeneficiaryData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? total = null,
     Object? limit = null,
     Object? page = null,
+    Object? data = null,
     Object? loadMore = null,
   }) {
     return _then(_$GetBeneficiaryDataImpl(
@@ -119,6 +144,10 @@ class __$$GetBeneficiaryDataImplCopyWithImpl<$Res>
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<BlueBeneficiary>,
       loadMore: null == loadMore
           ? _value.loadMore
           : loadMore // ignore: cast_nullable_to_non_nullable
@@ -134,7 +163,9 @@ class _$GetBeneficiaryDataImpl implements _GetBeneficiaryData {
       {required this.total,
       required this.limit,
       required this.page,
-      this.loadMore = false});
+      final List<BlueBeneficiary> data = const [],
+      this.loadMore = false})
+      : _data = data;
 
   factory _$GetBeneficiaryDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetBeneficiaryDataImplFromJson(json);
@@ -145,13 +176,22 @@ class _$GetBeneficiaryDataImpl implements _GetBeneficiaryData {
   final int limit;
   @override
   final int page;
+  final List<BlueBeneficiary> _data;
+  @override
+  @JsonKey()
+  List<BlueBeneficiary> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
   @override
   @JsonKey()
   final bool loadMore;
 
   @override
   String toString() {
-    return 'GetBeneficiaryData(total: $total, limit: $limit, page: $page, loadMore: $loadMore)';
+    return 'GetBeneficiaryData(total: $total, limit: $limit, page: $page, data: $data, loadMore: $loadMore)';
   }
 
   @override
@@ -162,15 +202,19 @@ class _$GetBeneficiaryDataImpl implements _GetBeneficiaryData {
             (identical(other.total, total) || other.total == total) &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.page, page) || other.page == page) &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.loadMore, loadMore) ||
                 other.loadMore == loadMore));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, total, limit, page, loadMore);
+  int get hashCode => Object.hash(runtimeType, total, limit, page,
+      const DeepCollectionEquality().hash(_data), loadMore);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetBeneficiaryData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetBeneficiaryDataImplCopyWith<_$GetBeneficiaryDataImpl> get copyWith =>
@@ -190,6 +234,7 @@ abstract class _GetBeneficiaryData implements GetBeneficiaryData {
       {required final int total,
       required final int limit,
       required final int page,
+      final List<BlueBeneficiary> data,
       final bool loadMore}) = _$GetBeneficiaryDataImpl;
 
   factory _GetBeneficiaryData.fromJson(Map<String, dynamic> json) =
@@ -202,9 +247,14 @@ abstract class _GetBeneficiaryData implements GetBeneficiaryData {
   @override
   int get page;
   @override
-  bool get loadMore;
+  List<BlueBeneficiary> get data;
   @override
-  @JsonKey(ignore: true)
+  bool get loadMore;
+
+  /// Create a copy of GetBeneficiaryData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetBeneficiaryDataImplCopyWith<_$GetBeneficiaryDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

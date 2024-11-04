@@ -23,11 +23,14 @@ GetBeneficiaryResponse _$GetBeneficiaryResponseFromJson(
 mixin _$GetBeneficiaryResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  List<BlueBeneficiary> get data => throw _privateConstructorUsedError;
-  GetBeneficiaryData? get paginationInfo => throw _privateConstructorUsedError;
+  GetBeneficiaryData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this GetBeneficiaryResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetBeneficiaryResponseCopyWith<GetBeneficiaryResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -38,13 +41,9 @@ abstract class $GetBeneficiaryResponseCopyWith<$Res> {
           $Res Function(GetBeneficiaryResponse) then) =
       _$GetBeneficiaryResponseCopyWithImpl<$Res, GetBeneficiaryResponse>;
   @useResult
-  $Res call(
-      {String status,
-      String? message,
-      List<BlueBeneficiary> data,
-      GetBeneficiaryData? paginationInfo});
+  $Res call({String status, String? message, GetBeneficiaryData? data});
 
-  $GetBeneficiaryDataCopyWith<$Res>? get paginationInfo;
+  $GetBeneficiaryDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -58,13 +57,14 @@ class _$GetBeneficiaryResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? status = null,
     Object? message = freezed,
-    Object? data = null,
-    Object? paginationInfo = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -75,26 +75,24 @@ class _$GetBeneficiaryResponseCopyWithImpl<$Res,
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<BlueBeneficiary>,
-      paginationInfo: freezed == paginationInfo
-          ? _value.paginationInfo
-          : paginationInfo // ignore: cast_nullable_to_non_nullable
               as GetBeneficiaryData?,
     ) as $Val);
   }
 
+  /// Create a copy of GetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $GetBeneficiaryDataCopyWith<$Res>? get paginationInfo {
-    if (_value.paginationInfo == null) {
+  $GetBeneficiaryDataCopyWith<$Res>? get data {
+    if (_value.data == null) {
       return null;
     }
 
-    return $GetBeneficiaryDataCopyWith<$Res>(_value.paginationInfo!, (value) {
-      return _then(_value.copyWith(paginationInfo: value) as $Val);
+    return $GetBeneficiaryDataCopyWith<$Res>(_value.data!, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
     });
   }
 }
@@ -108,14 +106,10 @@ abstract class _$$GetBeneficiaryResponseImplCopyWith<$Res>
       __$$GetBeneficiaryResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String status,
-      String? message,
-      List<BlueBeneficiary> data,
-      GetBeneficiaryData? paginationInfo});
+  $Res call({String status, String? message, GetBeneficiaryData? data});
 
   @override
-  $GetBeneficiaryDataCopyWith<$Res>? get paginationInfo;
+  $GetBeneficiaryDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -128,13 +122,14 @@ class __$$GetBeneficiaryResponseImplCopyWithImpl<$Res>
       $Res Function(_$GetBeneficiaryResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? status = null,
     Object? message = freezed,
-    Object? data = null,
-    Object? paginationInfo = freezed,
+    Object? data = freezed,
   }) {
     return _then(_$GetBeneficiaryResponseImpl(
       status: null == status
@@ -145,13 +140,9 @@ class __$$GetBeneficiaryResponseImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      data: null == data
-          ? _value._data
+      data: freezed == data
+          ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<BlueBeneficiary>,
-      paginationInfo: freezed == paginationInfo
-          ? _value.paginationInfo
-          : paginationInfo // ignore: cast_nullable_to_non_nullable
               as GetBeneficiaryData?,
     ));
   }
@@ -161,11 +152,7 @@ class __$$GetBeneficiaryResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GetBeneficiaryResponseImpl implements _GetBeneficiaryResponse {
   const _$GetBeneficiaryResponseImpl(
-      {this.status = "fail",
-      this.message,
-      final List<BlueBeneficiary> data = const [],
-      this.paginationInfo})
-      : _data = data;
+      {this.status = "fail", this.message, this.data});
 
   factory _$GetBeneficiaryResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetBeneficiaryResponseImplFromJson(json);
@@ -175,21 +162,12 @@ class _$GetBeneficiaryResponseImpl implements _GetBeneficiaryResponse {
   final String status;
   @override
   final String? message;
-  final List<BlueBeneficiary> _data;
   @override
-  @JsonKey()
-  List<BlueBeneficiary> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
-  }
-
-  @override
-  final GetBeneficiaryData? paginationInfo;
+  final GetBeneficiaryData? data;
 
   @override
   String toString() {
-    return 'GetBeneficiaryResponse(status: $status, message: $message, data: $data, paginationInfo: $paginationInfo)';
+    return 'GetBeneficiaryResponse(status: $status, message: $message, data: $data)';
   }
 
   @override
@@ -199,17 +177,16 @@ class _$GetBeneficiaryResponseImpl implements _GetBeneficiaryResponse {
             other is _$GetBeneficiaryResponseImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality().equals(other._data, _data) &&
-            (identical(other.paginationInfo, paginationInfo) ||
-                other.paginationInfo == paginationInfo));
+            (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message,
-      const DeepCollectionEquality().hash(_data), paginationInfo);
+  int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetBeneficiaryResponseImplCopyWith<_$GetBeneficiaryResponseImpl>
@@ -228,8 +205,7 @@ abstract class _GetBeneficiaryResponse implements GetBeneficiaryResponse {
   const factory _GetBeneficiaryResponse(
       {final String status,
       final String? message,
-      final List<BlueBeneficiary> data,
-      final GetBeneficiaryData? paginationInfo}) = _$GetBeneficiaryResponseImpl;
+      final GetBeneficiaryData? data}) = _$GetBeneficiaryResponseImpl;
 
   factory _GetBeneficiaryResponse.fromJson(Map<String, dynamic> json) =
       _$GetBeneficiaryResponseImpl.fromJson;
@@ -239,11 +215,12 @@ abstract class _GetBeneficiaryResponse implements GetBeneficiaryResponse {
   @override
   String? get message;
   @override
-  List<BlueBeneficiary> get data;
+  GetBeneficiaryData? get data;
+
+  /// Create a copy of GetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  GetBeneficiaryData? get paginationInfo;
-  @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetBeneficiaryResponseImplCopyWith<_$GetBeneficiaryResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

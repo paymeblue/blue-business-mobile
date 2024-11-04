@@ -7,8 +7,8 @@ part 'blue_beneficiary.g.dart';
 class BlueBeneficiary with _$BlueBeneficiary {
   const factory BlueBeneficiary({
     required int id,
-    required String name,
-    required String identifier,
+    @Default("") String identifier,
+    @Default("") String name,
   }) = _BlueBeneficiary;
 
   factory BlueBeneficiary.fromJson(Map<String, dynamic> json) =>

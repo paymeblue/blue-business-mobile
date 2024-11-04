@@ -1,3 +1,4 @@
+import 'package:blue_business/core/models/beneficiary/payment/blue_beneficiary.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'get_beneficiary_data.freezed.dart';
@@ -9,6 +10,7 @@ class GetBeneficiaryData with _$GetBeneficiaryData {
     required int total,
     required int limit,
     required int page,
+    @Default([]) List<BlueBeneficiary> data,
     @Default(false) bool loadMore,
   }) = _GetBeneficiaryData;
 

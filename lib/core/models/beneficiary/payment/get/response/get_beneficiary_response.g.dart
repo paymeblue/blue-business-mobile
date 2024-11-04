@@ -11,14 +11,9 @@ _$GetBeneficiaryResponseImpl _$$GetBeneficiaryResponseImplFromJson(
     _$GetBeneficiaryResponseImpl(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
-      data: (json['data'] as List<dynamic>?)
-              ?.map((e) => BlueBeneficiary.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      paginationInfo: json['pagination_info'] == null
+      data: json['data'] == null
           ? null
-          : GetBeneficiaryData.fromJson(
-              json['pagination_info'] as Map<String, dynamic>),
+          : GetBeneficiaryData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$GetBeneficiaryResponseImplToJson(
@@ -34,7 +29,6 @@ Map<String, dynamic> _$$GetBeneficiaryResponseImplToJson(
   }
 
   writeNotNull('message', instance.message);
-  val['data'] = instance.data;
-  writeNotNull('pagination_info', instance.paginationInfo);
+  writeNotNull('data', instance.data);
   return val;
 }

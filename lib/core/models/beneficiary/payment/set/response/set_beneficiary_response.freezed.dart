@@ -24,8 +24,12 @@ mixin _$SetBeneficiaryResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
+  /// Serializes this SetBeneficiaryResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SetBeneficiaryResponseCopyWith<SetBeneficiaryResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$SetBeneficiaryResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,6 +97,8 @@ class __$$SetBeneficiaryResponseImplCopyWithImpl<$Res>
       $Res Function(_$SetBeneficiaryResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,11 +146,13 @@ class _$SetBeneficiaryResponseImpl implements _SetBeneficiaryResponse {
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SetBeneficiaryResponseImplCopyWith<_$SetBeneficiaryResponseImpl>
@@ -169,8 +179,11 @@ abstract class _SetBeneficiaryResponse implements SetBeneficiaryResponse {
   String get status;
   @override
   String? get message;
+
+  /// Create a copy of SetBeneficiaryResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SetBeneficiaryResponseImplCopyWith<_$SetBeneficiaryResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

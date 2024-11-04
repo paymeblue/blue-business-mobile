@@ -10,6 +10,7 @@ class RoutePaths {
   static String initiateResetPassword = "$login/initiate-reset-password";
   static String verifyPasswordOtp = "$login/verify-reset-password";
   static String resetPassword = "$login/reset-password";
+
   static String initiateResetPhone = "$login/initiate-reset-phone";
   static String verifyPhoneOtp = "$login/verify-reset-phone";
   static String resetPhone = "$login/reset-phone";
@@ -46,10 +47,32 @@ class RoutePaths {
   static String verifyReceiver = "/dash/home/wallet/verify-receiver";
   static String confirmTransaction = "/dash/home/wallet/confirm-transaction";
   static String transactionPin = "/dash/home/wallet/pin";
-  static String initiateResetPin = "$transactionPin/initiate-reset";
-  static String verifyPinOtp = "$transactionPin/verify-reset-phone";
-  static String resetPin = "$transactionPin/reset";
+
+  static String initiateResetPin = "$transactionPin/initiate-reset-pin";
+  static String verifyPinOtp = "$transactionPin/verify-reset-pin";
+  static String resetPin = "$transactionPin/reset-pin";
+
   static String bills = "$wallet/bills";
+
+  static String initiateAirtime = "$bills/initiate-airtime";
+  static String reviewAirtime = "$bills/review-airtime";
+  static String confirmAirtime = "$bills/confirm-airtime";
+  static String airtimeSuccess = "$bills/airtime-success";
+
+  static String initiateData = "$bills/initiate-data";
+  static String reviewData = "$bills/review-data";
+  static String confirmData = "$bills/confirm-data";
+  static String dataSuccess = "$bills/data-success";
+
+  static String initiatePower = "$bills/initiate-power";
+  static String reviewPower = "$bills/review-power";
+  static String confirmPower = "$bills/confirm-power";
+  static String powerSuccess = "$bills/power-success";
+
+  static String initiateTv = "$bills/initiate-tv";
+  static String reviewTv = "$bills/review-tv";
+  static String confirmTv = "$bills/confirm-tv";
+  static String tvSuccess = "$bills/tv-success";
 
   static String receive = "/dash/home/receive-money";
 

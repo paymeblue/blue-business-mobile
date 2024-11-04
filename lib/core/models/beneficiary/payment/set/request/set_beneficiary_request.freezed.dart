@@ -23,8 +23,12 @@ SetBeneficiaryRequest _$SetBeneficiaryRequestFromJson(
 mixin _$SetBeneficiaryRequest {
   String get identifier => throw _privateConstructorUsedError;
 
+  /// Serializes this SetBeneficiaryRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SetBeneficiaryRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SetBeneficiaryRequestCopyWith<SetBeneficiaryRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$SetBeneficiaryRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SetBeneficiaryRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -84,6 +90,8 @@ class __$$SetBeneficiaryRequestImplCopyWithImpl<$Res>
       $Res Function(_$SetBeneficiaryRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SetBeneficiaryRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -123,11 +131,13 @@ class _$SetBeneficiaryRequestImpl implements _SetBeneficiaryRequest {
                 other.identifier == identifier));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, identifier);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SetBeneficiaryRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SetBeneficiaryRequestImplCopyWith<_$SetBeneficiaryRequestImpl>
@@ -151,8 +161,11 @@ abstract class _SetBeneficiaryRequest implements SetBeneficiaryRequest {
 
   @override
   String get identifier;
+
+  /// Create a copy of SetBeneficiaryRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SetBeneficiaryRequestImplCopyWith<_$SetBeneficiaryRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
