@@ -88,6 +88,7 @@ class QrPaymentViewModel extends BaseViewModel {
         ConfirmTransactionViewArgs args = ConfirmTransactionViewArgs(
           mode: PaymentMode.qr,
           receiver: resp.data!,
+          transactionId: data.transactionId,
         );
         context.push(RoutePaths.confirmTransaction, extra: args);
       }

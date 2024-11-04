@@ -133,6 +133,15 @@ class InitiateTransactionViewModel extends BaseViewModel {
   }
 
   goToVerify(BuildContext context, InitiateTransactionData data) {
-    context.push(RoutePaths.verifyReceiver, extra: data);
+    VerifyReceiverArgs args =
+        VerifyReceiverArgs(data: data, mode: paymentMode!);
+    context.push(RoutePaths.verifyReceiver, extra: args);
   }
+}
+
+class VerifyReceiverArgs {
+  VerifyReceiverArgs({required this.data, required this.mode});
+
+  final InitiateTransactionData data;
+  final PaymentMode mode;
 }

@@ -24,7 +24,6 @@ Future handleBackgroundMessages(RemoteMessage message) async {
 }
 
 Future handleForegroundMessages(RemoteMessage message) async {
-  // TODO: setup push payment
   // Map<String, dynamic> data = message.data;
   // BuildContext context =
   //     locator<NavigationService>().navigatorKey.currentContext!;

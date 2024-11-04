@@ -54,6 +54,20 @@ List<GoRoute> homeRoutes = [
           ).slide(),
         ),
         GoRoute(
+          path: RoutePaths.verifyReceiver.routeSplitter,
+          parentNavigatorKey: locator<NavigationService>().navigatorKey,
+          pageBuilder: (context, state) {
+            final args = state.extra as VerifyReceiverArgs;
+            if (args.mode == PaymentMode.phone) {
+              return PhonePaymentView(data: args.data).slide();
+            } else if (args.mode == PaymentMode.qr) {
+              return QrPaymentView(data: args.data).slide();
+            } else {
+              return BluePaymentView(data: args.data).slide();
+            }
+          },
+        ),
+        GoRoute(
           path: RoutePaths.confirmTransaction.routeSplitter,
           parentNavigatorKey: locator<NavigationService>().navigatorKey,
           pageBuilder: (context, state) => ConfirmTransactionView(

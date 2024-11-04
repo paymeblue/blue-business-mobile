@@ -18,7 +18,7 @@ extension Gap on num {
 }
 
 extension GoRouterExtension on GoRouter {
-  void popUntilPath(String ancestorPath, Object? result) {
+  void popUntilPath(String ancestorPath, [Object? result]) {
     while (routerDelegate.currentConfiguration.matches.last.matchedLocation !=
         ancestorPath) {
       if (!canPop()) {

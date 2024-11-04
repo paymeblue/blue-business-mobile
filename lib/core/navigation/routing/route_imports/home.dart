@@ -15,6 +15,10 @@ import 'package:blue_business/ui/features/branch/pages/home/presentation/view.da
 import 'package:blue_business/ui/features/branch_insights/presentation/view.dart';
 import 'package:blue_business/ui/features/pay/pages/confirm_payment/presentation/view.dart';
 import 'package:blue_business/ui/features/pay/pages/initiate/presentation/view.dart';
+import 'package:blue_business/ui/features/pay/pages/initiate/presentation/view_model.dart';
+import 'package:blue_business/ui/features/pay/pages/verify_receiver/pages/blue/presentation/view.dart';
+import 'package:blue_business/ui/features/pay/pages/verify_receiver/pages/phone/presentation/view.dart';
+import 'package:blue_business/ui/features/pay/pages/verify_receiver/pages/qr/presentaion/view.dart';
 import 'package:blue_business/ui/features/receive_money/presentation/view.dart';
 import 'package:blue_business/ui/features/staff/pages/enter_details/presentation/view.dart';
 import 'package:blue_business/ui/features/staff/pages/home/presentation/view.dart';

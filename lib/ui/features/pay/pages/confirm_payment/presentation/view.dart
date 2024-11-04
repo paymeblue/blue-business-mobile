@@ -171,10 +171,13 @@ class ConfirmTransactionView extends StatelessWidget {
           modeImage(),
           10.horizontalGap,
           Expanded(
-            child: FittedBox(
-              child: args.mode == PaymentMode.withdrawal
-                  ? withdrawalTextColumn()
-                  : paymentTextColumn(),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: FittedBox(
+                child: args.mode == PaymentMode.withdrawal
+                    ? withdrawalTextColumn()
+                    : paymentTextColumn(),
+              ),
             ),
           )
         ],
