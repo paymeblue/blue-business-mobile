@@ -39,7 +39,7 @@ class HomeView extends StatelessWidget {
             child: SafeArea(
               child: SingleChildScrollView(
                 child: SizedBox(
-                  height: (model.size.height + 100).h,
+                  height: (model.size.height + 150).h,
                   child: Column(
                     children: [
                       firstRow(),
@@ -65,8 +65,7 @@ class HomeView extends StatelessWidget {
   }
 
   Widget firstRow() {
-    return Container(
-      height: 50.h,
+    return Padding(
       padding: const EdgeInsets.only(
         left: 16,
         right: 16,
@@ -105,24 +104,6 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget walletSection(HomeViewModel model) {
-    return SizedBox(
-      child: RefreshIndicator(
-        onRefresh: () async {
-          model.refreshWalletContainer();
-        },
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              walletContainer(model),
-              7.verticalGap,
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget balanceVisibilitySwitch(HomeViewModel model) {
     return GestureDetector(
       onTap: () {
@@ -141,7 +122,6 @@ class HomeView extends StatelessWidget {
 
   Widget walletContainer(HomeViewModel model) {
     return Container(
-      height: 175.h,
       width: model.size.width,
       margin: const EdgeInsets.only(
         left: 16,
@@ -163,9 +143,7 @@ class HomeView extends StatelessWidget {
               AppAssets.images.launcher.image(height: 23, width: 23),
             ],
           ),
-          const Spacer(
-            flex: 5,
-          ),
+          28.verticalGap,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -180,9 +158,7 @@ class HomeView extends StatelessWidget {
                   : volumeContainer(model),
             ],
           ),
-          const Spacer(
-            flex: 3,
-          ),
+          12.verticalGap,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -287,7 +263,7 @@ class HomeView extends StatelessWidget {
   Widget volumeContainer(HomeViewModel model) {
     return Container(
       decoration: const BoxDecoration(),
-      width: 130,
+      width: 130.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -316,8 +292,8 @@ class HomeView extends StatelessWidget {
 
   Widget walletAmountShimmer() {
     return SizedBox(
-      height: 38,
-      width: 180,
+      height: 38.h,
+      width: 180.w,
       child: Shimmer.fromColors(
         baseColor: AppColors.brightBlue,
         highlightColor: AppColors.white,
@@ -352,39 +328,36 @@ class HomeView extends StatelessWidget {
     NumberFormat format = NumberFormat("#,##0.00");
     String balance = format.format(
         double.parse(locator<AppStateValues>().wallet?.balance ?? "0.00"));
-    return SizedBox(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              Text(
-                "WALLET BALANCE",
-                style: AppTextStyles.subHeader
-                    .copyWith(color: AppColors.bodyTextColor2, fontSize: 11.sp),
-              ),
-              6.horizontalGap,
-              balanceVisibilitySwitch(model)
-            ],
-          ),
-          FittedBox(
-            child: Text(
-              "${nairaSymbol()}${model.hideBalance ? '****' : balance}",
-              style: AppTextStyles.header.copyWith(
-                color: AppColors.grey,
-                fontSize: 18.sp,
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          children: [
+            Text(
+              "WALLET BALANCE",
+              style: AppTextStyles.subHeader
+                  .copyWith(color: AppColors.bodyTextColor2, fontSize: 11.sp),
+            ),
+            6.horizontalGap,
+            balanceVisibilitySwitch(model)
+          ],
+        ),
+        FittedBox(
+          child: Text(
+            "${nairaSymbol()}${model.hideBalance ? '****' : balance}",
+            style: AppTextStyles.header.copyWith(
+              color: AppColors.grey,
+              fontSize: 18.sp,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
   Widget branchContainer(HomeViewModel model) {
     return SizedBox(
-      height: 50,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -414,8 +387,7 @@ class HomeView extends StatelessWidget {
 
   Widget staffContainer(HomeViewModel model) {
     return SizedBox(
-      height: 50,
-      width: 130,
+      width: 130.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,

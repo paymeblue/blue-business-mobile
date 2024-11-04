@@ -6,6 +6,9 @@ import 'package:go_router/go_router.dart';
 
 extension BuildContextEx on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);
+
+  void popUntilPath<T extends Object?>(String ancestorPath, [T? result]) =>
+      GoRouter.of(this).popUntilPath(ancestorPath, result);
 }
 
 extension Gap on num {

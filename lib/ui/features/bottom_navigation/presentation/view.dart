@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/ui/features/bottom_navigation/widgets/navbar_item.dart';
@@ -21,13 +23,20 @@ class _DashboardShellViewState extends State<DashboardShellView> {
       onModelReady: (model) => model.init(context, widget.child),
       model: DashboardShellViewModel(),
       builder: (context, model, _) {
-        return Scaffold(
-          body: SizedBox(
-            height: model.size.height,
-            width: model.size.width,
-            child: widget.child,
+        return PopScope(
+          onPopInvoked: (didPop) {
+            if (Platform.isIOS) {
+              model.startLogout(context);
+            }
+          },
+          child: Scaffold(
+            body: SizedBox(
+              height: model.size.height,
+              width: model.size.width,
+              child: widget.child,
+            ),
+            bottomNavigationBar: bottomNavContainer(model, context),
           ),
-          bottomNavigationBar: bottomNavContainer(model, context),
         );
       },
     );

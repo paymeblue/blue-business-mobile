@@ -528,69 +528,71 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
             if (widget.title.isNotEmpty) textFieldHeader(),
             4.verticalGap
           ],
-          TextFormField(
-            style: widget.isMessage
-                ? AppTextStyles.textField.copyWith(fontSize: 14.sp)
-                : AppTextStyles.textField,
-            controller: widget.controller,
-            initialValue: widget.initialValue,
-            textCapitalization: widget.capitalization,
-            obscureText: widget.isPassword ? isObscured : false,
-            enabled: widget.isEnabled,
-            maxLength: widget.maxLength,
-            textAlign: widget.textAlign,
-            inputFormatters: widget.inputFormatters,
-            textAlignVertical: TextAlignVertical.center,
-            keyboardType: widget.keyboardType,
-            onChanged: widget.onChanged,
-            minLines: 1,
-            focusNode: widget.node,
-            maxLines: widget.isMessage ? 3 : 1,
-            cursorHeight: widget.isMessage ? 15.h : null,
-            decoration: InputDecoration(
-              isCollapsed: true,
-              counter: 0.verticalGap,
-              hintText: widget.hint,
-              contentPadding: EdgeInsets.symmetric(
-                  horizontal: widget.isMessage ? 8 : 15,
-                  vertical: widget.isMessage ? 6 : 10),
-              hintStyle: AppTextStyles.textField
-                  .copyWith(color: AppColors.textColor.withOpacity(.3)),
-              fillColor: AppColors.inputField,
-              filled: true,
-              prefixIcon: widget.leading,
-              border: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: widget.isSearch ? AppColors.white : AppColors.grey,
+          Expanded(
+            child: TextFormField(
+              style: widget.isMessage
+                  ? AppTextStyles.textField.copyWith(fontSize: 14.sp)
+                  : AppTextStyles.textField,
+              controller: widget.controller,
+              initialValue: widget.initialValue,
+              textCapitalization: widget.capitalization,
+              obscureText: widget.isPassword ? isObscured : false,
+              enabled: widget.isEnabled,
+              maxLength: widget.maxLength,
+              textAlign: widget.textAlign,
+              inputFormatters: widget.inputFormatters,
+              textAlignVertical: TextAlignVertical.center,
+              keyboardType: widget.keyboardType,
+              onChanged: widget.onChanged,
+              minLines: 1,
+              focusNode: widget.node,
+              maxLines: widget.isMessage ? 3 : 1,
+              cursorHeight: widget.isMessage ? 15.h : null,
+              decoration: InputDecoration(
+                isCollapsed: true,
+                counter: 0.verticalGap,
+                hintText: widget.hint,
+                contentPadding: EdgeInsets.symmetric(
+                    horizontal: widget.isMessage ? 8 : 15,
+                    vertical: widget.isMessage ? 6 : 10),
+                hintStyle: AppTextStyles.textField
+                    .copyWith(color: AppColors.textColor.withOpacity(.3)),
+                fillColor: AppColors.inputField,
+                filled: true,
+                prefixIcon: widget.leading,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: widget.isSearch ? AppColors.white : AppColors.grey,
+                  ),
+                  borderRadius: BorderRadius.circular(
+                      widget.isSearch || widget.isMessage ? 25 : 8),
                 ),
-                borderRadius: BorderRadius.circular(
-                    widget.isSearch || widget.isMessage ? 25 : 8),
-              ),
-              suffixIcon: widget.isPassword ? obscureIcon() : widget.trailing,
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: AppColors.primary,
+                suffixIcon: widget.isPassword ? obscureIcon() : widget.trailing,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    color: AppColors.primary,
+                  ),
+                  borderRadius: BorderRadius.circular(
+                      widget.isSearch || widget.isMessage ? 25 : 8),
                 ),
-                borderRadius: BorderRadius.circular(
-                    widget.isSearch || widget.isMessage ? 25 : 8),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: widget.isSearch ? AppColors.white : AppColors.grey,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: widget.isSearch ? AppColors.white : AppColors.grey,
+                  ),
+                  borderRadius: BorderRadius.circular(widget.isSearch ? 25 : 8),
                 ),
-                borderRadius: BorderRadius.circular(widget.isSearch ? 25 : 8),
-              ),
-              disabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: AppColors.grey,
+                disabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    color: AppColors.grey,
+                  ),
+                  borderRadius: BorderRadius.circular(widget.isSearch ? 25 : 8),
                 ),
-                borderRadius: BorderRadius.circular(widget.isSearch ? 25 : 8),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: AppColors.error,
+                errorBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    color: AppColors.error,
+                  ),
+                  borderRadius: BorderRadius.circular(widget.isSearch ? 25 : 8),
                 ),
-                borderRadius: BorderRadius.circular(widget.isSearch ? 25 : 8),
               ),
             ),
           ),

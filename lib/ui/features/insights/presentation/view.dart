@@ -71,6 +71,7 @@ class _InsightsViewState extends State<InsightsView> {
         model.currTab = i;
       },
       child: Container(
+        height: 30.h,
         decoration: const BoxDecoration(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -81,7 +82,7 @@ class _InsightsViewState extends State<InsightsView> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-            5.verticalGap,
+            4.verticalGap,
             AnimatedContainer(
               duration: const Duration(milliseconds: 350),
               height: i == model.currTab ? 3.h : 2.2.h,
