@@ -8,18 +8,18 @@ import 'package:go_router/go_router.dart';
 
 List<GoRoute> loginRoutes = [
   GoRoute(
-    path: RoutePaths.initiateResetPassword,
+    path: RoutePaths.initiateResetPassword.routeSplitter,
     pageBuilder: (context, state) {
       return const InitiatePasswordResetView().slide();
     },
   ),
   GoRoute(
-    path: RoutePaths.verifyPasswordOtp,
+    path: RoutePaths.verifyPasswordOtp.routeSplitter,
     pageBuilder: (context, state) =>
         VerifyPasswordOtpView(args: state.extra as VerifySignupOtpArgs).slide(),
   ),
   GoRoute(
-    path: RoutePaths.initiateResetPassword,
+    path: RoutePaths.initiateResetPassword.routeSplitter,
     pageBuilder: (context, state) => ResetPasswordView(
       phone: state.extra as String,
     ).slide(),
