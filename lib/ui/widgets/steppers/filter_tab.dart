@@ -19,7 +19,7 @@ class FilterTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50.h,
-      width: (context.mediaQuery.size.width - 40).w,
+      width: context.mediaQuery.size.width.w,
       decoration: BoxDecoration(
         color: AppColors.grey,
         borderRadius: BorderRadius.circular(6),
