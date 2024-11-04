@@ -80,6 +80,29 @@ List<GoRoute> homeRoutes = [
         pageBuilder: (context, state) => CompletePaymentView(
           args: state.extra as ConfirmTransactionViewArgs,
         ).slide(),
+        routes: [
+          GoRoute(
+            path: RoutePaths.initiateResetPin.routeSplitter,
+            parentNavigatorKey: locator<NavigationService>().navigatorKey,
+            pageBuilder: (context, state) => InitiatePinResetView(
+              securityQuestion: state.extra as GetQuestionData?,
+            ).slide(),
+          ),
+          GoRoute(
+            path: RoutePaths.verifyPinOtp.routeSplitter,
+            parentNavigatorKey: locator<NavigationService>().navigatorKey,
+            pageBuilder: (context, state) => VerifyPinOtpView(
+              args: state.extra as VerifySignupOtpArgs,
+            ).slide(),
+          ),
+          GoRoute(
+            path: RoutePaths.resetPin.routeSplitter,
+            parentNavigatorKey: locator<NavigationService>().navigatorKey,
+            pageBuilder: (context, state) => ResetPinView(
+              phone: state.extra as String,
+            ).slide(),
+          ),
+        ],
       ),
       GoRoute(
         path: RoutePaths.walletPaymentFailure.routeSplitter,

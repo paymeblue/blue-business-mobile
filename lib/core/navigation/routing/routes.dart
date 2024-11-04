@@ -39,6 +39,9 @@ class RoutePaths {
   static String verifyReceiver = "/dash/home/wallet/verify-receiver";
   static String confirmTransaction = "/dash/home/wallet/confirm-transaction";
   static String transactionPin = "/dash/home/wallet/pin";
+  static String initiateResetPin = "$transactionPin/initiate-reset";
+  static String verifyPinOtp = "$transactionPin/verify-reset-phone";
+  static String resetPin = "$transactionPin/reset";
 
   static String receive = "/dash/home/receive-money";
 

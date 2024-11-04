@@ -1,9 +1,11 @@
+import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/models/beneficiary/set/request/set_beneficiary_request.dart';
 import 'package:blue_business/core/models/beneficiary/set/response/set_beneficiary_response.dart';
+import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
 import 'package:blue_business/core/models/transaction/pay/credit/request/credit_request.dart';
 import 'package:blue_business/core/models/transaction/pay/response/pay_response.dart';
 import 'package:blue_business/core/models/transaction/pay/withdraw/request/withdraw_request.dart';
@@ -188,5 +190,24 @@ class CompletePaymentViewModel extends BaseViewModel {
   savePin() {
     StorageValues.pin = pin;
     StorageHelpers.setVal(StorageKeys.pinKey, pin);
+  }
+
+  getSecurityQuestion(BuildContext context) async {
+    AppLoader.start();
+    GetQuestionResponse resp = await AuthService()
+        .getSecurityQuestion(locator<AppStateValues>().currentUser!.phone)
+        .onError((error, stackTrace) => GetQuestionResponse(
+                message: AppErrorHandler.getErrorMessage(
+              error,
+              {
+                "request_name": "get_security_question",
+                "response_model": "GetQuestionResponse"
+              },
+            )));
+
+    if (context.mounted) {
+      context.push(RoutePaths.initiateResetPin, extra: resp.data);
+    }
+    AppLoader.stop();
   }
 }

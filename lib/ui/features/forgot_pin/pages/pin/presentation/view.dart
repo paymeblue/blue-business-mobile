@@ -1,9 +1,7 @@
 import 'package:blue_business/core/config/module/base_screen.dart';
-import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
-import 'package:blue_business/ui/features/pay/pages/confirm_payment/presentation/view.dart';
 import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/ui/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/ui/widgets/textfield/num_pad.dart';
@@ -13,22 +11,26 @@ import 'package:go_router/go_router.dart';
 
 import 'view_model.dart';
 
-class CompletePaymentView extends StatelessWidget {
-  final ConfirmTransactionViewArgs args;
-  const CompletePaymentView({super.key, required this.args});
+class ResetPinView extends StatelessWidget {
+  final String phone;
+  const ResetPinView({super.key, required this.phone});
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<CompletePaymentViewModel>(
-      model: CompletePaymentViewModel(),
-      onModelReady: (model) => model.init(context),
+    return BaseView<ResetPinViewModel>(
+      model: ResetPinViewModel(),
+      onModelReady: (model) => model.init(context, phone),
       builder: (context, model, _) {
         return Scaffold(
           appBar: BlueAppBar.primary(
             onBackTap: () {
-              context.pop();
+              if (model.isConfirm) {
+                model.tempPin = "";
+                model.isConfirm = false;
+              } else {
+                context.pop();
+              }
             },
-            icon: Icons.arrow_back_ios_new,
           ),
           body: Padding(
             padding:
@@ -36,21 +38,17 @@ class CompletePaymentView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ...titleAndSubtitle(),
+                ...newPinTitleAndSubtitle(model),
                 const Spacer(flex: 2),
                 pinFields(model),
                 const Spacer(flex: 2),
-                numberPad(model, context),
-                const Spacer(flex: 2),
-                forgotPinButton(onTap: () {
-                  model.getSecurityQuestion(context);
-                }),
-                const Spacer(flex: 3),
+                numberPad(model),
+                const Spacer(flex: 5),
                 AppButton.primary(
-                  title: "Confirm",
-                  isEnabled: model.pin.length == 4,
+                  title: model.isConfirm ? "Create PIN" : "Confirm",
+                  isEnabled: model.tempPin.length == 4,
                   onTap: () {
-                    model.onButtonTap(context, args);
+                    model.setPinAndNext(context);
                   },
                 )
               ],
@@ -61,42 +59,24 @@ class CompletePaymentView extends StatelessWidget {
     );
   }
 
-  Widget forgotPinButton({required VoidCallback onTap}) {
-    return Align(
-      alignment: Alignment.center,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Text(
-          "Forgot PIN?",
-          style: AppTextStyles.subText.copyWith(color: AppColors.blue),
-        ),
-      ),
-    );
-  }
-
-  Widget numberPad(CompletePaymentViewModel model, BuildContext context) {
+  Widget numberPad(ResetPinViewModel model) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 25.w),
       child: NumPad(
-        pin: model.pin,
+        pin: model.tempPin,
         onChanged: (v) {
-          model.pin = v;
+          model.tempPin = v;
         },
-        onUsebiometrics: model.useBiometrics && StorageValues.pin.isNotEmpty
-            ? () {
-                model.completeWithBiometrics(context, args);
-              }
-            : null,
       ),
     );
   }
 
-  Widget pinFields(CompletePaymentViewModel model) {
+  Widget pinFields(ResetPinViewModel model) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(4, (index) {
         bool isSet = false;
-        if (model.pin.length > index) {
+        if (model.tempPin.length > index) {
           isSet = true;
         }
         return Row(
@@ -105,9 +85,7 @@ class CompletePaymentView extends StatelessWidget {
               height: 22.h,
               width: 22.w,
               decoration: const BoxDecoration(
-                color: AppColors.grey,
-                shape: BoxShape.circle,
-              ),
+                  color: AppColors.grey, shape: BoxShape.circle),
               child: Container(
                 height: 20.h,
                 width: 20.w,
@@ -124,21 +102,43 @@ class CompletePaymentView extends StatelessWidget {
     );
   }
 
-  List<Widget> titleAndSubtitle() {
+  List<Widget> newPinTitleAndSubtitle(ResetPinViewModel model) {
     return [
       Text(
-        "Enter your PIN",
+        titleString(model),
         style: AppTextStyles.header,
       ),
       8.verticalGap,
-      SizedBox(
-        width: 350.w,
-        child: Text(
-          "Please enter your PIN to confirm transaction. Never share to anyone.",
-          style: AppTextStyles.subHeader,
-          textAlign: TextAlign.start,
-        ),
+      subtitle(
+        subtitleString(model),
       ),
     ];
+  }
+
+  Widget subtitle(String text) {
+    return SizedBox(
+      width: 350.w,
+      child: Text(
+        text,
+        style: AppTextStyles.subHeader,
+        textAlign: TextAlign.start,
+      ),
+    );
+  }
+
+  String titleString(ResetPinViewModel model) {
+    if (model.isConfirm) {
+      return "Confirm your PIN";
+    } else {
+      return "Create your PIN";
+    }
+  }
+
+  String subtitleString(ResetPinViewModel model) {
+    if (model.isConfirm) {
+      return "Re - enter your new 4 - digit PIN. Do not share this PIN to anyone";
+    } else {
+      return "Enter a 4 - digit PIN you won’t forget. Do not share this PIN to anyone.";
+    }
   }
 }
