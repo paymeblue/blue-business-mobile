@@ -70,7 +70,9 @@ class _WalletViewState extends State<WalletView> {
                     title: "Internet & Bills",
                     subtitle:
                         "Pay for your airtime, internet, transportation and electricity with Blue.",
-                    onTap: () => model.goToBills(context),
+                    onTap: () {
+                      model.goToBills(context);
+                    },
                     heading: "AIRTIME AND BILLS"),
               ],
             ),

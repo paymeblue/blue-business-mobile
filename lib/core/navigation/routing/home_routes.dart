@@ -118,6 +118,11 @@ List<GoRoute> homeRoutes = [
           args: state.extra as PaymentSuccessViewArgs,
         ).slide(),
       ),
+      GoRoute(
+        path: RoutePaths.bills.routeSplitter,
+        pageBuilder: (context, state) => const BillsView().slide(),
+        routes: billRoutes,
+      ),
     ],
   ),
   GoRoute(

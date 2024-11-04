@@ -28,6 +28,6 @@ class WalletViewModel extends BaseViewModel {
   }
 
   goToBills(BuildContext context) {
-    // context.go(RoutePaths.billsPath);
+    context.push(RoutePaths.bills);
   }
 }

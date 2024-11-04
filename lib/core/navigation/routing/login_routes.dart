@@ -35,9 +35,4 @@ List<GoRoute> loginRoutes = [
       id: state.extra as int,
     ).slide(),
   ),
-  GoRoute(
-    path: RoutePaths.bills.routeSplitter,
-    pageBuilder: (context, state) => const BillsView().slide(),
-    routes: billRoutes,
-  ),
 ];
