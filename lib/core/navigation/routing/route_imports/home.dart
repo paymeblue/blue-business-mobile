@@ -16,6 +16,8 @@ import 'package:blue_business/ui/features/branch_insights/presentation/view.dart
 import 'package:blue_business/ui/features/pay/pages/confirm_payment/presentation/view.dart';
 import 'package:blue_business/ui/features/pay/pages/initiate/presentation/view.dart';
 import 'package:blue_business/ui/features/pay/pages/initiate/presentation/view_model.dart';
+import 'package:blue_business/ui/features/pay/pages/pin/presentation/view.dart';
+import 'package:blue_business/ui/features/pay/pages/success/presentation/view.dart';
 import 'package:blue_business/ui/features/pay/pages/verify_receiver/pages/blue/presentation/view.dart';
 import 'package:blue_business/ui/features/pay/pages/verify_receiver/pages/phone/presentation/view.dart';
 import 'package:blue_business/ui/features/pay/pages/verify_receiver/pages/qr/presentaion/view.dart';
@@ -27,6 +29,7 @@ import 'package:blue_business/ui/features/transaction_details/pages/cable_detail
 import 'package:blue_business/ui/features/transaction_details/pages/data_details/presentation/view.dart';
 import 'package:blue_business/ui/features/transaction_details/pages/payment_details/presentation/view.dart';
 import 'package:blue_business/ui/features/transaction_details/pages/power_details/presentation/view.dart';
+import 'package:blue_business/ui/features/transaction_error/presentation/view.dart';
 import 'package:blue_business/ui/features/transaction_history/presentation/view.dart';
 import 'package:blue_business/ui/features/wallet/presentation/view.dart';
 import 'package:go_router/go_router.dart';

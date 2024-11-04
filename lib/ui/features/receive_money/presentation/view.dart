@@ -86,7 +86,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
   Container walletDataContainer(ReceiveMoneyViewModel model) {
     return Container(
       width: context.mediaQuery.size.width,
-      height: 325.h,
+      height: 320.h,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -136,11 +136,12 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
               child: Column(
                 children: [
                   walletAccountDataContent(model),
-                  const Spacer(),
+                  8.verticalGap,
                   const Divider(
                     color: AppColors.grey,
+                    height: 2,
                   ),
-                  const Spacer(),
+                  8.verticalGap,
                   walletIdDataContent(model),
                 ],
               ),
@@ -163,7 +164,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
             model.copy(locator<AppStateValues>().account!.accountNumber);
           },
           child: Container(
-            height: 70.h,
+            height: 60.h,
             width: context.mediaQuery.size.width,
             padding: const EdgeInsets.symmetric(horizontal: 12),
             decoration: const BoxDecoration(),

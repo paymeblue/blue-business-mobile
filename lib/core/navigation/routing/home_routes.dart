@@ -42,39 +42,61 @@ List<GoRoute> homeRoutes = [
     pageBuilder: (context, state) => const ReceiveMoneyView().slide(),
   ),
   GoRoute(
-      path: RoutePaths.wallet.routeSplitter,
-      parentNavigatorKey: locator<NavigationService>().navigatorKey,
-      pageBuilder: (context, state) => const WalletView().slide(),
-      routes: [
-        GoRoute(
-          path: RoutePaths.initiateTransaction.routeSplitter,
-          parentNavigatorKey: locator<NavigationService>().navigatorKey,
-          pageBuilder: (context, state) => InitiateTransactionView(
-            mode: state.extra as PaymentMode?,
-          ).slide(),
-        ),
-        GoRoute(
-          path: RoutePaths.verifyReceiver.routeSplitter,
-          parentNavigatorKey: locator<NavigationService>().navigatorKey,
-          pageBuilder: (context, state) {
-            final args = state.extra as VerifyReceiverArgs;
-            if (args.mode == PaymentMode.phone) {
-              return PhonePaymentView(data: args.data).slide();
-            } else if (args.mode == PaymentMode.qr) {
-              return QrPaymentView(data: args.data).slide();
-            } else {
-              return BluePaymentView(data: args.data).slide();
-            }
-          },
-        ),
-        GoRoute(
-          path: RoutePaths.confirmTransaction.routeSplitter,
-          parentNavigatorKey: locator<NavigationService>().navigatorKey,
-          pageBuilder: (context, state) => ConfirmTransactionView(
-            args: state.extra as ConfirmTransactionViewArgs,
-          ).slide(),
-        ),
-      ]),
+    path: RoutePaths.wallet.routeSplitter,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
+    pageBuilder: (context, state) => const WalletView().slide(),
+    routes: [
+      GoRoute(
+        path: RoutePaths.initiateTransaction.routeSplitter,
+        parentNavigatorKey: locator<NavigationService>().navigatorKey,
+        pageBuilder: (context, state) => InitiateTransactionView(
+          mode: state.extra as PaymentMode?,
+        ).slide(),
+      ),
+      GoRoute(
+        path: RoutePaths.verifyReceiver.routeSplitter,
+        parentNavigatorKey: locator<NavigationService>().navigatorKey,
+        pageBuilder: (context, state) {
+          final args = state.extra as VerifyReceiverArgs;
+          if (args.mode == PaymentMode.phone) {
+            return PhonePaymentView(data: args.data).slide();
+          } else if (args.mode == PaymentMode.qr) {
+            return QrPaymentView(data: args.data).slide();
+          } else {
+            return BluePaymentView(data: args.data).slide();
+          }
+        },
+      ),
+      GoRoute(
+        path: RoutePaths.confirmTransaction.routeSplitter,
+        parentNavigatorKey: locator<NavigationService>().navigatorKey,
+        pageBuilder: (context, state) => ConfirmTransactionView(
+          args: state.extra as ConfirmTransactionViewArgs,
+        ).slide(),
+      ),
+      GoRoute(
+        path: RoutePaths.transactionPin.routeSplitter,
+        parentNavigatorKey: locator<NavigationService>().navigatorKey,
+        pageBuilder: (context, state) => CompletePaymentView(
+          args: state.extra as ConfirmTransactionViewArgs,
+        ).slide(),
+      ),
+      GoRoute(
+        path: RoutePaths.walletPaymentFailure.routeSplitter,
+        parentNavigatorKey: locator<NavigationService>().navigatorKey,
+        pageBuilder: (context, state) => TransactionErrorView(
+          error: state.extra as String,
+        ).slide(),
+      ),
+      GoRoute(
+        path: RoutePaths.walletPaymentSuccess.routeSplitter,
+        parentNavigatorKey: locator<NavigationService>().navigatorKey,
+        pageBuilder: (context, state) => PaymentSuccessView(
+          args: state.extra as PaymentSuccessViewArgs,
+        ).slide(),
+      ),
+    ],
+  ),
   GoRoute(
     path: RoutePaths.transactionHistory.routeSplitter,
     parentNavigatorKey: locator<NavigationService>().navigatorKey,

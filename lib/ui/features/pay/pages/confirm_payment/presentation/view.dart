@@ -41,7 +41,7 @@ class ConfirmTransactionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<ConfirmTransactionViewModel>(
         model: ConfirmTransactionViewModel(),
-        onModelReady: (model) => model.init(context),
+        onModelReady: (model) => model.init(context, args),
         builder: (context, model, _) {
           return Scaffold(
             appBar: BlueAppBar.primary(
@@ -81,7 +81,9 @@ class ConfirmTransactionView extends StatelessWidget {
                   ),
                   AppButton.primary(
                     title: "Continue",
-                    onTap: () {},
+                    onTap: () {
+                      model.goToNext(context, args);
+                    },
                   )
                 ],
               ),

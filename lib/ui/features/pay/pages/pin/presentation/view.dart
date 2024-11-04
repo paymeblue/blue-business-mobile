@@ -125,14 +125,14 @@ class CompletePaymentView extends StatelessWidget {
   List<Widget> titleAndSubtitle() {
     return [
       Text(
-        "",
+        "Enter your PIN",
         style: AppTextStyles.header,
       ),
       8.verticalGap,
       SizedBox(
         width: 350.w,
         child: Text(
-          "",
+          "Please enter your PIN to confirm transaction. Never share to anyone.",
           style: AppTextStyles.subHeader,
           textAlign: TextAlign.start,
         ),

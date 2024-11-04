@@ -2,15 +2,23 @@ import 'package:blue_business/core/api/transaction_service/transaction_service.d
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
+import 'package:blue_business/core/models/beneficiary/set/request/set_beneficiary_request.dart';
+import 'package:blue_business/core/models/beneficiary/set/response/set_beneficiary_response.dart';
+import 'package:blue_business/core/models/transaction/pay/credit/request/credit_request.dart';
 import 'package:blue_business/core/models/transaction/pay/response/pay_response.dart';
 import 'package:blue_business/core/models/transaction/pay/withdraw/request/withdraw_request.dart';
+import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/biometics.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/pay/pages/confirm_payment/presentation/view.dart';
+import 'package:blue_business/ui/features/pay/pages/success/presentation/view.dart';
+import 'package:blue_business/ui/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -49,14 +57,94 @@ class CompletePaymentViewModel extends BaseViewModel {
 
   onButtonTap(BuildContext context, ConfirmTransactionViewArgs args) {
     if (args.mode == PaymentMode.withdrawal) {
-    } else {}
+      withdraw(context, args);
+    } else {
+      completeTransaction(context, args);
+    }
   }
 
-  withdraw(BuildContext context, int amount) async {
+  completeTransaction(
+      BuildContext context, ConfirmTransactionViewArgs args) async {
+    AppLoader.start();
+
+    CreditRequest request =
+        CreditRequest(transactionId: args.transactionId!, passcode: pin);
+
+    PayResponse resp =
+        await TransactionService().pay(request).onError((error, stackTrace) {
+      return PayResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "pay",
+          "request": request.toString(),
+          "response_model": "PayResponse"
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      if (!locator<AppStateValues>().hasSavedBeneficiary &&
+          args.receiver?.walletCode != null) {
+        await saveBeneficiary(args.receiver!);
+      }
+      if (StorageValues.enableBiometrics == "true") {
+        savePin();
+      }
+      if (context.mounted) {
+        context.popUntilPath(RoutePaths.home, true);
+        PaymentSuccessViewArgs extra =
+            PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
+
+        context.push(RoutePaths.walletPaymentSuccess, extra: extra);
+      }
+    } else {
+      if (context.mounted) {
+        context.popUntilPath(RoutePaths.home);
+        context.push(
+          RoutePaths.walletPaymentFailure,
+          extra: resp.message ??
+              "Something went wrong when trying to process this transaction",
+        );
+      }
+    }
+    AppLoader.stop();
+  }
+
+  saveBeneficiary(VerifiedReceiver data) async {
+    SetBeneficiaryRequest request =
+        SetBeneficiaryRequest(identifier: data.walletCode!);
+
+    SetBeneficiaryResponse resp = await TransactionService()
+        .addBeneficiary(request)
+        .onError((error, stackTrace) {
+      return SetBeneficiaryResponse(
+          message: AppErrorHandler.getErrorMessage(
+        error,
+        {
+          "request_name": "add_beneficiary",
+          "request": request.toString(),
+          "response_model": "SetBeneficiaryResponse"
+        },
+      ));
+    });
+
+    if (resp.status == "success") {
+      BlueToast.primaryWithoutIcon(resp.message ??
+          "This user has been successfully saved as a beneficiary.");
+    } else {
+      BlueToast.primaryWithoutIcon(
+          resp.message ?? "An error occurred. Beneficiary could not be saved");
+    }
+
+    locator<AppStateValues>().hasSavedBeneficiary = true;
+  }
+
+  withdraw(BuildContext context, ConfirmTransactionViewArgs args) async {
     AppLoader.start();
 
     WithdrawRequest request =
-        WithdrawRequest(amount: (amount / 100).toString(), passcode: pin);
+        WithdrawRequest(amount: (args.amount! / 100).toString(), passcode: pin);
 
     PayResponse resp = await TransactionService()
         .withdraw(request)
@@ -72,10 +160,25 @@ class CompletePaymentViewModel extends BaseViewModel {
       ));
     });
 
-    if (resp.status != "success") {
+    if (resp.status == "success") {
+      if (StorageValues.enableBiometrics == "true") {
+        savePin();
+      }
+      if (context.mounted) {
+        context.popUntilPath(RoutePaths.home, true);
+        PaymentSuccessViewArgs extra =
+            PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
+
+        context.push(RoutePaths.walletPaymentSuccess, extra: extra);
+      }
+    } else {
       if (context.mounted) {
         context.popUntilPath(RoutePaths.home);
-        context.push(RoutePaths.createPin);
+        context.push(
+          RoutePaths.walletPaymentFailure,
+          extra: resp.message ??
+              "Something went wrong when trying to process this transaction",
+        );
       }
     }
 
