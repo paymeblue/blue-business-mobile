@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/ui/features/bottom_navigation/widgets/navbar_item.dart';
@@ -24,11 +22,7 @@ class _DashboardShellViewState extends State<DashboardShellView> {
       model: DashboardShellViewModel(),
       builder: (context, model, _) {
         return PopScope(
-          onPopInvoked: (didPop) {
-            if (Platform.isIOS) {
-              model.startLogout(context);
-            }
-          },
+          canPop: false,
           child: Scaffold(
             body: SizedBox(
               height: model.size.height,

@@ -54,7 +54,7 @@ class InitiateTransactionViewModel extends BaseViewModel {
         (value) {
           if (value != null) {
             paymentMode = value;
-            initiateTransaction(context);
+            if (context.mounted) initiateTransaction(context);
           }
         },
       );

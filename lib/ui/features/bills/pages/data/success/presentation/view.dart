@@ -24,46 +24,49 @@ class VendDataSuccessView extends StatelessWidget {
       model: VendDataSuccessViewModel(),
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
-        return Scaffold(
-          body: Stack(
-            children: [
-              if (model.dataDetails != null)
-                Screenshot(
-                  controller: model.screenshotController,
-                  child: DataReceipt(record: model.dataDetails!),
+        return PopScope(
+          canPop: false,
+          child: Scaffold(
+            body: Stack(
+              children: [
+                if (model.dataDetails != null)
+                  Screenshot(
+                    controller: model.screenshotController,
+                    child: DataReceipt(record: model.dataDetails!),
+                  ),
+                Container(
+                  height: model.size.height,
+                  width: model.size.width,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 35),
+                  decoration: const BoxDecoration(
+                    color: AppColors.success,
+                  ),
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      AppAssets.images.icons.success.svg(),
+                      25.verticalGap,
+                      successTitle(),
+                      11.verticalGap,
+                      successMessage(),
+                      const Spacer(),
+                      shareReceiptButton(
+                        onTap: () {
+                          model.getTransactionDetails(data);
+                        },
+                      ),
+                      10.verticalGap,
+                      doneButton(
+                        onTap: () {
+                          model.goToHome(context);
+                        },
+                      )
+                    ],
+                  ),
                 ),
-              Container(
-                height: model.size.height,
-                width: model.size.width,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 35),
-                decoration: const BoxDecoration(
-                  color: AppColors.success,
-                ),
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    AppAssets.images.icons.success.svg(),
-                    25.verticalGap,
-                    successTitle(),
-                    11.verticalGap,
-                    successMessage(),
-                    const Spacer(),
-                    shareReceiptButton(
-                      onTap: () {
-                        model.getTransactionDetails(data);
-                      },
-                    ),
-                    10.verticalGap,
-                    doneButton(
-                      onTap: () {
-                        model.goToHome(context);
-                      },
-                    )
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

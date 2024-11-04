@@ -1,12 +1,16 @@
 import 'dart:async';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
+import 'package:blue_business/core/config/storage/database.dart';
+import 'package:blue_business/core/models/beneficiary/electricity/electricity_beneficiary.dart';
 import 'package:blue_business/core/models/beneficiary/payment/blue_beneficiary.dart';
 import 'package:blue_business/core/models/beneficiary/payment/get/response/get_beneficiary_response.dart';
 import 'package:blue_business/core/models/beneficiary/payment/set/response/set_beneficiary_response.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
+import 'package:blue_business/ui/widgets/modals/dialogs.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -22,31 +26,105 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
       getBeneficiaries(pageKey);
     });
 
-    selectedType = filters[0];
+    getElectricityBeneficiariesFromLocal();
   }
 
   goBack(BuildContext context) {
     context.pop();
   }
 
-  onFilterChanged(String v) {
-    if (selectedType != v) {
-      if (v == filters[0]) {
-        beneficiaryController.refresh();
-      }
+  onFilterChanged(String? v) {
+    if (v.orEmpty.isNotEmpty) {
+      selectedType = v!;
     }
-
-    selectedType = v;
   }
 
-  late String _type;
-  String get selectedType => _type;
-  set selectedType(String v) {
+  String? _type;
+  String? get selectedType => _type;
+  set selectedType(String? v) {
     _type = v;
     notifyListeners();
   }
 
-  List<String> filters = ["Blue to Blue", "Bills"];
+  List<ElectricityBeneficiary> _electricityBeneficiaries = [];
+  List<ElectricityBeneficiary> get electricityBeneficiaries =>
+      _electricityBeneficiaries;
+  set electricityBeneficiaries(List<ElectricityBeneficiary> v) {
+    _electricityBeneficiaries = v;
+    notifyListeners();
+  }
+
+  List<ElectricityBeneficiary> _allElectricityBeneficiaries = [];
+  List<ElectricityBeneficiary> get allElectricityBeneficiaries =>
+      _allElectricityBeneficiaries;
+  set allElectricityBeneficiaries(List<ElectricityBeneficiary> v) {
+    _allElectricityBeneficiaries = v;
+    notifyListeners();
+  }
+
+  FetchState _getLocalBeneficiaryState = FetchState.complete;
+  FetchState get getLocalBeneficiaryState => _getLocalBeneficiaryState;
+  set getLocalBeneficiaryState(FetchState v) {
+    _getLocalBeneficiaryState = v;
+    notifyListeners();
+  }
+
+  final dbHelper = DatabaseHelper();
+  getElectricityBeneficiariesFromLocal() async {
+    getLocalBeneficiaryState = FetchState.loading;
+
+    try {
+      dbHelper.getBeneficiaries().then((b) async {
+        allElectricityBeneficiaries = b;
+        electricityBeneficiaries = b;
+      });
+    } catch (e) {
+      getLocalBeneficiaryState = FetchState.error;
+    }
+  }
+
+  onDeletelectricityBeneficiary(ElectricityBeneficiary beneficiary) {
+    BlueDialog.primary(
+      title: "Delete beneficiary",
+      subtitle:
+          "Are you sure you want to remove ${beneficiary.receiver} as a beneficiary?",
+      onDelete: () {
+        deleElectricityBeneficiary(beneficiary.id!);
+      },
+    );
+  }
+
+  deleElectricityBeneficiary(int id) {
+    getLocalBeneficiaryState = FetchState.loading;
+
+    try {
+      dbHelper.deleteBeneficiary(id).then((b) async {
+        getElectricityBeneficiariesFromLocal();
+      });
+    } catch (e) {
+      getLocalBeneficiaryState = FetchState.error;
+    }
+  }
+
+  onElectricitySearchChanged(String? v) {
+    if (searchTimer != null) {
+      searchTimer!.cancel();
+    }
+
+    searchTimer = Timer(const Duration(milliseconds: 500), () async {
+      if (v.orEmpty.isEmpty) {
+        electricityBeneficiaries = allElectricityBeneficiaries;
+      } else {
+        electricityBeneficiaries = allElectricityBeneficiaries
+            .where(
+              (b) => b.receiver.contains(v!),
+            )
+            .toList();
+      }
+    });
+  }
+
+  List<String> filters = ["Blue to Blue pay", "Electricity"];
 
   String _q = "";
   String get query => _q;
@@ -108,25 +186,36 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
 
   deleteBeneficiary(int id) async {
     AppLoader.start();
-    SetBeneficiaryResponse resp = await TransactionService()
-        .deleteBeneficiary(id)
-        .onError((error, stackTrace) {
-      return SetBeneficiaryResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
+    try {
+      SetBeneficiaryResponse resp = await TransactionService()
+          .deleteBeneficiary(id)
+          .onError((error, stackTrace) {
+        return SetBeneficiaryResponse(
+            message: AppErrorHandler.getErrorMessage(
+          error,
+          {
+            "request_name": "delete_beneficiary",
+            "response_model": "DeleteBeneficiaryResponse"
+          },
+        ));
+      });
+
+      if (resp.status == "success") {
+        beneficiaryController.refresh();
+      } else {
+        AppNotification.error(message: resp.message);
+      }
+    } catch (e) {
+      String err = AppErrorHandler.getErrorMessage(
+        e,
         {
           "request_name": "delete_beneficiary",
           "response_model": "DeleteBeneficiaryResponse"
         },
-      ));
-    });
+      );
 
-    if (resp.status == "success") {
-      beneficiaryController.refresh();
-    } else {
-      AppNotification.error(message: resp);
+      AppNotification.error(message: err);
     }
-
     AppLoader.stop();
   }
 }

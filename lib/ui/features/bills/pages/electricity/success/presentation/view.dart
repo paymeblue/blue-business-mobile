@@ -27,54 +27,57 @@ class VendElectricitySuccessView extends StatelessWidget {
       model: VendElectricitySuccessViewModel(),
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
-        return Scaffold(
-          body: Stack(
-            children: [
-              if (model.powerDetails != null)
-                Screenshot(
-                  controller: model.screenshotController,
-                  child: PowerReceipt(record: model.powerDetails!),
-                ),
-              Container(
-                height: model.size.height,
-                width: model.size.width,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 35),
-                decoration: const BoxDecoration(
-                  color: AppColors.success,
-                ),
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    AppAssets.images.icons.success.svg(),
-                    25.verticalGap,
-                    successTitle(),
-                    11.verticalGap,
-                    successMessage(),
-                    if (data.units != null) ...[
-                      35.verticalGap,
-                      unitsText(),
+        return PopScope(
+          canPop: false,
+          child: Scaffold(
+            body: Stack(
+              children: [
+                if (model.powerDetails != null)
+                  Screenshot(
+                    controller: model.screenshotController,
+                    child: PowerReceipt(record: model.powerDetails!),
+                  ),
+                Container(
+                  height: model.size.height,
+                  width: model.size.width,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 35),
+                  decoration: const BoxDecoration(
+                    color: AppColors.success,
+                  ),
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      AppAssets.images.icons.success.svg(),
+                      25.verticalGap,
+                      successTitle(),
+                      11.verticalGap,
+                      successMessage(),
+                      if (data.units != null) ...[
+                        35.verticalGap,
+                        unitsText(),
+                      ],
+                      if (data.token != null) ...[
+                        6.verticalGap,
+                        tokenContainer(),
+                      ],
+                      const Spacer(),
+                      shareReceiptButton(
+                        onTap: () {
+                          model.getTransactionDetails(data);
+                        },
+                      ),
+                      10.verticalGap,
+                      doneButton(
+                        onTap: () {
+                          model.goToHome(context);
+                        },
+                      )
                     ],
-                    if (data.token != null) ...[
-                      6.verticalGap,
-                      tokenContainer(),
-                    ],
-                    const Spacer(),
-                    shareReceiptButton(
-                      onTap: () {
-                        model.getTransactionDetails(data);
-                      },
-                    ),
-                    10.verticalGap,
-                    doneButton(
-                      onTap: () {
-                        model.goToHome(context);
-                      },
-                    )
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
