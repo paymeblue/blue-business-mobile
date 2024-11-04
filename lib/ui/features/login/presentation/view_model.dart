@@ -262,7 +262,11 @@ class LoginViewModel extends BaseViewModel {
   }
 
   goToRecoverPassword(BuildContext context) {
-    // context.go(RoutePaths.passwordRecoveryPhonePath);
+    context.push<bool>(RoutePaths.initiateResetPassword).then((val) {
+      if (val == true) {
+        AppNotification.success(message: "Password reset successfully");
+      }
+    });
   }
 
   goToenterRecoveryCode(BuildContext context) {

@@ -5,7 +5,11 @@ class RoutePaths {
   //PRE AUTH PATHS
   static String initial = '/';
   static String welcome = '/welcome';
+
   static String login = '/login';
+  static String initiateResetPassword = "$login/initiate-reset-password";
+  static String verifyPasswordOtp = "$login/verify-reset-phone";
+  static String resetPassword = "$login/reset-password";
 
   // **********************************************************************************
   //AUTH

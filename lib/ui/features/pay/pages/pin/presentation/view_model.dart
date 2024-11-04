@@ -20,6 +20,7 @@ import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/pay/pages/confirm_payment/presentation/view.dart';
 import 'package:blue_business/ui/features/pay/pages/success/presentation/view.dart';
+import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:blue_business/ui/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -206,7 +207,13 @@ class CompletePaymentViewModel extends BaseViewModel {
             )));
 
     if (context.mounted) {
-      context.push(RoutePaths.initiateResetPin, extra: resp.data);
+      context
+          .push<bool>(RoutePaths.initiateResetPin, extra: resp.data)
+          .then((val) {
+        if (val == true) {
+          AppNotification.success(message: resp.message);
+        }
+      });
     }
     AppLoader.stop();
   }

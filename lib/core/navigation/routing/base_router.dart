@@ -43,6 +43,7 @@ GoRouter router = GoRouter(
     GoRoute(
       path: RoutePaths.login,
       pageBuilder: (context, state) => const LoginView().fade,
+      routes: loginRoutes,
     ),
 
     //Dashboard

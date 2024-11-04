@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
@@ -15,7 +13,6 @@ import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class ResetPinViewModel extends BaseViewModel {
   late Size size;
@@ -85,16 +82,8 @@ class ResetPinViewModel extends BaseViewModel {
             )));
 
     if (resp.status == "success") {
-      AppNotification.success(message: resp.message);
       if (context.mounted) {
-        List<RouteMatch> matches =
-            GoRouter.of(context).routerDelegate.currentConfiguration.matches;
-
-        for (RouteMatch m in matches) {
-          log(m.matchedLocation);
-        }
-
-        context.popUntilPath(RoutePaths.transactionPin);
+        context.popUntilPath(RoutePaths.transactionPin, true);
       }
     } else {
       AppNotification.error(message: resp.message);

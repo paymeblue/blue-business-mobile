@@ -7,8 +7,20 @@ import 'package:go_router/go_router.dart';
 extension BuildContextEx on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);
 
-  void popUntilPath<T extends Object?>(String ancestorPath, [T? result]) =>
-      GoRouter.of(this).popUntilPath(ancestorPath, result);
+  void popUntilPath<T extends Object?>(String ancestorPath, [T? result]) {
+    while (GoRouter.of(this)
+            .routerDelegate
+            .currentConfiguration
+            .matches
+            .last
+            .matchedLocation !=
+        ancestorPath) {
+      if (!canPop()) {
+        return;
+      }
+      pop(result);
+    }
+  }
 }
 
 extension Gap on num {
@@ -18,18 +30,6 @@ extension Gap on num {
   Widget get horizontalGap => SizedBox(
         width: toDouble().w,
       );
-}
-
-extension GoRouterExtension on GoRouter {
-  void popUntilPath(String ancestorPath, [Object? result]) {
-    while (routerDelegate.currentConfiguration.matches.last.matchedLocation !=
-        ancestorPath) {
-      if (!canPop()) {
-        return;
-      }
-      pop(result);
-    }
-  }
 }
 
 extension Transition on Widget {
