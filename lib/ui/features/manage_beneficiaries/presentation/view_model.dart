@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
-import 'package:blue_business/core/models/beneficiary/blue_beneficiary.dart';
-import 'package:blue_business/core/models/beneficiary/get/response/get_beneficiary_response.dart';
-import 'package:blue_business/core/models/beneficiary/set/response/set_beneficiary_response.dart';
+import 'package:blue_business/core/models/beneficiary/payment/blue_beneficiary.dart';
+import 'package:blue_business/core/models/beneficiary/payment/get/response/get_beneficiary_response.dart';
+import 'package:blue_business/core/models/beneficiary/payment/set/response/set_beneficiary_response.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';

@@ -1,7 +1,7 @@
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/models/beneficiary/blue_beneficiary.dart';
+import 'package:blue_business/core/models/beneficiary/payment/blue_beneficiary.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';

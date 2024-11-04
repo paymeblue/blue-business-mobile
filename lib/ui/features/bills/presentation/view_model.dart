@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/models/settings_option/section_option.dart';
+import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -23,8 +26,8 @@ class BillsViewModel extends BaseViewModel {
         title: "Purchase Airtime",
         subtitle: "Top-up your mobile airtime.",
         onTap: () {
-          // TODO: start airtime
-          // context.push(RoutePaths.initiateAirtimePath);
+          log("COME ONNNNNN");
+          context.push(RoutePaths.initiateAirtime);
         },
       ),
       SectionOption(
@@ -32,8 +35,7 @@ class BillsViewModel extends BaseViewModel {
         title: "Purchase Data",
         subtitle: "Renew your data subscription.",
         onTap: () {
-          // TODO: start data
-          // context.push(RoutePaths.initiateDataPath);
+          context.push(RoutePaths.initiateData);
         },
       ),
       SectionOption(
@@ -41,8 +43,7 @@ class BillsViewModel extends BaseViewModel {
         title: "Pay Electricity Bill",
         subtitle: "Purchase electricity units for your meter.",
         onTap: () {
-          // TODO: start electricity
-          // context.push(RoutePaths.initiateElectricityPath);
+          context.push(RoutePaths.initiatePower);
         },
       ),
       SectionOption(
@@ -50,8 +51,7 @@ class BillsViewModel extends BaseViewModel {
         title: "Pay Cable TV",
         subtitle: "Renew your cable tv subscription.",
         onTap: () {
-          // TODO: start tv
-          // context.push(RoutePaths.initiateCablePath);
+          context.push(RoutePaths.initiateTv);
         },
       ),
     ];

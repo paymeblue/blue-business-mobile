@@ -8,6 +8,7 @@ import 'package:blue_business/core/models/transaction_detail/payment/payment_det
 import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/injection/navigation_service.dart';
+import 'package:blue_business/core/navigation/routing/route_imports/bills.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/extensions.dart';

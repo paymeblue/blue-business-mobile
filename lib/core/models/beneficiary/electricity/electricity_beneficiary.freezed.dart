@@ -28,18 +28,14 @@ mixin _$ElectricityBeneficiary {
   String get customerName => throw _privateConstructorUsedError;
   String get customerInfo => throw _privateConstructorUsedError;
   String get provider => throw _privateConstructorUsedError;
-  int get serviceCharge => throw _privateConstructorUsedError;
+  String get serviceCharge => throw _privateConstructorUsedError;
   String get minimumAmount => throw _privateConstructorUsedError;
   String get state => throw _privateConstructorUsedError;
   String? get tag => throw _privateConstructorUsedError;
   String get isOnline => throw _privateConstructorUsedError;
 
-  /// Serializes this ElectricityBeneficiary to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ElectricityBeneficiary
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ElectricityBeneficiaryCopyWith<ElectricityBeneficiary> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,7 +54,7 @@ abstract class $ElectricityBeneficiaryCopyWith<$Res> {
       String customerName,
       String customerInfo,
       String provider,
-      int serviceCharge,
+      String serviceCharge,
       String minimumAmount,
       String state,
       String? tag,
@@ -76,8 +72,6 @@ class _$ElectricityBeneficiaryCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ElectricityBeneficiary
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -126,7 +120,7 @@ class _$ElectricityBeneficiaryCopyWithImpl<$Res,
       serviceCharge: null == serviceCharge
           ? _value.serviceCharge
           : serviceCharge // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       minimumAmount: null == minimumAmount
           ? _value.minimumAmount
           : minimumAmount // ignore: cast_nullable_to_non_nullable
@@ -164,7 +158,7 @@ abstract class _$$ElectricityBeneficiaryImplCopyWith<$Res>
       String customerName,
       String customerInfo,
       String provider,
-      int serviceCharge,
+      String serviceCharge,
       String minimumAmount,
       String state,
       String? tag,
@@ -181,8 +175,6 @@ class __$$ElectricityBeneficiaryImplCopyWithImpl<$Res>
       $Res Function(_$ElectricityBeneficiaryImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ElectricityBeneficiary
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -231,7 +223,7 @@ class __$$ElectricityBeneficiaryImplCopyWithImpl<$Res>
       serviceCharge: null == serviceCharge
           ? _value.serviceCharge
           : serviceCharge // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       minimumAmount: null == minimumAmount
           ? _value.minimumAmount
           : minimumAmount // ignore: cast_nullable_to_non_nullable
@@ -263,7 +255,7 @@ class _$ElectricityBeneficiaryImpl implements _ElectricityBeneficiary {
       required this.customerName,
       required this.customerInfo,
       required this.provider,
-      this.serviceCharge = 100,
+      this.serviceCharge = "100",
       this.minimumAmount = "0.0",
       required this.state,
       this.tag,
@@ -288,7 +280,7 @@ class _$ElectricityBeneficiaryImpl implements _ElectricityBeneficiary {
   final String provider;
   @override
   @JsonKey()
-  final int serviceCharge;
+  final String serviceCharge;
   @override
   @JsonKey()
   final String minimumAmount;
@@ -333,7 +325,7 @@ class _$ElectricityBeneficiaryImpl implements _ElectricityBeneficiary {
                 other.isOnline == isOnline));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -350,9 +342,7 @@ class _$ElectricityBeneficiaryImpl implements _ElectricityBeneficiary {
       tag,
       isOnline);
 
-  /// Create a copy of ElectricityBeneficiary
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ElectricityBeneficiaryImplCopyWith<_$ElectricityBeneficiaryImpl>
@@ -376,7 +366,7 @@ abstract class _ElectricityBeneficiary implements ElectricityBeneficiary {
       required final String customerName,
       required final String customerInfo,
       required final String provider,
-      final int serviceCharge,
+      final String serviceCharge,
       final String minimumAmount,
       required final String state,
       final String? tag,
@@ -400,7 +390,7 @@ abstract class _ElectricityBeneficiary implements ElectricityBeneficiary {
   @override
   String get provider;
   @override
-  int get serviceCharge;
+  String get serviceCharge;
   @override
   String get minimumAmount;
   @override
@@ -409,11 +399,8 @@ abstract class _ElectricityBeneficiary implements ElectricityBeneficiary {
   String? get tag;
   @override
   String get isOnline;
-
-  /// Create a copy of ElectricityBeneficiary
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ElectricityBeneficiaryImplCopyWith<_$ElectricityBeneficiaryImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

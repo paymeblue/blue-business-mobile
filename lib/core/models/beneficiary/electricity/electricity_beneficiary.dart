@@ -13,7 +13,7 @@ class ElectricityBeneficiary with _$ElectricityBeneficiary {
     required String customerName,
     required String customerInfo,
     required String provider,
-    @Default(100) int serviceCharge,
+    @Default("100") String serviceCharge,
     @Default("0.0") String minimumAmount,
     required String state,
     String? tag,

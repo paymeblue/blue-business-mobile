@@ -1,7 +1,7 @@
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/models/bills/cable/verify/data/verify_cable_data.dart';
+import 'package:blue_business/core/models/bills/data/verify/data/verify_data_data.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
@@ -12,15 +12,15 @@ import 'package:intl/intl.dart';
 
 import 'view_model.dart';
 
-class ReviewCableView extends StatelessWidget {
-  final VerifyCableData data;
-  const ReviewCableView({super.key, required this.data});
+class ReviewDataView extends StatelessWidget {
+  final VerifyDataData data;
+  const ReviewDataView({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
     NumberFormat format = NumberFormat("#,##0.00");
-    return BaseView<ReviewCableViewModel>(
-      model: ReviewCableViewModel(),
+    return BaseView<ReviewDataViewModel>(
+      model: ReviewDataViewModel(),
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
         return Scaffold(
@@ -29,6 +29,8 @@ class ReviewCableView extends StatelessWidget {
             icon: Icons.arrow_back_ios_new,
           ),
           body: Container(
+            height: model.size.height,
+            width: model.size.width,
             padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 25),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +45,7 @@ class ReviewCableView extends StatelessWidget {
                   style: AppTextStyles.subHeader.copyWith(height: 1.2),
                 ),
                 Text(
-                  "${nairaSymbol()}${format.format(double.parse(data.amount) + double.parse(data.serviceCharge.toString()))}",
+                  "${nairaSymbol()}${format.format(double.parse(data.amount))}",
                   style: AppTextStyles.header.copyWith(
                       fontSize: 26.sp,
                       fontWeight: FontWeight.w700,
@@ -51,30 +53,16 @@ class ReviewCableView extends StatelessWidget {
                 ),
                 20.verticalGap,
                 ...detailsSection(
-                  title: "Name",
-                  detail: data.customerName,
-                ),
-                ...detailsSection(
-                  title: "Cable Provider",
+                  title: "Network Provider",
                   detail: data.provider,
                 ),
                 ...detailsSection(
-                  title: "Bundle",
+                  title: "Data Bundle",
                   detail: data.package,
                 ),
-                ...detailsSection(
-                  title: "Smart Card Number",
-                  detail: data.receiver,
-                ),
-                ...detailsSection(
-                  title: "Amount",
-                  detail:
-                      "${nairaSymbol()}${format.format(double.parse(data.amount))}",
-                ),
                 detailRow(
-                  title: "Service charge",
-                  detail:
-                      "${nairaSymbol()}${format.format(double.parse(data.serviceCharge))}",
+                  title: "Phone number",
+                  detail: data.receiver,
                 ),
                 const Spacer(),
                 AppButton.primary(

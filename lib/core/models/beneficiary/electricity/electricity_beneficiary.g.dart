@@ -16,7 +16,7 @@ _$ElectricityBeneficiaryImpl _$$ElectricityBeneficiaryImplFromJson(
       customerName: json['customer_name'] as String,
       customerInfo: json['customer_info'] as String,
       provider: json['provider'] as String,
-      serviceCharge: (json['service_charge'] as num?)?.toInt() ?? 100,
+      serviceCharge: json['service_charge'] as String? ?? "100",
       minimumAmount: json['minimum_amount'] as String? ?? "0.0",
       state: json['state'] as String,
       tag: json['tag'] as String?,

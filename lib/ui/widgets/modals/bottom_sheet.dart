@@ -1,9 +1,11 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/timed_refresh.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/models/beneficiary/electricity/electricity_beneficiary.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/payment_option/payment_option.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
@@ -1293,5 +1295,215 @@ class BlueBottomSheet {
     );
 
     return res;
+  }
+
+  static Future electricityBeneficiary({
+    List<ElectricityBeneficiary> allBeneficiaries = const [],
+    ElectricityBeneficiary? selectedBeneficiary,
+    required ValueChanged<ElectricityBeneficiary> onBeneficiaryChanged,
+    double? height,
+  }) async {
+    TextEditingController searchController = TextEditingController();
+    List<ElectricityBeneficiary> beneficiaries = allBeneficiaries;
+
+    Timer? searchTimer;
+
+    onSearchChanged(String? v, StateSetter setState) {
+      if (searchTimer != null) {
+        searchTimer!.cancel();
+      }
+
+      searchTimer = Timer(const Duration(milliseconds: 500), () async {
+        if (v.orEmpty.isEmpty) {
+          setState(() {
+            beneficiaries = allBeneficiaries;
+          });
+        } else {
+          setState(() {
+            beneficiaries = allBeneficiaries
+                .where(
+                  (b) => b.receiver.contains(v!),
+                )
+                .toList();
+          });
+        }
+      });
+    }
+
+    Widget emptyState(StateSetter setState) {
+      return Column(
+        children: [
+          if (allBeneficiaries.isNotEmpty) ...[
+            Text(
+              "Select a beneficiary",
+              style: AppTextStyles.textField,
+            ),
+            8.verticalGap,
+            BlueTextField.search(
+              controller: searchController,
+              onSearchChanged: (v) {
+                onSearchChanged(v, setState);
+              },
+              hint: "Search beneficiaries",
+            ),
+            6.verticalGap,
+          ],
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "No Beneficiaries found",
+                  style: AppTextStyles.midHeader,
+                ),
+                Text(
+                  "You can save frequently used meter numbers as beneficiaries for faster payments.",
+                  style: AppTextStyles.smallText.copyWith(
+                    color: AppColors.bodyTextColor2,
+                  ),
+                  textAlign: TextAlign.center,
+                )
+              ],
+            ),
+          ),
+        ],
+      );
+    }
+
+    Widget beneficiaryList(ScrollController controller, StateSetter setState) {
+      return Column(
+        children: [
+          Text(
+            "Select a beneficiary",
+            style: AppTextStyles.textField,
+          ),
+          8.verticalGap,
+          BlueTextField.search(
+            controller: searchController,
+            onSearchChanged: (v) {
+              onSearchChanged(v, setState);
+            },
+          ),
+          6.verticalGap,
+          Expanded(
+            child: ListView.separated(
+              itemCount: beneficiaries.length,
+              itemBuilder: (context, i) {
+                ElectricityBeneficiary beneficiary = beneficiaries[i];
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          onBeneficiaryChanged(beneficiary);
+                          context.pop();
+                        },
+                        child: DecoratedBox(
+                          decoration: const BoxDecoration(),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 36.h,
+                                width: 36.h,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.primary,
+                                ),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  beneficiary.tag.orEmpty.isEmpty
+                                      ? "Meter number".initials
+                                      : beneficiary.tag!.initials,
+                                  style: AppTextStyles.subText.copyWith(
+                                    fontSize: 14.sp,
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                              ),
+                              10.horizontalGap,
+                              Expanded(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      beneficiary.tag.orEmpty.isEmpty
+                                          ? "Meter number"
+                                          : beneficiary.tag!,
+                                      style: AppTextStyles.smallText.copyWith(
+                                        color: AppColors.bodyTextColor2,
+                                      ),
+                                    ),
+                                    4.verticalGap,
+                                    Text(
+                                      beneficiary.receiver,
+                                      style: AppTextStyles.subText.copyWith(
+                                        color: AppColors.bodyTextColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    if (selectedBeneficiary == beneficiary) ...[
+                      10.horizontalGap,
+                      const Icon(
+                        Icons.check,
+                        size: 16,
+                        color: AppColors.primary,
+                      )
+                    ]
+                  ],
+                );
+              },
+              separatorBuilder: (context, index) => 24.verticalGap,
+            ),
+          )
+        ],
+      );
+    }
+
+    await showModalBottomSheet(
+      context: locator<NavigationService>().navigatorKey.currentContext!,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      useSafeArea: true,
+      builder: (context) {
+        return StatefulBuilder(builder: (context, setState) {
+          return DraggableScrollableSheet(
+            minChildSize: .1,
+            maxChildSize: .75,
+            initialChildSize: (height ?? .5) +
+                (context.mediaQuery.viewInsets.bottom /
+                    context.mediaQuery.size.height),
+            expand: false,
+            builder: (context, controller) {
+              return Container(
+                height: context.mediaQuery.size.height / 2 +
+                    context.mediaQuery.viewInsets.bottom,
+                margin: EdgeInsets.only(
+                    left: 17,
+                    right: 17,
+                    bottom: 35 + context.mediaQuery.viewInsets.bottom),
+                padding: const EdgeInsets.only(left: 17, right: 17, top: 15),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: beneficiaries.isEmpty
+                    ? emptyState(setState)
+                    : beneficiaryList(controller, setState),
+              );
+            },
+          );
+        });
+      },
+    );
   }
 }

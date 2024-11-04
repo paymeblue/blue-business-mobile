@@ -12,10 +12,6 @@ _$GetBeneficiaryDataImpl _$$GetBeneficiaryDataImplFromJson(
       total: (json['total'] as num).toInt(),
       limit: (json['limit'] as num).toInt(),
       page: (json['page'] as num).toInt(),
-      data: (json['data'] as List<dynamic>?)
-              ?.map((e) => BlueBeneficiary.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
       loadMore: json['load_more'] as bool? ?? false,
     );
 
@@ -25,6 +21,5 @@ Map<String, dynamic> _$$GetBeneficiaryDataImplToJson(
       'total': instance.total,
       'limit': instance.limit,
       'page': instance.page,
-      'data': instance.data,
       'load_more': instance.loadMore,
     };

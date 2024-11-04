@@ -1,3 +1,4 @@
+import 'package:blue_business/core/models/beneficiary/payment/blue_beneficiary.dart';
 import 'package:blue_business/core/models/beneficiary/payment/get/data/get_beneficiary_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,7 +10,8 @@ class GetBeneficiaryResponse with _$GetBeneficiaryResponse {
   const factory GetBeneficiaryResponse({
     @Default("fail") String status,
     String? message,
-    GetBeneficiaryData? data,
+    @Default([]) List<BlueBeneficiary> data,
+    GetBeneficiaryData? paginationInfo,
   }) = _GetBeneficiaryResponse;
 
   factory GetBeneficiaryResponse.fromJson(Map<String, dynamic> json) =>

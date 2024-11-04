@@ -1,26 +1,24 @@
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/models/bills/cable/verify/data/verify_cable_data.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
+import 'package:blue_business/ui/features/bills/pages/electricity/pin/presentation/view.dart';
 import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/ui/widgets/buttons/app_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 
 import 'view_model.dart';
 
-class ReviewCableView extends StatelessWidget {
-  final VerifyCableData data;
-  const ReviewCableView({super.key, required this.data});
+class ReviewElectricityView extends StatelessWidget {
+  final ConfirmPowerArgs args;
+  const ReviewElectricityView({super.key, required this.args});
 
   @override
   Widget build(BuildContext context) {
-    NumberFormat format = NumberFormat("#,##0.00");
-    return BaseView<ReviewCableViewModel>(
-      model: ReviewCableViewModel(),
+    return BaseView<ReviewElectricityViewModel>(
+      model: ReviewElectricityViewModel(),
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
         return Scaffold(
@@ -29,6 +27,8 @@ class ReviewCableView extends StatelessWidget {
             icon: Icons.arrow_back_ios_new,
           ),
           body: Container(
+            height: model.size.height,
+            width: model.size.width,
             padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 25),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +43,7 @@ class ReviewCableView extends StatelessWidget {
                   style: AppTextStyles.subHeader.copyWith(height: 1.2),
                 ),
                 Text(
-                  "${nairaSymbol()}${format.format(double.parse(data.amount) + double.parse(data.serviceCharge.toString()))}",
+                  "${nairaSymbol()}${(args.amount + double.parse(args.data.serviceCharge)).toStringAsFixed(2)}",
                   style: AppTextStyles.header.copyWith(
                       fontSize: 26.sp,
                       fontWeight: FontWeight.w700,
@@ -52,35 +52,34 @@ class ReviewCableView extends StatelessWidget {
                 20.verticalGap,
                 ...detailsSection(
                   title: "Name",
-                  detail: data.customerName,
+                  detail: args.data.customerName,
                 ),
                 ...detailsSection(
-                  title: "Cable Provider",
-                  detail: data.provider,
+                  title: "Meter number",
+                  detail: args.data.receiver,
                 ),
                 ...detailsSection(
-                  title: "Bundle",
-                  detail: data.package,
+                  title: "Disco",
+                  detail:
+                      "${args.data.provider}-${args.data.meterType[0].toUpperCase()}${args.data.meterType.substring(1)}",
                 ),
                 ...detailsSection(
-                  title: "Smart Card Number",
-                  detail: data.receiver,
+                  title: "Address",
+                  detail: args.data.customerInfo,
                 ),
                 ...detailsSection(
                   title: "Amount",
-                  detail:
-                      "${nairaSymbol()}${format.format(double.parse(data.amount))}",
+                  detail: "${nairaSymbol()}${(args.amount).toStringAsFixed(2)}",
                 ),
                 detailRow(
-                  title: "Service charge",
-                  detail:
-                      "${nairaSymbol()}${format.format(double.parse(data.serviceCharge))}",
-                ),
+                    title: "Service charge",
+                    detail:
+                        "${nairaSymbol()}${double.parse(args.data.serviceCharge).toStringAsFixed(2)}"),
                 const Spacer(),
                 AppButton.primary(
                   title: "Continue",
                   onTap: () {
-                    model.goToNext(context, data);
+                    model.goToNext(context, args.data, args.amount);
                   },
                 ),
                 10.verticalGap,
