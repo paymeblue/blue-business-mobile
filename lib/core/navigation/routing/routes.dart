@@ -8,8 +8,11 @@ class RoutePaths {
 
   static String login = '/login';
   static String initiateResetPassword = "$login/initiate-reset-password";
-  static String verifyPasswordOtp = "$login/verify-reset-phone";
+  static String verifyPasswordOtp = "$login/verify-reset-password";
   static String resetPassword = "$login/reset-password";
+  static String initiateResetPhone = "$login/initiate-reset-phone";
+  static String verifyPhoneOtp = "$login/verify-reset-phone";
+  static String resetPhone = "$login/reset-phone";
 
   // **********************************************************************************
   //AUTH

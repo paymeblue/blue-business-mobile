@@ -270,7 +270,11 @@ class LoginViewModel extends BaseViewModel {
   }
 
   goToenterRecoveryCode(BuildContext context) {
-    // context.push(RoutePaths.enterRecoveryCodePath);
+    context.push<bool>(RoutePaths.initiateResetPhone).then((val) {
+      if (val == true) {
+        AppNotification.success(message: "Phone number reset successfully");
+      }
+    });
   }
 
   goToSignup(BuildContext context) {
