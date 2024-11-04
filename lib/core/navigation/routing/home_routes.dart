@@ -47,6 +47,12 @@ List<GoRoute> homeRoutes = [
     pageBuilder: (context, state) => const WalletView().slide(),
     routes: [
       GoRoute(
+        path: RoutePaths.bills.routeSplitter,
+        parentNavigatorKey: locator<NavigationService>().navigatorKey,
+        pageBuilder: (context, state) => const BillsView().slide(),
+        // routes: billRoutes,
+      ),
+      GoRoute(
         path: RoutePaths.initiateTransaction.routeSplitter,
         parentNavigatorKey: locator<NavigationService>().navigatorKey,
         pageBuilder: (context, state) => InitiateTransactionView(
@@ -117,11 +123,6 @@ List<GoRoute> homeRoutes = [
         pageBuilder: (context, state) => PaymentSuccessView(
           args: state.extra as PaymentSuccessViewArgs,
         ).slide(),
-      ),
-      GoRoute(
-        path: RoutePaths.bills.routeSplitter,
-        pageBuilder: (context, state) => const BillsView().slide(),
-        routes: billRoutes,
       ),
     ],
   ),

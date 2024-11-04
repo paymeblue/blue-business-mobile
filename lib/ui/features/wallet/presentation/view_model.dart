@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -19,7 +17,6 @@ class WalletViewModel extends BaseViewModel {
   }
 
   goToInitiatePayment(BuildContext context) {
-    log("TRANSFER!!!!!!!!!");
     context.push(RoutePaths.initiateTransaction);
   }
 
