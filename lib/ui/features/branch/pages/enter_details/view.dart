@@ -33,9 +33,6 @@ class EnterBranchDetailsView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ...titleAndSubtitle(),
-                25.verticalGap,
-                if (branch != null) ...[branchTile(model), 12.verticalGap],
                 Expanded(
                   child: form(model),
                 ),
@@ -68,6 +65,9 @@ class EnterBranchDetailsView extends StatelessWidget {
 
   Widget form(EnterBranchDetailsViewModel model) {
     return ListView(children: [
+      ...titleAndSubtitle(),
+      25.verticalGap,
+      if (branch != null) ...[branchTile(model), 12.verticalGap],
       BlueTextField.plaintext(
         hint: "Apapa branch",
         title: "Branch name",
