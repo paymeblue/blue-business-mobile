@@ -18,7 +18,7 @@ class FilterTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50.h,
+      height: 45.h,
       width: context.mediaQuery.size.width.w,
       decoration: BoxDecoration(
         color: AppColors.grey,
@@ -34,7 +34,7 @@ class FilterTab extends StatelessWidget {
               tab(index, context),
               if (index < tabs.length - 1)
                 Container(
-                  height: 50.h,
+                  height: 45.h,
                   width: 1.5.w,
                   decoration: const BoxDecoration(
                     color: AppColors.bgGrey,
@@ -54,7 +54,7 @@ class FilterTab extends StatelessWidget {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),
-        height: 50.h,
+        height: 45.h,
         width: (context.mediaQuery.size.width - 40) / tabs.length,
         decoration: BoxDecoration(
           color: selectedValue == tabs[index]
@@ -76,7 +76,7 @@ class FilterTab extends StatelessWidget {
           child: Text(
             tabs[index],
             style: AppTextStyles.largeButtonText.copyWith(
-              fontSize: 15.sp,
+              fontSize: 14.sp,
               color: selectedValue == tabs[index]
                   ? AppColors.white
                   : AppColors.textColor,
