@@ -47,7 +47,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
   setStaff(Staff staff) async {
     nameController.text = staff.name;
     phoneController.text = staff.phone
-        .replaceFirst(selectedCountry!.dialCode, "")
+        .replaceFirst(selectedCountry.dialCode, "")
         .replaceFirst("+", "");
     setRole(staff);
     branchSetState = FetchState.loading;
@@ -129,9 +129,9 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     }
   }
 
-  CountryCode? _country;
-  CountryCode? get selectedCountry => _country;
-  set selectedCountry(CountryCode? v) {
+  late CountryCode _country;
+  CountryCode get selectedCountry => _country;
+  set selectedCountry(CountryCode v) {
     _country = v;
     notifyListeners();
   }
@@ -147,7 +147,9 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
   }
 
   onCountryChanged(CountryCode? value) {
-    selectedCountry = value;
+    if (value != null) {
+      selectedCountry = value;
+    }
   }
 
   onChanged(String? v) {
@@ -193,6 +195,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
         phoneController.text.trimRight().isNotEmpty &&
         branch != null &&
         role != null &&
+        path != null &&
         isValidPassword();
   }
 
@@ -201,7 +204,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
         (nameController.text.toLowerCase() != staff.name.toLowerCase() ||
             phoneController.text !=
                 staff.phone
-                    .replaceFirst(selectedCountry!.dialCode, "")
+                    .replaceFirst(selectedCountry.dialCode, "")
                     .replaceFirst("+", "") ||
             isValidPassword() ||
             role?.name.toLowerCase() != staff.role.toLowerCase() ||
@@ -227,23 +230,6 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
       confirmText: "Confirm",
       confirmColor: AppColors.primary,
     );
-  }
-
-  String formatPhone() {
-    String number = phoneController.text.replaceAll(" ", "");
-
-    if (number.startsWith("0")) {
-      number = number.replaceFirst("0", "");
-    }
-    if (number
-        .replaceFirst("+", "")
-        .startsWith(selectedCountry!.dialCode.replaceFirst("+", ""))) {
-      number = number
-          .replaceFirst("+", "")
-          .replaceFirst(selectedCountry!.dialCode.replaceFirst("+", ""), "");
-    }
-
-    return selectedCountry!.dialCode + number;
   }
 
   StaffRole? _role;
@@ -306,7 +292,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
         .createStaff(
       image: File(path!),
       name: nameController.text,
-      phone: formatPhone(),
+      phone: phoneController.text.validPhone(selectedCountry),
       branchId: branch!.id,
       role: role!.name.toLowerCase(),
       password: passwordController.text,
@@ -340,9 +326,9 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
           : null,
       phone: phoneController.text !=
               staff.phone
-                  .replaceFirst(selectedCountry!.dialCode, "")
+                  .replaceFirst(selectedCountry.dialCode, "")
                   .replaceFirst("+", "")
-          ? formatPhone()
+          ? phoneController.text.validPhone(selectedCountry)
           : null,
       branchId: branch?.id != staff.branchId ? branch?.id : null,
       role: role?.name.toLowerCase() != staff.role.toLowerCase()
