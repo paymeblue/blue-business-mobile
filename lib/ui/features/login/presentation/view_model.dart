@@ -36,12 +36,12 @@ class LoginViewModel extends BaseViewModel {
       if (locator<AppStateValues>().notificationState != null) {
         locator<AppStateValues>().clear();
         showNotification();
+      } else if (useBiometrics &&
+          StorageValues.password.isNotEmpty &&
+          context.mounted) {
+        completeWithBiometrics(context);
       }
     });
-
-    if (useBiometrics && StorageValues.password.isNotEmpty) {
-      completeWithBiometrics(context);
-    }
   }
 
   goBack() async {

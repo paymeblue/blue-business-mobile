@@ -409,8 +409,6 @@ class SettingsViewModel extends BaseViewModel {
           onTap: () {
             getReasons(context);
           },
-          subtitle:
-              "*Please note: Deleting your account means you might permanently lose access to your data",
         ),
       ];
   bool _isChanging = false;
