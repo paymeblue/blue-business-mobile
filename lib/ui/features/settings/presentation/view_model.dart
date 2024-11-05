@@ -254,16 +254,6 @@ class SettingsViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  List<SettingsOption> identityOption(BuildContext context) => [
-        SettingsOption(
-            icon: AppAssets.images.icons.kyc.svg(),
-            title: "Account upgrade",
-            onTap: () {
-              // if (context.mounted) context.go(RoutePaths.updateKycPath);
-            },
-            subtitle: "Increase your account limit"),
-      ];
-
   List<SettingsOption> staffManagementOption(BuildContext context) => [
         SettingsOption(
           icon: AppAssets.images.icons.staffManagement.svg(),

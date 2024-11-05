@@ -7,10 +7,12 @@ class AppTextStyles {
   AppTextStyles._();
 
   static TextStyle header = TextStyle(
-      fontFamily: AppFonts.satoshi,
-      fontSize: 23.sp,
-      fontWeight: FontWeight.w600,
-      color: AppColors.textColor);
+    fontFamily: AppFonts.satoshi,
+    fontSize: 21.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textColor,
+    height: 1.1,
+  );
 
   static TextStyle semiLargeHeader = TextStyle(
       fontFamily: AppFonts.satoshi,
@@ -20,7 +22,7 @@ class AppTextStyles {
 
   static TextStyle midHeader = TextStyle(
       fontFamily: AppFonts.satoshi,
-      fontSize: 18.sp,
+      fontSize: 16.5.sp,
       fontWeight: FontWeight.w500,
       color: AppColors.bodyTextColor);
 
@@ -31,56 +33,53 @@ class AppTextStyles {
       color: AppColors.bodyTextColor);
 
   static TextStyle numberButton = TextStyle(
-      fontSize: 31.sp,
+      fontSize: 30.sp,
       fontFamily: AppFonts.satoshi,
       fontWeight: FontWeight.w700,
       color: AppColors.textColor);
 
   static TextStyle subHeader = TextStyle(
-    fontSize: 16.sp,
+    fontSize: 15.sp,
     fontFamily: AppFonts.satoshi,
     letterSpacing: -0.02,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
     color: AppColors.bodyTextColor,
   );
 
   static TextStyle textField = TextStyle(
-    fontSize: 17.sp,
+    fontSize: 15.5.sp,
     fontFamily: AppFonts.satoshi,
     fontWeight: FontWeight.w600,
     color: AppColors.textColor,
   );
 
   static TextStyle disabledTextField = TextStyle(
-    fontSize: 17.sp,
+    fontSize: 15.5.sp,
     fontFamily: AppFonts.satoshi,
     fontWeight: FontWeight.w400,
     color: AppColors.textColor,
   );
 
-  static TextStyle indicatorText = TextStyle(
-      fontSize: 16.sp, fontFamily: AppFonts.satoshi, color: AppColors.primary);
-
   static TextStyle subText = TextStyle(
-      fontSize: 15.sp,
+      fontSize: 13.5.sp,
       fontFamily: AppFonts.satoshi,
       color: AppColors.bodyTextColor,
       fontWeight: FontWeight.w500);
 
   static TextStyle smallButtonText = TextStyle(
-      fontSize: 15.sp,
+      fontSize: 14.sp,
       fontFamily: AppFonts.satoshi,
       fontWeight: FontWeight.w500,
       color: AppColors.primary);
 
   static TextStyle smallText = TextStyle(
-      fontSize: 13.sp,
+      fontSize: 12.5.sp,
       fontFamily: AppFonts.satoshi,
       fontWeight: FontWeight.w400,
       color: AppColors.offWhite);
 
   static TextStyle largeButtonText = TextStyle(
-      fontSize: 17.sp,
+      fontSize: 16.sp,
       fontFamily: AppFonts.satoshi,
       fontWeight: FontWeight.w500,
       color: AppColors.primary);
@@ -92,7 +91,7 @@ class AppTextStyles {
     fontFamily: "GT Walsheim Pro",
   );
   static TextStyle receiptFieldbody = TextStyle(
-    fontSize: 14.sp,
+    fontSize: 13.sp,
     color: AppColors.textColor,
     fontWeight: FontWeight.w400,
     fontFamily: "GT Walsheim Pro",
