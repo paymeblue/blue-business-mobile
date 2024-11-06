@@ -34,9 +34,9 @@ class ResetPhoneViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  CountryCode? _country;
-  CountryCode? get selectedCountry => _country;
-  set selectedCountry(CountryCode? v) {
+  late CountryCode _country;
+  CountryCode get selectedCountry => _country;
+  set selectedCountry(CountryCode v) {
     _country = v;
     notifyListeners();
   }
@@ -50,8 +50,9 @@ class ResetPhoneViewModel extends BaseViewModel {
   sendNewPhone(BuildContext context) async {
     AppLoader.start();
 
-    SendNewPhoneRequest request =
-        SendNewPhoneRequest(phone: formatPhone(), userId: id.toString());
+    SendNewPhoneRequest request = SendNewPhoneRequest(
+        phone: phoneController.text.validPhone(selectedCountry),
+        userId: id.toString());
 
     SendNewPhoneResponse resp = await AuthService()
         .updatePhone(request)
@@ -72,23 +73,6 @@ class ResetPhoneViewModel extends BaseViewModel {
       AppNotification.error(message: resp.message);
     }
     AppLoader.stop();
-  }
-
-  String formatPhone() {
-    String number = phoneController.text.replaceAll(" ", "");
-
-    if (number.startsWith("0")) {
-      number = number.replaceFirst("0", "");
-    }
-    if (number
-        .replaceFirst("+", "")
-        .startsWith(selectedCountry!.dialCode.replaceFirst("+", ""))) {
-      number = number
-          .replaceFirst("+", "")
-          .replaceFirst(selectedCountry!.dialCode.replaceFirst("+", ""), "");
-    }
-
-    return selectedCountry!.dialCode + number;
   }
 
   goToNext(BuildContext context, SendNewPhoneData data) {

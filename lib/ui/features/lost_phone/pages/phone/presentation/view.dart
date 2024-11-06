@@ -79,7 +79,7 @@ class ResetPhoneView extends StatelessWidget {
         title: "New phone number",
         selectedItem: model.selectedCountry,
         onCountryChanged: (value) {
-          model.selectedCountry = value;
+          if (value != null) model.selectedCountry = value;
         },
         onChanged: model.onChanged,
         controller: model.phoneController,

@@ -155,7 +155,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
   Widget walletAccountDataContent(ReceiveMoneyViewModel model) {
     if (model.accountState == FetchState.loading) {
       return BlueLoadingTile.withImage();
-    } else {
+    } else if (locator<AppStateValues>().account != null) {
       return Material(
         type: MaterialType.transparency,
         child: InkWell(
@@ -184,6 +184,8 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
           ),
         ),
       );
+    } else {
+      return const SizedBox.shrink();
     }
   }
 

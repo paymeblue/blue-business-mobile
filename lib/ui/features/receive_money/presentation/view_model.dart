@@ -111,6 +111,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
       locator<AppStateValues>().account = resp.data;
     } else {
       accountState = FetchState.error;
+      AppNotification.error(message: resp.message);
     }
   }
 

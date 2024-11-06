@@ -121,15 +121,17 @@ class AccountRecoveryViewModel extends BaseViewModel {
   TextEditingController answerController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  CountryCode? _country;
-  CountryCode? get selectedCountry => _country;
-  set selectedCountry(CountryCode? v) {
+  late CountryCode _country;
+  CountryCode get selectedCountry => _country;
+  set selectedCountry(CountryCode v) {
     _country = v;
     notifyListeners();
   }
 
   onCountryChanged(CountryCode? val) {
-    selectedCountry = val;
+    if (val != null) {
+      selectedCountry = val;
+    }
   }
 
   getRecoveryCode() async {
@@ -163,7 +165,8 @@ class AccountRecoveryViewModel extends BaseViewModel {
     AppLoader.start();
 
     SetRecoveryPhoneRequest request = SetRecoveryPhoneRequest(
-        phone: formatPhone(), password: passwordController.text);
+        phone: phoneController.text.validPhone(selectedCountry),
+        password: passwordController.text);
 
     SetRecoveryPhoneResponse resp = await AuthService()
         .updateRecoveryPhone(request)
@@ -187,19 +190,6 @@ class AccountRecoveryViewModel extends BaseViewModel {
       AppNotification.error(message: resp.message);
     }
     AppLoader.stop();
-  }
-
-  String formatPhone() {
-    String number = phoneController.text.replaceAll(" ", "");
-
-    if (number.startsWith("0")) {
-      number = number.replaceFirst("0", "");
-    }
-    if (number.startsWith(selectedCountry!.dialCode)) {
-      number = number.replaceFirst(selectedCountry!.dialCode, "");
-    }
-
-    return selectedCountry!.dialCode + number;
   }
 
   createSecurityQuestion() async {
