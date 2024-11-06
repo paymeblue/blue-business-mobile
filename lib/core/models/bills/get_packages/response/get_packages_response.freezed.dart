@@ -24,8 +24,12 @@ mixin _$GetPackagesResponse {
   String? get message => throw _privateConstructorUsedError;
   List<BillPackage>? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this GetPackagesResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetPackagesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetPackagesResponseCopyWith<GetPackagesResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$GetPackagesResponseCopyWithImpl<$Res, $Val extends GetPackagesResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetPackagesResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$GetPackagesResponseImplCopyWithImpl<$Res>
       $Res Function(_$GetPackagesResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetPackagesResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -156,12 +164,14 @@ class _$GetPackagesResponseImpl implements _GetPackagesResponse {
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetPackagesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetPackagesResponseImplCopyWith<_$GetPackagesResponseImpl> get copyWith =>
@@ -191,8 +201,11 @@ abstract class _GetPackagesResponse implements GetPackagesResponse {
   String? get message;
   @override
   List<BillPackage>? get data;
+
+  /// Create a copy of GetPackagesResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetPackagesResponseImplCopyWith<_$GetPackagesResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

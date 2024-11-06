@@ -32,8 +32,12 @@ mixin _$VerifyElectricityData {
   String get status => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifyElectricityData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifyElectricityData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifyElectricityDataCopyWith<VerifyElectricityData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -68,6 +72,8 @@ class _$VerifyElectricityDataCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifyElectricityData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -158,6 +164,8 @@ class __$$VerifyElectricityDataImplCopyWithImpl<$Res>
       $Res Function(_$VerifyElectricityDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifyElectricityData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -290,7 +298,7 @@ class _$VerifyElectricityDataImpl implements _VerifyElectricityData {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -305,7 +313,9 @@ class _$VerifyElectricityDataImpl implements _VerifyElectricityData {
       status,
       createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifyElectricityData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifyElectricityDataImplCopyWith<_$VerifyElectricityDataImpl>
@@ -356,8 +366,11 @@ abstract class _VerifyElectricityData implements VerifyElectricityData {
   String get status;
   @override
   String? get createdAt;
+
+  /// Create a copy of VerifyElectricityData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifyElectricityDataImplCopyWith<_$VerifyElectricityDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

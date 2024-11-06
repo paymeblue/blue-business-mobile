@@ -23,8 +23,12 @@ mixin _$GetRecoveryCodeData {
   int get businessId => throw _privateConstructorUsedError;
   String get recoveryCode => throw _privateConstructorUsedError;
 
+  /// Serializes this GetRecoveryCodeData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetRecoveryCodeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetRecoveryCodeDataCopyWith<GetRecoveryCodeData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$GetRecoveryCodeDataCopyWithImpl<$Res, $Val extends GetRecoveryCodeData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetRecoveryCodeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$GetRecoveryCodeDataImplCopyWithImpl<$Res>
       $Res Function(_$GetRecoveryCodeDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetRecoveryCodeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,11 +143,13 @@ class _$GetRecoveryCodeDataImpl implements _GetRecoveryCodeData {
                 other.recoveryCode == recoveryCode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, businessId, recoveryCode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetRecoveryCodeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetRecoveryCodeDataImplCopyWith<_$GetRecoveryCodeDataImpl> get copyWith =>
@@ -166,8 +176,11 @@ abstract class _GetRecoveryCodeData implements GetRecoveryCodeData {
   int get businessId;
   @override
   String get recoveryCode;
+
+  /// Create a copy of GetRecoveryCodeData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetRecoveryCodeDataImplCopyWith<_$GetRecoveryCodeDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

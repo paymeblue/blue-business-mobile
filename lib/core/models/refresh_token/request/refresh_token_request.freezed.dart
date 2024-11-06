@@ -22,8 +22,12 @@ RefreshTokenRequest _$RefreshTokenRequestFromJson(Map<String, dynamic> json) {
 mixin _$RefreshTokenRequest {
   String get refreshToken => throw _privateConstructorUsedError;
 
+  /// Serializes this RefreshTokenRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RefreshTokenRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RefreshTokenRequestCopyWith<RefreshTokenRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$RefreshTokenRequestCopyWithImpl<$Res, $Val extends RefreshTokenRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RefreshTokenRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$RefreshTokenRequestImplCopyWithImpl<$Res>
       $Res Function(_$RefreshTokenRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RefreshTokenRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -119,11 +127,13 @@ class _$RefreshTokenRequestImpl implements _RefreshTokenRequest {
                 other.refreshToken == refreshToken));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, refreshToken);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RefreshTokenRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RefreshTokenRequestImplCopyWith<_$RefreshTokenRequestImpl> get copyWith =>
@@ -147,8 +157,11 @@ abstract class _RefreshTokenRequest implements RefreshTokenRequest {
 
   @override
   String get refreshToken;
+
+  /// Create a copy of RefreshTokenRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RefreshTokenRequestImplCopyWith<_$RefreshTokenRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -31,8 +31,7 @@ abstract class StaffService {
   @POST("/staff")
   @MultiPart()
   Future<CreateStaffResponse> createStaff({
-    @Part(name: "display_picture", contentType: "image/png")
-    required File image,
+    @Part(name: "display_picture", contentType: "image/png") File? image,
     @Part(name: "name") required String name,
     @Part(name: "phone") required String phone,
     @Part(name: "branch_id") required int branchId,

@@ -23,8 +23,12 @@ mixin _$ChangePinResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
+  /// Serializes this ChangePinResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChangePinResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChangePinResponseCopyWith<ChangePinResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$ChangePinResponseCopyWithImpl<$Res, $Val extends ChangePinResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChangePinResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$ChangePinResponseImplCopyWithImpl<$Res>
       $Res Function(_$ChangePinResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChangePinResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,11 +141,13 @@ class _$ChangePinResponseImpl implements _ChangePinResponse {
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChangePinResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChangePinResponseImplCopyWith<_$ChangePinResponseImpl> get copyWith =>
@@ -163,8 +173,11 @@ abstract class _ChangePinResponse implements ChangePinResponse {
   String get status;
   @override
   String? get message;
+
+  /// Create a copy of ChangePinResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangePinResponseImplCopyWith<_$ChangePinResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

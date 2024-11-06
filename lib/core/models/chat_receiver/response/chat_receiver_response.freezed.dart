@@ -24,8 +24,12 @@ mixin _$ChatReceiverResponse {
   String? get message => throw _privateConstructorUsedError;
   ChatResponseData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this ChatReceiverResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChatReceiverResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChatReceiverResponseCopyWith<ChatReceiverResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$ChatReceiverResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChatReceiverResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +81,8 @@ class _$ChatReceiverResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ChatReceiverResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ChatResponseDataCopyWith<$Res>? get data {
@@ -110,6 +118,8 @@ class __$$ChatReceiverResponseImplCopyWithImpl<$Res>
       $Res Function(_$ChatReceiverResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChatReceiverResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -166,11 +176,13 @@ class _$ChatReceiverResponseImpl implements _ChatReceiverResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChatReceiverResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChatReceiverResponseImplCopyWith<_$ChatReceiverResponseImpl>
@@ -201,8 +213,11 @@ abstract class _ChatReceiverResponse implements ChatReceiverResponse {
   String? get message;
   @override
   ChatResponseData? get data;
+
+  /// Create a copy of ChatReceiverResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChatReceiverResponseImplCopyWith<_$ChatReceiverResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -24,8 +24,12 @@ mixin _$SignupResponse {
   String? get message => throw _privateConstructorUsedError;
   SignupData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this SignupResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SignupResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SignupResponseCopyWith<SignupResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$SignupResponseCopyWithImpl<$Res, $Val extends SignupResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SignupResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$SignupResponseCopyWithImpl<$Res, $Val extends SignupResponse>
     ) as $Val);
   }
 
+  /// Create a copy of SignupResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SignupDataCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$SignupResponseImplCopyWithImpl<$Res>
       _$SignupResponseImpl _value, $Res Function(_$SignupResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SignupResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -164,11 +174,13 @@ class _$SignupResponseImpl implements _SignupResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SignupResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SignupResponseImplCopyWith<_$SignupResponseImpl> get copyWith =>
@@ -198,8 +210,11 @@ abstract class _SignupResponse implements SignupResponse {
   String? get message;
   @override
   SignupData? get data;
+
+  /// Create a copy of SignupResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SignupResponseImplCopyWith<_$SignupResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

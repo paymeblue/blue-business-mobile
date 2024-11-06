@@ -24,8 +24,12 @@ mixin _$BillPackage {
   String get name => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
 
+  /// Serializes this BillPackage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BillPackage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BillPackageCopyWith<BillPackage> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$BillPackageCopyWithImpl<$Res, $Val extends BillPackage>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BillPackage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$BillPackageImplCopyWithImpl<$Res>
       _$BillPackageImpl _value, $Res Function(_$BillPackageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BillPackage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -147,11 +155,13 @@ class _$BillPackageImpl implements _BillPackage {
             (identical(other.amount, amount) || other.amount == amount));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, amount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BillPackage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BillPackageImplCopyWith<_$BillPackageImpl> get copyWith =>
@@ -180,8 +190,11 @@ abstract class _BillPackage implements BillPackage {
   String get name;
   @override
   String get amount;
+
+  /// Create a copy of BillPackage
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BillPackageImplCopyWith<_$BillPackageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

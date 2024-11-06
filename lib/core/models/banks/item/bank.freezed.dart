@@ -24,8 +24,12 @@ mixin _$BankItem {
   String get name => throw _privateConstructorUsedError;
   String? get logoUrl => throw _privateConstructorUsedError;
 
+  /// Serializes this BankItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BankItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BankItemCopyWith<BankItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$BankItemCopyWithImpl<$Res, $Val extends BankItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BankItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,6 +97,8 @@ class __$$BankItemImplCopyWithImpl<$Res>
       _$BankItemImpl _value, $Res Function(_$BankItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BankItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,11 +153,13 @@ class _$BankItemImpl implements _BankItem {
             (identical(other.logoUrl, logoUrl) || other.logoUrl == logoUrl));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, logoUrl);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BankItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BankItemImplCopyWith<_$BankItemImpl> get copyWith =>
@@ -178,8 +188,11 @@ abstract class _BankItem implements BankItem {
   String get name;
   @override
   String? get logoUrl;
+
+  /// Create a copy of BankItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BankItemImplCopyWith<_$BankItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

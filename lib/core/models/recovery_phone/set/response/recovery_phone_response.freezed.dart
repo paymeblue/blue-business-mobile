@@ -24,8 +24,12 @@ mixin _$SetRecoveryPhoneResponse {
   String get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
+  /// Serializes this SetRecoveryPhoneResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SetRecoveryPhoneResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SetRecoveryPhoneResponseCopyWith<SetRecoveryPhoneResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$SetRecoveryPhoneResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SetRecoveryPhoneResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,6 +97,8 @@ class __$$SetRecoveryPhoneResponseImplCopyWithImpl<$Res>
       $Res Function(_$SetRecoveryPhoneResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SetRecoveryPhoneResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,11 +146,13 @@ class _$SetRecoveryPhoneResponseImpl implements _SetRecoveryPhoneResponse {
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SetRecoveryPhoneResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SetRecoveryPhoneResponseImplCopyWith<_$SetRecoveryPhoneResponseImpl>
@@ -169,8 +179,11 @@ abstract class _SetRecoveryPhoneResponse implements SetRecoveryPhoneResponse {
   String get status;
   @override
   String? get message;
+
+  /// Create a copy of SetRecoveryPhoneResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SetRecoveryPhoneResponseImplCopyWith<_$SetRecoveryPhoneResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -23,8 +23,12 @@ mixin _$MonthlyLineChartData {
   String get label => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
 
+  /// Serializes this MonthlyLineChartData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MonthlyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MonthlyLineChartDataCopyWith<MonthlyLineChartData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$MonthlyLineChartDataCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MonthlyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +93,8 @@ class __$$MonthlyLineChartDataImplCopyWithImpl<$Res>
       $Res Function(_$MonthlyLineChartDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MonthlyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,11 +141,13 @@ class _$MonthlyLineChartDataImpl implements _MonthlyLineChartData {
             (identical(other.amount, amount) || other.amount == amount));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, label, amount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MonthlyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MonthlyLineChartDataImplCopyWith<_$MonthlyLineChartDataImpl>
@@ -165,8 +175,11 @@ abstract class _MonthlyLineChartData implements MonthlyLineChartData {
   String get label;
   @override
   double get amount;
+
+  /// Create a copy of MonthlyLineChartData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MonthlyLineChartDataImplCopyWith<_$MonthlyLineChartDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

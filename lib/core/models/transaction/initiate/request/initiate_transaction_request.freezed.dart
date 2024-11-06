@@ -25,8 +25,12 @@ mixin _$InitiateTransactionRequest {
   String? get narration => throw _privateConstructorUsedError;
   String get paymentMode => throw _privateConstructorUsedError;
 
+  /// Serializes this InitiateTransactionRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of InitiateTransactionRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $InitiateTransactionRequestCopyWith<InitiateTransactionRequest>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$InitiateTransactionRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of InitiateTransactionRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,6 +104,8 @@ class __$$InitiateTransactionRequestImplCopyWithImpl<$Res>
       $Res Function(_$InitiateTransactionRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of InitiateTransactionRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -156,11 +164,13 @@ class _$InitiateTransactionRequestImpl implements _InitiateTransactionRequest {
                 other.paymentMode == paymentMode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, amount, narration, paymentMode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InitiateTransactionRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitiateTransactionRequestImplCopyWith<_$InitiateTransactionRequestImpl>
@@ -191,8 +201,11 @@ abstract class _InitiateTransactionRequest
   String? get narration;
   @override
   String get paymentMode;
+
+  /// Create a copy of InitiateTransactionRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitiateTransactionRequestImplCopyWith<_$InitiateTransactionRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

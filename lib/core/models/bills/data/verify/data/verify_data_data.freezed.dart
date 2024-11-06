@@ -28,8 +28,12 @@ mixin _$VerifyDataData {
   String get status => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifyDataData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifyDataData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifyDataDataCopyWith<VerifyDataData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +64,8 @@ class _$VerifyDataDataCopyWithImpl<$Res, $Val extends VerifyDataData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifyDataData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,6 +136,8 @@ class __$$VerifyDataDataImplCopyWithImpl<$Res>
       _$VerifyDataDataImpl _value, $Res Function(_$VerifyDataDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifyDataData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -229,12 +237,14 @@ class _$VerifyDataDataImpl implements _VerifyDataData {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, transactionId, receiver,
       provider, package, amount, status, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifyDataData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifyDataDataImplCopyWith<_$VerifyDataDataImpl> get copyWith =>
@@ -276,8 +286,11 @@ abstract class _VerifyDataData implements VerifyDataData {
   String get status;
   @override
   String? get createdAt;
+
+  /// Create a copy of VerifyDataData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifyDataDataImplCopyWith<_$VerifyDataDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

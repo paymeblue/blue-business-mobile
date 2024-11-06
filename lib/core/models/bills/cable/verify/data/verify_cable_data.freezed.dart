@@ -31,8 +31,12 @@ mixin _$VerifyCableData {
   String get status => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifyCableData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifyCableData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifyCableDataCopyWith<VerifyCableData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -66,6 +70,8 @@ class _$VerifyCableDataCopyWithImpl<$Res, $Val extends VerifyCableData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifyCableData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -154,6 +160,8 @@ class __$$VerifyCableDataImplCopyWithImpl<$Res>
       _$VerifyCableDataImpl _value, $Res Function(_$VerifyCableDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifyCableData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -284,7 +292,7 @@ class _$VerifyCableDataImpl implements _VerifyCableData {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -299,7 +307,9 @@ class _$VerifyCableDataImpl implements _VerifyCableData {
       status,
       createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifyCableData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifyCableDataImplCopyWith<_$VerifyCableDataImpl> get copyWith =>
@@ -350,8 +360,11 @@ abstract class _VerifyCableData implements VerifyCableData {
   String get status;
   @override
   String? get createdAt;
+
+  /// Create a copy of VerifyCableData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifyCableDataImplCopyWith<_$VerifyCableDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

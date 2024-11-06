@@ -26,8 +26,12 @@ mixin _$ChatResponseData {
   String get walletCode => throw _privateConstructorUsedError;
   String get fcmToken => throw _privateConstructorUsedError;
 
+  /// Serializes this ChatResponseData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChatResponseData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChatResponseDataCopyWith<ChatResponseData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$ChatResponseDataCopyWithImpl<$Res, $Val extends ChatResponseData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChatResponseData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,6 +120,8 @@ class __$$ChatResponseDataImplCopyWithImpl<$Res>
       $Res Function(_$ChatResponseDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChatResponseData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -194,12 +202,14 @@ class _$ChatResponseDataImpl implements _ChatResponseData {
                 other.fcmToken == fcmToken));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, firstName, lastName, displayPic, walletCode, fcmToken);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChatResponseData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChatResponseDataImplCopyWith<_$ChatResponseDataImpl> get copyWith =>
@@ -235,8 +245,11 @@ abstract class _ChatResponseData implements ChatResponseData {
   String get walletCode;
   @override
   String get fcmToken;
+
+  /// Create a copy of ChatResponseData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChatResponseDataImplCopyWith<_$ChatResponseDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

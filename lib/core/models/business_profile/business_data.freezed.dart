@@ -24,8 +24,12 @@ mixin _$BusinessData {
   String get cacNumber => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
 
+  /// Serializes this BusinessData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BusinessData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BusinessDataCopyWith<BusinessData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$BusinessDataCopyWithImpl<$Res, $Val extends BusinessData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BusinessData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$BusinessDataImplCopyWithImpl<$Res>
       _$BusinessDataImpl _value, $Res Function(_$BusinessDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BusinessData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,11 +157,13 @@ class _$BusinessDataImpl implements _BusinessData {
                 other.category == category));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, cacNumber, category);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BusinessData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BusinessDataImplCopyWith<_$BusinessDataImpl> get copyWith =>
@@ -182,8 +192,11 @@ abstract class _BusinessData implements BusinessData {
   String get cacNumber;
   @override
   String get category;
+
+  /// Create a copy of BusinessData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BusinessDataImplCopyWith<_$BusinessDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

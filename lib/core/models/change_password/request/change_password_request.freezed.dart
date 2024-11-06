@@ -25,8 +25,12 @@ mixin _$ChangePasswordRequest {
   String get newPassword => throw _privateConstructorUsedError;
   String get passwordConfirmation => throw _privateConstructorUsedError;
 
+  /// Serializes this ChangePasswordRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChangePasswordRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChangePasswordRequestCopyWith<ChangePasswordRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$ChangePasswordRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChangePasswordRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,6 +104,8 @@ class __$$ChangePasswordRequestImplCopyWithImpl<$Res>
       $Res Function(_$ChangePasswordRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChangePasswordRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -158,12 +166,14 @@ class _$ChangePasswordRequestImpl implements _ChangePasswordRequest {
                 other.passwordConfirmation == passwordConfirmation));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, oldPassword, newPassword, passwordConfirmation);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChangePasswordRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChangePasswordRequestImplCopyWith<_$ChangePasswordRequestImpl>
@@ -194,8 +204,11 @@ abstract class _ChangePasswordRequest implements ChangePasswordRequest {
   String get newPassword;
   @override
   String get passwordConfirmation;
+
+  /// Create a copy of ChangePasswordRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangePasswordRequestImplCopyWith<_$ChangePasswordRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

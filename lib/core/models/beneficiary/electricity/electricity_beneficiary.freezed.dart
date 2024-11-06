@@ -34,8 +34,12 @@ mixin _$ElectricityBeneficiary {
   String? get tag => throw _privateConstructorUsedError;
   String get isOnline => throw _privateConstructorUsedError;
 
+  /// Serializes this ElectricityBeneficiary to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ElectricityBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ElectricityBeneficiaryCopyWith<ElectricityBeneficiary> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -72,6 +76,8 @@ class _$ElectricityBeneficiaryCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ElectricityBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -175,6 +181,8 @@ class __$$ElectricityBeneficiaryImplCopyWithImpl<$Res>
       $Res Function(_$ElectricityBeneficiaryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ElectricityBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -325,7 +333,7 @@ class _$ElectricityBeneficiaryImpl implements _ElectricityBeneficiary {
                 other.isOnline == isOnline));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -342,7 +350,9 @@ class _$ElectricityBeneficiaryImpl implements _ElectricityBeneficiary {
       tag,
       isOnline);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ElectricityBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ElectricityBeneficiaryImplCopyWith<_$ElectricityBeneficiaryImpl>
@@ -399,8 +409,11 @@ abstract class _ElectricityBeneficiary implements ElectricityBeneficiary {
   String? get tag;
   @override
   String get isOnline;
+
+  /// Create a copy of ElectricityBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ElectricityBeneficiaryImplCopyWith<_$ElectricityBeneficiaryImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -34,8 +34,12 @@ mixin _$PowerDetails {
   String get balanceAfter => throw _privateConstructorUsedError;
   String get units => throw _privateConstructorUsedError;
 
+  /// Serializes this PowerDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PowerDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PowerDetailsCopyWith<PowerDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -72,6 +76,8 @@ class _$PowerDetailsCopyWithImpl<$Res, $Val extends PowerDetails>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PowerDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -178,6 +184,8 @@ class __$$PowerDetailsImplCopyWithImpl<$Res>
       _$PowerDetailsImpl _value, $Res Function(_$PowerDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PowerDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -337,7 +345,7 @@ class _$PowerDetailsImpl implements _PowerDetails {
             (identical(other.units, units) || other.units == units));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -355,7 +363,9 @@ class _$PowerDetailsImpl implements _PowerDetails {
       balanceAfter,
       units);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PowerDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PowerDetailsImplCopyWith<_$PowerDetailsImpl> get copyWith =>
@@ -414,8 +424,11 @@ abstract class _PowerDetails implements PowerDetails {
   String get balanceAfter;
   @override
   String get units;
+
+  /// Create a copy of PowerDetails
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PowerDetailsImplCopyWith<_$PowerDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

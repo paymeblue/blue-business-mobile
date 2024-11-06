@@ -290,7 +290,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
 
     CreateStaffResponse response = await StaffService()
         .createStaff(
-      image: File(path!),
+      image: path != null ? File(path!) : null,
       name: nameController.text,
       phone: phoneController.text.validPhone(selectedCountry),
       branchId: branch!.id,

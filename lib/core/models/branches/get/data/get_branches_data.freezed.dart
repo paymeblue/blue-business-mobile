@@ -27,8 +27,12 @@ mixin _$GetBranchesData {
   bool get loadMore => throw _privateConstructorUsedError;
   int? get perPage => throw _privateConstructorUsedError;
 
+  /// Serializes this GetBranchesData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetBranchesData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetBranchesDataCopyWith<GetBranchesData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$GetBranchesDataCopyWithImpl<$Res, $Val extends GetBranchesData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetBranchesData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,6 +128,8 @@ class __$$GetBranchesDataImplCopyWithImpl<$Res>
       _$GetBranchesDataImpl _value, $Res Function(_$GetBranchesDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetBranchesData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -219,12 +227,14 @@ class _$GetBranchesDataImpl implements _GetBranchesData {
             (identical(other.perPage, perPage) || other.perPage == perPage));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, total, page, limit,
       const DeepCollectionEquality().hash(_data), loadMore, perPage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetBranchesData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetBranchesDataImplCopyWith<_$GetBranchesDataImpl> get copyWith =>
@@ -263,8 +273,11 @@ abstract class _GetBranchesData implements GetBranchesData {
   bool get loadMore;
   @override
   int? get perPage;
+
+  /// Create a copy of GetBranchesData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetBranchesDataImplCopyWith<_$GetBranchesDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

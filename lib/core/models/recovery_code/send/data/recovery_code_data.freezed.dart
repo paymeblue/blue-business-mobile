@@ -22,8 +22,12 @@ SendRecoveryCodeData _$SendRecoveryCodeDataFromJson(Map<String, dynamic> json) {
 mixin _$SendRecoveryCodeData {
   int get userId => throw _privateConstructorUsedError;
 
+  /// Serializes this SendRecoveryCodeData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SendRecoveryCodeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SendRecoveryCodeDataCopyWith<SendRecoveryCodeData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$SendRecoveryCodeDataCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SendRecoveryCodeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +87,8 @@ class __$$SendRecoveryCodeDataImplCopyWithImpl<$Res>
       $Res Function(_$SendRecoveryCodeDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SendRecoveryCodeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -119,11 +127,13 @@ class _$SendRecoveryCodeDataImpl implements _SendRecoveryCodeData {
             (identical(other.userId, userId) || other.userId == userId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, userId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendRecoveryCodeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SendRecoveryCodeDataImplCopyWith<_$SendRecoveryCodeDataImpl>
@@ -148,8 +158,11 @@ abstract class _SendRecoveryCodeData implements SendRecoveryCodeData {
 
   @override
   int get userId;
+
+  /// Create a copy of SendRecoveryCodeData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SendRecoveryCodeDataImplCopyWith<_$SendRecoveryCodeDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

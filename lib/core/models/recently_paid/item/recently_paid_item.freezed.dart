@@ -25,8 +25,12 @@ mixin _$RecentlyPaidItem {
   String get wWalletCode => throw _privateConstructorUsedError;
   String? get uMiddleName => throw _privateConstructorUsedError;
 
+  /// Serializes this RecentlyPaidItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RecentlyPaidItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RecentlyPaidItemCopyWith<RecentlyPaidItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$RecentlyPaidItemCopyWithImpl<$Res, $Val extends RecentlyPaidItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RecentlyPaidItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,6 +112,8 @@ class __$$RecentlyPaidItemImplCopyWithImpl<$Res>
       $Res Function(_$RecentlyPaidItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RecentlyPaidItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -176,12 +184,14 @@ class _$RecentlyPaidItemImpl implements _RecentlyPaidItem {
                 other.uMiddleName == uMiddleName));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, uFirstName, uLastName, wWalletCode, uMiddleName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RecentlyPaidItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RecentlyPaidItemImplCopyWith<_$RecentlyPaidItemImpl> get copyWith =>
@@ -214,8 +224,11 @@ abstract class _RecentlyPaidItem implements RecentlyPaidItem {
   String get wWalletCode;
   @override
   String? get uMiddleName;
+
+  /// Create a copy of RecentlyPaidItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RecentlyPaidItemImplCopyWith<_$RecentlyPaidItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

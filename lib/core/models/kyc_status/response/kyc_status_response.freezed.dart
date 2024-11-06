@@ -24,8 +24,12 @@ mixin _$KycStatusResponse {
   String? get message => throw _privateConstructorUsedError;
   KycStatusData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this KycStatusResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of KycStatusResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $KycStatusResponseCopyWith<KycStatusResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$KycStatusResponseCopyWithImpl<$Res, $Val extends KycStatusResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of KycStatusResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$KycStatusResponseCopyWithImpl<$Res, $Val extends KycStatusResponse>
     ) as $Val);
   }
 
+  /// Create a copy of KycStatusResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $KycStatusDataCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$KycStatusResponseImplCopyWithImpl<$Res>
       $Res Function(_$KycStatusResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of KycStatusResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,11 +175,13 @@ class _$KycStatusResponseImpl implements _KycStatusResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of KycStatusResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$KycStatusResponseImplCopyWith<_$KycStatusResponseImpl> get copyWith =>
@@ -199,8 +211,11 @@ abstract class _KycStatusResponse implements KycStatusResponse {
   String? get message;
   @override
   KycStatusData? get data;
+
+  /// Create a copy of KycStatusResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$KycStatusResponseImplCopyWith<_$KycStatusResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

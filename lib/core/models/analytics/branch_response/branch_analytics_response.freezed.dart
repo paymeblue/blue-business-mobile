@@ -25,8 +25,12 @@ mixin _$BranchAnalyticsResponse {
   String? get message => throw _privateConstructorUsedError;
   BranchAnalyticsData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this BranchAnalyticsResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BranchAnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BranchAnalyticsResponseCopyWith<BranchAnalyticsResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$BranchAnalyticsResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BranchAnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -76,6 +82,8 @@ class _$BranchAnalyticsResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of BranchAnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BranchAnalyticsDataCopyWith<$Res>? get data {
@@ -114,6 +122,8 @@ class __$$BranchAnalyticsResponseImplCopyWithImpl<$Res>
       $Res Function(_$BranchAnalyticsResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BranchAnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,11 +180,13 @@ class _$BranchAnalyticsResponseImpl implements _BranchAnalyticsResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BranchAnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BranchAnalyticsResponseImplCopyWith<_$BranchAnalyticsResponseImpl>
@@ -204,8 +216,11 @@ abstract class _BranchAnalyticsResponse implements BranchAnalyticsResponse {
   String? get message;
   @override
   BranchAnalyticsData? get data;
+
+  /// Create a copy of BranchAnalyticsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BranchAnalyticsResponseImplCopyWith<_$BranchAnalyticsResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

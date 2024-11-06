@@ -25,8 +25,12 @@ mixin _$GetQuestionData {
   String get question => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this GetQuestionData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetQuestionData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetQuestionDataCopyWith<GetQuestionData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$GetQuestionDataCopyWithImpl<$Res, $Val extends GetQuestionData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetQuestionData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,6 +104,8 @@ class __$$GetQuestionDataImplCopyWithImpl<$Res>
       _$GetQuestionDataImpl _value, $Res Function(_$GetQuestionDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetQuestionData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -166,11 +174,13 @@ class _$GetQuestionDataImpl implements _GetQuestionData {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, userId, question, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetQuestionData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetQuestionDataImplCopyWith<_$GetQuestionDataImpl> get copyWith =>
@@ -203,8 +213,11 @@ abstract class _GetQuestionData implements GetQuestionData {
   String get question;
   @override
   String? get createdAt;
+
+  /// Create a copy of GetQuestionData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetQuestionDataImplCopyWith<_$GetQuestionDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

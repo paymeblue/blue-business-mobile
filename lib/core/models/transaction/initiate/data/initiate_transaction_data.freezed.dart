@@ -27,8 +27,12 @@ mixin _$InitiateTransactionData {
   String get status => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this InitiateTransactionData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of InitiateTransactionData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $InitiateTransactionDataCopyWith<InitiateTransactionData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$InitiateTransactionDataCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of InitiateTransactionData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -119,6 +125,8 @@ class __$$InitiateTransactionDataImplCopyWithImpl<$Res>
       $Res Function(_$InitiateTransactionDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of InitiateTransactionData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -196,12 +204,14 @@ class _$InitiateTransactionDataImpl implements _InitiateTransactionData {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, transactionId, amount, status, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of InitiateTransactionData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitiateTransactionDataImplCopyWith<_$InitiateTransactionDataImpl>
@@ -237,8 +247,11 @@ abstract class _InitiateTransactionData implements InitiateTransactionData {
   String get status;
   @override
   String get createdAt;
+
+  /// Create a copy of InitiateTransactionData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitiateTransactionDataImplCopyWith<_$InitiateTransactionDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -26,8 +26,12 @@ mixin _$CreateShareholdersRequest {
   int get businessId => throw _privateConstructorUsedError;
   int get userId => throw _privateConstructorUsedError;
 
+  /// Serializes this CreateShareholdersRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CreateShareholdersRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CreateShareholdersRequestCopyWith<CreateShareholdersRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$CreateShareholdersRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CreateShareholdersRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -103,6 +109,8 @@ class __$$CreateShareholdersRequestImplCopyWithImpl<$Res>
       $Res Function(_$CreateShareholdersRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CreateShareholdersRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,11 +178,13 @@ class _$CreateShareholdersRequestImpl implements _CreateShareholdersRequest {
             (identical(other.userId, userId) || other.userId == userId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, bvn, businessId, userId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreateShareholdersRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateShareholdersRequestImplCopyWith<_$CreateShareholdersRequestImpl>
@@ -207,8 +217,11 @@ abstract class _CreateShareholdersRequest implements CreateShareholdersRequest {
   int get businessId;
   @override
   int get userId;
+
+  /// Create a copy of CreateShareholdersRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateShareholdersRequestImplCopyWith<_$CreateShareholdersRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

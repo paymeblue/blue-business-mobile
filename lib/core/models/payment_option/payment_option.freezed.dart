@@ -21,7 +21,9 @@ mixin _$PaymentOption {
   String get subtitle => throw _privateConstructorUsedError;
   PaymentMode get mode => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentOptionCopyWith<PaymentOption> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$PaymentOptionCopyWithImpl<$Res, $Val extends PaymentOption>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$PaymentOptionImplCopyWithImpl<$Res>
       _$PaymentOptionImpl _value, $Res Function(_$PaymentOptionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,7 +166,9 @@ class _$PaymentOptionImpl implements _PaymentOption {
   @override
   int get hashCode => Object.hash(runtimeType, icon, title, subtitle, mode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentOptionImplCopyWith<_$PaymentOptionImpl> get copyWith =>
@@ -182,8 +190,11 @@ abstract class _PaymentOption implements PaymentOption {
   String get subtitle;
   @override
   PaymentMode get mode;
+
+  /// Create a copy of PaymentOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentOptionImplCopyWith<_$PaymentOptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -23,8 +23,12 @@ mixin _$SendNewPhoneData {
   String get reference => throw _privateConstructorUsedError;
   String get newPhone => throw _privateConstructorUsedError;
 
+  /// Serializes this SendNewPhoneData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SendNewPhoneData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SendNewPhoneDataCopyWith<SendNewPhoneData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$SendNewPhoneDataCopyWithImpl<$Res, $Val extends SendNewPhoneData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SendNewPhoneData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$SendNewPhoneDataImplCopyWithImpl<$Res>
       $Res Function(_$SendNewPhoneDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SendNewPhoneData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,11 +143,13 @@ class _$SendNewPhoneDataImpl implements _SendNewPhoneData {
                 other.newPhone == newPhone));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, reference, newPhone);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendNewPhoneData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SendNewPhoneDataImplCopyWith<_$SendNewPhoneDataImpl> get copyWith =>
@@ -166,8 +176,11 @@ abstract class _SendNewPhoneData implements SendNewPhoneData {
   String get reference;
   @override
   String get newPhone;
+
+  /// Create a copy of SendNewPhoneData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SendNewPhoneDataImplCopyWith<_$SendNewPhoneDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

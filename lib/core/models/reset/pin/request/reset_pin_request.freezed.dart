@@ -22,8 +22,12 @@ ResetPinRequest _$ResetPinRequestFromJson(Map<String, dynamic> json) {
 mixin _$ResetPinRequest {
   String get newPin => throw _privateConstructorUsedError;
 
+  /// Serializes this ResetPinRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ResetPinRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ResetPinRequestCopyWith<ResetPinRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$ResetPinRequestCopyWithImpl<$Res, $Val extends ResetPinRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ResetPinRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$ResetPinRequestImplCopyWithImpl<$Res>
       _$ResetPinRequestImpl _value, $Res Function(_$ResetPinRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResetPinRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -118,11 +126,13 @@ class _$ResetPinRequestImpl implements _ResetPinRequest {
             (identical(other.newPin, newPin) || other.newPin == newPin));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, newPin);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResetPinRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResetPinRequestImplCopyWith<_$ResetPinRequestImpl> get copyWith =>
@@ -146,8 +156,11 @@ abstract class _ResetPinRequest implements ResetPinRequest {
 
   @override
   String get newPin;
+
+  /// Create a copy of ResetPinRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResetPinRequestImplCopyWith<_$ResetPinRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

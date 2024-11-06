@@ -67,7 +67,7 @@ class _StaffService implements StaffService {
 
   @override
   Future<CreateStaffResponse> createStaff({
-    required File image,
+    File? image,
     required String name,
     required String phone,
     required int branchId,
@@ -76,16 +76,19 @@ class _StaffService implements StaffService {
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = FormData();
-    _data.files.add(MapEntry(
-      'display_picture',
-      MultipartFile.fromFileSync(
-        image.path,
-        filename: image.path.split(Platform.pathSeparator).last,
-        contentType: MediaType.parse('image/png'),
-      ),
-    ));
+    if (image != null) {
+      _data.files.add(MapEntry(
+        'display_picture',
+        MultipartFile.fromFileSync(
+          image.path,
+          filename: image.path.split(Platform.pathSeparator).last,
+          contentType: MediaType.parse('image/png'),
+        ),
+      ));
+    }
     _data.fields.add(MapEntry(
       'name',
       name,

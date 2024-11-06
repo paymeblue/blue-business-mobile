@@ -30,8 +30,12 @@ mixin _$Shareholders {
   String? get createdAt => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
 
+  /// Serializes this Shareholders to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Shareholders
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ShareholdersCopyWith<Shareholders> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -64,6 +68,8 @@ class _$ShareholdersCopyWithImpl<$Res, $Val extends Shareholders>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Shareholders
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,6 +152,8 @@ class __$$ShareholdersImplCopyWithImpl<$Res>
       _$ShareholdersImpl _value, $Res Function(_$ShareholdersImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Shareholders
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -263,12 +271,14 @@ class _$ShareholdersImpl implements _Shareholders {
             (identical(other.address, address) || other.address == address));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, businessId, name, verified,
       designation, bvn, phone, createdAt, address);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Shareholders
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ShareholdersImplCopyWith<_$ShareholdersImpl> get copyWith =>
@@ -315,8 +325,11 @@ abstract class _Shareholders implements Shareholders {
   String? get createdAt;
   @override
   String? get address;
+
+  /// Create a copy of Shareholders
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ShareholdersImplCopyWith<_$ShareholdersImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

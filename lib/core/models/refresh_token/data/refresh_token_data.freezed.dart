@@ -23,8 +23,12 @@ mixin _$RefreshTokenData {
   String get type => throw _privateConstructorUsedError;
   String get accessToken => throw _privateConstructorUsedError;
 
+  /// Serializes this RefreshTokenData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RefreshTokenData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RefreshTokenDataCopyWith<RefreshTokenData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$RefreshTokenDataCopyWithImpl<$Res, $Val extends RefreshTokenData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RefreshTokenData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$RefreshTokenDataImplCopyWithImpl<$Res>
       $Res Function(_$RefreshTokenDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RefreshTokenData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,11 +143,13 @@ class _$RefreshTokenDataImpl implements _RefreshTokenData {
                 other.accessToken == accessToken));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, type, accessToken);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RefreshTokenData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RefreshTokenDataImplCopyWith<_$RefreshTokenDataImpl> get copyWith =>
@@ -166,8 +176,11 @@ abstract class _RefreshTokenData implements RefreshTokenData {
   String get type;
   @override
   String get accessToken;
+
+  /// Create a copy of RefreshTokenData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RefreshTokenDataImplCopyWith<_$RefreshTokenDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

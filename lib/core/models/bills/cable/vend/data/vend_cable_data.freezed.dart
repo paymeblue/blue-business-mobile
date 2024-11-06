@@ -32,8 +32,12 @@ mixin _$VendCableData {
   String get status => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this VendCableData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VendCableData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VendCableDataCopyWith<VendCableData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -68,6 +72,8 @@ class _$VendCableDataCopyWithImpl<$Res, $Val extends VendCableData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VendCableData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -162,6 +168,8 @@ class __$$VendCableDataImplCopyWithImpl<$Res>
       _$VendCableDataImpl _value, $Res Function(_$VendCableDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VendCableData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -301,7 +309,7 @@ class _$VendCableDataImpl implements _VendCableData {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -317,7 +325,9 @@ class _$VendCableDataImpl implements _VendCableData {
       status,
       createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VendCableData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VendCableDataImplCopyWith<_$VendCableDataImpl> get copyWith =>
@@ -370,8 +380,11 @@ abstract class _VendCableData implements VendCableData {
   String get status;
   @override
   String? get createdAt;
+
+  /// Create a copy of VendCableData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VendCableDataImplCopyWith<_$VendCableDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

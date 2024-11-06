@@ -31,8 +31,12 @@ mixin _$Chat {
   String? get message => throw _privateConstructorUsedError;
   int get unreadCount => throw _privateConstructorUsedError;
 
+  /// Serializes this Chat to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Chat
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChatCopyWith<Chat> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -64,6 +68,8 @@ class _$ChatCopyWithImpl<$Res, $Val extends Chat>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Chat
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -150,6 +156,8 @@ class __$$ChatImplCopyWithImpl<$Res>
   __$$ChatImplCopyWithImpl(_$ChatImpl _value, $Res Function(_$ChatImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Chat
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -280,7 +288,7 @@ class _$ChatImpl implements _Chat {
                 other.unreadCount == unreadCount));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -295,7 +303,9 @@ class _$ChatImpl implements _Chat {
       message,
       unreadCount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Chat
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChatImplCopyWith<_$ChatImpl> get copyWith =>
@@ -344,8 +354,11 @@ abstract class _Chat implements Chat {
   String? get message;
   @override
   int get unreadCount;
+
+  /// Create a copy of Chat
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChatImplCopyWith<_$ChatImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

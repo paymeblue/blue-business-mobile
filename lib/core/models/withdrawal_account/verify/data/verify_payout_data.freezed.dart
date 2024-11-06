@@ -25,8 +25,12 @@ mixin _$VerifyPayoutData {
   String get accountNumber => throw _privateConstructorUsedError;
   String get accountName => throw _privateConstructorUsedError;
 
+  /// Serializes this VerifyPayoutData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VerifyPayoutData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VerifyPayoutDataCopyWith<VerifyPayoutData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$VerifyPayoutDataCopyWithImpl<$Res, $Val extends VerifyPayoutData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VerifyPayoutData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -100,6 +106,8 @@ class __$$VerifyPayoutDataImplCopyWithImpl<$Res>
       $Res Function(_$VerifyPayoutDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VerifyPayoutData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -169,12 +177,14 @@ class _$VerifyPayoutDataImpl implements _VerifyPayoutData {
                 other.accountName == accountName));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, reference, accountNumber, accountName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VerifyPayoutData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VerifyPayoutDataImplCopyWith<_$VerifyPayoutDataImpl> get copyWith =>
@@ -207,8 +217,11 @@ abstract class _VerifyPayoutData implements VerifyPayoutData {
   String get accountNumber;
   @override
   String get accountName;
+
+  /// Create a copy of VerifyPayoutData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VerifyPayoutDataImplCopyWith<_$VerifyPayoutDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

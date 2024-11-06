@@ -25,8 +25,12 @@ mixin _$CreateShareholdersResponse {
   String? get message => throw _privateConstructorUsedError;
   CreateShareholdersData? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this CreateShareholdersResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CreateShareholdersResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CreateShareholdersResponseCopyWith<CreateShareholdersResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$CreateShareholdersResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CreateShareholdersResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -77,6 +83,8 @@ class _$CreateShareholdersResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of CreateShareholdersResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CreateShareholdersDataCopyWith<$Res>? get data {
@@ -115,6 +123,8 @@ class __$$CreateShareholdersResponseImplCopyWithImpl<$Res>
       $Res Function(_$CreateShareholdersResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CreateShareholdersResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -172,11 +182,13 @@ class _$CreateShareholdersResponseImpl implements _CreateShareholdersResponse {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreateShareholdersResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateShareholdersResponseImplCopyWith<_$CreateShareholdersResponseImpl>
@@ -207,8 +219,11 @@ abstract class _CreateShareholdersResponse
   String? get message;
   @override
   CreateShareholdersData? get data;
+
+  /// Create a copy of CreateShareholdersResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateShareholdersResponseImplCopyWith<_$CreateShareholdersResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
