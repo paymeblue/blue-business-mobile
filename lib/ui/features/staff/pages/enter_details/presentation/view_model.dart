@@ -222,7 +222,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     BlueDialog.primary(
       title: "Staff Access",
       subtitle:
-          "Are you sure you want to grant ‘Sharon Joy’ access to your BlueBusiness.",
+          "Are you sure you want to grant ‘${nameController.text}' access to your BlueBusiness.",
       onDelete: () {
         createStaff(context);
       },
