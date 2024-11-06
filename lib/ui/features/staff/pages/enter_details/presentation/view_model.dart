@@ -195,7 +195,6 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
         phoneController.text.trimRight().isNotEmpty &&
         branch != null &&
         role != null &&
-        path != null &&
         isValidPassword();
   }
 
