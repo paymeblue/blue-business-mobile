@@ -12,17 +12,6 @@ class ConnectionHelper {
   ConnectionHelper._();
   static late StreamSubscription<List<ConnectivityResult>> subscription;
 
-  static Future<bool> hasNetwork() async {
-    final List<ConnectivityResult> connectivityResult =
-        await (Connectivity().checkConnectivity());
-
-    if (connectivityResult.contains(ConnectivityResult.none)) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
   static initialiseNetworkCheck() {
     BuildContext ctx =
         locator<NavigationService>().navigatorKey.currentContext!;

@@ -132,7 +132,7 @@ class LoginView extends StatelessWidget {
         TextSpan(
             text: "Click here",
             style: AppTextStyles.subText.copyWith(
-              color: AppColors.success,
+              color: AppColors.blue,
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () async {

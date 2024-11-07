@@ -1,4 +1,5 @@
 import 'package:blue_business/core/config/module/base_screen.dart';
+import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/security_question/get/data/get_question_data.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -80,7 +81,7 @@ class InitiatePinResetView extends StatelessWidget {
               ..onTap = () {
                 model.useQuestion = !model.useQuestion;
               },
-            style: AppTextStyles.subText,
+            style: AppTextStyles.subText.copyWith(color: AppColors.blue),
           )
         ],
       ),

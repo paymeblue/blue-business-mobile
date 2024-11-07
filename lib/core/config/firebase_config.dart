@@ -23,28 +23,25 @@ Future handleBackgroundMessages(RemoteMessage message) async {
   }
 }
 
-Future handleForegroundMessages(RemoteMessage message) async {
-  // Map<String, dynamic> data = message.data;
-  // BuildContext context =
-  //     locator<NavigationService>().navigatorKey.currentContext!;
+Set<String> _handledMessageIds = {}; // Store processed message IDs
 
-  // if (data["type"] == "payment") {
-  //   if (locator<AppStateValues>().accessToken.isNotEmpty) {
-  //     PushPayment payment = PushPayment.fromJson(data);
-  //     BlueBottomSheet.paymentRequest(payment).then((value) {
-  //       if (value) {
-  //         if (context.mounted) {
-  //           context.go("/${payment.transactionId}${RoutePaths.pushPaymentPin}");
-  //         }
-  //       }
-  //     });
-  //   }
-  // } else {
+Future handleForegroundMessages(RemoteMessage message) async {
+  log(message.data.toString());
+
+  // Check if this message has already been handled
+  String? messageId = message.messageId;
+  if (messageId != null && _handledMessageIds.contains(messageId)) {
+    return;
+  }
+
+  if (messageId != null) {
+    _handledMessageIds.add(messageId);
+  }
+
   AppNotification.notification(
     title: message.notification!.title,
     message: message.notification!.body,
   );
-  // }
 }
 
 class FirebaseConfig {

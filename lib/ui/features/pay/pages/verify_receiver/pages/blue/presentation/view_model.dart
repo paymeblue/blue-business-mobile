@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
-import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/beneficiary/payment/blue_beneficiary.dart';
 import 'package:blue_business/core/models/beneficiary/payment/get/response/get_beneficiary_response.dart';
@@ -141,15 +140,9 @@ class BluePaymentViewModel extends BaseViewModel {
   }
 
   verify(BuildContext context) async {
-    String identifier = identifierController.text;
-    if (!identifierController.text.contains(RegExp(r'[A-Za-z]'))) {
-      if (identifier.startsWith("0") ||
-          identifier.replaceFirst("+", "").startsWith("234")) {
-        identifier = identifier.validPhone(countryCodes.firstWhere(
-          (e) => e.countryCode == "NG",
-        ));
-      }
-    }
+    String identifier = identifierController.text
+        .substring(identifierController.text.length - 10);
+
     AppLoader.start();
 
     VerifiedReceiverRequest request = VerifiedReceiverRequest(
