@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:blue_business/core/config/firebase_config.dart';
 import 'package:blue_business/core/config/sales_iq_config.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +11,7 @@ class ConnectionHelper {
   ConnectionHelper._();
   static late StreamSubscription<List<ConnectivityResult>> subscription;
 
-  static initialiseNetworkCheck() {
-    BuildContext ctx =
-        locator<NavigationService>().navigatorKey.currentContext!;
+  static initialiseNetworkCheck(BuildContext ctx) {
     subscription = Connectivity()
         .onConnectivityChanged
         .listen((List<ConnectivityResult> result) {

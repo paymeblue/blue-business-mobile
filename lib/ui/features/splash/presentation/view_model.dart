@@ -2,6 +2,7 @@ import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/utils/connection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,6 +11,8 @@ class SplashViewModel extends BaseViewModel {
 
   init(BuildContext context) async {
     size = MediaQuery.sizeOf(globalContext!);
+
+    ConnectionHelper.initialiseNetworkCheck(context);
 
     await StorageValues.getLoginValues();
 

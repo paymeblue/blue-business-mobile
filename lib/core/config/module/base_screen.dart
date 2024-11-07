@@ -31,7 +31,6 @@ class _BaseViewState<T extends ChangeNotifier> extends State<BaseView<T>> {
   @override
   void initState() {
     super.initState();
-    ConnectionHelper.initialiseNetworkCheck();
     model = widget.model;
 
     if (widget.onModelReady != null) {
