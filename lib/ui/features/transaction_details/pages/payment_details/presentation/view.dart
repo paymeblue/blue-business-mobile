@@ -76,7 +76,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                         children: [
                           ...detailsSection(
                             title: "Transaction type",
-                            detail: widget.type,
+                            detail: widget.type.sentenceCase,
                           ),
                           8.verticalGap,
                           if (widget.type.toLowerCase() == "credit")
@@ -93,7 +93,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                           if (widget.type.toLowerCase() == "credit")
                             ...detailsSection(
                               title: "Sender",
-                              detail: widget.detail.receiver,
+                              detail: widget.detail.sender,
                             )
                           else
                             ...detailsSection(
@@ -115,7 +115,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                           if (widget.detail.paymentMode != "withdrawal")
                             ...detailsSection(
                               title: "Narration",
-                              detail: widget.detail.narration ?? "N/A",
+                              detail: widget.detail.narration,
                             ),
                           8.verticalGap,
                           ...detailsSection(
@@ -236,3 +236,4 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
     }
   }
 }
+// LoginRequest(fcmToken: null, phone: +2348158668584, password: Priskie@2024)

@@ -15,7 +15,8 @@ class PaymentDetail with _$PaymentDetail {
     required String transactionId,
     @Default("payment") String service,
     @Default("pending") String status,
-    String? narration,
+    @Default("N/A") String narration,
+    @Default("") String sender,
     @Default("0.00") String balanceBefore,
     @Default("0.00") String balanceAfter,
   }) = _PaymentDetail;

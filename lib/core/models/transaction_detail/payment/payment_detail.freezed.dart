@@ -29,7 +29,8 @@ mixin _$PaymentDetail {
   String get transactionId => throw _privateConstructorUsedError;
   String get service => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
-  String? get narration => throw _privateConstructorUsedError;
+  String get narration => throw _privateConstructorUsedError;
+  String get sender => throw _privateConstructorUsedError;
   String get balanceBefore => throw _privateConstructorUsedError;
   String get balanceAfter => throw _privateConstructorUsedError;
 
@@ -59,7 +60,8 @@ abstract class $PaymentDetailCopyWith<$Res> {
       String transactionId,
       String service,
       String status,
-      String? narration,
+      String narration,
+      String sender,
       String balanceBefore,
       String balanceAfter});
 }
@@ -88,7 +90,8 @@ class _$PaymentDetailCopyWithImpl<$Res, $Val extends PaymentDetail>
     Object? transactionId = null,
     Object? service = null,
     Object? status = null,
-    Object? narration = freezed,
+    Object? narration = null,
+    Object? sender = null,
     Object? balanceBefore = null,
     Object? balanceAfter = null,
   }) {
@@ -129,10 +132,14 @@ class _$PaymentDetailCopyWithImpl<$Res, $Val extends PaymentDetail>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      narration: freezed == narration
+      narration: null == narration
           ? _value.narration
           : narration // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      sender: null == sender
+          ? _value.sender
+          : sender // ignore: cast_nullable_to_non_nullable
+              as String,
       balanceBefore: null == balanceBefore
           ? _value.balanceBefore
           : balanceBefore // ignore: cast_nullable_to_non_nullable
@@ -163,7 +170,8 @@ abstract class _$$PaymentDetailImplCopyWith<$Res>
       String transactionId,
       String service,
       String status,
-      String? narration,
+      String narration,
+      String sender,
       String balanceBefore,
       String balanceAfter});
 }
@@ -190,7 +198,8 @@ class __$$PaymentDetailImplCopyWithImpl<$Res>
     Object? transactionId = null,
     Object? service = null,
     Object? status = null,
-    Object? narration = freezed,
+    Object? narration = null,
+    Object? sender = null,
     Object? balanceBefore = null,
     Object? balanceAfter = null,
   }) {
@@ -231,10 +240,14 @@ class __$$PaymentDetailImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      narration: freezed == narration
+      narration: null == narration
           ? _value.narration
           : narration // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      sender: null == sender
+          ? _value.sender
+          : sender // ignore: cast_nullable_to_non_nullable
+              as String,
       balanceBefore: null == balanceBefore
           ? _value.balanceBefore
           : balanceBefore // ignore: cast_nullable_to_non_nullable
@@ -260,7 +273,8 @@ class _$PaymentDetailImpl implements _PaymentDetail {
       required this.transactionId,
       this.service = "payment",
       this.status = "pending",
-      this.narration,
+      this.narration = "N/A",
+      this.sender = "",
       this.balanceBefore = "0.00",
       this.balanceAfter = "0.00"});
 
@@ -288,7 +302,11 @@ class _$PaymentDetailImpl implements _PaymentDetail {
   @JsonKey()
   final String status;
   @override
-  final String? narration;
+  @JsonKey()
+  final String narration;
+  @override
+  @JsonKey()
+  final String sender;
   @override
   @JsonKey()
   final String balanceBefore;
@@ -298,7 +316,7 @@ class _$PaymentDetailImpl implements _PaymentDetail {
 
   @override
   String toString() {
-    return 'PaymentDetail(id: $id, amount: $amount, receiver: $receiver, details: $details, paymentMode: $paymentMode, createdAt: $createdAt, transactionId: $transactionId, service: $service, status: $status, narration: $narration, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter)';
+    return 'PaymentDetail(id: $id, amount: $amount, receiver: $receiver, details: $details, paymentMode: $paymentMode, createdAt: $createdAt, transactionId: $transactionId, service: $service, status: $status, narration: $narration, sender: $sender, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter)';
   }
 
   @override
@@ -321,6 +339,7 @@ class _$PaymentDetailImpl implements _PaymentDetail {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.narration, narration) ||
                 other.narration == narration) &&
+            (identical(other.sender, sender) || other.sender == sender) &&
             (identical(other.balanceBefore, balanceBefore) ||
                 other.balanceBefore == balanceBefore) &&
             (identical(other.balanceAfter, balanceAfter) ||
@@ -341,6 +360,7 @@ class _$PaymentDetailImpl implements _PaymentDetail {
       service,
       status,
       narration,
+      sender,
       balanceBefore,
       balanceAfter);
 
@@ -371,7 +391,8 @@ abstract class _PaymentDetail implements PaymentDetail {
       required final String transactionId,
       final String service,
       final String status,
-      final String? narration,
+      final String narration,
+      final String sender,
       final String balanceBefore,
       final String balanceAfter}) = _$PaymentDetailImpl;
 
@@ -397,7 +418,9 @@ abstract class _PaymentDetail implements PaymentDetail {
   @override
   String get status;
   @override
-  String? get narration;
+  String get narration;
+  @override
+  String get sender;
   @override
   String get balanceBefore;
   @override
