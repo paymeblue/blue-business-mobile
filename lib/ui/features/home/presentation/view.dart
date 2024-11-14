@@ -564,7 +564,7 @@ class HomeView extends StatelessWidget {
     double percentIncrease = 0,
   }) =>
       Container(
-        width: ((context.mediaQuery.size.width - 65) / 2).w,
+        width: ((context.mediaQuery.size.width - 65) / 2),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

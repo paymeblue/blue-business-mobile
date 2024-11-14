@@ -25,8 +25,8 @@ class BlueDialog {
         builder: (context) {
           return Dialog(
             child: Container(
-              height: 150,
-              width: 273,
+              height: 150.h,
+              width: 273.w,
               padding: const EdgeInsets.only(top: 16),
               decoration: BoxDecoration(
                   color: AppColors.white,
