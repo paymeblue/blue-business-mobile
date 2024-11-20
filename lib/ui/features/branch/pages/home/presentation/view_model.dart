@@ -160,7 +160,9 @@ class BranchHomeViewModel extends BaseViewModel {
       extra: data,
     )
         .then((val) {
-      if (val == true) branchPagingController.refresh;
+      if (val == true) {
+        branchPagingController.refresh();
+      }
     });
   }
 }

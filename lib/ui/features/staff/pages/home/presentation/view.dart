@@ -119,84 +119,86 @@ class StaffHomeView extends StatelessWidget {
                 ),
             newPageProgressIndicatorBuilder: (context) =>
                 staffLoadingTile(model),
-            itemBuilder: (context, item, i) => Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    if (i == 0) ...[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          BluePopupMenu(
-                              width: null,
-                              icon: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: AppColors.blue),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 6),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      (model.role?.name ?? "all roles")
-                                          .sentenceCase,
-                                      style: AppTextStyles.subText.copyWith(
-                                        color: AppColors.blue,
-                                      ),
-                                    ),
-                                    Icon(
-                                      Icons.keyboard_arrow_down_rounded,
-                                      size: 18.sp,
-                                      color: AppColors.blue,
-                                    ),
-                                  ],
-                                ),
+            itemBuilder: (context, item, i) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  if (i == 0) ...[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BluePopupMenu(
+                            width: null,
+                            icon: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.blue),
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                              popupItems: model.roles
-                                  .map(
-                                    (e) => PopupModel(
-                                      title: e.name.sentenceCase,
-                                      onTap: () {
-                                        model.role = e;
-                                        model.staffPagingController.refresh();
-                                      },
-                                    ),
-                                  )
-                                  .toList()),
-                          GestureDetector(
-                            onTap: () {
-                              model.goToAddStaff(context);
-                            },
-                            child: Container(
-                              decoration: const BoxDecoration(),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 6),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Icon(
-                                    Icons.add,
-                                    size: 15.sp,
-                                    color: AppColors.primary,
-                                  ),
                                   Text(
-                                    "Add staff",
+                                    (model.role?.name ?? "all roles")
+                                        .sentenceCase,
                                     style: AppTextStyles.subText.copyWith(
-                                      color: AppColors.primary,
+                                      color: AppColors.blue,
                                     ),
-                                  )
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_down_rounded,
+                                    size: 18.sp,
+                                    color: AppColors.blue,
+                                  ),
                                 ],
                               ),
                             ),
+                            popupItems: model.roles
+                                .map(
+                                  (e) => PopupModel(
+                                    title: e.name.sentenceCase,
+                                    onTap: () {
+                                      model.role = e;
+                                      model.staffPagingController.refresh();
+                                    },
+                                  ),
+                                )
+                                .toList()),
+                        GestureDetector(
+                          onTap: () {
+                            model.goToAddStaff(context);
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Icon(
+                                  Icons.add,
+                                  size: 15.sp,
+                                  color: AppColors.primary,
+                                ),
+                                Text(
+                                  "Add staff",
+                                  style: AppTextStyles.subText.copyWith(
+                                    color: AppColors.primary,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                      8.verticalGap
-                    ],
-                    staffTile(model, item, context),
+                        ),
+                      ],
+                    ),
+                    8.verticalGap
                   ],
-                )),
+                  staffTile(model, item, context),
+                ],
+              );
+            }),
         separatorBuilder: (context, i) => 10.verticalGap,
       ),
     );

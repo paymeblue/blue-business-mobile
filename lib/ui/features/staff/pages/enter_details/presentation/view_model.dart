@@ -351,11 +351,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     });
 
     if (response.status == "success") {
-      AppNotification.success(
-          message: "Staff information updated successfully");
-      Future.delayed(const Duration(seconds: 3), () {
-        if (context.mounted) goBack(context, true);
-      });
+      if (context.mounted) goBack(context, true);
     } else {
       AppNotification.error(message: response.message);
     }
