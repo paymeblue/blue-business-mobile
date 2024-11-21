@@ -330,12 +330,13 @@ class StaffHomeView extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Text(
-                      item.branchName,
-                      style: AppTextStyles.smallText.copyWith(
-                        color: AppColors.blue,
+                    if (item.branchName != null)
+                      Text(
+                        item.branchName!,
+                        style: AppTextStyles.smallText.copyWith(
+                          color: AppColors.blue,
+                        ),
                       ),
-                    ),
                     Text(
                       item.phone,
                       style: AppTextStyles.smallText.copyWith(

@@ -22,8 +22,8 @@ Staff _$StaffFromJson(Map<String, dynamic> json) {
 mixin _$Staff {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get branchName => throw _privateConstructorUsedError;
-  int get branchId => throw _privateConstructorUsedError;
+  String? get branchName => throw _privateConstructorUsedError;
+  int? get branchId => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String? get displayPicture => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
@@ -46,8 +46,8 @@ abstract class $StaffCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      String branchName,
-      int branchId,
+      String? branchName,
+      int? branchId,
       String phone,
       String? displayPicture,
       String role,
@@ -71,8 +71,8 @@ class _$StaffCopyWithImpl<$Res, $Val extends Staff>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? branchName = null,
-    Object? branchId = null,
+    Object? branchName = freezed,
+    Object? branchId = freezed,
     Object? phone = null,
     Object? displayPicture = freezed,
     Object? role = null,
@@ -87,14 +87,14 @@ class _$StaffCopyWithImpl<$Res, $Val extends Staff>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      branchName: null == branchName
+      branchName: freezed == branchName
           ? _value.branchName
           : branchName // ignore: cast_nullable_to_non_nullable
-              as String,
-      branchId: null == branchId
+              as String?,
+      branchId: freezed == branchId
           ? _value.branchId
           : branchId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -125,8 +125,8 @@ abstract class _$$StaffImplCopyWith<$Res> implements $StaffCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      String branchName,
-      int branchId,
+      String? branchName,
+      int? branchId,
       String phone,
       String? displayPicture,
       String role,
@@ -148,8 +148,8 @@ class __$$StaffImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? branchName = null,
-    Object? branchId = null,
+    Object? branchName = freezed,
+    Object? branchId = freezed,
     Object? phone = null,
     Object? displayPicture = freezed,
     Object? role = null,
@@ -164,14 +164,14 @@ class __$$StaffImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      branchName: null == branchName
+      branchName: freezed == branchName
           ? _value.branchName
           : branchName // ignore: cast_nullable_to_non_nullable
-              as String,
-      branchId: null == branchId
+              as String?,
+      branchId: freezed == branchId
           ? _value.branchId
           : branchId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -198,8 +198,8 @@ class _$StaffImpl implements _Staff {
   const _$StaffImpl(
       {required this.id,
       required this.name,
-      required this.branchName,
-      required this.branchId,
+      this.branchName,
+      this.branchId,
       required this.phone,
       this.displayPicture,
       this.role = 'cashier',
@@ -213,9 +213,9 @@ class _$StaffImpl implements _Staff {
   @override
   final String name;
   @override
-  final String branchName;
+  final String? branchName;
   @override
-  final int branchId;
+  final int? branchId;
   @override
   final String phone;
   @override
@@ -275,8 +275,8 @@ abstract class _Staff implements Staff {
   const factory _Staff(
       {required final int id,
       required final String name,
-      required final String branchName,
-      required final int branchId,
+      final String? branchName,
+      final int? branchId,
       required final String phone,
       final String? displayPicture,
       final String role,
@@ -289,9 +289,9 @@ abstract class _Staff implements Staff {
   @override
   String get name;
   @override
-  String get branchName;
+  String? get branchName;
   @override
-  int get branchId;
+  int? get branchId;
   @override
   String get phone;
   @override

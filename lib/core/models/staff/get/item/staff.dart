@@ -8,8 +8,8 @@ class Staff with _$Staff {
   const factory Staff({
     required int id,
     required String name,
-    required String branchName,
-    required int branchId,
+    String? branchName,
+    int? branchId,
     required String phone,
     String? displayPicture,
     @Default('cashier') String role,

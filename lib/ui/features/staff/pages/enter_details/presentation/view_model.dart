@@ -50,8 +50,10 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
         .replaceFirst(selectedCountry.dialCode, "")
         .replaceFirst("+", "");
     setRole(staff);
-    branchSetState = FetchState.loading;
-    await getBranchById(staff.branchId);
+    if (staff.branchId != null) {
+      branchSetState = FetchState.loading;
+      await getBranchById(staff.branchId!);
+    }
   }
 
   setRole(Staff staff) {
