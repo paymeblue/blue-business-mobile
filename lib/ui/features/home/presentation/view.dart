@@ -562,64 +562,67 @@ class HomeView extends StatelessWidget {
     required String title,
     required String amount,
     double percentIncrease = 0,
-  }) =>
-      Container(
-        width: ((context.mediaQuery.size.width - 65) / 2),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: AppTextStyles.smallText.copyWith(
-                color: AppColors.bodyTextColor2,
+  }) {
+    return Container(
+      width: ((context.mediaQuery.size.width - 65) / 2),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: AppTextStyles.smallText.copyWith(
+              color: AppColors.bodyTextColor2,
+            ),
+          ),
+          4.verticalGap,
+          Text(
+            "${nairaSymbol()}$amount",
+            style: AppTextStyles.header.copyWith(fontSize: 16.sp),
+          ),
+          Row(
+            children: [
+              Icon(
+                percentIncrease < 0
+                    ? Icons.arrow_downward_rounded
+                    : Icons.arrow_upward_rounded,
+                color: percentIncrease < 0
+                    ? AppColors.error
+                    : AppColors.otherGreen,
+                size: 16,
               ),
-            ),
-            4.verticalGap,
-            Text(
-              "${nairaSymbol()}$amount",
-              style: AppTextStyles.header.copyWith(fontSize: 16.sp),
-            ),
-            Row(
-              children: [
-                Icon(
-                  percentIncrease < 0
-                      ? Icons.arrow_downward_rounded
-                      : Icons.arrow_upward_rounded,
-                  color: percentIncrease < 0
-                      ? AppColors.error
-                      : AppColors.otherGreen,
-                  size: 16,
-                ),
-                2.horizontalGap,
-                Flexible(
-                  child: RichText(
-                    text: TextSpan(children: [
-                      TextSpan(
-                        text: percentIncrease.abs() == double.parse(amount)
-                            ? "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% "
-                            : "${nairaSymbol()}$amount ",
-                        style: AppTextStyles.smallText.copyWith(
-                          color: percentIncrease < 0
-                              ? AppColors.error
-                              : AppColors.otherGreen,
-                        ),
+              2.horizontalGap,
+              Flexible(
+                child: RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                      text: percentIncrease.abs() ==
+                              double.parse(
+                                  amount.replaceAll(RegExp(r'[^0-9]'), ""))
+                          ? "${(percentIncrease.abs() * 100).toStringAsFixed(2)}% "
+                          : "${nairaSymbol()}$amount ",
+                      style: AppTextStyles.smallText.copyWith(
+                        color: percentIncrease < 0
+                            ? AppColors.error
+                            : AppColors.otherGreen,
                       ),
-                      TextSpan(
-                        text: "vs last week",
-                        style: AppTextStyles.smallText.copyWith(
-                          color: AppColors.bodyTextColor,
-                        ),
-                      )
-                    ]),
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                    ),
+                    TextSpan(
+                      text: "vs last week",
+                      style: AppTextStyles.smallText.copyWith(
+                        color: AppColors.bodyTextColor,
+                      ),
+                    )
+                  ]),
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ],
-            )
-          ],
-        ),
-      );
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
 
   Widget transactionSection(HomeViewModel model, BuildContext context) {
     return Container(
