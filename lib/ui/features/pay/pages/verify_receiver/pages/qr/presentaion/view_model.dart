@@ -90,7 +90,7 @@ class QrPaymentViewModel extends BaseViewModel {
           receiver: resp.data!,
           transactionId: data.transactionId,
         );
-        context.push(RoutePaths.confirmTransaction, extra: args);
+        context.pushReplacement(RoutePaths.confirmTransaction, extra: args);
       }
     } else {
       AppNotification.error(message: resp.message);

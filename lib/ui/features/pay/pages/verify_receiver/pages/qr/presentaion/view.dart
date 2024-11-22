@@ -5,6 +5,7 @@ import 'package:blue_business/ui/features/error/presentation/view.dart';
 import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/ui/widgets/overlays/qr_overlay.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -41,8 +42,8 @@ class QrPaymentView extends StatelessWidget {
               scanWindow: Rect.fromCenter(
                   center: Offset(context.mediaQuery.size.width / 2,
                       context.mediaQuery.size.height / 2),
-                  width: 250,
-                  height: 250),
+                  width: 250.w,
+                  height: 250.w),
               onDetect: (capture) {
                 model.detect(capture, context);
               },
