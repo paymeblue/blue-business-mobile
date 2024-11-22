@@ -38,7 +38,7 @@ class PaymentDetailsViewModel extends BaseViewModel {
     AppLoader.start();
 
     ReceiptResponse resp = await TransactionService()
-        .getReceipt(data.id.toString())
+        .getReceipt(data.transactionId)
         .onError((error, stackTrace) {
       return ReceiptResponse(
           message: AppErrorHandler.getErrorMessage(error, {
