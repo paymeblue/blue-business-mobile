@@ -75,7 +75,7 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
       }
     } else {
       if (context.mounted) {
-        context.go(RoutePaths.walletPaymentFailure, extra: response.message!);
+        context.push(RoutePaths.walletPaymentFailure, extra: response.message!);
       }
     }
 

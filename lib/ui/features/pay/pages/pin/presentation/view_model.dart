@@ -95,7 +95,6 @@ class CompletePaymentViewModel extends BaseViewModel {
         savePin();
       }
       if (context.mounted) {
-        context.popUntilPath(RoutePaths.home, true);
         PaymentSuccessViewArgs extra =
             PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
 

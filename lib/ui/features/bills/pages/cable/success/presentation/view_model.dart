@@ -31,7 +31,7 @@ class VendCableSuccessViewModel extends BaseViewModel {
   }
 
   goTohome(BuildContext context) {
-    context.popUntilPath(RoutePaths.home);
+    context.popUntilPath(RoutePaths.home, true);
   }
 
   getTransactionDetails(VendCableData transaction) async {

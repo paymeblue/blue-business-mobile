@@ -384,6 +384,11 @@ class HomeViewModel extends BaseViewModel {
   }
 
   goToWallet(BuildContext context) {
-    context.push(RoutePaths.wallet);
+    context.push<bool>(RoutePaths.wallet).then((val) {
+      if (val == true) {
+        getWalletBalance();
+        transactionController.refresh();
+      }
+    });
   }
 }
