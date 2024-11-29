@@ -1,5 +1,6 @@
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:overlay_kit/overlay_kit.dart';
 
 class AppLoader {
@@ -48,8 +49,8 @@ class _AnimatedLoaderState extends State<AnimatedLoader>
       child: RotationTransition(
         turns: animation,
         child: AppAssets.images.loader.svg(
-          height: 100,
-          width: 100,
+          height: 100.h,
+          width: 100.w,
         ),
       ),
     );

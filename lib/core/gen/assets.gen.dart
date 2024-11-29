@@ -87,6 +87,10 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/alert.svg
   SvgGenImage get alert => const SvgGenImage('assets/images/icons/alert.svg');
 
+  /// File path: assets/images/icons/attach_blue.svg
+  SvgGenImage get attachBlue =>
+      const SvgGenImage('assets/images/icons/attach_blue.svg');
+
   /// File path: assets/images/icons/beneficiaries.svg
   SvgGenImage get beneficiaries =>
       const SvgGenImage('assets/images/icons/beneficiaries.svg');
@@ -321,6 +325,9 @@ class $AssetsImagesIconsGen {
   SvgGenImage get support =>
       const SvgGenImage('assets/images/icons/support.svg');
 
+  /// File path: assets/images/icons/topup.svg
+  SvgGenImage get topup => const SvgGenImage('assets/images/icons/topup.svg');
+
   /// File path: assets/images/icons/tv.svg
   SvgGenImage get tv => const SvgGenImage('assets/images/icons/tv.svg');
 
@@ -343,6 +350,7 @@ class $AssetsImagesIconsGen {
         aboutBlue,
         airtime,
         alert,
+        attachBlue,
         beneficiaries,
         bills,
         biometrics,
@@ -406,6 +414,7 @@ class $AssetsImagesIconsGen {
         staffManagement,
         success,
         support,
+        topup,
         tv,
         user,
         virtualBank,
@@ -491,6 +500,10 @@ class AppAssets {
   AppAssets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const String shorebird = 'shorebird.yaml';
+
+  /// List of all assets
+  static List<String> get values => [shorebird];
 }
 
 class AssetGenImage {
@@ -523,7 +536,7 @@ class AssetGenImage {
     ImageRepeat repeat = ImageRepeat.noRepeat,
     Rect? centerSlice,
     bool matchTextDirection = false,
-    bool gaplessPlayback = false,
+    bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
     FilterQuality filterQuality = FilterQuality.low,

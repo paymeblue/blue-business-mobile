@@ -20,7 +20,7 @@ DataDetails _$DataDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DataDetails {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   String get receiver => throw _privateConstructorUsedError;
   String get transactionId => throw _privateConstructorUsedError;
@@ -30,6 +30,8 @@ mixin _$DataDetails {
   String get createdAt => throw _privateConstructorUsedError;
   String get service => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  String get balanceBefore => throw _privateConstructorUsedError;
+  String get balanceAfter => throw _privateConstructorUsedError;
 
   /// Serializes this DataDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +50,7 @@ abstract class $DataDetailsCopyWith<$Res> {
       _$DataDetailsCopyWithImpl<$Res, DataDetails>;
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String amount,
       String receiver,
       String transactionId,
@@ -57,7 +59,9 @@ abstract class $DataDetailsCopyWith<$Res> {
       String paymentMode,
       String createdAt,
       String service,
-      String status});
+      String status,
+      String balanceBefore,
+      String balanceAfter});
 }
 
 /// @nodoc
@@ -75,7 +79,7 @@ class _$DataDetailsCopyWithImpl<$Res, $Val extends DataDetails>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? amount = null,
     Object? receiver = null,
     Object? transactionId = null,
@@ -85,12 +89,14 @@ class _$DataDetailsCopyWithImpl<$Res, $Val extends DataDetails>
     Object? createdAt = null,
     Object? service = null,
     Object? status = null,
+    Object? balanceBefore = null,
+    Object? balanceAfter = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -127,6 +133,14 @@ class _$DataDetailsCopyWithImpl<$Res, $Val extends DataDetails>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      balanceBefore: null == balanceBefore
+          ? _value.balanceBefore
+          : balanceBefore // ignore: cast_nullable_to_non_nullable
+              as String,
+      balanceAfter: null == balanceAfter
+          ? _value.balanceAfter
+          : balanceAfter // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -140,7 +154,7 @@ abstract class _$$DataDetailsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String amount,
       String receiver,
       String transactionId,
@@ -149,7 +163,9 @@ abstract class _$$DataDetailsImplCopyWith<$Res>
       String paymentMode,
       String createdAt,
       String service,
-      String status});
+      String status,
+      String balanceBefore,
+      String balanceAfter});
 }
 
 /// @nodoc
@@ -165,7 +181,7 @@ class __$$DataDetailsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? amount = null,
     Object? receiver = null,
     Object? transactionId = null,
@@ -175,12 +191,14 @@ class __$$DataDetailsImplCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? service = null,
     Object? status = null,
+    Object? balanceBefore = null,
+    Object? balanceAfter = null,
   }) {
     return _then(_$DataDetailsImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -217,6 +235,14 @@ class __$$DataDetailsImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      balanceBefore: null == balanceBefore
+          ? _value.balanceBefore
+          : balanceBefore // ignore: cast_nullable_to_non_nullable
+              as String,
+      balanceAfter: null == balanceAfter
+          ? _value.balanceAfter
+          : balanceAfter // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -225,7 +251,7 @@ class __$$DataDetailsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DataDetailsImpl implements _DataDetails {
   const _$DataDetailsImpl(
-      {required this.id,
+      {this.id,
       required this.amount,
       required this.receiver,
       required this.transactionId,
@@ -234,13 +260,15 @@ class _$DataDetailsImpl implements _DataDetails {
       required this.paymentMode,
       required this.createdAt,
       this.service = "data",
-      this.status = "successful"});
+      this.status = "successful",
+      this.balanceBefore = "0.00",
+      this.balanceAfter = "0.00"});
 
   factory _$DataDetailsImpl.fromJson(Map<String, dynamic> json) =>
       _$$DataDetailsImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String amount;
   @override
@@ -261,10 +289,16 @@ class _$DataDetailsImpl implements _DataDetails {
   @override
   @JsonKey()
   final String status;
+  @override
+  @JsonKey()
+  final String balanceBefore;
+  @override
+  @JsonKey()
+  final String balanceAfter;
 
   @override
   String toString() {
-    return 'DataDetails(id: $id, amount: $amount, receiver: $receiver, transactionId: $transactionId, provider: $provider, package: $package, paymentMode: $paymentMode, createdAt: $createdAt, service: $service, status: $status)';
+    return 'DataDetails(id: $id, amount: $amount, receiver: $receiver, transactionId: $transactionId, provider: $provider, package: $package, paymentMode: $paymentMode, createdAt: $createdAt, service: $service, status: $status, balanceBefore: $balanceBefore, balanceAfter: $balanceAfter)';
   }
 
   @override
@@ -286,7 +320,11 @@ class _$DataDetailsImpl implements _DataDetails {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.service, service) || other.service == service) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.balanceBefore, balanceBefore) ||
+                other.balanceBefore == balanceBefore) &&
+            (identical(other.balanceAfter, balanceAfter) ||
+                other.balanceAfter == balanceAfter));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -302,7 +340,9 @@ class _$DataDetailsImpl implements _DataDetails {
       paymentMode,
       createdAt,
       service,
-      status);
+      status,
+      balanceBefore,
+      balanceAfter);
 
   /// Create a copy of DataDetails
   /// with the given fields replaced by the non-null parameter values.
@@ -322,7 +362,7 @@ class _$DataDetailsImpl implements _DataDetails {
 
 abstract class _DataDetails implements DataDetails {
   const factory _DataDetails(
-      {required final int id,
+      {final int? id,
       required final String amount,
       required final String receiver,
       required final String transactionId,
@@ -331,13 +371,15 @@ abstract class _DataDetails implements DataDetails {
       required final String paymentMode,
       required final String createdAt,
       final String service,
-      final String status}) = _$DataDetailsImpl;
+      final String status,
+      final String balanceBefore,
+      final String balanceAfter}) = _$DataDetailsImpl;
 
   factory _DataDetails.fromJson(Map<String, dynamic> json) =
       _$DataDetailsImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String get amount;
   @override
@@ -356,6 +398,10 @@ abstract class _DataDetails implements DataDetails {
   String get service;
   @override
   String get status;
+  @override
+  String get balanceBefore;
+  @override
+  String get balanceAfter;
 
   /// Create a copy of DataDetails
   /// with the given fields replaced by the non-null parameter values.

@@ -6,7 +6,7 @@ part 'power_details.g.dart';
 @freezed
 class PowerDetails with _$PowerDetails {
   const factory PowerDetails({
-    required int id,
+    int? id,
     required String amount,
     required String serviceCharge,
     required String transactionId,
@@ -16,6 +16,9 @@ class PowerDetails with _$PowerDetails {
     @Default("power") String service,
     @Default("successful") String status,
     String? token,
+    @Default("0.00") String balanceBefore,
+    @Default("0.00") String balanceAfter,
+    @Default("0.0") String units,
   }) = _PowerDetails;
 
   factory PowerDetails.fromJson(Map<String, dynamic> json) =>

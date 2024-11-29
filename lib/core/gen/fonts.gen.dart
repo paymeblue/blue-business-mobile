@@ -10,6 +10,8 @@
 class AppFonts {
   AppFonts._();
 
+  static const String package = 'blue_business';
+
   /// Font family: Satoshi
-  static const String satoshi = 'Satoshi';
+  static const String satoshi = 'packages/$package/Satoshi';
 }

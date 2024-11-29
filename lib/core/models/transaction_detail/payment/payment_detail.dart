@@ -6,7 +6,7 @@ part 'payment_detail.g.dart';
 @freezed
 class PaymentDetail with _$PaymentDetail {
   const factory PaymentDetail({
-    required String? id,
+    String? id,
     required String amount,
     required String receiver,
     required String details,
@@ -15,7 +15,10 @@ class PaymentDetail with _$PaymentDetail {
     required String transactionId,
     @Default("payment") String service,
     @Default("pending") String status,
-    String? narration,
+    @Default("N/A") String narration,
+    @Default("") String sender,
+    @Default("0.00") String balanceBefore,
+    @Default("0.00") String balanceAfter,
   }) = _PaymentDetail;
 
   factory PaymentDetail.fromJson(Map<String, dynamic> json) =>

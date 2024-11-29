@@ -1,4 +1,4 @@
-import 'package:blue_business/core/models/beneficiary/blue_beneficiary.dart';
+import 'package:blue_business/core/models/beneficiary/payment/blue_beneficiary.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'recently_paid_response.freezed.dart';

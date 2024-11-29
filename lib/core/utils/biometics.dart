@@ -1,5 +1,5 @@
 import 'package:blue_business/core/utils/error_handler.dart';
-import 'package:blue_business/widgets/modals/notifications.dart';
+import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 

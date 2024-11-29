@@ -1,17 +1,18 @@
-import 'package:blue_business/core/extensions.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
+import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/core/utils/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:blue_business/core/navigation/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:overlay_kit/overlay_kit.dart';
 import 'package:provider/provider.dart';
 
-class BlueApp extends StatelessWidget {
-  const BlueApp({super.key});
+import 'core/navigation/routing/route_imports/base.dart';
+
+class BlueBusinessApp extends StatelessWidget {
+  const BlueBusinessApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class BlueApp extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       Container(
-                                        height: 65,
+                                        height: 65.h,
                                         width: context.mediaQuery.size.width,
                                         decoration: BoxDecoration(
                                           color: const Color(0xFFFEE5E5),
@@ -71,8 +72,8 @@ class BlueApp extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             Container(
-                                                height: 36,
-                                                width: 36,
+                                                height: 36.h,
+                                                width: 36.w,
                                                 padding:
                                                     const EdgeInsets.all(4),
                                                 decoration: BoxDecoration(

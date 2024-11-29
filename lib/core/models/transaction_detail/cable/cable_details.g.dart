@@ -8,7 +8,7 @@ part of 'cable_details.dart';
 
 _$CableDetailsImpl _$$CableDetailsImplFromJson(Map<String, dynamic> json) =>
     _$CableDetailsImpl(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       amount: json['amount'] as String,
       serviceCharge: json['service_charge'] as String,
       receiver: json['receiver'] as String,
@@ -19,19 +19,31 @@ _$CableDetailsImpl _$$CableDetailsImplFromJson(Map<String, dynamic> json) =>
       createdAt: json['created_at'] as String,
       service: json['service'] as String? ?? "data",
       status: json['status'] as String? ?? "successful",
+      balanceBefore: json['balance_before'] as String? ?? "0.00",
+      balanceAfter: json['balance_after'] as String? ?? "0.00",
     );
 
-Map<String, dynamic> _$$CableDetailsImplToJson(_$CableDetailsImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'amount': instance.amount,
-      'service_charge': instance.serviceCharge,
-      'receiver': instance.receiver,
-      'transaction_id': instance.transactionId,
-      'provider': instance.provider,
-      'package': instance.package,
-      'payment_mode': instance.paymentMode,
-      'created_at': instance.createdAt,
-      'service': instance.service,
-      'status': instance.status,
-    };
+Map<String, dynamic> _$$CableDetailsImplToJson(_$CableDetailsImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  val['amount'] = instance.amount;
+  val['service_charge'] = instance.serviceCharge;
+  val['receiver'] = instance.receiver;
+  val['transaction_id'] = instance.transactionId;
+  val['provider'] = instance.provider;
+  val['package'] = instance.package;
+  val['payment_mode'] = instance.paymentMode;
+  val['created_at'] = instance.createdAt;
+  val['service'] = instance.service;
+  val['status'] = instance.status;
+  val['balance_before'] = instance.balanceBefore;
+  val['balance_after'] = instance.balanceAfter;
+  return val;
+}

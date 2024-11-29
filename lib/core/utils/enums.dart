@@ -1,4 +1,4 @@
-enum NotificationState { signupSuccess, error, warning, logoutSuccess }
+enum NotificationState { logoutSuccess, error, warning, signupSuccess }
 
 enum LogLevel {
   debug('DEBUG'),
@@ -15,16 +15,21 @@ enum LogLevel {
 enum TransactionType { debit, credit }
 
 enum PaymentMode {
-  blue,
-  phone,
-  qr,
-  withdrawal,
-  topup,
-  airtime,
-  data,
-  electricity,
-  tv,
-  offline,
+  blue("blue-user"),
+  phone("phone"),
+  qr("blue-user"),
+  withdrawal("withdraw"),
+  topup("wallet_topup"),
+  airtime("airtime"),
+  data("data"),
+  electricity("power"),
+  tv("tv"),
+  offline("offline");
+
+  const PaymentMode(this.key);
+  final String key;
 }
 
 enum FetchState { error, complete, loading, empty }
+
+enum SlideDirections { rtl, ltr, ttb, btt }

@@ -1,27 +1,20 @@
 import 'dart:ui';
 
-import 'package:blue_business/core/io/api/config/firebase_config.dart';
-import 'package:blue_business/core/io/api/config/sales_iq_config.dart';
-import 'package:blue_business/core/services/locator.dart';
-import 'package:blue_business/core/utils/connection.dart';
+import 'package:blue_business/core/config/logger/logger_factory.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/root_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'core/io/logger/logger_factory.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setUpLocator();
   registerErrorHandlers();
-  if (await ConnectionHelper.hasNetwork()) {
-    FirebaseConfig.init();
-    SalesIqConfig().init();
-  }
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  runApp(const BlueApp());
+  runApp(const BlueBusinessApp());
 }
 
 void registerErrorHandlers() {
