@@ -53,7 +53,7 @@ class DashboardShellViewModel extends BaseViewModel {
   goToPage(BuildContext context, int index) {
     switch (index) {
       case 0:
-        context.pushReplacement(RoutePaths.home);
+        context.push(RoutePaths.home);
       case 1:
         context.push(RoutePaths.insights);
       case 2:

@@ -33,8 +33,6 @@ class AppErrorHandler {
         recordErrorInFirebase(error, params);
         return "Processing error: This error has been recorded and will be attended to as soon as possible.";
       } else {
-        recordErrorInFirebase(error, params);
-
         return error.toString();
       }
     }
@@ -57,7 +55,7 @@ class AppErrorHandler {
     }
 
     if (!kDebugMode) {
-      FirebaseCrashlytics.instance.recordError(params, null, fatal: true);
+      FirebaseCrashlytics.instance.recordError(params, null);
     }
   }
 
