@@ -6,6 +6,8 @@ import 'package:go_router/go_router.dart';
 
 extension BuildContextEx on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);
+  double getHeight([double scale = 1]) => mediaQuery.size.height * scale;
+  double getWidth([double scale = 1]) => mediaQuery.size.width * scale;
 
   void popUntilPath<T extends Object?>(String ancestorPath, [T? result]) {
     while (GoRouter.of(this)
