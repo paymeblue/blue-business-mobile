@@ -21,7 +21,7 @@ class RemoteConfigService {
     ));
 
     await remoteConfig.setDefaults({
-      'minimum_version': '1.0.5',
+      'minimum_version': '0.0.0',
       'force_update': false,
       'use_voice': false,
       'nigerian_states': jsonEncode({'states': []}),
@@ -40,7 +40,7 @@ class RemoteConfigService {
     Source installationSource = await StoreChecker.getSource;
 
     locator<AppStateValues>().isTestApp =
-        (installationSource != Source.IS_INSTALLED_FROM_APP_STORE) ||
+        (installationSource != Source.IS_INSTALLED_FROM_APP_STORE) &&
             installationSource != Source.IS_INSTALLED_FROM_PLAY_STORE;
   }
 
