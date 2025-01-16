@@ -6,6 +6,8 @@ class RoutePaths {
   static String initial = '/';
   static String welcome = '/welcome';
 
+  static String comingSoon = '/coming-soon';
+
   static String login = '/login';
   static String initiateResetPassword = "$login/initiate-reset-password";
   static String verifyPasswordOtp = "$login/verify-reset-password";

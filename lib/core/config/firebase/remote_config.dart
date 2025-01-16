@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -24,6 +25,7 @@ class RemoteConfigService {
       'minimum_version': '0.0.0',
       'force_update': false,
       'use_voice': false,
+      'locked_feature': RoutePaths.bills,
       'nigerian_states': jsonEncode({'states': []}),
     });
 
@@ -41,7 +43,10 @@ class RemoteConfigService {
 
     locator<AppStateValues>().isTestApp =
         (installationSource != Source.IS_INSTALLED_FROM_APP_STORE) &&
-            installationSource != Source.IS_INSTALLED_FROM_PLAY_STORE;
+            (installationSource != Source.IS_INSTALLED_FROM_PLAY_STORE);
+
+    locator<AppStateValues>().lockedFeature =
+        _remoteConfig.getString('locked_feature');
   }
 
   String get minimumVersion => _remoteConfig.getString('minimum_version');

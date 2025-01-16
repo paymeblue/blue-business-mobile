@@ -50,11 +50,7 @@ List<GoRoute> homeRoutes = [
         path: RoutePaths.bills.routeSplitter,
         parentNavigatorKey: locator<NavigationService>().navigatorKey,
         builder: (context, state) {
-          if (locator<AppStateValues>().isTestApp) {
-            return const BillsView();
-          } else {
-            return const ComingSoonView();
-          }
+          return const BillsView();
         },
         routes: billRoutes,
       ),
