@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -16,17 +15,59 @@ class RemoteConfigService {
   static Future<RemoteConfigService> initialize() async {
     final remoteConfig = FirebaseRemoteConfig.instance;
 
+    Map<String, dynamic> states = {
+      "states": [
+        {"name": "Abia", "alt_name": ""},
+        {"name": "Adamawa", "alt_name": ""},
+        {"name": "Akwa Ibom", "alt_name": ""},
+        {"name": "Anambra", "alt_name": ""},
+        {"name": "Bauchi", "alt_name": ""},
+        {"name": "Bayelsa", "alt_name": ""},
+        {"name": "Benue", "alt_name": ""},
+        {"name": "Borno", "alt_name": ""},
+        {"name": "Cross River", "alt_name": ""},
+        {"name": "Delta", "alt_name": ""},
+        {"name": "Ebonyi", "alt_name": ""},
+        {"name": "Edo", "alt_name": ""},
+        {"name": "Ekiti", "alt_name": ""},
+        {"name": "Enugu", "alt_name": ""},
+        {"name": "Gombe", "alt_name": ""},
+        {"name": "Imo", "alt_name": ""},
+        {"name": "Jigawa", "alt_name": ""},
+        {"name": "Kaduna", "alt_name": ""},
+        {"name": "Kano", "alt_name": ""},
+        {"name": "Katsina", "alt_name": ""},
+        {"name": "Kebbi", "alt_name": ""},
+        {"name": "Kogi", "alt_name": ""},
+        {"name": "Kwara", "alt_name": ""},
+        {"name": "Lagos", "alt_name": ""},
+        {"name": "Nasarawa", "alt_name": ""},
+        {"name": "Niger", "alt_name": ""},
+        {"name": "Ogun", "alt_name": ""},
+        {"name": "Ondo", "alt_name": ""},
+        {"name": "Osun", "alt_name": ""},
+        {"name": "Oyo", "alt_name": ""},
+        {"name": "Plateau", "alt_name": ""},
+        {"name": "Rivers", "alt_name": ""},
+        {"name": "Sokoto", "alt_name": ""},
+        {"name": "Taraba", "alt_name": ""},
+        {"name": "Yobe", "alt_name": ""},
+        {"name": "Zamfara", "alt_name": ""},
+        {"name": "FCT(Abuja)", "alt_name": "Abuja"}
+      ]
+    };
+
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
       fetchTimeout: const Duration(seconds: 30),
       minimumFetchInterval: const Duration(seconds: 0),
     ));
 
     await remoteConfig.setDefaults({
-      'minimum_version': '0.0.0',
+      'minimum_version': '1.0.5',
       'force_update': false,
       'use_voice': false,
-      'locked_feature': RoutePaths.bills,
-      'nigerian_states': jsonEncode({'states': []}),
+      'locked_feature': jsonEncode({'features': []}),
+      'nigerian_states': jsonEncode(states),
     });
 
     try {
@@ -45,8 +86,11 @@ class RemoteConfigService {
         (installationSource != Source.IS_INSTALLED_FROM_APP_STORE) &&
             (installationSource != Source.IS_INSTALLED_FROM_PLAY_STORE);
 
-    locator<AppStateValues>().lockedFeature =
-        _remoteConfig.getString('locked_feature');
+    locator<AppStateValues>().lockedFeatures =
+        (jsonDecode(_remoteConfig.getString('locked_feature'))['features']
+                as List)
+            .map<String>((e) => e)
+            .toList();
   }
 
   String get minimumVersion => _remoteConfig.getString('minimum_version');

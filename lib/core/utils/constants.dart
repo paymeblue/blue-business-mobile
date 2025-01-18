@@ -20,7 +20,7 @@ class AppStateValues extends ChangeNotifier {
   bool _newMessage = false;
   bool _hasNetwork = true;
   bool _isTestApp = false;
-  String _lockedFeature = "";
+  List<String> _lockedFeatures = [];
   String? _channelId;
   String _token = "";
   LoginData? _currentUser;
@@ -37,7 +37,7 @@ class AppStateValues extends ChangeNotifier {
   bool get hasSavedBeneficiary => _hasSavedBeneficiary;
   bool get notificationStatus => _notificationStatus;
   bool get isTestApp => _isTestApp;
-  String get lockedFeature => _lockedFeature;
+  List<String> get lockedFeatures => _lockedFeatures;
   String get resetPath => _path;
   int get unreadCount => _count;
   bool get hasNewMessage => _newMessage;
@@ -54,8 +54,8 @@ class AppStateValues extends ChangeNotifier {
 
   NotificationState? notificationState;
 
-  set lockedFeature(String v) {
-    _lockedFeature = v;
+  set lockedFeatures(List<String> v) {
+    _lockedFeatures = v;
     notifyListeners();
   }
 

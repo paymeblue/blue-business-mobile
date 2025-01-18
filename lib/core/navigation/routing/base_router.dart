@@ -12,7 +12,7 @@ GoRouter router = GoRouter(
     if (stateValues.currentUser == null &&
         state.matchedLocation.contains("/dash")) {
       return RoutePaths.login;
-    } else if (stateValues.lockedFeature == state.matchedLocation &&
+    } else if (stateValues.lockedFeatures.contains(state.matchedLocation) &&
         !stateValues.isTestApp) {
       return RoutePaths.comingSoon;
     }
