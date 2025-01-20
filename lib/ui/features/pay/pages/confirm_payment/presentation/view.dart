@@ -197,7 +197,7 @@ class ConfirmTransactionView extends StatelessWidget {
       SizedBox(
         width: 350.w,
         child: Text(
-          "You are about to withdraw ${nairaSymbol()}${args.receiver!.amount} from your Blue wallet to the following account.",
+          "You are about to withdraw ${nairaSymbol()}${(args.amount! / 100).toStringAsFixed(2)} from your Blue wallet to the following account.",
           style: AppTextStyles.subHeader,
           textAlign: TextAlign.start,
         ),
