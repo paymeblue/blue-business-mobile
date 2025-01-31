@@ -95,7 +95,8 @@ class BranchHomeView extends StatelessWidget {
       child: PagedListView<int, Branch>.separated(
         pagingController: model.branchPagingController,
         builderDelegate: PagedChildBuilderDelegate(
-            noItemsFoundIndicatorBuilder: (context) => emptyBody(model),
+            noItemsFoundIndicatorBuilder: (context) =>
+                emptyBody(model, context),
             firstPageProgressIndicatorBuilder: (context) => Column(
                   children: [
                     ...List.generate(
@@ -272,7 +273,7 @@ class BranchHomeView extends StatelessWidget {
     );
   }
 
-  Widget emptyBody(BranchHomeViewModel model) {
+  Widget emptyBody(BranchHomeViewModel model, BuildContext context) {
     return SizedBox(
       width: model.size.width,
       child: Column(
@@ -299,7 +300,9 @@ class BranchHomeView extends StatelessWidget {
                 Icons.add,
               ),
               title: "Add new branch",
-              onTap: () {},
+              onTap: () {
+                model.goToAddBranch(context);
+              },
             ),
           ),
         ],
