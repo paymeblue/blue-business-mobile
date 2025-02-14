@@ -5,17 +5,21 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
 import 'package:blue_business/core/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/extensions.dart';
+import 'package:blue_business/ui/features/webview/view.dart';
 import 'package:blue_business/ui/widgets/avatar/avatar.dart';
 import 'package:blue_business/ui/widgets/paging/error.dart';
 import 'package:blue_business/ui/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/ui/widgets/paging/no_items.dart';
 import 'package:blue_business/ui/widgets/tiles/transaction_tile.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
@@ -47,40 +51,9 @@ class HomeView extends StatelessWidget {
                       walletContainer(model),
                       if (!locator<AppStateValues>()
                           .currentUser!
-                          .proofOfAddressVerified) ...[
-                        12.verticalGap,
-                        Container(
-                          height: 2.h,
-                          width: model.size.width,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFFEC7834),
-                          ),
-                        ),
-                        Container(
-                          width: model.size.width,
-                          height: 50.h,
-                          decoration:
-                              BoxDecoration(color: AppColors.white, boxShadow: [
-                            BoxShadow(
-                              offset: const Offset(0, 5),
-                              color: Colors.black.withOpacity(.1),
-                              blurRadius: 16.r,
-                            )
-                          ]),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Verify your residential address',
-                                style: AppTextStyles.smallHeader.copyWith(
-                                  height: 21.toLineHeight(15),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        10.verticalGap,
-                      ] else
+                          .proofOfAddressVerified)
+                        ...addressBanner(context, model)
+                      else
                         20.verticalGap,
                       transactionOptionSection(model, context),
                       12.verticalGap,
@@ -98,6 +71,70 @@ class HomeView extends StatelessWidget {
         );
       },
     );
+  }
+
+  List<Widget> addressBanner(BuildContext context, HomeViewModel model) {
+    return [
+      12.verticalGap,
+      Container(
+        height: 2.h,
+        width: model.size.width,
+        decoration: const BoxDecoration(
+          color: Color(0xFFEC7834),
+        ),
+      ),
+      Container(
+        width: model.size.width,
+        decoration: BoxDecoration(color: AppColors.white, boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 5),
+            color: Colors.black.withOpacity(.1),
+            blurRadius: 16.r,
+          )
+        ]),
+        padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 12.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Verify your residential address',
+              style: AppTextStyles.smallHeader.copyWith(
+                height: 21.toLineHeight(15),
+              ),
+            ),
+            RichText(
+              text: TextSpan(children: [
+                TextSpan(
+                  text:
+                      'To complete your account setup, please verify your address. ',
+                  style: AppTextStyles.smallText.copyWith(
+                    color: AppColors.bodyTextColor,
+                  ),
+                ),
+                TextSpan(
+                  text: 'Tap here to complete!',
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      BlueWebViewArgs args = BlueWebViewArgs(
+                          'https://tally.so/r/nGqjPo', onLeadingPressed: () {
+                        context.pop();
+                      });
+                      context
+                          .push<bool>(RoutePaths.webview, extra: args)
+                          .then((v) {
+                        model.getProfile();
+                      });
+                    },
+                  style:
+                      AppTextStyles.smallText.copyWith(color: AppColors.blue),
+                )
+              ]),
+            ),
+          ],
+        ),
+      ),
+      10.verticalGap,
+    ];
   }
 
   Widget firstRow() {
