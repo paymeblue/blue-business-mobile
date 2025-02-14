@@ -106,3 +106,13 @@ extension StringEx on String? {
     return selectedCountry.dialCode + number;
   }
 }
+
+extension PxToLineHeight on num {
+  double toLineHeight(double fontSize) {
+    return sp / fontSize.sp;
+  }
+
+  double toLetterSpacing(double fontsize) {
+    return sp * fontsize.sp;
+  }
+}

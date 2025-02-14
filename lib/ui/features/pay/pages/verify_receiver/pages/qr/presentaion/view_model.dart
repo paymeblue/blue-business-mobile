@@ -58,7 +58,9 @@ class QrPaymentViewModel extends BaseViewModel {
     String val = capture.barcodes.first.rawValue!;
     mobileScannerController.stop();
 
-    if (context.mounted) verify(val, context);
+    List<String> values = val.split("_");
+
+    if (context.mounted) verify(values.first, context);
   }
 
   verify(String identifier, BuildContext context) async {

@@ -45,7 +45,43 @@ class HomeView extends StatelessWidget {
                       firstRow(),
                       20.verticalGap,
                       walletContainer(model),
-                      20.verticalGap,
+                      if (!locator<AppStateValues>()
+                          .currentUser!
+                          .proofOfAddressVerified) ...[
+                        12.verticalGap,
+                        Container(
+                          height: 2.h,
+                          width: model.size.width,
+                          decoration: const BoxDecoration(
+                            color: Color(0xFFEC7834),
+                          ),
+                        ),
+                        Container(
+                          width: model.size.width,
+                          height: 50.h,
+                          decoration:
+                              BoxDecoration(color: AppColors.white, boxShadow: [
+                            BoxShadow(
+                              offset: const Offset(0, 5),
+                              color: Colors.black.withOpacity(.1),
+                              blurRadius: 16.r,
+                            )
+                          ]),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Verify your residential address',
+                                style: AppTextStyles.smallHeader.copyWith(
+                                  height: 21.toLineHeight(15),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        10.verticalGap,
+                      ] else
+                        20.verticalGap,
                       transactionOptionSection(model, context),
                       12.verticalGap,
                       totalSalesSection(model, context),

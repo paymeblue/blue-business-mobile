@@ -123,7 +123,7 @@ flutter_gen:
   fonts:
     outputs:
       class_name: AppFonts
-      package_parameter_enabled: true
+      package_parameter_enabled: false
   colors:
     outputs:
       class_name: AppColors

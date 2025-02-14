@@ -27,10 +27,11 @@ class AppTextStyles {
       color: AppColors.bodyTextColor);
 
   static TextStyle smallHeader = TextStyle(
-      fontFamily: AppFonts.satoshi,
-      fontSize: 15.sp,
-      fontWeight: FontWeight.w500,
-      color: AppColors.bodyTextColor);
+    fontFamily: AppFonts.satoshi,
+    fontSize: 15.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.bodyTextColor,
+  );
 
   static TextStyle numberButton = TextStyle(
       fontSize: 30.sp,
