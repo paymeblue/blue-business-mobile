@@ -106,24 +106,20 @@ class HomeView extends StatelessWidget {
               text: TextSpan(children: [
                 TextSpan(
                   text:
-                      'To complete your account setup, please verify your address. ',
+                      'Address verification is required to complete your profile. If you have provided your verification information, please ignore this message, if you have not, ',
                   style: AppTextStyles.smallText.copyWith(
                     color: AppColors.bodyTextColor,
                   ),
                 ),
                 TextSpan(
-                  text: 'Tap here to complete!',
+                  text: 'tap here to complete!',
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       BlueWebViewArgs args = BlueWebViewArgs(
                           'https://tally.so/r/nGqjPo', onLeadingPressed: () {
                         context.pop();
                       });
-                      context
-                          .push<bool>(RoutePaths.webview, extra: args)
-                          .then((v) {
-                        model.getProfile();
-                      });
+                      context.push<bool>(RoutePaths.webview, extra: args);
                     },
                   style:
                       AppTextStyles.smallText.copyWith(color: AppColors.blue),
