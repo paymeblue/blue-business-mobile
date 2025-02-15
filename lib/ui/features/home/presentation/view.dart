@@ -22,6 +22,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'view_model.dart';
@@ -44,26 +45,30 @@ class HomeView extends StatelessWidget {
               child: SingleChildScrollView(
                 child: SizedBox(
                   height: (model.size.height + 150).h,
-                  child: Column(
-                    children: [
-                      firstRow(),
-                      20.verticalGap,
-                      walletContainer(model),
-                      if (!locator<AppStateValues>()
-                          .currentUser!
-                          .proofOfAddressVerified)
-                        ...addressBanner(context, model)
-                      else
+                  child: Consumer<AppStateValues>(
+                      builder: (context, stateValues, _) {
+                    return Column(
+                      children: [
+                        firstRow(),
                         20.verticalGap,
-                      transactionOptionSection(model, context),
-                      12.verticalGap,
-                      totalSalesSection(model, context),
-                      12.verticalGap,
-                      Expanded(
-                        child: transactionSection(model, context),
-                      ),
-                    ],
-                  ),
+                        walletContainer(model),
+                        if (!locator<AppStateValues>()
+                                .currentUser!
+                                .proofOfAddressVerified &&
+                            !stateValues.hasClosedAddressBanner)
+                          ...addressBanner(context, model)
+                        else
+                          20.verticalGap,
+                        transactionOptionSection(model, context),
+                        12.verticalGap,
+                        totalSalesSection(model, context),
+                        12.verticalGap,
+                        Expanded(
+                          child: transactionSection(model, context),
+                        ),
+                      ],
+                    );
+                  }),
                 ),
               ),
             ),
@@ -74,6 +79,7 @@ class HomeView extends StatelessWidget {
   }
 
   List<Widget> addressBanner(BuildContext context, HomeViewModel model) {
+    final statValues = Provider.of<AppStateValues>(context);
     return [
       12.verticalGap,
       Container(
@@ -93,38 +99,65 @@ class HomeView extends StatelessWidget {
           )
         ]),
         padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 12.h),
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Verify your residential address',
-              style: AppTextStyles.smallHeader.copyWith(
-                height: 21.toLineHeight(15),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Verify your residential address',
+                    style: AppTextStyles.smallHeader.copyWith(
+                      height: 21.toLineHeight(15),
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text:
+                            'Do not provide your information more than once, this message will disappear permanently once it is approved. ',
+                        style: AppTextStyles.smallText.copyWith(
+                          color: AppColors.bodyTextColor,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'Tap here to complete!',
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            BlueWebViewArgs args =
+                                BlueWebViewArgs('https://tally.so/r/nGqjPo',
+                                    onLeadingPressed: () {
+                              context.pop();
+                            });
+                            context.push<bool>(RoutePaths.webview, extra: args);
+                          },
+                        style: AppTextStyles.smallText
+                            .copyWith(color: AppColors.blue),
+                      )
+                    ]),
+                  ),
+                ],
               ),
             ),
-            RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                  text:
-                      'Address verification is required to complete your profile. If you have provided your verification information, please ignore this message, if you have not, ',
-                  style: AppTextStyles.smallText.copyWith(
-                    color: AppColors.bodyTextColor,
-                  ),
+            GestureDetector(
+              onTap: () {
+                statValues.hasClosedAddressBanner = true;
+              },
+              child: Container(
+                margin: const EdgeInsets.only(left: 16),
+                height: 34.h,
+                width: 34.w,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: const Color(0xFFE5E6E8)),
                 ),
-                TextSpan(
-                  text: 'tap here to complete!',
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      BlueWebViewArgs args = BlueWebViewArgs(
-                          'https://tally.so/r/nGqjPo', onLeadingPressed: () {
-                        context.pop();
-                      });
-                      context.push<bool>(RoutePaths.webview, extra: args);
-                    },
-                  style:
-                      AppTextStyles.smallText.copyWith(color: AppColors.blue),
-                )
-              ]),
+                child: const Icon(
+                  Icons.close,
+                  size: 19,
+                  color: AppColors.textColor,
+                ),
+              ),
             ),
           ],
         ),

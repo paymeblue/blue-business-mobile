@@ -20,6 +20,7 @@ class AppStateValues extends ChangeNotifier {
   bool _newMessage = false;
   bool _hasNetwork = true;
   bool _isTestApp = false;
+  bool _hasClosedAddressBanner = false;
   List<String> _lockedFeatures = [];
   String? _channelId;
   String _token = "";
@@ -43,6 +44,7 @@ class AppStateValues extends ChangeNotifier {
   bool get hasNewMessage => _newMessage;
   bool get showLiveChat => _showLiveChat;
   bool get hasNetwork => _hasNetwork;
+  bool get hasClosedAddressBanner => _hasClosedAddressBanner;
   String? get channelId => _channelId;
   String get accessToken => _token;
 
@@ -53,6 +55,11 @@ class AppStateValues extends ChangeNotifier {
   Object? get extra => _extra;
 
   NotificationState? notificationState;
+
+  set hasClosedAddressBanner(bool v) {
+    _hasClosedAddressBanner = v;
+    notifyListeners();
+  }
 
   set lockedFeatures(List<String> v) {
     _lockedFeatures = v;
