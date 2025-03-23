@@ -1,16 +1,18 @@
+import 'dart:developer';
+
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
+import 'package:blue_business/core/config/timed_refresh.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
 import 'package:blue_business/core/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/extensions.dart';
-import 'package:blue_business/ui/features/webview/view.dart';
 import 'package:blue_business/ui/widgets/avatar/avatar.dart';
 import 'package:blue_business/ui/widgets/paging/error.dart';
 import 'package:blue_business/ui/widgets/paging/loading_shimmer.dart';
@@ -19,11 +21,11 @@ import 'package:blue_business/ui/widgets/tiles/transaction_tile.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'view_model.dart';
 
@@ -124,13 +126,17 @@ class HomeView extends StatelessWidget {
                       TextSpan(
                         text: 'Tap here to complete!',
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            BlueWebViewArgs args =
-                                BlueWebViewArgs('https://tally.so/r/nGqjPo',
-                                    onLeadingPressed: () {
-                              context.pop();
-                            });
-                            context.push<bool>(RoutePaths.webview, extra: args);
+                          ..onTap = () async {
+                            AppLoader.start();
+                            await RefreshTimer().refreshToken(true);
+                            AppLoader.stop();
+
+                            final url =
+                                "https:paymeblue.com/business-owner-kyc?token=${locator<AppStateValues>().accessToken}";
+
+                            log(url);
+
+                            launchUrl(Uri.parse(url));
                           },
                         style: AppTextStyles.smallText
                             .copyWith(color: AppColors.blue),

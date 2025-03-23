@@ -32,11 +32,11 @@ class RefreshTimer {
 
   _setupRefresh() {
     _refreshTimer ??= Timer(const Duration(seconds: 285), () async {
-      await _refreshToken();
+      await refreshToken();
     });
   }
 
-  _refreshToken() async {
+  refreshToken([bool resetRefresh = false]) async {
     RefreshTokenRequest request = RefreshTokenRequest(
         refreshToken: locator<AppStateValues>().refreshToken);
     RefreshTokenResponse resp =
@@ -58,9 +58,13 @@ class RefreshTimer {
     if (resp.status == "success") {
       locator<AppStateValues>().accessToken = resp.data!.accessToken;
       _refreshTimer = null;
+
+      if (resetRefresh) {
+        resetTimer();
+      }
     } else {
       if (_count <= 2) {
-        _refreshToken();
+        refreshToken();
         _count += 1;
       } else {
         _count = 0;
