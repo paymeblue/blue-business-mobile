@@ -7,7 +7,7 @@ part 'transaction_history.g.dart';
 class TransactionHistory with _$TransactionHistory {
   const factory TransactionHistory({
     required String transactionId,
-    required String otherPartyName,
+    required String? otherPartyName,
     required String transactionAmount,
     required String paymentMode,
     @Default("debit") String transactionType,

@@ -83,14 +83,14 @@ class TransationTile extends StatelessWidget {
       case PaymentMode.qr:
       case PaymentMode.topup:
       case PaymentMode.withdrawal:
-        return transaction.otherPartyName;
+        return transaction.otherPartyName ?? 'N/A';
       case PaymentMode.phone:
         if (transaction.otherPartyName
             .toString()
             .startsWith(RegExp(r"[0-9]"))) {
           return "+${transaction.otherPartyName}";
         } else {
-          return transaction.otherPartyName;
+          return transaction.otherPartyName ?? 'N/A';
         }
       case PaymentMode.airtime:
         return "Airtime Bill";

@@ -21,7 +21,7 @@ TransactionHistory _$TransactionHistoryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TransactionHistory {
   String get transactionId => throw _privateConstructorUsedError;
-  String get otherPartyName => throw _privateConstructorUsedError;
+  String? get otherPartyName => throw _privateConstructorUsedError;
   String get transactionAmount => throw _privateConstructorUsedError;
   String get paymentMode => throw _privateConstructorUsedError;
   String get transactionType => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $TransactionHistoryCopyWith<$Res> {
   @useResult
   $Res call(
       {String transactionId,
-      String otherPartyName,
+      String? otherPartyName,
       String transactionAmount,
       String paymentMode,
       String transactionType,
@@ -72,7 +72,7 @@ class _$TransactionHistoryCopyWithImpl<$Res, $Val extends TransactionHistory>
   @override
   $Res call({
     Object? transactionId = null,
-    Object? otherPartyName = null,
+    Object? otherPartyName = freezed,
     Object? transactionAmount = null,
     Object? paymentMode = null,
     Object? transactionType = null,
@@ -85,10 +85,10 @@ class _$TransactionHistoryCopyWithImpl<$Res, $Val extends TransactionHistory>
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
               as String,
-      otherPartyName: null == otherPartyName
+      otherPartyName: freezed == otherPartyName
           ? _value.otherPartyName
           : otherPartyName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       transactionAmount: null == transactionAmount
           ? _value.transactionAmount
           : transactionAmount // ignore: cast_nullable_to_non_nullable
@@ -127,7 +127,7 @@ abstract class _$$TransactionHistoryImplCopyWith<$Res>
   @useResult
   $Res call(
       {String transactionId,
-      String otherPartyName,
+      String? otherPartyName,
       String transactionAmount,
       String paymentMode,
       String transactionType,
@@ -150,7 +150,7 @@ class __$$TransactionHistoryImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? transactionId = null,
-    Object? otherPartyName = null,
+    Object? otherPartyName = freezed,
     Object? transactionAmount = null,
     Object? paymentMode = null,
     Object? transactionType = null,
@@ -163,10 +163,10 @@ class __$$TransactionHistoryImplCopyWithImpl<$Res>
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
               as String,
-      otherPartyName: null == otherPartyName
+      otherPartyName: freezed == otherPartyName
           ? _value.otherPartyName
           : otherPartyName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       transactionAmount: null == transactionAmount
           ? _value.transactionAmount
           : transactionAmount // ignore: cast_nullable_to_non_nullable
@@ -214,7 +214,7 @@ class _$TransactionHistoryImpl implements _TransactionHistory {
   @override
   final String transactionId;
   @override
-  final String otherPartyName;
+  final String? otherPartyName;
   @override
   final String transactionAmount;
   @override
@@ -291,7 +291,7 @@ class _$TransactionHistoryImpl implements _TransactionHistory {
 abstract class _TransactionHistory implements TransactionHistory {
   const factory _TransactionHistory(
       {required final String transactionId,
-      required final String otherPartyName,
+      required final String? otherPartyName,
       required final String transactionAmount,
       required final String paymentMode,
       final String transactionType,
@@ -305,7 +305,7 @@ abstract class _TransactionHistory implements TransactionHistory {
   @override
   String get transactionId;
   @override
-  String get otherPartyName;
+  String? get otherPartyName;
   @override
   String get transactionAmount;
   @override
