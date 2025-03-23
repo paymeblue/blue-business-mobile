@@ -49,7 +49,7 @@ class SettingsSectionContainer extends StatelessWidget {
       type: MaterialType.transparency,
       child: InkWell(
         onTap: option.onTap,
-        splashColor: AppColors.brightBlue.withOpacity(.3),
+        splashColor: AppColors.brightBlue.withOpacityValue(.3),
         child: Container(
           constraints: const BoxConstraints(minHeight: 46),
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(4)),

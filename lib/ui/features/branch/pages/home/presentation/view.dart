@@ -137,14 +137,14 @@ class BranchHomeView extends StatelessWidget {
 
   Widget branchLoadingTile(BranchHomeViewModel model) {
     return Shimmer.fromColors(
-      baseColor: AppColors.brightBlue.withOpacity(.3),
+      baseColor: AppColors.brightBlue.withOpacityValue(.3),
       highlightColor: AppColors.white,
       child: Container(
         height: 160,
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black.withOpacity(.25)),
+          border: Border.all(color: Colors.black.withOpacityValue(.25)),
           borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
@@ -154,7 +154,7 @@ class BranchHomeView extends StatelessWidget {
               height: 25,
               width: 100,
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(.4),
+                color: Colors.black.withOpacityValue(.4),
               ),
             ),
             15.verticalGap,
@@ -163,7 +163,7 @@ class BranchHomeView extends StatelessWidget {
                 height: 40,
                 width: 120,
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(.6),
+                  color: Colors.black.withOpacityValue(.6),
                 ),
               ),
             ),
@@ -175,14 +175,14 @@ class BranchHomeView extends StatelessWidget {
                   width: model.size.width / 2.5,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(.6),
+                    color: Colors.black.withOpacityValue(.6),
                   ),
                 ),
                 Container(
                   width: model.size.width / 2.5,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(.6),
+                    color: Colors.black.withOpacityValue(.6),
                   ),
                 ),
               ],

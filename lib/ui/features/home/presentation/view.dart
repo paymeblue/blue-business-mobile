@@ -94,7 +94,7 @@ class HomeView extends StatelessWidget {
         decoration: BoxDecoration(color: AppColors.white, boxShadow: [
           BoxShadow(
             offset: const Offset(0, 5),
-            color: Colors.black.withOpacity(.1),
+            color: Colors.black.withOpacityValue(.1),
             blurRadius: 16.r,
           )
         ]),
@@ -333,7 +333,7 @@ class HomeView extends StatelessWidget {
       height: 80,
       width: context.mediaQuery.size.width,
       child: Shimmer.fromColors(
-        baseColor: AppColors.brightBlue.withOpacity(.3),
+        baseColor: AppColors.brightBlue.withOpacityValue(.3),
         highlightColor: AppColors.white,
         child: DecoratedBox(
           decoration: BoxDecoration(

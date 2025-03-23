@@ -249,7 +249,7 @@ class _$AppButton extends AppButton {
                   style: AppTextStyles.largeButtonText.copyWith(
                     color: isEnabled || isLoading
                         ? textColor ?? AppColors.primary
-                        : AppColors.primary.withOpacity(.4),
+                        : AppColors.primary.withOpacityValue(.4),
                   ),
                 ),
               ));
@@ -260,7 +260,7 @@ class _$AppButton extends AppButton {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           minimumSize: const Size(double.infinity, 50),
           backgroundColor: backgroundColor,
-          disabledBackgroundColor: backgroundColor.withOpacity(0.5),
+          disabledBackgroundColor: backgroundColor.withOpacityValue(0.5),
           foregroundColor: textColor ?? Theme.of(context).colorScheme.onPrimary,
         ),
         onPressed: (!isEnabled || isLoading) ? null : onTap,
@@ -305,7 +305,7 @@ class _AppIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconColor = color ?? AppColors.primary;
-    final boxColor = iconColor.withOpacity(0.2);
+    final boxColor = iconColor.withOpacityValue(0.2);
     var radius = borderRadius ?? 8.0;
     return InkWell(
       onTap: onTap,

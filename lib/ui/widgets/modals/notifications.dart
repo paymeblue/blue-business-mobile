@@ -35,7 +35,7 @@ class AppNotification {
           width: 36.w,
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-              color: const Color(0xFF2FB9AC).withOpacity(.2),
+              color: const Color(0xFF2FB9AC).withOpacityValue(.2),
               shape: BoxShape.circle),
           child: AppAssets.images.icons.success.svg()),
       duration: const Duration(milliseconds: 6000),
@@ -66,7 +66,7 @@ class AppNotification {
           width: 36.w,
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-              color: const Color(0xFFEF2A5A).withOpacity(.2),
+              color: const Color(0xFFEF2A5A).withOpacityValue(.2),
               shape: BoxShape.circle),
           child: Container(
             decoration: const BoxDecoration(

@@ -2,6 +2,7 @@ import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/core/utils/extensions.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -125,7 +126,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: gradientColors
-                  .map((color) => color.withOpacity(0.4))
+                  .map((color) => color.withOpacityValue(0.4))
                   .toList(),
             ),
           ),

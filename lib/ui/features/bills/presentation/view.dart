@@ -45,7 +45,7 @@ class _BillsViewState extends State<BillsView> {
                       type: MaterialType.transparency,
                       child: InkWell(
                         onTap: model.billOptions(context)[i].onTap,
-                        splashColor: AppColors.brightBlue.withOpacity(.3),
+                        splashColor: AppColors.brightBlue.withOpacityValue(.3),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 17, vertical: 15),

@@ -332,8 +332,8 @@ class SettingsViewModel extends BaseViewModel {
               scale: .5,
               child: CupertinoSwitch(
                 value: notificationStatus,
-                activeColor: AppColors.primary,
-                trackColor: AppColors.midGrey,
+                activeTrackColor: AppColors.primary,
+                inactiveTrackColor: AppColors.midGrey,
                 onChanged: toggleNotifications,
               ),
             ),
@@ -350,8 +350,8 @@ class SettingsViewModel extends BaseViewModel {
               scale: .5,
               child: CupertinoSwitch(
                 value: useBiometrics,
-                activeColor: AppColors.primary,
-                trackColor: AppColors.midGrey,
+                activeTrackColor: AppColors.primary,
+                inactiveTrackColor: AppColors.midGrey,
                 onChanged: setBiometricsValue,
               ),
             ),
@@ -399,7 +399,7 @@ class SettingsViewModel extends BaseViewModel {
             height: 38.h,
             width: 38.w,
             decoration: BoxDecoration(
-              color: AppColors.error.withOpacity(.1),
+              color: AppColors.error.withOpacityValue(.1),
               shape: BoxShape.circle,
             ),
             padding: const EdgeInsets.all(10.5),

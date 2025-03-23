@@ -116,3 +116,9 @@ extension PxToLineHeight on num {
     return sp * fontsize.sp;
   }
 }
+
+extension ColorEx on Color {
+  Color withOpacityValue(double value) {
+    return withValues(alpha: value);
+  }
+}

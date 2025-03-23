@@ -236,14 +236,14 @@ class BlueBottomSheet {
             style: type.isNotEmpty
                 ? AppTextStyles.textField
                 : AppTextStyles.subText
-                    .copyWith(color: AppColors.textColor.withOpacity(.5)),
+                    .copyWith(color: AppColors.textColor.withOpacityValue(.5)),
           ),
           underline: const SizedBox(),
           icon: const Icon(Icons.keyboard_arrow_down_rounded),
           style: TextStyle(
               fontSize: 13.sp,
               // fontWeight: FontWeight.w300,
-              color: Theme.of(context).highlightColor.withOpacity(.8)),
+              color: Theme.of(context).highlightColor.withOpacityValue(.8)),
           items: alertTypes
               .map((q) => DropdownMenuItem<String>(
                     value: q,
@@ -275,14 +275,14 @@ class BlueBottomSheet {
     //         style: status.isNotEmpty
     //             ? AppTextStyles.textField
     //             : AppTextStyles.subText
-    //                 .copyWith(color: AppColors.textColor.withOpacity(.5)),
+    //                 .copyWith(color: AppColors.textColor.withOpacityValue(.5)),
     //       ),
     //       underline: const SizedBox(),
     //       icon: const Icon(Icons.keyboard_arrow_down_rounded),
     //       style: TextStyle(
     //           fontSize: 13.sp,
     //           // fontWeight: FontWeight.w300,
-    //           color: Theme.of(context).highlightColor.withOpacity(.8)),
+    //           color: Theme.of(context).highlightColor.withOpacityValue(.8)),
     //       items: statuses
     //           .map((q) => DropdownMenuItem<String>(
     //                 value: q,
@@ -335,7 +335,7 @@ class BlueBottomSheet {
                       ? Text(
                           "dd/mm/yyyy",
                           style: AppTextStyles.subText.copyWith(
-                              color: AppColors.textColor.withOpacity(.5)),
+                              color: AppColors.textColor.withOpacityValue(.5)),
                         )
                       : Text(
                           "${DateTime.parse(date).day}/${DateTime.parse(date).month}/${DateTime.parse(date).year}",
@@ -818,7 +818,7 @@ class BlueBottomSheet {
                       ? locator<AppStateValues>().recoveryCode
                       : recoveryCode,
                   style: AppTextStyles.textField.copyWith(
-                      color: AppColors.textColor.withOpacity(
+                      color: AppColors.textColor.withOpacityValue(
                           locator<AppStateValues>().recoveryCode.isEmpty
                               ? .3
                               : 1)),
@@ -1093,14 +1093,14 @@ class BlueBottomSheet {
             style: question.isNotEmpty
                 ? AppTextStyles.textField
                 : AppTextStyles.subText
-                    .copyWith(color: AppColors.textColor.withOpacity(.5)),
+                    .copyWith(color: AppColors.textColor.withOpacityValue(.5)),
           ),
           underline: const SizedBox(),
           icon: const Icon(Icons.keyboard_arrow_down_rounded),
           style: TextStyle(
               fontSize: 13.sp,
               // fontWeight: FontWeight.w300,
-              color: Theme.of(context).highlightColor.withOpacity(.8)),
+              color: Theme.of(context).highlightColor.withOpacityValue(.8)),
           items: questions
               .map((q) => DropdownMenuItem<String>(
                     value: q,

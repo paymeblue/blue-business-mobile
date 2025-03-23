@@ -1,4 +1,5 @@
 import 'package:blue_business/core/gen/assets.gen.dart';
+import 'package:blue_business/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:overlay_kit/overlay_kit.dart';
@@ -8,7 +9,7 @@ class AppLoader {
 
   static start() {
     return OverlayLoadingProgress.start(
-      barrierColor: Colors.black.withOpacity(.2),
+      barrierColor: Colors.black.withOpacityValue(.2),
       barrierDismissible: true,
       widget: const AnimatedLoader(),
     );

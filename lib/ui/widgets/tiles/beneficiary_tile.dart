@@ -49,7 +49,7 @@ class BeneficiaryTile extends StatelessWidget {
             onDelete: onDelete!,
           );
         },
-        splashColor: AppColors.error.withOpacity(.2),
+        splashColor: AppColors.error.withOpacityValue(.2),
         child: Container(
           height: 38.h,
           width: 38.w,

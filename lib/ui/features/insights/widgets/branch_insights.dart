@@ -87,7 +87,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
       onTap: () async {
         model.branch = await onTap(model);
       },
-      splashColor: AppColors.primary.withOpacity(.15),
+      splashColor: AppColors.primary.withOpacityValue(.15),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
         decoration: BoxDecoration(
@@ -337,7 +337,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
       height: 70.h,
       width: context.mediaQuery.size.width,
       child: Shimmer.fromColors(
-        baseColor: AppColors.brightBlue.withOpacity(.3),
+        baseColor: AppColors.brightBlue.withOpacityValue(.3),
         highlightColor: AppColors.white,
         child: DecoratedBox(
           decoration: BoxDecoration(
@@ -354,7 +354,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
       height: 65.h,
       width: context.mediaQuery.size.width,
       child: Shimmer.fromColors(
-        baseColor: AppColors.brightBlue.withOpacity(.3),
+        baseColor: AppColors.brightBlue.withOpacityValue(.3),
         highlightColor: AppColors.white,
         child: DecoratedBox(
           decoration: BoxDecoration(

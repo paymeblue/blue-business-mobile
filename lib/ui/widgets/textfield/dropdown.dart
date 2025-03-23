@@ -235,7 +235,7 @@ class _BlueBranchDropdownState extends State<_BlueBranchDropdown> {
               widget.value?.name ?? "--Select from the options below--",
               style: widget.value == null
                   ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacity(.3))
+                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -344,7 +344,7 @@ class _BlueBusinessCategoryDropdown extends StatelessWidget {
               value?.title ?? "--Select from the options below--",
               style: value == null
                   ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacity(.3))
+                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -455,7 +455,7 @@ class _BlueStringDropdown extends StatelessWidget {
               value ?? "--Select from the options below--",
               style: value == null
                   ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacity(.3))
+                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -673,7 +673,7 @@ class _BlueMeterTypeDropdown extends StatelessWidget {
                   : value![0].toUpperCase() + value!.substring(1),
               style: value == null
                   ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacity(.3))
+                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -782,7 +782,7 @@ class _BlueBankDropdown extends StatelessWidget {
               value?.name ?? "--Select a bank--",
               style: value == null
                   ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacity(.3))
+                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -912,7 +912,7 @@ class _BlueBillPackageDropdown extends StatelessWidget {
               value?.name ?? "--Select a $title",
               style: value == null
                   ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacity(.3))
+                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -1041,7 +1041,7 @@ class _BlueBillProviderDropdown extends StatelessWidget {
               value?.name ?? "--Select a $title",
               style: value == null
                   ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacity(.3))
+                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -1096,7 +1096,7 @@ class _$BlueDropdownState<T> extends State<_$BlueDropdown<T>> {
       onTap: () async {
         widget.onChanged(await onTap());
       },
-      splashColor: AppColors.primary.withOpacity(.15),
+      splashColor: AppColors.primary.withOpacityValue(.15),
       child: widget.selectedItemBuilder,
     );
   }
@@ -1252,7 +1252,7 @@ class _$BluePagedDropdownState<T> extends State<_$BluePagedDropdown<T>> {
       onTap: () async {
         widget.onChanged(await onTap());
       },
-      splashColor: AppColors.primary.withOpacity(.15),
+      splashColor: AppColors.primary.withOpacityValue(.15),
       child: widget.selectedItemBuilder,
     );
   }

@@ -112,8 +112,8 @@ class ConfirmTransactionView extends StatelessWidget {
           scale: .6,
           child: CupertinoSwitch(
             value: model.saveBeneficiary,
-            activeColor: AppColors.primary,
-            trackColor: AppColors.grey,
+            activeTrackColor: AppColors.primary,
+            inactiveTrackColor: AppColors.grey,
             onChanged: (v) {
               model.saveBeneficiary = v;
             },
