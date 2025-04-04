@@ -79,7 +79,9 @@ class ReceiveMoneyViewModel extends BaseViewModel {
           mimeType: "png");
 
       Share.shareXFiles([image]).then((value) {
-        BlueToast.primaryWithcon("QR code shared");
+        if (value.status == ShareResultStatus.success) {
+          BlueToast.primaryWithcon("QR code shared");
+        }
       });
     } else {}
     AppLoader.stop();

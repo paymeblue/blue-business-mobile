@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:blue_business/core/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -11,12 +13,15 @@ import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/avatar/avatar.dart';
+import 'package:blue_business/ui/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
+import 'package:blue_business/ui/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
 
 class EnterBranchDetailsViewModel extends BaseViewModel {
@@ -106,7 +111,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
         ));
   }
 
-  showQRDialog(BuildContext context, Branch branch) {
+  showQRDialog(BuildContext context, Branch branch, [bool closePage = true]) {
     Shimmer qrImage() {
       return Shimmer.fromColors(
         loop: 2,
@@ -148,8 +153,8 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
       return Stack(
         children: [
           Container(
-            height: 165.dm,
-            width: 165.dm,
+            height: 204.dm,
+            width: 204.dm,
             decoration: const BoxDecoration(
               color: AppColors.bgGrey,
               shape: BoxShape.circle,
@@ -159,8 +164,8 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
             child: Screenshot(
               controller: screenshotController,
               child: Container(
-                height: 108.dm,
-                width: 108.dm,
+                height: 135.dm,
+                width: 135.dm,
                 decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(17),
@@ -173,8 +178,8 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
             ),
           ),
           Positioned(
-            top: 10.h,
-            left: 64.w,
+            top: 18.h,
+            left: 84.w,
             height: 35.dm,
             width: 35.dm,
             child: Container(
@@ -240,9 +245,26 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
                             ),
                             borderRadius: BorderRadius.circular(8.r),
                           ),
+                          width: context.getWidth(),
+                          padding: EdgeInsets.only(
+                              top: 25.h, bottom: 12.h, left: 16.w, right: 16.w),
                           child: Column(
                             children: [
+                              const Spacer(),
                               qrImageContainer(),
+                              const Spacer(
+                                flex: 3,
+                              ),
+                              SizedBox(
+                                height: 40.h,
+                                width: context.getWidth(.5),
+                                child: AppButton.ghostPrimary(
+                                  title: 'Share QR Code',
+                                  onTap: () {
+                                    downloadAndShareQr();
+                                  },
+                                ),
+                              )
                             ],
                           ),
                         ),
@@ -256,7 +278,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
                   child: GestureDetector(
                     onTap: () {
                       ctx.pop();
-                      if (context.mounted) goBack(context, true);
+                      if (context.mounted && closePage) goBack(context, true);
                     },
                     child: Container(
                       margin: const EdgeInsets.only(left: 16),
@@ -280,6 +302,28 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
         );
       },
     );
+  }
+
+  downloadAndShareQr() async {
+    AppLoader.start();
+    Uint8List? img;
+    await screenshotController.capture().then((value) {
+      img = value;
+    }).catchError((onError) {
+      AppNotification.error(message: AppErrorHandler.getErrorMessage(onError));
+    });
+    if (img != null) {
+      XFile image = XFile.fromData(img!,
+          // name: "${locator<AppStateValues>().currentUser!.firstName}_qr",
+          mimeType: "png");
+
+      Share.shareXFiles([image]).then((value) {
+        if (value.status == ShareResultStatus.success) {
+          BlueToast.primaryWithcon("QR code shared");
+        }
+      });
+    } else {}
+    AppLoader.stop();
   }
 
   editBranch(BuildContext context, Branch branch) async {

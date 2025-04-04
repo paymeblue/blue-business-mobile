@@ -79,7 +79,9 @@ class VendElectricitySuccessViewModel extends BaseViewModel {
       Share.shareXFiles(
         [image],
       ).then((value) {
-        if (Platform.isIOS) BlueToast.primaryWithcon("Receipt shared");
+        if (Platform.isIOS && value.status == ShareResultStatus.success) {
+          BlueToast.primaryWithcon("Receipt shared");
+        }
       });
     } else {}
   }
