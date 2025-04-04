@@ -106,6 +106,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get branches =>
       const SvgGenImage('assets/images/icons/branches.svg');
 
+  /// File path: assets/images/icons/business_fees.svg
+  SvgGenImage get businessFees =>
+      const SvgGenImage('assets/images/icons/business_fees.svg');
+
   /// File path: assets/images/icons/calendar.svg
   SvgGenImage get calendar =>
       const SvgGenImage('assets/images/icons/calendar.svg');
@@ -355,6 +359,7 @@ class $AssetsImagesIconsGen {
         bills,
         biometrics,
         branches,
+        businessFees,
         calendar,
         camera,
         cameraBlue,

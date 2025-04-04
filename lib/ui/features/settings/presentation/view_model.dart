@@ -293,6 +293,13 @@ class SettingsViewModel extends BaseViewModel {
 
   List<SettingsOption> financeOption(BuildContext context) => [
         SettingsOption(
+          icon: AppAssets.images.icons.businessFees.svg(),
+          title: "Business fees & charges",
+          onTap: () {
+            context.push(RoutePaths.settingsToBusinessFees);
+          },
+        ),
+        SettingsOption(
           icon: AppAssets.images.icons.virtualBank.svg(),
           title: "Withdrawal bank",
           subtitle: "Link your personal bank account to make easy withdrawals",
