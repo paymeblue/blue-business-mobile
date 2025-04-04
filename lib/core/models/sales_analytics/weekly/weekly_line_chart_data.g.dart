@@ -15,18 +15,9 @@ _$WeeklyLineChartDataImpl _$$WeeklyLineChartDataImplFromJson(
     );
 
 Map<String, dynamic> _$$WeeklyLineChartDataImplToJson(
-    _$WeeklyLineChartDataImpl instance) {
-  final val = <String, dynamic>{
-    'label': instance.label,
-    'amount': instance.amount,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('date', instance.date);
-  return val;
-}
+        _$WeeklyLineChartDataImpl instance) =>
+    <String, dynamic>{
+      'label': instance.label,
+      'amount': instance.amount,
+      if (instance.date case final value?) 'date': value,
+    };

@@ -21,24 +21,15 @@ _$PaymentLinkReceiptRecordImpl _$$PaymentLinkReceiptRecordImplFromJson(
     );
 
 Map<String, dynamic> _$$PaymentLinkReceiptRecordImplToJson(
-    _$PaymentLinkReceiptRecordImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'transaction_id': instance.transactionId,
-    'amount': instance.amount,
-    'receiver_name': instance.receiverName,
-    'phone': instance.phone,
-    'created_at': instance.createdAt,
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('sender_name', instance.senderName);
-  writeNotNull('narration', instance.narration);
-  return val;
-}
+        _$PaymentLinkReceiptRecordImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'transaction_id': instance.transactionId,
+      'amount': instance.amount,
+      'receiver_name': instance.receiverName,
+      'phone': instance.phone,
+      'created_at': instance.createdAt,
+      'status': instance.status,
+      if (instance.senderName case final value?) 'sender_name': value,
+      if (instance.narration case final value?) 'narration': value,
+    };

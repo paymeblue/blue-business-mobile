@@ -65,7 +65,7 @@ dependencies:
   change_app_package_name: ^1.1.0
 
   #ANNOTATION AND MODELLING
-  freezed_annotation: ^3.0.0
+  freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
   
   #NAVIGATION
@@ -101,9 +101,9 @@ dev_dependencies:
   #ANNOTATION
   build_runner: ^2.4.7
   flutter_gen_runner:
-  freezed: ^3.0.4
+  freezed: ^2.4.6
   json_serializable: ^6.7.1
-  retrofit_generator: ^9.1.9
+  retrofit_generator: ^8.0.6
 
 flutter_icons:
   ios: true

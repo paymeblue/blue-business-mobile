@@ -497,7 +497,7 @@ class $AssetsImagesNavbarIconsInactiveGen {
 }
 
 class AppAssets {
-  AppAssets._();
+  const AppAssets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const String shorebird = 'shorebird.yaml';
@@ -539,7 +539,7 @@ class AssetGenImage {
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {

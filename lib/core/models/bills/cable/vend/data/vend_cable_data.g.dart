@@ -21,26 +21,17 @@ _$VendCableDataImpl _$$VendCableDataImplFromJson(Map<String, dynamic> json) =>
       createdAt: json['created_at'] as String?,
     );
 
-Map<String, dynamic> _$$VendCableDataImplToJson(_$VendCableDataImpl instance) {
-  final val = <String, dynamic>{
-    'transaction_id': instance.transactionId,
-    'customer_name': instance.customerName,
-    'customer_info': instance.customerInfo,
-    'receiver': instance.receiver,
-    'provider': instance.provider,
-    'package': instance.package,
-    'payment_reference': instance.paymentReference,
-    'amount': instance.amount,
-    'service_charget': instance.serviceCharget,
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('created_at', instance.createdAt);
-  return val;
-}
+Map<String, dynamic> _$$VendCableDataImplToJson(_$VendCableDataImpl instance) =>
+    <String, dynamic>{
+      'transaction_id': instance.transactionId,
+      'customer_name': instance.customerName,
+      'customer_info': instance.customerInfo,
+      'receiver': instance.receiver,
+      'provider': instance.provider,
+      'package': instance.package,
+      'payment_reference': instance.paymentReference,
+      'amount': instance.amount,
+      'service_charget': instance.serviceCharget,
+      'status': instance.status,
+      if (instance.createdAt case final value?) 'created_at': value,
+    };

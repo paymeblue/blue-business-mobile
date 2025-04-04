@@ -17,22 +17,13 @@ _$PayDataImpl _$$PayDataImplFromJson(Map<String, dynamic> json) =>
       createdAt: json['created_at'] as String,
     );
 
-Map<String, dynamic> _$$PayDataImplToJson(_$PayDataImpl instance) {
-  final val = <String, dynamic>{
-    'transaction_id': instance.transactionId,
-    'amount': instance.amount,
-    'receiver_name': instance.receiverName,
-    'receiver_wallet': instance.receiverWallet,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('reference', instance.reference);
-  val['status'] = instance.status;
-  val['created_at'] = instance.createdAt;
-  return val;
-}
+Map<String, dynamic> _$$PayDataImplToJson(_$PayDataImpl instance) =>
+    <String, dynamic>{
+      'transaction_id': instance.transactionId,
+      'amount': instance.amount,
+      'receiver_name': instance.receiverName,
+      'receiver_wallet': instance.receiverWallet,
+      if (instance.reference case final value?) 'reference': value,
+      'status': instance.status,
+      'created_at': instance.createdAt,
+    };

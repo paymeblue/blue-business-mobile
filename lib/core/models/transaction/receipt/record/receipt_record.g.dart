@@ -20,25 +20,16 @@ _$ReceiptRecordImpl _$$ReceiptRecordImplFromJson(Map<String, dynamic> json) =>
       narration: json['narration'] as String?,
     );
 
-Map<String, dynamic> _$$ReceiptRecordImplToJson(_$ReceiptRecordImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'amount': instance.amount,
-    'order_reference': instance.orderReference,
-    'receiver_name': instance.receiverName,
-    'received_by': instance.receivedBy,
-    'payment_mode': instance.paymentMode,
-    'created_at': instance.createdAt,
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('sender_name', instance.senderName);
-  writeNotNull('narration', instance.narration);
-  return val;
-}
+Map<String, dynamic> _$$ReceiptRecordImplToJson(_$ReceiptRecordImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'amount': instance.amount,
+      'order_reference': instance.orderReference,
+      'receiver_name': instance.receiverName,
+      'received_by': instance.receivedBy,
+      'payment_mode': instance.paymentMode,
+      'created_at': instance.createdAt,
+      'status': instance.status,
+      if (instance.senderName case final value?) 'sender_name': value,
+      if (instance.narration case final value?) 'narration': value,
+    };

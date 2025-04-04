@@ -17,19 +17,11 @@ _$UpdateStaffRequestImpl _$$UpdateStaffRequestImplFromJson(
     );
 
 Map<String, dynamic> _$$UpdateStaffRequestImplToJson(
-    _$UpdateStaffRequestImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('name', instance.name);
-  writeNotNull('phone', instance.phone);
-  writeNotNull('password', instance.password);
-  writeNotNull('role', instance.role);
-  writeNotNull('branch_id', instance.branchId);
-  return val;
-}
+        _$UpdateStaffRequestImpl instance) =>
+    <String, dynamic>{
+      if (instance.name case final value?) 'name': value,
+      if (instance.phone case final value?) 'phone': value,
+      if (instance.password case final value?) 'password': value,
+      if (instance.role case final value?) 'role': value,
+      if (instance.branchId case final value?) 'branch_id': value,
+    };

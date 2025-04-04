@@ -19,25 +19,16 @@ _$ChatImpl _$$ChatImplFromJson(Map<String, dynamic> json) => _$ChatImpl(
       unreadCount: (json['unread_count'] as num?)?.toInt() ?? 0,
     );
 
-Map<String, dynamic> _$$ChatImplToJson(_$ChatImpl instance) {
-  final val = <String, dynamic>{
-    'channel_id': instance.channelId,
-    'sender': instance.sender,
-    'receiver': instance.receiver,
-    'time_stamp': instance.timeStamp,
-    'fcm_token': instance.fcmToken,
-    'sender_name': instance.senderName,
-    'peer_token': instance.peerToken,
-    'update_type': instance.updateType,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('message', instance.message);
-  val['unread_count'] = instance.unreadCount;
-  return val;
-}
+Map<String, dynamic> _$$ChatImplToJson(_$ChatImpl instance) =>
+    <String, dynamic>{
+      'channel_id': instance.channelId,
+      'sender': instance.sender,
+      'receiver': instance.receiver,
+      'time_stamp': instance.timeStamp,
+      'fcm_token': instance.fcmToken,
+      'sender_name': instance.senderName,
+      'peer_token': instance.peerToken,
+      'update_type': instance.updateType,
+      if (instance.message case final value?) 'message': value,
+      'unread_count': instance.unreadCount,
+    };

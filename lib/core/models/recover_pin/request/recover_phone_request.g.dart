@@ -15,17 +15,9 @@ _$SendRecoverPinRequestImpl _$$SendRecoverPinRequestImplFromJson(
     );
 
 Map<String, dynamic> _$$SendRecoverPinRequestImplToJson(
-    _$SendRecoverPinRequestImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('recovery_phone', instance.recoveryPhone);
-  val['validation_mode'] = instance.validationMode;
-  writeNotNull('security_answer', instance.securityAnswer);
-  return val;
-}
+        _$SendRecoverPinRequestImpl instance) =>
+    <String, dynamic>{
+      if (instance.recoveryPhone case final value?) 'recovery_phone': value,
+      'validation_mode': instance.validationMode,
+      if (instance.securityAnswer case final value?) 'security_answer': value,
+    };

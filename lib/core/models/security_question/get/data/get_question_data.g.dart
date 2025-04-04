@@ -16,19 +16,10 @@ _$GetQuestionDataImpl _$$GetQuestionDataImplFromJson(
     );
 
 Map<String, dynamic> _$$GetQuestionDataImplToJson(
-    _$GetQuestionDataImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'user_id': instance.userId,
-    'question': instance.question,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('created_at', instance.createdAt);
-  return val;
-}
+        _$GetQuestionDataImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'user_id': instance.userId,
+      'question': instance.question,
+      if (instance.createdAt case final value?) 'created_at': value,
+    };

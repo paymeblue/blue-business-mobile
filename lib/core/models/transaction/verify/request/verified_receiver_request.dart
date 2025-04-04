@@ -9,7 +9,7 @@ class VerifiedReceiverRequest with _$VerifiedReceiverRequest {
     required String transactionId,
     required String receiver,
     String? receiverName,
-    int? branchId,
+    String? branchId,
   }) = _VerifiedReceiverRequest;
 
   factory VerifiedReceiverRequest.fromJson(Map<String, dynamic> json) =>

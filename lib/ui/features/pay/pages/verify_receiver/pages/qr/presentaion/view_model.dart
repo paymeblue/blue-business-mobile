@@ -75,7 +75,7 @@ class QrPaymentViewModel extends BaseViewModel {
     VerifiedReceiverRequest request = VerifiedReceiverRequest(
       receiver: identifier,
       transactionId: data.transactionId,
-      branchId: branchId,
+      branchId: branchId.toString(),
     );
 
     VerifiedReceiverResponse resp = await TransactionService()

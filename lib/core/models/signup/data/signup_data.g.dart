@@ -20,23 +20,14 @@ _$SignupDataImpl _$$SignupDataImplFromJson(Map<String, dynamic> json) =>
       createdAt: json['created_at'] as String?,
     );
 
-Map<String, dynamic> _$$SignupDataImplToJson(_$SignupDataImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'phone': instance.phone,
-    'level': instance.level,
-    'business_profile_completed': instance.businessProfileCompleted,
-    'business_details_completed': instance.businessDetailsCompleted,
-    'business_kyc_completed': instance.businessKycCompleted,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('business_id', instance.businessId);
-  writeNotNull('created_at', instance.createdAt);
-  return val;
-}
+Map<String, dynamic> _$$SignupDataImplToJson(_$SignupDataImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'phone': instance.phone,
+      'level': instance.level,
+      'business_profile_completed': instance.businessProfileCompleted,
+      'business_details_completed': instance.businessDetailsCompleted,
+      'business_kyc_completed': instance.businessKycCompleted,
+      if (instance.businessId case final value?) 'business_id': value,
+      if (instance.createdAt case final value?) 'created_at': value,
+    };

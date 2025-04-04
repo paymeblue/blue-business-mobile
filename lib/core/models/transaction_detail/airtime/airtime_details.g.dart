@@ -21,24 +21,16 @@ _$AirtimeDetailsImpl _$$AirtimeDetailsImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$AirtimeDetailsImplToJson(
-    _$AirtimeDetailsImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  val['amount'] = instance.amount;
-  val['receiver'] = instance.receiver;
-  val['transaction_id'] = instance.transactionId;
-  val['provider'] = instance.provider;
-  val['created_at'] = instance.createdAt;
-  val['service'] = instance.service;
-  val['status'] = instance.status;
-  val['balance_before'] = instance.balanceBefore;
-  val['balance_after'] = instance.balanceAfter;
-  return val;
-}
+        _$AirtimeDetailsImpl instance) =>
+    <String, dynamic>{
+      if (instance.id case final value?) 'id': value,
+      'amount': instance.amount,
+      'receiver': instance.receiver,
+      'transaction_id': instance.transactionId,
+      'provider': instance.provider,
+      'created_at': instance.createdAt,
+      'service': instance.service,
+      'status': instance.status,
+      'balance_before': instance.balanceBefore,
+      'balance_after': instance.balanceAfter,
+    };

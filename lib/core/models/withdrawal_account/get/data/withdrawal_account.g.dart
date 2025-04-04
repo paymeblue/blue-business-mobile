@@ -18,21 +18,12 @@ _$WithdrawalAccountImpl _$$WithdrawalAccountImplFromJson(
     );
 
 Map<String, dynamic> _$$WithdrawalAccountImplToJson(
-    _$WithdrawalAccountImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'bank_id': instance.bankId,
-    'bank_name': instance.bankName,
-    'account_name': instance.accountName,
-    'account_number': instance.accountNumber,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('created_at', instance.createdAt);
-  return val;
-}
+        _$WithdrawalAccountImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'bank_id': instance.bankId,
+      'bank_name': instance.bankName,
+      'account_name': instance.accountName,
+      'account_number': instance.accountNumber,
+      if (instance.createdAt case final value?) 'created_at': value,
+    };

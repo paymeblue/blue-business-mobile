@@ -13,17 +13,9 @@ _$LoginRequestImpl _$$LoginRequestImplFromJson(Map<String, dynamic> json) =>
       password: json['password'] as String,
     );
 
-Map<String, dynamic> _$$LoginRequestImplToJson(_$LoginRequestImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('fcm_token', instance.fcmToken);
-  val['phone'] = instance.phone;
-  val['password'] = instance.password;
-  return val;
-}
+Map<String, dynamic> _$$LoginRequestImplToJson(_$LoginRequestImpl instance) =>
+    <String, dynamic>{
+      if (instance.fcmToken case final value?) 'fcm_token': value,
+      'phone': instance.phone,
+      'password': instance.password,
+    };

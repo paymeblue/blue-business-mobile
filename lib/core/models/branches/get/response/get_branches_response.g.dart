@@ -17,18 +17,9 @@ _$GetBranchesResponseImpl _$$GetBranchesResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$GetBranchesResponseImplToJson(
-    _$GetBranchesResponseImpl instance) {
-  final val = <String, dynamic>{
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('message', instance.message);
-  writeNotNull('data', instance.data);
-  return val;
-}
+        _$GetBranchesResponseImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      if (instance.message case final value?) 'message': value,
+      if (instance.data case final value?) 'data': value,
+    };

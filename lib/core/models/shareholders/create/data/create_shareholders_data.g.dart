@@ -17,20 +17,11 @@ _$CreateShareholdersDataImpl _$$CreateShareholdersDataImplFromJson(
     );
 
 Map<String, dynamic> _$$CreateShareholdersDataImplToJson(
-    _$CreateShareholdersDataImpl instance) {
-  final val = <String, dynamic>{
-    'name': instance.name,
-    'bvn': instance.bvn,
-    'id': instance.id,
-    'verified': instance.verified,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('created_at', instance.createdAt);
-  return val;
-}
+        _$CreateShareholdersDataImpl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'bvn': instance.bvn,
+      'id': instance.id,
+      'verified': instance.verified,
+      if (instance.createdAt case final value?) 'created_at': value,
+    };

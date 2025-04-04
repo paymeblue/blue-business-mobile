@@ -24,7 +24,7 @@ mixin _$VerifiedReceiverRequest {
   String get transactionId => throw _privateConstructorUsedError;
   String get receiver => throw _privateConstructorUsedError;
   String? get receiverName => throw _privateConstructorUsedError;
-  int? get branchId => throw _privateConstructorUsedError;
+  String? get branchId => throw _privateConstructorUsedError;
 
   /// Serializes this VerifiedReceiverRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $VerifiedReceiverRequestCopyWith<$Res> {
       {String transactionId,
       String receiver,
       String? receiverName,
-      int? branchId});
+      String? branchId});
 }
 
 /// @nodoc
@@ -86,7 +86,7 @@ class _$VerifiedReceiverRequestCopyWithImpl<$Res,
       branchId: freezed == branchId
           ? _value.branchId
           : branchId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
     ) as $Val);
   }
 }
@@ -104,7 +104,7 @@ abstract class _$$VerifiedReceiverRequestImplCopyWith<$Res>
       {String transactionId,
       String receiver,
       String? receiverName,
-      int? branchId});
+      String? branchId});
 }
 
 /// @nodoc
@@ -143,7 +143,7 @@ class __$$VerifiedReceiverRequestImplCopyWithImpl<$Res>
       branchId: freezed == branchId
           ? _value.branchId
           : branchId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
     ));
   }
 }
@@ -167,7 +167,7 @@ class _$VerifiedReceiverRequestImpl implements _VerifiedReceiverRequest {
   @override
   final String? receiverName;
   @override
-  final int? branchId;
+  final String? branchId;
 
   @override
   String toString() {
@@ -216,7 +216,7 @@ abstract class _VerifiedReceiverRequest implements VerifiedReceiverRequest {
       {required final String transactionId,
       required final String receiver,
       final String? receiverName,
-      final int? branchId}) = _$VerifiedReceiverRequestImpl;
+      final String? branchId}) = _$VerifiedReceiverRequestImpl;
 
   factory _VerifiedReceiverRequest.fromJson(Map<String, dynamic> json) =
       _$VerifiedReceiverRequestImpl.fromJson;
@@ -228,7 +228,7 @@ abstract class _VerifiedReceiverRequest implements VerifiedReceiverRequest {
   @override
   String? get receiverName;
   @override
-  int? get branchId;
+  String? get branchId;
 
   /// Create a copy of VerifiedReceiverRequest
   /// with the given fields replaced by the non-null parameter values.

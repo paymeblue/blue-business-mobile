@@ -14,19 +14,10 @@ _$TodoOptionImpl _$$TodoOptionImplFromJson(Map<String, dynamic> json) =>
       data: json['data'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$$TodoOptionImplToJson(_$TodoOptionImpl instance) {
-  final val = <String, dynamic>{
-    'title': instance.title,
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('route', instance.route);
-  writeNotNull('data', instance.data);
-  return val;
-}
+Map<String, dynamic> _$$TodoOptionImplToJson(_$TodoOptionImpl instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'status': instance.status,
+      if (instance.route case final value?) 'route': value,
+      if (instance.data case final value?) 'data': value,
+    };

@@ -19,21 +19,12 @@ _$GetStaffDataImpl _$$GetStaffDataImplFromJson(Map<String, dynamic> json) =>
       perPage: (json['per_page'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$GetStaffDataImplToJson(_$GetStaffDataImpl instance) {
-  final val = <String, dynamic>{
-    'total': instance.total,
-    'limit': instance.limit,
-    'page': instance.page,
-    'data': instance.data,
-    'load_more': instance.loadMore,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('per_page', instance.perPage);
-  return val;
-}
+Map<String, dynamic> _$$GetStaffDataImplToJson(_$GetStaffDataImpl instance) =>
+    <String, dynamic>{
+      'total': instance.total,
+      'limit': instance.limit,
+      'page': instance.page,
+      'data': instance.data,
+      'load_more': instance.loadMore,
+      if (instance.perPage case final value?) 'per_page': value,
+    };

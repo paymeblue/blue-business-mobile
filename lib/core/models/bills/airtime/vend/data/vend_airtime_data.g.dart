@@ -19,22 +19,13 @@ _$VendAirtimeDataImpl _$$VendAirtimeDataImplFromJson(
     );
 
 Map<String, dynamic> _$$VendAirtimeDataImplToJson(
-    _$VendAirtimeDataImpl instance) {
-  final val = <String, dynamic>{
-    'transaction_id': instance.transactionId,
-    'receiver': instance.receiver,
-    'provider': instance.provider,
-    'payment_reference': instance.paymentReference,
-    'amount': instance.amount,
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('created_at', instance.createdAt);
-  return val;
-}
+        _$VendAirtimeDataImpl instance) =>
+    <String, dynamic>{
+      'transaction_id': instance.transactionId,
+      'receiver': instance.receiver,
+      'provider': instance.provider,
+      'payment_reference': instance.paymentReference,
+      'amount': instance.amount,
+      'status': instance.status,
+      if (instance.createdAt case final value?) 'created_at': value,
+    };

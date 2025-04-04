@@ -17,18 +17,9 @@ _$GetStaffResponseImpl _$$GetStaffResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$GetStaffResponseImplToJson(
-    _$GetStaffResponseImpl instance) {
-  final val = <String, dynamic>{
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('data', instance.data);
-  writeNotNull('message', instance.message);
-  return val;
-}
+        _$GetStaffResponseImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      if (instance.data case final value?) 'data': value,
+      if (instance.message case final value?) 'message': value,
+    };

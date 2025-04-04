@@ -13,18 +13,9 @@ _$BankItemImpl _$$BankItemImplFromJson(Map<String, dynamic> json) =>
       logoUrl: json['logo_url'] as String?,
     );
 
-Map<String, dynamic> _$$BankItemImplToJson(_$BankItemImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'name': instance.name,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('logo_url', instance.logoUrl);
-  return val;
-}
+Map<String, dynamic> _$$BankItemImplToJson(_$BankItemImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      if (instance.logoUrl case final value?) 'logo_url': value,
+    };

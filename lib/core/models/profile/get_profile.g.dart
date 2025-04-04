@@ -17,21 +17,12 @@ _$GetProfileResponseImpl _$$GetProfileResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$GetProfileResponseImplToJson(
-    _$GetProfileResponseImpl instance) {
-  final val = <String, dynamic>{
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('message', instance.message);
-  writeNotNull('data', instance.data);
-  return val;
-}
+        _$GetProfileResponseImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      if (instance.message case final value?) 'message': value,
+      if (instance.data case final value?) 'data': value,
+    };
 
 _$GetProfileDataImpl _$$GetProfileDataImplFromJson(Map<String, dynamic> json) =>
     _$GetProfileDataImpl(
@@ -44,21 +35,12 @@ _$GetProfileDataImpl _$$GetProfileDataImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$GetProfileDataImplToJson(
-    _$GetProfileDataImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'first_name': instance.firstName,
-    'last_name': instance.lastName,
-    'phone': instance.phone,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('middle_name', instance.middleName);
-  writeNotNull('display_pic', instance.displayPic);
-  return val;
-}
+        _$GetProfileDataImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'first_name': instance.firstName,
+      'last_name': instance.lastName,
+      'phone': instance.phone,
+      if (instance.middleName case final value?) 'middle_name': value,
+      if (instance.displayPic case final value?) 'display_pic': value,
+    };

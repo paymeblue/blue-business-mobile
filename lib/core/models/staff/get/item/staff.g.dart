@@ -17,23 +17,14 @@ _$StaffImpl _$$StaffImplFromJson(Map<String, dynamic> json) => _$StaffImpl(
       createdAt: json['created_at'] as String?,
     );
 
-Map<String, dynamic> _$$StaffImplToJson(_$StaffImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'name': instance.name,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('branch_name', instance.branchName);
-  writeNotNull('branch_id', instance.branchId);
-  val['phone'] = instance.phone;
-  writeNotNull('display_picture', instance.displayPicture);
-  val['role'] = instance.role;
-  writeNotNull('created_at', instance.createdAt);
-  return val;
-}
+Map<String, dynamic> _$$StaffImplToJson(_$StaffImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      if (instance.branchName case final value?) 'branch_name': value,
+      if (instance.branchId case final value?) 'branch_id': value,
+      'phone': instance.phone,
+      if (instance.displayPicture case final value?) 'display_picture': value,
+      'role': instance.role,
+      if (instance.createdAt case final value?) 'created_at': value,
+    };

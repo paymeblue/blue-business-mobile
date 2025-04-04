@@ -17,20 +17,11 @@ _$ChatResponseDataImpl _$$ChatResponseDataImplFromJson(
     );
 
 Map<String, dynamic> _$$ChatResponseDataImplToJson(
-    _$ChatResponseDataImpl instance) {
-  final val = <String, dynamic>{
-    'first_name': instance.firstName,
-    'last_name': instance.lastName,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('display_pic', instance.displayPic);
-  val['wallet_code'] = instance.walletCode;
-  val['fcm_token'] = instance.fcmToken;
-  return val;
-}
+        _$ChatResponseDataImpl instance) =>
+    <String, dynamic>{
+      'first_name': instance.firstName,
+      'last_name': instance.lastName,
+      if (instance.displayPic case final value?) 'display_pic': value,
+      'wallet_code': instance.walletCode,
+      'fcm_token': instance.fcmToken,
+    };

@@ -22,25 +22,16 @@ _$VerifyCableDataImpl _$$VerifyCableDataImplFromJson(
     );
 
 Map<String, dynamic> _$$VerifyCableDataImplToJson(
-    _$VerifyCableDataImpl instance) {
-  final val = <String, dynamic>{
-    'transaction_id': instance.transactionId,
-    'customer_name': instance.customerName,
-    'customer_info': instance.customerInfo,
-    'receiver': instance.receiver,
-    'provider': instance.provider,
-    'package': instance.package,
-    'service_charge': instance.serviceCharge,
-    'amount': instance.amount,
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('created_at', instance.createdAt);
-  return val;
-}
+        _$VerifyCableDataImpl instance) =>
+    <String, dynamic>{
+      'transaction_id': instance.transactionId,
+      'customer_name': instance.customerName,
+      'customer_info': instance.customerInfo,
+      'receiver': instance.receiver,
+      'provider': instance.provider,
+      'package': instance.package,
+      'service_charge': instance.serviceCharge,
+      'amount': instance.amount,
+      'status': instance.status,
+      if (instance.createdAt case final value?) 'created_at': value,
+    };

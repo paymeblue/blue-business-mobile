@@ -23,27 +23,19 @@ _$CableDetailsImpl _$$CableDetailsImplFromJson(Map<String, dynamic> json) =>
       balanceAfter: json['balance_after'] as String? ?? "0.00",
     );
 
-Map<String, dynamic> _$$CableDetailsImplToJson(_$CableDetailsImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  val['amount'] = instance.amount;
-  val['service_charge'] = instance.serviceCharge;
-  val['receiver'] = instance.receiver;
-  val['transaction_id'] = instance.transactionId;
-  val['provider'] = instance.provider;
-  val['package'] = instance.package;
-  val['payment_mode'] = instance.paymentMode;
-  val['created_at'] = instance.createdAt;
-  val['service'] = instance.service;
-  val['status'] = instance.status;
-  val['balance_before'] = instance.balanceBefore;
-  val['balance_after'] = instance.balanceAfter;
-  return val;
-}
+Map<String, dynamic> _$$CableDetailsImplToJson(_$CableDetailsImpl instance) =>
+    <String, dynamic>{
+      if (instance.id case final value?) 'id': value,
+      'amount': instance.amount,
+      'service_charge': instance.serviceCharge,
+      'receiver': instance.receiver,
+      'transaction_id': instance.transactionId,
+      'provider': instance.provider,
+      'package': instance.package,
+      'payment_mode': instance.paymentMode,
+      'created_at': instance.createdAt,
+      'service': instance.service,
+      'status': instance.status,
+      'balance_before': instance.balanceBefore,
+      'balance_after': instance.balanceAfter,
+    };

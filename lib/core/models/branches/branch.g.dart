@@ -16,22 +16,13 @@ _$BranchImpl _$$BranchImplFromJson(Map<String, dynamic> json) => _$BranchImpl(
       createdAt: json['created_at'] as String?,
     );
 
-Map<String, dynamic> _$$BranchImplToJson(_$BranchImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'name': instance.name,
-    'location': instance.location,
-    'staff_size': instance.staffSize,
-    'total_amount': instance.totalAmount,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('business_id', instance.businessId);
-  writeNotNull('created_at', instance.createdAt);
-  return val;
-}
+Map<String, dynamic> _$$BranchImplToJson(_$BranchImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'location': instance.location,
+      'staff_size': instance.staffSize,
+      'total_amount': instance.totalAmount,
+      if (instance.businessId case final value?) 'business_id': value,
+      if (instance.createdAt case final value?) 'created_at': value,
+    };
