@@ -21,7 +21,7 @@ class BlueWebViewArgs {
 }
 
 class BlueWebview extends StatefulWidget {
-  const BlueWebview({required this.args, Key? key}) : super(key: key);
+  const BlueWebview({required this.args, super.key});
   final BlueWebViewArgs args;
 
   @override

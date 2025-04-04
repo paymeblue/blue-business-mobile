@@ -34,4 +34,5 @@
     <color name="lightBlue">#FF5F8FF</color>
     <color name="lightOverlay">#FF5F8FF</color>
     <color name="lightOverlay2">#F3F3FE</color>
+    <color name="stroke">#EFF0F2</color>
 </resources>

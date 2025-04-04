@@ -1,14 +1,21 @@
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
+import 'package:blue_business/ui/widgets/avatar/avatar.dart';
 import 'package:blue_business/ui/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:blue_business/ui/widgets/textfield/dropdown.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'view_model.dart';
 
@@ -36,25 +43,25 @@ class EnterBranchDetailsView extends StatelessWidget {
                 Expanded(
                   child: form(model),
                 ),
-                if (branch != null)
-                  AppButton.primary(
-                    title: "Edit branch",
-                    isEnabled: model.isActiveWithBranch(branch!),
-                    onTap: () {
-                      model.editBranch(context, branch!);
-                    },
-                  )
-                else
-                  AppButton.primaryWithIcon(
-                    title: "Add new branch",
-                    icon: const Icon(
-                      Icons.add,
-                    ),
-                    isEnabled: model.isActive(),
-                    onTap: () {
-                      model.createBranch(context);
-                    },
-                  )
+                // if (branch != null)
+                //   AppButton.primary(
+                //     title: "Edit branch",
+                //     isEnabled: model.isActiveWithBranch(branch!),
+                //     onTap: () {
+                //       model.editBranch(context, branch!);
+                //     },
+                //   )
+                // else
+                AppButton.primaryWithIcon(
+                  title: "Add new branch",
+                  icon: const Icon(
+                    Icons.add,
+                  ),
+                  // isEnabled: model.isActive(),
+                  onTap: () {
+                    model.createBranch(context);
+                  },
+                )
               ],
             ),
           ),
@@ -63,11 +70,108 @@ class EnterBranchDetailsView extends StatelessWidget {
     );
   }
 
+  Widget qrImageContainer(EnterBranchDetailsViewModel model) {
+    return Stack(
+      children: [
+        Container(
+          height: 165.dm,
+          width: 165.dm,
+          decoration: const BoxDecoration(
+            color: AppColors.bgGrey,
+            shape: BoxShape.circle,
+          ),
+          padding: EdgeInsets.only(bottom: 25.h),
+          alignment: Alignment.bottomCenter,
+          child: Screenshot(
+            controller: model.screenshotController,
+            child: Container(
+              height: 108.dm,
+              width: 108.dm,
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(17),
+              ),
+              padding: EdgeInsets.all(8.dm),
+              child: locator<AppStateValues>().wallet == null
+                  ? qrLoadingShimmer()
+                  : qrImage(),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 10.h,
+          left: 64.w,
+          height: 35.dm,
+          width: 35.dm,
+          child: Container(
+            height: 35.dm,
+            width: 35.dm,
+            padding: const EdgeInsets.all(2),
+            decoration: const BoxDecoration(
+              color: AppColors.white,
+              shape: BoxShape.circle,
+            ),
+            child: SizedBox(
+              height: 45.h,
+              width: 45.w,
+              child: BlueAvatar(
+                radius: 30,
+                imageUrl: locator<AppStateValues>().currentUser!.displayPicture,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Shimmer qrImage() {
+    return Shimmer.fromColors(
+      loop: 2,
+      direction: ShimmerDirection.ltr,
+      period: const Duration(milliseconds: 500),
+      baseColor: AppColors.blue,
+      highlightColor: AppColors.paleBlue,
+      child: QrImageView(
+          data:
+              '${locator<AppStateValues>().wallet!.walletCode}__${branch!.id}',
+          dataModuleStyle: const QrDataModuleStyle(
+            color: AppColors.primary,
+          ),
+          eyeStyle: const QrEyeStyle(
+            color: AppColors.primary,
+            eyeShape: QrEyeShape.square,
+          ),
+          size: 120),
+    );
+  }
+
+  Shimmer qrLoadingShimmer() {
+    return Shimmer.fromColors(
+      baseColor: AppColors.brightBlue.withOpacityValue(.35),
+      highlightColor: AppColors.white,
+      child: Container(
+        height: 140,
+        width: 140,
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(7),
+        ),
+      ),
+    );
+  }
+
   Widget form(EnterBranchDetailsViewModel model) {
     return ListView(children: [
       ...titleAndSubtitle(),
       25.verticalGap,
-      if (branch != null) ...[branchTile(model), 12.verticalGap],
+      if (branch != null) ...[
+        qrImageContainer(model),
+        14.verticalGap,
+        branchTile(model),
+        12.verticalGap
+      ],
       BlueTextField.plaintext(
         hint: "Apapa branch",
         title: "Branch name",

@@ -13,14 +13,14 @@ class BaseView<T extends ChangeNotifier> extends StatefulWidget {
   final bool closeKeyboardOnTap;
 
   const BaseView({
-    Key? key,
+    super.key,
     required this.builder,
     required this.model,
     this.child,
     this.onModelReady,
     this.onDispose,
     this.closeKeyboardOnTap = true,
-  }) : super(key: key);
+  });
   @override
   State<BaseView> createState() => _BaseViewState<T>();
 }

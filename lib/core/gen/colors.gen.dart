@@ -172,6 +172,9 @@ class AppColors {
   /// Color: #2FB9AC
   static const Color promptTextColor = Color(0xFF2FB9AC);
 
+  /// Color: #EFF0F2
+  static const Color stroke = Color(0xFFEFF0F2);
+
   /// Color: #2FB9AC
   static const Color success = Color(0xFF2FB9AC);
 
