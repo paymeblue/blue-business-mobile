@@ -224,14 +224,14 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
                   child: Column(
                     children: [
                       Text(
-                        "${branch.name.sentenceCase} Branch",
+                        "${branch.name.toLowerCase().replaceAll('branch', '').trim().sentenceCase} Branch",
                         style: AppTextStyles.header,
                       ),
                       8.verticalGap,
                       SizedBox(
                         width: 280.w,
                         child: Text(
-                          'Users can send money to a specific branch using their bar code, by a scan!',
+                          'Users can send money to a specific branch by scanning their QR code',
                           style: AppTextStyles.subHeader.copyWith(height: 1),
                           textAlign: TextAlign.center,
                         ),

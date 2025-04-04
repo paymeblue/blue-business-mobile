@@ -14,7 +14,6 @@ import 'package:blue_business/ui/widgets/textfield/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:screenshot/screenshot.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'view_model.dart';
@@ -41,27 +40,27 @@ class EnterBranchDetailsView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: form(model),
+                  child: form(model, context),
                 ),
-                // if (branch != null)
-                //   AppButton.primary(
-                //     title: "Edit branch",
-                //     isEnabled: model.isActiveWithBranch(branch!),
-                //     onTap: () {
-                //       model.editBranch(context, branch!);
-                //     },
-                //   )
-                // else
-                AppButton.primaryWithIcon(
-                  title: "Add new branch",
-                  icon: const Icon(
-                    Icons.add,
-                  ),
-                  // isEnabled: model.isActive(),
-                  onTap: () {
-                    model.createBranch(context);
-                  },
-                )
+                if (branch != null)
+                  AppButton.primary(
+                    title: "Edit branch",
+                    isEnabled: model.isActiveWithBranch(branch!),
+                    onTap: () {
+                      model.editBranch(context, branch!);
+                    },
+                  )
+                else
+                  AppButton.primaryWithIcon(
+                    title: "Add new branch",
+                    icon: const Icon(
+                      Icons.add,
+                    ),
+                    isEnabled: model.isActive(),
+                    onTap: () {
+                      model.createBranch(context);
+                    },
+                  )
               ],
             ),
           ),
@@ -70,7 +69,8 @@ class EnterBranchDetailsView extends StatelessWidget {
     );
   }
 
-  Widget qrImageContainer(EnterBranchDetailsViewModel model) {
+  Widget qrImageContainer(
+      EnterBranchDetailsViewModel model, BuildContext context) {
     return Stack(
       children: [
         Container(
@@ -82,8 +82,10 @@ class EnterBranchDetailsView extends StatelessWidget {
           ),
           padding: EdgeInsets.only(bottom: 25.h),
           alignment: Alignment.bottomCenter,
-          child: Screenshot(
-            controller: model.screenshotController,
+          child: GestureDetector(
+            onTap: () {
+              model.showQRDialog(context, branch!, false);
+            },
             child: Container(
               height: 108.dm,
               width: 108.dm,
@@ -162,12 +164,12 @@ class EnterBranchDetailsView extends StatelessWidget {
     );
   }
 
-  Widget form(EnterBranchDetailsViewModel model) {
+  Widget form(EnterBranchDetailsViewModel model, BuildContext context) {
     return ListView(children: [
       ...titleAndSubtitle(),
       25.verticalGap,
       if (branch != null) ...[
-        qrImageContainer(model),
+        qrImageContainer(model, context),
         14.verticalGap,
         branchTile(model),
         12.verticalGap
