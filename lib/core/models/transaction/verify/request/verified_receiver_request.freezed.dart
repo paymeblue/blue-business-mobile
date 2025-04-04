@@ -24,6 +24,7 @@ mixin _$VerifiedReceiverRequest {
   String get transactionId => throw _privateConstructorUsedError;
   String get receiver => throw _privateConstructorUsedError;
   String? get receiverName => throw _privateConstructorUsedError;
+  int? get branchId => throw _privateConstructorUsedError;
 
   /// Serializes this VerifiedReceiverRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +42,11 @@ abstract class $VerifiedReceiverRequestCopyWith<$Res> {
           $Res Function(VerifiedReceiverRequest) then) =
       _$VerifiedReceiverRequestCopyWithImpl<$Res, VerifiedReceiverRequest>;
   @useResult
-  $Res call({String transactionId, String receiver, String? receiverName});
+  $Res call(
+      {String transactionId,
+      String receiver,
+      String? receiverName,
+      int? branchId});
 }
 
 /// @nodoc
@@ -63,6 +68,7 @@ class _$VerifiedReceiverRequestCopyWithImpl<$Res,
     Object? transactionId = null,
     Object? receiver = null,
     Object? receiverName = freezed,
+    Object? branchId = freezed,
   }) {
     return _then(_value.copyWith(
       transactionId: null == transactionId
@@ -77,6 +83,10 @@ class _$VerifiedReceiverRequestCopyWithImpl<$Res,
           ? _value.receiverName
           : receiverName // ignore: cast_nullable_to_non_nullable
               as String?,
+      branchId: freezed == branchId
+          ? _value.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -90,7 +100,11 @@ abstract class _$$VerifiedReceiverRequestImplCopyWith<$Res>
       __$$VerifiedReceiverRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String transactionId, String receiver, String? receiverName});
+  $Res call(
+      {String transactionId,
+      String receiver,
+      String? receiverName,
+      int? branchId});
 }
 
 /// @nodoc
@@ -111,6 +125,7 @@ class __$$VerifiedReceiverRequestImplCopyWithImpl<$Res>
     Object? transactionId = null,
     Object? receiver = null,
     Object? receiverName = freezed,
+    Object? branchId = freezed,
   }) {
     return _then(_$VerifiedReceiverRequestImpl(
       transactionId: null == transactionId
@@ -125,6 +140,10 @@ class __$$VerifiedReceiverRequestImplCopyWithImpl<$Res>
           ? _value.receiverName
           : receiverName // ignore: cast_nullable_to_non_nullable
               as String?,
+      branchId: freezed == branchId
+          ? _value.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -133,7 +152,10 @@ class __$$VerifiedReceiverRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$VerifiedReceiverRequestImpl implements _VerifiedReceiverRequest {
   const _$VerifiedReceiverRequestImpl(
-      {required this.transactionId, required this.receiver, this.receiverName});
+      {required this.transactionId,
+      required this.receiver,
+      this.receiverName,
+      this.branchId});
 
   factory _$VerifiedReceiverRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$VerifiedReceiverRequestImplFromJson(json);
@@ -144,10 +166,12 @@ class _$VerifiedReceiverRequestImpl implements _VerifiedReceiverRequest {
   final String receiver;
   @override
   final String? receiverName;
+  @override
+  final int? branchId;
 
   @override
   String toString() {
-    return 'VerifiedReceiverRequest(transactionId: $transactionId, receiver: $receiver, receiverName: $receiverName)';
+    return 'VerifiedReceiverRequest(transactionId: $transactionId, receiver: $receiver, receiverName: $receiverName, branchId: $branchId)';
   }
 
   @override
@@ -160,13 +184,15 @@ class _$VerifiedReceiverRequestImpl implements _VerifiedReceiverRequest {
             (identical(other.receiver, receiver) ||
                 other.receiver == receiver) &&
             (identical(other.receiverName, receiverName) ||
-                other.receiverName == receiverName));
+                other.receiverName == receiverName) &&
+            (identical(other.branchId, branchId) ||
+                other.branchId == branchId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, transactionId, receiver, receiverName);
+      Object.hash(runtimeType, transactionId, receiver, receiverName, branchId);
 
   /// Create a copy of VerifiedReceiverRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -189,7 +215,8 @@ abstract class _VerifiedReceiverRequest implements VerifiedReceiverRequest {
   const factory _VerifiedReceiverRequest(
       {required final String transactionId,
       required final String receiver,
-      final String? receiverName}) = _$VerifiedReceiverRequestImpl;
+      final String? receiverName,
+      final int? branchId}) = _$VerifiedReceiverRequestImpl;
 
   factory _VerifiedReceiverRequest.fromJson(Map<String, dynamic> json) =
       _$VerifiedReceiverRequestImpl.fromJson;
@@ -200,6 +227,8 @@ abstract class _VerifiedReceiverRequest implements VerifiedReceiverRequest {
   String get receiver;
   @override
   String? get receiverName;
+  @override
+  int? get branchId;
 
   /// Create a copy of VerifiedReceiverRequest
   /// with the given fields replaced by the non-null parameter values.

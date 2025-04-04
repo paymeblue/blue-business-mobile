@@ -12,6 +12,7 @@ _$VerifiedReceiverRequestImpl _$$VerifiedReceiverRequestImplFromJson(
       transactionId: json['transaction_id'] as String,
       receiver: json['receiver'] as String,
       receiverName: json['receiver_name'] as String?,
+      branchId: (json['branch_id'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$VerifiedReceiverRequestImplToJson(
@@ -28,5 +29,6 @@ Map<String, dynamic> _$$VerifiedReceiverRequestImplToJson(
   }
 
   writeNotNull('receiver_name', instance.receiverName);
+  writeNotNull('branch_id', instance.branchId);
   return val;
 }
