@@ -76,39 +76,34 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
   }
 
   createBranch(BuildContext context) async {
-    // AppLoader.start();
+    AppLoader.start();
 
-    // CreateBranchRequest request = CreateBranchRequest(
-    //     name: nameController.text,
-    //     staffSize: staffSize!,
-    //     location: locationController.text);
+    CreateBranchRequest request = CreateBranchRequest(
+        name: nameController.text,
+        staffSize: staffSize!,
+        location: locationController.text);
 
-    // CreateBranchResponse response =
-    //     await BranchService().createBranch(request: request).onError(
-    //           (error, stackTrace) => CreateBranchResponse(
-    //               message: AppErrorHandler.getErrorMessage(
-    //             error,
-    //             {
-    //               "request_name": "create_branch",
-    //               "request": request.toString(),
-    //               "response_model": "CreateBranchResponse"
-    //             },
-    //           )),
-    //         );
+    CreateBranchResponse response =
+        await BranchService().createBranch(request: request).onError(
+              (error, stackTrace) => CreateBranchResponse(
+                  message: AppErrorHandler.getErrorMessage(
+                error,
+                {
+                  "request_name": "create_branch",
+                  "request": request.toString(),
+                  "response_model": "CreateBranchResponse"
+                },
+              )),
+            );
 
-    // if (response.status == "success") {
-    // } else {
-    //   AppNotification.error(message: response.message);
-    // }
-    // AppLoader.stop();
-
-    showQRDialog(
-        context,
-        const Branch(
-          id: 2,
-          name: 'Kubwa',
-          location: 'Abuja',
-        ));
+    if (response.status == "success") {
+      if (context.mounted) {
+        showQRDialog(context, response.data!);
+      }
+    } else {
+      AppNotification.error(message: response.message);
+    }
+    AppLoader.stop();
   }
 
   showQRDialog(BuildContext context, Branch branch, [bool closePage = true]) {

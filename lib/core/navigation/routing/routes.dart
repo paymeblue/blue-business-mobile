@@ -87,6 +87,7 @@ class RoutePaths {
   static String settings = "/dash/settings";
 
   static String settingsToBranches = "/dash/settings/branches";
+  static String settingsToBusinessFees = "/dash/settings/business-fees";
   static String settingsToBranchInsights = "/dash/settings/branches/insights";
   static String settingsToBranchesToDetails = "/dash/settings/branches/details";
 

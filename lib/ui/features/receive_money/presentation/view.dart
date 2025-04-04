@@ -358,7 +358,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
             color: AppColors.bgGrey,
             shape: BoxShape.circle,
           ),
-          padding: const EdgeInsets.only(bottom: 33),
+          padding: EdgeInsets.only(bottom: 33.h),
           alignment: Alignment.bottomCenter,
           child: Screenshot(
             controller: model.screenshotController,
@@ -377,13 +377,13 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
           ),
         ),
         Positioned(
-          top: 25,
-          right: 110,
-          width: 50,
-          height: 50,
+          top: 30.h,
+          right: 110.h,
+          width: 50.dm,
+          height: 50.dm,
           child: Container(
-            height: 50.h,
-            width: 50.w,
+            height: 50.dm,
+            width: 50.dm,
             padding: const EdgeInsets.all(2),
             decoration: const BoxDecoration(
               color: AppColors.white,
@@ -393,7 +393,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
               height: 45.h,
               width: 45.w,
               child: BlueAvatar(
-                radius: 30,
+                radius: 30.r,
                 imageUrl: locator<AppStateValues>().currentUser!.displayPicture,
               ),
             ),

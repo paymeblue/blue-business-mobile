@@ -23,6 +23,11 @@ List<GoRoute> settingsRoutes = [
     ],
   ),
   GoRoute(
+    path: RoutePaths.settingsToBusinessFees.routeSplitter,
+    parentNavigatorKey: locator<NavigationService>().navigatorKey,
+    pageBuilder: (context, state) => const BusinessFeesView().slide(),
+  ),
+  GoRoute(
     path: RoutePaths.settingsToStaff.routeSplitter,
     parentNavigatorKey: locator<NavigationService>().navigatorKey,
     pageBuilder: (context, state) => const StaffHomeView().slide(),
