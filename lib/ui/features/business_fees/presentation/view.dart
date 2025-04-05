@@ -40,12 +40,53 @@ class BusinessFeesView extends StatelessWidget {
                   ),
                   padding:
                       EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
+                  child: Column(
+                    children: [
+                      feeRow(
+                        title: "Withdrawal",
+                        value: data.withdrawal,
+                      ),
+                      8.verticalGap,
+                      feeRow(
+                        title: "Internet/Bill payment",
+                        value: data.billPayment,
+                      ),
+                      8.verticalGap,
+                      feeRow(
+                        title: "Transfer fee",
+                        value: data.transfers,
+                      ),
+                      8.verticalGap,
+                      feeRow(
+                        title: "Blue to Blue Tansfer",
+                        value: data.blueToBlue,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
         );
       },
+    );
+  }
+
+  Row feeRow({required String title, required double value}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: AppTextStyles.smallText.copyWith(
+            color: AppColors.grey2,
+          ),
+        ),
+        Text(
+          value == 0 ? "FREE" : value.money,
+          style: AppTextStyles.smallButtonText,
+        ),
+      ],
     );
   }
 
