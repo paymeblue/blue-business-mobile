@@ -4,6 +4,7 @@ import 'package:blue_business/core/models/business_fees/business_fees.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -60,6 +61,20 @@ class BusinessFeesView extends StatelessWidget {
                       feeRow(
                         title: "Blue to Blue Tansfer",
                         value: data.blueToBlue,
+                      ),
+                      12.verticalGap,
+                      DottedLine(
+                        dashColor: AppColors.grey3,
+                        dashLength: 3.w,
+                        dashGapLength: 3.w,
+                      ),
+                      12.verticalGap,
+                      feeRow(
+                        title: "Total Amount",
+                        value: data.blueToBlue +
+                            data.billPayment +
+                            data.transfers +
+                            data.withdrawal,
                       ),
                     ],
                   ),

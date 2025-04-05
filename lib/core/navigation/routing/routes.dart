@@ -45,6 +45,7 @@ class RoutePaths {
   static String wallet = "/dash/home/wallet";
   static String walletPaymentSuccess = "/dash/home/wallet/success";
   static String walletPaymentFailure = "/dash/home/wallet/failure";
+  static String withdrawalMethod = "/dash/home/wallet/withdrawal-method";
   static String initiateTransaction = "/dash/home/wallet/initiate-transaction";
   static String verifyReceiver = "/dash/home/wallet/verify-receiver";
   static String confirmTransaction = "/dash/home/wallet/confirm-transaction";

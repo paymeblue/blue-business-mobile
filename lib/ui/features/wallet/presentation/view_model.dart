@@ -1,6 +1,6 @@
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
-import 'package:blue_business/core/utils/enums.dart';
+
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -20,11 +20,11 @@ class WalletViewModel extends BaseViewModel {
     context.push(RoutePaths.initiateTransaction);
   }
 
-  goToInitiateWithdrawal(BuildContext context) {
-    context.push(RoutePaths.initiateTransaction, extra: PaymentMode.withdrawal);
-  }
-
   goToBills(BuildContext context) {
     context.push(RoutePaths.bills);
+  }
+
+  goToWithdrawalMethod(BuildContext context) {
+    context.push(RoutePaths.withdrawalMethod);
   }
 }

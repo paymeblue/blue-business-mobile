@@ -55,6 +55,11 @@ List<GoRoute> homeRoutes = [
         routes: billRoutes,
       ),
       GoRoute(
+        path: RoutePaths.withdrawalMethod.routeSplitter,
+        parentNavigatorKey: locator<NavigationService>().navigatorKey,
+        pageBuilder: (context, state) => WithdrawalMethodView().slide(),
+      ),
+      GoRoute(
         path: RoutePaths.initiateTransaction.routeSplitter,
         parentNavigatorKey: locator<NavigationService>().navigatorKey,
         pageBuilder: (context, state) => InitiateTransactionView(

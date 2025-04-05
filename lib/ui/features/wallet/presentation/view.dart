@@ -62,7 +62,7 @@ class _WalletViewState extends State<WalletView> {
                     title: "Withdraw funds",
                     subtitle:
                         "Easily withdraw funds from your blue wallet to your desired bank account.",
-                    onTap: () => model.goToInitiateWithdrawal(context),
+                    onTap: () => model.goToWithdrawalMethod(context),
                     heading: "WITHDRAW FUNDS"),
                 25.verticalGap,
                 paymOptionContainer(
