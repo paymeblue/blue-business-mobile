@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
@@ -9,6 +10,7 @@ import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/config/timed_refresh.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/models/business_fees/business_fees.dart';
 import 'package:blue_business/core/models/delete_account/delete/request/delete_request.dart';
 import 'package:blue_business/core/models/delete_account/delete/response/delete_response.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/reason/reason.dart';
@@ -296,7 +298,7 @@ class SettingsViewModel extends BaseViewModel {
           icon: AppAssets.images.icons.businessFees.svg(),
           title: "Business fees & charges",
           onTap: () {
-            context.push(RoutePaths.settingsToBusinessFees);
+            getBusinessFees(context);
           },
         ),
         SettingsOption(
@@ -423,6 +425,28 @@ class SettingsViewModel extends BaseViewModel {
   set isChanging(bool v) {
     _isChanging = v;
     notifyListeners();
+  }
+
+  getBusinessFees(BuildContext context) async {
+    AppLoader.start();
+    GetBusinessFeesResponse resp = await ProfileService()
+        .getBusinessFeesResponse()
+        .onError((error, stackTrace) {
+      return GetBusinessFeesResponse(
+        message: AppErrorHandler.getErrorMessage(error),
+      );
+    });
+
+    if (resp.status == 'success') {
+      final data = resp.data;
+      if (context.mounted) {
+        context.push(RoutePaths.settingsToBusinessFees, extra: data);
+      }
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    AppLoader.stop();
   }
 
   toggleNotifications(bool v) async {

@@ -1,4 +1,5 @@
 import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/models/business_fees/business_fees.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/injection/navigation_service.dart';

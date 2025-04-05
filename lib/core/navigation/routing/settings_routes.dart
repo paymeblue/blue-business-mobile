@@ -25,7 +25,9 @@ List<GoRoute> settingsRoutes = [
   GoRoute(
     path: RoutePaths.settingsToBusinessFees.routeSplitter,
     parentNavigatorKey: locator<NavigationService>().navigatorKey,
-    pageBuilder: (context, state) => const BusinessFeesView().slide(),
+    pageBuilder: (context, state) => BusinessFeesView(
+      data: state.extra as GetBusinessFeesData,
+    ).slide(),
   ),
   GoRoute(
     path: RoutePaths.settingsToStaff.routeSplitter,
