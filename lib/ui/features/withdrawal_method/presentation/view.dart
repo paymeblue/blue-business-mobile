@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:blue_business/core/config/module/base_screen.dart';
+import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
@@ -29,6 +32,94 @@ class WithdrawalMethodView extends StatelessWidget {
               children: [
                 ...titleAndSubtitle(),
                 20.verticalGap,
+                Material(
+                  child: InkWell(
+                    splashColor: AppColors.paleBlue,
+                    onTap: () {
+                      model.goToInitiateWithdrawal(context);
+                    },
+                    child: DecoratedBox(
+                      decoration: const BoxDecoration(),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Instant Withdrawal',
+                                  style: AppTextStyles.smallHeader,
+                                ),
+                                Text(
+                                  'Withdraw your funds immediately',
+                                  style: AppTextStyles.smallText.copyWith(
+                                      color: AppColors.bodyTextColor2),
+                                )
+                              ],
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: AppColors.primary,
+                            size: 16.sp,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Divider(
+                  color: AppColors.grey3,
+                  height: 24.h,
+                ),
+                Material(
+                  child: InkWell(
+                    splashColor: AppColors.paleBlue,
+                    onTap: () {
+                      model.isEnabled = !model.isEnabled;
+                      model.onAutoWithdrawalChanged(!model.isEnabled);
+                    },
+                    child: DecoratedBox(
+                      decoration: const BoxDecoration(),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Auto-Withdrawal',
+                                  style: AppTextStyles.smallHeader,
+                                ),
+                                Text(
+                                  'Funds will be withdrawn automatically daily',
+                                  style: AppTextStyles.smallText.copyWith(
+                                      color: AppColors.bodyTextColor2),
+                                )
+                              ],
+                            ),
+                          ),
+                          Transform.scale(
+                            scale: .6,
+                            child: SizedBox(
+                              width: 30.w,
+                              child: Switch.adaptive(
+                                value: model.isEnabled,
+                                activeColor: AppColors.primary,
+                                inactiveTrackColor:
+                                    AppColors.brightBlue.withOpacityValue(.5),
+                                onChanged: (v) {
+                                  model.isEnabled = v;
+                                  unawaited(model.onAutoWithdrawalChanged(v));
+                                },
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
