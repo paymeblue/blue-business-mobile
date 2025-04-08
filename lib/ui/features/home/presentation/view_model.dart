@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/dash_service/dash_service.dart';
@@ -57,6 +58,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   refreshDashData() async {
+    unawaited(getProfile());
     getWalletBalance();
     getBusinessData();
 
@@ -186,19 +188,24 @@ class HomeViewModel extends BaseViewModel {
   }
 
   getProfile() async {
-    GetProfileResponse resp = await AuthService().getProfile().onError(
-        (e, stackTrace) =>
-            GetProfileResponse(message: AppErrorHandler.getErrorMessage(e)));
+    GetProfileResponse resp =
+        await AuthService().getProfile().onError((e, stackTrace) {
+      log("The error is ${e.toString()}");
+      return GetProfileResponse(message: AppErrorHandler.getErrorMessage(e));
+    });
+
+    // log("The error is ${resp.status == "success"}");
 
     if (resp.status == "success") {
       LoginData user = locator<AppStateValues>().currentUser!;
       locator<AppStateValues>().currentUser = user.copyWith(
         proofOfAddressVerified: resp.data!.proofOfAddressVerified,
-        displayPicture: resp.data!.displayPicture,
       );
 
       locator<AppStateValues>().isAutoWithdrawalEnabled =
           resp.data!.autoWithdrawalEnabled;
+
+      notifyListeners();
     }
   }
 

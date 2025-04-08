@@ -17,6 +17,7 @@ class WithdrawalMethodView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<WithdrawalMethodViewModel>(
       model: WithdrawalMethodViewModel(),
+      onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
         return Scaffold(
           appBar: BlueAppBar.primary(

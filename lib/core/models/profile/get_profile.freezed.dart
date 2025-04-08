@@ -230,10 +230,7 @@ mixin _$GetProfileData {
   int get businessId => throw _privateConstructorUsedError;
   int get walletId => throw _privateConstructorUsedError;
   String get businessName => throw _privateConstructorUsedError;
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-  String? get middleName => throw _privateConstructorUsedError;
   String? get displayPicture => throw _privateConstructorUsedError;
   int? get staffId => throw _privateConstructorUsedError;
   bool get notificationStatus => throw _privateConstructorUsedError;
@@ -266,10 +263,7 @@ abstract class $GetProfileDataCopyWith<$Res> {
       int businessId,
       int walletId,
       String businessName,
-      String firstName,
-      String lastName,
       String phone,
-      String? middleName,
       String? displayPicture,
       int? staffId,
       bool notificationStatus,
@@ -301,10 +295,7 @@ class _$GetProfileDataCopyWithImpl<$Res, $Val extends GetProfileData>
     Object? businessId = null,
     Object? walletId = null,
     Object? businessName = null,
-    Object? firstName = null,
-    Object? lastName = null,
     Object? phone = null,
-    Object? middleName = freezed,
     Object? displayPicture = freezed,
     Object? staffId = freezed,
     Object? notificationStatus = null,
@@ -333,22 +324,10 @@ class _$GetProfileDataCopyWithImpl<$Res, $Val extends GetProfileData>
           ? _value.businessName
           : businessName // ignore: cast_nullable_to_non_nullable
               as String,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      middleName: freezed == middleName
-          ? _value.middleName
-          : middleName // ignore: cast_nullable_to_non_nullable
-              as String?,
       displayPicture: freezed == displayPicture
           ? _value.displayPicture
           : displayPicture // ignore: cast_nullable_to_non_nullable
@@ -406,10 +385,7 @@ abstract class _$$GetProfileDataImplCopyWith<$Res>
       int businessId,
       int walletId,
       String businessName,
-      String firstName,
-      String lastName,
       String phone,
-      String? middleName,
       String? displayPicture,
       int? staffId,
       bool notificationStatus,
@@ -439,10 +415,7 @@ class __$$GetProfileDataImplCopyWithImpl<$Res>
     Object? businessId = null,
     Object? walletId = null,
     Object? businessName = null,
-    Object? firstName = null,
-    Object? lastName = null,
     Object? phone = null,
-    Object? middleName = freezed,
     Object? displayPicture = freezed,
     Object? staffId = freezed,
     Object? notificationStatus = null,
@@ -471,22 +444,10 @@ class __$$GetProfileDataImplCopyWithImpl<$Res>
           ? _value.businessName
           : businessName // ignore: cast_nullable_to_non_nullable
               as String,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      middleName: freezed == middleName
-          ? _value.middleName
-          : middleName // ignore: cast_nullable_to_non_nullable
-              as String?,
       displayPicture: freezed == displayPicture
           ? _value.displayPicture
           : displayPicture // ignore: cast_nullable_to_non_nullable
@@ -539,10 +500,7 @@ class _$GetProfileDataImpl implements _GetProfileData {
       required this.businessId,
       required this.walletId,
       required this.businessName,
-      required this.firstName,
-      required this.lastName,
       required this.phone,
-      this.middleName,
       this.displayPicture,
       this.staffId,
       this.notificationStatus = false,
@@ -566,13 +524,7 @@ class _$GetProfileDataImpl implements _GetProfileData {
   @override
   final String businessName;
   @override
-  final String firstName;
-  @override
-  final String lastName;
-  @override
   final String phone;
-  @override
-  final String? middleName;
   @override
   final String? displayPicture;
   @override
@@ -604,7 +556,7 @@ class _$GetProfileDataImpl implements _GetProfileData {
 
   @override
   String toString() {
-    return 'GetProfileData(id: $id, businessId: $businessId, walletId: $walletId, businessName: $businessName, firstName: $firstName, lastName: $lastName, phone: $phone, middleName: $middleName, displayPicture: $displayPicture, staffId: $staffId, notificationStatus: $notificationStatus, resetCredentialStatus: $resetCredentialStatus, autoWithdrawalEnabled: $autoWithdrawalEnabled, businessProfileCompleted: $businessProfileCompleted, businessDetailsCompleted: $businessDetailsCompleted, businessKycCompleted: $businessKycCompleted, proofOfAddressVerified: $proofOfAddressVerified, kyc: $kyc)';
+    return 'GetProfileData(id: $id, businessId: $businessId, walletId: $walletId, businessName: $businessName, phone: $phone, displayPicture: $displayPicture, staffId: $staffId, notificationStatus: $notificationStatus, resetCredentialStatus: $resetCredentialStatus, autoWithdrawalEnabled: $autoWithdrawalEnabled, businessProfileCompleted: $businessProfileCompleted, businessDetailsCompleted: $businessDetailsCompleted, businessKycCompleted: $businessKycCompleted, proofOfAddressVerified: $proofOfAddressVerified, kyc: $kyc)';
   }
 
   @override
@@ -619,13 +571,7 @@ class _$GetProfileDataImpl implements _GetProfileData {
                 other.walletId == walletId) &&
             (identical(other.businessName, businessName) ||
                 other.businessName == businessName) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.middleName, middleName) ||
-                other.middleName == middleName) &&
             (identical(other.displayPicture, displayPicture) ||
                 other.displayPicture == displayPicture) &&
             (identical(other.staffId, staffId) || other.staffId == staffId) &&
@@ -656,10 +602,7 @@ class _$GetProfileDataImpl implements _GetProfileData {
       businessId,
       walletId,
       businessName,
-      firstName,
-      lastName,
       phone,
-      middleName,
       displayPicture,
       staffId,
       notificationStatus,
@@ -694,10 +637,7 @@ abstract class _GetProfileData implements GetProfileData {
       required final int businessId,
       required final int walletId,
       required final String businessName,
-      required final String firstName,
-      required final String lastName,
       required final String phone,
-      final String? middleName,
       final String? displayPicture,
       final int? staffId,
       final bool notificationStatus,
@@ -721,13 +661,7 @@ abstract class _GetProfileData implements GetProfileData {
   @override
   String get businessName;
   @override
-  String get firstName;
-  @override
-  String get lastName;
-  @override
   String get phone;
-  @override
-  String? get middleName;
   @override
   String? get displayPicture;
   @override
