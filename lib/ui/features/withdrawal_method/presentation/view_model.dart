@@ -1,7 +1,9 @@
 import 'package:blue_business/core/api/profile_service/profile_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/auto_withdrawal/auto_withdrawal.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -15,6 +17,8 @@ class WithdrawalMethodViewModel extends BaseViewModel {
 
   init(BuildContext context) {
     size = context.mediaQuery.size;
+
+    isEnabled = locator<AppStateValues>().isAutoWithdrawalEnabled;
   }
 
   goBack(BuildContext context) {
@@ -47,6 +51,8 @@ class WithdrawalMethodViewModel extends BaseViewModel {
     if (resp.status != 'success') {
       AppNotification.error(message: resp.message);
       isEnabled = !val;
+    } else {
+      locator<AppStateValues>().isAutoWithdrawalEnabled = val;
     }
   }
 

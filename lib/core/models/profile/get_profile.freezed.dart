@@ -227,11 +227,23 @@ GetProfileData _$GetProfileDataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GetProfileData {
   int get id => throw _privateConstructorUsedError;
+  int get businessId => throw _privateConstructorUsedError;
+  int get walletId => throw _privateConstructorUsedError;
+  String get businessName => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String? get middleName => throw _privateConstructorUsedError;
-  String? get displayPic => throw _privateConstructorUsedError;
+  String? get displayPicture => throw _privateConstructorUsedError;
+  int? get staffId => throw _privateConstructorUsedError;
+  bool get notificationStatus => throw _privateConstructorUsedError;
+  bool get resetCredentialStatus => throw _privateConstructorUsedError;
+  bool get autoWithdrawalEnabled => throw _privateConstructorUsedError;
+  bool get businessProfileCompleted => throw _privateConstructorUsedError;
+  bool get businessDetailsCompleted => throw _privateConstructorUsedError;
+  bool get businessKycCompleted => throw _privateConstructorUsedError;
+  bool get proofOfAddressVerified => throw _privateConstructorUsedError;
+  String get kyc => throw _privateConstructorUsedError;
 
   /// Serializes this GetProfileData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -251,11 +263,23 @@ abstract class $GetProfileDataCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
+      int businessId,
+      int walletId,
+      String businessName,
       String firstName,
       String lastName,
       String phone,
       String? middleName,
-      String? displayPic});
+      String? displayPicture,
+      int? staffId,
+      bool notificationStatus,
+      bool resetCredentialStatus,
+      bool autoWithdrawalEnabled,
+      bool businessProfileCompleted,
+      bool businessDetailsCompleted,
+      bool businessKycCompleted,
+      bool proofOfAddressVerified,
+      String kyc});
 }
 
 /// @nodoc
@@ -274,17 +298,41 @@ class _$GetProfileDataCopyWithImpl<$Res, $Val extends GetProfileData>
   @override
   $Res call({
     Object? id = null,
+    Object? businessId = null,
+    Object? walletId = null,
+    Object? businessName = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? phone = null,
     Object? middleName = freezed,
-    Object? displayPic = freezed,
+    Object? displayPicture = freezed,
+    Object? staffId = freezed,
+    Object? notificationStatus = null,
+    Object? resetCredentialStatus = null,
+    Object? autoWithdrawalEnabled = null,
+    Object? businessProfileCompleted = null,
+    Object? businessDetailsCompleted = null,
+    Object? businessKycCompleted = null,
+    Object? proofOfAddressVerified = null,
+    Object? kyc = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      businessId: null == businessId
+          ? _value.businessId
+          : businessId // ignore: cast_nullable_to_non_nullable
+              as int,
+      walletId: null == walletId
+          ? _value.walletId
+          : walletId // ignore: cast_nullable_to_non_nullable
+              as int,
+      businessName: null == businessName
+          ? _value.businessName
+          : businessName // ignore: cast_nullable_to_non_nullable
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -301,10 +349,46 @@ class _$GetProfileDataCopyWithImpl<$Res, $Val extends GetProfileData>
           ? _value.middleName
           : middleName // ignore: cast_nullable_to_non_nullable
               as String?,
-      displayPic: freezed == displayPic
-          ? _value.displayPic
-          : displayPic // ignore: cast_nullable_to_non_nullable
+      displayPicture: freezed == displayPicture
+          ? _value.displayPicture
+          : displayPicture // ignore: cast_nullable_to_non_nullable
               as String?,
+      staffId: freezed == staffId
+          ? _value.staffId
+          : staffId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      notificationStatus: null == notificationStatus
+          ? _value.notificationStatus
+          : notificationStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
+      resetCredentialStatus: null == resetCredentialStatus
+          ? _value.resetCredentialStatus
+          : resetCredentialStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
+      autoWithdrawalEnabled: null == autoWithdrawalEnabled
+          ? _value.autoWithdrawalEnabled
+          : autoWithdrawalEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      businessProfileCompleted: null == businessProfileCompleted
+          ? _value.businessProfileCompleted
+          : businessProfileCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      businessDetailsCompleted: null == businessDetailsCompleted
+          ? _value.businessDetailsCompleted
+          : businessDetailsCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      businessKycCompleted: null == businessKycCompleted
+          ? _value.businessKycCompleted
+          : businessKycCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      proofOfAddressVerified: null == proofOfAddressVerified
+          ? _value.proofOfAddressVerified
+          : proofOfAddressVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      kyc: null == kyc
+          ? _value.kyc
+          : kyc // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -319,11 +403,23 @@ abstract class _$$GetProfileDataImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
+      int businessId,
+      int walletId,
+      String businessName,
       String firstName,
       String lastName,
       String phone,
       String? middleName,
-      String? displayPic});
+      String? displayPicture,
+      int? staffId,
+      bool notificationStatus,
+      bool resetCredentialStatus,
+      bool autoWithdrawalEnabled,
+      bool businessProfileCompleted,
+      bool businessDetailsCompleted,
+      bool businessKycCompleted,
+      bool proofOfAddressVerified,
+      String kyc});
 }
 
 /// @nodoc
@@ -340,17 +436,41 @@ class __$$GetProfileDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? businessId = null,
+    Object? walletId = null,
+    Object? businessName = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? phone = null,
     Object? middleName = freezed,
-    Object? displayPic = freezed,
+    Object? displayPicture = freezed,
+    Object? staffId = freezed,
+    Object? notificationStatus = null,
+    Object? resetCredentialStatus = null,
+    Object? autoWithdrawalEnabled = null,
+    Object? businessProfileCompleted = null,
+    Object? businessDetailsCompleted = null,
+    Object? businessKycCompleted = null,
+    Object? proofOfAddressVerified = null,
+    Object? kyc = null,
   }) {
     return _then(_$GetProfileDataImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      businessId: null == businessId
+          ? _value.businessId
+          : businessId // ignore: cast_nullable_to_non_nullable
+              as int,
+      walletId: null == walletId
+          ? _value.walletId
+          : walletId // ignore: cast_nullable_to_non_nullable
+              as int,
+      businessName: null == businessName
+          ? _value.businessName
+          : businessName // ignore: cast_nullable_to_non_nullable
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -367,10 +487,46 @@ class __$$GetProfileDataImplCopyWithImpl<$Res>
           ? _value.middleName
           : middleName // ignore: cast_nullable_to_non_nullable
               as String?,
-      displayPic: freezed == displayPic
-          ? _value.displayPic
-          : displayPic // ignore: cast_nullable_to_non_nullable
+      displayPicture: freezed == displayPicture
+          ? _value.displayPicture
+          : displayPicture // ignore: cast_nullable_to_non_nullable
               as String?,
+      staffId: freezed == staffId
+          ? _value.staffId
+          : staffId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      notificationStatus: null == notificationStatus
+          ? _value.notificationStatus
+          : notificationStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
+      resetCredentialStatus: null == resetCredentialStatus
+          ? _value.resetCredentialStatus
+          : resetCredentialStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
+      autoWithdrawalEnabled: null == autoWithdrawalEnabled
+          ? _value.autoWithdrawalEnabled
+          : autoWithdrawalEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      businessProfileCompleted: null == businessProfileCompleted
+          ? _value.businessProfileCompleted
+          : businessProfileCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      businessDetailsCompleted: null == businessDetailsCompleted
+          ? _value.businessDetailsCompleted
+          : businessDetailsCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      businessKycCompleted: null == businessKycCompleted
+          ? _value.businessKycCompleted
+          : businessKycCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      proofOfAddressVerified: null == proofOfAddressVerified
+          ? _value.proofOfAddressVerified
+          : proofOfAddressVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      kyc: null == kyc
+          ? _value.kyc
+          : kyc // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -380,17 +536,35 @@ class __$$GetProfileDataImplCopyWithImpl<$Res>
 class _$GetProfileDataImpl implements _GetProfileData {
   const _$GetProfileDataImpl(
       {required this.id,
+      required this.businessId,
+      required this.walletId,
+      required this.businessName,
       required this.firstName,
       required this.lastName,
       required this.phone,
       this.middleName,
-      this.displayPic});
+      this.displayPicture,
+      this.staffId,
+      this.notificationStatus = false,
+      this.resetCredentialStatus = false,
+      this.autoWithdrawalEnabled = false,
+      this.businessProfileCompleted = false,
+      this.businessDetailsCompleted = false,
+      this.businessKycCompleted = false,
+      this.proofOfAddressVerified = false,
+      this.kyc = "pro"});
 
   factory _$GetProfileDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetProfileDataImplFromJson(json);
 
   @override
   final int id;
+  @override
+  final int businessId;
+  @override
+  final int walletId;
+  @override
+  final String businessName;
   @override
   final String firstName;
   @override
@@ -400,11 +574,37 @@ class _$GetProfileDataImpl implements _GetProfileData {
   @override
   final String? middleName;
   @override
-  final String? displayPic;
+  final String? displayPicture;
+  @override
+  final int? staffId;
+  @override
+  @JsonKey()
+  final bool notificationStatus;
+  @override
+  @JsonKey()
+  final bool resetCredentialStatus;
+  @override
+  @JsonKey()
+  final bool autoWithdrawalEnabled;
+  @override
+  @JsonKey()
+  final bool businessProfileCompleted;
+  @override
+  @JsonKey()
+  final bool businessDetailsCompleted;
+  @override
+  @JsonKey()
+  final bool businessKycCompleted;
+  @override
+  @JsonKey()
+  final bool proofOfAddressVerified;
+  @override
+  @JsonKey()
+  final String kyc;
 
   @override
   String toString() {
-    return 'GetProfileData(id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, middleName: $middleName, displayPic: $displayPic)';
+    return 'GetProfileData(id: $id, businessId: $businessId, walletId: $walletId, businessName: $businessName, firstName: $firstName, lastName: $lastName, phone: $phone, middleName: $middleName, displayPicture: $displayPicture, staffId: $staffId, notificationStatus: $notificationStatus, resetCredentialStatus: $resetCredentialStatus, autoWithdrawalEnabled: $autoWithdrawalEnabled, businessProfileCompleted: $businessProfileCompleted, businessDetailsCompleted: $businessDetailsCompleted, businessKycCompleted: $businessKycCompleted, proofOfAddressVerified: $proofOfAddressVerified, kyc: $kyc)';
   }
 
   @override
@@ -413,6 +613,12 @@ class _$GetProfileDataImpl implements _GetProfileData {
         (other.runtimeType == runtimeType &&
             other is _$GetProfileDataImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.businessId, businessId) ||
+                other.businessId == businessId) &&
+            (identical(other.walletId, walletId) ||
+                other.walletId == walletId) &&
+            (identical(other.businessName, businessName) ||
+                other.businessName == businessName) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -420,14 +626,50 @@ class _$GetProfileDataImpl implements _GetProfileData {
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.middleName, middleName) ||
                 other.middleName == middleName) &&
-            (identical(other.displayPic, displayPic) ||
-                other.displayPic == displayPic));
+            (identical(other.displayPicture, displayPicture) ||
+                other.displayPicture == displayPicture) &&
+            (identical(other.staffId, staffId) || other.staffId == staffId) &&
+            (identical(other.notificationStatus, notificationStatus) ||
+                other.notificationStatus == notificationStatus) &&
+            (identical(other.resetCredentialStatus, resetCredentialStatus) ||
+                other.resetCredentialStatus == resetCredentialStatus) &&
+            (identical(other.autoWithdrawalEnabled, autoWithdrawalEnabled) ||
+                other.autoWithdrawalEnabled == autoWithdrawalEnabled) &&
+            (identical(
+                    other.businessProfileCompleted, businessProfileCompleted) ||
+                other.businessProfileCompleted == businessProfileCompleted) &&
+            (identical(
+                    other.businessDetailsCompleted, businessDetailsCompleted) ||
+                other.businessDetailsCompleted == businessDetailsCompleted) &&
+            (identical(other.businessKycCompleted, businessKycCompleted) ||
+                other.businessKycCompleted == businessKycCompleted) &&
+            (identical(other.proofOfAddressVerified, proofOfAddressVerified) ||
+                other.proofOfAddressVerified == proofOfAddressVerified) &&
+            (identical(other.kyc, kyc) || other.kyc == kyc));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, firstName, lastName, phone, middleName, displayPic);
+      runtimeType,
+      id,
+      businessId,
+      walletId,
+      businessName,
+      firstName,
+      lastName,
+      phone,
+      middleName,
+      displayPicture,
+      staffId,
+      notificationStatus,
+      resetCredentialStatus,
+      autoWithdrawalEnabled,
+      businessProfileCompleted,
+      businessDetailsCompleted,
+      businessKycCompleted,
+      proofOfAddressVerified,
+      kyc);
 
   /// Create a copy of GetProfileData
   /// with the given fields replaced by the non-null parameter values.
@@ -449,17 +691,35 @@ class _$GetProfileDataImpl implements _GetProfileData {
 abstract class _GetProfileData implements GetProfileData {
   const factory _GetProfileData(
       {required final int id,
+      required final int businessId,
+      required final int walletId,
+      required final String businessName,
       required final String firstName,
       required final String lastName,
       required final String phone,
       final String? middleName,
-      final String? displayPic}) = _$GetProfileDataImpl;
+      final String? displayPicture,
+      final int? staffId,
+      final bool notificationStatus,
+      final bool resetCredentialStatus,
+      final bool autoWithdrawalEnabled,
+      final bool businessProfileCompleted,
+      final bool businessDetailsCompleted,
+      final bool businessKycCompleted,
+      final bool proofOfAddressVerified,
+      final String kyc}) = _$GetProfileDataImpl;
 
   factory _GetProfileData.fromJson(Map<String, dynamic> json) =
       _$GetProfileDataImpl.fromJson;
 
   @override
   int get id;
+  @override
+  int get businessId;
+  @override
+  int get walletId;
+  @override
+  String get businessName;
   @override
   String get firstName;
   @override
@@ -469,7 +729,25 @@ abstract class _GetProfileData implements GetProfileData {
   @override
   String? get middleName;
   @override
-  String? get displayPic;
+  String? get displayPicture;
+  @override
+  int? get staffId;
+  @override
+  bool get notificationStatus;
+  @override
+  bool get resetCredentialStatus;
+  @override
+  bool get autoWithdrawalEnabled;
+  @override
+  bool get businessProfileCompleted;
+  @override
+  bool get businessDetailsCompleted;
+  @override
+  bool get businessKycCompleted;
+  @override
+  bool get proofOfAddressVerified;
+  @override
+  String get kyc;
 
   /// Create a copy of GetProfileData
   /// with the given fields replaced by the non-null parameter values.

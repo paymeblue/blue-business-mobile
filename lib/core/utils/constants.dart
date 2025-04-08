@@ -29,6 +29,7 @@ class AppStateValues extends ChangeNotifier {
   TopupAccount? _account;
   WithdrawalAccount? _withdrawalAccount;
   Object? _extra;
+  bool _isAutowithdrawalEnabled = false;
 
   String get refreshToken => _refreshToken;
   String get fcmToken => _fcmToken;
@@ -54,7 +55,14 @@ class AppStateValues extends ChangeNotifier {
   WithdrawalAccount? get withdrawalAccount => _withdrawalAccount;
   Object? get extra => _extra;
 
+  bool get isAutoWithdrawalEnabled => _isAutowithdrawalEnabled;
+
   NotificationState? notificationState;
+
+  set isAutoWithdrawalEnabled(bool c) {
+    _isAutowithdrawalEnabled = c;
+    notifyListeners();
+  }
 
   set hasClosedAddressBanner(bool v) {
     _hasClosedAddressBanner = v;

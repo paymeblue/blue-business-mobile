@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/dash_service/dash_service.dart';
@@ -11,6 +10,7 @@ import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
 import 'package:blue_business/core/models/business_dash/data/business_dash_data.dart';
 import 'package:blue_business/core/models/business_dash/response/business_dash_response.dart';
+import 'package:blue_business/core/models/login/data/login_data.dart';
 import 'package:blue_business/core/models/profile/get_profile.dart';
 import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
 import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
@@ -191,7 +191,14 @@ class HomeViewModel extends BaseViewModel {
             GetProfileResponse(message: AppErrorHandler.getErrorMessage(e)));
 
     if (resp.status == "success") {
-      log(resp.data.toString());
+      LoginData user = locator<AppStateValues>().currentUser!;
+      locator<AppStateValues>().currentUser = user.copyWith(
+        proofOfAddressVerified: resp.data!.proofOfAddressVerified,
+        displayPicture: resp.data!.displayPicture,
+      );
+
+      locator<AppStateValues>().isAutoWithdrawalEnabled =
+          resp.data!.autoWithdrawalEnabled;
     }
   }
 
