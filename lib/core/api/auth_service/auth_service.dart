@@ -100,7 +100,7 @@ abstract class AuthService {
     @Body() required LoginRequest request,
   });
 
-  @POST("/users/me")
+  @GET("/users/me")
   Future<GetProfileResponse> getProfile();
 
   @POST("/auth/refresh-access-token")
