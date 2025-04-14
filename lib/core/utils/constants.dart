@@ -185,6 +185,11 @@ class AppStateValues extends ChangeNotifier {
     resetPath = RoutePaths.home;
     unreadCount = 0;
     hasNewMessage = false;
+    hasClosedAddressBanner = false;
+    isAutoWithdrawalEnabled = false;
+    isTestApp = false;
+
+    lockedFeatures = [];
 
     currentUser = null;
     wallet = null;
