@@ -74,7 +74,8 @@ class VendCableSuccessViewModel extends BaseViewModel {
     });
     if (img != null) {
       XFile image = XFile.fromData(img!,
-          name: "receipt_${cableDetails!.transactionId}", mimeType: "png");
+          name: "receipt_${cableDetails!.transactionId}",
+          mimeType: "image/png");
 
       Share.shareXFiles(
         [image],

@@ -74,9 +74,11 @@ class ReceiveMoneyViewModel extends BaseViewModel {
       AppNotification.error(message: AppErrorHandler.getErrorMessage(onError));
     });
     if (img != null) {
-      XFile image = XFile.fromData(img!,
-          // name: "${locator<AppStateValues>().currentUser!.firstName}_qr",
-          mimeType: "png");
+      XFile image = XFile.fromData(
+        img!,
+        name: "${locator<AppStateValues>().currentUser!.business.name}_qr",
+        mimeType: "image/png",
+      );
 
       Share.shareXFiles([image]).then((value) {
         if (value.status == ShareResultStatus.success) {

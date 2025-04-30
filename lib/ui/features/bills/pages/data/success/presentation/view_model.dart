@@ -74,7 +74,7 @@ class VendDataSuccessViewModel extends BaseViewModel {
     });
     if (img != null) {
       XFile image = XFile.fromData(img!,
-          name: "receipt_${dataDetails!.transactionId}", mimeType: "png");
+          name: "receipt_${dataDetails!.transactionId}", mimeType: "image/png");
 
       Share.shareXFiles(
         [image],

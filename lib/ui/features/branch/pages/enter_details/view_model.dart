@@ -310,7 +310,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
     if (img != null) {
       XFile image = XFile.fromData(img!,
           // name: "${locator<AppStateValues>().currentUser!.firstName}_qr",
-          mimeType: "png");
+          mimeType: "image/png");
 
       Share.shareXFiles([image]).then((value) {
         if (value.status == ShareResultStatus.success) {

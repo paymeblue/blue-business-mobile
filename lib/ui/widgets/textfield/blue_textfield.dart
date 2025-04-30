@@ -32,7 +32,7 @@ class BlueTextField {
     Widget selectedItem() {
       return Container(
         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-        width: 60.w,
+        width: 45.w,
         height: 25.h,
         decoration: BoxDecoration(
           color: AppColors.grey,
