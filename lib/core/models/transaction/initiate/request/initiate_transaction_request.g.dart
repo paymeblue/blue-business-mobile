@@ -15,18 +15,9 @@ _$InitiateTransactionRequestImpl _$$InitiateTransactionRequestImplFromJson(
     );
 
 Map<String, dynamic> _$$InitiateTransactionRequestImplToJson(
-    _$InitiateTransactionRequestImpl instance) {
-  final val = <String, dynamic>{
-    'amount': instance.amount,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('narration', instance.narration);
-  val['payment_mode'] = instance.paymentMode;
-  return val;
-}
+        _$InitiateTransactionRequestImpl instance) =>
+    <String, dynamic>{
+      'amount': instance.amount,
+      if (instance.narration case final value?) 'narration': value,
+      'payment_mode': instance.paymentMode,
+    };

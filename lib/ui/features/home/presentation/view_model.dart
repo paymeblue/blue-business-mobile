@@ -1,3 +1,7 @@
+import 'dart:async';
+import 'dart:developer';
+
+import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/dash_service/dash_service.dart';
 import 'package:blue_business/core/api/insights_service/insights_service.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
@@ -7,6 +11,8 @@ import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
 import 'package:blue_business/core/models/analytics/response/analytics_response.dart';
 import 'package:blue_business/core/models/business_dash/data/business_dash_data.dart';
 import 'package:blue_business/core/models/business_dash/response/business_dash_response.dart';
+import 'package:blue_business/core/models/login/data/login_data.dart';
+import 'package:blue_business/core/models/profile/get_profile.dart';
 import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
 import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
 import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
@@ -41,6 +47,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   getDashData() async {
+    unawaited(getProfile());
     getWalletBalance();
     getBusinessData();
 
@@ -51,6 +58,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   refreshDashData() async {
+    unawaited(getProfile());
     getWalletBalance();
     getBusinessData();
 
@@ -177,6 +185,28 @@ class HomeViewModel extends BaseViewModel {
   set desktopIncrease(double v) {
     _dIncrease = v;
     notifyListeners();
+  }
+
+  getProfile() async {
+    GetProfileResponse resp =
+        await AuthService().getProfile().onError((e, stackTrace) {
+      log("The error is ${e.toString()}");
+      return GetProfileResponse(message: AppErrorHandler.getErrorMessage(e));
+    });
+
+    // log("The error is ${resp.status == "success"}");
+
+    if (resp.status == "success") {
+      LoginData user = locator<AppStateValues>().currentUser!;
+      locator<AppStateValues>().currentUser = user.copyWith(
+        proofOfAddressVerified: resp.data!.proofOfAddressVerified,
+      );
+
+      locator<AppStateValues>().isAutoWithdrawalEnabled =
+          resp.data!.autoWithdrawalEnabled;
+
+      notifyListeners();
+    }
   }
 
   getAnalytics() async {

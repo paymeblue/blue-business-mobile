@@ -4,6 +4,7 @@ import 'package:blue_business/core/models/delete_account/get_reasons/reason/reas
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/injection/navigation_service.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
+import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -124,7 +125,7 @@ class BlueDialog {
                       padding: const EdgeInsets.all(9),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: AppColors.error.withOpacity(.15),
+                        color: AppColors.error.withOpacityValue(.15),
                       ),
                       child: AppAssets.images.icons.delete.svg(),
                     ),

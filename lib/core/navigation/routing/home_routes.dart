@@ -49,8 +49,15 @@ List<GoRoute> homeRoutes = [
       GoRoute(
         path: RoutePaths.bills.routeSplitter,
         parentNavigatorKey: locator<NavigationService>().navigatorKey,
-        pageBuilder: (context, state) => const BillsView().slide(),
+        builder: (context, state) {
+          return const BillsView();
+        },
         routes: billRoutes,
+      ),
+      GoRoute(
+        path: RoutePaths.withdrawalMethod.routeSplitter,
+        parentNavigatorKey: locator<NavigationService>().navigatorKey,
+        pageBuilder: (context, state) => WithdrawalMethodView().slide(),
       ),
       GoRoute(
         path: RoutePaths.initiateTransaction.routeSplitter,

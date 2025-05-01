@@ -16,19 +16,10 @@ _$RecentlyPaidItemImpl _$$RecentlyPaidItemImplFromJson(
     );
 
 Map<String, dynamic> _$$RecentlyPaidItemImplToJson(
-    _$RecentlyPaidItemImpl instance) {
-  final val = <String, dynamic>{
-    'u_first_name': instance.uFirstName,
-    'u_last_name': instance.uLastName,
-    'w_wallet_code': instance.wWalletCode,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('u_middle_name', instance.uMiddleName);
-  return val;
-}
+        _$RecentlyPaidItemImpl instance) =>
+    <String, dynamic>{
+      'u_first_name': instance.uFirstName,
+      'u_last_name': instance.uLastName,
+      'w_wallet_code': instance.wWalletCode,
+      if (instance.uMiddleName case final value?) 'u_middle_name': value,
+    };

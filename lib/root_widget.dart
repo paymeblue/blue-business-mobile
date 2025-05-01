@@ -49,7 +49,7 @@ class BlueBusinessApp extends StatelessWidget {
                                 height: context.mediaQuery.size.height,
                                 width: context.mediaQuery.size.width,
                                 decoration: BoxDecoration(
-                                  color: AppColors.dark.withOpacity(.5),
+                                  color: AppColors.dark.withOpacityValue(.5),
                                 ),
                                 child: SafeArea(
                                   child: Column(
@@ -77,9 +77,9 @@ class BlueBusinessApp extends StatelessWidget {
                                                 padding:
                                                     const EdgeInsets.all(4),
                                                 decoration: BoxDecoration(
-                                                    color:
-                                                        const Color(0xFFEF2A5A)
-                                                            .withOpacity(.2),
+                                                    color: const Color(
+                                                            0xFFEF2A5A)
+                                                        .withOpacityValue(.2),
                                                     shape: BoxShape.circle),
                                                 child: Container(
                                                   decoration:

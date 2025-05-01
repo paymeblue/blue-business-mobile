@@ -1,10 +1,14 @@
+import 'dart:developer';
+
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
+import 'package:blue_business/core/config/timed_refresh.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
 import 'package:blue_business/core/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -14,11 +18,14 @@ import 'package:blue_business/ui/widgets/paging/error.dart';
 import 'package:blue_business/ui/widgets/paging/loading_shimmer.dart';
 import 'package:blue_business/ui/widgets/paging/no_items.dart';
 import 'package:blue_business/ui/widgets/tiles/transaction_tile.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'view_model.dart';
 
@@ -40,21 +47,30 @@ class HomeView extends StatelessWidget {
               child: SingleChildScrollView(
                 child: SizedBox(
                   height: (model.size.height + 150).h,
-                  child: Column(
-                    children: [
-                      firstRow(),
-                      20.verticalGap,
-                      walletContainer(model),
-                      20.verticalGap,
-                      transactionOptionSection(model, context),
-                      12.verticalGap,
-                      totalSalesSection(model, context),
-                      12.verticalGap,
-                      Expanded(
-                        child: transactionSection(model, context),
-                      ),
-                    ],
-                  ),
+                  child: Consumer<AppStateValues>(
+                      builder: (context, stateValues, _) {
+                    return Column(
+                      children: [
+                        firstRow(),
+                        20.verticalGap,
+                        walletContainer(model),
+                        if (!locator<AppStateValues>()
+                                .currentUser!
+                                .proofOfAddressVerified &&
+                            !stateValues.hasClosedAddressBanner)
+                          ...addressBanner(context, model)
+                        else
+                          20.verticalGap,
+                        transactionOptionSection(model, context),
+                        12.verticalGap,
+                        totalSalesSection(model, context),
+                        12.verticalGap,
+                        Expanded(
+                          child: transactionSection(model, context),
+                        ),
+                      ],
+                    );
+                  }),
                 ),
               ),
             ),
@@ -62,6 +78,98 @@ class HomeView extends StatelessWidget {
         );
       },
     );
+  }
+
+  List<Widget> addressBanner(BuildContext context, HomeViewModel model) {
+    final statValues = Provider.of<AppStateValues>(context);
+    return [
+      12.verticalGap,
+      Container(
+        height: 2.h,
+        width: model.size.width,
+        decoration: const BoxDecoration(
+          color: Color(0xFFEC7834),
+        ),
+      ),
+      Container(
+        width: model.size.width,
+        decoration: BoxDecoration(color: AppColors.white, boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 5),
+            color: Colors.black.withOpacityValue(.1),
+            blurRadius: 16.r,
+          )
+        ]),
+        padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 12.h),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Verify your residential address',
+                    style: AppTextStyles.smallHeader.copyWith(
+                      height: 21.toLineHeight(15),
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text:
+                            'Do not provide your information more than once, this message will disappear permanently once it is approved. ',
+                        style: AppTextStyles.smallText.copyWith(
+                          color: AppColors.bodyTextColor,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'Tap here to complete!',
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () async {
+                            AppLoader.start();
+                            await RefreshTimer().refreshToken(true);
+                            AppLoader.stop();
+
+                            final url =
+                                "https:paymeblue.com/business-owner-kyc?token=${locator<AppStateValues>().accessToken}";
+
+                            log(url);
+
+                            launchUrl(Uri.parse(url));
+                          },
+                        style: AppTextStyles.smallText
+                            .copyWith(color: AppColors.blue),
+                      )
+                    ]),
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                statValues.hasClosedAddressBanner = true;
+              },
+              child: Container(
+                margin: const EdgeInsets.only(left: 16),
+                height: 34.h,
+                width: 34.w,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: const Color(0xFFE5E6E8)),
+                ),
+                child: const Icon(
+                  Icons.close,
+                  size: 19,
+                  color: AppColors.textColor,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      10.verticalGap,
+    ];
   }
 
   Widget firstRow() {
@@ -231,7 +339,7 @@ class HomeView extends StatelessWidget {
       height: 80,
       width: context.mediaQuery.size.width,
       child: Shimmer.fromColors(
-        baseColor: AppColors.brightBlue.withOpacity(.3),
+        baseColor: AppColors.brightBlue.withOpacityValue(.3),
         highlightColor: AppColors.white,
         child: DecoratedBox(
           decoration: BoxDecoration(

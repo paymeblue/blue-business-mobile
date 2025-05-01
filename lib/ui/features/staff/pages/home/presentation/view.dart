@@ -206,14 +206,14 @@ class StaffHomeView extends StatelessWidget {
 
   Widget staffLoadingTile(StaffHomeViewModel model) {
     return Shimmer.fromColors(
-      baseColor: AppColors.brightBlue.withOpacity(.3),
+      baseColor: AppColors.brightBlue.withOpacityValue(.3),
       highlightColor: AppColors.white,
       child: Container(
         height: 180.h,
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black.withOpacity(.25)),
+          border: Border.all(color: Colors.black.withOpacityValue(.25)),
           borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
@@ -223,7 +223,7 @@ class StaffHomeView extends StatelessWidget {
               height: 25.h,
               width: 100.w,
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(.4),
+                color: Colors.black.withOpacityValue(.4),
               ),
             ),
             15.verticalGap,
@@ -234,7 +234,7 @@ class StaffHomeView extends StatelessWidget {
                     height: 44.h,
                     width: 44.w,
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(.6),
+                      color: Colors.black.withOpacityValue(.6),
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -247,7 +247,7 @@ class StaffHomeView extends StatelessWidget {
                           height: 40.h,
                           width: 120.w,
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(.6),
+                            color: Colors.black.withOpacityValue(.6),
                           ),
                         ),
                         4.verticalGap,
@@ -255,7 +255,7 @@ class StaffHomeView extends StatelessWidget {
                           height: 12.h,
                           width: 150.w,
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(.6),
+                            color: Colors.black.withOpacityValue(.6),
                           ),
                         )
                       ],
@@ -272,14 +272,14 @@ class StaffHomeView extends StatelessWidget {
                   width: (model.size.width / 2.5).w,
                   height: 40.h,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(.6),
+                    color: Colors.black.withOpacityValue(.6),
                   ),
                 ),
                 Container(
                   width: (model.size.width / 2.5).w,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(.6),
+                    color: Colors.black.withOpacityValue(.6),
                   ),
                 ),
               ],

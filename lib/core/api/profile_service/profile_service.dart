@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:blue_business/core/config/dio_config.dart';
+import 'package:blue_business/core/models/auto_withdrawal/auto_withdrawal.dart';
+import 'package:blue_business/core/models/business_fees/business_fees.dart';
 import 'package:blue_business/core/models/notification/get/response/get_notification_response.dart';
 import 'package:blue_business/core/models/notification/toggle/response/toggle_notification_response.dart';
 import 'package:blue_business/core/models/upload_avatar/response/upload_avatar_response.dart';
@@ -30,5 +32,13 @@ abstract class ProfileService {
   @GET("/notifications/toggle")
   Future<ToggleNotificationResponse> toggleNotificationStatus({
     @Query("status") required int status,
+  });
+
+  @GET("/fees")
+  Future<GetBusinessFeesResponse> getBusinessFeesResponse();
+
+  @PATCH("/users/update-auto-withdrawal")
+  Future<AutoWithdrawalResponse> toggleAutoWithdrawal({
+    @Body() required AutoWithdrawalRequest request,
   });
 }

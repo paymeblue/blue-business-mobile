@@ -24,26 +24,18 @@ _$ElectricityBeneficiaryImpl _$$ElectricityBeneficiaryImplFromJson(
     );
 
 Map<String, dynamic> _$$ElectricityBeneficiaryImplToJson(
-    _$ElectricityBeneficiaryImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  val['receiver'] = instance.receiver;
-  val['meter_type'] = instance.meterType;
-  val['provider_id'] = instance.providerId;
-  val['customer_name'] = instance.customerName;
-  val['customer_info'] = instance.customerInfo;
-  val['provider'] = instance.provider;
-  val['service_charge'] = instance.serviceCharge;
-  val['minimum_amount'] = instance.minimumAmount;
-  val['state'] = instance.state;
-  writeNotNull('tag', instance.tag);
-  val['is_online'] = instance.isOnline;
-  return val;
-}
+        _$ElectricityBeneficiaryImpl instance) =>
+    <String, dynamic>{
+      if (instance.id case final value?) 'id': value,
+      'receiver': instance.receiver,
+      'meter_type': instance.meterType,
+      'provider_id': instance.providerId,
+      'customer_name': instance.customerName,
+      'customer_info': instance.customerInfo,
+      'provider': instance.provider,
+      'service_charge': instance.serviceCharge,
+      'minimum_amount': instance.minimumAmount,
+      'state': instance.state,
+      if (instance.tag case final value?) 'tag': value,
+      'is_online': instance.isOnline,
+    };

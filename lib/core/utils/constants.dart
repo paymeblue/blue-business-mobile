@@ -19,6 +19,9 @@ class AppStateValues extends ChangeNotifier {
   int _count = 0;
   bool _newMessage = false;
   bool _hasNetwork = true;
+  bool _isTestApp = false;
+  bool _hasClosedAddressBanner = false;
+  List<String> _lockedFeatures = [];
   String? _channelId;
   String _token = "";
   LoginData? _currentUser;
@@ -26,6 +29,7 @@ class AppStateValues extends ChangeNotifier {
   TopupAccount? _account;
   WithdrawalAccount? _withdrawalAccount;
   Object? _extra;
+  bool _isAutowithdrawalEnabled = false;
 
   String get refreshToken => _refreshToken;
   String get fcmToken => _fcmToken;
@@ -34,11 +38,14 @@ class AppStateValues extends ChangeNotifier {
   String get kycLevel => _kycLevel;
   bool get hasSavedBeneficiary => _hasSavedBeneficiary;
   bool get notificationStatus => _notificationStatus;
+  bool get isTestApp => _isTestApp;
+  List<String> get lockedFeatures => _lockedFeatures;
   String get resetPath => _path;
   int get unreadCount => _count;
   bool get hasNewMessage => _newMessage;
   bool get showLiveChat => _showLiveChat;
   bool get hasNetwork => _hasNetwork;
+  bool get hasClosedAddressBanner => _hasClosedAddressBanner;
   String? get channelId => _channelId;
   String get accessToken => _token;
 
@@ -48,7 +55,29 @@ class AppStateValues extends ChangeNotifier {
   WithdrawalAccount? get withdrawalAccount => _withdrawalAccount;
   Object? get extra => _extra;
 
+  bool get isAutoWithdrawalEnabled => _isAutowithdrawalEnabled;
+
   NotificationState? notificationState;
+
+  set isAutoWithdrawalEnabled(bool c) {
+    _isAutowithdrawalEnabled = c;
+    notifyListeners();
+  }
+
+  set hasClosedAddressBanner(bool v) {
+    _hasClosedAddressBanner = v;
+    notifyListeners();
+  }
+
+  set lockedFeatures(List<String> v) {
+    _lockedFeatures = v;
+    notifyListeners();
+  }
+
+  set isTestApp(bool v) {
+    _isTestApp = v;
+    notifyListeners();
+  }
 
   set accessToken(String v) {
     _token = v;
@@ -156,6 +185,11 @@ class AppStateValues extends ChangeNotifier {
     resetPath = RoutePaths.home;
     unreadCount = 0;
     hasNewMessage = false;
+    hasClosedAddressBanner = false;
+    isAutoWithdrawalEnabled = false;
+    isTestApp = false;
+
+    lockedFeatures = [];
 
     currentUser = null;
     wallet = null;

@@ -40,7 +40,7 @@ class AccountRecoverySectionContainer extends StatelessWidget {
           type: MaterialType.transparency,
           child: InkWell(
             onTap: option.onTap,
-            splashColor: AppColors.brightBlue.withOpacity(.3),
+            splashColor: AppColors.brightBlue.withOpacityValue(.3),
             child: Container(
               constraints: const BoxConstraints(minHeight: 55),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

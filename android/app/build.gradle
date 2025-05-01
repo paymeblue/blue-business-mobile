@@ -33,7 +33,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.roman_dev.blue_business"
-    compileSdkVersion 34
+    compileSdkVersion 35
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -51,9 +51,9 @@ android {
 
     defaultConfig {
         applicationId "com.roman_dev.blue_business"
-        minSdkVersion 21
+        minSdkVersion 23
         multiDexEnabled true
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         ndk {

@@ -22,19 +22,10 @@ _$GetBeneficiaryResponseImpl _$$GetBeneficiaryResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$GetBeneficiaryResponseImplToJson(
-    _$GetBeneficiaryResponseImpl instance) {
-  final val = <String, dynamic>{
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('message', instance.message);
-  val['data'] = instance.data;
-  writeNotNull('pagination_info', instance.paginationInfo);
-  return val;
-}
+        _$GetBeneficiaryResponseImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      if (instance.message case final value?) 'message': value,
+      'data': instance.data,
+      if (instance.paginationInfo case final value?) 'pagination_info': value,
+    };

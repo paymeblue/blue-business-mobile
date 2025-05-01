@@ -374,7 +374,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
       height: 70,
       width: context.mediaQuery.size.width,
       child: Shimmer.fromColors(
-        baseColor: AppColors.brightBlue.withOpacity(.3),
+        baseColor: AppColors.brightBlue.withOpacityValue(.3),
         highlightColor: AppColors.white,
         child: DecoratedBox(
           decoration: BoxDecoration(
@@ -391,7 +391,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
       height: 65,
       width: context.mediaQuery.size.width,
       child: Shimmer.fromColors(
-        baseColor: AppColors.brightBlue.withOpacity(.3),
+        baseColor: AppColors.brightBlue.withOpacityValue(.3),
         highlightColor: AppColors.white,
         child: DecoratedBox(
           decoration: BoxDecoration(

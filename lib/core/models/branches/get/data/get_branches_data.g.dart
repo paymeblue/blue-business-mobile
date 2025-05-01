@@ -21,21 +21,12 @@ _$GetBranchesDataImpl _$$GetBranchesDataImplFromJson(
     );
 
 Map<String, dynamic> _$$GetBranchesDataImplToJson(
-    _$GetBranchesDataImpl instance) {
-  final val = <String, dynamic>{
-    'total': instance.total,
-    'page': instance.page,
-    'limit': instance.limit,
-    'data': instance.data,
-    'load_more': instance.loadMore,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('per_page', instance.perPage);
-  return val;
-}
+        _$GetBranchesDataImpl instance) =>
+    <String, dynamic>{
+      'total': instance.total,
+      'page': instance.page,
+      'limit': instance.limit,
+      'data': instance.data,
+      'load_more': instance.loadMore,
+      if (instance.perPage case final value?) 'per_page': value,
+    };

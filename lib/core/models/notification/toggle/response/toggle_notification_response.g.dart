@@ -14,17 +14,8 @@ _$ToggleNotificationResponseImpl _$$ToggleNotificationResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$ToggleNotificationResponseImplToJson(
-    _$ToggleNotificationResponseImpl instance) {
-  final val = <String, dynamic>{
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('message', instance.message);
-  return val;
-}
+        _$ToggleNotificationResponseImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      if (instance.message case final value?) 'message': value,
+    };

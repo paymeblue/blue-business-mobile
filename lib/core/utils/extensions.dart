@@ -1,11 +1,15 @@
+import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 extension BuildContextEx on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);
+  double getHeight([double scale = 1]) => mediaQuery.size.height * scale;
+  double getWidth([double scale = 1]) => mediaQuery.size.width * scale;
 
   void popUntilPath<T extends Object?>(String ancestorPath, [T? result]) {
     while (GoRouter.of(this)
@@ -102,5 +106,29 @@ extension StringEx on String? {
     }
 
     return selectedCountry.dialCode + number;
+  }
+}
+
+extension PxToLineHeight on num {
+  double toLineHeight(double fontSize) {
+    return sp / fontSize.sp;
+  }
+
+  double toLetterSpacing(double fontsize) {
+    return sp * fontsize.sp;
+  }
+}
+
+extension ColorEx on Color {
+  Color withOpacityValue(double value) {
+    return withValues(alpha: value);
+  }
+}
+
+extension MoneyEx on num {
+  String get money {
+    final formatCurrency = NumberFormat.simpleCurrency(name: nairaSymbol());
+
+    return formatCurrency.format(this);
   }
 }

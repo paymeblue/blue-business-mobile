@@ -1,4 +1,5 @@
 import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/models/business_fees/business_fees.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/injection/navigation_service.dart';
@@ -9,6 +10,7 @@ import 'package:blue_business/ui/features/add_withdrawal_details/presentation/vi
 import 'package:blue_business/ui/features/branch/pages/enter_details/view.dart';
 import 'package:blue_business/ui/features/branch/pages/home/presentation/view.dart';
 import 'package:blue_business/ui/features/branch_insights/presentation/view.dart';
+import 'package:blue_business/ui/features/business_fees/presentation/view.dart';
 import 'package:blue_business/ui/features/change_password/presentation/view.dart';
 import 'package:blue_business/ui/features/change_pin/presentation/view.dart';
 import 'package:blue_business/ui/features/manage_beneficiaries/presentation/view.dart';

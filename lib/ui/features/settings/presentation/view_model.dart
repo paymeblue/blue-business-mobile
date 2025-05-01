@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
@@ -9,6 +10,7 @@ import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/config/timed_refresh.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/models/business_fees/business_fees.dart';
 import 'package:blue_business/core/models/delete_account/delete/request/delete_request.dart';
 import 'package:blue_business/core/models/delete_account/delete/response/delete_response.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/reason/reason.dart';
@@ -293,6 +295,13 @@ class SettingsViewModel extends BaseViewModel {
 
   List<SettingsOption> financeOption(BuildContext context) => [
         SettingsOption(
+          icon: AppAssets.images.icons.businessFees.svg(),
+          title: "Business fees & charges",
+          onTap: () {
+            getBusinessFees(context);
+          },
+        ),
+        SettingsOption(
           icon: AppAssets.images.icons.virtualBank.svg(),
           title: "Withdrawal bank",
           subtitle: "Link your personal bank account to make easy withdrawals",
@@ -332,8 +341,8 @@ class SettingsViewModel extends BaseViewModel {
               scale: .5,
               child: CupertinoSwitch(
                 value: notificationStatus,
-                activeColor: AppColors.primary,
-                trackColor: AppColors.midGrey,
+                activeTrackColor: AppColors.primary,
+                inactiveTrackColor: AppColors.midGrey,
                 onChanged: toggleNotifications,
               ),
             ),
@@ -350,8 +359,8 @@ class SettingsViewModel extends BaseViewModel {
               scale: .5,
               child: CupertinoSwitch(
                 value: useBiometrics,
-                activeColor: AppColors.primary,
-                trackColor: AppColors.midGrey,
+                activeTrackColor: AppColors.primary,
+                inactiveTrackColor: AppColors.midGrey,
                 onChanged: setBiometricsValue,
               ),
             ),
@@ -399,7 +408,7 @@ class SettingsViewModel extends BaseViewModel {
             height: 38.h,
             width: 38.w,
             decoration: BoxDecoration(
-              color: AppColors.error.withOpacity(.1),
+              color: AppColors.error.withOpacityValue(.1),
               shape: BoxShape.circle,
             ),
             padding: const EdgeInsets.all(10.5),
@@ -416,6 +425,28 @@ class SettingsViewModel extends BaseViewModel {
   set isChanging(bool v) {
     _isChanging = v;
     notifyListeners();
+  }
+
+  getBusinessFees(BuildContext context) async {
+    AppLoader.start();
+    GetBusinessFeesResponse resp = await ProfileService()
+        .getBusinessFeesResponse()
+        .onError((error, stackTrace) {
+      return GetBusinessFeesResponse(
+        message: AppErrorHandler.getErrorMessage(error),
+      );
+    });
+
+    if (resp.status == 'success') {
+      final data = resp.data;
+      if (context.mounted) {
+        context.push(RoutePaths.settingsToBusinessFees, extra: data);
+      }
+    } else {
+      AppNotification.error(message: resp.message);
+    }
+
+    AppLoader.stop();
   }
 
   toggleNotifications(bool v) async {

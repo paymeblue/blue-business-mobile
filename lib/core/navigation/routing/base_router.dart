@@ -12,6 +12,9 @@ GoRouter router = GoRouter(
     if (stateValues.currentUser == null &&
         state.matchedLocation.contains("/dash")) {
       return RoutePaths.login;
+    } else if (stateValues.lockedFeatures.contains(state.matchedLocation) &&
+        !stateValues.isTestApp) {
+      return RoutePaths.comingSoon;
     }
     return state.matchedLocation;
   },
@@ -89,6 +92,11 @@ GoRouter router = GoRouter(
       parentNavigatorKey: locator<NavigationService>().navigatorKey,
       pageBuilder: (context, state) =>
           BlueWebview(args: state.extra as BlueWebViewArgs).fade,
-    )
+    ),
+    GoRoute(
+      path: RoutePaths.comingSoon,
+      parentNavigatorKey: locator<NavigationService>().navigatorKey,
+      pageBuilder: (context, state) => const ComingSoonView().fade,
+    ),
   ],
 );

@@ -13,18 +13,9 @@ _$BillProviderImpl _$$BillProviderImplFromJson(Map<String, dynamic> json) =>
       image: json['image'] as String?,
     );
 
-Map<String, dynamic> _$$BillProviderImplToJson(_$BillProviderImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'name': instance.name,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('image', instance.image);
-  return val;
-}
+Map<String, dynamic> _$$BillProviderImplToJson(_$BillProviderImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      if (instance.image case final value?) 'image': value,
+    };

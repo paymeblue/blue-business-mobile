@@ -13,9 +13,8 @@ class PieChart extends StatefulWidget {
     required this.radius,
     this.strokeWidth = 8,
     this.child,
-    Key? key,
-  })  : assert(data.fold<double>(0, (sum, data) => sum + data.percent) <= 100),
-        super(key: key);
+    super.key,
+  }) : assert(data.fold<double>(0, (sum, data) => sum + data.percent) <= 100);
 
   final List<PieChartData> data;
   // radius of chart

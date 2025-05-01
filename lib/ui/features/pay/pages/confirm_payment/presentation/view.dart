@@ -112,8 +112,8 @@ class ConfirmTransactionView extends StatelessWidget {
           scale: .6,
           child: CupertinoSwitch(
             value: model.saveBeneficiary,
-            activeColor: AppColors.primary,
-            trackColor: AppColors.grey,
+            activeTrackColor: AppColors.primary,
+            inactiveTrackColor: AppColors.grey,
             onChanged: (v) {
               model.saveBeneficiary = v;
             },
@@ -197,7 +197,7 @@ class ConfirmTransactionView extends StatelessWidget {
       SizedBox(
         width: 350.w,
         child: Text(
-          "Enter the amount you wish to withdraw from your Blue wallet.",
+          "You are about to withdraw ${nairaSymbol()}${(args.amount! / 100).toStringAsFixed(2)} from your Blue wallet to the following account.",
           style: AppTextStyles.subHeader,
           textAlign: TextAlign.start,
         ),

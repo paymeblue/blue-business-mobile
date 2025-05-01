@@ -17,25 +17,19 @@ _$LoginDataImpl _$$LoginDataImplFromJson(Map<String, dynamic> json) =>
       token: Token.fromJson(json['token'] as Map<String, dynamic>),
       createdAt: json['created_at'] as String?,
       displayPicture: json['display_picture'] as String?,
+      proofOfAddressVerified:
+          json['proof_of_address_verified'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$LoginDataImplToJson(_$LoginDataImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'phone': instance.phone,
-    'business': instance.business,
-    'dashboard_data': instance.dashboardData,
-    'kyc': instance.kyc,
-    'token': instance.token,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('created_at', instance.createdAt);
-  writeNotNull('display_picture', instance.displayPicture);
-  return val;
-}
+Map<String, dynamic> _$$LoginDataImplToJson(_$LoginDataImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'phone': instance.phone,
+      'business': instance.business,
+      'dashboard_data': instance.dashboardData,
+      'kyc': instance.kyc,
+      'token': instance.token,
+      if (instance.createdAt case final value?) 'created_at': value,
+      if (instance.displayPicture case final value?) 'display_picture': value,
+      'proof_of_address_verified': instance.proofOfAddressVerified,
+    };

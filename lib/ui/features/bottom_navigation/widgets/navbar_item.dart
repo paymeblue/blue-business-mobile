@@ -9,11 +9,11 @@ class NavBarItem extends StatelessWidget {
   final int index;
   final int currentIncex;
   const NavBarItem({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.index,
     this.currentIncex = 0,
-  }) : super(key: key);
+  });
 
   Widget inactiveIcon() {
     switch (index) {

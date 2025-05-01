@@ -17,6 +17,7 @@ class LoginData with _$LoginData {
     required Token token,
     String? createdAt,
     String? displayPicture,
+    @Default(false) bool proofOfAddressVerified,
   }) = _LoginData;
 
   factory LoginData.fromJson(Map<String, dynamic> json) =>

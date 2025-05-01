@@ -24,27 +24,18 @@ _$VendElectricityDataImpl _$$VendElectricityDataImplFromJson(
     );
 
 Map<String, dynamic> _$$VendElectricityDataImplToJson(
-    _$VendElectricityDataImpl instance) {
-  final val = <String, dynamic>{
-    'transaction_id': instance.transactionId,
-    'customer_name': instance.customerName,
-    'customer_info': instance.customerInfo,
-    'receiver': instance.receiver,
-    'provider': instance.provider,
-    'meter_type': instance.meterType,
-    'payment_reference': instance.paymentReference,
-    'amount': instance.amount,
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('created_at', instance.createdAt);
-  writeNotNull('units', instance.units);
-  writeNotNull('token', instance.token);
-  return val;
-}
+        _$VendElectricityDataImpl instance) =>
+    <String, dynamic>{
+      'transaction_id': instance.transactionId,
+      'customer_name': instance.customerName,
+      'customer_info': instance.customerInfo,
+      'receiver': instance.receiver,
+      'provider': instance.provider,
+      'meter_type': instance.meterType,
+      'payment_reference': instance.paymentReference,
+      'amount': instance.amount,
+      'status': instance.status,
+      if (instance.createdAt case final value?) 'created_at': value,
+      if (instance.units case final value?) 'units': value,
+      if (instance.token case final value?) 'token': value,
+    };

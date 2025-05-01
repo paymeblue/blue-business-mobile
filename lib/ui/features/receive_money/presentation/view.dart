@@ -98,7 +98,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
             offset: const Offset(0, 2),
             blurRadius: 8,
             spreadRadius: 8,
-            color: Colors.black.withOpacity(.045),
+            color: Colors.black.withOpacityValue(.045),
           ),
         ],
       ),
@@ -159,7 +159,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
       return Material(
         type: MaterialType.transparency,
         child: InkWell(
-          splashColor: AppColors.brightBlue.withOpacity(.2),
+          splashColor: AppColors.brightBlue.withOpacityValue(.2),
           onTap: () {
             model.copy(locator<AppStateValues>().account!.accountNumber);
           },
@@ -197,7 +197,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
       return Material(
         type: MaterialType.transparency,
         child: InkWell(
-          splashColor: AppColors.brightBlue.withOpacity(.2),
+          splashColor: AppColors.brightBlue.withOpacityValue(.2),
           onTap: () {
             model.copy(locator<AppStateValues>().wallet!.walletCode);
           },
@@ -248,13 +248,13 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
                 TextSpan(
                   text: "| ",
                   style: AppTextStyles.smallText.copyWith(
-                      color: AppColors.bodyTextColor.withOpacity(.35),
+                      color: AppColors.bodyTextColor.withOpacityValue(.35),
                       fontSize: 14.sp),
                 ),
                 TextSpan(
                   text: "$accountNumber ",
                   style: AppTextStyles.smallText.copyWith(
-                      color: AppColors.bodyTextColor.withOpacity(.7),
+                      color: AppColors.bodyTextColor.withOpacityValue(.7),
                       fontSize: 14.sp),
                 )
               ]),
@@ -358,7 +358,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
             color: AppColors.bgGrey,
             shape: BoxShape.circle,
           ),
-          padding: const EdgeInsets.only(bottom: 33),
+          padding: EdgeInsets.only(bottom: 33.h),
           alignment: Alignment.bottomCenter,
           child: Screenshot(
             controller: model.screenshotController,
@@ -377,13 +377,13 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
           ),
         ),
         Positioned(
-          top: 25,
-          right: 110,
-          width: 50,
-          height: 50,
+          top: 30.h,
+          right: 110.h,
+          width: 50.dm,
+          height: 50.dm,
           child: Container(
-            height: 50.h,
-            width: 50.w,
+            height: 50.dm,
+            width: 50.dm,
             padding: const EdgeInsets.all(2),
             decoration: const BoxDecoration(
               color: AppColors.white,
@@ -393,7 +393,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
               height: 45.h,
               width: 45.w,
               child: BlueAvatar(
-                radius: 30,
+                radius: 30.r,
                 imageUrl: locator<AppStateValues>().currentUser!.displayPicture,
               ),
             ),
@@ -449,7 +449,6 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
       width: width ?? 250,
       height: height ?? 120,
       fontFamily: AppFonts.satoshi,
-      color: AppColors.primary.value,
       fontHeight: fontHeight,
       drawText: false,
     );
@@ -458,7 +457,7 @@ class _ReceiveMoneyViewState extends State<ReceiveMoneyView> {
 
   Shimmer qrLoadingShimmer() {
     return Shimmer.fromColors(
-      baseColor: AppColors.brightBlue.withOpacity(.35),
+      baseColor: AppColors.brightBlue.withOpacityValue(.35),
       highlightColor: AppColors.white,
       child: Container(
         height: 140,

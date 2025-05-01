@@ -163,7 +163,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
       height: 70.h,
       width: context.mediaQuery.size.width,
       child: Shimmer.fromColors(
-        baseColor: AppColors.brightBlue.withOpacity(.3),
+        baseColor: AppColors.brightBlue.withOpacityValue(.3),
         highlightColor: AppColors.white,
         child: DecoratedBox(
           decoration: BoxDecoration(
@@ -180,7 +180,7 @@ class _GeneralInsightsPageState extends State<GeneralInsightsPage> {
       height: 65.h,
       width: context.mediaQuery.size.width,
       child: Shimmer.fromColors(
-        baseColor: AppColors.brightBlue.withOpacity(.3),
+        baseColor: AppColors.brightBlue.withOpacityValue(.3),
         highlightColor: AppColors.white,
         child: DecoratedBox(
           decoration: BoxDecoration(

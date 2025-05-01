@@ -19,22 +19,13 @@ _$VerifiedReceiverImpl _$$VerifiedReceiverImplFromJson(
     );
 
 Map<String, dynamic> _$$VerifiedReceiverImplToJson(
-    _$VerifiedReceiverImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('user_id', instance.userId);
-  writeNotNull('wallet_code', instance.walletCode);
-  val['receiver_name'] = instance.receiverName;
-  val['phone'] = instance.phone;
-  val['amount'] = instance.amount;
-  val['charge'] = instance.charge;
-  return val;
-}
+        _$VerifiedReceiverImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      if (instance.userId case final value?) 'user_id': value,
+      if (instance.walletCode case final value?) 'wallet_code': value,
+      'receiver_name': instance.receiverName,
+      'phone': instance.phone,
+      'amount': instance.amount,
+      'charge': instance.charge,
+    };

@@ -47,8 +47,10 @@ class QrPaymentView extends StatelessWidget {
               onDetect: (capture) {
                 model.detect(capture, context);
               },
-              overlay:
-                  QRScannerOverlay(overlayColour: Colors.black.withOpacity(.2)),
+              overlayBuilder: (context, constraints) {
+                return QRScannerOverlay(
+                    overlayColour: Colors.black.withOpacityValue(.2));
+              },
             ),
           ),
         );

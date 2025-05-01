@@ -16,6 +16,7 @@ import 'package:blue_business/core/models/forgot/pin/verify/request/verify_forgo
 import 'package:blue_business/core/models/forgot_pin/response/forgot_pin_response.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
 import 'package:blue_business/core/models/login/response/login_response.dart';
+import 'package:blue_business/core/models/profile/get_profile.dart';
 import 'package:blue_business/core/models/recover_phone/add/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/recover_phone/verify/request/verify_new_phone_request.dart';
@@ -98,6 +99,9 @@ abstract class AuthService {
   Future<LoginResponse> login({
     @Body() required LoginRequest request,
   });
+
+  @GET("/users/me")
+  Future<GetProfileResponse> getProfile();
 
   @POST("/auth/refresh-access-token")
   Future<RefreshTokenResponse> refresh({

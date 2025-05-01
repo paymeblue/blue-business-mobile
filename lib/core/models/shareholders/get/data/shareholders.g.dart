@@ -19,24 +19,15 @@ _$ShareholdersImpl _$$ShareholdersImplFromJson(Map<String, dynamic> json) =>
       address: json['address'] as String?,
     );
 
-Map<String, dynamic> _$$ShareholdersImplToJson(_$ShareholdersImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'business_id': instance.businessId,
-    'name': instance.name,
-    'verified': instance.verified,
-    'designation': instance.designation,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('bvn', instance.bvn);
-  writeNotNull('phone', instance.phone);
-  writeNotNull('created_at', instance.createdAt);
-  writeNotNull('address', instance.address);
-  return val;
-}
+Map<String, dynamic> _$$ShareholdersImplToJson(_$ShareholdersImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'business_id': instance.businessId,
+      'name': instance.name,
+      'verified': instance.verified,
+      'designation': instance.designation,
+      if (instance.bvn case final value?) 'bvn': value,
+      if (instance.phone case final value?) 'phone': value,
+      if (instance.createdAt case final value?) 'created_at': value,
+      if (instance.address case final value?) 'address': value,
+    };

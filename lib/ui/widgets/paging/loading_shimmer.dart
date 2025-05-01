@@ -48,7 +48,7 @@ class _$LoadingTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: AppColors.brightBlue.withOpacity(.35),
+      baseColor: AppColors.brightBlue.withOpacityValue(.35),
       highlightColor: AppColors.white,
       child: Container(
         height: title == null ? 50 : 70,

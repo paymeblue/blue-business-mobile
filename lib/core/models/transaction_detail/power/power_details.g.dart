@@ -23,27 +23,19 @@ _$PowerDetailsImpl _$$PowerDetailsImplFromJson(Map<String, dynamic> json) =>
       units: json['units'] as String? ?? "0.0",
     );
 
-Map<String, dynamic> _$$PowerDetailsImplToJson(_$PowerDetailsImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  val['amount'] = instance.amount;
-  val['service_charge'] = instance.serviceCharge;
-  val['transaction_id'] = instance.transactionId;
-  val['provider'] = instance.provider;
-  val['created_at'] = instance.createdAt;
-  val['receiver'] = instance.receiver;
-  val['service'] = instance.service;
-  val['status'] = instance.status;
-  writeNotNull('token', instance.token);
-  val['balance_before'] = instance.balanceBefore;
-  val['balance_after'] = instance.balanceAfter;
-  val['units'] = instance.units;
-  return val;
-}
+Map<String, dynamic> _$$PowerDetailsImplToJson(_$PowerDetailsImpl instance) =>
+    <String, dynamic>{
+      if (instance.id case final value?) 'id': value,
+      'amount': instance.amount,
+      'service_charge': instance.serviceCharge,
+      'transaction_id': instance.transactionId,
+      'provider': instance.provider,
+      'created_at': instance.createdAt,
+      'receiver': instance.receiver,
+      'service': instance.service,
+      'status': instance.status,
+      if (instance.token case final value?) 'token': value,
+      'balance_before': instance.balanceBefore,
+      'balance_after': instance.balanceAfter,
+      'units': instance.units,
+    };

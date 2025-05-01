@@ -18,22 +18,13 @@ _$VerifyDataDataImpl _$$VerifyDataDataImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$VerifyDataDataImplToJson(
-    _$VerifyDataDataImpl instance) {
-  final val = <String, dynamic>{
-    'transaction_id': instance.transactionId,
-    'receiver': instance.receiver,
-    'provider': instance.provider,
-    'package': instance.package,
-    'amount': instance.amount,
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('created_at', instance.createdAt);
-  return val;
-}
+        _$VerifyDataDataImpl instance) =>
+    <String, dynamic>{
+      'transaction_id': instance.transactionId,
+      'receiver': instance.receiver,
+      'provider': instance.provider,
+      'package': instance.package,
+      'amount': instance.amount,
+      'status': instance.status,
+      if (instance.createdAt case final value?) 'created_at': value,
+    };

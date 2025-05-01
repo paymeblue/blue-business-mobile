@@ -15,18 +15,9 @@ _$BankResponseImpl _$$BankResponseImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$BankResponseImplToJson(_$BankResponseImpl instance) {
-  final val = <String, dynamic>{
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('message', instance.message);
-  writeNotNull('data', instance.data);
-  return val;
-}
+Map<String, dynamic> _$$BankResponseImplToJson(_$BankResponseImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      if (instance.message case final value?) 'message': value,
+      if (instance.data case final value?) 'data': value,
+    };

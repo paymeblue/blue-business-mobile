@@ -69,7 +69,7 @@ class _TransactionErrorViewState extends State<TransactionErrorView> {
       width: 60.w,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          shape: BoxShape.circle, color: AppColors.error.withOpacity(.1)),
+          shape: BoxShape.circle, color: AppColors.error.withOpacityValue(.1)),
       child: Container(
         decoration: const BoxDecoration(
           shape: BoxShape.circle,

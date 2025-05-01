@@ -6,6 +6,8 @@ class RoutePaths {
   static String initial = '/';
   static String welcome = '/welcome';
 
+  static String comingSoon = '/coming-soon';
+
   static String login = '/login';
   static String initiateResetPassword = "$login/initiate-reset-password";
   static String verifyPasswordOtp = "$login/verify-reset-password";
@@ -43,6 +45,7 @@ class RoutePaths {
   static String wallet = "/dash/home/wallet";
   static String walletPaymentSuccess = "/dash/home/wallet/success";
   static String walletPaymentFailure = "/dash/home/wallet/failure";
+  static String withdrawalMethod = "/dash/home/wallet/withdrawal-method";
   static String initiateTransaction = "/dash/home/wallet/initiate-transaction";
   static String verifyReceiver = "/dash/home/wallet/verify-receiver";
   static String confirmTransaction = "/dash/home/wallet/confirm-transaction";
@@ -85,6 +88,7 @@ class RoutePaths {
   static String settings = "/dash/settings";
 
   static String settingsToBranches = "/dash/settings/branches";
+  static String settingsToBusinessFees = "/dash/settings/business-fees";
   static String settingsToBranchInsights = "/dash/settings/branches/insights";
   static String settingsToBranchesToDetails = "/dash/settings/branches/details";
 

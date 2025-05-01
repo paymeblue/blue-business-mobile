@@ -10,7 +10,7 @@ _$TransactionHistoryImpl _$$TransactionHistoryImplFromJson(
         Map<String, dynamic> json) =>
     _$TransactionHistoryImpl(
       transactionId: json['transaction_id'] as String,
-      otherPartyName: json['other_party_name'] as String,
+      otherPartyName: json['other_party_name'] as String?,
       transactionAmount: json['transaction_amount'] as String,
       paymentMode: json['payment_mode'] as String,
       transactionType: json['transaction_type'] as String? ?? "debit",
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$TransactionHistoryImplToJson(
         _$TransactionHistoryImpl instance) =>
     <String, dynamic>{
       'transaction_id': instance.transactionId,
-      'other_party_name': instance.otherPartyName,
+      if (instance.otherPartyName case final value?) 'other_party_name': value,
       'transaction_amount': instance.transactionAmount,
       'payment_mode': instance.paymentMode,
       'transaction_type': instance.transactionType,

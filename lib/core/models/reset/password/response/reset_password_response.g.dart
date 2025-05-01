@@ -14,17 +14,8 @@ _$ResetPasswordResponseImpl _$$ResetPasswordResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$ResetPasswordResponseImplToJson(
-    _$ResetPasswordResponseImpl instance) {
-  final val = <String, dynamic>{
-    'status': instance.status,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('message', instance.message);
-  return val;
-}
+        _$ResetPasswordResponseImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      if (instance.message case final value?) 'message': value,
+    };

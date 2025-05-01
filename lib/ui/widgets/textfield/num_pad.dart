@@ -12,11 +12,10 @@ class NumPad extends StatelessWidget {
   final ValueChanged<String> onChanged;
   final VoidCallback? onUsebiometrics;
   const NumPad(
-      {Key? key,
+      {super.key,
       required this.pin,
       required this.onChanged,
-      this.onUsebiometrics})
-      : super(key: key);
+      this.onUsebiometrics});
 
   @override
   Widget build(BuildContext context) {
@@ -114,11 +113,10 @@ class NumberButton extends StatelessWidget {
   final String pin;
 
   const NumberButton(
-      {Key? key,
+      {super.key,
       required this.number,
       required this.pin,
-      required this.onChnaged})
-      : super(key: key);
+      required this.onChnaged});
 
   @override
   Widget build(BuildContext context) {
@@ -149,10 +147,10 @@ class DeleteButton extends StatelessWidget {
   final ValueChanged<String> onChnaged;
   final String pin;
   const DeleteButton({
-    Key? key,
+    super.key,
     required this.onChnaged,
     required this.pin,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -184,8 +182,7 @@ class DeleteButton extends StatelessWidget {
 class FaceIdButton extends StatelessWidget {
   final bool useBiometrics;
   final VoidCallback? onTap;
-  const FaceIdButton({Key? key, this.useBiometrics = true, this.onTap})
-      : super(key: key);
+  const FaceIdButton({super.key, this.useBiometrics = true, this.onTap});
 
   @override
   Widget build(BuildContext context) {

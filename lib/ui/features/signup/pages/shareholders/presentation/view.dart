@@ -99,7 +99,7 @@ class SelectShareholderView extends StatelessWidget {
       type: MaterialType.transparency,
       child: InkWell(
         onTap: onTap,
-        splashColor: AppColors.brightBlue.withOpacity(.3),
+        splashColor: AppColors.brightBlue.withOpacityValue(.3),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(

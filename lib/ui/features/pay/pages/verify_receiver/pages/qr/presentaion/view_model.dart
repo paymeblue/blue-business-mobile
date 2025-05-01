@@ -58,15 +58,24 @@ class QrPaymentViewModel extends BaseViewModel {
     String val = capture.barcodes.first.rawValue!;
     mobileScannerController.stop();
 
-    if (context.mounted) verify(val, context);
+    List<String> values = val.split("_");
+
+    if (context.mounted) {
+      verify(
+        values.first,
+        context,
+        values.length > 2 ? int.tryParse(values[2]) : null,
+      );
+    }
   }
 
-  verify(String identifier, BuildContext context) async {
+  verify(String identifier, BuildContext context, [int? branchId]) async {
     AppLoader.start();
 
     VerifiedReceiverRequest request = VerifiedReceiverRequest(
       receiver: identifier,
       transactionId: data.transactionId,
+      branchId: branchId.toString(),
     );
 
     VerifiedReceiverResponse resp = await TransactionService()

@@ -32,7 +32,7 @@ class BlueTextField {
     Widget selectedItem() {
       return Container(
         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-        width: 60.w,
+        width: 45.w,
         height: 25.h,
         decoration: BoxDecoration(
           color: AppColors.grey,
@@ -556,7 +556,7 @@ class _$BlueTextFieldState extends State<_$BlueTextField> {
                     horizontal: widget.isMessage ? 8 : 15,
                     vertical: widget.isMessage ? 6 : 10),
                 hintStyle: AppTextStyles.textField
-                    .copyWith(color: AppColors.textColor.withOpacity(.3)),
+                    .copyWith(color: AppColors.textColor.withOpacityValue(.3)),
                 fillColor: AppColors.inputField,
                 filled: true,
                 prefixIcon: widget.leading,
