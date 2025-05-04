@@ -84,7 +84,7 @@ class PowerReceipt extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Text(
-        "Best Reagards,\nBluePay Team",
+        "Best Regards,\nBluePay Team",
         style: AppTextStyles.receiptFieldbody
             .copyWith(fontSize: 15.sp, fontWeight: FontWeight.w400),
       ),
