@@ -53,7 +53,7 @@ class VerifyPasswordOtpViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  int _timeLeft = 300;
+  int _timeLeft = 120;
   int get timeLeft => _timeLeft;
 
   set timeLeft(int n) {
@@ -68,11 +68,11 @@ class VerifyPasswordOtpViewModel extends BaseViewModel {
   late Timer timer;
 
   startCountdown() {
-    timeLeft = 300;
+    timeLeft = 120;
     canResend = false;
     timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
       if (timeLeft > 0) {
-        timeLeft = 300 - timer.tick;
+        timeLeft = 120 - timer.tick;
       } else {
         stopTimer();
         canResend = true;
