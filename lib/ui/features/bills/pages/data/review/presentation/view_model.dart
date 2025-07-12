@@ -1,6 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/bills/data/verify/data/verify_data_data.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,6 @@ class ReviewDataViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, VerifyDataData data) {
-    context.push(RoutePaths.confirmData, extra: data);
+    context.router.push(ConfirmDataPinRoute(data: data));
   }
 }

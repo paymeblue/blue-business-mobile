@@ -1,6 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -20,15 +21,15 @@ class SignupProgressViewModel extends BaseViewModel {
 
   goToNext(BuildContext context) {
     if (progress == 1) {
-      context.push<SignupData>(RoutePaths.businessDetails, extra: data).then(
+      context.router.push<SignupData>(AddBusinessDetailsRoute(data: data)).then(
             onSignupDataReturned,
           );
     } else if (progress == 2) {
-      context.push<SignupData>(RoutePaths.shareholders, extra: data).then(
+      context.router.push<SignupData>(SelectShareholderRoute(data: data)).then(
             onSignupDataReturned,
           );
     } else {
-      context.push<SignupData>(RoutePaths.createPin, extra: data).then(
+      context.router.push<SignupData>(CreatePinRoute(data: data)).then(
             onSignupDataReturned,
           );
     }

@@ -937,7 +937,7 @@ class ErrorRouteRoute extends PageRouteInfo<ErrorRouteRouteArgs> {
   ErrorRouteRoute({
     Key? key,
     required String? message,
-    String? newRoute,
+    PageRouteInfo<dynamic>? newRoute,
     List<PageRouteInfo>? children,
   }) : super(
           ErrorRouteRoute.name,
@@ -975,7 +975,7 @@ class ErrorRouteRouteArgs {
 
   final String? message;
 
-  final String? newRoute;
+  final PageRouteInfo<dynamic>? newRoute;
 
   @override
   String toString() {

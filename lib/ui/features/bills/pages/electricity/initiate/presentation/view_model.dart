@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/bills_service/bills_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
@@ -11,7 +12,7 @@ import 'package:blue_business/core/models/bills/electricity/verify/request/verif
 import 'package:blue_business/core/models/bills/electricity/verify/response/verify_electricity_response.dart';
 import 'package:blue_business/core/models/bills/get_providers/providers/providers.dart';
 import 'package:blue_business/core/models/bills/get_providers/response/get_providers_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -264,9 +265,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
     double amount = double.parse(amountController.text
         .replaceAll(nairaSymbol(), "")
         .replaceAll(",", ""));
-    context.push(
-      RoutePaths.reviewPower,
-      extra: ConfirmPowerArgs(amount: amount, data: data!),
-    );
+    context.router.push(ReviewElectricityRoute(
+        args: ConfirmPowerArgs(amount: amount, data: data!)));
   }
 }
