@@ -1,4 +1,5 @@
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -9,11 +10,15 @@ import 'package:oktoast/oktoast.dart';
 import 'package:overlay_kit/overlay_kit.dart';
 import 'package:provider/provider.dart';
 
-import 'core/navigation/routing/route_imports/base.dart';
-
-class BlueBusinessApp extends StatelessWidget {
+class BlueBusinessApp extends StatefulWidget {
   const BlueBusinessApp({super.key});
 
+  @override
+  State<BlueBusinessApp> createState() => _BlueBusinessAppState();
+}
+
+class _BlueBusinessAppState extends State<BlueBusinessApp> {
+  final autoRoute = AppRouter();
   @override
   Widget build(BuildContext context) {
     return OverlayKit(
@@ -25,7 +30,7 @@ class BlueBusinessApp extends StatelessWidget {
             ),
           ],
           child: MaterialApp.router(
-            routerConfig: router,
+            routerConfig: autoRoute.config(),
             theme: AppTheme.light(),
             debugShowCheckedModeBanner: false,
             builder: (context, child) {

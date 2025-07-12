@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
@@ -5,7 +6,7 @@ import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/models/reset/pin/request/reset_pin_request.dart';
 import 'package:blue_business/core/models/security_question/send/response/send_question_request.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -83,8 +84,8 @@ class ResetPinViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       if (context.mounted) {
-        context.popUntilRoute(RoutePaths.initiateResetPin, true);
-        context.pop(true);
+        context.popUntilRoute(InitiatePinResetRoute(), true);
+        context.router.maybePop(true);
       }
     } else {
       AppNotification.error(message: resp.message);

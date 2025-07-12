@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/business_category/category/business_category.dart';
@@ -5,7 +6,7 @@ import 'package:blue_business/core/models/business_category/response/business_ca
 import 'package:blue_business/core/models/create_business_profile/request/create_business_profile_request.dart';
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
@@ -25,7 +26,7 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop(data);
+    context.router.maybePop(data);
   }
 
   late SignupData data;
@@ -133,6 +134,6 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.pushReplacement(RoutePaths.shareholders, extra: data);
+    context.router.replace(SelectShareholderRoute(data: data));
   }
 }

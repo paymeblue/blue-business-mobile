@@ -26,7 +26,6 @@ import 'package:blue_business/core/models/transaction_option/transaction_option.
 import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -372,17 +371,20 @@ class HomeViewModel extends BaseViewModel {
     dynamic extra;
     if (mode == "payment") {
       extra = PaymentDetail.fromJson(response.data);
+      context.router.push(PaymentDetailsRoute(detail: extra));
     } else if (mode == "airtime") {
       extra = AirtimeDetails.fromJson(response.data);
+      context.router.push(AirtimeDetailsRoute(detail: extra));
     } else if (mode == "power") {
       extra = PowerDetails.fromJson(response.data);
+      context.router.push(PowerDetailsRoute(detail: extra));
     } else if (mode == "data") {
       extra = DataDetails.fromJson(response.data);
+      context.router.push(DataDetailsRoute(detail: extra));
     } else if (mode == "tv") {
       extra = CableDetails.fromJson(response.data);
+      context.router.push(CableDetailsRoute(detail: extra));
     }
-
-    context.push(RoutePaths.transactionDetails(method: mode), extra: extra);
   }
 
   String getService(String mode) {

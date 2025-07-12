@@ -23,10 +23,8 @@ import 'package:blue_business/core/models/upload_avatar/response/upload_avatar_r
 import 'package:blue_business/core/models/withdrawal_account/get/response/withdrawal_account_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/bottom_sheet.dart';
@@ -434,7 +432,7 @@ class SettingsViewModel extends BaseViewModel {
     if (resp.status == 'success') {
       final data = resp.data;
       if (context.mounted) {
-        context.push(RoutePaths.settingsToBusinessFees, extra: data);
+        context.router.push(BusinessFeesRoute(data: data!));
       }
     } else {
       AppNotification.error(message: resp.message);
@@ -521,18 +519,18 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToPaymentLinkHistory(BuildContext context) {
-    context.push(RoutePaths.paymentLinkHistory);
+    context.router.push(PaymentLinkHistoryRoute());
   }
 
   goToPersonalInfo(BuildContext context) {
-    context.push(RoutePaths.personalInfo);
+    context.router.push(PersonalInfoRoute());
   }
 
   goToWithdrawalBank(BuildContext context) {
-    context.push(RoutePaths.withdrawalInfo);
+    context.router.push(AddWithdrawalDetailsRoute());
   }
 
   goToAccountRecovery(BuildContext context) {
-    context.push(RoutePaths.accountRecovery);
+    context.router.push(AccountRecoveryRoute());
   }
 }
