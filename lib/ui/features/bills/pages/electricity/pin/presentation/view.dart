@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -22,6 +23,7 @@ class ConfirmPowerArgs {
   });
 }
 
+@RoutePage()
 class ConfirmElectricityPinView extends StatelessWidget {
   final ConfirmPowerArgs args;
   const ConfirmElectricityPinView({

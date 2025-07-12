@@ -1,7 +1,6 @@
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class MissingRouteViewModel extends BaseViewModel {
   late Size size;

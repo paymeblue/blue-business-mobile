@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/business_fees/business_fees.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class BusinessFeesView extends StatelessWidget {
   final GetBusinessFeesData data;
   const BusinessFeesView({super.key, required this.data});

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
@@ -15,8 +16,8 @@ import 'package:blue_business/ui/widgets/modals/info_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
+@RoutePage()
 class ConfirmTransactionViewArgs {
   final PaymentMode mode;
   final int? amount;

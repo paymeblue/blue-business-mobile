@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
@@ -13,6 +14,7 @@ import 'package:screenshot/screenshot.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class VendCableSuccessView extends StatelessWidget {
   final VendCableData data;
   const VendCableSuccessView({super.key, required this.data});

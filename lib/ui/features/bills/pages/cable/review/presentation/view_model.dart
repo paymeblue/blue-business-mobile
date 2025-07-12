@@ -3,7 +3,6 @@ import 'package:blue_business/core/models/bills/cable/verify/data/verify_cable_d
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class ReviewCableViewModel extends BaseViewModel {
   late Size size;

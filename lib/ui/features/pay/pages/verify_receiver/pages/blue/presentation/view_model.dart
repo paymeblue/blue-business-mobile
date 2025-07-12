@@ -15,7 +15,6 @@ import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/pay/pages/confirm_payment/presentation/view.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class BluePaymentViewModel extends BaseViewModel {

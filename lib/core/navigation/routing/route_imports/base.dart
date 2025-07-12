@@ -19,6 +19,5 @@ import 'package:blue_business/ui/features/signup/pages/progress/presentation/vie
 import 'package:blue_business/ui/features/splash/presentation/view.dart';
 import 'package:blue_business/ui/features/webview/view.dart';
 import 'package:blue_business/ui/features/welcome/presentation/view.dart';
-import 'package:go_router/go_router.dart';
 
 part '../base_router.dart';

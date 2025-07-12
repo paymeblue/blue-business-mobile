@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/payment_link/payment_link.dart';
@@ -17,6 +18,7 @@ import 'package:screenshot/screenshot.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class PaymentLinkHistoryView extends StatefulWidget {
   const PaymentLinkHistoryView({super.key});
 

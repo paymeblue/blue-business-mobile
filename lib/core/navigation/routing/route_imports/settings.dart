@@ -18,6 +18,5 @@ import 'package:blue_business/ui/features/payment_link_history/presentation/view
 import 'package:blue_business/ui/features/personal_info/presentation/view.dart';
 import 'package:blue_business/ui/features/staff/pages/enter_details/presentation/view.dart';
 import 'package:blue_business/ui/features/staff/pages/home/presentation/view.dart';
-import 'package:go_router/go_router.dart';
 
 part '../settings_routes.dart';

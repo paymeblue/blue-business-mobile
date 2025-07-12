@@ -4,13 +4,9 @@ import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class RefreshTimer {
   static Timer? _refreshTimer;
@@ -74,16 +70,14 @@ class RefreshTimer {
   }
 
   _logout() async {
-    BuildContext context =
-        locator<NavigationService>().navigatorKey.currentContext!;
-
     if (locator<AppStateValues>().notificationState == null) {
       locator<AppStateValues>().notificationState = NotificationState.error;
     }
     locator<AppStateValues>().clear();
-    if (context.mounted) {
-      context.go(RoutePaths.login);
-    }
+    //TODO : Come back if it doesn't auto-redirect
+    // if (context.mounted) {
+    //   context.router.;
+    // }
 
     cancelTimer();
   }

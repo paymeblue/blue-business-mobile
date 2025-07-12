@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
 import 'package:flutter/foundation.dart';
@@ -20,6 +21,7 @@ class BlueWebViewArgs {
   final Function()? onLeadingPressed;
 }
 
+@RoutePage()
 class BlueWebview extends StatefulWidget {
   const BlueWebview({required this.args, super.key});
   final BlueWebViewArgs args;

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'view_model.dart';
 
+@RoutePage()
 class ChangePasswordView extends StatefulWidget {
   const ChangePasswordView({super.key});
 

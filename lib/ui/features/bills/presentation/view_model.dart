@@ -6,7 +6,6 @@ import 'package:blue_business/core/models/settings_option/section_option.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class BillsViewModel extends BaseViewModel {
   late Size size;

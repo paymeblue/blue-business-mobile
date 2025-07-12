@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
@@ -9,8 +10,8 @@ import 'package:blue_business/ui/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/ui/widgets/textfield/num_pad.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
+@RoutePage()
 class CreatePinView extends StatelessWidget {
   const CreatePinView({super.key, required this.data});
 

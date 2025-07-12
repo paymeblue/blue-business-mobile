@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -14,12 +15,12 @@ import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:blue_business/ui/widgets/tiles/beneficiary_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class BluePaymentView extends StatelessWidget {
   final InitiateTransactionData data;
   const BluePaymentView({super.key, required this.data});

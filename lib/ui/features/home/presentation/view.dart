@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/config/timed_refresh.dart';
@@ -29,6 +30,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 

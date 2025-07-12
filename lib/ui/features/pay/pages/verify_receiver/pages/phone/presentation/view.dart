@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
@@ -12,10 +13,10 @@ import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class PhonePaymentView extends StatelessWidget {
   final InitiateTransactionData data;
   const PhonePaymentView({super.key, required this.data});

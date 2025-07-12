@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/recover_phone/add/data/recover_phone_data.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class VerifyPhoneOtpView extends StatelessWidget {
   const VerifyPhoneOtpView({super.key, required this.data});
 

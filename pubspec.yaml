@@ -70,7 +70,8 @@ dependencies:
   json_annotation: ^4.8.1
   
   #NAVIGATION
-  go_router: ^14.8.1
+  # go_router: ^14.8.1
+  auto_route: ^9.3.0+1
 
   #LOGGING
   logger: 1.4.0
@@ -105,6 +106,7 @@ dev_dependencies:
   freezed: ^2.4.6
   json_serializable: ^6.7.1
   retrofit_generator: ^8.0.6
+  auto_route_generator: ^9.0.0
 
 flutter_icons:
   ios: true

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
@@ -11,13 +12,13 @@ import 'package:blue_business/ui/widgets/paging/error.dart';
 import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class BranchHomeView extends StatelessWidget {
   const BranchHomeView({super.key});
 

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
@@ -11,6 +12,7 @@ import 'package:blue_business/ui/widgets/modals/info_container.dart';
 import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class ShareholderKycViewArgs {
   ShareholderKycViewArgs({required this.data, this.shareholder});
 

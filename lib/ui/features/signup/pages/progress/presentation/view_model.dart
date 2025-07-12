@@ -3,7 +3,6 @@ import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class SignupProgressViewModel extends BaseViewModel {
   late Size size;
