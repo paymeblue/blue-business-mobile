@@ -5,6 +5,7 @@ import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
+import 'package:blue_business/core/config/timed_refresh.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/login/data/login_data.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
@@ -255,6 +256,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, LoginData user) {
+    RefreshTimer().resetTimer();
     onSuccess ?? context.router.replaceAll([HomeRoute()]);
   }
 

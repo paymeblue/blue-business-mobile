@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
@@ -17,7 +18,7 @@ class RefreshTimer {
       _logoutTimer!.cancel();
     }
 
-    _logoutTimer = Timer(const Duration(seconds: 300), () {
+    _logoutTimer = Timer(const Duration(seconds: 30), () {
       locator<AppStateValues>().notificationState = NotificationState.warning;
       logout();
     });
@@ -26,14 +27,16 @@ class RefreshTimer {
   }
 
   _setupRefresh() {
-    _refreshTimer ??= Timer(const Duration(seconds: 285), () async {
+    _refreshTimer ??= Timer(const Duration(seconds: 28), () async {
       await refreshToken();
     });
   }
 
-  refreshToken([bool resetRefresh = false]) async {
+  refreshToken() async {
+    log("REFRESHING********************************************************");
     RefreshTokenRequest request = RefreshTokenRequest(
-        refreshToken: locator<AppStateValues>().refreshToken);
+      refreshToken: locator<AppStateValues>().refreshToken,
+    );
     RefreshTokenResponse resp =
         await AuthService().refresh(request: request).onError(
       (error, stackTrace) {
@@ -54,9 +57,7 @@ class RefreshTimer {
       locator<AppStateValues>().accessToken = resp.data!.accessToken;
       _refreshTimer = null;
 
-      if (resetRefresh) {
-        resetTimer();
-      }
+      resetTimer();
     } else {
       if (_count <= 2) {
         refreshToken();

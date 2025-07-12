@@ -130,7 +130,7 @@ class HomeView extends StatelessWidget {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () async {
                             AppLoader.start();
-                            await RefreshTimer().refreshToken(true);
+                            await RefreshTimer().refreshToken();
                             AppLoader.stop();
 
                             final url =
