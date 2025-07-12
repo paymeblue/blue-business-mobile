@@ -6,7 +6,7 @@ import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/bills/airtime/vend/data/vend_airtime_data.dart';
 import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
 import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -24,7 +24,7 @@ class VendAirtimeSuccessViewModel extends BaseViewModel {
   }
 
   goToHome(BuildContext context) {
-    context.popUntilPath(RoutePaths.home, true);
+    context.popUntilRoute(HomeRoute(), true);
   }
 
   AirtimeDetails? _details;

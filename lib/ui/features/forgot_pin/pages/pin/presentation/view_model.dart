@@ -83,7 +83,7 @@ class ResetPinViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       if (context.mounted) {
-        context.popUntilPath(RoutePaths.initiateResetPin, true);
+        context.popUntilRoute(RoutePaths.initiateResetPin, true);
         context.pop(true);
       }
     } else {

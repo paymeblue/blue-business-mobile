@@ -17,7 +17,6 @@ import 'package:blue_business/ui/features/login/presentation/view.dart';
 import 'package:blue_business/ui/features/settings/presentation/view.dart';
 import 'package:blue_business/ui/features/signup/pages/progress/presentation/view.dart';
 import 'package:blue_business/ui/features/splash/presentation/view.dart';
-import 'package:blue_business/ui/features/webview/view.dart';
 import 'package:blue_business/ui/features/welcome/presentation/view.dart';
 
 part '../base_router.dart';

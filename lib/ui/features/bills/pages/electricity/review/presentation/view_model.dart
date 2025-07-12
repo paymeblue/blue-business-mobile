@@ -13,7 +13,7 @@ class ReviewElectricityViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   goToNext(BuildContext context, VerifyElectricityData data, double amount) {

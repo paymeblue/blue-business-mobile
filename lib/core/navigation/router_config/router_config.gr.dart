@@ -234,52 +234,6 @@ class BluePaymentRouteArgs {
 }
 
 /// generated route for
-/// [BlueWebview]
-class BlueWebview extends PageRouteInfo<BlueWebviewArgs> {
-  BlueWebview({
-    required BlueWebViewArgs args,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          BlueWebview.name,
-          args: BlueWebviewArgs(
-            args: args,
-            key: key,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'BlueWebview';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<BlueWebviewArgs>();
-      return BlueWebview(
-        args: args.args,
-        key: args.key,
-      );
-    },
-  );
-}
-
-class BlueWebviewArgs {
-  const BlueWebviewArgs({
-    required this.args,
-    this.key,
-  });
-
-  final BlueWebViewArgs args;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'BlueWebviewArgs{args: $args, key: $key}';
-  }
-}
-
-/// generated route for
 /// [BranchHomeView]
 class BranchHomeRoute extends PageRouteInfo<void> {
   const BranchHomeRoute({List<PageRouteInfo>? children})
@@ -725,61 +679,49 @@ class ConfirmElectricityPinRouteArgs {
 }
 
 /// generated route for
-/// [ConfirmTransactionViewArgs]
-class ConfirmTransactionRouteArgs
-    extends PageRouteInfo<ConfirmTransactionRouteArgsArgs> {
-  ConfirmTransactionRouteArgs({
-    required PaymentMode mode,
-    int? amount,
-    VerifiedReceiver? receiver,
-    String? transactionId,
+/// [ConfirmTransactionView]
+class ConfirmTransactionRoute
+    extends PageRouteInfo<ConfirmTransactionRouteArgs> {
+  ConfirmTransactionRoute({
+    Key? key,
+    required ConfirmTransactionViewArgs args,
     List<PageRouteInfo>? children,
   }) : super(
-          ConfirmTransactionRouteArgs.name,
-          args: ConfirmTransactionRouteArgsArgs(
-            mode: mode,
-            amount: amount,
-            receiver: receiver,
-            transactionId: transactionId,
+          ConfirmTransactionRoute.name,
+          args: ConfirmTransactionRouteArgs(
+            key: key,
+            args: args,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'ConfirmTransactionRouteArgs';
+  static const String name = 'ConfirmTransactionRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<ConfirmTransactionRouteArgsArgs>();
-      return ConfirmTransactionViewArgs(
-        mode: args.mode,
-        amount: args.amount,
-        receiver: args.receiver,
-        transactionId: args.transactionId,
+      final args = data.argsAs<ConfirmTransactionRouteArgs>();
+      return ConfirmTransactionView(
+        key: args.key,
+        args: args.args,
       );
     },
   );
 }
 
-class ConfirmTransactionRouteArgsArgs {
-  const ConfirmTransactionRouteArgsArgs({
-    required this.mode,
-    this.amount,
-    this.receiver,
-    this.transactionId,
+class ConfirmTransactionRouteArgs {
+  const ConfirmTransactionRouteArgs({
+    this.key,
+    required this.args,
   });
 
-  final PaymentMode mode;
+  final Key? key;
 
-  final int? amount;
-
-  final VerifiedReceiver? receiver;
-
-  final String? transactionId;
+  final ConfirmTransactionViewArgs args;
 
   @override
   String toString() {
-    return 'ConfirmTransactionRouteArgsArgs{mode: $mode, amount: $amount, receiver: $receiver, transactionId: $transactionId}';
+    return 'ConfirmTransactionRouteArgs{key: $key, args: $args}';
   }
 }
 
@@ -1417,49 +1359,48 @@ class PaymentLinkHistoryRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [PaymentSuccessViewArgs]
-class PaymentSuccessRouteArgs
-    extends PageRouteInfo<PaymentSuccessRouteArgsArgs> {
-  PaymentSuccessRouteArgs({
-    required PaymentMode mode,
-    required PayData data,
+/// [PaymentSuccessView]
+class PaymentSuccessRoute extends PageRouteInfo<PaymentSuccessRouteArgs> {
+  PaymentSuccessRoute({
+    Key? key,
+    required PaymentSuccessViewArgs args,
     List<PageRouteInfo>? children,
   }) : super(
-          PaymentSuccessRouteArgs.name,
-          args: PaymentSuccessRouteArgsArgs(
-            mode: mode,
-            data: data,
+          PaymentSuccessRoute.name,
+          args: PaymentSuccessRouteArgs(
+            key: key,
+            args: args,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'PaymentSuccessRouteArgs';
+  static const String name = 'PaymentSuccessRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<PaymentSuccessRouteArgsArgs>();
-      return PaymentSuccessViewArgs(
-        mode: args.mode,
-        data: args.data,
+      final args = data.argsAs<PaymentSuccessRouteArgs>();
+      return PaymentSuccessView(
+        key: args.key,
+        args: args.args,
       );
     },
   );
 }
 
-class PaymentSuccessRouteArgsArgs {
-  const PaymentSuccessRouteArgsArgs({
-    required this.mode,
-    required this.data,
+class PaymentSuccessRouteArgs {
+  const PaymentSuccessRouteArgs({
+    this.key,
+    required this.args,
   });
 
-  final PaymentMode mode;
+  final Key? key;
 
-  final PayData data;
+  final PaymentSuccessViewArgs args;
 
   @override
   String toString() {
-    return 'PaymentSuccessRouteArgsArgs{mode: $mode, data: $data}';
+    return 'PaymentSuccessRouteArgs{key: $key, args: $args}';
   }
 }
 
@@ -2027,49 +1968,48 @@ class SettingsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ShareholderKycViewArgs]
-class ShareholderKycRouteArgs
-    extends PageRouteInfo<ShareholderKycRouteArgsArgs> {
-  ShareholderKycRouteArgs({
-    required SignupData data,
-    Shareholders? shareholder,
+/// [ShareholderKycView]
+class ShareholderKycRoute extends PageRouteInfo<ShareholderKycRouteArgs> {
+  ShareholderKycRoute({
+    Key? key,
+    required ShareholderKycViewArgs args,
     List<PageRouteInfo>? children,
   }) : super(
-          ShareholderKycRouteArgs.name,
-          args: ShareholderKycRouteArgsArgs(
-            data: data,
-            shareholder: shareholder,
+          ShareholderKycRoute.name,
+          args: ShareholderKycRouteArgs(
+            key: key,
+            args: args,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'ShareholderKycRouteArgs';
+  static const String name = 'ShareholderKycRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<ShareholderKycRouteArgsArgs>();
-      return ShareholderKycViewArgs(
-        data: args.data,
-        shareholder: args.shareholder,
+      final args = data.argsAs<ShareholderKycRouteArgs>();
+      return ShareholderKycView(
+        key: args.key,
+        args: args.args,
       );
     },
   );
 }
 
-class ShareholderKycRouteArgsArgs {
-  const ShareholderKycRouteArgsArgs({
-    required this.data,
-    this.shareholder,
+class ShareholderKycRouteArgs {
+  const ShareholderKycRouteArgs({
+    this.key,
+    required this.args,
   });
 
-  final SignupData data;
+  final Key? key;
 
-  final Shareholders? shareholder;
+  final ShareholderKycViewArgs args;
 
   @override
   String toString() {
-    return 'ShareholderKycRouteArgsArgs{data: $data, shareholder: $shareholder}';
+    return 'ShareholderKycRouteArgs{key: $key, args: $args}';
   }
 }
 

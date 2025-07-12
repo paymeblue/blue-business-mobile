@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
@@ -25,7 +26,7 @@ class ChangePinViewModel extends BaseViewModel {
       tempPin = pin;
       pin = "";
     } else if (pin.isEmpty) {
-      context.pop();
+      context.router.back();
     }
   }
 

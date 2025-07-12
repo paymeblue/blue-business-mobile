@@ -5,25 +5,21 @@ import 'package:blue_business/core/api/staff_service/staff_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/branches/details/response/get_branch_response.dart';
 import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/staff/create/request/update_staff_request.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
-import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
 import 'package:blue_business/core/models/staff_roles/get/response/staff_role_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
-import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/dialogs.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class EnterStaffDetailsViewModel extends BaseViewModel {
@@ -88,20 +84,13 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context, [bool refresh = false]) {
-    context.pop(refresh);
+    context.router.maybePop(refresh);
   }
 
   goToAddBranch(BuildContext context) {
-    GoRouterState state = GoRouterState.of(context);
-    if (state.matchedLocation.startsWith(RoutePaths.home)) {
-      context.push<bool>(RoutePaths.homeToBranchesToDetails).then((val) {
-        if (val == true) branchPagingController.refresh();
-      });
-    } else {
-      context.push(RoutePaths.settingsToBranchesToDetails).then((val) {
-        branchPagingController.refresh();
-      });
-    }
+    context.router.push(EnterBranchDetailsRoute()).then((val) {
+      branchPagingController.refresh();
+    });
   }
 
   String? _path;

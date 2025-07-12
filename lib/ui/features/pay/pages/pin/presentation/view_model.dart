@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
@@ -11,7 +12,7 @@ import 'package:blue_business/core/models/transaction/pay/response/pay_response.
 import 'package:blue_business/core/models/transaction/pay/withdraw/request/withdraw_request.dart';
 import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/biometics.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -97,15 +98,15 @@ class CompletePaymentViewModel extends BaseViewModel {
         PaymentSuccessViewArgs extra =
             PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
 
-        context.push(RoutePaths.walletPaymentSuccess, extra: extra);
+        context.router.push(PaymentSuccessRoute(args: extra));
       }
     } else {
       if (context.mounted) {
-        context.popUntilPath(RoutePaths.home);
-        context.push(
-          RoutePaths.walletPaymentFailure,
-          extra: resp.message ??
-              "Something went wrong when trying to process this transaction",
+        context.popUntilRoute(HomeRoute());
+        context.router.push(
+          TransactionErrorRoute(
+              error: resp.message ??
+                  "Something went wrong when trying to process this transaction"),
         );
       }
     }
@@ -166,20 +167,18 @@ class CompletePaymentViewModel extends BaseViewModel {
         savePin();
       }
       if (context.mounted) {
-        context.popUntilPath(RoutePaths.home, true);
+        context.popUntilRoute(HomeRoute(), true);
         PaymentSuccessViewArgs extra =
             PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
 
-        context.push(RoutePaths.walletPaymentSuccess, extra: extra);
+        context.router.push(PaymentSuccessRoute(args: extra));
       }
     } else {
       if (context.mounted) {
-        context.popUntilPath(RoutePaths.home);
-        context.push(
-          RoutePaths.walletPaymentFailure,
-          extra: resp.message ??
-              "Something went wrong when trying to process this transaction",
-        );
+        context.popUntilRoute(HomeRoute());
+        context.router.push(TransactionErrorRoute(
+            error: resp.message ??
+                "Something went wrong when trying to process this transaction"));
       }
     }
 
@@ -205,8 +204,8 @@ class CompletePaymentViewModel extends BaseViewModel {
             )));
 
     if (context.mounted) {
-      context
-          .push<bool>(RoutePaths.initiateResetPin, extra: resp.data)
+      context.router
+          .push<bool>(InitiatePinResetRoute(securityQuestion: resp.data))
           .then((val) {
         if (val == true) {
           AppNotification.success(message: resp.message);

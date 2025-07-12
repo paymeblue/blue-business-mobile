@@ -1,13 +1,8 @@
-import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
-import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/enums.dart';
+import 'package:blue_business/core/config/timed_refresh.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AppErrorHandler {
@@ -22,8 +17,6 @@ class AppErrorHandler {
         return "Request error: ${getDioError(error)}";
       } else if (error is PlatformException) {
         return "Platform error: ${error.message ?? "Something went wrong"}";
-      } else if (error is GoException) {
-        return "Routing error: ${error.message}";
       } else if (error is FirebaseException) {
         return "Firebase error: ${error.message ?? "Something went wrong"}";
       } else if (error is TypeError ||
@@ -89,12 +82,6 @@ class AppErrorHandler {
   }
 
   static logout() {
-    BuildContext context =
-        locator<NavigationService>().navigatorKey.currentContext!;
-    if (context.mounted) {
-      locator<AppStateValues>().notificationState = NotificationState.error;
-
-      context.go(RoutePaths.login);
-    }
+    RefreshTimer.logout();
   }
 }

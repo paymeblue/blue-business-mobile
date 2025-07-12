@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -55,7 +56,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context, [bool refresh = false]) {
-    context.pop(refresh);
+    context.router.maybePop(refresh);
   }
 
   List<String> sizes = ["1 - 9", "10 - 49", "50 - 249", "> 250"];
@@ -271,7 +272,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
                   top: 12.h,
                   child: GestureDetector(
                     onTap: () {
-                      ctx.pop();
+                      Navigator.of(ctx).pop();
                       if (context.mounted && closePage) goBack(context, true);
                     },
                     child: Container(

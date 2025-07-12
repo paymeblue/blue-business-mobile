@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/dash_service/dash_service.dart';
 import 'package:blue_business/core/api/insights_service/insights_service.dart';
@@ -24,6 +25,7 @@ import 'package:blue_business/core/models/transaction_history/transaction_histor
 import 'package:blue_business/core/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -397,23 +399,23 @@ class HomeViewModel extends BaseViewModel {
   }
 
   goToBranchManagementHome(BuildContext context) {
-    context.push(RoutePaths.homeToBranches);
+    context.router.push(BranchHomeRoute());
   }
 
   goToStaffManagementHome(BuildContext context) {
-    context.push(RoutePaths.homeToStaff);
+    context.router.push(StaffHomeRoute());
   }
 
   void goToReceiveMoney(BuildContext context) {
-    context.push(RoutePaths.receive);
+    context.router.push(ReceiveMoneyRoute());
   }
 
   goToTransactionHistory(BuildContext context) {
-    context.push(RoutePaths.transactionHistory);
+    context.router.push(TransactionHistoryRoute());
   }
 
   goToWallet(BuildContext context) {
-    context.push<bool>(RoutePaths.wallet).then((val) {
+    context.router.push<bool>(WalletRoute()).then((val) {
       if (val == true) {
         getWalletBalance();
         transactionController.refresh();

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/api/insights_service/insights_service.dart';
 import 'package:blue_business/core/api/staff_service/staff_service.dart';
@@ -64,7 +65,7 @@ class InsightsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   List<String> types = ["Weekly", "Monthly", "Yearly"];

@@ -20,7 +20,7 @@ class RefreshTimer {
 
     _logoutTimer = Timer(const Duration(seconds: 300), () {
       locator<AppStateValues>().notificationState = NotificationState.warning;
-      _logout();
+      logout();
     });
 
     await _setupRefresh();
@@ -64,12 +64,12 @@ class RefreshTimer {
         _count += 1;
       } else {
         _count = 0;
-        _logout();
+        logout();
       }
     }
   }
 
-  _logout() async {
+  static logout() async {
     if (locator<AppStateValues>().notificationState == null) {
       locator<AppStateValues>().notificationState = NotificationState.error;
     }
@@ -82,7 +82,7 @@ class RefreshTimer {
     cancelTimer();
   }
 
-  cancelTimer() {
+  static cancelTimer() {
     _refreshTimer?.cancel();
     _logoutTimer?.cancel();
   }

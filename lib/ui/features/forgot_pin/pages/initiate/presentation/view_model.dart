@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
@@ -5,7 +6,7 @@ import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/forgot_pin/response/forgot_pin_response.dart';
 import 'package:blue_business/core/models/recover_pin/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/security_question/get/data/get_question_data.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -52,7 +53,7 @@ class InitiatePinResetViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   sendRecoveryPhone(BuildContext context) async {
@@ -85,12 +86,10 @@ class InitiatePinResetViewModel extends BaseViewModel {
 
       if (context.mounted) {
         if (useQuestion) {
-          context.push(RoutePaths.resetPin, extra: resp.data!.phone);
+          context.router.push(ResetPinRoute(phone: resp.data!.phone));
         } else {
-          context.push(
-            RoutePaths.verifyPinOtp,
-            extra: VerifySignupOtpArgs(phone: resp.data!.phone),
-          );
+          context.router.push(VerifyPinOtpRoute(
+              args: VerifySignupOtpArgs(phone: resp.data!.phone)));
         }
       }
     } else {

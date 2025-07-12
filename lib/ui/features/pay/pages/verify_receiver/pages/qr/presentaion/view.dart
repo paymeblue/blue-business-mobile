@@ -25,7 +25,7 @@ class QrPaymentView extends StatelessWidget {
         return Scaffold(
           appBar: BlueAppBar.primary(
             onBackTap: () {
-              context.pop();
+              context.router.back();
             },
             icon: Icons.arrow_back_ios_new,
           ),

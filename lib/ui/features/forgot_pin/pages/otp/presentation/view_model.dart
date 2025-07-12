@@ -5,12 +5,12 @@ import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/forgot/pin/verify/request/verify_forgot_pin_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/reset/password/response/reset_password_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
-import 'package:flutter/material.dart';
 
 class VerifyPinOtpViewModel extends BaseViewModel {
   late Size size;
@@ -133,10 +133,10 @@ class VerifyPinOtpViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.pushReplacement(RoutePaths.resetPin, extra: phone);
+    context.router.replace(ResetPinRoute(phone: phone));
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 }

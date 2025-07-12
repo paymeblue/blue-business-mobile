@@ -2,15 +2,12 @@ import 'package:blue_business/core/api/dash_service/dash_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/topup_account/response/topup_response.dart';
 import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
-import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
-import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:blue_business/ui/widgets/modals/toast.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -30,7 +27,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   ScreenshotController screenshotController = ScreenshotController();

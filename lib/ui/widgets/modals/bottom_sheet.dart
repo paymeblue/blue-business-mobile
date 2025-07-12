@@ -77,7 +77,7 @@ class BlueBottomSheet {
                     child: AppButton.primary(
                       title: "Yes, enable",
                       onTap: () {
-                        context.pop();
+                        Navigator.of(context).pop;
                         onContinue();
                       },
                     ),
@@ -197,7 +197,7 @@ class BlueBottomSheet {
               AppButton.primary(
                 title: "Close",
                 onTap: () {
-                  context.pop();
+                  Navigator.of(context).pop;
                 },
               )
             ],
@@ -407,7 +407,7 @@ class BlueBottomSheet {
                       selectedStatus(status);
                       selectedDate(date);
                       refresh();
-                      context.pop();
+                      Navigator.of(context).pop;
                     },
                   ),
                   4.verticalGap,
@@ -418,7 +418,7 @@ class BlueBottomSheet {
                       selectedDate("");
                       selectedStatus("");
                       refresh();
-                      context.pop();
+                      Navigator.of(context).pop;
                     },
                   ),
                 ],
@@ -509,7 +509,7 @@ class BlueBottomSheet {
                 "Call us on 09075561565",
                 () {
                   openDialer();
-                  context.pop();
+                  Navigator.of(context).pop;
                 },
               ),
               4.verticalGap,
@@ -517,7 +517,7 @@ class BlueBottomSheet {
                 "Contact us via email",
                 () {
                   openMail();
-                  context.pop();
+                  Navigator.of(context).pop;
                 },
               ),
               if (locator<AppStateValues>().showLiveChat) ...[
@@ -526,7 +526,7 @@ class BlueBottomSheet {
                   "Chat with us Live",
                   () {
                     ZohoSalesIQ.openNewChat();
-                    context.pop();
+                    Navigator.of(context).pop;
                   },
                 ),
               ]
@@ -593,7 +593,7 @@ class BlueBottomSheet {
         onTap: () {
           setState(() {
             mode = e.mode;
-            context.pop();
+            Navigator.of(context).pop;
           });
         },
         child: Container(
@@ -722,7 +722,7 @@ class BlueBottomSheet {
                         title: "Start chat",
                         isEnabled: controller.text.isNotEmpty,
                         onTap: () {
-                          context.pop();
+                          Navigator.of(context).pop;
                           onConfirm();
                         },
                       ),
@@ -754,7 +754,7 @@ class BlueBottomSheet {
           children: [
             GestureDetector(
               onTap: () {
-                context.pop();
+                Navigator.of(context).pop;
               },
               child: Container(
                 height: 34.h,
@@ -904,7 +904,7 @@ class BlueBottomSheet {
           children: [
             GestureDetector(
               onTap: () {
-                context.pop();
+                Navigator.of(context).pop;
                 passwordController.clear();
               },
               child: Container(
@@ -1032,7 +1032,7 @@ class BlueBottomSheet {
                 passwordController.clear();
                 question = "";
                 answerController.clear();
-                context.pop();
+                Navigator.of(context).pop;
               },
               child: Container(
                 height: 34.h,
@@ -1282,7 +1282,7 @@ class BlueBottomSheet {
                     title: "Make payment",
                     onTap: () {
                       res = true;
-                      context.pop();
+                      Navigator.of(context).pop;
                     },
                   )
                 ],
@@ -1397,7 +1397,7 @@ class BlueBottomSheet {
                       child: GestureDetector(
                         onTap: () {
                           onBeneficiaryChanged(beneficiary);
-                          context.pop();
+                          Navigator.of(context).pop;
                         },
                         child: DecoratedBox(
                           decoration: const BoxDecoration(),

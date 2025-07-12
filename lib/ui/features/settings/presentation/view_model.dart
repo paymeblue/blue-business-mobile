@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/profile_service/profile_service.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
@@ -21,6 +22,7 @@ import 'package:blue_business/core/models/settings_section/settings_section.dart
 import 'package:blue_business/core/models/upload_avatar/response/upload_avatar_response.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/response/withdrawal_account_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/navigation/routing/routes.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -114,7 +116,7 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToChangePassword(BuildContext context) {
-    context.push(RoutePaths.changePassword);
+    context.router.push(ChangePasswordRoute());
   }
 
   denyBiometrics() async {
@@ -142,7 +144,7 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToChangePin(BuildContext context) {
-    context.push(RoutePaths.changePin);
+    context.router.push(ChangePinRoute());
   }
 
   List<SettingsSection> sections(BuildContext context) => [
@@ -218,8 +220,6 @@ class SettingsViewModel extends BaseViewModel {
     if (resp.status == "success") {
       if (context.mounted) {
         await logout(context);
-
-        if (context.mounted) context.go(RoutePaths.welcome);
       }
       StorageHelpers.deleteAll();
       StorageValues.deleteLoginValues();
@@ -245,12 +245,7 @@ class SettingsViewModel extends BaseViewModel {
   logout(BuildContext context, [bool logout = false]) async {
     AppLoader.start();
 
-    if (context.mounted) {
-      context.go(RoutePaths.login);
-    }
-    locator<AppStateValues>().notificationState =
-        NotificationState.logoutSuccess;
-    RefreshTimer().cancelTimer();
+    RefreshTimer.logout();
 
     AppLoader.stop();
   }
@@ -480,15 +475,15 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToManageBeneficiaries(BuildContext context) {
-    context.push(RoutePaths.beneficiary);
+    context.router.push(ManageBeneficiariesRoute());
   }
 
   goToBranchManagementHome(BuildContext context) {
-    context.push(RoutePaths.settingsToBranches);
+    context.router.push(BranchHomeRoute());
   }
 
   goToStaffManagementHome(BuildContext context) {
-    context.push(RoutePaths.settingsToStaff);
+    context.router.push(StaffHomeRoute());
   }
 
   goToBlueWeb() async {

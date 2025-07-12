@@ -12,7 +12,6 @@ import 'package:blue_business/ui/widgets/modals/info_container.dart';
 import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 
-@RoutePage()
 class ShareholderKycViewArgs {
   ShareholderKycViewArgs({required this.data, this.shareholder});
 
@@ -20,6 +19,7 @@ class ShareholderKycViewArgs {
   final Shareholders? shareholder;
 }
 
+@RoutePage()
 class ShareholderKycView extends StatelessWidget {
   const ShareholderKycView({super.key, required this.args});
 

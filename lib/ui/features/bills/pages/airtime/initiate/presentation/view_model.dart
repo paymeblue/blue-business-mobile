@@ -1,16 +1,14 @@
 import 'package:blue_business/core/api/bills_service/bills_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
-import 'package:blue_business/core/models/bills/airtime/review_data/review_airtime_data.dart';
 import 'package:blue_business/core/models/bills/get_providers/providers/providers.dart';
 import 'package:blue_business/core/models/bills/get_providers/response/get_providers_response.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
-import 'package:blue_business/core/utils/enums.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
-import 'package:flutter/material.dart';
 
 class InitiateAirtimeViewModel extends BaseViewModel {
   late Size size;
@@ -23,7 +21,7 @@ class InitiateAirtimeViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   setSelectedCountry() {
@@ -122,6 +120,6 @@ class InitiateAirtimeViewModel extends BaseViewModel {
         amount: amount!,
         provider: selectedProvider!);
 
-    context.push(RoutePaths.reviewAirtime, extra: data);
+    context.router.push(ReviewAirtimeRoute(data: data));
   }
 }

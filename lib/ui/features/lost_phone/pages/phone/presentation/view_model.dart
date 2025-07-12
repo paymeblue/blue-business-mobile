@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
@@ -5,7 +6,7 @@ import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/recover_phone/add/data/recover_phone_data.dart';
 import 'package:blue_business/core/models/recover_phone/add/request/recover_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -41,7 +42,7 @@ class ResetPhoneViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   late int id;
@@ -75,6 +76,6 @@ class ResetPhoneViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, SendNewPhoneData data) {
-    context.push(RoutePaths.verifyPhoneOtp, extra: data);
+    context.router.push(VerifyPhoneOtpRoute(data: data));
   }
 }

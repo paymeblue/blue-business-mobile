@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/bills_service/bills_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
@@ -8,7 +9,7 @@ import 'package:blue_business/core/models/bills/airtime/vend/request/vend_airtim
 import 'package:blue_business/core/models/bills/airtime/vend/response/vend_airtime_response.dart';
 import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/biometics.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -41,7 +42,7 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   onButtonTap(BuildContext context, ReviewAirtimeData data) async {
@@ -70,11 +71,11 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
         savePin();
       }
       if (context.mounted) {
-        context.push(RoutePaths.airtimeSuccess, extra: response.data!);
+        context.router.push(VendAirtimeSuccessRoute(data: response.data!));
       }
     } else {
       if (context.mounted) {
-        context.push(RoutePaths.walletPaymentFailure, extra: response.message!);
+        context.router.push(TransactionErrorRoute(error: response.message!));
       }
     }
 
@@ -110,8 +111,8 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
             )));
 
     if (context.mounted) {
-      context
-          .push<bool>(RoutePaths.initiateResetPin, extra: resp.data)
+      context.router
+          .push<bool>(InitiatePinResetRoute(securityQuestion: resp.data))
           .then((val) {
         if (val == true) {
           AppNotification.success(message: resp.message);

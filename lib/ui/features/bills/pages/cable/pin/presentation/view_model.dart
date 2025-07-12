@@ -41,7 +41,7 @@ class ConfirmCablePinViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   onButtonTap(BuildContext context, VerifyCableData data) async {

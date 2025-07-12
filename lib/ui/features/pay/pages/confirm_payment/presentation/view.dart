@@ -17,7 +17,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-@RoutePage()
 class ConfirmTransactionViewArgs {
   final PaymentMode mode;
   final int? amount;
@@ -33,6 +32,7 @@ class ConfirmTransactionViewArgs {
             (receiver != null && transactionId != null));
 }
 
+@RoutePage()
 class ConfirmTransactionView extends StatelessWidget {
   const ConfirmTransactionView({super.key, required this.args});
 
@@ -46,7 +46,7 @@ class ConfirmTransactionView extends StatelessWidget {
         builder: (context, model, _) {
           return Scaffold(
             appBar: BlueAppBar.primary(
-              onBackTap: () => context.pop(),
+              onBackTap: () => context.router.back(),
               icon: Icons.arrow_back_ios,
             ),
             body: Padding(

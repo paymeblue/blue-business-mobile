@@ -15,7 +15,7 @@ class BillsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   List<SectionOption> billOptions(BuildContext context) {

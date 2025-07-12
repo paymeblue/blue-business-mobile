@@ -1,5 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:flutter/material.dart';
 
 class MissingRouteViewModel extends BaseViewModel {
@@ -9,11 +10,11 @@ class MissingRouteViewModel extends BaseViewModel {
     size = MediaQuery.sizeOf(globalContext!);
   }
 
-  close(String? newRoute) {
-    if (globalContext!.canPop()) {
-      globalContext!.pop();
-    } else {
-      globalContext!.go(newRoute ?? RoutePaths.initial);
-    }
+  close(PageRouteInfo? newRoute) {
+    globalContext!.maybePop().then((v) {
+      if (!v) {
+        globalContext!.router.replaceAll([newRoute ?? SplashRoute()]);
+      }
+    });
   }
 }

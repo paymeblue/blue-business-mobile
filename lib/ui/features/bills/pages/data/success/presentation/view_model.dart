@@ -24,7 +24,7 @@ class VendDataSuccessViewModel extends BaseViewModel {
   }
 
   goToHome(BuildContext context) {
-    context.popUntilPath(RoutePaths.home, true);
+    context.popUntilRoute(RoutePaths.home, true);
   }
 
   DataDetails? _details;

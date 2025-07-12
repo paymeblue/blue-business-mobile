@@ -2,13 +2,11 @@ import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
 import 'package:blue_business/core/models/shareholders/get/response/get_shareholders_response.dart';
-import 'package:blue_business/core/models/signup/data/signup_data.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
-import 'package:blue_business/ui/features/signup/pages/shareholder_kyc/presentation/view.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
-import 'package:flutter/material.dart';
 
 class ShareholderDetailsViewModel extends BaseViewModel {
   late Size size;
@@ -22,14 +20,14 @@ class ShareholderDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop(data);
+    context.router.maybePop(data);
   }
 
   goToNext(BuildContext context, {Shareholders? shareholder}) {
     ShareholderKycViewArgs extra =
         ShareholderKycViewArgs(data: data, shareholder: shareholder);
-    context
-        .push<SignupData>(RoutePaths.shareholderKyc, extra: extra)
+    context.router
+        .push<SignupData>(ShareholderKycRoute(args: extra))
         .then((val) {
       if (val != null) {
         data = val;

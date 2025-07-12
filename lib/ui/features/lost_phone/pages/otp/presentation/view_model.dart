@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
@@ -7,7 +8,7 @@ import 'package:blue_business/core/models/recover_phone/add/data/recover_phone_d
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/recover_phone/verify/request/verify_new_phone_request.dart';
 import 'package:blue_business/core/models/recover_phone/verify/response/verify_new_phone_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -141,10 +142,10 @@ class VerifyPhoneOtpViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.popUntilPath(RoutePaths.login, true);
+    context.popUntilRoute(HomeRoute(), true);
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 }

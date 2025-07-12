@@ -32,7 +32,7 @@ class BranchHomeView extends StatelessWidget {
           appBar: BlueAppBar.primary(
             icon: Icons.arrow_back_ios_new,
             onBackTap: () {
-              context.pop();
+              context.router.back();
             },
           ),
           body: Padding(

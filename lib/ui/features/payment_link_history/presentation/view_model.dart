@@ -9,12 +9,12 @@ import 'package:blue_business/core/models/payment_link/response/payment_link_res
 import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/transaction/receipt/data/payment_link/receipt_record.dart';
 import 'package:blue_business/core/models/transaction/receipt/response/paymentLink/receipt_response.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:blue_business/ui/widgets/modals/toast.dart';
-import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -32,7 +32,7 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   List<PopupModel> popupItems(PaymentLinkItem item) {

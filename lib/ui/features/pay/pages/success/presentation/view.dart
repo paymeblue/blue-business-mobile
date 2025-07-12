@@ -16,7 +16,6 @@ import 'package:screenshot/screenshot.dart';
 
 import 'view_model.dart';
 
-@RoutePage()
 class PaymentSuccessViewArgs {
   PaymentSuccessViewArgs({required this.mode, required this.data});
 
@@ -24,6 +23,7 @@ class PaymentSuccessViewArgs {
   final PayData data;
 }
 
+@RoutePage()
 class PaymentSuccessView extends StatelessWidget {
   final PaymentSuccessViewArgs args;
   const PaymentSuccessView({super.key, required this.args});

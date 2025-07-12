@@ -41,7 +41,7 @@ class ConfirmDataPinViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   onButtonTap(BuildContext context, VerifyDataData data) async {

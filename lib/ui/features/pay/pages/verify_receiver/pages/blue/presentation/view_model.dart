@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/beneficiary/payment/blue_beneficiary.dart';
@@ -7,7 +8,7 @@ import 'package:blue_business/core/models/recently_paid/response/recently_paid_r
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/verify/request/verified_receiver_request.dart';
 import 'package:blue_business/core/models/transaction/verify/response/verified_receiver_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
@@ -170,7 +171,7 @@ class BluePaymentViewModel extends BaseViewModel {
           receiver: resp.data,
           transactionId: data.transactionId,
         );
-        context.push(RoutePaths.confirmTransaction, extra: args);
+        context.router.push(ConfirmTransactionRoute(args: args));
       }
     } else {
       AppNotification.error(message: resp.message);

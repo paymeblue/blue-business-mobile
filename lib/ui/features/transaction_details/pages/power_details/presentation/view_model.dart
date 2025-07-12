@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
@@ -20,7 +21,7 @@ class PowerDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   ScreenshotController screenshotController = ScreenshotController();

@@ -12,7 +12,7 @@ import 'view_model.dart';
 @RoutePage()
 class ErrorRouteView extends StatefulWidget {
   final String? message;
-  final String? newRoute;
+  final PageRouteInfo? newRoute;
   const ErrorRouteView({super.key, required this.message, this.newRoute});
 
   @override

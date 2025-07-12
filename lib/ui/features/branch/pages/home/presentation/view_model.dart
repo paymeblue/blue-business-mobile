@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/branches/create/response/create_branch_response.dart';
 import 'package:blue_business/core/models/branches/details/response/get_branch_response.dart';
 import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -138,26 +139,12 @@ class BranchHomeViewModel extends BaseViewModel {
   }
 
   goToBranchInsights(BuildContext context, Branch branch) {
-    GoRouterState state = GoRouterState.of(context);
-
-    context.push<bool>(
-      state.matchedLocation.startsWith(RoutePaths.home)
-          ? RoutePaths.homeToBranchInsights
-          : RoutePaths.settingsToBranchInsights,
-      extra: branch,
-    );
+    context.router.push<bool>(BranchInsightsRoute(branch: branch));
   }
 
   goToAddBranch(BuildContext context, [Branch? data]) {
-    GoRouterState state = GoRouterState.of(context);
-
-    context
-        .push<bool>(
-      state.matchedLocation.startsWith(RoutePaths.home)
-          ? RoutePaths.homeToBranchesToDetails
-          : RoutePaths.settingsToBranchesToDetails,
-      extra: data,
-    )
+    context.router
+        .push<bool>(EnterBranchDetailsRoute(branch: data))
         .then((val) {
       if (val == true) {
         branchPagingController.refresh();

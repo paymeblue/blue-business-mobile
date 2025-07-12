@@ -130,6 +130,6 @@ class VerifySignupOtpViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 }

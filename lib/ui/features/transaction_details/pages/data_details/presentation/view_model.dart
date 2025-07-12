@@ -2,12 +2,11 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:blue_business/core/config/module/base_view_model.dart';
-import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:blue_business/ui/widgets/modals/toast.dart';
-import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -19,7 +18,7 @@ class DataDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   ScreenshotController screenshotController = ScreenshotController();

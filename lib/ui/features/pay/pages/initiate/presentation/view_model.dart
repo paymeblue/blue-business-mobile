@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
@@ -5,7 +6,7 @@ import 'package:blue_business/core/models/transaction/initiate/request/initiate_
 import 'package:blue_business/core/models/transaction/initiate/response/initiate_transaction_response.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/response/withdrawal_account_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -128,13 +129,23 @@ class InitiateTransactionViewModel extends BaseViewModel {
       amount: amountInKobo,
     );
 
-    context.push(RoutePaths.confirmTransaction, extra: args);
+    context.router.push(ConfirmTransactionRoute(args: args));
   }
 
   goToVerify(BuildContext context, InitiateTransactionData data) {
     VerifyReceiverArgs args =
         VerifyReceiverArgs(data: data, mode: paymentMode!);
-    context.push(RoutePaths.verifyReceiver, extra: args);
+    context.router.push(receiverRoute(args));
+  }
+
+  receiverRoute(VerifyReceiverArgs args) {
+    if (args.mode == PaymentMode.phone) {
+      return PhonePaymentRoute(data: args.data);
+    } else if (args.mode == PaymentMode.qr) {
+      return QrPaymentRoute(data: args.data);
+    } else {
+      return BluePaymentRoute(data: args.data);
+    }
   }
 }
 

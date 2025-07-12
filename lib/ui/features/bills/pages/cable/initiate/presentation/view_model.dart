@@ -24,7 +24,7 @@ class InitiateCableViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   onChanged(String? v) {

@@ -9,6 +9,4 @@ import 'package:blue_business/ui/features/signup/pages/register/presentation/vie
 import 'package:blue_business/ui/features/signup/pages/shareholder_kyc/presentation/view.dart';
 import 'package:blue_business/ui/features/signup/pages/shareholders/presentation/view.dart';
 
-import 'package:go_router/go_router.dart';
-
 part '../signup_router.dart';

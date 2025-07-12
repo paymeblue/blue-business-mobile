@@ -1,10 +1,5 @@
-import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
-import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/enums.dart';
+import 'package:blue_business/core/config/timed_refresh.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 class ResponseHandlers {
   static Response handleDioResponse(Response<dynamic> response) {
@@ -23,12 +18,6 @@ class ResponseHandlers {
   }
 
   static _logout() {
-    BuildContext context =
-        locator<NavigationService>().navigatorKey.currentContext!;
-    if (context.mounted) {
-      locator<AppStateValues>().notificationState = NotificationState.error;
-
-      context.go(RoutePaths.login);
-    }
+    RefreshTimer.logout();
   }
 }

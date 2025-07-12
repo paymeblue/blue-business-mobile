@@ -1,6 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
-import 'package:blue_business/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -10,19 +10,8 @@ extension BuildContextEx on BuildContext {
   double getHeight([double scale = 1]) => mediaQuery.size.height * scale;
   double getWidth([double scale = 1]) => mediaQuery.size.width * scale;
 
-  void popUntilPath<T extends Object?>(String ancestorPath, [T? result]) {
-    while (GoRouter.of(this)
-            .routerDelegate
-            .currentConfiguration
-            .matches
-            .last
-            .matchedLocation !=
-        ancestorPath) {
-      if (!canPop()) {
-        return;
-      }
-      pop(result);
-    }
+  void popUntilRoute<T extends Object?>(PageRouteInfo ancestor, [T? result]) {
+    router.popUntilRouteWithName(ancestor.routeName);
   }
 }
 
@@ -35,45 +24,45 @@ extension Gap on num {
       );
 }
 
-extension Transition on Widget {
-  Page slide({SlideDirections dir = SlideDirections.rtl}) {
-    return CustomTransitionPage(
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        Offset begin = const Offset(1.0, 0.0);
-        Offset end = Offset.zero;
-        if (dir == SlideDirections.ltr) {
-          begin = Offset.zero;
-          end = const Offset(1.0, 0.0);
-        } else if (dir == SlideDirections.ttb) {
-          begin = Offset.zero;
-          end = const Offset(0.0, 1.0);
-        } else if (dir == SlideDirections.btt) {
-          begin = const Offset(1.0, 0.0);
-          end = Offset.zero;
-        }
-        const curve = Curves.easeInOut;
+// extension Transition on Widget {
+//   Page slide({SlideDirections dir = SlideDirections.rtl}) {
+//     return CustomTransitionPage(
+//       transitionsBuilder: (context, animation, secondaryAnimation, child) {
+//         Offset begin = const Offset(1.0, 0.0);
+//         Offset end = Offset.zero;
+//         if (dir == SlideDirections.ltr) {
+//           begin = Offset.zero;
+//           end = const Offset(1.0, 0.0);
+//         } else if (dir == SlideDirections.ttb) {
+//           begin = Offset.zero;
+//           end = const Offset(0.0, 1.0);
+//         } else if (dir == SlideDirections.btt) {
+//           begin = const Offset(1.0, 0.0);
+//           end = Offset.zero;
+//         }
+//         const curve = Curves.easeInOut;
 
-        final tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-        final offsetAnimation = animation.drive(tween);
-        return SlideTransition(
-          position: offsetAnimation,
-          child: child,
-        );
-      },
-      child: this,
-    );
-  }
-
-  Page get fade => CustomTransitionPage(
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FadeTransition(
-          opacity: animation,
-          child: child,
-        ),
-        child: this,
-      );
-}
+//         final tween =
+//             Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+//         final offsetAnimation = animation.drive(tween);
+//         return SlideTransition(
+//           position: offsetAnimation,
+//           child: child,
+//         );
+//       },
+//       child: this,
+//     );
+//   }
+//
+//   Page get fade => CustomTransitionPage(
+//         transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+//             FadeTransition(
+//           opacity: animation,
+//           child: child,
+//         ),
+//         child: this,
+//       );
+// }
 
 extension StringEx on String? {
   String get orEmpty => this ?? "";

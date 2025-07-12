@@ -3,18 +3,16 @@ import 'dart:async';
 import 'package:blue_business/core/api/staff_service/staff_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
-import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
 import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
 import 'package:blue_business/core/models/staff_roles/get/response/staff_role_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
-import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/dialogs.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class StaffHomeViewModel extends BaseViewModel {
@@ -58,18 +56,14 @@ class StaffHomeViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    context.router.back();
   }
 
   goToAddStaff(BuildContext context, {Staff? staff}) {
-    GoRouterState state = GoRouterState.of(context);
-
-    context
+    context.router
         .push<bool>(
-            state.matchedLocation.startsWith(RoutePaths.home)
-                ? RoutePaths.homeToStaffToDetails
-                : RoutePaths.settingsToStaffToDetails,
-            extra: staff)
+      EnterStaffDetailsRoute(staff: staff),
+    )
         .then((v) {
       if (v == true) staffPagingController.refresh();
     });
