@@ -14,13 +14,15 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+  const LoginView({super.key, this.onSuccess});
+
+  final VoidCallback? onSuccess;
 
   @override
   Widget build(BuildContext context) {
     return BaseView<LoginViewModel>(
       model: LoginViewModel(),
-      onModelReady: (model) => model.init(context),
+      onModelReady: (model) => model.init(context, onSuccess),
       builder: (context, model, _) {
         return Scaffold(
           appBar: BlueAppBar.primary(

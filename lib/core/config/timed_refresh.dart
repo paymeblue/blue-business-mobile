@@ -1,11 +1,11 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
-import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/enums.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 
 class RefreshTimer {
@@ -74,10 +74,12 @@ class RefreshTimer {
       locator<AppStateValues>().notificationState = NotificationState.error;
     }
     locator<AppStateValues>().clear();
-    //TODO : Come back if it doesn't auto-redirect
-    // if (context.mounted) {
-    //   context.router.;
-    // }
+    BuildContext? context = AppRouter().navigatorKey.currentContext;
+
+    log('_______-------------LOGGING OUT-------------_______${context?.widget.toString()}');
+    if (context != null) {
+      context.router.replace(LoginRoute());
+    }
 
     cancelTimer();
   }

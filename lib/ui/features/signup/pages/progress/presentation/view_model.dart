@@ -16,7 +16,7 @@ class SignupProgressViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   goToNext(BuildContext context) {

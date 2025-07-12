@@ -55,7 +55,7 @@ class _TransactionErrorViewState extends State<TransactionErrorView> {
                   AppButton.primary(
                       title: "Close",
                       onTap: () {
-                        context.router.back();
+                        context.router.maybePop();
                       })
                 ],
               ),

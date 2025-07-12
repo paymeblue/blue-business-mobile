@@ -26,7 +26,7 @@ class ChangePinViewModel extends BaseViewModel {
       tempPin = pin;
       pin = "";
     } else if (pin.isEmpty) {
-      context.router.back();
+      context.router.maybePop();
     }
   }
 

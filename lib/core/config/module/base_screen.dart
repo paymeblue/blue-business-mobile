@@ -1,5 +1,6 @@
 import 'package:blue_business/core/config/timed_refresh.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/connection.dart';
 import 'package:provider/provider.dart';
 
@@ -54,18 +55,21 @@ class _BaseViewState<T extends ChangeNotifier> extends State<BaseView<T>> {
     return ChangeNotifierProvider<T>.value(
       value: model,
       child: GestureDetector(
-        onTap: () {
-          FocusManager.instance.primaryFocus?.unfocus();
+        // onTap: () {
+        //   FocusManager.instance.primaryFocus?.unfocus();
 
-          if (locator<AppStateValues>().accessToken.isNotEmpty) {
-            RefreshTimer().resetTimer();
-          }
-        },
-        onPanDown: (details) {
-          if (locator<AppStateValues>().accessToken.isNotEmpty) {
-            RefreshTimer().resetTimer();
-          }
-        },
+        // log('_______-------------TAPPING-------------_______${context?.widget.toString()}');
+        //   if (locator<AppStateValues>().accessToken.isNotEmpty) {
+        //     RefreshTimer().resetTimer();
+        //   }
+        // },
+        // onPanDown: (details) {
+
+        // log('_______-------------PAN DOWN-------------_______${context?.widget.toString()}');
+        //   if (AppRouter().guards.contains(AuthGuards.logout())) {
+        //     RefreshTimer().resetTimer();
+        //   }
+        // },
         child: Consumer<T>(
           builder: widget.builder,
           child: widget.child,

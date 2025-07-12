@@ -1251,10 +1251,17 @@ class InsightsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [LoginView]
-class LoginRoute extends PageRouteInfo<void> {
-  const LoginRoute({List<PageRouteInfo>? children})
-      : super(
+class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
+  LoginRoute({
+    Key? key,
+    VoidCallback? onSuccess,
+    List<PageRouteInfo>? children,
+  }) : super(
           LoginRoute.name,
+          args: LoginRouteArgs(
+            key: key,
+            onSuccess: onSuccess,
+          ),
           initialChildren: children,
         );
 
@@ -1263,9 +1270,30 @@ class LoginRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const LoginView();
+      final args =
+          data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
+      return LoginView(
+        key: args.key,
+        onSuccess: args.onSuccess,
+      );
     },
   );
+}
+
+class LoginRouteArgs {
+  const LoginRouteArgs({
+    this.key,
+    this.onSuccess,
+  });
+
+  final Key? key;
+
+  final VoidCallback? onSuccess;
+
+  @override
+  String toString() {
+    return 'LoginRouteArgs{key: $key, onSuccess: $onSuccess}';
+  }
 }
 
 /// generated route for

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:blue_business/core/models/bills/airtime/vend/data/vend_airtime_data.dart';
 import 'package:blue_business/core/models/bills/cable/vend/data/vend_cable_data.dart';
 import 'package:blue_business/core/models/bills/data/vend/data/vend_data_data.dart';
@@ -29,26 +31,164 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         AutoRoute(page: SplashRoute.page, initial: true),
         AutoRoute(page: WelcomeRoute.page),
+        AutoRoute(page: InitiateSignupRoute.page),
+        AutoRoute(page: VerifySignupOtpRoute.page),
+        AutoRoute(page: SignupProgressRoute.page),
+        AutoRoute(page: AddBusinessDetailsRoute.page),
+        AutoRoute(page: SelectShareholderRoute.page),
+        AutoRoute(page: ShareholderKycRoute.page),
         AutoRoute(
-            page: LoginRoute.page,
-            children: [AutoRoute(page: ResetPasswordRoute.page)]),
+          page: LoginRoute.page,
+          guards: [
+            AutoRouteGuard.simple((resolver, route) {
+              log(route.currentPath);
+              resolver.next();
+            })
+          ],
+        ),
+        AutoRoute(page: ResetPasswordRoute.page),
+        AutoRoute(page: ResetPhoneRoute.page),
         AutoRoute(page: DashboardShellRoute.page, children: [
           AutoRoute(page: HomeRoute.page),
           AutoRoute(page: InsightsRoute.page),
           AutoRoute(page: SettingsRoute.page)
         ], guards: [
-          AutoRouteGuard.redirect((resolver) {
-            final accessToken = locator<AppStateValues>().accessToken;
-            if (accessToken.isEmpty) {
-              return LoginRoute();
-            }
-            return null;
-          })
+          AuthGuards.logout(),
         ]),
-        AutoRoute(page: WithdrawalMethodRoute.page),
-        AutoRoute(page: WalletRoute.page),
+        AutoRoute(page: WithdrawalMethodRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: WalletRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: PaymentDetailsRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: AirtimeDetailsRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: CableDetailsRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: DataDetailsRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: PowerDetailsRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: AccountRecoveryRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: AddWithdrawalDetailsRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: EnterBranchDetailsRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: BranchHomeRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: BranchInsightsRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: BusinessFeesRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ChangePasswordRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ChangePinRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ComingSoonRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ErrorRouteRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: TransactionHistoryRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: InitiatePasswordResetRoute.page),
+        AutoRoute(page: VerifyPasswordOtpRoute.page),
+        AutoRoute(page: ResetPasswordRoute.page),
+        AutoRoute(page: InitiatePinResetRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: VerifyPinOtpRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ResetPinRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: InitiatePhoneResetRoute.page),
+        AutoRoute(page: VerifyPhoneOtpRoute.page),
+        AutoRoute(page: ResetPhoneRoute.page),
+        AutoRoute(page: PersonalInfoRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ManageBeneficiariesRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: InitiateTransactionRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: PhonePaymentRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: BluePaymentRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: QrPaymentRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ConfirmTransactionRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: CompletePaymentRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: PaymentSuccessRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: PaymentLinkHistoryRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ResetPinRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ReceiveMoneyRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: EnterStaffDetailsRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: StaffHomeRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: TransactionErrorRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
       ];
 
   @override
   List<AutoRouteGuard> get guards => [];
+}
+
+class AuthGuards {
+  AuthGuards._();
+
+  static AutoRouteGuard logout() {
+    return AutoRouteGuard.redirect((resolver) {
+      final accessToken = locator<AppStateValues>().accessToken;
+      if (accessToken.isEmpty) {
+        return LoginRoute(
+          onSuccess: () {
+            resolver.next();
+          },
+        );
+      }
+      return null;
+    });
+  }
 }

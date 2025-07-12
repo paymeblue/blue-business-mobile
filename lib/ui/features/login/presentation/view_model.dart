@@ -25,9 +25,12 @@ import 'package:flutter/material.dart';
 
 class LoginViewModel extends BaseViewModel {
   late Size size;
+  VoidCallback? onSuccess;
 
-  init(BuildContext context) {
+  init(BuildContext context, VoidCallback? callback) {
     size = context.mediaQuery.size;
+
+    onSuccess = callback;
 
     setSelectedCountry();
     getDataFromStorage();
@@ -252,7 +255,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, LoginData user) {
-    context.router.replace(HomeRoute());
+    onSuccess ?? context.router.replaceAll([HomeRoute()]);
   }
 
   deleteStorageItems() async {

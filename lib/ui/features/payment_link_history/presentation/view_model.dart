@@ -32,7 +32,7 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   List<PopupModel> popupItems(PaymentLinkItem item) {

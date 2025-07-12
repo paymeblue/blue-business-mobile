@@ -17,7 +17,7 @@ class SplashViewModel extends BaseViewModel {
   late Size size;
 
   init(BuildContext context) async {
-    size = MediaQuery.sizeOf(globalContext!);
+    size = MediaQuery.sizeOf(context);
 
     ConnectionHelper.initialiseNetworkCheck(context);
 

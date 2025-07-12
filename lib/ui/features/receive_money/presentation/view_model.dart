@@ -27,7 +27,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   ScreenshotController screenshotController = ScreenshotController();

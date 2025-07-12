@@ -65,7 +65,7 @@ class InsightsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   List<String> types = ["Weekly", "Monthly", "Yearly"];

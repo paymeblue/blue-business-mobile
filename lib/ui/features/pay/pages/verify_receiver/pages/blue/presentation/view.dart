@@ -33,7 +33,7 @@ class BluePaymentView extends StatelessWidget {
       builder: (context, model, _) {
         return Scaffold(
           appBar: BlueAppBar.primary(
-            onBackTap: () => context.router.back(),
+            onBackTap: () => context.router.maybePop(),
             icon: Icons.arrow_back_ios_new,
           ),
           body: Padding(

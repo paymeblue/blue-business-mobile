@@ -31,7 +31,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   TextEditingController searchController = TextEditingController();

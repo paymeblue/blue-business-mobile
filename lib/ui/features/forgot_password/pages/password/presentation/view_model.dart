@@ -20,7 +20,7 @@ class ResetPasswordViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   TextEditingController passwordController = TextEditingController();

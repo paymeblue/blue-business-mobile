@@ -29,7 +29,7 @@ class ResetPinView extends StatelessWidget {
                 model.tempPin = "";
                 model.isConfirm = false;
               } else {
-                context.router.back();
+                context.router.maybePop();
               }
             },
           ),

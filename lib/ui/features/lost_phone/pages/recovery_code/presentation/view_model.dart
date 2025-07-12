@@ -17,7 +17,7 @@ class InitiatePhoneResetViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   TextEditingController recoveryCodeController = TextEditingController();

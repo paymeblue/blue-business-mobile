@@ -26,7 +26,7 @@ class _ComingSoonViewState extends State<ComingSoonView> {
           return Scaffold(
             appBar: BlueAppBar.primary(
               onBackTap: () {
-                context.router.back();
+                context.router.maybePop();
               },
               icon: Icons.arrow_back_ios_new,
             ),

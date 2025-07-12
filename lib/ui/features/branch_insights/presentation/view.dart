@@ -45,7 +45,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
             appBar: BlueAppBar.primary(
                 icon: Icons.arrow_back_ios_new,
                 onBackTap: () {
-                  context.router.back();
+                  context.router.maybePop();
                 },
                 title: Column(
                   mainAxisSize: MainAxisSize.min,

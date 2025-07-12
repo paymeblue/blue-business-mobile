@@ -38,7 +38,7 @@ class TransactionHistoryViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   int limit = 50;

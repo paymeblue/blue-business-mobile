@@ -40,7 +40,7 @@ class InitiatePasswordResetViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   sendRecoveryPhone(BuildContext context) async {

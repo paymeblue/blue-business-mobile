@@ -29,7 +29,7 @@ class PaymentDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   getTransactionReceipt(PaymentDetail data) async {

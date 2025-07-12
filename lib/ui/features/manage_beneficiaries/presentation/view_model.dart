@@ -30,7 +30,7 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   onFilterChanged(String? v) {

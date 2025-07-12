@@ -56,7 +56,7 @@ class StaffHomeViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   goToAddStaff(BuildContext context, {Staff? staff}) {

@@ -17,7 +17,7 @@ class WithdrawalMethodViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   bool _isEnabled = false;

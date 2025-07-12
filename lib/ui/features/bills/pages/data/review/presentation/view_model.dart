@@ -13,7 +13,7 @@ class ReviewDataViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.back();
+    context.router.maybePop();
   }
 
   goToNext(BuildContext context, VerifyDataData data) {
