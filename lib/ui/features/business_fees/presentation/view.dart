@@ -61,7 +61,7 @@ class BusinessFeesView extends StatelessWidget {
                       ),
                       8.verticalGap,
                       feeRow(
-                        title: "Blue to Blue Tansfer",
+                        title: "Blue to Blue Transfer",
                         value: data.blueToBlue,
                       ),
                       12.verticalGap,

@@ -19,6 +19,7 @@ class BlueBusinessApp extends StatefulWidget {
 
 class _BlueBusinessAppState extends State<BlueBusinessApp> {
   final autoRoute = AppRouter();
+
   @override
   Widget build(BuildContext context) {
     return OverlayKit(

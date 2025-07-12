@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
@@ -74,12 +73,10 @@ class RefreshTimer {
       locator<AppStateValues>().notificationState = NotificationState.error;
     }
     locator<AppStateValues>().clear();
-    BuildContext? context = AppRouter().navigatorKey.currentContext;
+    BuildContext? context =
+        locator<AppRouter>().navigatorKey.currentState!.context;
 
-    log('_______-------------LOGGING OUT-------------_______${context?.widget.toString()}');
-    if (context != null) {
-      context.router.replace(LoginRoute());
-    }
+    context.router.replaceAll([WelcomeRoute(), LoginRoute()]);
 
     cancelTimer();
   }
