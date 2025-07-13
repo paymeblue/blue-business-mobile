@@ -6,6 +6,7 @@ import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/bills/cable/vend/data/vend_cable_data.dart';
 import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
 import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
@@ -31,7 +32,7 @@ class VendCableSuccessViewModel extends BaseViewModel {
   }
 
   goTohome(BuildContext context) {
-    context.popUntilRoute(HomeRoute(), true);
+    locator<AppRouter>().replaceAll([HomeRoute()]);
   }
 
   getTransactionDetails(VendCableData transaction) async {

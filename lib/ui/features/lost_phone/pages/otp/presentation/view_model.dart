@@ -142,7 +142,7 @@ class VerifyPhoneOtpViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.popUntilRoute(HomeRoute(), true);
+    locator<AppRouter>().replaceAll([HomeRoute()]);
   }
 
   goBack(BuildContext context) {

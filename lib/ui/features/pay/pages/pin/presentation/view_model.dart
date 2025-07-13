@@ -101,12 +101,12 @@ class CompletePaymentViewModel extends BaseViewModel {
       }
     } else {
       if (context.mounted) {
-        context.popUntilRoute(HomeRoute());
-        locator<AppRouter>().push(
+        locator<AppRouter>().replaceAll([
+          HomeRoute(),
           TransactionErrorRoute(
               error: resp.message ??
                   "Something went wrong when trying to process this transaction"),
-        );
+        ]);
       }
     }
     AppLoader.stop();
@@ -166,18 +166,20 @@ class CompletePaymentViewModel extends BaseViewModel {
         savePin();
       }
       if (context.mounted) {
-        context.popUntilRoute(HomeRoute(), true);
         PaymentSuccessViewArgs extra =
             PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
 
-        locator<AppRouter>().push(PaymentSuccessRoute(args: extra));
+        locator<AppRouter>()
+            .replaceAll([HomeRoute(), PaymentSuccessRoute(args: extra)]);
       }
     } else {
       if (context.mounted) {
-        context.popUntilRoute(HomeRoute());
-        locator<AppRouter>().push(TransactionErrorRoute(
-            error: resp.message ??
-                "Something went wrong when trying to process this transaction"));
+        locator<AppRouter>().replaceAll([
+          HomeRoute(),
+          TransactionErrorRoute(
+              error: resp.message ??
+                  "Something went wrong when trying to process this transaction")
+        ]);
       }
     }
 

@@ -82,9 +82,7 @@ class ResetPasswordViewModel extends BaseViewModel {
             )));
 
     if (resp.status == "success") {
-      if (context.mounted) {
-        context.popUntilRoute(LoginRoute(), true);
-      }
+      locator<AppRouter>().replaceAll([LoginRoute()]);
     } else {
       AppNotification.error(message: resp.message);
     }

@@ -6,6 +6,7 @@ import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/bills/data/vend/data/vend_data_data.dart';
 import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
 import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
@@ -24,7 +25,7 @@ class VendDataSuccessViewModel extends BaseViewModel {
   }
 
   goToHome(BuildContext context) {
-    context.popUntilRoute(HomeRoute(), true);
+    locator<AppRouter>().replaceAll([HomeRoute()]);
   }
 
   DataDetails? _details;
