@@ -29,7 +29,6 @@ class AppStateValues extends ChangeNotifier {
   Wallet? _wallet;
   TopupAccount? _account;
   WithdrawalAccount? _withdrawalAccount;
-  Object? _extra;
   bool _isAutowithdrawalEnabled = false;
 
   String get refreshToken => _refreshToken;
@@ -54,7 +53,6 @@ class AppStateValues extends ChangeNotifier {
   Wallet? get wallet => _wallet;
   TopupAccount? get account => _account;
   WithdrawalAccount? get withdrawalAccount => _withdrawalAccount;
-  Object? get extra => _extra;
 
   bool get isAutoWithdrawalEnabled => _isAutowithdrawalEnabled;
 
@@ -170,11 +168,6 @@ class AppStateValues extends ChangeNotifier {
     notifyListeners();
   }
 
-  set extra(Object? e) {
-    _extra = e;
-    notifyListeners();
-  }
-
   clear() {
     accessToken = "";
     refreshToken = "";
@@ -196,7 +189,6 @@ class AppStateValues extends ChangeNotifier {
     wallet = null;
     account = null;
     withdrawalAccount = null;
-    extra = null;
   }
 }
 

@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/firebase_options.dart';
@@ -13,8 +13,7 @@ import 'package:provider/provider.dart';
 
 Future handleBackgroundMessages(RemoteMessage message) async {
   log(message.notification.toString());
-  BuildContext context =
-      locator<NavigationService>().navigatorKey.currentContext!;
+  BuildContext context = locator<AppRouter>().navigatorKey.currentContext!;
   AppStateValues stateValues =
       Provider.of<AppStateValues>(context, listen: false);
   Map<String, dynamic> data = message.data;

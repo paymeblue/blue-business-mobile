@@ -10,7 +10,7 @@ import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/payment_option/payment_option.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -32,7 +32,7 @@ class BlueBottomSheet {
   static Future biometrics(
       {required VoidCallback onContinue, required VoidCallback onCancel}) {
     return showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       isDismissible: false,
       backgroundColor: Colors.transparent,
@@ -103,7 +103,7 @@ class BlueBottomSheet {
 
   static Future topup() {
     return showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,
@@ -258,45 +258,6 @@ class BlueBottomSheet {
       );
     }
 
-    // Widget statusDropdown(
-    //     BuildContext context, void Function(String?)? onChanged) {
-    //   return Container(
-    //     margin: const EdgeInsets.only(top: 10, bottom: 10),
-    //     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-    //     width: context.mediaQuery.size.width,
-    //     decoration: BoxDecoration(
-    //       color: AppColors.grey,
-    //       borderRadius: BorderRadius.circular(5),
-    //     ),
-    //     child: DropdownButton<String>(
-    //       hint: Text(
-    //         status.isEmpty ? "--Select a status--" : status,
-    //         style: status.isNotEmpty
-    //             ? AppTextStyles.textField
-    //             : AppTextStyles.subText
-    //                 .copyWith(color: AppColors.textColor.withOpacityValue(.5)),
-    //       ),
-    //       underline: const SizedBox(),
-    //       icon: const Icon(Icons.keyboard_arrow_down_rounded),
-    //       style: TextStyle(
-    //           fontSize: 13.sp,
-    //           // fontWeight: FontWeight.w300,
-    //           color: Theme.of(context).highlightColor.withOpacityValue(.8)),
-    //       items: statuses
-    //           .map((q) => DropdownMenuItem<String>(
-    //                 value: q,
-    //                 child: Text(
-    //                   q,
-    //                   style: AppTextStyles.textField,
-    //                 ),
-    //               ))
-    //           .toList(),
-    //       isExpanded: true,
-    //       onChanged: onChanged,
-    //     ),
-    //   );
-    // }
-
     Widget textFieldHeader(String text) {
       return Align(
         alignment: Alignment.centerLeft,
@@ -349,7 +310,7 @@ class BlueBottomSheet {
     }
 
     return showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,
@@ -481,7 +442,7 @@ class BlueBottomSheet {
     }
 
     return showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,
@@ -624,7 +585,7 @@ class BlueBottomSheet {
     }
 
     await showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       isDismissible: true,
@@ -680,7 +641,7 @@ class BlueBottomSheet {
   static contact(TextEditingController controller,
       {required VoidCallback onConfirm}) {
     return showModalBottomSheet(
-        context: locator<NavigationService>().navigatorKey.currentContext!,
+        context: locator<AppRouter>().navigatorKey.currentContext!,
         backgroundColor: Colors.transparent,
         builder: (context) {
           return StatefulBuilder(builder: (context, setState) {
@@ -832,7 +793,7 @@ class BlueBottomSheet {
     }
 
     return showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       isDismissible: false,
@@ -944,7 +905,7 @@ class BlueBottomSheet {
     }
 
     return showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       isDismissible: false,
@@ -1126,7 +1087,7 @@ class BlueBottomSheet {
     }
 
     await showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       isDismissible: false,
@@ -1210,7 +1171,7 @@ class BlueBottomSheet {
 
     NumberFormat format = NumberFormat("#,##0.00");
     await showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,
@@ -1469,7 +1430,7 @@ class BlueBottomSheet {
     }
 
     await showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,

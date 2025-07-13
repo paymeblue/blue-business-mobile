@@ -11,7 +11,7 @@ import 'package:blue_business/core/models/business_category/category/business_ca
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/dropdown_type/dropdown_type.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/avatar/avatar.dart';
@@ -1105,7 +1105,7 @@ class _$BlueDropdownState<T> extends State<_$BlueDropdown<T>> {
     T? val = widget.selectedValue;
     _tempItemList = buildSearchList(widget.searchController?.text ?? "");
     await showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,
@@ -1260,7 +1260,7 @@ class _$BluePagedDropdownState<T> extends State<_$BluePagedDropdown<T>> {
   Future<T?> onTap() async {
     T? val = widget.selectedValue;
     await showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,

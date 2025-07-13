@@ -6,7 +6,6 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
@@ -167,7 +166,7 @@ class TransactionHistoryViewModel extends BaseViewModel {
 
   Future<String?> pickDate() async {
     DateTime? selectedDate = await showDatePicker(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       initialDate: date.isNotEmpty ? DateTime.parse(date) : DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),

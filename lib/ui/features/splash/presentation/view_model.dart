@@ -5,7 +5,6 @@ import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
@@ -55,7 +54,7 @@ class SplashViewModel extends BaseViewModel {
   void _showUpdateDialog(
       BuildContext context, bool forceUpdate, String minimumVersion) {
     showDialog(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       barrierDismissible: !forceUpdate,
       builder: (ctx) => Theme(
         data: Theme.of(ctx).copyWith(

@@ -2,7 +2,7 @@ import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/reason/reason.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
@@ -20,7 +20,7 @@ class BlueDialog {
     Color? confirmColor,
   }) {
     return showDialog(
-        context: locator<NavigationService>().navigatorKey.currentContext!,
+        context: locator<AppRouter>().navigatorKey.currentContext!,
         barrierDismissible: false,
         builder: (context) {
           return Dialog(
@@ -103,7 +103,7 @@ class BlueDialog {
   static Future<Reason?> reason({required List<Reason> reasons}) async {
     Reason? selectedReason;
     await showDialog(
-        context: locator<NavigationService>().navigatorKey.currentContext!,
+        context: locator<AppRouter>().navigatorKey.currentContext!,
         builder: (context) {
           return Dialog(
             child: StatefulBuilder(builder: (context, setState) {
@@ -203,7 +203,7 @@ class BlueDialog {
   static deleteAccount({required VoidCallback onDelete}) {
     String deleteString = "";
     showDialog(
-        context: locator<NavigationService>().navigatorKey.currentContext!,
+        context: locator<AppRouter>().navigatorKey.currentContext!,
         barrierDismissible: false,
         builder: (context) {
           return Dialog(
