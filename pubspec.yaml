@@ -190,6 +190,29 @@ flutter:
         - asset: assets/fonts/Neue Montreal/NeueMontreal-LightItalic.otf
           weight: 300
           style: italic
+    
+    - family: Figtree
+      fonts:
+        - asset: assets/fonts/Figtree/Figtree-Bold.ttf
+          weight: 600
+        - asset: assets/fonts/Figtree/Figtree-BoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Figtree/Figtree-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Figtree/Figtree-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Figtree/Figtree-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Figtree/Figtree-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Figtree/Figtree-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Figtree/Figtree-LightItalic.ttf
+          weight: 300
+          style: italic
 
   assets:
     - assets/images/

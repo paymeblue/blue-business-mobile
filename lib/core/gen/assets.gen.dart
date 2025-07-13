@@ -518,9 +518,33 @@ class $AssetsImagesPumpPriceSvgGen {
   $AssetsImagesPumpPriceSvgActiveGen get active =>
       const $AssetsImagesPumpPriceSvgActiveGen();
 
+  /// File path: assets/images/pump_price/svg/attendant_empty.svg
+  SvgGenImage get attendantEmpty =>
+      const SvgGenImage('assets/images/pump_price/svg/attendant_empty.svg');
+
+  /// File path: assets/images/pump_price/svg/branch_empty.svg
+  SvgGenImage get branchEmpty =>
+      const SvgGenImage('assets/images/pump_price/svg/branch_empty.svg');
+
+  /// File path: assets/images/pump_price/svg/delete_red.svg
+  SvgGenImage get deleteRed =>
+      const SvgGenImage('assets/images/pump_price/svg/delete_red.svg');
+
+  /// File path: assets/images/pump_price/svg/delete_white.svg
+  SvgGenImage get deleteWhite =>
+      const SvgGenImage('assets/images/pump_price/svg/delete_white.svg');
+
   /// Directory path: assets/images/pump_price/svg/inactive
   $AssetsImagesPumpPriceSvgInactiveGen get inactive =>
       const $AssetsImagesPumpPriceSvgInactiveGen();
+
+  /// File path: assets/images/pump_price/svg/search.svg
+  SvgGenImage get search =>
+      const SvgGenImage('assets/images/pump_price/svg/search.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values =>
+      [attendantEmpty, branchEmpty, deleteRed, deleteWhite, search];
 }
 
 class $AssetsImagesPumpPriceSvgActiveGen {

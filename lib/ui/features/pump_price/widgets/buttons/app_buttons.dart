@@ -277,8 +277,8 @@ class _$PumpPriceButton extends PumpPriceButton {
                     style: context.textTheme.bodyMedium!.copyWith(
                       height: 18.toLineHeight(13),
                       color: isEnabled || isLoading
-                          ? textColor ?? AppColors.pumpPricewhite
-                          : AppColors.pumpPricewhite.withOpacityValue(.45),
+                          ? textColor ?? AppColors.pumpPriceprimary
+                          : AppColors.pumpPriceprimary.withOpacityValue(.45),
                     ),
                   ),
                 ),

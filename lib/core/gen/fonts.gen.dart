@@ -15,4 +15,7 @@ class AppFonts {
 
   /// Font family: Satoshi
   static const String satoshi = 'Satoshi';
+
+  /// Font family: Figtree
+  static const String figtree = 'Figtree';
 }

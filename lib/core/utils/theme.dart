@@ -39,7 +39,7 @@ class AppTheme {
           color: AppColors.pumpPriceheaderText,
         ),
         displaySmall: TextStyle(
-          fontFamily: AppFonts.neueMontreal,
+          fontFamily: AppFonts.figtree,
           fontSize: 11.sp,
           height: 100.percentToLineHeight(11),
           letterSpacing: 1.percentToLetterSpacing(11),
