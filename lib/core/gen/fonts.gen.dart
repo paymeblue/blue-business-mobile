@@ -10,6 +10,9 @@
 class AppFonts {
   AppFonts._();
 
+  /// Font family: Neue Montreal
+  static const String neueMontreal = 'Neue Montreal';
+
   /// Font family: Satoshi
   static const String satoshi = 'Satoshi';
 }

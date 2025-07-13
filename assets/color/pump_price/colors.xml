@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pumpPriceprimary" type="material">#089E7A</color>
+    <color name="pumpPricewhite">#FFFFFF</color>
+    <color name="pumpPriceblack">#000000</color>
+
+    <color name="pumpPriceheaderText">#1F1F1F</color>
+    <color name="pumpPricebodyText">#333333</color>
+    <color name="pumpPricegreyText">#555555</color>
+    <color name="pumpPriceinputText">#75808A</color>
+
+    <color name="pumpPricesuccess">#28AA63</color>
+    <color name="pumpPricelightGreen">#EAFBF2</color>
+    <color name="pumpPricelightGreenBg">#DBFAE2</color>
+    <color name="pumpPricered">#E02424</color>
+    <color name="pumpPricelightRed">#FFE6E6</color>
+    <color name="pumpPricewarning">#F2B740</color>
+    <color name="pumpPricelightYellowBg">#FAF1DB</color>
+
+    <color name="pumpPricestroke">#DADADA</color>
+    <color name="pumpPricegreyBg">#F4F6F9A</color>
+    <color name="pumpPricegreyBg2">#F9F9F9</color>
+</resources>

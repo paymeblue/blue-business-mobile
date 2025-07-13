@@ -132,6 +132,7 @@ flutter_gen:
       class_name: AppColors
     inputs:
       - assets/color/colors.xml
+      - assets/color/pump_price/colors.xml
   integrations:
     flutter_svg: true
 
@@ -167,10 +168,37 @@ flutter:
           weight: 300
           style: italic
 
+    - family: Neue Montreal
+      fonts:
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-Bold.otf
+          weight: 600
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-BoldItalic.otf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-MediumItalic.otf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-Regular.otf
+          weight: 400
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-Italic.otf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-Light.otf
+          weight: 300
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-LightItalic.otf
+          weight: 300
+          style: italic
+
   assets:
     - assets/images/
     - assets/images/logos/
     - assets/images/icons/
     - assets/images/navbar_icons/active/
     - assets/images/navbar_icons/inactive/
+    - assets/images/pump_price/
+    - assets/images/pump_price/svg/
+    - assets/images/pump_price/svg/active/
+    - assets/images/pump_price/svg/inactive/
     - shorebird.yaml

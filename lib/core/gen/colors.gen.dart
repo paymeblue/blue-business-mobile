@@ -178,6 +178,81 @@ class AppColors {
   /// Color: #2FB9AC
   static const Color promptTextColor = Color(0xFF2FB9AC);
 
+  /// Color: #000000
+  static const Color pumpPriceblack = Color(0xFF000000);
+
+  /// Color: #333333
+  static const Color pumpPricebodyText = Color(0xFF333333);
+
+  /// Color: #F4F6F9A
+  static const Color pumpPricegreyBg = Color(0xF4F6F9A);
+
+  /// Color: #F9F9F9
+  static const Color pumpPricegreyBg2 = Color(0xFFF9F9F9);
+
+  /// Color: #555555
+  static const Color pumpPricegreyText = Color(0xFF555555);
+
+  /// Color: #1F1F1F
+  static const Color pumpPriceheaderText = Color(0xFF1F1F1F);
+
+  /// Color: #75808A
+  static const Color pumpPriceinputText = Color(0xFF75808A);
+
+  /// Color: #EAFBF2
+  static const Color pumpPricelightGreen = Color(0xFFEAFBF2);
+
+  /// Color: #DBFAE2
+  static const Color pumpPricelightGreenBg = Color(0xFFDBFAE2);
+
+  /// Color: #FFE6E6
+  static const Color pumpPricelightRed = Color(0xFFFFE6E6);
+
+  /// Color: #FAF1DB
+  static const Color pumpPricelightYellowBg = Color(0xFFFAF1DB);
+
+  /// MaterialColor:
+  ///   50: #FFE1F3EF
+  ///   100: #FFB5E2D7
+  ///   200: #FF84CFBD
+  ///   300: #FF52BBA2
+  ///   400: #FF2DAD8E
+  ///   500: #FF089E7A
+  ///   600: #FF079672
+  ///   700: #FF068C67
+  ///   800: #FF04825D
+  ///   900: #FF02704A
+  static const MaterialColor pumpPriceprimary = MaterialColor(
+    0xFF089E7A,
+    <int, Color>{
+      50: Color(0xFFE1F3EF),
+      100: Color(0xFFB5E2D7),
+      200: Color(0xFF84CFBD),
+      300: Color(0xFF52BBA2),
+      400: Color(0xFF2DAD8E),
+      500: Color(0xFF089E7A),
+      600: Color(0xFF079672),
+      700: Color(0xFF068C67),
+      800: Color(0xFF04825D),
+      900: Color(0xFF02704A),
+    },
+  );
+
+  /// Color: #E02424
+  static const Color pumpPricered = Color(0xFFE02424);
+
+  /// Color: #DADADA
+  static const Color pumpPricestroke = Color(0xFFDADADA);
+
+  /// Color: #28AA63
+  static const Color pumpPricesuccess = Color(0xFF28AA63);
+
+  /// Color: #F2B740
+  static const Color pumpPricewarning = Color(0xFFF2B740);
+
+  /// Color: #FFFFFF
+  static const Color pumpPricewhite = Color(0xFFFFFFFF);
+
   /// Color: #EFF0F2
   static const Color stroke = Color(0xFFEFF0F2);
 

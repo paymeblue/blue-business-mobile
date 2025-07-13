@@ -51,6 +51,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/phone.png
   AssetGenImage get phone => const AssetGenImage('assets/images/phone.png');
 
+  /// Directory path: assets/images/pump_price
+  $AssetsImagesPumpPriceGen get pumpPrice => const $AssetsImagesPumpPriceGen();
+
   /// File path: assets/images/watermark.png
   AssetGenImage get watermark =>
       const AssetGenImage('assets/images/watermark.png');
@@ -455,6 +458,13 @@ class $AssetsImagesNavbarIconsGen {
       const $AssetsImagesNavbarIconsInactiveGen();
 }
 
+class $AssetsImagesPumpPriceGen {
+  const $AssetsImagesPumpPriceGen();
+
+  /// Directory path: assets/images/pump_price/svg
+  $AssetsImagesPumpPriceSvgGen get svg => const $AssetsImagesPumpPriceSvgGen();
+}
+
 class $AssetsImagesNavbarIconsActiveGen {
   const $AssetsImagesNavbarIconsActiveGen();
 
@@ -499,6 +509,56 @@ class $AssetsImagesNavbarIconsInactiveGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [apps, home, insights, settings];
+}
+
+class $AssetsImagesPumpPriceSvgGen {
+  const $AssetsImagesPumpPriceSvgGen();
+
+  /// Directory path: assets/images/pump_price/svg/active
+  $AssetsImagesPumpPriceSvgActiveGen get active =>
+      const $AssetsImagesPumpPriceSvgActiveGen();
+
+  /// Directory path: assets/images/pump_price/svg/inactive
+  $AssetsImagesPumpPriceSvgInactiveGen get inactive =>
+      const $AssetsImagesPumpPriceSvgInactiveGen();
+}
+
+class $AssetsImagesPumpPriceSvgActiveGen {
+  const $AssetsImagesPumpPriceSvgActiveGen();
+
+  /// File path: assets/images/pump_price/svg/active/attendant.svg
+  SvgGenImage get attendant =>
+      const SvgGenImage('assets/images/pump_price/svg/active/attendant.svg');
+
+  /// File path: assets/images/pump_price/svg/active/branch.svg
+  SvgGenImage get branch =>
+      const SvgGenImage('assets/images/pump_price/svg/active/branch.svg');
+
+  /// File path: assets/images/pump_price/svg/active/logout.svg
+  SvgGenImage get logout =>
+      const SvgGenImage('assets/images/pump_price/svg/active/logout.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [attendant, branch, logout];
+}
+
+class $AssetsImagesPumpPriceSvgInactiveGen {
+  const $AssetsImagesPumpPriceSvgInactiveGen();
+
+  /// File path: assets/images/pump_price/svg/inactive/attendant.svg
+  SvgGenImage get attendant =>
+      const SvgGenImage('assets/images/pump_price/svg/inactive/attendant.svg');
+
+  /// File path: assets/images/pump_price/svg/inactive/branch.svg
+  SvgGenImage get branch =>
+      const SvgGenImage('assets/images/pump_price/svg/inactive/branch.svg');
+
+  /// File path: assets/images/pump_price/svg/inactive/logout.svg
+  SvgGenImage get logout =>
+      const SvgGenImage('assets/images/pump_price/svg/inactive/logout.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [attendant, branch, logout];
 }
 
 class AppAssets {

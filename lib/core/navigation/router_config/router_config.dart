@@ -1,3 +1,6 @@
+import 'package:blue_business/core/navigation/router_config/pump_price_routes.dart';
+import 'package:blue_business/ui/features/pump_price/bottom_navigation/presentation/view.dart';
+
 import 'router.dart';
 part 'router_config.gr.dart';
 
@@ -203,6 +206,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: VendElectricitySuccessRoute.page, guards: [
           AuthGuards.logout(),
         ]),
+        ...pumpPriceRoutes
       ];
 
   @override

@@ -1563,6 +1563,25 @@ class PowerDetailsRouteArgs {
 }
 
 /// generated route for
+/// [PumpPriceShellView]
+class PumpPriceShellRoute extends PageRouteInfo<void> {
+  const PumpPriceShellRoute({List<PageRouteInfo>? children})
+      : super(
+          PumpPriceShellRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PumpPriceShellRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PumpPriceShellView();
+    },
+  );
+}
+
+/// generated route for
 /// [QrPaymentView]
 class QrPaymentRoute extends PageRouteInfo<QrPaymentRouteArgs> {
   QrPaymentRoute({

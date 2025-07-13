@@ -30,6 +30,6 @@ class AppsViewModel extends BaseViewModel {
   }
 
   goToPumpPrice() {
-    locator<AppRouter>().replaceAll([HomeRoute()]);
+    locator<AppRouter>().push(PumpPriceShellRoute());
   }
 }

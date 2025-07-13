@@ -9,6 +9,7 @@ extension BuildContextEx on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);
   double getHeight([double scale = 1]) => mediaQuery.size.height * scale;
   double getWidth([double scale = 1]) => mediaQuery.size.width * scale;
+  TextTheme get textTheme => Theme.of(this).textTheme;
 
   void popUntilRoute<T extends Object?>(PageRouteInfo ancestor, [T? result]) {
     router.popUntilRouteWithName(ancestor.routeName);
@@ -104,6 +105,14 @@ extension PxToLineHeight on num {
 
   double toLetterSpacing(double fontsize) {
     return sp * fontsize.sp;
+  }
+
+  double percentToLineHeight(double fontSize) {
+    return ((this / 100) * fontSize).sp / fontSize.sp;
+  }
+
+  double percentToLetterSpacing(double fontSize) {
+    return ((this / 100) * fontSize).sp;
   }
 }
 
