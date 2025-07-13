@@ -9,7 +9,6 @@ import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
-import 'package:blue_business/ui/features/signup/pages/otp/presentation/view.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 
 class InitiateSignupViewModel extends BaseViewModel {

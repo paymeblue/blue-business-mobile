@@ -169,6 +169,25 @@ class AirtimeDetailsRouteArgs {
 }
 
 /// generated route for
+/// [AppsView]
+class AppsRoute extends PageRouteInfo<void> {
+  const AppsRoute({List<PageRouteInfo>? children})
+      : super(
+          AppsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AppsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AppsView();
+    },
+  );
+}
+
+/// generated route for
 /// [BillsView]
 class BillsRoute extends PageRouteInfo<void> {
   const BillsRoute({List<PageRouteInfo>? children})
