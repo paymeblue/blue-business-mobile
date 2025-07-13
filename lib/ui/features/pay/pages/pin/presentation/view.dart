@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/pay/pages/confirm_payment/presentation/view.dart';
@@ -27,7 +29,7 @@ class CompletePaymentView extends StatelessWidget {
         return Scaffold(
           appBar: BlueAppBar.primary(
             onBackTap: () {
-              context.router.maybePop();
+              locator<AppRouter>().maybePop();
             },
             icon: Icons.arrow_back_ios_new,
           ),

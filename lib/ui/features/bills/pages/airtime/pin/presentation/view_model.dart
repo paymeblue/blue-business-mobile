@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/bills_service/bills_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
@@ -42,7 +41,7 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 
   onButtonTap(BuildContext context, ReviewAirtimeData data) async {
@@ -71,11 +70,13 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
         savePin();
       }
       if (context.mounted) {
-        context.router.push(VendAirtimeSuccessRoute(data: response.data!));
+        locator<AppRouter>()
+            .push(VendAirtimeSuccessRoute(data: response.data!));
       }
     } else {
       if (context.mounted) {
-        context.router.push(TransactionErrorRoute(error: response.message!));
+        locator<AppRouter>()
+            .push(TransactionErrorRoute(error: response.message!));
       }
     }
 
@@ -111,7 +112,7 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
             )));
 
     if (context.mounted) {
-      context.router
+      locator<AppRouter>()
           .push<bool>(InitiatePinResetRoute(securityQuestion: resp.data))
           .then((val) {
         if (val == true) {

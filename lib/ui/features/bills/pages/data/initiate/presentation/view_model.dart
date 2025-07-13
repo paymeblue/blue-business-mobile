@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/bills_service/bills_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/bills/data/verify/data/verify_data_data.dart';
@@ -8,6 +7,7 @@ import 'package:blue_business/core/models/bills/get_packages/packages/packages.d
 import 'package:blue_business/core/models/bills/get_packages/response/get_packages_response.dart';
 import 'package:blue_business/core/models/bills/get_providers/providers/providers.dart';
 import 'package:blue_business/core/models/bills/get_providers/response/get_providers_response.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -26,7 +26,7 @@ class InitiateDataViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 
   onChanged(String? v) {
@@ -180,6 +180,6 @@ class InitiateDataViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.router.push(ReviewDataRoute(data: data!));
+    locator<AppRouter>().push(ReviewDataRoute(data: data!));
   }
 }

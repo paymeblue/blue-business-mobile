@@ -257,7 +257,7 @@ class LoginViewModel extends BaseViewModel {
 
   goToNext(BuildContext context, LoginData user) {
     RefreshTimer().resetTimer();
-    onSuccess ?? context.router.replaceAll([HomeRoute()]);
+    onSuccess ?? locator<AppRouter>().replaceAll([HomeRoute()]);
   }
 
   deleteStorageItems() async {
@@ -268,7 +268,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   goToRecoverPassword(BuildContext context) {
-    context.router.push<bool>(InitiatePasswordResetRoute()).then((val) {
+    locator<AppRouter>().push<bool>(InitiatePasswordResetRoute()).then((val) {
       if (val == true) {
         AppNotification.success(message: "Password reset successfully");
       }
@@ -276,7 +276,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   goToenterRecoveryCode(BuildContext context) {
-    context.router.push<bool>(InitiatePhoneResetRoute()).then((val) {
+    locator<AppRouter>().push<bool>(InitiatePhoneResetRoute()).then((val) {
       if (val == true) {
         AppNotification.success(message: "Phone number reset successfully");
       }
@@ -284,6 +284,6 @@ class LoginViewModel extends BaseViewModel {
   }
 
   goToSignup(BuildContext context) {
-    context.router.replace(InitiateSignupRoute());
+    locator<AppRouter>().replace(InitiateSignupRoute());
   }
 }

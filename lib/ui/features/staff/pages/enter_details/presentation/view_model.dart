@@ -84,11 +84,11 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context, [bool refresh = false]) {
-    context.router.maybePop(refresh);
+    locator<AppRouter>().maybePop(refresh);
   }
 
   goToAddBranch(BuildContext context) {
-    context.router.push(EnterBranchDetailsRoute()).then((val) {
+    locator<AppRouter>().push(EnterBranchDetailsRoute()).then((val) {
       branchPagingController.refresh();
     });
   }

@@ -27,14 +27,14 @@ class SplashViewModel extends BaseViewModel {
 
     if (StorageValues.username.isNotEmpty) {
       if (StorageValues.skipWelcome == "true") {
-        if (context.mounted) context.router.replace(LoginRoute());
+        if (context.mounted) locator<AppRouter>().replace(LoginRoute());
       } else {
         await StorageHelpers.setVal(
             StorageKeys.skipWelcomeKey, true.toString());
-        if (context.mounted) context.router.replace(WelcomeRoute());
+        if (context.mounted) locator<AppRouter>().replace(WelcomeRoute());
       }
     } else {
-      if (context.mounted) context.router.replace(WelcomeRoute());
+      if (context.mounted) locator<AppRouter>().replace(WelcomeRoute());
     }
   }
 

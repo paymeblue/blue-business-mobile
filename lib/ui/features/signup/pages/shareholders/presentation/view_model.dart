@@ -20,13 +20,13 @@ class ShareholderDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop(data);
+    locator<AppRouter>().maybePop(data);
   }
 
   goToNext(BuildContext context, {Shareholders? shareholder}) {
     ShareholderKycViewArgs extra =
         ShareholderKycViewArgs(data: data, shareholder: shareholder);
-    context.router
+    locator<AppRouter>()
         .push<SignupData>(ShareholderKycRoute(args: extra))
         .then((val) {
       if (val != null) {

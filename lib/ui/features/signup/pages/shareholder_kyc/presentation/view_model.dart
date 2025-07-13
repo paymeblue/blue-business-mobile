@@ -32,7 +32,7 @@ class SignupBusinessKycViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.router.push<SignupData>(CreatePinRoute(data: data)).then(
+    locator<AppRouter>().push<SignupData>(CreatePinRoute(data: data)).then(
       (val) {
         if (val != null) {
           data = val;
@@ -42,7 +42,7 @@ class SignupBusinessKycViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop(data);
+    locator<AppRouter>().maybePop(data);
   }
 
   bool isActive() {

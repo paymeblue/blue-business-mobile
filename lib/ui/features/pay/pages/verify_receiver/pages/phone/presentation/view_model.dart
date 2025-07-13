@@ -178,7 +178,7 @@ class PhonePaymentViewModel extends BaseViewModel {
           receiver: resp.data!,
           transactionId: data.transactionId,
         );
-        context.router.push(ConfirmTransactionRoute(args: args));
+        locator<AppRouter>().push(ConfirmTransactionRoute(args: args));
       }
     } else {
       AppNotification.error(message: resp.message);

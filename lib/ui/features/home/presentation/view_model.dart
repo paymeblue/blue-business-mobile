@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/dash_service/dash_service.dart';
 import 'package:blue_business/core/api/insights_service/insights_service.dart';
@@ -371,19 +370,19 @@ class HomeViewModel extends BaseViewModel {
     dynamic extra;
     if (mode == "payment") {
       extra = PaymentDetail.fromJson(response.data);
-      context.router.push(PaymentDetailsRoute(detail: extra));
+      locator<AppRouter>().push(PaymentDetailsRoute(detail: extra));
     } else if (mode == "airtime") {
       extra = AirtimeDetails.fromJson(response.data);
-      context.router.push(AirtimeDetailsRoute(detail: extra));
+      locator<AppRouter>().push(AirtimeDetailsRoute(detail: extra));
     } else if (mode == "power") {
       extra = PowerDetails.fromJson(response.data);
-      context.router.push(PowerDetailsRoute(detail: extra));
+      locator<AppRouter>().push(PowerDetailsRoute(detail: extra));
     } else if (mode == "data") {
       extra = DataDetails.fromJson(response.data);
-      context.router.push(DataDetailsRoute(detail: extra));
+      locator<AppRouter>().push(DataDetailsRoute(detail: extra));
     } else if (mode == "tv") {
       extra = CableDetails.fromJson(response.data);
-      context.router.push(CableDetailsRoute(detail: extra));
+      locator<AppRouter>().push(CableDetailsRoute(detail: extra));
     }
   }
 
@@ -401,23 +400,23 @@ class HomeViewModel extends BaseViewModel {
   }
 
   goToBranchManagementHome(BuildContext context) {
-    context.router.push(BranchHomeRoute());
+    locator<AppRouter>().push(BranchHomeRoute());
   }
 
   goToStaffManagementHome(BuildContext context) {
-    context.router.push(StaffHomeRoute());
+    locator<AppRouter>().push(StaffHomeRoute());
   }
 
   void goToReceiveMoney(BuildContext context) {
-    context.router.push(ReceiveMoneyRoute());
+    locator<AppRouter>().push(ReceiveMoneyRoute());
   }
 
   goToTransactionHistory(BuildContext context) {
-    context.router.push(TransactionHistoryRoute());
+    locator<AppRouter>().push(TransactionHistoryRoute());
   }
 
   goToWallet(BuildContext context) {
-    context.router.push<bool>(WalletRoute()).then((val) {
+    locator<AppRouter>().push<bool>(WalletRoute()).then((val) {
       if (val == true) {
         getWalletBalance();
         transactionController.refresh();

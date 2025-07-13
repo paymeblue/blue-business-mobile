@@ -18,7 +18,7 @@ class RefreshTimer {
       _logoutTimer!.cancel();
     }
 
-    _logoutTimer = Timer(const Duration(seconds: 30), () {
+    _logoutTimer = Timer(const Duration(seconds: 300), () {
       locator<AppStateValues>().notificationState = NotificationState.warning;
       logout();
     });
@@ -27,7 +27,7 @@ class RefreshTimer {
   }
 
   _setupRefresh() {
-    _refreshTimer ??= Timer(const Duration(seconds: 28), () async {
+    _refreshTimer ??= Timer(const Duration(seconds: 285), () async {
       await refreshToken();
     });
   }
@@ -74,10 +74,7 @@ class RefreshTimer {
       locator<AppStateValues>().notificationState = NotificationState.error;
     }
     locator<AppStateValues>().clear();
-    BuildContext? context =
-        locator<AppRouter>().navigatorKey.currentState!.context;
-
-    context.router.replaceAll([WelcomeRoute(), LoginRoute()]);
+    locator<AppRouter>().replaceAll([WelcomeRoute(), LoginRoute()]);
 
     cancelTimer();
   }

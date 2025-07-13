@@ -3,6 +3,8 @@ import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
@@ -30,7 +32,7 @@ class PhonePaymentView extends StatelessWidget {
         return Scaffold(
           appBar: BlueAppBar.primary(
             onBackTap: () {
-              context.router.maybePop();
+              locator<AppRouter>().maybePop();
             },
             icon: Icons.arrow_back_ios_new,
           ),

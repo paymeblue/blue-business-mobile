@@ -7,6 +7,7 @@ import 'package:blue_business/core/models/withdrawal_account/set/response/set_pa
 import 'package:blue_business/core/models/withdrawal_account/verify/request/verify_payout_request.dart';
 import 'package:blue_business/core/models/withdrawal_account/verify/response/verify_payout_response.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
@@ -53,7 +54,7 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 
   List<BankItem> _banks = [];

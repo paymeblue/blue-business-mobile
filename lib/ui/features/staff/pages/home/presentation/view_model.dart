@@ -56,11 +56,11 @@ class StaffHomeViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 
   goToAddStaff(BuildContext context, {Staff? staff}) {
-    context.router
+    locator<AppRouter>()
         .push<bool>(
       EnterStaffDetailsRoute(staff: staff),
     )

@@ -45,7 +45,7 @@ class WelcomeViewModel extends BaseViewModel {
   }
 
   goToLogin(BuildContext context) {
-    context.router.push(LoginRoute());
+    locator<AppRouter>().push(LoginRoute());
   }
 
   launchTerms() async {
@@ -63,6 +63,6 @@ class WelcomeViewModel extends BaseViewModel {
   }
 
   goToSignup(BuildContext context) {
-    context.router.push(InitiateSignupRoute());
+    locator<AppRouter>().push(InitiateSignupRoute());
   }
 }

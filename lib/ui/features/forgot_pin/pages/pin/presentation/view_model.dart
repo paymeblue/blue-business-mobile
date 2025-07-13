@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
@@ -85,7 +84,7 @@ class ResetPinViewModel extends BaseViewModel {
     if (resp.status == "success") {
       if (context.mounted) {
         context.popUntilRoute(InitiatePinResetRoute(), true);
-        context.router.maybePop(true);
+        locator<AppRouter>().maybePop(true);
       }
     } else {
       AppNotification.error(message: resp.message);

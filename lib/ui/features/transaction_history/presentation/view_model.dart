@@ -38,7 +38,7 @@ class TransactionHistoryViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 
   int limit = 50;
@@ -252,19 +252,19 @@ class TransactionHistoryViewModel extends BaseViewModel {
     dynamic extra;
     if (mode == "payment") {
       extra = PaymentDetail.fromJson(response.data);
-      context.router.push(PaymentDetailsRoute(detail: extra));
+      locator<AppRouter>().push(PaymentDetailsRoute(detail: extra));
     } else if (mode == "airtime") {
       extra = AirtimeDetails.fromJson(response.data);
-      context.router.push(AirtimeDetailsRoute(detail: extra));
+      locator<AppRouter>().push(AirtimeDetailsRoute(detail: extra));
     } else if (mode == "power") {
       extra = PowerDetails.fromJson(response.data);
-      context.router.push(PowerDetailsRoute(detail: extra));
+      locator<AppRouter>().push(PowerDetailsRoute(detail: extra));
     } else if (mode == "data") {
       extra = DataDetails.fromJson(response.data);
-      context.router.push(DataDetailsRoute(detail: extra));
+      locator<AppRouter>().push(DataDetailsRoute(detail: extra));
     } else if (mode == "tv") {
       extra = CableDetails.fromJson(response.data);
-      context.router.push(CableDetailsRoute(detail: extra));
+      locator<AppRouter>().push(CableDetailsRoute(detail: extra));
     }
 
     return;

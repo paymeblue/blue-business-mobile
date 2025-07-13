@@ -74,7 +74,7 @@ class InitiateSignupViewModel extends BaseViewModel {
   }
 
   goToLogin(BuildContext context) {
-    context.router.push(LoginRoute());
+    locator<AppRouter>().push(LoginRoute());
   }
 
   onChanged(String? c) {
@@ -114,13 +114,13 @@ class InitiateSignupViewModel extends BaseViewModel {
     String phone = phoneController.text.validPhone(selectedCountry);
     VerifySignupOtpArgs args = VerifySignupOtpArgs(phone: phone);
     if (data.level == 1) {
-      context.router.push(VerifySignupOtpRoute(args: args));
+      locator<AppRouter>().push(VerifySignupOtpRoute(args: args));
     } else {
-      context.router.push(SignupProgressRoute(data: data));
+      locator<AppRouter>().push(SignupProgressRoute(data: data));
     }
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 }

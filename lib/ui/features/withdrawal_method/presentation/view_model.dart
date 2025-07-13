@@ -17,7 +17,7 @@ class WithdrawalMethodViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 
   bool _isEnabled = false;
@@ -48,7 +48,7 @@ class WithdrawalMethodViewModel extends BaseViewModel {
   }
 
   goToInitiateWithdrawal(BuildContext context) {
-    context.router
+    locator<AppRouter>()
         .replace(InitiateTransactionRoute(mode: PaymentMode.withdrawal));
   }
 }

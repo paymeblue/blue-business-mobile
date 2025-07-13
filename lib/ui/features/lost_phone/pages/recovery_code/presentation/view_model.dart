@@ -1,7 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/recovery_code/send/response/recovery_code_response.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
@@ -17,7 +17,7 @@ class InitiatePhoneResetViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 
   TextEditingController recoveryCodeController = TextEditingController();
@@ -52,6 +52,6 @@ class InitiatePhoneResetViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, int id) {
-    context.router.replace(ResetPhoneRoute(id: id));
+    locator<AppRouter>().replace(ResetPhoneRoute(id: id));
   }
 }

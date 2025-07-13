@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/branch_service/branch_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -8,6 +7,7 @@ import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/branches/create/data/create_branch_request.dart';
 import 'package:blue_business/core/models/branches/create/response/create_branch_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -56,7 +56,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context, [bool refresh = false]) {
-    context.router.maybePop(refresh);
+    locator<AppRouter>().maybePop(refresh);
   }
 
   List<String> sizes = ["1 - 9", "10 - 49", "50 - 249", "> 250"];

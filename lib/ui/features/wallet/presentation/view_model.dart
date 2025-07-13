@@ -12,18 +12,18 @@ class WalletViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 
   goToInitiatePayment(BuildContext context) {
-    context.router.push(InitiateTransactionRoute());
+    locator<AppRouter>().push(InitiateTransactionRoute());
   }
 
   goToBills(BuildContext context) {
-    context.router.push(BillsRoute());
+    locator<AppRouter>().push(BillsRoute());
   }
 
   goToWithdrawalMethod(BuildContext context) {
-    context.router.push(WithdrawalMethodRoute());
+    locator<AppRouter>().push(WithdrawalMethodRoute());
   }
 }

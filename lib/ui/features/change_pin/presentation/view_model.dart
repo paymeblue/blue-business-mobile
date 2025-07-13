@@ -1,10 +1,11 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/models/change_pin/request/change_pin_request.dart';
 import 'package:blue_business/core/models/change_pin/response/change_pin_response.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -26,7 +27,7 @@ class ChangePinViewModel extends BaseViewModel {
       tempPin = pin;
       pin = "";
     } else if (pin.isEmpty) {
-      context.router.maybePop();
+      locator<AppRouter>().maybePop();
     }
   }
 

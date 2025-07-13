@@ -11,10 +11,10 @@ class ReviewAirtimeViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 
   goToNext(BuildContext context, ReviewAirtimeData data) {
-    context.router.push(ConfirmAirtimePinRoute(data: data));
+    locator<AppRouter>().push(ConfirmAirtimePinRoute(data: data));
   }
 }

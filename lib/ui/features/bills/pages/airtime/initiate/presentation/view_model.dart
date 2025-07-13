@@ -21,7 +21,7 @@ class InitiateAirtimeViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 
   setSelectedCountry() {
@@ -120,6 +120,6 @@ class InitiateAirtimeViewModel extends BaseViewModel {
         amount: amount!,
         provider: selectedProvider!);
 
-    context.router.push(ReviewAirtimeRoute(data: data));
+    locator<AppRouter>().push(ReviewAirtimeRoute(data: data));
   }
 }

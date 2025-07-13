@@ -5,6 +5,7 @@ import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -46,7 +47,7 @@ class ConfirmTransactionView extends StatelessWidget {
         builder: (context, model, _) {
           return Scaffold(
             appBar: BlueAppBar.primary(
-              onBackTap: () => context.router.maybePop(),
+              onBackTap: () => locator<AppRouter>().maybePop(),
               icon: Icons.arrow_back_ios,
             ),
             body: Padding(

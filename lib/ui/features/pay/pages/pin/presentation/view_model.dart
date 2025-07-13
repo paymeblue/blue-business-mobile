@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
@@ -98,12 +97,12 @@ class CompletePaymentViewModel extends BaseViewModel {
         PaymentSuccessViewArgs extra =
             PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
 
-        context.router.push(PaymentSuccessRoute(args: extra));
+        locator<AppRouter>().push(PaymentSuccessRoute(args: extra));
       }
     } else {
       if (context.mounted) {
         context.popUntilRoute(HomeRoute());
-        context.router.push(
+        locator<AppRouter>().push(
           TransactionErrorRoute(
               error: resp.message ??
                   "Something went wrong when trying to process this transaction"),
@@ -171,12 +170,12 @@ class CompletePaymentViewModel extends BaseViewModel {
         PaymentSuccessViewArgs extra =
             PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
 
-        context.router.push(PaymentSuccessRoute(args: extra));
+        locator<AppRouter>().push(PaymentSuccessRoute(args: extra));
       }
     } else {
       if (context.mounted) {
         context.popUntilRoute(HomeRoute());
-        context.router.push(TransactionErrorRoute(
+        locator<AppRouter>().push(TransactionErrorRoute(
             error: resp.message ??
                 "Something went wrong when trying to process this transaction"));
       }
@@ -204,7 +203,7 @@ class CompletePaymentViewModel extends BaseViewModel {
             )));
 
     if (context.mounted) {
-      context.router
+      locator<AppRouter>()
           .push<bool>(InitiatePinResetRoute(securityQuestion: resp.data))
           .then((val) {
         if (val == true) {

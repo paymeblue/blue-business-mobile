@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
@@ -129,13 +128,13 @@ class InitiateTransactionViewModel extends BaseViewModel {
       amount: amountInKobo,
     );
 
-    context.router.push(ConfirmTransactionRoute(args: args));
+    locator<AppRouter>().push(ConfirmTransactionRoute(args: args));
   }
 
   goToVerify(BuildContext context, InitiateTransactionData data) {
     VerifyReceiverArgs args =
         VerifyReceiverArgs(data: data, mode: paymentMode!);
-    context.router.push(receiverRoute(args));
+    locator<AppRouter>().push(receiverRoute(args));
   }
 
   receiverRoute(VerifyReceiverArgs args) {

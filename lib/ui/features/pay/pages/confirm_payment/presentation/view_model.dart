@@ -27,6 +27,6 @@ class ConfirmTransactionViewModel extends BaseViewModel {
 
   goToNext(BuildContext context, ConfirmTransactionViewArgs args) {
     locator<AppStateValues>().hasSavedBeneficiary = !saveBeneficiary;
-    context.router.push(CompletePaymentRoute(args: args));
+    locator<AppRouter>().push(CompletePaymentRoute(args: args));
   }
 }

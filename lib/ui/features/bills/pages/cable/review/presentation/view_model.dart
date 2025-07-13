@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/bills/cable/verify/data/verify_cable_data.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +13,10 @@ class ReviewCableViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 
   goToNext(BuildContext context, VerifyCableData data) {
-    context.router.push(ConfirmCablePinRoute(data: data));
+    locator<AppRouter>().push(ConfirmCablePinRoute(data: data));
   }
 }

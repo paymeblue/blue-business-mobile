@@ -133,10 +133,10 @@ class VerifyPinOtpViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.router.replace(ResetPinRoute(phone: phone));
+    locator<AppRouter>().replace(ResetPinRoute(phone: phone));
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 }

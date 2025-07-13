@@ -1,9 +1,10 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -21,7 +22,7 @@ class PowerDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.router.maybePop();
+    locator<AppRouter>().maybePop();
   }
 
   ScreenshotController screenshotController = ScreenshotController();

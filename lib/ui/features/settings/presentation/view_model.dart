@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/profile_service/profile_service.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
@@ -114,7 +113,7 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToChangePassword(BuildContext context) {
-    context.router.push(ChangePasswordRoute());
+    locator<AppRouter>().push(ChangePasswordRoute());
   }
 
   denyBiometrics() async {
@@ -142,7 +141,7 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToChangePin(BuildContext context) {
-    context.router.push(ChangePinRoute());
+    locator<AppRouter>().push(ChangePinRoute());
   }
 
   List<SettingsSection> sections(BuildContext context) => [
@@ -432,7 +431,7 @@ class SettingsViewModel extends BaseViewModel {
     if (resp.status == 'success') {
       final data = resp.data;
       if (context.mounted) {
-        context.router.push(BusinessFeesRoute(data: data!));
+        locator<AppRouter>().push(BusinessFeesRoute(data: data!));
       }
     } else {
       AppNotification.error(message: resp.message);
@@ -473,15 +472,15 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToManageBeneficiaries(BuildContext context) {
-    context.router.push(ManageBeneficiariesRoute());
+    locator<AppRouter>().push(ManageBeneficiariesRoute());
   }
 
   goToBranchManagementHome(BuildContext context) {
-    context.router.push(BranchHomeRoute());
+    locator<AppRouter>().push(BranchHomeRoute());
   }
 
   goToStaffManagementHome(BuildContext context) {
-    context.router.push(StaffHomeRoute());
+    locator<AppRouter>().push(StaffHomeRoute());
   }
 
   goToBlueWeb() async {
@@ -519,18 +518,18 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToPaymentLinkHistory(BuildContext context) {
-    context.router.push(PaymentLinkHistoryRoute());
+    locator<AppRouter>().push(PaymentLinkHistoryRoute());
   }
 
   goToPersonalInfo(BuildContext context) {
-    context.router.push(PersonalInfoRoute());
+    locator<AppRouter>().push(PersonalInfoRoute());
   }
 
   goToWithdrawalBank(BuildContext context) {
-    context.router.push(AddWithdrawalDetailsRoute());
+    locator<AppRouter>().push(AddWithdrawalDetailsRoute());
   }
 
   goToAccountRecovery(BuildContext context) {
-    context.router.push(AccountRecoveryRoute());
+    locator<AppRouter>().push(AccountRecoveryRoute());
   }
 }
