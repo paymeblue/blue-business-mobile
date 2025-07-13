@@ -93,12 +93,11 @@ class CompletePaymentViewModel extends BaseViewModel {
       if (StorageValues.enableBiometrics == "true") {
         savePin();
       }
-      if (context.mounted) {
-        PaymentSuccessViewArgs extra =
-            PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
 
-        locator<AppRouter>().push(PaymentSuccessRoute(args: extra));
-      }
+      PaymentSuccessViewArgs extra =
+          PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
+
+      locator<AppRouter>().replaceAll([PaymentSuccessRoute(args: extra)]);
     } else {
       if (context.mounted) {
         locator<AppRouter>().replaceAll([

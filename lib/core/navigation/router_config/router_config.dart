@@ -49,9 +49,13 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: ResetPasswordRoute.page),
         AutoRoute(page: ResetPhoneRoute.page),
         AutoRoute(page: DashboardShellRoute.page, children: [
-          AutoRoute(page: HomeRoute.page),
-          AutoRoute(page: InsightsRoute.page),
-          AutoRoute(page: SettingsRoute.page)
+          AutoRoute(page: HomeRoute.page, guards: [
+            AuthGuards.logout(),
+          ]),
+          AutoRoute(page: InsightsRoute.page, guards: [
+            AuthGuards.logout(),
+          ]),
+          AutoRoute(page: SettingsRoute.page, guards: [AuthGuards.logout()])
         ], guards: [
           AuthGuards.logout(),
         ]),
@@ -167,6 +171,57 @@ class AppRouter extends RootStackRouter {
           AuthGuards.logout(),
         ]),
         AutoRoute(page: TransactionErrorRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: BillsRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: InitiateAirtimeRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ReviewAirtimeRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ConfirmAirtimePinRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: VendAirtimeSuccessRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: InitiateCableRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ReviewCableRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ConfirmCablePinRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: VendCableSuccessRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: InitiateDataRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ReviewDataRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ConfirmDataPinRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: VendDataSuccessRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: InitiateElectricityRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ReviewElectricityRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: ConfirmElectricityPinRoute.page, guards: [
+          AuthGuards.logout(),
+        ]),
+        AutoRoute(page: VendElectricitySuccessRoute.page, guards: [
           AuthGuards.logout(),
         ]),
       ];

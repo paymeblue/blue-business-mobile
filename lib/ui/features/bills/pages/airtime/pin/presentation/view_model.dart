@@ -69,15 +69,11 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
       if (StorageValues.pin.isEmpty) {
         savePin();
       }
-      if (context.mounted) {
-        locator<AppRouter>()
-            .push(VendAirtimeSuccessRoute(data: response.data!));
-      }
+      locator<AppRouter>()
+          .replaceAll([VendAirtimeSuccessRoute(data: response.data!)]);
     } else {
-      if (context.mounted) {
-        locator<AppRouter>()
-            .push(TransactionErrorRoute(error: response.message!));
-      }
+      locator<AppRouter>()
+          .push(TransactionErrorRoute(error: response.message!));
     }
 
     AppLoader.stop();

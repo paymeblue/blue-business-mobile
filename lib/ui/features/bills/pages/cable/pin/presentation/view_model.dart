@@ -70,14 +70,11 @@ class ConfirmCablePinViewModel extends BaseViewModel {
       if (StorageValues.pin.isEmpty) {
         savePin();
       }
-      if (context.mounted) {
-        locator<AppRouter>().push(VendCableSuccessRoute(data: response.data!));
-      }
+      locator<AppRouter>()
+          .replaceAll([VendCableSuccessRoute(data: response.data!)]);
     } else {
-      if (context.mounted) {
-        locator<AppRouter>()
-            .push(TransactionErrorRoute(error: response.message!));
-      }
+      locator<AppRouter>()
+          .push(TransactionErrorRoute(error: response.message!));
     }
 
     AppLoader.stop();
