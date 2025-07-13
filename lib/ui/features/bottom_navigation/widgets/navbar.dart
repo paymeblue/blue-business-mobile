@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 enum BlueTab {
   home('Home'),
   insights('Insights'),
+  apps('Apps'),
   settings('Settings');
 
   const BlueTab(this.name);
@@ -95,6 +96,18 @@ class BlueNavBar extends StatelessWidget {
           );
         } else {
           return AppAssets.images.navbarIcons.inactive.insights.svg(
+            height: 20.dm,
+            width: 20.dm,
+          );
+        }
+      case BlueTab.apps:
+        if (currentIndex == BlueTab.apps.index) {
+          return AppAssets.images.navbarIcons.active.apps.svg(
+            height: 20.dm,
+            width: 20.dm,
+          );
+        } else {
+          return AppAssets.images.navbarIcons.inactive.apps.svg(
             height: 20.dm,
             width: 20.dm,
           );

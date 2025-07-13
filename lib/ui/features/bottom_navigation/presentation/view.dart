@@ -17,7 +17,12 @@ class _DashboardShellViewState extends State<DashboardShellView> {
     return PopScope(
       canPop: false,
       child: AutoTabsScaffold(
-        routes: const [HomeRoute(), InsightsRoute(), SettingsRoute()],
+        routes: const [
+          HomeRoute(),
+          InsightsRoute(),
+          AppsRoute(),
+          SettingsRoute()
+        ],
         bottomNavigationBuilder: (context, tabsRouter) {
           return BlueNavBar(
             currentIndex: tabsRouter.activeIndex,

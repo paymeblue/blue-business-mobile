@@ -13,6 +13,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: AddBusinessDetailsRoute.page),
         AutoRoute(page: SelectShareholderRoute.page),
         AutoRoute(page: ShareholderKycRoute.page),
+        AutoRoute(page: CreatePinRoute.page),
         AutoRoute(
           page: LoginRoute.page,
           guards: [

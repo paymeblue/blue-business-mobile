@@ -458,6 +458,10 @@ class $AssetsImagesNavbarIconsGen {
 class $AssetsImagesNavbarIconsActiveGen {
   const $AssetsImagesNavbarIconsActiveGen();
 
+  /// File path: assets/images/navbar_icons/active/apps.svg
+  SvgGenImage get apps =>
+      const SvgGenImage('assets/images/navbar_icons/active/apps.svg');
+
   /// File path: assets/images/navbar_icons/active/home.svg
   SvgGenImage get home =>
       const SvgGenImage('assets/images/navbar_icons/active/home.svg');
@@ -466,20 +470,20 @@ class $AssetsImagesNavbarIconsActiveGen {
   SvgGenImage get insights =>
       const SvgGenImage('assets/images/navbar_icons/active/insights.svg');
 
-  /// File path: assets/images/navbar_icons/active/loans.svg
-  SvgGenImage get loans =>
-      const SvgGenImage('assets/images/navbar_icons/active/loans.svg');
-
   /// File path: assets/images/navbar_icons/active/settings.svg
   SvgGenImage get settings =>
       const SvgGenImage('assets/images/navbar_icons/active/settings.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [home, insights, loans, settings];
+  List<SvgGenImage> get values => [apps, home, insights, settings];
 }
 
 class $AssetsImagesNavbarIconsInactiveGen {
   const $AssetsImagesNavbarIconsInactiveGen();
+
+  /// File path: assets/images/navbar_icons/inactive/apps.svg
+  SvgGenImage get apps =>
+      const SvgGenImage('assets/images/navbar_icons/inactive/apps.svg');
 
   /// File path: assets/images/navbar_icons/inactive/home.svg
   SvgGenImage get home =>
@@ -489,16 +493,12 @@ class $AssetsImagesNavbarIconsInactiveGen {
   SvgGenImage get insights =>
       const SvgGenImage('assets/images/navbar_icons/inactive/insights.svg');
 
-  /// File path: assets/images/navbar_icons/inactive/loans.svg
-  SvgGenImage get loans =>
-      const SvgGenImage('assets/images/navbar_icons/inactive/loans.svg');
-
   /// File path: assets/images/navbar_icons/inactive/settings.svg
   SvgGenImage get settings =>
       const SvgGenImage('assets/images/navbar_icons/inactive/settings.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [home, insights, loans, settings];
+  List<SvgGenImage> get values => [apps, home, insights, settings];
 }
 
 class AppAssets {
