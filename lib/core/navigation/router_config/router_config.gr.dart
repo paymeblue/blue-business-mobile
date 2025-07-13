@@ -1563,6 +1563,25 @@ class PowerDetailsRouteArgs {
 }
 
 /// generated route for
+/// [PumpPriceBranchView]
+class PumpPriceBranchRoute extends PageRouteInfo<void> {
+  const PumpPriceBranchRoute({List<PageRouteInfo>? children})
+      : super(
+          PumpPriceBranchRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PumpPriceBranchRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PumpPriceBranchView();
+    },
+  );
+}
+
+/// generated route for
 /// [PumpPriceShellView]
 class PumpPriceShellRoute extends PageRouteInfo<void> {
   const PumpPriceShellRoute({List<PageRouteInfo>? children})

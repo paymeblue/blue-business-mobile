@@ -17,7 +17,7 @@ class _PumpPriceShellViewState extends State<PumpPriceShellView> {
     return PopScope(
       canPop: false,
       child: AutoTabsScaffold(
-        routes: const [HomeRoute(), HomeRoute(), HomeRoute()],
+        routes: const [PumpPriceBranchRoute(), PumpPriceBranchRoute()],
         bottomNavigationBuilder: (context, tabsRouter) {
           return PumpPriceNavBar(
             currentIndex: tabsRouter.activeIndex,
