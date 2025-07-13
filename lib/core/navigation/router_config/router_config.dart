@@ -1,5 +1,6 @@
 import 'package:blue_business/core/navigation/router_config/pump_price_routes.dart';
 import 'package:blue_business/ui/features/pump_price/bottom_navigation/presentation/view.dart';
+import 'package:blue_business/ui/features/pump_price/pages/attendants/attendant_home/presentation/view.dart';
 import 'package:blue_business/ui/features/pump_price/pages/branch/branch_home/presentation/view.dart';
 
 import 'router.dart';

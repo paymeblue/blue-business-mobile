@@ -19,7 +19,8 @@ class DeleteBranchBottomSheet extends StatelessWidget {
       height: 240.h,
       width: context.getWidth(),
       margin: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 35.w),
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+      padding:
+          EdgeInsets.only(top: 20.h, bottom: 12.h, left: 16.w, right: 16.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.r),
         color: AppColors.white,
@@ -44,7 +45,7 @@ class DeleteBranchBottomSheet extends StatelessWidget {
                   .svg(height: 14.dm, width: 14.dm),
             ),
           ),
-          16.verticalGap,
+          24.verticalGap,
           Text(
             'Delete Branch?',
             style: context.textTheme.titleMedium,
@@ -55,7 +56,7 @@ class DeleteBranchBottomSheet extends StatelessWidget {
             style: context.textTheme.bodyMedium,
             textAlign: TextAlign.center,
           ),
-          24.verticalGap,
+          16.verticalGap,
           PumpPriceButton.primary(
             title: 'Delete',
             onTap: onDelete,

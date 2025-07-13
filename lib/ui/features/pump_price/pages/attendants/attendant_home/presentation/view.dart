@@ -4,8 +4,8 @@ import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
 import 'package:blue_business/core/utils/extensions.dart';
+import 'package:blue_business/ui/features/pump_price/pages/attendants/attendant_home/widgets/delete_attendant.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/buttons/app_buttons.dart';
-import 'package:blue_business/ui/features/pump_price/pages/branch/branch_home/widgets/delete_modals.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/textfield/textfield.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,13 +13,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'view_model.dart';
 
 @RoutePage()
-class PumpPriceBranchView extends StatelessWidget {
-  const PumpPriceBranchView({super.key});
+class PumpPriceAttendantView extends StatelessWidget {
+  const PumpPriceAttendantView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<PumpPriceBranchViewModel>(
-      model: PumpPriceBranchViewModel(),
+    return BaseView<PumpPriceAttendantViewModel>(
+      model: PumpPriceAttendantViewModel(),
       onModelReady: (model) => model.init(context),
       builder: (context, model, _) {
         return SafeArea(
@@ -43,7 +43,7 @@ class PumpPriceBranchView extends StatelessWidget {
                   Expanded(
                       child: ListView.separated(
                     itemBuilder: (ctx, i) {
-                      return PumpPriceBranchContainer();
+                      return PumpPriceAttendantContainer();
                     },
                     separatorBuilder: (ctx, i) => 20.verticalGap,
                     itemCount: 2,
@@ -63,7 +63,7 @@ class PumpPriceBranchView extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            'Branches',
+            'Attendants',
             style: context.textTheme.titleMedium,
           ),
         ),
@@ -91,7 +91,7 @@ class PumpPriceBranchView extends StatelessWidget {
                 ),
                 4.horizontalGap,
                 Text(
-                  'Add new branch',
+                  'Add new attendant',
                   style: context.textTheme.bodyMedium!.copyWith(
                     color: AppColors.pumpPriceprimary,
                   ),
@@ -105,8 +105,8 @@ class PumpPriceBranchView extends StatelessWidget {
   }
 }
 
-class PumpPriceBranchContainer extends StatelessWidget {
-  const PumpPriceBranchContainer({
+class PumpPriceAttendantContainer extends StatelessWidget {
+  const PumpPriceAttendantContainer({
     super.key,
   });
 
@@ -130,7 +130,7 @@ class PumpPriceBranchContainer extends StatelessWidget {
                   onTap: () async {
                     final delete = await showDelete(context);
                     if (delete) {
-                      PumpPriceToast.success(message: 'Branch deleted');
+                      PumpPriceToast.success(message: 'Attendant deleted');
                     }
                   },
                   child: DecoratedBox(
@@ -237,7 +237,7 @@ class PumpPriceBranchContainer extends StatelessWidget {
       barrierColor: AppColors.pumpPriceblack.withOpacityValue(.55),
       backgroundColor: Colors.transparent,
       builder: (ctx) {
-        return DeleteBranchBottomSheet(
+        return DeleteAttendantBottomSheet(
           onDelete: () {
             result = true;
             context.maybePop();

@@ -40,11 +40,11 @@ class AppTheme {
         ),
         displaySmall: TextStyle(
           fontFamily: AppFonts.figtree,
-          fontSize: 11.sp,
-          height: 100.percentToLineHeight(11),
-          letterSpacing: 1.percentToLetterSpacing(11),
-          fontWeight: FontWeight.w400,
-          color: AppColors.pumpPricegreyText,
+          fontSize: 12.sp,
+          height: 100.percentToLineHeight(12),
+          letterSpacing: -3.percentToLetterSpacing(12),
+          fontWeight: FontWeight.w700,
+          color: AppColors.pumpPriceheaderText,
         ),
         bodyLarge: TextStyle(
           fontFamily: AppFonts.neueMontreal,
