@@ -47,7 +47,7 @@ class DeleteAttendantBottomSheet extends StatelessWidget {
           ),
           24.verticalGap,
           Text(
-            'Delete Branch?',
+            'Delete Attendant?',
             style: context.textTheme.titleMedium,
           ),
           8.verticalGap,

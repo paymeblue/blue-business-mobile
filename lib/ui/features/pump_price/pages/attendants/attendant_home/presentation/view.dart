@@ -1,10 +1,10 @@
-import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/pump_price/pages/attendants/attendant_home/widgets/delete_attendant.dart';
+import 'package:blue_business/ui/features/pump_price/widgets/avatar/avatar.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/textfield/textfield.dart';
@@ -32,7 +32,7 @@ class PumpPriceAttendantView extends StatelessWidget {
                   titleRow(context),
                   14.verticalGap,
                   PumpPriceTextField.plaintext(
-                    hint: 'Search for branch',
+                    hint: 'Search for attendant',
                     leading: Padding(
                       padding: EdgeInsets.only(left: 15.w),
                       child: AppAssets.images.pumpPrice.svg.search.svg(),
@@ -121,109 +121,9 @@ class PumpPriceAttendantContainer extends StatelessWidget {
           border: Border.all(color: AppColors.pumpPricestroke)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              nameAndAddress(context),
-              GestureDetector(
-                  onTap: () async {
-                    final delete = await showDelete(context);
-                    if (delete) {
-                      PumpPriceToast.success(message: 'Attendant deleted');
-                    }
-                  },
-                  child: DecoratedBox(
-                      decoration: BoxDecoration(),
-                      child: AppAssets.images.pumpPrice.svg.deleteRed.svg()))
-            ],
-          ),
-          14.verticalGap,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              revenueColumn(context),
-              perLitreColumn(context),
-            ],
-          ),
-          16.verticalGap,
-          buttonRow(context)
-        ],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [nameAndBranch(context), 16.verticalGap, buttonRow(context)],
       ),
-    );
-  }
-
-  Widget revenueColumn(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Total Revenue',
-          style: context.textTheme.bodyMedium!.copyWith(
-            fontSize: 12.sp,
-            height: 100.percentToLineHeight(12),
-            letterSpacing: 0.percentToLetterSpacing(12),
-          ),
-          overflow: TextOverflow.ellipsis,
-        ),
-        2.verticalGap,
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              '${nairaSymbol()} ',
-              style: context.textTheme.displaySmall!.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            Text(
-              '300,000',
-              style: context.textTheme.displaySmall!.copyWith(
-                fontSize: 24.sp,
-                height: 100.percentToLineHeight(24),
-                letterSpacing: -2.percentToLetterSpacing(24),
-              ),
-            ),
-          ],
-        )
-      ],
-    );
-  }
-
-  Widget perLitreColumn(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              '${nairaSymbol()} ',
-              style: context.textTheme.displaySmall!.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            Text(
-              '969',
-              style: context.textTheme.displaySmall!.copyWith(
-                fontSize: 24.sp,
-                height: 100.percentToLineHeight(24),
-                letterSpacing: -2.percentToLetterSpacing(24),
-              ),
-            ),
-          ],
-        ),
-        2.verticalGap,
-        Text(
-          'per litre',
-          style: context.textTheme.bodyMedium!.copyWith(
-            fontSize: 12.sp,
-            height: 100.percentToLineHeight(12),
-            letterSpacing: 0.percentToLetterSpacing(12),
-          ),
-          overflow: TextOverflow.ellipsis,
-        ),
-      ],
     );
   }
 
@@ -249,27 +149,32 @@ class PumpPriceAttendantContainer extends StatelessWidget {
     return result;
   }
 
-  Widget nameAndAddress(BuildContext context) {
-    return SizedBox(
-      width: context.getWidth(.65),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'NNPC Limited Mega Gas Station',
-            style: context.textTheme.bodyLarge,
+  Widget nameAndBranch(BuildContext context) {
+    return Row(
+      children: [
+        PumpPriceAvatar(radius: 21.r),
+        10.horizontalGap,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Yakubu Danladi',
+                style: context.textTheme.bodyLarge,
+              ),
+              Text(
+                'NNPC Limited Mega Gas Station',
+                style: context.textTheme.bodyMedium!.copyWith(
+                  fontSize: 12.sp,
+                  height: 100.percentToLineHeight(12),
+                  letterSpacing: 0.percentToLetterSpacing(12),
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
           ),
-          Text(
-            'B27 Nal Blvd, Central Business Dis, Abuja 900103, Federal Capital Territory',
-            style: context.textTheme.bodyMedium!.copyWith(
-              fontSize: 12.sp,
-              height: 100.percentToLineHeight(12),
-              letterSpacing: 0.percentToLetterSpacing(12),
-            ),
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -281,7 +186,7 @@ class PumpPriceAttendantContainer extends StatelessWidget {
           width: context.getWidth(.37),
           height: 38.h,
           child: PumpPriceButton.primary(
-            title: 'View insights',
+            title: 'Edit details',
             onTap: () {},
           ),
         ),
@@ -289,8 +194,13 @@ class PumpPriceAttendantContainer extends StatelessWidget {
           width: context.getWidth(.37),
           height: 38.h,
           child: PumpPriceButton.ghostPrimary(
-            title: 'Edit details',
-            onTap: () {},
+            title: 'Delete',
+            onTap: () async {
+              final delete = await showDelete(context);
+              if (delete) {
+                PumpPriceToast.success(message: 'Attendant deleted');
+              }
+            },
           ),
         )
       ],
