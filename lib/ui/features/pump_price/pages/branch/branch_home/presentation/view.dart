@@ -294,7 +294,17 @@ class PumpPriceBranchContainer extends StatelessWidget {
           height: 38.h,
           child: PumpPriceButton.primary(
             title: 'View insights',
-            onTap: () {},
+            onTap: () {
+              locator<AppRouter>().push(PumpPriceBranchInsightsRoute(
+                branch: Branch(
+                    id: 0,
+                    businessId: 1,
+                    staffSize: '10',
+                    totalAmount: '300000',
+                    name: 'NNPC Mega Station',
+                    location: 'B27 Nai Blvd Central Business Dis, Abuja'),
+              ));
+            },
           ),
         ),
         SizedBox(

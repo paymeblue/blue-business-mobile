@@ -104,6 +104,53 @@ class AddBusinessDetailsRouteArgs {
 }
 
 /// generated route for
+/// [AddPumpPriceAttendantView]
+class AddPumpPriceAttendantRoute
+    extends PageRouteInfo<AddPumpPriceAttendantRouteArgs> {
+  AddPumpPriceAttendantRoute({
+    Key? key,
+    required AddPumpPriceAttendantViewArgs args,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AddPumpPriceAttendantRoute.name,
+          args: AddPumpPriceAttendantRouteArgs(
+            key: key,
+            args: args,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'AddPumpPriceAttendantRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<AddPumpPriceAttendantRouteArgs>();
+      return AddPumpPriceAttendantView(
+        key: args.key,
+        args: args.args,
+      );
+    },
+  );
+}
+
+class AddPumpPriceAttendantRouteArgs {
+  const AddPumpPriceAttendantRouteArgs({
+    this.key,
+    required this.args,
+  });
+
+  final Key? key;
+
+  final AddPumpPriceAttendantViewArgs args;
+
+  @override
+  String toString() {
+    return 'AddPumpPriceAttendantRouteArgs{key: $key, args: $args}';
+  }
+}
+
+/// generated route for
 /// [AddPumpPriceBranchView]
 class AddPumpPriceBranchRoute
     extends PageRouteInfo<AddPumpPriceBranchRouteArgs> {
@@ -1626,6 +1673,53 @@ class PumpPriceAttendantRoute extends PageRouteInfo<void> {
       return const PumpPriceAttendantView();
     },
   );
+}
+
+/// generated route for
+/// [PumpPriceBranchInsightsView]
+class PumpPriceBranchInsightsRoute
+    extends PageRouteInfo<PumpPriceBranchInsightsRouteArgs> {
+  PumpPriceBranchInsightsRoute({
+    Key? key,
+    required Branch branch,
+    List<PageRouteInfo>? children,
+  }) : super(
+          PumpPriceBranchInsightsRoute.name,
+          args: PumpPriceBranchInsightsRouteArgs(
+            key: key,
+            branch: branch,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'PumpPriceBranchInsightsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PumpPriceBranchInsightsRouteArgs>();
+      return PumpPriceBranchInsightsView(
+        key: args.key,
+        branch: args.branch,
+      );
+    },
+  );
+}
+
+class PumpPriceBranchInsightsRouteArgs {
+  const PumpPriceBranchInsightsRouteArgs({
+    this.key,
+    required this.branch,
+  });
+
+  final Key? key;
+
+  final Branch branch;
+
+  @override
+  String toString() {
+    return 'PumpPriceBranchInsightsRouteArgs{key: $key, branch: $branch}';
+  }
 }
 
 /// generated route for

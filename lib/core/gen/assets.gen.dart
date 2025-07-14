@@ -526,6 +526,10 @@ class $AssetsImagesPumpPriceSvgGen {
   SvgGenImage get branchEmpty =>
       const SvgGenImage('assets/images/pump_price/svg/branch_empty.svg');
 
+  /// File path: assets/images/pump_price/svg/completed.svg
+  SvgGenImage get completed =>
+      const SvgGenImage('assets/images/pump_price/svg/completed.svg');
+
   /// File path: assets/images/pump_price/svg/delete_red.svg
   SvgGenImage get deleteRed =>
       const SvgGenImage('assets/images/pump_price/svg/delete_red.svg');
@@ -537,6 +541,10 @@ class $AssetsImagesPumpPriceSvgGen {
   /// Directory path: assets/images/pump_price/svg/inactive
   $AssetsImagesPumpPriceSvgInactiveGen get inactive =>
       const $AssetsImagesPumpPriceSvgInactiveGen();
+
+  /// File path: assets/images/pump_price/svg/pending.svg
+  SvgGenImage get pending =>
+      const SvgGenImage('assets/images/pump_price/svg/pending.svg');
 
   /// File path: assets/images/pump_price/svg/placeholder_avatar.svg
   SvgGenImage get placeholderAvatar =>
@@ -550,8 +558,10 @@ class $AssetsImagesPumpPriceSvgGen {
   List<SvgGenImage> get values => [
         attendantEmpty,
         branchEmpty,
+        completed,
         deleteRed,
         deleteWhite,
+        pending,
         placeholderAvatar,
         search
       ];

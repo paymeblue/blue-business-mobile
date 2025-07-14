@@ -1,8 +1,10 @@
 import 'package:blue_business/core/navigation/router_config/pump_price_routes.dart';
 import 'package:blue_business/ui/features/pump_price/bottom_navigation/presentation/view.dart';
+import 'package:blue_business/ui/features/pump_price/pages/attendants/add_attendant/presentation/view.dart';
 import 'package:blue_business/ui/features/pump_price/pages/attendants/attendant_home/presentation/view.dart';
 import 'package:blue_business/ui/features/pump_price/pages/branch/add_branch/presentation/view.dart';
 import 'package:blue_business/ui/features/pump_price/pages/branch/branch_home/presentation/view.dart';
+import 'package:blue_business/ui/features/pump_price/pages/branch/branch_insights/presentation/view.dart';
 
 import 'router.dart';
 part 'router_config.gr.dart';

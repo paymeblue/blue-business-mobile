@@ -2,7 +2,9 @@ import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/extensions.dart';
+import 'package:blue_business/ui/features/pump_price/pages/attendants/add_attendant/presentation/view.dart';
 import 'package:blue_business/ui/features/pump_price/pages/attendants/attendant_home/widgets/delete_attendant.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/avatar/avatar.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/buttons/app_buttons.dart';
@@ -69,7 +71,16 @@ class PumpPriceAttendantView extends StatelessWidget {
         ),
         8.horizontalGap,
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            locator<AppRouter>()
+                .push<bool>(AddPumpPriceAttendantRoute(
+                    args: AddPumpPriceAttendantViewArgs()))
+                .then((v) {
+              if (v == true) {
+                PumpPriceToast.success(message: 'Attendant added!');
+              }
+            });
+          },
           child: DecoratedBox(
             decoration: BoxDecoration(),
             child: Row(
@@ -187,7 +198,16 @@ class PumpPriceAttendantContainer extends StatelessWidget {
           height: 38.h,
           child: PumpPriceButton.primary(
             title: 'Edit details',
-            onTap: () {},
+            onTap: () {
+              locator<AppRouter>()
+                  .push<bool>(AddPumpPriceAttendantRoute(
+                      args: AddPumpPriceAttendantViewArgs()))
+                  .then((v) {
+                if (v == true) {
+                  PumpPriceToast.success(message: 'Changes saved!');
+                }
+              });
+            },
           ),
         ),
         SizedBox(

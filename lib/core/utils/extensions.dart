@@ -116,6 +116,11 @@ extension PxToLineHeight on num {
   }
 }
 
+extension GestureEx on Widget {
+  Widget onTap(VoidCallback action) =>
+      GestureDetector(onTap: action, child: this);
+}
+
 extension ColorEx on Color {
   Color withOpacityValue(double value) {
     return withValues(alpha: value);
