@@ -45,13 +45,15 @@ class AddPumpPriceBranchView extends StatelessWidget {
                     '${args.branch != null ? 'Edit' : 'Add'} Branch',
                     style: context.textTheme.titleMedium,
                   ),
-                  6.verticalGap,
-                  Text(
-                    'Please enter the following details below to add a fuel station branch of your business. ',
-                    style: context.textTheme.bodyMedium!.copyWith(
-                      height: 18.toLineHeight(14),
-                    ),
-                  ),
+                  if (args.branch == null) ...[
+                    6.verticalGap,
+                    Text(
+                      'Please enter the following details below to add a fuel station branch of your business. ',
+                      style: context.textTheme.bodyMedium!.copyWith(
+                        height: 18.toLineHeight(14),
+                      ),
+                    )
+                  ],
                   18.verticalGap,
                   Expanded(
                     child: ListView(

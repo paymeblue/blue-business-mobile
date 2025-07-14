@@ -303,7 +303,8 @@ class PumpPriceBranchContainer extends StatelessWidget {
           child: PumpPriceButton.ghostPrimary(
             title: 'Edit details',
             onTap: () {
-              locator<AppRouter>().push<bool>(
+              locator<AppRouter>()
+                  .push<bool>(
                 AddPumpPriceBranchRoute(
                     args: AddPumpPriceBranchViewArgs(
                   branch: Branch(
@@ -314,7 +315,12 @@ class PumpPriceBranchContainer extends StatelessWidget {
                       name: 'NNPC Mega Station',
                       location: 'B27 Nai Blvd Central Business Dis, Abuja'),
                 )),
-              );
+              )
+                  .then((v) {
+                if (v == true) {
+                  PumpPriceToast.success(message: 'Changes saved!');
+                }
+              });
             },
           ),
         )
