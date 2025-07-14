@@ -3,7 +3,9 @@ import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/extensions.dart';
+import 'package:blue_business/ui/features/pump_price/pages/branch/add_branch/presentation/view.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/ui/features/pump_price/pages/branch/branch_home/widgets/delete_modals.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
@@ -69,7 +71,11 @@ class PumpPriceBranchView extends StatelessWidget {
         ),
         8.horizontalGap,
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            locator<AppRouter>().push<bool>(
+              AddPumpPriceBranchRoute(args: AddPumpPriceBranchViewArgs()),
+            );
+          },
           child: DecoratedBox(
             decoration: BoxDecoration(),
             child: Row(
@@ -290,7 +296,20 @@ class PumpPriceBranchContainer extends StatelessWidget {
           height: 38.h,
           child: PumpPriceButton.ghostPrimary(
             title: 'Edit details',
-            onTap: () {},
+            onTap: () {
+              locator<AppRouter>().push<bool>(
+                AddPumpPriceBranchRoute(
+                    args: AddPumpPriceBranchViewArgs(
+                  branch: Branch(
+                      id: 0,
+                      businessId: 1,
+                      staffSize: '10',
+                      totalAmount: '300000',
+                      name: 'NNPC Mega Station',
+                      location: 'B27 Nai Blvd Central Business Dis, Abuja'),
+                )),
+              );
+            },
           ),
         )
       ],

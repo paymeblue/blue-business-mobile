@@ -7,5 +7,6 @@ List<AutoRoute> pumpPriceRoutes = [
     AutoRoute(page: PumpPriceAttendantRoute.page),
   ], guards: [
     AuthGuards.logout()
-  ])
+  ]),
+  AutoRoute(page: AddPumpPriceBranchRoute.page, guards: [AuthGuards.logout()]),
 ];

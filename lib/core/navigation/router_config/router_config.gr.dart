@@ -104,6 +104,53 @@ class AddBusinessDetailsRouteArgs {
 }
 
 /// generated route for
+/// [AddPumpPriceBranchView]
+class AddPumpPriceBranchRoute
+    extends PageRouteInfo<AddPumpPriceBranchRouteArgs> {
+  AddPumpPriceBranchRoute({
+    Key? key,
+    required AddPumpPriceBranchViewArgs args,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AddPumpPriceBranchRoute.name,
+          args: AddPumpPriceBranchRouteArgs(
+            key: key,
+            args: args,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'AddPumpPriceBranchRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<AddPumpPriceBranchRouteArgs>();
+      return AddPumpPriceBranchView(
+        key: args.key,
+        args: args.args,
+      );
+    },
+  );
+}
+
+class AddPumpPriceBranchRouteArgs {
+  const AddPumpPriceBranchRouteArgs({
+    this.key,
+    required this.args,
+  });
+
+  final Key? key;
+
+  final AddPumpPriceBranchViewArgs args;
+
+  @override
+  String toString() {
+    return 'AddPumpPriceBranchRouteArgs{key: $key, args: $args}';
+  }
+}
+
+/// generated route for
 /// [AddWithdrawalDetailsView]
 class AddWithdrawalDetailsRoute extends PageRouteInfo<void> {
   const AddWithdrawalDetailsRoute({List<PageRouteInfo>? children})
