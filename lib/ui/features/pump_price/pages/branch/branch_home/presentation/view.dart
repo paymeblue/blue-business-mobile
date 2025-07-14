@@ -72,9 +72,15 @@ class PumpPriceBranchView extends StatelessWidget {
         8.horizontalGap,
         GestureDetector(
           onTap: () {
-            locator<AppRouter>().push<bool>(
+            locator<AppRouter>()
+                .push<bool>(
               AddPumpPriceBranchRoute(args: AddPumpPriceBranchViewArgs()),
-            );
+            )
+                .then((v) {
+              if (v == true) {
+                PumpPriceToast.success(message: 'Branch added!');
+              }
+            });
           },
           child: DecoratedBox(
             decoration: BoxDecoration(),

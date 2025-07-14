@@ -1,8 +1,13 @@
+import 'dart:io';
+
+import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/extensions.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:country_flags/country_flags.dart';
 
@@ -29,7 +34,7 @@ class PumpPriceTextField {
     BorderRadius? borderRadius,
     TextStyle? inputStyle,
   }) {
-    return _AppPlaintextTextField(
+    return _PumpPricePlaintextTextField(
       title: title,
       isOptional: isOptional,
       onChanged: onChanged,
@@ -61,7 +66,7 @@ class PumpPriceTextField {
     FocusNode? node,
     String? validationText,
   }) {
-    return _AppPasswordTextField(
+    return _PumpPricePasswordTextField(
       hint: hint,
       controller: controller,
       isEnabled: true,
@@ -84,7 +89,7 @@ class PumpPriceTextField {
     String? validationText,
     required CountryCode country,
   }) {
-    return _AppPlaintextTextField(
+    return _PumpPricePlaintextTextField(
       title: title,
       isOptional: isOptional,
       onChanged: onChanged,
@@ -135,21 +140,39 @@ class PumpPriceTextField {
     );
   }
 
-  static Widget otp({
-    Function(String)? onChanged,
-    Function(String)? onSubmit,
-    int length = 4,
+  static Widget currency({
+    required String hint,
+    String title = "",
+    ValueChanged<String?>? onChanged,
+    TextEditingController? controller,
+    FocusNode? node,
+    bool isOptional = false,
+    bool isEnabled = true,
   }) {
-    return _AppOTPField(
-      onSubmit: onSubmit ?? (v) {},
-      length: length,
+    return _PumpPricePlaintextTextField(
+      title: title,
+      isOptional: isOptional,
+      node: node,
       onChanged: onChanged,
+      controller: controller,
+      hint: hint,
+      isEnabled: isEnabled,
+      keyboardType: TextInputType.number,
+      inputFormatters: <TextInputFormatter>[
+        FilteringTextInputFormatter.digitsOnly,
+        CurrencyTextInputFormatter.currency(
+          decimalDigits: 2,
+          symbol: nairaSymbol(),
+          name: "NGN",
+          locale: Platform.localeName,
+        )
+      ],
     );
   }
 }
 
-class _AppPasswordTextField extends StatelessWidget {
-  const _AppPasswordTextField({
+class _PumpPricePasswordTextField extends StatelessWidget {
+  const _PumpPricePasswordTextField({
     this.hint,
     this.controller,
     this.isEnabled = true,
@@ -167,7 +190,7 @@ class _AppPasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _$AppTextField(
+    return _$PumpPriceTextField(
       hint: hint,
       controller: controller,
       isPassword: true,
@@ -180,81 +203,8 @@ class _AppPasswordTextField extends StatelessWidget {
   }
 }
 
-class _AppOTPField extends StatefulWidget {
-  final int length;
-  final ValueChanged<String> onSubmit;
-  final ValueChanged<String>? onChanged;
-  const _AppOTPField({this.length = 6, required this.onSubmit, this.onChanged});
-
-  @override
-  State<_AppOTPField> createState() => _AppOTPFieldState();
-}
-
-class _AppOTPFieldState extends State<_AppOTPField> {
-  List<FocusNode> nodes = List.empty();
-  List<String> controllers = List.empty();
-
-  @override
-  void initState() {
-    super.initState();
-    nodes = List.generate(widget.length, (i) => FocusNode());
-    controllers = List.generate(widget.length, (i) => "");
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(widget.length, (i) {
-        return Row(
-          children: [
-            SizedBox(
-              width: 52 * widget.length > context.mediaQuery.size.width
-                  ? (context.mediaQuery.size.width / (widget.length - 35)).sp
-                  : 52.w,
-              child: PumpPriceTextField.plaintext(
-                hint: "",
-                node: nodes[i],
-                maxLength: 1,
-                keyboardType: TextInputType.number,
-                textAlign: TextAlign.center,
-                backgroundColor: AppColors.pumpPricegreyBg2,
-                borderRadius: BorderRadius.circular(10.r),
-                inputStyle: context.textTheme.titleSmall!.copyWith(
-                  fontSize: 18.sp,
-                ),
-                onChanged: (value) {
-                  if (value.orEmpty.isEmpty) {
-                    if (i > 0) {
-                      nodes[i - 1].requestFocus();
-                    }
-                    controllers[i] = "";
-                  } else {
-                    if (i < widget.length - 1) {
-                      nodes[i + 1].requestFocus();
-                    }
-                    controllers[i] = value!;
-                  }
-                  if (controllers.join().length == widget.length) {
-                    widget.onSubmit(controllers.join());
-                  } else {
-                    if (widget.onChanged != null) {
-                      widget.onChanged!(controllers.join());
-                    }
-                  }
-                },
-              ),
-            ),
-            12.horizontalGap,
-          ],
-        );
-      }),
-    );
-  }
-}
-
-class _AppPlaintextTextField extends StatelessWidget {
-  const _AppPlaintextTextField({
+class _PumpPricePlaintextTextField extends StatelessWidget {
+  const _PumpPricePlaintextTextField({
     this.hint,
     this.controller,
     this.isEnabled = true,
@@ -275,6 +225,7 @@ class _AppPlaintextTextField extends StatelessWidget {
     this.borderRadius,
     this.inputStyle,
     this.node,
+    this.inputFormatters,
   });
 
   final String? hint;
@@ -297,10 +248,11 @@ class _AppPlaintextTextField extends StatelessWidget {
   final BorderRadius? borderRadius;
   final TextStyle? inputStyle;
   final FocusNode? node;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
-    return _$AppTextField(
+    return _$PumpPriceTextField(
       hint: hint,
       controller: controller,
       isEnabled: isEnabled,
@@ -321,12 +273,13 @@ class _AppPlaintextTextField extends StatelessWidget {
       borderRadius: borderRadius,
       inputStyle: inputStyle,
       node: node,
+      inputFormatters: inputFormatters,
     );
   }
 }
 
-class _$AppTextField extends StatefulWidget {
-  const _$AppTextField({
+class _$PumpPriceTextField extends StatefulWidget {
+  const _$PumpPriceTextField({
     this.hint,
     this.controller,
     this.initialValue,
@@ -348,6 +301,7 @@ class _$AppTextField extends StatefulWidget {
     this.borderRadius,
     this.inputStyle,
     this.node,
+    this.inputFormatters,
   });
 
   final String? hint;
@@ -371,12 +325,13 @@ class _$AppTextField extends StatefulWidget {
   final BorderRadius? borderRadius;
   final TextStyle? inputStyle;
   final FocusNode? node;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
-  State<_$AppTextField> createState() => _$AppTextFieldState();
+  State<_$PumpPriceTextField> createState() => _$PumpPriceTextFieldState();
 }
 
-class _$AppTextFieldState extends State<_$AppTextField> {
+class _$PumpPriceTextFieldState extends State<_$PumpPriceTextField> {
   late var node = FocusNode();
   bool isObscured = true;
 
@@ -454,6 +409,7 @@ class _$AppTextFieldState extends State<_$AppTextField> {
                                 ),
                             controller: widget.controller,
                             initialValue: widget.initialValue,
+                            inputFormatters: widget.inputFormatters,
                             textCapitalization: widget.capitalization,
                             enabled: widget.isEnabled,
                             maxLength: widget.maxLength,
