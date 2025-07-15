@@ -66,7 +66,7 @@ class _PumpPriceBranchInsightsViewState
                       children: [
                         salesStatsContainer(model),
                         8.verticalGap,
-                        Flexible(child: transactionsList()),
+                        transactionsList(),
                       ],
                     ),
                   )
@@ -92,6 +92,72 @@ class _PumpPriceBranchInsightsViewState
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: [
+          Container(
+            height: 55.h,
+            decoration: BoxDecoration(),
+            child: Row(
+              children: [
+                AppAssets.images.pumpPrice.svg.completed.svg(),
+                10.horizontalGap,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Adamu Glory',
+                              style: context.textTheme.bodyLarge,
+                            ),
+                            TextSpan(
+                              text: ' • 25 litres',
+                              style: context.textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ),
+                      2.verticalGap,
+                      Text(
+                        '20 Jun 2025',
+                        style: context.textTheme.bodyMedium,
+                      ),
+                    ],
+                  ),
+                ),
+                10.horizontalGap,
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: nairaSymbol(),
+                        style: context.textTheme.titleLarge!.copyWith(
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w500,
+                          height: 100.percentToLineHeight(
+                            13,
+                          ),
+                          letterSpacing: -3.percentToLetterSpacing(13),
+                        ),
+                      ),
+                      TextSpan(
+                        text: ' 25,000',
+                        style: context.textTheme.titleLarge!.copyWith(
+                          fontSize: 16.sp,
+                          height: 100.percentToLineHeight(
+                            16,
+                          ),
+                          letterSpacing: -4.percentToLetterSpacing(16),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          12.verticalGap,
           Container(
             height: 55.h,
             decoration: BoxDecoration(),

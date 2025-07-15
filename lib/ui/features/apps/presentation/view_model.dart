@@ -18,10 +18,10 @@ class AppsViewModel extends BaseViewModel {
         icon: SizedBox(
           height: 40,
           width: 40,
-          child: AppAssets.images.logos.splashLogo.image(),
+          child: AppAssets.images.pumpPrice.svg.pumpPrice.svg(),
         ),
         title: "Pump Price",
-        subtitle: "Buy internet and data bills seamlessly",
+        subtitle: "Manage your filling stations conveniently",
         onTap: () {
           goToPumpPrice();
         },

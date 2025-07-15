@@ -85,13 +85,18 @@ class AddPumpPriceBranchView extends StatelessWidget {
                               horizontal: 15.w, vertical: 10.h),
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Start typing',
+                            model.address.isEmpty
+                                ? 'Start typing'
+                                : model.address,
                             style: context.textTheme.bodyMedium!.copyWith(
                               color: AppColors.pumpPriceinputText,
                               height: 18.toLineHeight(13),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ),
+                        ).onTap(() {
+                          model.showLocationsBottomSheet(context);
+                        }),
                         12.verticalGap,
                         tileRow(context),
                         12.verticalGap,

@@ -49,8 +49,8 @@ class AppTheme {
         bodyLarge: TextStyle(
           fontFamily: AppFonts.neueMontreal,
           fontSize: 14.sp,
-          height: 100.percentToLineHeight(13),
-          letterSpacing: 0.percentToLetterSpacing(13),
+          height: 100.percentToLineHeight(14),
+          letterSpacing: 0.percentToLetterSpacing(14),
           fontWeight: FontWeight.w500,
           color: AppColors.pumpPriceheaderText,
         ),

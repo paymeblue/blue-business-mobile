@@ -550,6 +550,10 @@ class $AssetsImagesPumpPriceSvgGen {
   SvgGenImage get placeholderAvatar =>
       const SvgGenImage('assets/images/pump_price/svg/placeholder_avatar.svg');
 
+  /// File path: assets/images/pump_price/svg/pump_price.svg
+  SvgGenImage get pumpPrice =>
+      const SvgGenImage('assets/images/pump_price/svg/pump_price.svg');
+
   /// File path: assets/images/pump_price/svg/search.svg
   SvgGenImage get search =>
       const SvgGenImage('assets/images/pump_price/svg/search.svg');
@@ -563,6 +567,7 @@ class $AssetsImagesPumpPriceSvgGen {
         deleteWhite,
         pending,
         placeholderAvatar,
+        pumpPrice,
         search
       ];
 }
