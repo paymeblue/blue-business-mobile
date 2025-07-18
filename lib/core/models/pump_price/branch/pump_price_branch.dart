@@ -24,7 +24,8 @@ class CreatePumpPriceBranchRequest with _$CreatePumpPriceBranchRequest {
 class CreatePumpPriceBranchResponse with _$CreatePumpPriceBranchResponse {
   const factory CreatePumpPriceBranchResponse({
     @Default('') String message,
-    @Default('fail') String status,
+    required int statusCode,
+    String? error,
     dynamic data,
   }) = _CreatePumpPriceBranchResponse;
 

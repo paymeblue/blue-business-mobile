@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 enum BlueTab {
   home('Home'),
   insights('Insights'),
-  apps('Apps'),
+  apps('MiniApps'),
   settings('Settings');
 
   const BlueTab(this.name);

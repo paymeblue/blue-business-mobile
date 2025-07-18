@@ -36,7 +36,8 @@ _$CreatePumpPriceBranchResponseImpl
     _$$CreatePumpPriceBranchResponseImplFromJson(Map<String, dynamic> json) =>
         _$CreatePumpPriceBranchResponseImpl(
           message: json['message'] as String? ?? '',
-          status: json['status'] as String? ?? 'fail',
+          statusCode: (json['status_code'] as num).toInt(),
+          error: json['error'] as String?,
           data: json['data'],
         );
 
@@ -44,6 +45,7 @@ Map<String, dynamic> _$$CreatePumpPriceBranchResponseImplToJson(
         _$CreatePumpPriceBranchResponseImpl instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'status': instance.status,
+      'status_code': instance.statusCode,
+      if (instance.error case final value?) 'error': value,
       if (instance.data case final value?) 'data': value,
     };

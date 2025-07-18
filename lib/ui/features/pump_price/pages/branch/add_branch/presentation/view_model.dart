@@ -74,9 +74,9 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
 
   addBranch() async {
     final closing =
-        '${closingTime!.hour.toString().padLeft(2, '0')} : ${closingTime!.minute.toString().padLeft(2, '0')}';
+        '${closingTime!.hour.toString().padLeft(2, '0')}:${closingTime!.minute.toString().padLeft(2, '0')}';
     final opening =
-        '${openingTime!.hour.toString().padLeft(2, '0')} : ${openingTime!.minute.toString().padLeft(2, '0')}';
+        '${openingTime!.hour.toString().padLeft(2, '0')}:${openingTime!.minute.toString().padLeft(2, '0')}';
     buttonState = FetchState.loading;
 
     CreatePumpPriceBranchRequest request = CreatePumpPriceBranchRequest(
@@ -93,7 +93,9 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
     final resp =
         await PumpPriceService().createBranch(request: request).onError((e, s) {
       return CreatePumpPriceBranchResponse(
-          message: AppErrorHandler.getErrorMessage(e));
+        message: AppErrorHandler.getErrorMessage(e),
+        statusCode: 400,
+      );
     });
 
     logFormattedJson(resp);

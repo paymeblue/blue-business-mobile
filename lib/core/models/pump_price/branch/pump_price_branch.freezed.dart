@@ -333,7 +333,8 @@ CreatePumpPriceBranchResponse _$CreatePumpPriceBranchResponseFromJson(
 /// @nodoc
 mixin _$CreatePumpPriceBranchResponse {
   String get message => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
+  int get statusCode => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
   dynamic get data => throw _privateConstructorUsedError;
 
   /// Serializes this CreatePumpPriceBranchResponse to a JSON map.
@@ -354,7 +355,7 @@ abstract class $CreatePumpPriceBranchResponseCopyWith<$Res> {
       _$CreatePumpPriceBranchResponseCopyWithImpl<$Res,
           CreatePumpPriceBranchResponse>;
   @useResult
-  $Res call({String message, String status, dynamic data});
+  $Res call({String message, int statusCode, String? error, dynamic data});
 }
 
 /// @nodoc
@@ -374,7 +375,8 @@ class _$CreatePumpPriceBranchResponseCopyWithImpl<$Res,
   @override
   $Res call({
     Object? message = null,
-    Object? status = null,
+    Object? statusCode = null,
+    Object? error = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
@@ -382,10 +384,14 @@ class _$CreatePumpPriceBranchResponseCopyWithImpl<$Res,
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      statusCode: null == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -403,7 +409,7 @@ abstract class _$$CreatePumpPriceBranchResponseImplCopyWith<$Res>
       __$$CreatePumpPriceBranchResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String message, String status, dynamic data});
+  $Res call({String message, int statusCode, String? error, dynamic data});
 }
 
 /// @nodoc
@@ -422,7 +428,8 @@ class __$$CreatePumpPriceBranchResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
-    Object? status = null,
+    Object? statusCode = null,
+    Object? error = freezed,
     Object? data = freezed,
   }) {
     return _then(_$CreatePumpPriceBranchResponseImpl(
@@ -430,10 +437,14 @@ class __$$CreatePumpPriceBranchResponseImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      statusCode: null == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -447,7 +458,7 @@ class __$$CreatePumpPriceBranchResponseImplCopyWithImpl<$Res>
 class _$CreatePumpPriceBranchResponseImpl
     implements _CreatePumpPriceBranchResponse {
   const _$CreatePumpPriceBranchResponseImpl(
-      {this.message = '', this.status = 'fail', this.data});
+      {this.message = '', required this.statusCode, this.error, this.data});
 
   factory _$CreatePumpPriceBranchResponseImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -457,14 +468,15 @@ class _$CreatePumpPriceBranchResponseImpl
   @JsonKey()
   final String message;
   @override
-  @JsonKey()
-  final String status;
+  final int statusCode;
+  @override
+  final String? error;
   @override
   final dynamic data;
 
   @override
   String toString() {
-    return 'CreatePumpPriceBranchResponse(message: $message, status: $status, data: $data)';
+    return 'CreatePumpPriceBranchResponse(message: $message, statusCode: $statusCode, error: $error, data: $data)';
   }
 
   @override
@@ -473,14 +485,16 @@ class _$CreatePumpPriceBranchResponseImpl
         (other.runtimeType == runtimeType &&
             other is _$CreatePumpPriceBranchResponseImpl &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode) &&
+            (identical(other.error, error) || other.error == error) &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, message, status, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, message, statusCode, error,
+      const DeepCollectionEquality().hash(data));
 
   /// Create a copy of CreatePumpPriceBranchResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -504,7 +518,8 @@ abstract class _CreatePumpPriceBranchResponse
     implements CreatePumpPriceBranchResponse {
   const factory _CreatePumpPriceBranchResponse(
       {final String message,
-      final String status,
+      required final int statusCode,
+      final String? error,
       final dynamic data}) = _$CreatePumpPriceBranchResponseImpl;
 
   factory _CreatePumpPriceBranchResponse.fromJson(Map<String, dynamic> json) =
@@ -513,7 +528,9 @@ abstract class _CreatePumpPriceBranchResponse
   @override
   String get message;
   @override
-  String get status;
+  int get statusCode;
+  @override
+  String? get error;
   @override
   dynamic get data;
 
