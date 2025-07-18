@@ -22,4 +22,3 @@ abstract class PlacesService {
     @Query('key') String key = '',
   });
 }
-//

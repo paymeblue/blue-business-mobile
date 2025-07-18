@@ -108,12 +108,12 @@ Map<String, dynamic> _$$ViewportImplToJson(_$ViewportImpl instance) =>
 
 _$OpeningHoursImpl _$$OpeningHoursImplFromJson(Map<String, dynamic> json) =>
     _$OpeningHoursImpl(
-      openNow: json['open_now'] as bool,
+      openNow: json['open_now'] as bool?,
     );
 
 Map<String, dynamic> _$$OpeningHoursImplToJson(_$OpeningHoursImpl instance) =>
     <String, dynamic>{
-      'open_now': instance.openNow,
+      if (instance.openNow case final value?) 'open_now': value,
     };
 
 _$PhotoImpl _$$PhotoImplFromJson(Map<String, dynamic> json) => _$PhotoImpl(

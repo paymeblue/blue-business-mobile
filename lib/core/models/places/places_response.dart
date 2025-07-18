@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'places_response.freezed.dart';
@@ -74,7 +77,7 @@ class Viewport with _$Viewport {
 @freezed
 class OpeningHours with _$OpeningHours {
   const factory OpeningHours({
-    required bool openNow,
+    bool? openNow,
   }) = _OpeningHours;
 
   factory OpeningHours.fromJson(Map<String, dynamic> json) =>
@@ -102,4 +105,23 @@ class PlusCode with _$PlusCode {
 
   factory PlusCode.fromJson(Map<String, dynamic> json) =>
       _$PlusCodeFromJson(json);
+}
+
+logFormattedJson(dynamic response, {String tag = 'JSON'}) {
+  try {
+    dynamic parsed;
+
+    if (response is String) {
+      parsed = json.decode(response);
+    } else {
+      parsed = response;
+    }
+
+    final encoder = const JsonEncoder.withIndent('  ');
+    final prettyString = encoder.convert(parsed);
+
+    log(prettyString, name: tag);
+  } catch (e) {
+    log('Invalid JSON: $e', name: tag);
+  }
 }

@@ -1312,7 +1312,7 @@ OpeningHours _$OpeningHoursFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OpeningHours {
-  bool get openNow => throw _privateConstructorUsedError;
+  bool? get openNow => throw _privateConstructorUsedError;
 
   /// Serializes this OpeningHours to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1330,7 +1330,7 @@ abstract class $OpeningHoursCopyWith<$Res> {
           OpeningHours value, $Res Function(OpeningHours) then) =
       _$OpeningHoursCopyWithImpl<$Res, OpeningHours>;
   @useResult
-  $Res call({bool openNow});
+  $Res call({bool? openNow});
 }
 
 /// @nodoc
@@ -1348,13 +1348,13 @@ class _$OpeningHoursCopyWithImpl<$Res, $Val extends OpeningHours>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? openNow = null,
+    Object? openNow = freezed,
   }) {
     return _then(_value.copyWith(
-      openNow: null == openNow
+      openNow: freezed == openNow
           ? _value.openNow
           : openNow // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ) as $Val);
   }
 }
@@ -1367,7 +1367,7 @@ abstract class _$$OpeningHoursImplCopyWith<$Res>
       __$$OpeningHoursImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool openNow});
+  $Res call({bool? openNow});
 }
 
 /// @nodoc
@@ -1383,13 +1383,13 @@ class __$$OpeningHoursImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? openNow = null,
+    Object? openNow = freezed,
   }) {
     return _then(_$OpeningHoursImpl(
-      openNow: null == openNow
+      openNow: freezed == openNow
           ? _value.openNow
           : openNow // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -1397,13 +1397,13 @@ class __$$OpeningHoursImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OpeningHoursImpl implements _OpeningHours {
-  const _$OpeningHoursImpl({required this.openNow});
+  const _$OpeningHoursImpl({this.openNow});
 
   factory _$OpeningHoursImpl.fromJson(Map<String, dynamic> json) =>
       _$$OpeningHoursImplFromJson(json);
 
   @override
-  final bool openNow;
+  final bool? openNow;
 
   @override
   String toString() {
@@ -1439,14 +1439,13 @@ class _$OpeningHoursImpl implements _OpeningHours {
 }
 
 abstract class _OpeningHours implements OpeningHours {
-  const factory _OpeningHours({required final bool openNow}) =
-      _$OpeningHoursImpl;
+  const factory _OpeningHours({final bool? openNow}) = _$OpeningHoursImpl;
 
   factory _OpeningHours.fromJson(Map<String, dynamic> json) =
       _$OpeningHoursImpl.fromJson;
 
   @override
-  bool get openNow;
+  bool? get openNow;
 
   /// Create a copy of OpeningHours
   /// with the given fields replaced by the non-null parameter values.

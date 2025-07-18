@@ -299,7 +299,7 @@ class _$PumpPriceButton extends PumpPriceButton {
               height: 15.w,
               width: 15.w,
               child: CircularProgressIndicator(
-                color: textColor,
+                color: textColor ?? AppColors.pumpPricewhite,
                 strokeWidth: 1.5,
               ),
             )
