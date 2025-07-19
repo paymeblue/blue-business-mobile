@@ -24,9 +24,19 @@ class CreatePumpPriceBranchRequest with _$CreatePumpPriceBranchRequest {
 class CreatePumpPriceBranchResponse with _$CreatePumpPriceBranchResponse {
   const factory CreatePumpPriceBranchResponse({
     @Default('') String message,
-    required int statusCode,
+    int? statusCode,
     String? error,
     dynamic data,
+    @Default('0') String id,
+    @Default('0') String branchId,
+    @Default(0) double amount,
+    @Default('0:00') String opening,
+    @Default('0:00') String closing,
+    @Default(0) double longitude,
+    @Default(0) double latitude,
+    @Default('') String address,
+    String? createdAt,
+    String? updatedAt,
   }) = _CreatePumpPriceBranchResponse;
 
   factory CreatePumpPriceBranchResponse.fromJson(Map<String, dynamic> json) =>

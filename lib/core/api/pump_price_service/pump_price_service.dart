@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/models/pump_price/branch/pump_price_branch.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
@@ -11,14 +12,17 @@ part 'pump_price_service.g.dart';
 abstract class PumpPriceService {
   factory PumpPriceService() =>
       _PumpPriceService(DioConfig.dio(locator<AppStateValues>().accessToken),
-          baseUrl: '');
+          baseUrl: 'https://blue-backend-v2.onrender.com/api/v2');
 
-  @POST('https://blue-backend-v2.onrender.com/api/v2/filling-stations')
+  @GET('/filling-stations')
+  Future getBranches();
+
+  @POST('/filling-stations')
   Future<CreatePumpPriceBranchResponse> createBranch({
     @Body() required CreatePumpPriceBranchRequest request,
   });
 
-  @POST('https://blue-backend-v2.onrender.com/api/v2/filling-stations/{id}')
+  @DELETE('/filling-stations/{id}/soft-delete')
   Future<CreatePumpPriceBranchResponse> deleteBranch({
     @Path('id') required String branchId,
   });

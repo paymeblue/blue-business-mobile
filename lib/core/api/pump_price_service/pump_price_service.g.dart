@@ -22,6 +22,34 @@ class _PumpPriceService implements PumpPriceService {
   final ParseErrorLogger? errorLogger;
 
   @override
+  Future<dynamic> getBranches() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<dynamic>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/filling-stations',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch(_options);
+    log(_result.toString());
+    final _value = _result.data;
+    return _value;
+  }
+
+  @override
   Future<CreatePumpPriceBranchResponse> createBranch(
       {required CreatePumpPriceBranchRequest request}) async {
     final _extra = <String, dynamic>{};
@@ -35,7 +63,7 @@ class _PumpPriceService implements PumpPriceService {
     )
         .compose(
           _dio.options,
-          'https://blue-backend-v2.onrender.com/api/v2/filling-stations',
+          '/filling-stations',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -63,13 +91,13 @@ class _PumpPriceService implements PumpPriceService {
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<CreatePumpPriceBranchResponse>(Options(
-      method: 'POST',
+      method: 'DELETE',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          'https://blue-backend-v2.onrender.com/api/v2/filling-stations/${branchId}',
+          '/filling-stations/${branchId}/soft-delete',
           queryParameters: queryParameters,
           data: _data,
         )

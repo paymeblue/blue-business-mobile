@@ -83,7 +83,7 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
       name: name.text.trim(),
       businessId: locator<AppStateValues>().currentUser!.id,
       address: address?.formattedAddress ?? '',
-      fuelPrice: double.parse(price.text.replaceAll(RegExp(r'\D'), "")),
+      fuelPrice: double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")),
       latitude: address?.geometry.location.lat ?? 0,
       longitude: address?.geometry.location.lng ?? 0,
       opening: opening,

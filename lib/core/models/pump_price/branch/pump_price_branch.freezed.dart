@@ -333,9 +333,19 @@ CreatePumpPriceBranchResponse _$CreatePumpPriceBranchResponseFromJson(
 /// @nodoc
 mixin _$CreatePumpPriceBranchResponse {
   String get message => throw _privateConstructorUsedError;
-  int get statusCode => throw _privateConstructorUsedError;
+  int? get statusCode => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
   dynamic get data => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get branchId => throw _privateConstructorUsedError;
+  double get amount => throw _privateConstructorUsedError;
+  String get opening => throw _privateConstructorUsedError;
+  String get closing => throw _privateConstructorUsedError;
+  double get longitude => throw _privateConstructorUsedError;
+  double get latitude => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
 
   /// Serializes this CreatePumpPriceBranchResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -355,7 +365,21 @@ abstract class $CreatePumpPriceBranchResponseCopyWith<$Res> {
       _$CreatePumpPriceBranchResponseCopyWithImpl<$Res,
           CreatePumpPriceBranchResponse>;
   @useResult
-  $Res call({String message, int statusCode, String? error, dynamic data});
+  $Res call(
+      {String message,
+      int? statusCode,
+      String? error,
+      dynamic data,
+      String id,
+      String branchId,
+      double amount,
+      String opening,
+      String closing,
+      double longitude,
+      double latitude,
+      String address,
+      String? createdAt,
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -375,19 +399,29 @@ class _$CreatePumpPriceBranchResponseCopyWithImpl<$Res,
   @override
   $Res call({
     Object? message = null,
-    Object? statusCode = null,
+    Object? statusCode = freezed,
     Object? error = freezed,
     Object? data = freezed,
+    Object? id = null,
+    Object? branchId = null,
+    Object? amount = null,
+    Object? opening = null,
+    Object? closing = null,
+    Object? longitude = null,
+    Object? latitude = null,
+    Object? address = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      statusCode: null == statusCode
+      statusCode: freezed == statusCode
           ? _value.statusCode
           : statusCode // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -396,6 +430,46 @@ class _$CreatePumpPriceBranchResponseCopyWithImpl<$Res,
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      branchId: null == branchId
+          ? _value.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
+      opening: null == opening
+          ? _value.opening
+          : opening // ignore: cast_nullable_to_non_nullable
+              as String,
+      closing: null == closing
+          ? _value.closing
+          : closing // ignore: cast_nullable_to_non_nullable
+              as String,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -409,7 +483,21 @@ abstract class _$$CreatePumpPriceBranchResponseImplCopyWith<$Res>
       __$$CreatePumpPriceBranchResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String message, int statusCode, String? error, dynamic data});
+  $Res call(
+      {String message,
+      int? statusCode,
+      String? error,
+      dynamic data,
+      String id,
+      String branchId,
+      double amount,
+      String opening,
+      String closing,
+      double longitude,
+      double latitude,
+      String address,
+      String? createdAt,
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -428,19 +516,29 @@ class __$$CreatePumpPriceBranchResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
-    Object? statusCode = null,
+    Object? statusCode = freezed,
     Object? error = freezed,
     Object? data = freezed,
+    Object? id = null,
+    Object? branchId = null,
+    Object? amount = null,
+    Object? opening = null,
+    Object? closing = null,
+    Object? longitude = null,
+    Object? latitude = null,
+    Object? address = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$CreatePumpPriceBranchResponseImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      statusCode: null == statusCode
+      statusCode: freezed == statusCode
           ? _value.statusCode
           : statusCode // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -449,6 +547,46 @@ class __$$CreatePumpPriceBranchResponseImplCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      branchId: null == branchId
+          ? _value.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
+      opening: null == opening
+          ? _value.opening
+          : opening // ignore: cast_nullable_to_non_nullable
+              as String,
+      closing: null == closing
+          ? _value.closing
+          : closing // ignore: cast_nullable_to_non_nullable
+              as String,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -458,7 +596,20 @@ class __$$CreatePumpPriceBranchResponseImplCopyWithImpl<$Res>
 class _$CreatePumpPriceBranchResponseImpl
     implements _CreatePumpPriceBranchResponse {
   const _$CreatePumpPriceBranchResponseImpl(
-      {this.message = '', required this.statusCode, this.error, this.data});
+      {this.message = '',
+      this.statusCode,
+      this.error,
+      this.data,
+      this.id = '0',
+      this.branchId = '0',
+      this.amount = 0,
+      this.opening = '0:00',
+      this.closing = '0:00',
+      this.longitude = 0,
+      this.latitude = 0,
+      this.address = '',
+      this.createdAt,
+      this.updatedAt});
 
   factory _$CreatePumpPriceBranchResponseImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -468,15 +619,43 @@ class _$CreatePumpPriceBranchResponseImpl
   @JsonKey()
   final String message;
   @override
-  final int statusCode;
+  final int? statusCode;
   @override
   final String? error;
   @override
   final dynamic data;
+  @override
+  @JsonKey()
+  final String id;
+  @override
+  @JsonKey()
+  final String branchId;
+  @override
+  @JsonKey()
+  final double amount;
+  @override
+  @JsonKey()
+  final String opening;
+  @override
+  @JsonKey()
+  final String closing;
+  @override
+  @JsonKey()
+  final double longitude;
+  @override
+  @JsonKey()
+  final double latitude;
+  @override
+  @JsonKey()
+  final String address;
+  @override
+  final String? createdAt;
+  @override
+  final String? updatedAt;
 
   @override
   String toString() {
-    return 'CreatePumpPriceBranchResponse(message: $message, statusCode: $statusCode, error: $error, data: $data)';
+    return 'CreatePumpPriceBranchResponse(message: $message, statusCode: $statusCode, error: $error, data: $data, id: $id, branchId: $branchId, amount: $amount, opening: $opening, closing: $closing, longitude: $longitude, latitude: $latitude, address: $address, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -488,13 +667,42 @@ class _$CreatePumpPriceBranchResponseImpl
             (identical(other.statusCode, statusCode) ||
                 other.statusCode == statusCode) &&
             (identical(other.error, error) || other.error == error) &&
-            const DeepCollectionEquality().equals(other.data, data));
+            const DeepCollectionEquality().equals(other.data, data) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.branchId, branchId) ||
+                other.branchId == branchId) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.opening, opening) || other.opening == opening) &&
+            (identical(other.closing, closing) || other.closing == closing) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, message, statusCode, error,
-      const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(
+      runtimeType,
+      message,
+      statusCode,
+      error,
+      const DeepCollectionEquality().hash(data),
+      id,
+      branchId,
+      amount,
+      opening,
+      closing,
+      longitude,
+      latitude,
+      address,
+      createdAt,
+      updatedAt);
 
   /// Create a copy of CreatePumpPriceBranchResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -518,9 +726,19 @@ abstract class _CreatePumpPriceBranchResponse
     implements CreatePumpPriceBranchResponse {
   const factory _CreatePumpPriceBranchResponse(
       {final String message,
-      required final int statusCode,
+      final int? statusCode,
       final String? error,
-      final dynamic data}) = _$CreatePumpPriceBranchResponseImpl;
+      final dynamic data,
+      final String id,
+      final String branchId,
+      final double amount,
+      final String opening,
+      final String closing,
+      final double longitude,
+      final double latitude,
+      final String address,
+      final String? createdAt,
+      final String? updatedAt}) = _$CreatePumpPriceBranchResponseImpl;
 
   factory _CreatePumpPriceBranchResponse.fromJson(Map<String, dynamic> json) =
       _$CreatePumpPriceBranchResponseImpl.fromJson;
@@ -528,11 +746,31 @@ abstract class _CreatePumpPriceBranchResponse
   @override
   String get message;
   @override
-  int get statusCode;
+  int? get statusCode;
   @override
   String? get error;
   @override
   dynamic get data;
+  @override
+  String get id;
+  @override
+  String get branchId;
+  @override
+  double get amount;
+  @override
+  String get opening;
+  @override
+  String get closing;
+  @override
+  double get longitude;
+  @override
+  double get latitude;
+  @override
+  String get address;
+  @override
+  String? get createdAt;
+  @override
+  String? get updatedAt;
 
   /// Create a copy of CreatePumpPriceBranchResponse
   /// with the given fields replaced by the non-null parameter values.
