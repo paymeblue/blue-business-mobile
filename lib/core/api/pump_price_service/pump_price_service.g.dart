@@ -54,8 +54,6 @@ class _PumpPriceService implements PumpPriceService {
       errorLogger?.logError(e, s, _options);
       rethrow;
     }
-
-    log(_result.toString());
     return _value;
   }
 
