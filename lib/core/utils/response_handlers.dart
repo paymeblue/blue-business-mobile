@@ -6,7 +6,6 @@ import 'package:dio/dio.dart';
 class ResponseHandlers {
   static Response handleDioResponse(Response<dynamic> response) {
     var result = response;
-    log('Response: $response');
 
     final data = response.data;
 
@@ -48,6 +47,22 @@ class ResponseHandlers {
             'status': 'fail',
             'message': (result as Map)['message'],
             'data': null,
+          };
+          result = Response(
+            requestOptions: response.requestOptions,
+            data: data,
+            statusCode: response.statusCode,
+            statusMessage: response.statusMessage,
+            isRedirect: response.isRedirect,
+            redirects: response.redirects,
+            extra: response.extra,
+            headers: response.headers,
+          );
+        } else if (response is Map && (response as Map)['error'] == null) {
+          final data = {
+            'status': 'succeess',
+            'message': (result as Map)['message'],
+            'data': response,
           };
           result = Response(
             requestOptions: response.requestOptions,

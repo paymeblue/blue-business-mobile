@@ -1,15 +1,11 @@
 import 'package:blue_business/core/config/module/base_view_model.dart';
 
-import 'package:blue_business/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
 class BranchInsightsViewModel extends BaseViewModel {
-  late Size size;
-  late int branchId;
+  late String branchId;
 
-  init(BuildContext context, int id) {
-    size = context.mediaQuery.size;
-
+  init(BuildContext context, String id) {
     branchId = id;
     selectedType = types[0];
   }

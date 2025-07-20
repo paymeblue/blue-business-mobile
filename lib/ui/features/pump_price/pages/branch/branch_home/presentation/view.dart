@@ -2,6 +2,7 @@ import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/models/pump_price/branch/pump_price_branch.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -31,7 +32,7 @@ class PumpPriceBranchView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 children: [
-                  titleRow(context),
+                  titleRow(context, model),
                   14.verticalGap,
                   PumpPriceTextField.plaintext(
                     hint: 'Search for branch',
@@ -43,13 +44,25 @@ class PumpPriceBranchView extends StatelessWidget {
                   ),
                   26.verticalGap,
                   Expanded(
-                      child: ListView.separated(
-                    itemBuilder: (ctx, i) {
-                      return PumpPriceBranchContainer();
-                    },
-                    separatorBuilder: (ctx, i) => 20.verticalGap,
-                    itemCount: 2,
-                  ))
+                      child: model.pageState == FetchState.loading
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 1.2,
+                                color: AppColors.pumpPricebodyText,
+                              ),
+                            )
+                          : RefreshIndicator(
+                              onRefresh: () => model.getBranches(),
+                              child: ListView.separated(
+                                itemBuilder: (ctx, i) {
+                                  return PumpPriceBranchContainer(
+                                    station: model.stations[i],
+                                  );
+                                },
+                                separatorBuilder: (ctx, i) => 20.verticalGap,
+                                itemCount: model.stations.length,
+                              ),
+                            ))
                 ],
               ),
             ),
@@ -59,7 +72,7 @@ class PumpPriceBranchView extends StatelessWidget {
     );
   }
 
-  Widget titleRow(BuildContext context) {
+  Widget titleRow(BuildContext context, PumpPriceBranchViewModel model) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -79,6 +92,7 @@ class PumpPriceBranchView extends StatelessWidget {
                 .then((v) {
               if (v == true) {
                 PumpPriceToast.success(message: 'Branch added!');
+                model.getBranches();
               }
             });
           },
@@ -118,9 +132,9 @@ class PumpPriceBranchView extends StatelessWidget {
 }
 
 class PumpPriceBranchContainer extends StatelessWidget {
-  const PumpPriceBranchContainer({
-    super.key,
-  });
+  const PumpPriceBranchContainer({super.key, required this.station});
+
+  final FillingStation station;
 
   @override
   Widget build(BuildContext context) {
@@ -216,7 +230,7 @@ class PumpPriceBranchContainer extends StatelessWidget {
               ),
             ),
             Text(
-              '969',
+              station.fuelPrice,
               style: context.textTheme.displaySmall!.copyWith(
                 fontSize: 24.sp,
                 height: 100.percentToLineHeight(24),
@@ -268,11 +282,11 @@ class PumpPriceBranchContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'NNPC Limited Mega Gas Station',
+            station.name,
             style: context.textTheme.bodyLarge,
           ),
           Text(
-            'B27 Nal Blvd, Central Business Dis, Abuja 900103, Federal Capital Territory',
+            station.address,
             style: context.textTheme.bodyMedium!.copyWith(
               fontSize: 12.sp,
               height: 100.percentToLineHeight(12),
@@ -296,13 +310,7 @@ class PumpPriceBranchContainer extends StatelessWidget {
             title: 'View insights',
             onTap: () {
               locator<AppRouter>().push(PumpPriceBranchInsightsRoute(
-                branch: Branch(
-                    id: 0,
-                    businessId: 1,
-                    staffSize: '10',
-                    totalAmount: '300000',
-                    name: 'NNPC Mega Station',
-                    location: 'B27 Nai Blvd Central Business Dis, Abuja'),
+                station: station,
               ));
             },
           ),
@@ -316,15 +324,7 @@ class PumpPriceBranchContainer extends StatelessWidget {
               locator<AppRouter>()
                   .push<bool>(
                 AddPumpPriceBranchRoute(
-                    args: AddPumpPriceBranchViewArgs(
-                  branch: Branch(
-                      id: 0,
-                      businessId: 1,
-                      staffSize: '10',
-                      totalAmount: '300000',
-                      name: 'NNPC Mega Station',
-                      location: 'B27 Nai Blvd Central Business Dis, Abuja'),
-                )),
+                    args: AddPumpPriceBranchViewArgs(station: station)),
               )
                   .then((v) {
                 if (v == true) {

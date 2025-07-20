@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/models/pump_price/branch/pump_price_branch.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -16,9 +16,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'view_model.dart';
 
 class AddPumpPriceBranchViewArgs {
-  const AddPumpPriceBranchViewArgs({this.branch});
+  const AddPumpPriceBranchViewArgs({this.station});
 
-  final Branch? branch;
+  final FillingStation? station;
 }
 
 @RoutePage()
@@ -43,10 +43,10 @@ class AddPumpPriceBranchView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${args.branch != null ? 'Edit' : 'Add'} Branch',
+                    '${args.station != null ? 'Edit' : 'Add'} Branch',
                     style: context.textTheme.titleMedium,
                   ),
-                  if (args.branch == null) ...[
+                  if (args.station == null) ...[
                     6.verticalGap,
                     Text(
                       'Please enter the following details below to add a fuel station branch of your business. ',
@@ -88,7 +88,7 @@ class AddPumpPriceBranchView extends StatelessWidget {
                   ),
                   PumpPriceButton.primary(
                       title:
-                          args.branch != null ? 'Save changes' : 'Add branch',
+                          args.station != null ? 'Save changes' : 'Add branch',
                       isEnabled: model.isActive(),
                       isLoading: model.buttonState == FetchState.loading,
                       onTap: () {

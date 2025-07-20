@@ -3,7 +3,7 @@ import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/models/pump_price/branch/pump_price_branch.dart';
 import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
@@ -19,8 +19,8 @@ import 'view_model.dart';
 
 @RoutePage()
 class PumpPriceBranchInsightsView extends StatefulWidget {
-  final Branch branch;
-  const PumpPriceBranchInsightsView({super.key, required this.branch});
+  final FillingStation station;
+  const PumpPriceBranchInsightsView({super.key, required this.station});
 
   @override
   State<PumpPriceBranchInsightsView> createState() =>
@@ -33,7 +33,7 @@ class _PumpPriceBranchInsightsViewState
   Widget build(BuildContext context) {
     return BaseView<BranchInsightsViewModel>(
         model: BranchInsightsViewModel(),
-        onModelReady: (model) => model.init(context, widget.branch.id),
+        onModelReady: (model) => model.init(context, widget.station.id),
         builder: (context, model, _) {
           return Scaffold(
             backgroundColor: AppColors.pumpPricegreyBg2,
@@ -315,7 +315,7 @@ class _PumpPriceBranchInsightsViewState
           12.verticalGap,
           Container(
             height: 65,
-            width: model.size.width,
+            width: context.getWidth(),
             alignment: Alignment.center,
             child: Column(
               children: [

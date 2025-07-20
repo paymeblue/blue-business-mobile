@@ -1681,13 +1681,13 @@ class PumpPriceBranchInsightsRoute
     extends PageRouteInfo<PumpPriceBranchInsightsRouteArgs> {
   PumpPriceBranchInsightsRoute({
     Key? key,
-    required Branch branch,
+    required FillingStation station,
     List<PageRouteInfo>? children,
   }) : super(
           PumpPriceBranchInsightsRoute.name,
           args: PumpPriceBranchInsightsRouteArgs(
             key: key,
-            branch: branch,
+            station: station,
           ),
           initialChildren: children,
         );
@@ -1700,7 +1700,7 @@ class PumpPriceBranchInsightsRoute
       final args = data.argsAs<PumpPriceBranchInsightsRouteArgs>();
       return PumpPriceBranchInsightsView(
         key: args.key,
-        branch: args.branch,
+        station: args.station,
       );
     },
   );
@@ -1709,16 +1709,16 @@ class PumpPriceBranchInsightsRoute
 class PumpPriceBranchInsightsRouteArgs {
   const PumpPriceBranchInsightsRouteArgs({
     this.key,
-    required this.branch,
+    required this.station,
   });
 
   final Key? key;
 
-  final Branch branch;
+  final FillingStation station;
 
   @override
   String toString() {
-    return 'PumpPriceBranchInsightsRouteArgs{key: $key, branch: $branch}';
+    return 'PumpPriceBranchInsightsRouteArgs{key: $key, station: $station}';
   }
 }
 
