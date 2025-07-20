@@ -780,3 +780,154 @@ abstract class _CreatePumpPriceBranchResponse
           _$CreatePumpPriceBranchResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+FillingStation _$FillingStationFromJson(Map<String, dynamic> json) {
+  return _FillingStation.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FillingStation {
+  String get name => throw _privateConstructorUsedError;
+
+  /// Serializes this FillingStation to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of FillingStation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $FillingStationCopyWith<FillingStation> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FillingStationCopyWith<$Res> {
+  factory $FillingStationCopyWith(
+          FillingStation value, $Res Function(FillingStation) then) =
+      _$FillingStationCopyWithImpl<$Res, FillingStation>;
+  @useResult
+  $Res call({String name});
+}
+
+/// @nodoc
+class _$FillingStationCopyWithImpl<$Res, $Val extends FillingStation>
+    implements $FillingStationCopyWith<$Res> {
+  _$FillingStationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of FillingStation
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$FillingStationImplCopyWith<$Res>
+    implements $FillingStationCopyWith<$Res> {
+  factory _$$FillingStationImplCopyWith(_$FillingStationImpl value,
+          $Res Function(_$FillingStationImpl) then) =
+      __$$FillingStationImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name});
+}
+
+/// @nodoc
+class __$$FillingStationImplCopyWithImpl<$Res>
+    extends _$FillingStationCopyWithImpl<$Res, _$FillingStationImpl>
+    implements _$$FillingStationImplCopyWith<$Res> {
+  __$$FillingStationImplCopyWithImpl(
+      _$FillingStationImpl _value, $Res Function(_$FillingStationImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of FillingStation
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+  }) {
+    return _then(_$FillingStationImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$FillingStationImpl implements _FillingStation {
+  const _$FillingStationImpl({required this.name});
+
+  factory _$FillingStationImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FillingStationImplFromJson(json);
+
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'FillingStation(name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FillingStationImpl &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name);
+
+  /// Create a copy of FillingStation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FillingStationImplCopyWith<_$FillingStationImpl> get copyWith =>
+      __$$FillingStationImplCopyWithImpl<_$FillingStationImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FillingStationImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _FillingStation implements FillingStation {
+  const factory _FillingStation({required final String name}) =
+      _$FillingStationImpl;
+
+  factory _FillingStation.fromJson(Map<String, dynamic> json) =
+      _$FillingStationImpl.fromJson;
+
+  @override
+  String get name;
+
+  /// Create a copy of FillingStation
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$FillingStationImplCopyWith<_$FillingStationImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

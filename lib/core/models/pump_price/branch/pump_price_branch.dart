@@ -42,3 +42,13 @@ class CreatePumpPriceBranchResponse with _$CreatePumpPriceBranchResponse {
   factory CreatePumpPriceBranchResponse.fromJson(Map<String, dynamic> json) =>
       _$CreatePumpPriceBranchResponseImpl.fromJson(json);
 }
+
+@freezed
+class FillingStation with _$FillingStation {
+  const factory FillingStation({
+    required String name,
+  }) = _FillingStation;
+
+  factory FillingStation.fromJson(Map<String, dynamic> json) =>
+      _$FillingStationImpl.fromJson(json);
+}
