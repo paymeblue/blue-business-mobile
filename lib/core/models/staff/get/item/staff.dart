@@ -13,7 +13,6 @@ class Staff with _$Staff {
     required String phone,
     String? displayPicture,
     @Default('cashier') String role,
-    String? createdAt,
   }) = _Staff;
 
   factory Staff.fromJson(Map<String, dynamic> json) =>

@@ -14,7 +14,6 @@ _$StaffImpl _$$StaffImplFromJson(Map<String, dynamic> json) => _$StaffImpl(
       phone: json['phone'] as String,
       displayPicture: json['display_picture'] as String?,
       role: json['role'] as String? ?? 'cashier',
-      createdAt: json['created_at'] as String?,
     );
 
 Map<String, dynamic> _$$StaffImplToJson(_$StaffImpl instance) =>
@@ -26,5 +25,4 @@ Map<String, dynamic> _$$StaffImplToJson(_$StaffImpl instance) =>
       'phone': instance.phone,
       if (instance.displayPicture case final value?) 'display_picture': value,
       'role': instance.role,
-      if (instance.createdAt case final value?) 'created_at': value,
     };
