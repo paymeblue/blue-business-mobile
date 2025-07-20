@@ -557,8 +557,8 @@ mixin _$CreateFillingStationData {
   double get fuelPrice => throw _privateConstructorUsedError;
   String get opening => throw _privateConstructorUsedError;
   String get closing => throw _privateConstructorUsedError;
-  String get longitude => throw _privateConstructorUsedError;
-  String get latitude => throw _privateConstructorUsedError;
+  double get longitude => throw _privateConstructorUsedError;
+  double get latitude => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
   String? get updatedAt => throw _privateConstructorUsedError;
@@ -585,8 +585,8 @@ abstract class $CreateFillingStationDataCopyWith<$Res> {
       double fuelPrice,
       String opening,
       String closing,
-      String longitude,
-      String latitude,
+      double longitude,
+      double latitude,
       String address,
       String? createdAt,
       String? updatedAt});
@@ -643,11 +643,11 @@ class _$CreateFillingStationDataCopyWithImpl<$Res,
       longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -679,8 +679,8 @@ abstract class _$$CreateFillingStationDataImplCopyWith<$Res>
       double fuelPrice,
       String opening,
       String closing,
-      String longitude,
-      String latitude,
+      double longitude,
+      double latitude,
       String address,
       String? createdAt,
       String? updatedAt});
@@ -736,11 +736,11 @@ class __$$CreateFillingStationDataImplCopyWithImpl<$Res>
       longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -786,9 +786,9 @@ class _$CreateFillingStationDataImpl implements _CreateFillingStationData {
   @override
   final String closing;
   @override
-  final String longitude;
+  final double longitude;
   @override
-  final String latitude;
+  final double latitude;
   @override
   final String address;
   @override
@@ -853,8 +853,8 @@ abstract class _CreateFillingStationData implements CreateFillingStationData {
       required final double fuelPrice,
       required final String opening,
       required final String closing,
-      required final String longitude,
-      required final String latitude,
+      required final double longitude,
+      required final double latitude,
       required final String address,
       final String? createdAt,
       final String? updatedAt}) = _$CreateFillingStationDataImpl;
@@ -873,9 +873,9 @@ abstract class _CreateFillingStationData implements CreateFillingStationData {
   @override
   String get closing;
   @override
-  String get longitude;
+  double get longitude;
   @override
-  String get latitude;
+  double get latitude;
   @override
   String get address;
   @override

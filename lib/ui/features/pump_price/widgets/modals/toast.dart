@@ -117,7 +117,7 @@ class _$PumpPriceToast extends StatelessWidget {
           child: icon,
         ),
         8.horizontalGap,
-        Expanded(child: textWidget(context)),
+        Flexible(child: textWidget(context)),
       ],
     );
   }
@@ -126,7 +126,7 @@ class _$PumpPriceToast extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(child: textWidget(context)),
+        Flexible(child: textWidget(context)),
         8.horizontalGap,
         SizedBox(
           height: 24.dm,
