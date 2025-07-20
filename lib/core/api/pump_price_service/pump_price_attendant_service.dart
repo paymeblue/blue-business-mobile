@@ -1,42 +1,16 @@
 import 'dart:io';
 
 import 'package:blue_business/core/config/dio_config.dart';
-import 'package:blue_business/core/models/pump_price/branch/pump_price_branch.dart';
 import 'package:blue_business/core/models/staff/create/request/update_staff_request.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/models/staff/get/response/get_staff_response.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';
 
-part 'pump_price_service.g.dart';
-
-@RestApi()
-abstract class PumpPriceStationService {
-  factory PumpPriceStationService() => _PumpPriceStationService(
-      DioConfig.dio(locator<AppStateValues>().accessToken),
-      baseUrl: 'https://blue-backend-v2.onrender.com/api/v2');
-
-  @GET('/filling-stations')
-  Future<GetFillingStationsResponse> getBranches();
-
-  @POST('/filling-stations')
-  Future<CreatePumpPriceBranchResponse> createBranch({
-    @Body() required CreatePumpPriceBranchRequest request,
-  });
-
-  @PATCH('/filling-stations/{id}')
-  Future<CreatePumpPriceBranchResponse> editBranch({
-    @Body() required EditPumpPriceBranchRequest request,
-    @Path('id') required String branchId,
-  });
-
-  @DELETE('/filling-stations/soft-delete/{id}')
-  Future<CreatePumpPriceBranchResponse> deleteBranch({
-    @Path('id') required String branchId,
-  });
-}
+part 'pump_price_attendant_service.g.dart';
 
 @RestApi()
 abstract class PumpPriceAttendantService {

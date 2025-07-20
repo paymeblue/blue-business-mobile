@@ -1,4 +1,4 @@
-import 'package:blue_business/core/api/pump_price_service/pump_price_service.dart';
+import 'package:blue_business/core/api/pump_price_service/pump_price_station_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/pump_price/branch/pump_price_branch.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
@@ -33,7 +33,7 @@ class PumpPriceBranchViewModel extends BaseViewModel {
 
   Future<void> getBranches() async {
     pageState = FetchState.loading;
-    final resp = await PumpPriceService().getBranches().onError((e, s) {
+    final resp = await PumpPriceStationService().getBranches().onError((e, s) {
       return GetFillingStationsResponse(
           message: AppErrorHandler.getErrorMessage(e));
     });
@@ -49,7 +49,7 @@ class PumpPriceBranchViewModel extends BaseViewModel {
   }
 
   deleteBranch(FillingStation station) async {
-    final resp = await PumpPriceService()
+    final resp = await PumpPriceStationService()
         .deleteBranch(branchId: station.branchId)
         .onError((e, s) {
       return CreatePumpPriceBranchResponse(

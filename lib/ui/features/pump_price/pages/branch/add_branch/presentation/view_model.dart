@@ -1,4 +1,4 @@
-import 'package:blue_business/core/api/pump_price_service/pump_price_service.dart';
+import 'package:blue_business/core/api/pump_price_service/pump_price_station_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -122,8 +122,9 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
       closing: closing,
     );
 
-    final resp =
-        await PumpPriceService().createBranch(request: request).onError((e, s) {
+    final resp = await PumpPriceStationService()
+        .createBranch(request: request)
+        .onError((e, s) {
       return CreatePumpPriceBranchResponse(
         message: AppErrorHandler.getErrorMessage(e),
       );
@@ -185,7 +186,7 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
       request = request.copyWith(name: name.text);
     }
 
-    final resp = await PumpPriceService()
+    final resp = await PumpPriceStationService()
         .editBranch(request: request, branchId: station!.branchId)
         .onError((e, s) {
       return CreatePumpPriceBranchResponse(
