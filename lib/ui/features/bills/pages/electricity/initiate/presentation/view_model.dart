@@ -62,7 +62,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
     selectedMeterType = item;
   }
 
-  FetchState _providersState = FetchState.complete;
+  FetchState _providersState = FetchState.success;
   FetchState get providersState => _providersState;
   set providersState(FetchState s) {
     _providersState = s;
@@ -129,7 +129,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       providers = resp.data ?? [];
-      providersState = FetchState.complete;
+      providersState = FetchState.success;
     } else {
       AppNotification.error(message: resp.message);
       providersState = FetchState.error;
@@ -195,7 +195,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  FetchState _getLocalBeneficiaryState = FetchState.complete;
+  FetchState _getLocalBeneficiaryState = FetchState.success;
   FetchState get getLocalBeneficiaryState => _getLocalBeneficiaryState;
   set getLocalBeneficiaryState(FetchState v) {
     _getLocalBeneficiaryState = v;

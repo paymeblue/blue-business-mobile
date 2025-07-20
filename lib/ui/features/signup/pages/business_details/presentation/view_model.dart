@@ -45,7 +45,7 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  FetchState _categoryFetchState = FetchState.complete;
+  FetchState _categoryFetchState = FetchState.success;
   FetchState get categoryFetchState => _categoryFetchState;
   set categoryFetchState(FetchState s) {
     _categoryFetchState = s;
@@ -67,7 +67,7 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
 
     if (response.status == "success") {
       categories = response.data ?? [];
-      categoryFetchState = FetchState.complete;
+      categoryFetchState = FetchState.success;
     } else {
       AppNotification.error(message: response.message);
       categoryFetchState = FetchState.error;

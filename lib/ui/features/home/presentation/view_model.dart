@@ -93,14 +93,14 @@ class HomeViewModel extends BaseViewModel {
     getBusinessData();
   }
 
-  FetchState _walletState = FetchState.complete;
+  FetchState _walletState = FetchState.success;
   FetchState get walletState => _walletState;
   set walletState(FetchState s) {
     _walletState = s;
     notifyListeners();
   }
 
-  FetchState _businessDataState = FetchState.complete;
+  FetchState _businessDataState = FetchState.success;
   FetchState get businessDataState => _businessDataState;
   set businessDataState(FetchState s) {
     _businessDataState = s;
@@ -129,7 +129,7 @@ class HomeViewModel extends BaseViewModel {
             )));
 
     if (resp.status == "success") {
-      walletState = FetchState.complete;
+      walletState = FetchState.success;
       locator<AppStateValues>().wallet = resp.data;
     } else {
       walletState = FetchState.error;
@@ -151,14 +151,14 @@ class HomeViewModel extends BaseViewModel {
             )));
 
     if (resp.status == "success") {
-      businessDataState = FetchState.complete;
+      businessDataState = FetchState.success;
       businessDash = resp.data;
     } else {
       businessDataState = FetchState.error;
     }
   }
 
-  FetchState _analyticsState = FetchState.complete;
+  FetchState _analyticsState = FetchState.success;
   FetchState get analyticsState => _analyticsState;
   set analyticsState(FetchState s) {
     _analyticsState = s;
@@ -222,7 +222,7 @@ class HomeViewModel extends BaseViewModel {
             )));
 
     if (response.status == "success") {
-      analyticsState = FetchState.complete;
+      analyticsState = FetchState.success;
       analyticsData = response.data;
       calculateIncrease();
     } else {

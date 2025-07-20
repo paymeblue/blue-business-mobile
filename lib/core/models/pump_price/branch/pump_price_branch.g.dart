@@ -10,9 +10,9 @@ _$CreatePumpPriceBranchRequestImpl _$$CreatePumpPriceBranchRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$CreatePumpPriceBranchRequestImpl(
       name: json['name'] as String,
-      businessId: (json['business_id'] as num).toInt(),
+      businessId: (json['businessId'] as num).toInt(),
       address: json['address'] as String,
-      fuelPrice: (json['fuel_price'] as num).toDouble(),
+      fuelPrice: (json['fuelPrice'] as num).toDouble(),
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
       opening: json['opening'] as String,
@@ -23,9 +23,9 @@ Map<String, dynamic> _$$CreatePumpPriceBranchRequestImplToJson(
         _$CreatePumpPriceBranchRequestImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'business_id': instance.businessId,
+      'businessId': instance.businessId,
       'address': instance.address,
-      'fuel_price': instance.fuelPrice,
+      'fuelPrice': instance.fuelPrice,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'opening': instance.opening,
@@ -99,5 +99,5 @@ Map<String, dynamic> _$$FillingStationImplToJson(
       'address': instance.address,
       if (instance.createdAt case final value?) 'createdAt': value,
       if (instance.updatedAt case final value?) 'updatedAt': value,
-      if (instance.businessId case final value?) 'businessAd': value,
+      if (instance.businessId case final value?) 'businessId': value,
     };

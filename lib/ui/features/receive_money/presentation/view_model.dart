@@ -33,7 +33,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
 
   ScreenshotController screenshotController = ScreenshotController();
 
-  FetchState _walletState = FetchState.complete;
+  FetchState _walletState = FetchState.success;
   FetchState get walletState => _walletState;
   set walletState(FetchState s) {
     _walletState = s;
@@ -55,7 +55,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
             )));
 
     if (resp.status == "success") {
-      walletState = FetchState.complete;
+      walletState = FetchState.success;
       locator<AppStateValues>().wallet = resp.data;
     } else {
       walletState = FetchState.error;
@@ -86,7 +86,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  FetchState _accountState = FetchState.complete;
+  FetchState _accountState = FetchState.success;
   FetchState get accountState => _accountState;
   set accountState(FetchState s) {
     _accountState = s;
@@ -108,7 +108,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
             )));
 
     if (resp.status == "success") {
-      accountState = FetchState.complete;
+      accountState = FetchState.success;
       locator<AppStateValues>().account = resp.data;
     } else {
       accountState = FetchState.error;

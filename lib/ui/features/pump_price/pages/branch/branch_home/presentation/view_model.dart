@@ -32,7 +32,7 @@ class PumpPriceBranchViewModel extends BaseViewModel {
     });
 
     if (resp.status == 'success') {
-      pageState = FetchState.complete;
+      pageState = FetchState.success;
       stations = resp.data;
     } else {
       pageState = FetchState.error;

@@ -44,7 +44,7 @@ class GetPumpPriceLocationsViewModel extends BaseViewModel {
             PlaceResponse(htmlAttributions: [], results: []));
 
     if (resp.results.isEmpty) {
-      pageState = FetchState.complete;
+      pageState = FetchState.success;
       PumpPriceToast.error(message: 'No suggestions found');
     } else {
       pageState = FetchState.error;

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:blue_business/core/api/pump_price_service/pump_price_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -8,6 +10,7 @@ import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/pump_price/pages/branch/add_branch/get_locations/presentaiton/view.dart';
+import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 
 class AddPumpPriceBranchViewModel extends BaseViewModel {
   init(BuildContext context) {}
@@ -92,13 +95,19 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
 
     final resp =
         await PumpPriceService().createBranch(request: request).onError((e, s) {
+      log(e.toString());
       return CreatePumpPriceBranchResponse(
         message: AppErrorHandler.getErrorMessage(e),
       );
     });
 
-    logFormattedJson(resp);
-    locator<AppRouter>().maybePop(true);
+    if (resp.status == 'success') {
+      buttonState = FetchState.success;
+      locator<AppRouter>().maybePop(true);
+    } else {
+      buttonState = FetchState.error;
+      PumpPriceToast.error(message: resp.message);
+    }
   }
 
   bool isActive() {

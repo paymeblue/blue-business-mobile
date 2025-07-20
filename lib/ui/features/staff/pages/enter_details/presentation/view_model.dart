@@ -75,7 +75,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
             );
 
     if (response.status == "success") {
-      branchSetState = FetchState.complete;
+      branchSetState = FetchState.success;
     } else {
       branchSetState = FetchState.error;
     }
@@ -173,7 +173,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     return staff == null && canCreate() || staff != null && canEdit(staff);
   }
 
-  FetchState _branchSetState = FetchState.complete;
+  FetchState _branchSetState = FetchState.success;
   FetchState get branchSetState => _branchSetState;
   set branchSetState(FetchState s) {
     _branchSetState = s;
@@ -349,7 +349,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  FetchState _roleState = FetchState.complete;
+  FetchState _roleState = FetchState.success;
   FetchState get roleState => _roleState;
   set roleState(FetchState value) {
     _roleState = value;
@@ -379,7 +379,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
 
     if (response.status == "success") {
       roles = response.data!;
-      roleState = FetchState.complete;
+      roleState = FetchState.success;
     } else {
       roleState = FetchState.error;
       AppNotification.error(message: response.message);

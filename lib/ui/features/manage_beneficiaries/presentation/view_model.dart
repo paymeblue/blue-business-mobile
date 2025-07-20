@@ -63,7 +63,7 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  FetchState _getLocalBeneficiaryState = FetchState.complete;
+  FetchState _getLocalBeneficiaryState = FetchState.success;
   FetchState get getLocalBeneficiaryState => _getLocalBeneficiaryState;
   set getLocalBeneficiaryState(FetchState v) {
     _getLocalBeneficiaryState = v;

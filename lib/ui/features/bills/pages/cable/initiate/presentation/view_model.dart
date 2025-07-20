@@ -37,14 +37,14 @@ class InitiateCableViewModel extends BaseViewModel {
   TextEditingController searchController = TextEditingController();
   TextEditingController cardNumberController = TextEditingController();
 
-  FetchState _providersState = FetchState.complete;
+  FetchState _providersState = FetchState.success;
   FetchState get providersState => _providersState;
   set providersState(FetchState s) {
     _providersState = s;
     notifyListeners();
   }
 
-  FetchState _packagesState = FetchState.complete;
+  FetchState _packagesState = FetchState.success;
   FetchState get packagesState => _packagesState;
   set packagesState(FetchState s) {
     _packagesState = s;
@@ -91,7 +91,7 @@ class InitiateCableViewModel extends BaseViewModel {
             )));
 
     if (resp.status == "success") {
-      providersState = FetchState.complete;
+      providersState = FetchState.success;
       providers = resp.data ?? [];
     } else {
       providersState = FetchState.error;
@@ -135,7 +135,7 @@ class InitiateCableViewModel extends BaseViewModel {
             )));
 
     if (resp.status == "success") {
-      packagesState = FetchState.complete;
+      packagesState = FetchState.success;
       packages = resp.data ?? [];
     } else {
       packagesState = FetchState.error;

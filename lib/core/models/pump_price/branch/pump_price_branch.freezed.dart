@@ -989,7 +989,7 @@ class _$FillingStationImpl implements _FillingStation {
   const _$FillingStationImpl(
       {required this.id,
       required this.branchId,
-      required this.name,
+      this.name = '',
       required this.fuelPrice,
       required this.opening,
       required this.closing,
@@ -1008,6 +1008,7 @@ class _$FillingStationImpl implements _FillingStation {
   @override
   final String branchId;
   @override
+  @JsonKey()
   final String name;
   @override
   final String fuelPrice;
@@ -1097,7 +1098,7 @@ abstract class _FillingStation implements FillingStation {
   const factory _FillingStation(
       {required final String id,
       required final String branchId,
-      required final String name,
+      final String name,
       required final String fuelPrice,
       required final String opening,
       required final String closing,

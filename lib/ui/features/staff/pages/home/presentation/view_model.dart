@@ -131,7 +131,7 @@ class StaffHomeViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  FetchState _roleState = FetchState.complete;
+  FetchState _roleState = FetchState.success;
   FetchState get roleState => _roleState;
   set roleState(FetchState value) {
     _roleState = value;
@@ -168,7 +168,7 @@ class StaffHomeViewModel extends BaseViewModel {
 
     if (response.status == "success") {
       roles = response.data!;
-      roleState = FetchState.complete;
+      roleState = FetchState.success;
     } else {
       roleState = FetchState.error;
       AppNotification.error(message: response.message);

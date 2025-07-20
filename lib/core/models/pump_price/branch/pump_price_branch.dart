@@ -46,19 +46,20 @@ class GetFillingStationsResponse with _$GetFillingStationsResponse {
 
 @freezed
 class FillingStation with _$FillingStation {
-  const factory FillingStation(
-      {required String id,
-      required String branchId,
-      required String name,
-      required String fuelPrice,
-      required String opening,
-      required String closing,
-      required String longitude,
-      required String latitude,
-      required String address,
-      String? createdAt,
-      String? updatedAt,
-      String? businessId}) = _FillingStation;
+  const factory FillingStation({
+    required String id,
+    required String branchId,
+    @Default('') String name,
+    required String fuelPrice,
+    required String opening,
+    required String closing,
+    required String longitude,
+    required String latitude,
+    required String address,
+    String? createdAt,
+    String? updatedAt,
+    String? businessId,
+  }) = _FillingStation;
 
   factory FillingStation.fromJson(Map<String, dynamic> json) =>
       _$FillingStationImpl.fromJson(json);

@@ -50,7 +50,7 @@ class InitiateAirtimeViewModel extends BaseViewModel {
   TextEditingController phoneController = TextEditingController();
   TextEditingController amountController = TextEditingController();
 
-  FetchState _providersState = FetchState.complete;
+  FetchState _providersState = FetchState.success;
   FetchState get providersState => _providersState;
   set providersState(FetchState s) {
     _providersState = s;
@@ -90,7 +90,7 @@ class InitiateAirtimeViewModel extends BaseViewModel {
             )));
 
     if (resp.status == "success") {
-      providersState = FetchState.complete;
+      providersState = FetchState.success;
       providers = resp.data ?? [];
     } else {
       providersState = FetchState.error;

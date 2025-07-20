@@ -234,7 +234,7 @@ class InsightsViewModel extends BaseViewModel {
     gettingSalesData = false;
   }
 
-  FetchState _salesState = FetchState.complete;
+  FetchState _salesState = FetchState.success;
   FetchState get salesState => _salesState;
   set salesState(FetchState value) {
     _salesState = value;
@@ -285,7 +285,7 @@ class InsightsViewModel extends BaseViewModel {
             .toList();
       }
 
-      salesState = FetchState.complete;
+      salesState = FetchState.success;
     } else {
       AppNotification.error(message: response.message);
 
@@ -551,7 +551,7 @@ class InsightsViewModel extends BaseViewModel {
     }
   }
 
-  FetchState _roleState = FetchState.complete;
+  FetchState _roleState = FetchState.success;
   FetchState get roleState => _roleState;
   set roleState(FetchState value) {
     _roleState = value;
@@ -588,7 +588,7 @@ class InsightsViewModel extends BaseViewModel {
 
     if (response.status == "success") {
       roles = response.data!;
-      roleState = FetchState.complete;
+      roleState = FetchState.success;
     } else {
       roleState = FetchState.error;
       AppNotification.error(message: response.message);

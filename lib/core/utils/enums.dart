@@ -30,6 +30,6 @@ enum PaymentMode {
   final String key;
 }
 
-enum FetchState { error, complete, loading, idle }
+enum FetchState { error, success, loading, idle }
 
 enum SlideDirections { rtl, ltr, ttb, btt }
