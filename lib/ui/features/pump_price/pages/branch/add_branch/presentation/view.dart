@@ -97,7 +97,11 @@ class AddPumpPriceBranchView extends StatelessWidget {
                       isEnabled: model.isActive() || model.isEditActive(),
                       isLoading: model.buttonState == FetchState.loading,
                       onTap: () {
-                        model.addBranch();
+                        if (args.station != null) {
+                          model.editBranch();
+                        } else {
+                          model.addBranch();
+                        }
                       })
                 ],
               ),

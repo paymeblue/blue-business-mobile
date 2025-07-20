@@ -147,6 +147,61 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
         closingTime != null;
   }
 
+  editBranch() async {
+    final c =
+        '${closingTime!.hour.toString().padLeft(2, '0')}:${closingTime!.minute.toString().padLeft(2, '0')}:00';
+    final o =
+        '${openingTime!.hour.toString().padLeft(2, '0')}:${openingTime!.minute.toString().padLeft(2, '0')}:00';
+    String? closing;
+    String? opening;
+    buttonState = FetchState.loading;
+
+    EditPumpPriceBranchRequest request = EditPumpPriceBranchRequest();
+
+    if (c != station!.closing) {
+      closing =
+          '${closingTime!.hour.toString().padLeft(2, '0')}:${closingTime!.minute.toString().padLeft(2, '0')}';
+      request = request.copyWith(closing: closing);
+    }
+
+    if (o != station!.opening) {
+      opening ==
+          '${openingTime!.hour.toString().padLeft(2, '0')}:${openingTime!.minute.toString().padLeft(2, '0')}';
+      request = request.copyWith(opening: opening);
+    }
+
+    if ((double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")) !=
+        double.parse(station!.fuelPrice))) {
+      request = request.copyWith(fuelPrice: double.parse(station!.fuelPrice));
+    }
+
+    if (formattedAddress != station!.address) {
+      request = request.copyWith(
+        address: formattedAddress,
+      );
+    }
+
+    if (name.text != station!.name) {
+      request = request.copyWith(name: name.text);
+    }
+
+    final resp = await PumpPriceService()
+        .editBranch(request: request, branchId: station!.branchId)
+        .onError((e, s) {
+      return CreatePumpPriceBranchResponse(
+        message: AppErrorHandler.getErrorMessage(e),
+      );
+    });
+
+    if (resp.status == 'success') {
+      buttonState = FetchState.success;
+      locator<AppRouter>().maybePop(true);
+    } else {
+      buttonState = FetchState.error;
+      PumpPriceToast.error(message: resp.message);
+    }
+  }
+
   bool isEditActive() {
     final closing =
         '${closingTime!.hour.toString().padLeft(2, '0')}:${closingTime!.minute.toString().padLeft(2, '0')}:00';

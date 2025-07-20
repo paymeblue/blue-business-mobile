@@ -66,6 +66,23 @@ class PumpPriceBranchView extends StatelessWidget {
                                       model.stations = temp;
                                       unawaited(model.deleteBranch(value));
                                     },
+                                    onEdit: (value) {
+                                      locator<AppRouter>()
+                                          .push<bool>(
+                                        AddPumpPriceBranchRoute(
+                                            args: AddPumpPriceBranchViewArgs(
+                                          station: value,
+                                        )),
+                                      )
+                                          .then((v) {
+                                        if (v == true) {
+                                          PumpPriceToast.success(
+                                              message: 'Changes saved!');
+
+                                          model.getBranches();
+                                        }
+                                      });
+                                    },
                                   );
                                 },
                                 separatorBuilder: (ctx, i) => 20.verticalGap,
@@ -145,10 +162,12 @@ class PumpPriceBranchContainer extends StatelessWidget {
     super.key,
     required this.station,
     required this.onDelete,
+    required this.onEdit,
   });
 
   final FillingStation station;
   final ValueChanged<FillingStation> onDelete;
+  final ValueChanged<FillingStation> onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -335,16 +354,7 @@ class PumpPriceBranchContainer extends StatelessWidget {
           child: PumpPriceButton.ghostPrimary(
             title: 'Edit details',
             onTap: () {
-              locator<AppRouter>()
-                  .push<bool>(
-                AddPumpPriceBranchRoute(
-                    args: AddPumpPriceBranchViewArgs(station: station)),
-              )
-                  .then((v) {
-                if (v == true) {
-                  PumpPriceToast.success(message: 'Changes saved!');
-                }
-              });
+              onEdit(station);
             },
           ),
         )
