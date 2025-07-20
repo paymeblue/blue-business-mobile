@@ -94,7 +94,6 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
         await PumpPriceService().createBranch(request: request).onError((e, s) {
       return CreatePumpPriceBranchResponse(
         message: AppErrorHandler.getErrorMessage(e),
-        statusCode: 400,
       );
     });
 

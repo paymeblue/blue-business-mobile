@@ -14,7 +14,7 @@ abstract class PumpPriceService {
           baseUrl: 'https://blue-backend-v2.onrender.com/api/v2');
 
   @GET('/filling-stations')
-  Future<List<FillingStation>> getBranches();
+  Future<GetFillingStationsResponse> getBranches();
 
   @POST('/filling-stations')
   Future<CreatePumpPriceBranchResponse> createBranch({

@@ -24,19 +24,8 @@ class CreatePumpPriceBranchRequest with _$CreatePumpPriceBranchRequest {
 class CreatePumpPriceBranchResponse with _$CreatePumpPriceBranchResponse {
   const factory CreatePumpPriceBranchResponse({
     @Default('') String message,
-    int? statusCode,
-    String? error,
-    dynamic data,
-    @Default('0') String id,
-    @Default('0') String branchId,
-    @Default(0) double amount,
-    @Default('0:00') String opening,
-    @Default('0:00') String closing,
-    @Default(0) double longitude,
-    @Default(0) double latitude,
-    @Default('') String address,
-    String? createdAt,
-    String? updatedAt,
+    @Default('fail') String status,
+    FillingStation? data,
   }) = _CreatePumpPriceBranchResponse;
 
   factory CreatePumpPriceBranchResponse.fromJson(Map<String, dynamic> json) =>
@@ -44,10 +33,32 @@ class CreatePumpPriceBranchResponse with _$CreatePumpPriceBranchResponse {
 }
 
 @freezed
+class GetFillingStationsResponse with _$GetFillingStationsResponse {
+  const factory GetFillingStationsResponse({
+    @Default('') String message,
+    @Default('fail') String status,
+    @Default([]) List<FillingStation> data,
+  }) = _GetFillingStationsResponse;
+
+  factory GetFillingStationsResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetFillingStationsResponseImpl.fromJson(json);
+}
+
+@freezed
 class FillingStation with _$FillingStation {
-  const factory FillingStation({
-    required String name,
-  }) = _FillingStation;
+  const factory FillingStation(
+      {required String id,
+      required String branchId,
+      required String name,
+      required String fuelPrice,
+      required String opening,
+      required String closing,
+      required String longitude,
+      required String latitude,
+      required String address,
+      String? createdAt,
+      String? updatedAt,
+      String? businessId}) = _FillingStation;
 
   factory FillingStation.fromJson(Map<String, dynamic> json) =>
       _$FillingStationImpl.fromJson(json);
