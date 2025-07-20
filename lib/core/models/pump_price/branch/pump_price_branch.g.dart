@@ -32,6 +32,30 @@ Map<String, dynamic> _$$CreatePumpPriceBranchRequestImplToJson(
       'closing': instance.closing,
     };
 
+_$EditPumpPriceBranchRequestImpl _$$EditPumpPriceBranchRequestImplFromJson(
+        Map<String, dynamic> json) =>
+    _$EditPumpPriceBranchRequestImpl(
+      name: json['name'] as String?,
+      address: json['address'] as String?,
+      fuelPrice: (json['fuelPrice'] as num?)?.toDouble(),
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
+      opening: json['opening'] as String?,
+      closing: json['closing'] as String?,
+    );
+
+Map<String, dynamic> _$$EditPumpPriceBranchRequestImplToJson(
+        _$EditPumpPriceBranchRequestImpl instance) =>
+    <String, dynamic>{
+      if (instance.name case final value?) 'name': value,
+      if (instance.address case final value?) 'address': value,
+      if (instance.fuelPrice case final value?) 'fuelPrice': value,
+      if (instance.latitude case final value?) 'latitude': value,
+      if (instance.longitude case final value?) 'longitude': value,
+      if (instance.opening case final value?) 'opening': value,
+      if (instance.closing case final value?) 'closing': value,
+    };
+
 _$CreatePumpPriceBranchResponseImpl
     _$$CreatePumpPriceBranchResponseImplFromJson(Map<String, dynamic> json) =>
         _$CreatePumpPriceBranchResponseImpl(

@@ -21,6 +21,22 @@ class CreatePumpPriceBranchRequest with _$CreatePumpPriceBranchRequest {
 }
 
 @freezed
+class EditPumpPriceBranchRequest with _$EditPumpPriceBranchRequest {
+  const factory EditPumpPriceBranchRequest({
+    String? name,
+    String? address,
+    double? fuelPrice,
+    double? latitude,
+    double? longitude,
+    String? opening,
+    String? closing,
+  }) = _EditPumpPriceBranchRequest;
+
+  factory EditPumpPriceBranchRequest.fromJson(Map<String, dynamic> json) =>
+      _$EditPumpPriceBranchRequestImpl.fromJson(json);
+}
+
+@freezed
 class CreatePumpPriceBranchResponse with _$CreatePumpPriceBranchResponse {
   const factory CreatePumpPriceBranchResponse({
     @Default('') String message,

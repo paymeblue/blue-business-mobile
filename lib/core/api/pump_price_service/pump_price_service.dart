@@ -21,7 +21,13 @@ abstract class PumpPriceService {
     @Body() required CreatePumpPriceBranchRequest request,
   });
 
-  @DELETE('/filling-stations/{id}/soft-delete')
+  @PATCH('/filling-stations/{id}')
+  Future<CreatePumpPriceBranchResponse> editBranch({
+    @Body() required EditPumpPriceBranchRequest request,
+    @Path('id') required String branchId,
+  });
+
+  @DELETE('/filling-stations/soft-delete/{id}')
   Future<CreatePumpPriceBranchResponse> deleteBranch({
     @Path('id') required String branchId,
   });

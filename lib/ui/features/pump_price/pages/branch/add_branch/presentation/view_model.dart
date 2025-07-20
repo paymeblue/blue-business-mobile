@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:blue_business/core/api/pump_price_service/pump_price_service.dart';
+import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/places/places_response.dart';
@@ -13,7 +12,36 @@ import 'package:blue_business/ui/features/pump_price/pages/branch/add_branch/get
 import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 
 class AddPumpPriceBranchViewModel extends BaseViewModel {
-  init(BuildContext context) {}
+  FillingStation? station;
+  init(FillingStation? s) {
+    station = s;
+
+    if (station != null) {
+      setValues();
+    }
+  }
+
+  setValues() {
+    name.text = station!.name;
+    price.text =
+        '${nairaSymbol()} ${double.parse(station!.fuelPrice).toStringAsFixed(2)}';
+    formattedAddress = station!.address;
+    openingTime = TimeOfDay(
+      hour: int.parse(station!.opening.split(':')[0]),
+      minute: int.parse(station!.opening.split(':')[1]),
+    );
+    closingTime = TimeOfDay(
+      hour: int.parse(station!.closing.split(':')[0]),
+      minute: int.parse(station!.closing.split(':')[1]),
+    );
+  }
+
+  String? _formattedAddress;
+  String? get formattedAddress => _formattedAddress;
+  set formattedAddress(String? v) {
+    _formattedAddress = v;
+    notifyListeners();
+  }
 
   showLocationsBottomSheet(BuildContext context) async {
     FocusManager.instance.primaryFocus?.unfocus();
@@ -28,6 +56,7 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
           onSelected: (value) {
             Navigator.of(ctx).pop();
             address = value;
+            formattedAddress = value.formattedAddress;
           },
         );
       },
@@ -95,7 +124,6 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
 
     final resp =
         await PumpPriceService().createBranch(request: request).onError((e, s) {
-      log(s.toString());
       return CreatePumpPriceBranchResponse(
         message: AppErrorHandler.getErrorMessage(e),
       );
@@ -111,11 +139,26 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
   }
 
   bool isActive() {
-    return price.text.isNotEmpty &&
+    return station == null &&
+        price.text.isNotEmpty &&
         name.text.isNotEmpty &&
         address != null &&
         openingTime != null &&
         closingTime != null;
+  }
+
+  bool isEditActive() {
+    final closing =
+        '${closingTime!.hour.toString().padLeft(2, '0')}:${closingTime!.minute.toString().padLeft(2, '0')}:00';
+    final opening =
+        '${openingTime!.hour.toString().padLeft(2, '0')}:${openingTime!.minute.toString().padLeft(2, '0')}:00';
+    return station != null &&
+        (double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")) !=
+                double.parse(station!.fuelPrice) ||
+            formattedAddress != station!.address ||
+            name.text != station!.name ||
+            station!.closing != closing ||
+            station!.opening != opening);
   }
 
   onChanged(String? v) {

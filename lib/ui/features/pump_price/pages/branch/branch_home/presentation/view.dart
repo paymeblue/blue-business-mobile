@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
@@ -57,6 +59,13 @@ class PumpPriceBranchView extends StatelessWidget {
                                 itemBuilder: (ctx, i) {
                                   return PumpPriceBranchContainer(
                                     station: model.stations[i],
+                                    onDelete: (value) {
+                                      final temp = [...model.stations];
+                                      temp.remove(model.stations[i]);
+
+                                      model.stations = temp;
+                                      unawaited(model.deleteBranch(value));
+                                    },
                                   );
                                 },
                                 separatorBuilder: (ctx, i) => 20.verticalGap,
@@ -132,9 +141,14 @@ class PumpPriceBranchView extends StatelessWidget {
 }
 
 class PumpPriceBranchContainer extends StatelessWidget {
-  const PumpPriceBranchContainer({super.key, required this.station});
+  const PumpPriceBranchContainer({
+    super.key,
+    required this.station,
+    required this.onDelete,
+  });
 
   final FillingStation station;
+  final ValueChanged<FillingStation> onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +170,7 @@ class PumpPriceBranchContainer extends StatelessWidget {
                   onTap: () async {
                     final delete = await showDelete(context);
                     if (delete) {
-                      PumpPriceToast.success(message: 'Branch deleted');
+                      onDelete(station);
                     }
                   },
                   child: DecoratedBox(

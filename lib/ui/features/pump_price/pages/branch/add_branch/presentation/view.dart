@@ -31,6 +31,7 @@ class AddPumpPriceBranchView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<AddPumpPriceBranchViewModel>(
         model: AddPumpPriceBranchViewModel(),
+        onModelReady: (model) => model.init(args.station),
         builder: (context, model, _) {
           return Scaffold(
             appBar: PumpPriceAppBar.primary(
@@ -66,14 +67,18 @@ class AddPumpPriceBranchView extends StatelessWidget {
                           onChanged: model.onChanged,
                         ),
                         12.verticalGap,
-                        ...selectableTextField(context, model,
-                            title: 'Location',
-                            hint: 'Start typing',
-                            value: model.address == null
-                                ? ''
-                                : model.address!.formattedAddress, onTap: () {
-                          model.showLocationsBottomSheet(context);
-                        }),
+                        ...selectableTextField(
+                          context,
+                          model,
+                          title: 'Location',
+                          hint: 'Start typing',
+                          value: (model.formattedAddress ??
+                                  model.address?.formattedAddress)
+                              .orEmpty,
+                          onTap: () {
+                            model.showLocationsBottomSheet(context);
+                          },
+                        ),
                         12.verticalGap,
                         tileRow(context, model),
                         12.verticalGap,
@@ -89,7 +94,7 @@ class AddPumpPriceBranchView extends StatelessWidget {
                   PumpPriceButton.primary(
                       title:
                           args.station != null ? 'Save changes' : 'Add branch',
-                      isEnabled: model.isActive(),
+                      isEnabled: model.isActive() || model.isEditActive(),
                       isLoading: model.buttonState == FetchState.loading,
                       onTap: () {
                         model.addBranch();

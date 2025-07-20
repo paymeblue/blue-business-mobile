@@ -89,6 +89,42 @@ class _PumpPriceService implements PumpPriceService {
   }
 
   @override
+  Future<CreatePumpPriceBranchResponse> editBranch({
+    required EditPumpPriceBranchRequest request,
+    required String branchId,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _options = _setStreamType<CreatePumpPriceBranchResponse>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/filling-stations/${branchId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late CreatePumpPriceBranchResponse _value;
+    try {
+      _value = CreatePumpPriceBranchResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<CreatePumpPriceBranchResponse> deleteBranch(
       {required String branchId}) async {
     final _extra = <String, dynamic>{};
@@ -102,7 +138,7 @@ class _PumpPriceService implements PumpPriceService {
     )
         .compose(
           _dio.options,
-          '/filling-stations/${branchId}/soft-delete',
+          '/filling-stations/soft-delete/${branchId}',
           queryParameters: queryParameters,
           data: _data,
         )

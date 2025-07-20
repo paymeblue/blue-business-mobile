@@ -325,6 +325,292 @@ abstract class _CreatePumpPriceBranchRequest
       get copyWith => throw _privateConstructorUsedError;
 }
 
+EditPumpPriceBranchRequest _$EditPumpPriceBranchRequestFromJson(
+    Map<String, dynamic> json) {
+  return _EditPumpPriceBranchRequest.fromJson(json);
+}
+
+/// @nodoc
+mixin _$EditPumpPriceBranchRequest {
+  String? get name => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
+  double? get fuelPrice => throw _privateConstructorUsedError;
+  double? get latitude => throw _privateConstructorUsedError;
+  double? get longitude => throw _privateConstructorUsedError;
+  String? get opening => throw _privateConstructorUsedError;
+  String? get closing => throw _privateConstructorUsedError;
+
+  /// Serializes this EditPumpPriceBranchRequest to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of EditPumpPriceBranchRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $EditPumpPriceBranchRequestCopyWith<EditPumpPriceBranchRequest>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EditPumpPriceBranchRequestCopyWith<$Res> {
+  factory $EditPumpPriceBranchRequestCopyWith(EditPumpPriceBranchRequest value,
+          $Res Function(EditPumpPriceBranchRequest) then) =
+      _$EditPumpPriceBranchRequestCopyWithImpl<$Res,
+          EditPumpPriceBranchRequest>;
+  @useResult
+  $Res call(
+      {String? name,
+      String? address,
+      double? fuelPrice,
+      double? latitude,
+      double? longitude,
+      String? opening,
+      String? closing});
+}
+
+/// @nodoc
+class _$EditPumpPriceBranchRequestCopyWithImpl<$Res,
+        $Val extends EditPumpPriceBranchRequest>
+    implements $EditPumpPriceBranchRequestCopyWith<$Res> {
+  _$EditPumpPriceBranchRequestCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of EditPumpPriceBranchRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? address = freezed,
+    Object? fuelPrice = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? opening = freezed,
+    Object? closing = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fuelPrice: freezed == fuelPrice
+          ? _value.fuelPrice
+          : fuelPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      opening: freezed == opening
+          ? _value.opening
+          : opening // ignore: cast_nullable_to_non_nullable
+              as String?,
+      closing: freezed == closing
+          ? _value.closing
+          : closing // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$EditPumpPriceBranchRequestImplCopyWith<$Res>
+    implements $EditPumpPriceBranchRequestCopyWith<$Res> {
+  factory _$$EditPumpPriceBranchRequestImplCopyWith(
+          _$EditPumpPriceBranchRequestImpl value,
+          $Res Function(_$EditPumpPriceBranchRequestImpl) then) =
+      __$$EditPumpPriceBranchRequestImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String? name,
+      String? address,
+      double? fuelPrice,
+      double? latitude,
+      double? longitude,
+      String? opening,
+      String? closing});
+}
+
+/// @nodoc
+class __$$EditPumpPriceBranchRequestImplCopyWithImpl<$Res>
+    extends _$EditPumpPriceBranchRequestCopyWithImpl<$Res,
+        _$EditPumpPriceBranchRequestImpl>
+    implements _$$EditPumpPriceBranchRequestImplCopyWith<$Res> {
+  __$$EditPumpPriceBranchRequestImplCopyWithImpl(
+      _$EditPumpPriceBranchRequestImpl _value,
+      $Res Function(_$EditPumpPriceBranchRequestImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of EditPumpPriceBranchRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? address = freezed,
+    Object? fuelPrice = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? opening = freezed,
+    Object? closing = freezed,
+  }) {
+    return _then(_$EditPumpPriceBranchRequestImpl(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fuelPrice: freezed == fuelPrice
+          ? _value.fuelPrice
+          : fuelPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      opening: freezed == opening
+          ? _value.opening
+          : opening // ignore: cast_nullable_to_non_nullable
+              as String?,
+      closing: freezed == closing
+          ? _value.closing
+          : closing // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$EditPumpPriceBranchRequestImpl implements _EditPumpPriceBranchRequest {
+  const _$EditPumpPriceBranchRequestImpl(
+      {this.name,
+      this.address,
+      this.fuelPrice,
+      this.latitude,
+      this.longitude,
+      this.opening,
+      this.closing});
+
+  factory _$EditPumpPriceBranchRequestImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$EditPumpPriceBranchRequestImplFromJson(json);
+
+  @override
+  final String? name;
+  @override
+  final String? address;
+  @override
+  final double? fuelPrice;
+  @override
+  final double? latitude;
+  @override
+  final double? longitude;
+  @override
+  final String? opening;
+  @override
+  final String? closing;
+
+  @override
+  String toString() {
+    return 'EditPumpPriceBranchRequest(name: $name, address: $address, fuelPrice: $fuelPrice, latitude: $latitude, longitude: $longitude, opening: $opening, closing: $closing)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditPumpPriceBranchRequestImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.fuelPrice, fuelPrice) ||
+                other.fuelPrice == fuelPrice) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.opening, opening) || other.opening == opening) &&
+            (identical(other.closing, closing) || other.closing == closing));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, address, fuelPrice,
+      latitude, longitude, opening, closing);
+
+  /// Create a copy of EditPumpPriceBranchRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditPumpPriceBranchRequestImplCopyWith<_$EditPumpPriceBranchRequestImpl>
+      get copyWith => __$$EditPumpPriceBranchRequestImplCopyWithImpl<
+          _$EditPumpPriceBranchRequestImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$EditPumpPriceBranchRequestImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _EditPumpPriceBranchRequest
+    implements EditPumpPriceBranchRequest {
+  const factory _EditPumpPriceBranchRequest(
+      {final String? name,
+      final String? address,
+      final double? fuelPrice,
+      final double? latitude,
+      final double? longitude,
+      final String? opening,
+      final String? closing}) = _$EditPumpPriceBranchRequestImpl;
+
+  factory _EditPumpPriceBranchRequest.fromJson(Map<String, dynamic> json) =
+      _$EditPumpPriceBranchRequestImpl.fromJson;
+
+  @override
+  String? get name;
+  @override
+  String? get address;
+  @override
+  double? get fuelPrice;
+  @override
+  double? get latitude;
+  @override
+  double? get longitude;
+  @override
+  String? get opening;
+  @override
+  String? get closing;
+
+  /// Create a copy of EditPumpPriceBranchRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EditPumpPriceBranchRequestImplCopyWith<_$EditPumpPriceBranchRequestImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 CreatePumpPriceBranchResponse _$CreatePumpPriceBranchResponseFromJson(
     Map<String, dynamic> json) {
   return _CreatePumpPriceBranchResponse.fromJson(json);
