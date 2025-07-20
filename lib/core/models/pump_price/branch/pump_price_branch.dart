@@ -25,11 +25,30 @@ class CreatePumpPriceBranchResponse with _$CreatePumpPriceBranchResponse {
   const factory CreatePumpPriceBranchResponse({
     @Default('') String message,
     @Default('fail') String status,
-    FillingStation? data,
+    CreateFillingStationData? data,
   }) = _CreatePumpPriceBranchResponse;
 
   factory CreatePumpPriceBranchResponse.fromJson(Map<String, dynamic> json) =>
       _$CreatePumpPriceBranchResponseImpl.fromJson(json);
+}
+
+@freezed
+class CreateFillingStationData with _$CreateFillingStationData {
+  const factory CreateFillingStationData({
+    required String id,
+    required String branchId,
+    required double fuelPrice,
+    required String opening,
+    required String closing,
+    required double longitude,
+    required double latitude,
+    required String address,
+    String? createdAt,
+    String? updatedAt,
+  }) = _CreateFillingStationData;
+
+  factory CreateFillingStationData.fromJson(Map<String, dynamic> json) =>
+      _$CreateFillingStationDataImpl.fromJson(json);
 }
 
 @freezed

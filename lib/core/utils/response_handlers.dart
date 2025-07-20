@@ -1,13 +1,11 @@
-import 'dart:developer';
-
 import 'package:blue_business/core/config/timed_refresh.dart';
+import 'package:blue_business/core/models/places/places_response.dart';
 import 'package:dio/dio.dart';
 
 class ResponseHandlers {
   static Response handleDioResponse(Response<dynamic> response) {
     var result = response;
     final data = response.data;
-    log('Data: ${response.data}');
 
     final isSessionExpired = data is Map<String, dynamic> &&
         (data["message"]
@@ -96,6 +94,7 @@ class ResponseHandlers {
       }
     }
 
+    logFormattedJson(result.data);
     return result;
   }
 

@@ -39,7 +39,8 @@ _$CreatePumpPriceBranchResponseImpl
           status: json['status'] as String? ?? 'fail',
           data: json['data'] == null
               ? null
-              : FillingStation.fromJson(json['data'] as Map<String, dynamic>),
+              : CreateFillingStationData.fromJson(
+                  json['data'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$$CreatePumpPriceBranchResponseImplToJson(
@@ -48,6 +49,36 @@ Map<String, dynamic> _$$CreatePumpPriceBranchResponseImplToJson(
       'message': instance.message,
       'status': instance.status,
       if (instance.data case final value?) 'data': value,
+    };
+
+_$CreateFillingStationDataImpl _$$CreateFillingStationDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CreateFillingStationDataImpl(
+      id: json['id'] as String,
+      branchId: json['branchId'] as String,
+      fuelPrice: (json['fuelPrice'] as num).toDouble(),
+      opening: json['opening'] as String,
+      closing: json['closing'] as String,
+      longitude: json['longitude'] as String,
+      latitude: json['latitude'] as String,
+      address: json['address'] as String,
+      createdAt: json['createdAt'] as String?,
+      updatedAt: json['updatedAt'] as String?,
+    );
+
+Map<String, dynamic> _$$CreateFillingStationDataImplToJson(
+        _$CreateFillingStationDataImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'branchId': instance.branchId,
+      'fuelPrice': instance.fuelPrice,
+      'opening': instance.opening,
+      'closing': instance.closing,
+      'longitude': instance.longitude,
+      'latitude': instance.latitude,
+      'address': instance.address,
+      if (instance.createdAt case final value?) 'createdAt': value,
+      if (instance.updatedAt case final value?) 'updatedAt': value,
     };
 
 _$GetFillingStationsResponseImpl _$$GetFillingStationsResponseImplFromJson(

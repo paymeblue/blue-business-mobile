@@ -334,7 +334,7 @@ CreatePumpPriceBranchResponse _$CreatePumpPriceBranchResponseFromJson(
 mixin _$CreatePumpPriceBranchResponse {
   String get message => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
-  FillingStation? get data => throw _privateConstructorUsedError;
+  CreateFillingStationData? get data => throw _privateConstructorUsedError;
 
   /// Serializes this CreatePumpPriceBranchResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -354,9 +354,9 @@ abstract class $CreatePumpPriceBranchResponseCopyWith<$Res> {
       _$CreatePumpPriceBranchResponseCopyWithImpl<$Res,
           CreatePumpPriceBranchResponse>;
   @useResult
-  $Res call({String message, String status, FillingStation? data});
+  $Res call({String message, String status, CreateFillingStationData? data});
 
-  $FillingStationCopyWith<$Res>? get data;
+  $CreateFillingStationDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -391,7 +391,7 @@ class _$CreatePumpPriceBranchResponseCopyWithImpl<$Res,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as FillingStation?,
+              as CreateFillingStationData?,
     ) as $Val);
   }
 
@@ -399,12 +399,12 @@ class _$CreatePumpPriceBranchResponseCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $FillingStationCopyWith<$Res>? get data {
+  $CreateFillingStationDataCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
-    return $FillingStationCopyWith<$Res>(_value.data!, (value) {
+    return $CreateFillingStationDataCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -419,10 +419,10 @@ abstract class _$$CreatePumpPriceBranchResponseImplCopyWith<$Res>
       __$$CreatePumpPriceBranchResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String message, String status, FillingStation? data});
+  $Res call({String message, String status, CreateFillingStationData? data});
 
   @override
-  $FillingStationCopyWith<$Res>? get data;
+  $CreateFillingStationDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -456,7 +456,7 @@ class __$$CreatePumpPriceBranchResponseImplCopyWithImpl<$Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as FillingStation?,
+              as CreateFillingStationData?,
     ));
   }
 }
@@ -479,7 +479,7 @@ class _$CreatePumpPriceBranchResponseImpl
   @JsonKey()
   final String status;
   @override
-  final FillingStation? data;
+  final CreateFillingStationData? data;
 
   @override
   String toString() {
@@ -521,9 +521,10 @@ class _$CreatePumpPriceBranchResponseImpl
 abstract class _CreatePumpPriceBranchResponse
     implements CreatePumpPriceBranchResponse {
   const factory _CreatePumpPriceBranchResponse(
-      {final String message,
-      final String status,
-      final FillingStation? data}) = _$CreatePumpPriceBranchResponseImpl;
+          {final String message,
+          final String status,
+          final CreateFillingStationData? data}) =
+      _$CreatePumpPriceBranchResponseImpl;
 
   factory _CreatePumpPriceBranchResponse.fromJson(Map<String, dynamic> json) =
       _$CreatePumpPriceBranchResponseImpl.fromJson;
@@ -533,7 +534,7 @@ abstract class _CreatePumpPriceBranchResponse
   @override
   String get status;
   @override
-  FillingStation? get data;
+  CreateFillingStationData? get data;
 
   /// Create a copy of CreatePumpPriceBranchResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -541,6 +542,352 @@ abstract class _CreatePumpPriceBranchResponse
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreatePumpPriceBranchResponseImplCopyWith<
           _$CreatePumpPriceBranchResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+CreateFillingStationData _$CreateFillingStationDataFromJson(
+    Map<String, dynamic> json) {
+  return _CreateFillingStationData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CreateFillingStationData {
+  String get id => throw _privateConstructorUsedError;
+  String get branchId => throw _privateConstructorUsedError;
+  double get fuelPrice => throw _privateConstructorUsedError;
+  String get opening => throw _privateConstructorUsedError;
+  String get closing => throw _privateConstructorUsedError;
+  String get longitude => throw _privateConstructorUsedError;
+  String get latitude => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
+
+  /// Serializes this CreateFillingStationData to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of CreateFillingStationData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $CreateFillingStationDataCopyWith<CreateFillingStationData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreateFillingStationDataCopyWith<$Res> {
+  factory $CreateFillingStationDataCopyWith(CreateFillingStationData value,
+          $Res Function(CreateFillingStationData) then) =
+      _$CreateFillingStationDataCopyWithImpl<$Res, CreateFillingStationData>;
+  @useResult
+  $Res call(
+      {String id,
+      String branchId,
+      double fuelPrice,
+      String opening,
+      String closing,
+      String longitude,
+      String latitude,
+      String address,
+      String? createdAt,
+      String? updatedAt});
+}
+
+/// @nodoc
+class _$CreateFillingStationDataCopyWithImpl<$Res,
+        $Val extends CreateFillingStationData>
+    implements $CreateFillingStationDataCopyWith<$Res> {
+  _$CreateFillingStationDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of CreateFillingStationData
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? branchId = null,
+    Object? fuelPrice = null,
+    Object? opening = null,
+    Object? closing = null,
+    Object? longitude = null,
+    Object? latitude = null,
+    Object? address = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      branchId: null == branchId
+          ? _value.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as String,
+      fuelPrice: null == fuelPrice
+          ? _value.fuelPrice
+          : fuelPrice // ignore: cast_nullable_to_non_nullable
+              as double,
+      opening: null == opening
+          ? _value.opening
+          : opening // ignore: cast_nullable_to_non_nullable
+              as String,
+      closing: null == closing
+          ? _value.closing
+          : closing // ignore: cast_nullable_to_non_nullable
+              as String,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as String,
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CreateFillingStationDataImplCopyWith<$Res>
+    implements $CreateFillingStationDataCopyWith<$Res> {
+  factory _$$CreateFillingStationDataImplCopyWith(
+          _$CreateFillingStationDataImpl value,
+          $Res Function(_$CreateFillingStationDataImpl) then) =
+      __$$CreateFillingStationDataImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String branchId,
+      double fuelPrice,
+      String opening,
+      String closing,
+      String longitude,
+      String latitude,
+      String address,
+      String? createdAt,
+      String? updatedAt});
+}
+
+/// @nodoc
+class __$$CreateFillingStationDataImplCopyWithImpl<$Res>
+    extends _$CreateFillingStationDataCopyWithImpl<$Res,
+        _$CreateFillingStationDataImpl>
+    implements _$$CreateFillingStationDataImplCopyWith<$Res> {
+  __$$CreateFillingStationDataImplCopyWithImpl(
+      _$CreateFillingStationDataImpl _value,
+      $Res Function(_$CreateFillingStationDataImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CreateFillingStationData
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? branchId = null,
+    Object? fuelPrice = null,
+    Object? opening = null,
+    Object? closing = null,
+    Object? longitude = null,
+    Object? latitude = null,
+    Object? address = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+  }) {
+    return _then(_$CreateFillingStationDataImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      branchId: null == branchId
+          ? _value.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as String,
+      fuelPrice: null == fuelPrice
+          ? _value.fuelPrice
+          : fuelPrice // ignore: cast_nullable_to_non_nullable
+              as double,
+      opening: null == opening
+          ? _value.opening
+          : opening // ignore: cast_nullable_to_non_nullable
+              as String,
+      closing: null == closing
+          ? _value.closing
+          : closing // ignore: cast_nullable_to_non_nullable
+              as String,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as String,
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CreateFillingStationDataImpl implements _CreateFillingStationData {
+  const _$CreateFillingStationDataImpl(
+      {required this.id,
+      required this.branchId,
+      required this.fuelPrice,
+      required this.opening,
+      required this.closing,
+      required this.longitude,
+      required this.latitude,
+      required this.address,
+      this.createdAt,
+      this.updatedAt});
+
+  factory _$CreateFillingStationDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreateFillingStationDataImplFromJson(json);
+
+  @override
+  final String id;
+  @override
+  final String branchId;
+  @override
+  final double fuelPrice;
+  @override
+  final String opening;
+  @override
+  final String closing;
+  @override
+  final String longitude;
+  @override
+  final String latitude;
+  @override
+  final String address;
+  @override
+  final String? createdAt;
+  @override
+  final String? updatedAt;
+
+  @override
+  String toString() {
+    return 'CreateFillingStationData(id: $id, branchId: $branchId, fuelPrice: $fuelPrice, opening: $opening, closing: $closing, longitude: $longitude, latitude: $latitude, address: $address, createdAt: $createdAt, updatedAt: $updatedAt)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateFillingStationDataImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.branchId, branchId) ||
+                other.branchId == branchId) &&
+            (identical(other.fuelPrice, fuelPrice) ||
+                other.fuelPrice == fuelPrice) &&
+            (identical(other.opening, opening) || other.opening == opening) &&
+            (identical(other.closing, closing) || other.closing == closing) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, branchId, fuelPrice, opening,
+      closing, longitude, latitude, address, createdAt, updatedAt);
+
+  /// Create a copy of CreateFillingStationData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateFillingStationDataImplCopyWith<_$CreateFillingStationDataImpl>
+      get copyWith => __$$CreateFillingStationDataImplCopyWithImpl<
+          _$CreateFillingStationDataImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CreateFillingStationDataImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CreateFillingStationData implements CreateFillingStationData {
+  const factory _CreateFillingStationData(
+      {required final String id,
+      required final String branchId,
+      required final double fuelPrice,
+      required final String opening,
+      required final String closing,
+      required final String longitude,
+      required final String latitude,
+      required final String address,
+      final String? createdAt,
+      final String? updatedAt}) = _$CreateFillingStationDataImpl;
+
+  factory _CreateFillingStationData.fromJson(Map<String, dynamic> json) =
+      _$CreateFillingStationDataImpl.fromJson;
+
+  @override
+  String get id;
+  @override
+  String get branchId;
+  @override
+  double get fuelPrice;
+  @override
+  String get opening;
+  @override
+  String get closing;
+  @override
+  String get longitude;
+  @override
+  String get latitude;
+  @override
+  String get address;
+  @override
+  String? get createdAt;
+  @override
+  String? get updatedAt;
+
+  /// Create a copy of CreateFillingStationData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CreateFillingStationDataImplCopyWith<_$CreateFillingStationDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
