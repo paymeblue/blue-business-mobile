@@ -172,7 +172,9 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
 
     if ((double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")) !=
         double.parse(station!.fuelPrice))) {
-      request = request.copyWith(fuelPrice: double.parse(station!.fuelPrice));
+      request = request.copyWith(
+          fuelPrice:
+              double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")));
     }
 
     if (formattedAddress != station!.address) {
