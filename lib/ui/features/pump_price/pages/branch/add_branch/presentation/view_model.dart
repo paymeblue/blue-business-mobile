@@ -204,17 +204,20 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
   }
 
   bool isEditActive() {
-    final closing =
-        '${closingTime!.hour.toString().padLeft(2, '0')}:${closingTime!.minute.toString().padLeft(2, '0')}:00';
-    final opening =
-        '${openingTime!.hour.toString().padLeft(2, '0')}:${openingTime!.minute.toString().padLeft(2, '0')}:00';
-    return station != null &&
-        (double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")) !=
-                double.parse(station!.fuelPrice) ||
-            formattedAddress != station!.address ||
-            name.text != station!.name ||
-            station!.closing != closing ||
-            station!.opening != opening);
+    if (station != null) {
+      final closing =
+          '${closingTime!.hour.toString().padLeft(2, '0')}:${closingTime!.minute.toString().padLeft(2, '0')}:00';
+      final opening =
+          '${openingTime!.hour.toString().padLeft(2, '0')}:${openingTime!.minute.toString().padLeft(2, '0')}:00';
+      return station != null &&
+          (double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")) !=
+                  double.parse(station!.fuelPrice) ||
+              formattedAddress != station!.address ||
+              name.text != station!.name ||
+              station!.closing != closing ||
+              station!.opening != opening);
+    }
+    return false;
   }
 
   onChanged(String? v) {

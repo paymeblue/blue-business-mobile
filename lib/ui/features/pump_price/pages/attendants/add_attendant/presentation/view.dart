@@ -64,11 +64,14 @@ class AddPumpPriceAttendantView extends StatelessWidget {
                   Expanded(
                     child: ListView(
                       children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: avatarRow(model),
-                        ),
-                        12.verticalGap,
+                        if (args.attendant == null) ...[
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: avatarRow(model),
+                          ),
+                          12.verticalGap
+                        ] else
+                          6.verticalGap,
                         PumpPriceTextField.plaintext(
                           hint: 'Enter attendant name',
                           title: 'Attendant\'s name',
@@ -121,7 +124,7 @@ class AddPumpPriceAttendantView extends StatelessWidget {
                     title: args.attendant != null
                         ? 'Save changes'
                         : 'Add attendant',
-                    isEnabled: model.isActive(),
+                    isEnabled: model.isActive() || model.isEditActive(),
                     isLoading: model.buttonState == FetchState.loading,
                     onTap: () {
                       model.createStaff();
@@ -192,7 +195,7 @@ class AddPumpPriceAttendantView extends StatelessWidget {
             padding: EdgeInsets.all(6.dm),
             child: PumpPriceAvatar(
               radius: 35.r,
-              imageUrl: model.path ?? args.attendant?.displayPicture,
+              imageUrl: model.path ?? args.attendant?.displayPicture.orNull,
             ),
           ),
           Positioned(

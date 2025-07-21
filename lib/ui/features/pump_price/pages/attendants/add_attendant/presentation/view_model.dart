@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:blue_business/core/api/pump_price_service/pump_price_attendant_service.dart';
@@ -31,6 +30,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
   setAttendantValues() {
     name.text = attendant!.name;
     phone.text = attendant!.phone.substring(attendant!.phone.length - 10);
+    branch = attendant!.branchName;
   }
 
   String? _path;
@@ -97,7 +97,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
   }
 
   onConfirmPasswordChanged(String? v) {
-    if (v.orEmpty.isEmpty) {
+    if (v.orEmpty.isEmpty && attendant == null) {
       confirmPasswordValidationText = 'This field is required';
     } else if (v.orEmpty != password.text) {
       confirmPasswordValidationText = 'Passwords do not match';
@@ -107,17 +107,19 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
   }
 
   onPasswordChanged(String? v) {
-    if (v.orEmpty.isEmpty) {
+    if (v.orEmpty.isEmpty && attendant == null) {
       passwordValidationText = 'This field is required';
-    } else if (v.orEmpty.length < 9) {
-      passwordValidationText = 'Password must be at least 9 characters';
-    } else if (!RegExp((r'[a-zA-Z]+?').toString()).hasMatch(v.orEmpty)) {
-      passwordValidationText = 'Password must contain a leteer';
-    } else if (!RegExp((r'[0-9]+?').toString()).hasMatch(v.orEmpty)) {
-      passwordValidationText = 'Password must contain a number';
-    } else if (!RegExp((r"[.,_@\\+$!#%^&*\-=?:;']+?").toString())
-        .hasMatch(v.orEmpty)) {
-      passwordValidationText = 'Password must contain a special character';
+    } else if (v.orEmpty.isNotEmpty) {
+      if (v.orEmpty.length < 9) {
+        passwordValidationText = 'Password must be at least 9 characters';
+      } else if (!RegExp((r'[a-zA-Z]+?').toString()).hasMatch(v.orEmpty)) {
+        passwordValidationText = 'Password must contain a leteer';
+      } else if (!RegExp((r'[0-9]+?').toString()).hasMatch(v.orEmpty)) {
+        passwordValidationText = 'Password must contain a number';
+      } else if (!RegExp((r"[.,_@\\+$!#%^&*\-=?:;']+?").toString())
+          .hasMatch(v.orEmpty)) {
+        passwordValidationText = 'Password must contain a special character';
+      }
     } else {
       passwordValidationText = null;
     }
@@ -149,7 +151,30 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
         phone.text.isNotEmpty &&
         station != null &&
         passwordValidationText == null &&
-        confirmPassword.text == password.text;
+        confirmPasswordValidationText == null;
+  }
+
+  bool isEditActive() {
+    if (attendant != null) {
+      return attendant != null &&
+          (name.text != attendant!.name ||
+              phone.text.validPhone(CountryCode(
+                    countryCode: 'NG',
+                    name: 'Nigeria',
+                    dialCode: '+234',
+                  )) !=
+                  attendant!.phone.validPhone(CountryCode(
+                    countryCode: 'NG',
+                    name: 'Nigeria',
+                    dialCode: '+234',
+                  )) ||
+              branch != attendant!.branchName ||
+              (password.text.isNotEmpty &&
+                  passwordValidationText == null &&
+                  confirmPassword.text.isNotEmpty &&
+                  confirmPasswordValidationText == null));
+    }
+    return false;
   }
 
   FetchState _buttonState = FetchState.idle;
@@ -160,7 +185,6 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
   }
 
   createStaff() async {
-    log(station!.branchId);
     buttonState = FetchState.loading;
     CreateStaffResponse response = await PumpPriceAttendantService()
         .createAttendant(

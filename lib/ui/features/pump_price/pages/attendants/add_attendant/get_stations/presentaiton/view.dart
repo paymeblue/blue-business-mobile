@@ -17,6 +17,7 @@ class GetPumpPriceStationsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<GetPumpPriceStationsViewModel>(
         model: GetPumpPriceStationsViewModel(),
+        onModelReady: (model) => model.init(),
         builder: (context, model, _) {
           return Container(
             width: context.getWidth(),

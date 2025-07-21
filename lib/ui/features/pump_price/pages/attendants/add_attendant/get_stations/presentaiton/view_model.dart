@@ -8,6 +8,10 @@ import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 
 class GetPumpPriceStationsViewModel extends BaseViewModel {
+  init() {
+    findBranches();
+  }
+
   Timer? searchTimer;
 
   FetchState _pageState = FetchState.idle;
@@ -23,7 +27,7 @@ class GetPumpPriceStationsViewModel extends BaseViewModel {
     }
 
     searchTimer = Timer(const Duration(seconds: 1), () async {
-      await findBranches(v ?? "");
+      await findBranches(v);
     });
   }
 
@@ -34,7 +38,7 @@ class GetPumpPriceStationsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  findBranches(String query) async {
+  findBranches([String? query]) async {
     pageState = FetchState.loading;
     final resp = await PumpPriceStationService().getBranches().onError((e, s) {
       return GetFillingStationsResponse(
