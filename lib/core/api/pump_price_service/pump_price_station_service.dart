@@ -35,4 +35,10 @@ abstract class PumpPriceStationService {
   Future<CreatePumpPriceBranchResponse> deleteBranch({
     @Path('id') required String branchId,
   });
+
+  @GET('/fuel-transactions/insights/{id}')
+  Future<GetFillingStationsResponse> getInsights({
+    @Path('id') required String id,
+    @Query('time') required String period,
+  });
 }

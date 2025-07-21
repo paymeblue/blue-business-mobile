@@ -198,7 +198,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
         name: 'Nigeria',
         dialCode: '+234',
       )),
-      branchId: int.parse(station!.id),
+      branchId: int.parse(station!.branchId),
       password: password.text,
     )
         .onError((error, stacktrace) {

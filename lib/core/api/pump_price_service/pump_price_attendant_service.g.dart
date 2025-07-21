@@ -109,6 +109,7 @@ class _PumpPriceAttendantService implements PumpPriceAttendantService {
       'password',
       password,
     ));
+    log(_data.fields.toString());
     final _options = _setStreamType<CreateStaffResponse>(Options(
       method: 'POST',
       headers: _headers,
