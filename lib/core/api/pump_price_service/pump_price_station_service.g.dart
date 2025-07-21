@@ -89,7 +89,7 @@ class _PumpPriceStationService implements PumpPriceStationService {
   }
 
   @override
-  Future<CreatePumpPriceBranchResponse> editBranch({
+  Future<EditPumpPriceBranchResponse> editBranch({
     required EditPumpPriceBranchRequest request,
     required String branchId,
   }) async {
@@ -97,7 +97,7 @@ class _PumpPriceStationService implements PumpPriceStationService {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
-    final _options = _setStreamType<CreatePumpPriceBranchResponse>(Options(
+    final _options = _setStreamType<EditPumpPriceBranchResponse>(Options(
       method: 'PATCH',
       headers: _headers,
       extra: _extra,
@@ -114,9 +114,9 @@ class _PumpPriceStationService implements PumpPriceStationService {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late CreatePumpPriceBranchResponse _value;
+    late EditPumpPriceBranchResponse _value;
     try {
-      _value = CreatePumpPriceBranchResponse.fromJson(_result.data!);
+      _value = EditPumpPriceBranchResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

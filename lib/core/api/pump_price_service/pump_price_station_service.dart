@@ -22,7 +22,7 @@ abstract class PumpPriceStationService {
   });
 
   @PATCH('/filling-stations/{id}')
-  Future<CreatePumpPriceBranchResponse> editBranch({
+  Future<EditPumpPriceBranchResponse> editBranch({
     @Body() required EditPumpPriceBranchRequest request,
     @Path('id') required String branchId,
   });

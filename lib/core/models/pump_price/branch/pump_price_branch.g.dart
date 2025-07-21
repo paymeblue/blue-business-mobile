@@ -105,6 +105,57 @@ Map<String, dynamic> _$$CreateFillingStationDataImplToJson(
       if (instance.updatedAt case final value?) 'updatedAt': value,
     };
 
+_$EditPumpPriceBranchResponseImpl _$$EditPumpPriceBranchResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$EditPumpPriceBranchResponseImpl(
+      message: json['message'] as String? ?? '',
+      status: json['status'] as String? ?? 'fail',
+      data: json['data'] == null
+          ? null
+          : EditFillingStationData.fromJson(
+              json['data'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$EditPumpPriceBranchResponseImplToJson(
+        _$EditPumpPriceBranchResponseImpl instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'status': instance.status,
+      if (instance.data case final value?) 'data': value,
+    };
+
+_$EditFillingStationDataImpl _$$EditFillingStationDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$EditFillingStationDataImpl(
+      id: json['id'] as String,
+      branchId: json['branchId'] as String,
+      fuelPrice: (json['fuelPrice'] as num).toDouble(),
+      opening: json['opening'] as String,
+      closing: json['closing'] as String,
+      longitude: json['longitude'] as String,
+      latitude: json['latitude'] as String,
+      address: json['address'] as String,
+      createdAt: json['createdAt'] as String?,
+      updatedAt: json['updatedAt'] as String?,
+      deletedAt: json['deletedAt'] as String?,
+    );
+
+Map<String, dynamic> _$$EditFillingStationDataImplToJson(
+        _$EditFillingStationDataImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'branchId': instance.branchId,
+      'fuelPrice': instance.fuelPrice,
+      'opening': instance.opening,
+      'closing': instance.closing,
+      'longitude': instance.longitude,
+      'latitude': instance.latitude,
+      'address': instance.address,
+      if (instance.createdAt case final value?) 'createdAt': value,
+      if (instance.updatedAt case final value?) 'updatedAt': value,
+      if (instance.deletedAt case final value?) 'deletedAt': value,
+    };
+
 _$GetFillingStationsResponseImpl _$$GetFillingStationsResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$GetFillingStationsResponseImpl(
@@ -128,7 +179,7 @@ _$FillingStationImpl _$$FillingStationImplFromJson(Map<String, dynamic> json) =>
     _$FillingStationImpl(
       id: json['id'] as String,
       branchId: json['branchId'] as String,
-      name: json['name'] as String,
+      name: json['name'] as String? ?? '',
       fuelPrice: json['fuelPrice'] as String,
       opening: json['opening'] as String,
       closing: json['closing'] as String,

@@ -33,6 +33,7 @@ class AddPumpPriceAttendantView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<AddPumpPriceAttendantViewModel>(
         model: AddPumpPriceAttendantViewModel(),
+        onModelReady: (model) => model.init(args.attendant),
         builder: (context, model, _) {
           return Scaffold(
             appBar: PumpPriceAppBar.primary(

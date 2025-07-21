@@ -68,6 +68,38 @@ class CreateFillingStationData with _$CreateFillingStationData {
 }
 
 @freezed
+class EditPumpPriceBranchResponse with _$EditPumpPriceBranchResponse {
+  const factory EditPumpPriceBranchResponse({
+    @Default('') String message,
+    @Default('fail') String status,
+    EditFillingStationData? data,
+  }) = _EditPumpPriceBranchResponse;
+
+  factory EditPumpPriceBranchResponse.fromJson(Map<String, dynamic> json) =>
+      _$EditPumpPriceBranchResponseImpl.fromJson(json);
+}
+
+@freezed
+class EditFillingStationData with _$EditFillingStationData {
+  const factory EditFillingStationData({
+    required String id,
+    required String branchId,
+    required double fuelPrice,
+    required String opening,
+    required String closing,
+    required String longitude,
+    required String latitude,
+    required String address,
+    String? createdAt,
+    String? updatedAt,
+    String? deletedAt,
+  }) = _EditFillingStationData;
+
+  factory EditFillingStationData.fromJson(Map<String, dynamic> json) =>
+      _$EditFillingStationDataImpl.fromJson(json);
+}
+
+@freezed
 class GetFillingStationsResponse with _$GetFillingStationsResponse {
   const factory GetFillingStationsResponse({
     @Default('') String message,

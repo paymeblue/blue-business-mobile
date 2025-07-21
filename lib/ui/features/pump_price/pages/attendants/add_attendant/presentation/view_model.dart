@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:blue_business/core/api/pump_price_service/pump_price_attendant_service.dart';
@@ -27,7 +28,10 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     }
   }
 
-  setAttendantValues() {}
+  setAttendantValues() {
+    name.text = attendant!.name;
+    phone.text = attendant!.phone.substring(attendant!.phone.length - 10);
+  }
 
   String? _path;
   String? get path => _path;
@@ -156,6 +160,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
   }
 
   createStaff() async {
+    log(station!.branchId);
     buttonState = FetchState.loading;
     CreateStaffResponse response = await PumpPriceAttendantService()
         .createAttendant(
@@ -166,7 +171,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
         name: 'Nigeria',
         dialCode: '+234',
       )),
-      branchId: int.tryParse(station!.branchId) ?? 0,
+      branchId: int.parse(station!.branchId),
       password: password.text,
     )
         .onError((error, stacktrace) {
