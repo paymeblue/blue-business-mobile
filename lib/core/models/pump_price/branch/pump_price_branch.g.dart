@@ -222,6 +222,8 @@ _$FillingStationImpl _$$FillingStationImplFromJson(Map<String, dynamic> json) =>
       longitude: json['longitude'] as String,
       latitude: json['latitude'] as String,
       address: json['address'] as String,
+      totalTransactions: (json['totalTransactions'] as num?)?.toDouble() ?? 0,
+      percentageIncrease: (json['percentageIncrease'] as num?)?.toDouble() ?? 0,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
     );
@@ -238,6 +240,8 @@ Map<String, dynamic> _$$FillingStationImplToJson(
       'longitude': instance.longitude,
       'latitude': instance.latitude,
       'address': instance.address,
+      'totalTransactions': instance.totalTransactions,
+      'percentageIncrease': instance.percentageIncrease,
       if (instance.createdAt case final value?) 'createdAt': value,
       if (instance.updatedAt case final value?) 'updatedAt': value,
     };

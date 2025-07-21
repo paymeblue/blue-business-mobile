@@ -2380,6 +2380,8 @@ mixin _$FillingStation {
   String get longitude => throw _privateConstructorUsedError;
   String get latitude => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
+  double get totalTransactions => throw _privateConstructorUsedError;
+  double get percentageIncrease => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
   String? get updatedAt => throw _privateConstructorUsedError;
 
@@ -2409,6 +2411,8 @@ abstract class $FillingStationCopyWith<$Res> {
       String longitude,
       String latitude,
       String address,
+      double totalTransactions,
+      double percentageIncrease,
       String? createdAt,
       String? updatedAt});
 }
@@ -2437,6 +2441,8 @@ class _$FillingStationCopyWithImpl<$Res, $Val extends FillingStation>
     Object? longitude = null,
     Object? latitude = null,
     Object? address = null,
+    Object? totalTransactions = null,
+    Object? percentageIncrease = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -2477,6 +2483,14 @@ class _$FillingStationCopyWithImpl<$Res, $Val extends FillingStation>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
+      totalTransactions: null == totalTransactions
+          ? _value.totalTransactions
+          : totalTransactions // ignore: cast_nullable_to_non_nullable
+              as double,
+      percentageIncrease: null == percentageIncrease
+          ? _value.percentageIncrease
+          : percentageIncrease // ignore: cast_nullable_to_non_nullable
+              as double,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -2507,6 +2521,8 @@ abstract class _$$FillingStationImplCopyWith<$Res>
       String longitude,
       String latitude,
       String address,
+      double totalTransactions,
+      double percentageIncrease,
       String? createdAt,
       String? updatedAt});
 }
@@ -2533,6 +2549,8 @@ class __$$FillingStationImplCopyWithImpl<$Res>
     Object? longitude = null,
     Object? latitude = null,
     Object? address = null,
+    Object? totalTransactions = null,
+    Object? percentageIncrease = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -2573,6 +2591,14 @@ class __$$FillingStationImplCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
+      totalTransactions: null == totalTransactions
+          ? _value.totalTransactions
+          : totalTransactions // ignore: cast_nullable_to_non_nullable
+              as double,
+      percentageIncrease: null == percentageIncrease
+          ? _value.percentageIncrease
+          : percentageIncrease // ignore: cast_nullable_to_non_nullable
+              as double,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -2598,6 +2624,8 @@ class _$FillingStationImpl implements _FillingStation {
       required this.longitude,
       required this.latitude,
       required this.address,
+      this.totalTransactions = 0,
+      this.percentageIncrease = 0,
       this.createdAt,
       this.updatedAt});
 
@@ -2624,13 +2652,19 @@ class _$FillingStationImpl implements _FillingStation {
   @override
   final String address;
   @override
+  @JsonKey()
+  final double totalTransactions;
+  @override
+  @JsonKey()
+  final double percentageIncrease;
+  @override
   final String? createdAt;
   @override
   final String? updatedAt;
 
   @override
   String toString() {
-    return 'FillingStation(id: $id, branchId: $branchId, name: $name, fuelPrice: $fuelPrice, opening: $opening, closing: $closing, longitude: $longitude, latitude: $latitude, address: $address, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'FillingStation(id: $id, branchId: $branchId, name: $name, fuelPrice: $fuelPrice, opening: $opening, closing: $closing, longitude: $longitude, latitude: $latitude, address: $address, totalTransactions: $totalTransactions, percentageIncrease: $percentageIncrease, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -2651,6 +2685,10 @@ class _$FillingStationImpl implements _FillingStation {
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.address, address) || other.address == address) &&
+            (identical(other.totalTransactions, totalTransactions) ||
+                other.totalTransactions == totalTransactions) &&
+            (identical(other.percentageIncrease, percentageIncrease) ||
+                other.percentageIncrease == percentageIncrease) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -2659,8 +2697,21 @@ class _$FillingStationImpl implements _FillingStation {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, branchId, name, fuelPrice,
-      opening, closing, longitude, latitude, address, createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      branchId,
+      name,
+      fuelPrice,
+      opening,
+      closing,
+      longitude,
+      latitude,
+      address,
+      totalTransactions,
+      percentageIncrease,
+      createdAt,
+      updatedAt);
 
   /// Create a copy of FillingStation
   /// with the given fields replaced by the non-null parameter values.
@@ -2690,6 +2741,8 @@ abstract class _FillingStation implements FillingStation {
       required final String longitude,
       required final String latitude,
       required final String address,
+      final double totalTransactions,
+      final double percentageIncrease,
       final String? createdAt,
       final String? updatedAt}) = _$FillingStationImpl;
 
@@ -2714,6 +2767,10 @@ abstract class _FillingStation implements FillingStation {
   String get latitude;
   @override
   String get address;
+  @override
+  double get totalTransactions;
+  @override
+  double get percentageIncrease;
   @override
   String? get createdAt;
   @override

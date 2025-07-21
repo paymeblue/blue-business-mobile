@@ -1,5 +1,6 @@
 import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/models/pump_price/branch/pump_price_branch.dart';
+import 'package:blue_business/core/models/pump_price/transactions/transactions.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -37,7 +38,7 @@ abstract class PumpPriceStationService {
   });
 
   @GET('/fuel-transactions/insights/{id}')
-  Future<GetFillingStationsResponse> getInsights({
+  Future<PumpPriceInsightsResponse> getInsights({
     @Path('id') required String id,
     @Query('time') required String period,
   });

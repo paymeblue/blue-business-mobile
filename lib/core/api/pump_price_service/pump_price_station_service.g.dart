@@ -168,7 +168,7 @@ class _PumpPriceStationService implements PumpPriceStationService {
   }
 
   @override
-  Future<GetFillingStationsResponse> getInsights({
+  Future<PumpPriceInsightsResponse> getInsights({
     required String id,
     required String period,
   }) async {
@@ -176,7 +176,7 @@ class _PumpPriceStationService implements PumpPriceStationService {
     final queryParameters = <String, dynamic>{r'time': period};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<GetFillingStationsResponse>(Options(
+    final _options = _setStreamType<PumpPriceInsightsResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -193,9 +193,9 @@ class _PumpPriceStationService implements PumpPriceStationService {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late GetFillingStationsResponse _value;
+    late PumpPriceInsightsResponse _value;
     try {
-      _value = GetFillingStationsResponse.fromJson(_result.data!);
+      _value = PumpPriceInsightsResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

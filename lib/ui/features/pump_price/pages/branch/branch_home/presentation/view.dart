@@ -15,6 +15,7 @@ import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/textfield/textfield.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:intl/intl.dart';
 
 import 'view_model.dart';
 
@@ -295,7 +296,9 @@ class PumpPriceBranchContainer extends StatelessWidget {
               ),
             ),
             Text(
-              '300,000',
+              NumberFormat.currency(name: '').format(
+                station.totalTransactions,
+              ),
               style: context.textTheme.displaySmall!.copyWith(
                 fontSize: 24.sp,
                 height: 100.percentToLineHeight(24),

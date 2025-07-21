@@ -146,6 +146,8 @@ class FillingStation with _$FillingStation {
     required String longitude,
     required String latitude,
     required String address,
+    @Default(0) double totalTransactions,
+    @Default(0) double percentageIncrease,
     String? createdAt,
     String? updatedAt,
   }) = _FillingStation;

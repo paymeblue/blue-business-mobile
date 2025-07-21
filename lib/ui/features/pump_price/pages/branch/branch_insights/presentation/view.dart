@@ -4,9 +4,10 @@ import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/pump_price/branch/pump_price_branch.dart';
-import 'package:blue_business/core/models/sales_analytics/line_chart/line_chart_data.dart';
+import 'package:blue_business/core/models/pump_price/transactions/transactions.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/tabs/line_chart.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/tabs/period_tab.dart';
@@ -31,8 +32,8 @@ class _PumpPriceBranchInsightsViewState
     extends State<PumpPriceBranchInsightsView> {
   @override
   Widget build(BuildContext context) {
-    return BaseView<BranchInsightsViewModel>(
-        model: BranchInsightsViewModel(),
+    return BaseView<PumpPriceBranchInsightsViewModel>(
+        model: PumpPriceBranchInsightsViewModel(),
         onModelReady: (model) => model.init(context, widget.station.id),
         builder: (context, model, _) {
           return Scaffold(
@@ -62,13 +63,20 @@ class _PumpPriceBranchInsightsViewState
                   ),
                   25.verticalGap,
                   Expanded(
-                    child: ListView(
-                      children: [
-                        salesStatsContainer(model),
-                        8.verticalGap,
-                        transactionsList(),
-                      ],
-                    ),
+                    child: model.pageState == FetchState.loading
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.pumpPricebodyText,
+                              strokeWidth: 1.2,
+                            ),
+                          )
+                        : ListView(
+                            children: [
+                              salesStatsContainer(model),
+                              8.verticalGap,
+                              transactionsList(model),
+                            ],
+                          ),
                   )
                 ],
               ),
@@ -77,226 +85,47 @@ class _PumpPriceBranchInsightsViewState
         });
   }
 
-  Widget transactionsList() {
+  Widget transactionsList(PumpPriceBranchInsightsViewModel model) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.w,
-        vertical: 12.h,
-      ),
-      decoration: BoxDecoration(
-        border: Border.all(color: AppColors.pumpPricegreyBg),
-        borderRadius: BorderRadius.circular(10.r),
-        color: AppColors.pumpPricewhite,
-      ),
-      child: ListView(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        children: [
-          Container(
-            height: 55.h,
-            decoration: BoxDecoration(),
-            child: Row(
-              children: [
-                AppAssets.images.pumpPrice.svg.completed.svg(),
-                10.horizontalGap,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Adamu Glory',
-                              style: context.textTheme.bodyLarge,
-                            ),
-                            TextSpan(
-                              text: ' • 25 litres',
-                              style: context.textTheme.bodyMedium,
-                            ),
-                          ],
-                        ),
-                      ),
-                      2.verticalGap,
-                      Text(
-                        '20 Jun 2025',
-                        style: context.textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                ),
-                10.horizontalGap,
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: nairaSymbol(),
-                        style: context.textTheme.titleLarge!.copyWith(
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.w500,
-                          height: 100.percentToLineHeight(
-                            13,
-                          ),
-                          letterSpacing: -3.percentToLetterSpacing(13),
-                        ),
-                      ),
-                      TextSpan(
-                        text: ' 25,000',
-                        style: context.textTheme.titleLarge!.copyWith(
-                          fontSize: 16.sp,
-                          height: 100.percentToLineHeight(
-                            16,
-                          ),
-                          letterSpacing: -4.percentToLetterSpacing(16),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          12.verticalGap,
-          Container(
-            height: 55.h,
-            decoration: BoxDecoration(),
-            child: Row(
-              children: [
-                AppAssets.images.pumpPrice.svg.completed.svg(),
-                10.horizontalGap,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Adamu Glory',
-                              style: context.textTheme.bodyLarge,
-                            ),
-                            TextSpan(
-                              text: ' • 25 litres',
-                              style: context.textTheme.bodyMedium,
-                            ),
-                          ],
-                        ),
-                      ),
-                      2.verticalGap,
-                      Text(
-                        '20 Jun 2025',
-                        style: context.textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                ),
-                10.horizontalGap,
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: nairaSymbol(),
-                        style: context.textTheme.titleLarge!.copyWith(
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.w500,
-                          height: 100.percentToLineHeight(
-                            13,
-                          ),
-                          letterSpacing: -3.percentToLetterSpacing(13),
-                        ),
-                      ),
-                      TextSpan(
-                        text: ' 25,000',
-                        style: context.textTheme.titleLarge!.copyWith(
-                          fontSize: 16.sp,
-                          height: 100.percentToLineHeight(
-                            16,
-                          ),
-                          letterSpacing: -4.percentToLetterSpacing(16),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          12.verticalGap,
-          Container(
-            height: 55.h,
-            decoration: BoxDecoration(),
-            child: Row(
-              children: [
-                AppAssets.images.pumpPrice.svg.pending.svg(),
-                10.horizontalGap,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Adamu Glory',
-                              style: context.textTheme.bodyLarge,
-                            ),
-                            TextSpan(
-                              text: ' • 25 litres',
-                              style: context.textTheme.bodyMedium,
-                            ),
-                          ],
-                        ),
-                      ),
-                      2.verticalGap,
-                      Text(
-                        '20 Jun 2025',
-                        style: context.textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                ),
-                10.horizontalGap,
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: nairaSymbol(),
-                        style: context.textTheme.titleLarge!.copyWith(
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.w500,
-                          height: 100.percentToLineHeight(
-                            13,
-                          ),
-                          letterSpacing: -3.percentToLetterSpacing(13),
-                        ),
-                      ),
-                      TextSpan(
-                        text: ' 25,000',
-                        style: context.textTheme.titleLarge!.copyWith(
-                          fontSize: 16.sp,
-                          height: 100.percentToLineHeight(
-                            16,
-                          ),
-                          letterSpacing: -4.percentToLetterSpacing(16),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        padding: EdgeInsets.symmetric(
+          horizontal: 16.w,
+          vertical: 12.h,
+        ),
+        decoration: BoxDecoration(
+          border: Border.all(color: AppColors.pumpPricegreyBg),
+          borderRadius: BorderRadius.circular(10.r),
+          color: AppColors.pumpPricewhite,
+        ),
+        child: model.transactions.isEmpty
+            ? emptyState(context)
+            : ListView.separated(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (ctx, i) {
+                  return transactionTile(context, model.transactions[i]);
+                },
+                separatorBuilder: (ctx, i) => 20.verticalGap,
+                itemCount: model.transactions.length,
+              ));
+  }
+
+  Widget emptyState(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        AppAssets.images.pumpPrice.svg.attendantEmpty.svg(),
+        10.verticalGap,
+        Text(
+          'No attendants yet',
+          style: context.textTheme.titleSmall,
+        ),
+      ],
     );
   }
 
-  Widget salesStatsContainer(BranchInsightsViewModel model) {
+  Widget salesStatsContainer(PumpPriceBranchInsightsViewModel model) {
     NumberFormat format = NumberFormat("#,##0.00");
-    String amount = format.format(double.parse("1250732.15"));
+    String amount = format.format(model.totalRevenue);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
       decoration: BoxDecoration(
@@ -337,13 +166,13 @@ class _PumpPriceBranchInsightsViewState
                         letterSpacing: -2.percentToLetterSpacing(24),
                       ),
                     ),
-                    Text(
-                      " +3%",
-                      style: context.textTheme.displaySmall!.copyWith(
-                        color: AppColors.pumpPricesuccess,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    )
+                    // Text(
+                    //   " +3%",
+                    //   style: context.textTheme.displaySmall!.copyWith(
+                    //     color: AppColors.pumpPricesuccess,
+                    //     fontWeight: FontWeight.w400,
+                    //   ),
+                    // )
                   ],
                 ),
               ],
@@ -355,17 +184,79 @@ class _PumpPriceBranchInsightsViewState
     );
   }
 
-  Widget lineChart(BranchInsightsViewModel model) {
+  Container transactionTile(BuildContext context, PumpPriceTransaction item) {
+    final date = DateTime.parse(item.createdAt);
+    final dateString =
+        '${date.day} ${DateFormat.MMM().format(date)} ${date.year}';
+
+    final amount = NumberFormat.currency(
+      symbol: '',
+    ).format(double.parse(item.amount));
+    return Container(
+      height: 55.h,
+      decoration: BoxDecoration(),
+      child: Row(
+        children: [
+          item.status == 'completed'
+              ? AppAssets.images.pumpPrice.svg.completed.svg()
+              : AppAssets.images.pumpPrice.svg.pending.svg(),
+          10.horizontalGap,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: item.userName,
+                        style: context.textTheme.bodyLarge,
+                      ),
+                      TextSpan(
+                        text: ' • ${item.litre} litres',
+                        style: context.textTheme.bodyMedium,
+                      ),
+                    ],
+                  ),
+                ),
+                2.verticalGap,
+                Text(dateString, style: context.textTheme.bodyMedium),
+              ],
+            ),
+          ),
+          10.horizontalGap,
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: nairaSymbol(),
+                  style: context.textTheme.titleLarge!.copyWith(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                    height: 100.percentToLineHeight(13),
+                    letterSpacing: -3.percentToLetterSpacing(13),
+                  ),
+                ),
+                TextSpan(
+                  text: ' $amount',
+                  style: context.textTheme.titleLarge!.copyWith(
+                    fontSize: 16.sp,
+                    height: 100.percentToLineHeight(16),
+                    letterSpacing: -4.percentToLetterSpacing(16),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget lineChart(PumpPriceBranchInsightsViewModel model) {
     return PumpPriceLineChart(
-      inputData: [
-        LineInputData(label: 'Mon', amount: 3500),
-        LineInputData(label: 'Tue', amount: 300),
-        LineInputData(label: 'Wed', amount: 1500),
-        LineInputData(label: 'Thur', amount: 6200),
-        LineInputData(label: 'Fri', amount: 6350),
-        LineInputData(label: 'Sat', amount: 21000),
-        LineInputData(label: 'Sun', amount: 5400),
-      ],
+      inputData: model.inputData,
     );
   }
 }
