@@ -165,7 +165,7 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
     }
 
     if (o != station!.opening) {
-      opening ==
+      opening =
           '${openingTime!.hour.toString().padLeft(2, '0')}:${openingTime!.minute.toString().padLeft(2, '0')}';
       request = request.copyWith(opening: opening);
     }

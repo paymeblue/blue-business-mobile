@@ -257,6 +257,7 @@ class _PumpPriceBranchInsightsViewState
   Widget lineChart(PumpPriceBranchInsightsViewModel model) {
     return PumpPriceLineChart(
       inputData: model.inputData,
+      isMonthly: model.selectedType == 'Monthly',
     );
   }
 }

@@ -64,14 +64,14 @@ class AddPumpPriceAttendantView extends StatelessWidget {
                   Expanded(
                     child: ListView(
                       children: [
-                        if (args.attendant == null) ...[
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: avatarRow(model),
-                          ),
-                          12.verticalGap
-                        ] else
-                          6.verticalGap,
+                        // if (args.attendant == null) ...[
+                        //   Align(
+                        //     alignment: Alignment.centerLeft,
+                        //     child: avatarRow(model),
+                        //   ),
+                        //   12.verticalGap
+                        // ] else
+                        6.verticalGap,
                         PumpPriceTextField.plaintext(
                           hint: 'Enter attendant name',
                           title: 'Attendant\'s name',
