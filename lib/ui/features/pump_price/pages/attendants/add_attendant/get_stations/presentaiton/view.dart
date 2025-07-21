@@ -32,6 +32,7 @@ class GetPumpPriceStationsView extends StatelessWidget {
                 PumpPriceTextField.plaintext(
                   hint: 'Start typing',
                   onChanged: model.onSearchChanged,
+                  controller: model.search,
                 ),
                 10.verticalGap,
                 Expanded(

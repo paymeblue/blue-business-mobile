@@ -113,7 +113,6 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
 
     CreatePumpPriceBranchRequest request = CreatePumpPriceBranchRequest(
       name: name.text.trim(),
-      businessId: locator<AppStateValues>().currentUser!.id,
       address: address?.formattedAddress ?? '',
       fuelPrice: double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")),
       latitude: address?.geometry.location.lat ?? 0,

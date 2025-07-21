@@ -103,11 +103,35 @@ class GetFillingStationsResponse with _$GetFillingStationsResponse {
   const factory GetFillingStationsResponse({
     @Default('') String message,
     @Default('fail') String status,
-    @Default([]) List<FillingStation> data,
+    @Default(GetFillingStationsData()) GetFillingStationsData data,
   }) = _GetFillingStationsResponse;
 
   factory GetFillingStationsResponse.fromJson(Map<String, dynamic> json) =>
       _$GetFillingStationsResponseImpl.fromJson(json);
+}
+
+@freezed
+class GetFillingStationsData with _$GetFillingStationsData {
+  const factory GetFillingStationsData({
+    @Default(GetFillingStationsMeta()) GetFillingStationsMeta meta,
+    @Default([]) List<FillingStation> data,
+  }) = _GetFillingStationsData;
+
+  factory GetFillingStationsData.fromJson(Map<String, dynamic> json) =>
+      _$GetFillingStationsDataImpl.fromJson(json);
+}
+
+@freezed
+class GetFillingStationsMeta with _$GetFillingStationsMeta {
+  const factory GetFillingStationsMeta({
+    @Default(0) int total,
+    @Default(1) int page,
+    @Default(0) int limit,
+    @Default(1) int pages,
+  }) = _GetFillingStationsMeta;
+
+  factory GetFillingStationsMeta.fromJson(Map<String, dynamic> json) =>
+      _$GetFillingStationsMetaImpl.fromJson(json);
 }
 
 @freezed
@@ -124,7 +148,6 @@ class FillingStation with _$FillingStation {
     required String address,
     String? createdAt,
     String? updatedAt,
-    String? businessId,
   }) = _FillingStation;
 
   factory FillingStation.fromJson(Map<String, dynamic> json) =>

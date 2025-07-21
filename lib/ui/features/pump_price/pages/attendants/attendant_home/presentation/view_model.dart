@@ -41,6 +41,13 @@ class PumpPriceAttendantViewModel extends BaseViewModel {
   PagingController<int, Staff> staffPagingController =
       PagingController<int, Staff>(firstPageKey: 1);
 
+  bool _canSearch = false;
+  bool get canSearch => _canSearch;
+  set canSearch(bool v) {
+    _canSearch = v;
+    notifyListeners();
+  }
+
   getStaff(int page) async {
     try {
       GetStaffResponse response = await PumpPriceAttendantService()
@@ -55,6 +62,11 @@ class PumpPriceAttendantViewModel extends BaseViewModel {
           );
 
       if (response.status == "success") {
+        if (response.data!.data.isEmpty) {
+          canSearch = true;
+        } else {
+          canSearch = false;
+        }
         if (response.data!.loadMore) {
           staffPagingController.appendPage(response.data!.data, page + 1);
         } else {

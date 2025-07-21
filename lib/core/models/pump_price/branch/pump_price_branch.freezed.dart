@@ -22,7 +22,6 @@ CreatePumpPriceBranchRequest _$CreatePumpPriceBranchRequestFromJson(
 /// @nodoc
 mixin _$CreatePumpPriceBranchRequest {
   String get name => throw _privateConstructorUsedError;
-  int get businessId => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   double get fuelPrice => throw _privateConstructorUsedError;
   double get latitude => throw _privateConstructorUsedError;
@@ -50,7 +49,6 @@ abstract class $CreatePumpPriceBranchRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      int businessId,
       String address,
       double fuelPrice,
       double latitude,
@@ -76,7 +74,6 @@ class _$CreatePumpPriceBranchRequestCopyWithImpl<$Res,
   @override
   $Res call({
     Object? name = null,
-    Object? businessId = null,
     Object? address = null,
     Object? fuelPrice = null,
     Object? latitude = null,
@@ -89,10 +86,6 @@ class _$CreatePumpPriceBranchRequestCopyWithImpl<$Res,
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      businessId: null == businessId
-          ? _value.businessId
-          : businessId // ignore: cast_nullable_to_non_nullable
-              as int,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -132,7 +125,6 @@ abstract class _$$CreatePumpPriceBranchRequestImplCopyWith<$Res>
   @useResult
   $Res call(
       {String name,
-      int businessId,
       String address,
       double fuelPrice,
       double latitude,
@@ -157,7 +149,6 @@ class __$$CreatePumpPriceBranchRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? businessId = null,
     Object? address = null,
     Object? fuelPrice = null,
     Object? latitude = null,
@@ -170,10 +161,6 @@ class __$$CreatePumpPriceBranchRequestImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      businessId: null == businessId
-          ? _value.businessId
-          : businessId // ignore: cast_nullable_to_non_nullable
-              as int,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -208,7 +195,6 @@ class _$CreatePumpPriceBranchRequestImpl
     implements _CreatePumpPriceBranchRequest {
   const _$CreatePumpPriceBranchRequestImpl(
       {required this.name,
-      required this.businessId,
       required this.address,
       required this.fuelPrice,
       required this.latitude,
@@ -222,8 +208,6 @@ class _$CreatePumpPriceBranchRequestImpl
 
   @override
   final String name;
-  @override
-  final int businessId;
   @override
   final String address;
   @override
@@ -239,7 +223,7 @@ class _$CreatePumpPriceBranchRequestImpl
 
   @override
   String toString() {
-    return 'CreatePumpPriceBranchRequest(name: $name, businessId: $businessId, address: $address, fuelPrice: $fuelPrice, latitude: $latitude, longitude: $longitude, opening: $opening, closing: $closing)';
+    return 'CreatePumpPriceBranchRequest(name: $name, address: $address, fuelPrice: $fuelPrice, latitude: $latitude, longitude: $longitude, opening: $opening, closing: $closing)';
   }
 
   @override
@@ -248,8 +232,6 @@ class _$CreatePumpPriceBranchRequestImpl
         (other.runtimeType == runtimeType &&
             other is _$CreatePumpPriceBranchRequestImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.businessId, businessId) ||
-                other.businessId == businessId) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.fuelPrice, fuelPrice) ||
                 other.fuelPrice == fuelPrice) &&
@@ -263,8 +245,8 @@ class _$CreatePumpPriceBranchRequestImpl
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, businessId, address,
-      fuelPrice, latitude, longitude, opening, closing);
+  int get hashCode => Object.hash(runtimeType, name, address, fuelPrice,
+      latitude, longitude, opening, closing);
 
   /// Create a copy of CreatePumpPriceBranchRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -288,7 +270,6 @@ abstract class _CreatePumpPriceBranchRequest
     implements CreatePumpPriceBranchRequest {
   const factory _CreatePumpPriceBranchRequest(
       {required final String name,
-      required final int businessId,
       required final String address,
       required final double fuelPrice,
       required final double latitude,
@@ -301,8 +282,6 @@ abstract class _CreatePumpPriceBranchRequest
 
   @override
   String get name;
-  @override
-  int get businessId;
   @override
   String get address;
   @override
@@ -1770,7 +1749,7 @@ GetFillingStationsResponse _$GetFillingStationsResponseFromJson(
 mixin _$GetFillingStationsResponse {
   String get message => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
-  List<FillingStation> get data => throw _privateConstructorUsedError;
+  GetFillingStationsData get data => throw _privateConstructorUsedError;
 
   /// Serializes this GetFillingStationsResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1789,7 +1768,9 @@ abstract class $GetFillingStationsResponseCopyWith<$Res> {
       _$GetFillingStationsResponseCopyWithImpl<$Res,
           GetFillingStationsResponse>;
   @useResult
-  $Res call({String message, String status, List<FillingStation> data});
+  $Res call({String message, String status, GetFillingStationsData data});
+
+  $GetFillingStationsDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -1824,8 +1805,18 @@ class _$GetFillingStationsResponseCopyWithImpl<$Res,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<FillingStation>,
+              as GetFillingStationsData,
     ) as $Val);
+  }
+
+  /// Create a copy of GetFillingStationsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GetFillingStationsDataCopyWith<$Res> get data {
+    return $GetFillingStationsDataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
   }
 }
 
@@ -1838,7 +1829,10 @@ abstract class _$$GetFillingStationsResponseImplCopyWith<$Res>
       __$$GetFillingStationsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String message, String status, List<FillingStation> data});
+  $Res call({String message, String status, GetFillingStationsData data});
+
+  @override
+  $GetFillingStationsDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -1870,9 +1864,9 @@ class __$$GetFillingStationsResponseImplCopyWithImpl<$Res>
           : status // ignore: cast_nullable_to_non_nullable
               as String,
       data: null == data
-          ? _value._data
+          ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<FillingStation>,
+              as GetFillingStationsData,
     ));
   }
 }
@@ -1883,8 +1877,7 @@ class _$GetFillingStationsResponseImpl implements _GetFillingStationsResponse {
   const _$GetFillingStationsResponseImpl(
       {this.message = '',
       this.status = 'fail',
-      final List<FillingStation> data = const []})
-      : _data = data;
+      this.data = const GetFillingStationsData()});
 
   factory _$GetFillingStationsResponseImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -1896,14 +1889,9 @@ class _$GetFillingStationsResponseImpl implements _GetFillingStationsResponse {
   @override
   @JsonKey()
   final String status;
-  final List<FillingStation> _data;
   @override
   @JsonKey()
-  List<FillingStation> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
-  }
+  final GetFillingStationsData data;
 
   @override
   String toString() {
@@ -1917,13 +1905,12 @@ class _$GetFillingStationsResponseImpl implements _GetFillingStationsResponse {
             other is _$GetFillingStationsResponseImpl &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality().equals(other._data, _data));
+            (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, message, status, const DeepCollectionEquality().hash(_data));
+  int get hashCode => Object.hash(runtimeType, message, status, data);
 
   /// Create a copy of GetFillingStationsResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -1947,7 +1934,7 @@ abstract class _GetFillingStationsResponse
   const factory _GetFillingStationsResponse(
       {final String message,
       final String status,
-      final List<FillingStation> data}) = _$GetFillingStationsResponseImpl;
+      final GetFillingStationsData data}) = _$GetFillingStationsResponseImpl;
 
   factory _GetFillingStationsResponse.fromJson(Map<String, dynamic> json) =
       _$GetFillingStationsResponseImpl.fromJson;
@@ -1957,13 +1944,424 @@ abstract class _GetFillingStationsResponse
   @override
   String get status;
   @override
-  List<FillingStation> get data;
+  GetFillingStationsData get data;
 
   /// Create a copy of GetFillingStationsResponse
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetFillingStationsResponseImplCopyWith<_$GetFillingStationsResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+GetFillingStationsData _$GetFillingStationsDataFromJson(
+    Map<String, dynamic> json) {
+  return _GetFillingStationsData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GetFillingStationsData {
+  GetFillingStationsMeta get meta => throw _privateConstructorUsedError;
+  List<FillingStation> get data => throw _privateConstructorUsedError;
+
+  /// Serializes this GetFillingStationsData to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of GetFillingStationsData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $GetFillingStationsDataCopyWith<GetFillingStationsData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetFillingStationsDataCopyWith<$Res> {
+  factory $GetFillingStationsDataCopyWith(GetFillingStationsData value,
+          $Res Function(GetFillingStationsData) then) =
+      _$GetFillingStationsDataCopyWithImpl<$Res, GetFillingStationsData>;
+  @useResult
+  $Res call({GetFillingStationsMeta meta, List<FillingStation> data});
+
+  $GetFillingStationsMetaCopyWith<$Res> get meta;
+}
+
+/// @nodoc
+class _$GetFillingStationsDataCopyWithImpl<$Res,
+        $Val extends GetFillingStationsData>
+    implements $GetFillingStationsDataCopyWith<$Res> {
+  _$GetFillingStationsDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of GetFillingStationsData
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? meta = null,
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      meta: null == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as GetFillingStationsMeta,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<FillingStation>,
+    ) as $Val);
+  }
+
+  /// Create a copy of GetFillingStationsData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GetFillingStationsMetaCopyWith<$Res> get meta {
+    return $GetFillingStationsMetaCopyWith<$Res>(_value.meta, (value) {
+      return _then(_value.copyWith(meta: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$GetFillingStationsDataImplCopyWith<$Res>
+    implements $GetFillingStationsDataCopyWith<$Res> {
+  factory _$$GetFillingStationsDataImplCopyWith(
+          _$GetFillingStationsDataImpl value,
+          $Res Function(_$GetFillingStationsDataImpl) then) =
+      __$$GetFillingStationsDataImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({GetFillingStationsMeta meta, List<FillingStation> data});
+
+  @override
+  $GetFillingStationsMetaCopyWith<$Res> get meta;
+}
+
+/// @nodoc
+class __$$GetFillingStationsDataImplCopyWithImpl<$Res>
+    extends _$GetFillingStationsDataCopyWithImpl<$Res,
+        _$GetFillingStationsDataImpl>
+    implements _$$GetFillingStationsDataImplCopyWith<$Res> {
+  __$$GetFillingStationsDataImplCopyWithImpl(
+      _$GetFillingStationsDataImpl _value,
+      $Res Function(_$GetFillingStationsDataImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GetFillingStationsData
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? meta = null,
+    Object? data = null,
+  }) {
+    return _then(_$GetFillingStationsDataImpl(
+      meta: null == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as GetFillingStationsMeta,
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<FillingStation>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$GetFillingStationsDataImpl implements _GetFillingStationsData {
+  const _$GetFillingStationsDataImpl(
+      {this.meta = const GetFillingStationsMeta(),
+      final List<FillingStation> data = const []})
+      : _data = data;
+
+  factory _$GetFillingStationsDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GetFillingStationsDataImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final GetFillingStationsMeta meta;
+  final List<FillingStation> _data;
+  @override
+  @JsonKey()
+  List<FillingStation> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'GetFillingStationsData(meta: $meta, data: $data)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetFillingStationsDataImpl &&
+            (identical(other.meta, meta) || other.meta == meta) &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, meta, const DeepCollectionEquality().hash(_data));
+
+  /// Create a copy of GetFillingStationsData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetFillingStationsDataImplCopyWith<_$GetFillingStationsDataImpl>
+      get copyWith => __$$GetFillingStationsDataImplCopyWithImpl<
+          _$GetFillingStationsDataImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$GetFillingStationsDataImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GetFillingStationsData implements GetFillingStationsData {
+  const factory _GetFillingStationsData(
+      {final GetFillingStationsMeta meta,
+      final List<FillingStation> data}) = _$GetFillingStationsDataImpl;
+
+  factory _GetFillingStationsData.fromJson(Map<String, dynamic> json) =
+      _$GetFillingStationsDataImpl.fromJson;
+
+  @override
+  GetFillingStationsMeta get meta;
+  @override
+  List<FillingStation> get data;
+
+  /// Create a copy of GetFillingStationsData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetFillingStationsDataImplCopyWith<_$GetFillingStationsDataImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+GetFillingStationsMeta _$GetFillingStationsMetaFromJson(
+    Map<String, dynamic> json) {
+  return _GetFillingStationsMeta.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GetFillingStationsMeta {
+  int get total => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
+  int get limit => throw _privateConstructorUsedError;
+  int get pages => throw _privateConstructorUsedError;
+
+  /// Serializes this GetFillingStationsMeta to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of GetFillingStationsMeta
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $GetFillingStationsMetaCopyWith<GetFillingStationsMeta> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetFillingStationsMetaCopyWith<$Res> {
+  factory $GetFillingStationsMetaCopyWith(GetFillingStationsMeta value,
+          $Res Function(GetFillingStationsMeta) then) =
+      _$GetFillingStationsMetaCopyWithImpl<$Res, GetFillingStationsMeta>;
+  @useResult
+  $Res call({int total, int page, int limit, int pages});
+}
+
+/// @nodoc
+class _$GetFillingStationsMetaCopyWithImpl<$Res,
+        $Val extends GetFillingStationsMeta>
+    implements $GetFillingStationsMetaCopyWith<$Res> {
+  _$GetFillingStationsMetaCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of GetFillingStationsMeta
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+    Object? page = null,
+    Object? limit = null,
+    Object? pages = null,
+  }) {
+    return _then(_value.copyWith(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      limit: null == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int,
+      pages: null == pages
+          ? _value.pages
+          : pages // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$GetFillingStationsMetaImplCopyWith<$Res>
+    implements $GetFillingStationsMetaCopyWith<$Res> {
+  factory _$$GetFillingStationsMetaImplCopyWith(
+          _$GetFillingStationsMetaImpl value,
+          $Res Function(_$GetFillingStationsMetaImpl) then) =
+      __$$GetFillingStationsMetaImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int total, int page, int limit, int pages});
+}
+
+/// @nodoc
+class __$$GetFillingStationsMetaImplCopyWithImpl<$Res>
+    extends _$GetFillingStationsMetaCopyWithImpl<$Res,
+        _$GetFillingStationsMetaImpl>
+    implements _$$GetFillingStationsMetaImplCopyWith<$Res> {
+  __$$GetFillingStationsMetaImplCopyWithImpl(
+      _$GetFillingStationsMetaImpl _value,
+      $Res Function(_$GetFillingStationsMetaImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GetFillingStationsMeta
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+    Object? page = null,
+    Object? limit = null,
+    Object? pages = null,
+  }) {
+    return _then(_$GetFillingStationsMetaImpl(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      limit: null == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int,
+      pages: null == pages
+          ? _value.pages
+          : pages // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$GetFillingStationsMetaImpl implements _GetFillingStationsMeta {
+  const _$GetFillingStationsMetaImpl(
+      {this.total = 0, this.page = 1, this.limit = 0, this.pages = 1});
+
+  factory _$GetFillingStationsMetaImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GetFillingStationsMetaImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int total;
+  @override
+  @JsonKey()
+  final int page;
+  @override
+  @JsonKey()
+  final int limit;
+  @override
+  @JsonKey()
+  final int pages;
+
+  @override
+  String toString() {
+    return 'GetFillingStationsMeta(total: $total, page: $page, limit: $limit, pages: $pages)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetFillingStationsMetaImpl &&
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.limit, limit) || other.limit == limit) &&
+            (identical(other.pages, pages) || other.pages == pages));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, total, page, limit, pages);
+
+  /// Create a copy of GetFillingStationsMeta
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetFillingStationsMetaImplCopyWith<_$GetFillingStationsMetaImpl>
+      get copyWith => __$$GetFillingStationsMetaImplCopyWithImpl<
+          _$GetFillingStationsMetaImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$GetFillingStationsMetaImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GetFillingStationsMeta implements GetFillingStationsMeta {
+  const factory _GetFillingStationsMeta(
+      {final int total,
+      final int page,
+      final int limit,
+      final int pages}) = _$GetFillingStationsMetaImpl;
+
+  factory _GetFillingStationsMeta.fromJson(Map<String, dynamic> json) =
+      _$GetFillingStationsMetaImpl.fromJson;
+
+  @override
+  int get total;
+  @override
+  int get page;
+  @override
+  int get limit;
+  @override
+  int get pages;
+
+  /// Create a copy of GetFillingStationsMeta
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetFillingStationsMetaImplCopyWith<_$GetFillingStationsMetaImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1984,7 +2382,6 @@ mixin _$FillingStation {
   String get address => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
   String? get updatedAt => throw _privateConstructorUsedError;
-  String? get businessId => throw _privateConstructorUsedError;
 
   /// Serializes this FillingStation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -2013,8 +2410,7 @@ abstract class $FillingStationCopyWith<$Res> {
       String latitude,
       String address,
       String? createdAt,
-      String? updatedAt,
-      String? businessId});
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -2043,7 +2439,6 @@ class _$FillingStationCopyWithImpl<$Res, $Val extends FillingStation>
     Object? address = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
-    Object? businessId = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -2090,10 +2485,6 @@ class _$FillingStationCopyWithImpl<$Res, $Val extends FillingStation>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
-      businessId: freezed == businessId
-          ? _value.businessId
-          : businessId // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
@@ -2117,8 +2508,7 @@ abstract class _$$FillingStationImplCopyWith<$Res>
       String latitude,
       String address,
       String? createdAt,
-      String? updatedAt,
-      String? businessId});
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -2145,7 +2535,6 @@ class __$$FillingStationImplCopyWithImpl<$Res>
     Object? address = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
-    Object? businessId = freezed,
   }) {
     return _then(_$FillingStationImpl(
       id: null == id
@@ -2192,10 +2581,6 @@ class __$$FillingStationImplCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
-      businessId: freezed == businessId
-          ? _value.businessId
-          : businessId // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -2214,8 +2599,7 @@ class _$FillingStationImpl implements _FillingStation {
       required this.latitude,
       required this.address,
       this.createdAt,
-      this.updatedAt,
-      this.businessId});
+      this.updatedAt});
 
   factory _$FillingStationImpl.fromJson(Map<String, dynamic> json) =>
       _$$FillingStationImplFromJson(json);
@@ -2243,12 +2627,10 @@ class _$FillingStationImpl implements _FillingStation {
   final String? createdAt;
   @override
   final String? updatedAt;
-  @override
-  final String? businessId;
 
   @override
   String toString() {
-    return 'FillingStation(id: $id, branchId: $branchId, name: $name, fuelPrice: $fuelPrice, opening: $opening, closing: $closing, longitude: $longitude, latitude: $latitude, address: $address, createdAt: $createdAt, updatedAt: $updatedAt, businessId: $businessId)';
+    return 'FillingStation(id: $id, branchId: $branchId, name: $name, fuelPrice: $fuelPrice, opening: $opening, closing: $closing, longitude: $longitude, latitude: $latitude, address: $address, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -2272,27 +2654,13 @@ class _$FillingStationImpl implements _FillingStation {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.businessId, businessId) ||
-                other.businessId == businessId));
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      branchId,
-      name,
-      fuelPrice,
-      opening,
-      closing,
-      longitude,
-      latitude,
-      address,
-      createdAt,
-      updatedAt,
-      businessId);
+  int get hashCode => Object.hash(runtimeType, id, branchId, name, fuelPrice,
+      opening, closing, longitude, latitude, address, createdAt, updatedAt);
 
   /// Create a copy of FillingStation
   /// with the given fields replaced by the non-null parameter values.
@@ -2323,8 +2691,7 @@ abstract class _FillingStation implements FillingStation {
       required final String latitude,
       required final String address,
       final String? createdAt,
-      final String? updatedAt,
-      final String? businessId}) = _$FillingStationImpl;
+      final String? updatedAt}) = _$FillingStationImpl;
 
   factory _FillingStation.fromJson(Map<String, dynamic> json) =
       _$FillingStationImpl.fromJson;
@@ -2351,8 +2718,6 @@ abstract class _FillingStation implements FillingStation {
   String? get createdAt;
   @override
   String? get updatedAt;
-  @override
-  String? get businessId;
 
   /// Create a copy of FillingStation
   /// with the given fields replaced by the non-null parameter values.

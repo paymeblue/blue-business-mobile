@@ -36,7 +36,7 @@ class PumpPriceBranchView extends StatelessWidget {
               child: Column(
                 children: [
                   titleRow(context, model),
-                  if ((model.stationController.itemList ?? []).isNotEmpty) ...[
+                  if (model.canSearch) ...[
                     14.verticalGap,
                     PumpPriceTextField.plaintext(
                       hint: 'Search for branch',
@@ -44,50 +44,65 @@ class PumpPriceBranchView extends StatelessWidget {
                         padding: EdgeInsets.only(left: 15.w),
                         child: AppAssets.images.pumpPrice.svg.search.svg(),
                       ),
+                      controller: model.search,
                       backgroundColor: AppColors.white,
+                      onChanged: model.onSearchChanged,
                     )
                   ],
                   26.verticalGap,
                   Expanded(
-                    child: PagedListView<int, FillingStation>.separated(
-                      pagingController: model.stationController,
-                      builderDelegate: PagedChildBuilderDelegate(
-                        firstPageProgressIndicatorBuilder: (context) => Center(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 1.2,
-                            color: AppColors.pumpPricebodyText,
-                          ),
-                        ),
-                        noItemsFoundIndicatorBuilder: (context) =>
-                            emptyState(context, model),
-                        itemBuilder: (context, item, index) {
-                          return PumpPriceBranchContainer(
-                            station: item,
-                            onDelete: (value) {
-                              model.deleteBranch(value);
+                    child: model.pageState == FetchState.loading
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.pumpPricebodyText,
+                              strokeWidth: 1.2,
+                            ),
+                          )
+                        : RefreshIndicator(
+                            onRefresh: () async {
+                              model.stationController.refresh();
                             },
-                            onEdit: (value) {
-                              locator<AppRouter>()
-                                  .push<bool>(
-                                AddPumpPriceBranchRoute(
-                                    args: AddPumpPriceBranchViewArgs(
-                                  station: value,
-                                )),
-                              )
-                                  .then((v) {
-                                if (v == true) {
-                                  PumpPriceToast.success(
-                                      message: 'Changes saved!');
+                            child: PagedListView<int, FillingStation>.separated(
+                              pagingController: model.stationController,
+                              builderDelegate: PagedChildBuilderDelegate(
+                                firstPageProgressIndicatorBuilder: (context) =>
+                                    Center(
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 1.2,
+                                    color: AppColors.pumpPricebodyText,
+                                  ),
+                                ),
+                                noItemsFoundIndicatorBuilder: (context) =>
+                                    emptyState(context, model),
+                                itemBuilder: (context, item, index) {
+                                  return PumpPriceBranchContainer(
+                                    station: item,
+                                    onDelete: (value) {
+                                      model.deleteBranch(value);
+                                    },
+                                    onEdit: (value) {
+                                      locator<AppRouter>()
+                                          .push<bool>(
+                                        AddPumpPriceBranchRoute(
+                                            args: AddPumpPriceBranchViewArgs(
+                                          station: value,
+                                        )),
+                                      )
+                                          .then((v) {
+                                        if (v == true) {
+                                          PumpPriceToast.success(
+                                              message: 'Changes saved!');
 
-                                  model.getBranches();
-                                }
-                              });
-                            },
-                          );
-                        },
-                      ),
-                      separatorBuilder: (ctx, i) => 20.verticalGap,
-                    ),
+                                          model.stationController.refresh();
+                                        }
+                                      });
+                                    },
+                                  );
+                                },
+                              ),
+                              separatorBuilder: (ctx, i) => 20.verticalGap,
+                            ),
+                          ),
                   )
                 ],
               ),
@@ -130,7 +145,7 @@ class PumpPriceBranchView extends StatelessWidget {
                   .then((v) {
                 if (v == true) {
                   PumpPriceToast.success(message: 'Branch added!');
-                  model.getBranches();
+                  model.stationController.refresh();
                 }
               });
             },
@@ -150,7 +165,7 @@ class PumpPriceBranchView extends StatelessWidget {
             style: context.textTheme.titleMedium,
           ),
         ),
-        if (model.stations.isNotEmpty) ...[
+        if (model.canSearch) ...[
           8.horizontalGap,
           GestureDetector(
             onTap: () {
@@ -161,7 +176,7 @@ class PumpPriceBranchView extends StatelessWidget {
                   .then((v) {
                 if (v == true) {
                   PumpPriceToast.success(message: 'Branch added!');
-                  model.getBranches();
+                  model.stationController.refresh();
                 }
               });
             },

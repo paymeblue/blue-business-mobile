@@ -127,7 +127,11 @@ class AddPumpPriceAttendantView extends StatelessWidget {
                     isEnabled: model.isActive() || model.isEditActive(),
                     isLoading: model.buttonState == FetchState.loading,
                     onTap: () {
-                      model.createStaff();
+                      if (args.attendant != null) {
+                        model.editStaff();
+                      } else {
+                        model.createStaff();
+                      }
                     },
                   )
                 ],

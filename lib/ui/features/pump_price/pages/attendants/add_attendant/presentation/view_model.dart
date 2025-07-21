@@ -5,6 +5,7 @@ import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/pump_price/branch/pump_price_branch.dart';
+import 'package:blue_business/core/models/staff/create/request/update_staff_request.dart';
 import 'package:blue_business/core/models/staff/create/response/create_staff_response.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
@@ -119,6 +120,8 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
       } else if (!RegExp((r"[.,_@\\+$!#%^&*\-=?:;']+?").toString())
           .hasMatch(v.orEmpty)) {
         passwordValidationText = 'Password must contain a special character';
+      } else {
+        passwordValidationText = null;
       }
     } else {
       passwordValidationText = null;
@@ -195,7 +198,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
         name: 'Nigeria',
         dialCode: '+234',
       )),
-      branchId: int.parse(station!.branchId),
+      branchId: int.parse(station!.id),
       password: password.text,
     )
         .onError((error, stacktrace) {
@@ -215,6 +218,58 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     } else {
       buttonState = FetchState.error;
       PumpPriceToast.error(message: response.message);
+    }
+  }
+
+  editStaff() async {
+    buttonState = FetchState.loading;
+    UpdateStaffRequest request = UpdateStaffRequest();
+
+    if (phone.text.validPhone(CountryCode(
+          countryCode: 'NG',
+          name: 'Nigeria',
+          dialCode: '+234',
+        )) !=
+        attendant!.phone.validPhone(CountryCode(
+          countryCode: 'NG',
+          name: 'Nigeria',
+          dialCode: '+234',
+        ))) {
+      request = request.copyWith(
+          phone: phone.text.validPhone(CountryCode(
+        countryCode: 'NG',
+        name: 'Nigeria',
+        dialCode: '+234',
+      )));
+    }
+
+    if (branch != attendant!.branchName) {
+      request = request.copyWith(branchId: int.parse(station!.branchId));
+    }
+
+    if (name.text != attendant!.name) {
+      request = request.copyWith(name: name.text);
+    }
+
+    if (password.text.isNotEmpty &&
+        passwordValidationText == null &&
+        confirmPassword.text.isNotEmpty &&
+        confirmPasswordValidationText == null) {
+      request = request.copyWith(password: password.text);
+    }
+
+    final resp = await PumpPriceAttendantService()
+        .editAttendant(id: attendant!.id, request: request)
+        .onError((e, s) {
+      return CreateStaffResponse(message: AppErrorHandler.getErrorMessage(e));
+    });
+
+    if (resp.status == 'success') {
+      buttonState = FetchState.success;
+      locator<AppRouter>().maybePop(true);
+    } else {
+      buttonState = FetchState.error;
+      PumpPriceToast.error(message: resp.message);
     }
   }
 }

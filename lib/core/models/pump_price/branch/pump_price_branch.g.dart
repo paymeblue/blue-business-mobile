@@ -10,7 +10,6 @@ _$CreatePumpPriceBranchRequestImpl _$$CreatePumpPriceBranchRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$CreatePumpPriceBranchRequestImpl(
       name: json['name'] as String,
-      businessId: (json['businessId'] as num).toInt(),
       address: json['address'] as String,
       fuelPrice: (json['fuelPrice'] as num).toDouble(),
       latitude: (json['latitude'] as num).toDouble(),
@@ -23,7 +22,6 @@ Map<String, dynamic> _$$CreatePumpPriceBranchRequestImplToJson(
         _$CreatePumpPriceBranchRequestImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'businessId': instance.businessId,
       'address': instance.address,
       'fuelPrice': instance.fuelPrice,
       'latitude': instance.latitude,
@@ -161,10 +159,10 @@ _$GetFillingStationsResponseImpl _$$GetFillingStationsResponseImplFromJson(
     _$GetFillingStationsResponseImpl(
       message: json['message'] as String? ?? '',
       status: json['status'] as String? ?? 'fail',
-      data: (json['data'] as List<dynamic>?)
-              ?.map((e) => FillingStation.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      data: json['data'] == null
+          ? const GetFillingStationsData()
+          : GetFillingStationsData.fromJson(
+              json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$GetFillingStationsResponseImplToJson(
@@ -173,6 +171,44 @@ Map<String, dynamic> _$$GetFillingStationsResponseImplToJson(
       'message': instance.message,
       'status': instance.status,
       'data': instance.data,
+    };
+
+_$GetFillingStationsDataImpl _$$GetFillingStationsDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$GetFillingStationsDataImpl(
+      meta: json['meta'] == null
+          ? const GetFillingStationsMeta()
+          : GetFillingStationsMeta.fromJson(
+              json['meta'] as Map<String, dynamic>),
+      data: (json['data'] as List<dynamic>?)
+              ?.map((e) => FillingStation.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$GetFillingStationsDataImplToJson(
+        _$GetFillingStationsDataImpl instance) =>
+    <String, dynamic>{
+      'meta': instance.meta,
+      'data': instance.data,
+    };
+
+_$GetFillingStationsMetaImpl _$$GetFillingStationsMetaImplFromJson(
+        Map<String, dynamic> json) =>
+    _$GetFillingStationsMetaImpl(
+      total: (json['total'] as num?)?.toInt() ?? 0,
+      page: (json['page'] as num?)?.toInt() ?? 1,
+      limit: (json['limit'] as num?)?.toInt() ?? 0,
+      pages: (json['pages'] as num?)?.toInt() ?? 1,
+    );
+
+Map<String, dynamic> _$$GetFillingStationsMetaImplToJson(
+        _$GetFillingStationsMetaImpl instance) =>
+    <String, dynamic>{
+      'total': instance.total,
+      'page': instance.page,
+      'limit': instance.limit,
+      'pages': instance.pages,
     };
 
 _$FillingStationImpl _$$FillingStationImplFromJson(Map<String, dynamic> json) =>
@@ -188,7 +224,6 @@ _$FillingStationImpl _$$FillingStationImplFromJson(Map<String, dynamic> json) =>
       address: json['address'] as String,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
-      businessId: json['businessId'] as String?,
     );
 
 Map<String, dynamic> _$$FillingStationImplToJson(
@@ -205,5 +240,4 @@ Map<String, dynamic> _$$FillingStationImplToJson(
       'address': instance.address,
       if (instance.createdAt case final value?) 'createdAt': value,
       if (instance.updatedAt case final value?) 'updatedAt': value,
-      if (instance.businessId case final value?) 'businessId': value,
     };
