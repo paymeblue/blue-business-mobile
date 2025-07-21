@@ -71,7 +71,7 @@ class _PumpPriceAttendantService implements PumpPriceAttendantService {
     required String name,
     required String phone,
     required int branchId,
-    required String role,
+    String role = 'fuel_attendant',
     required String password,
   }) async {
     final _extra = <String, dynamic>{};

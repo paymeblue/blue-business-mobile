@@ -526,6 +526,10 @@ class $AssetsImagesPumpPriceSvgGen {
   SvgGenImage get branchEmpty =>
       const SvgGenImage('assets/images/pump_price/svg/branch_empty.svg');
 
+  /// File path: assets/images/pump_price/svg/camera.svg
+  SvgGenImage get camera =>
+      const SvgGenImage('assets/images/pump_price/svg/camera.svg');
+
   /// File path: assets/images/pump_price/svg/completed.svg
   SvgGenImage get completed =>
       const SvgGenImage('assets/images/pump_price/svg/completed.svg');
@@ -562,6 +566,7 @@ class $AssetsImagesPumpPriceSvgGen {
   List<SvgGenImage> get values => [
         attendantEmpty,
         branchEmpty,
+        camera,
         completed,
         deleteRed,
         deleteWhite,

@@ -187,7 +187,7 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
     }
 
     final resp = await PumpPriceStationService()
-        .editBranch(request: request, branchId: station!.branchId)
+        .editBranch(request: request, branchId: station!.id)
         .onError((e, s) {
       return CreatePumpPriceBranchResponse(
         message: AppErrorHandler.getErrorMessage(e),

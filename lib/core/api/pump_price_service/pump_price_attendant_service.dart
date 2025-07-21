@@ -34,7 +34,7 @@ abstract class PumpPriceAttendantService {
     @Part(name: "name") required String name,
     @Part(name: "phone") required String phone,
     @Part(name: "branch_id") required int branchId,
-    @Part(name: "role") required String role,
+    @Part(name: "role") String role = 'fuel_attendant',
     @Part(name: "password") required String password,
   });
 

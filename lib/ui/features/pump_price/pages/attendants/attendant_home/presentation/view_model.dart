@@ -86,7 +86,7 @@ class PumpPriceAttendantViewModel extends BaseViewModel {
       PumpPriceToast.success(message: 'Attendant deleted');
     } else {
       pageState = FetchState.error;
-      PumpPriceToast.error(message: response.message ?? '');
+      PumpPriceToast.error(message: response.message);
     }
   }
 }

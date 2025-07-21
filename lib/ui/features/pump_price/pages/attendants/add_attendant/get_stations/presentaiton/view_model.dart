@@ -1,13 +1,30 @@
+import 'dart:async';
+
 import 'package:blue_business/core/api/pump_price_service/pump_price_station_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/pump_price/branch/pump_price_branch.dart';
-import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 
-class PumpPriceBranchViewModel extends BaseViewModel {
-  init(BuildContext context) {
-    getBranches();
+class GetPumpPriceStationsViewModel extends BaseViewModel {
+  Timer? searchTimer;
+
+  FetchState _pageState = FetchState.idle;
+  FetchState get pageState => _pageState;
+  set pageState(FetchState s) {
+    _pageState = s;
+    notifyListeners();
+  }
+
+  onSearchChanged(String? v) {
+    if (searchTimer != null) {
+      searchTimer!.cancel();
+    }
+
+    searchTimer = Timer(const Duration(seconds: 1), () async {
+      await findBranches(v ?? "");
+    });
   }
 
   List<FillingStation> _stations = [];
@@ -17,14 +34,7 @@ class PumpPriceBranchViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  FetchState _pageState = FetchState.idle;
-  FetchState get pageState => _pageState;
-  set pageState(FetchState s) {
-    _pageState = s;
-    notifyListeners();
-  }
-
-  Future<void> getBranches() async {
+  findBranches(String query) async {
     pageState = FetchState.loading;
     final resp = await PumpPriceStationService().getBranches().onError((e, s) {
       return GetFillingStationsResponse(
@@ -37,24 +47,6 @@ class PumpPriceBranchViewModel extends BaseViewModel {
     } else {
       pageState = FetchState.error;
       PumpPriceToast.error(message: resp.message);
-    }
-  }
-
-  deleteBranch(FillingStation station) async {
-    pageState = FetchState.loading;
-    final resp = await PumpPriceStationService()
-        .deleteBranch(branchId: station.id)
-        .onError((e, s) {
-      return CreatePumpPriceBranchResponse(
-          message: AppErrorHandler.getErrorMessage(e));
-    });
-
-    if (resp.status != 'success') {
-      pageState = FetchState.error;
-      PumpPriceToast.error(message: resp.message);
-    } else {
-      getBranches();
-      PumpPriceToast.success(message: 'Branch deleted');
     }
   }
 }

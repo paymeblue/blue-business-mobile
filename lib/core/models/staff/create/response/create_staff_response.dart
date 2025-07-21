@@ -7,7 +7,7 @@ part 'create_staff_response.g.dart';
 class CreateStaffResponse with _$CreateStaffResponse {
   const factory CreateStaffResponse({
     @Default("fail") String status,
-    String? message,
+    @Default("") String message,
   }) = _CreateStaffResponse;
 
   factory CreateStaffResponse.fromJson(Map<String, dynamic> json) =>
