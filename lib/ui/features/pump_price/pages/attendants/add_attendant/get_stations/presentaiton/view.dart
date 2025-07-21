@@ -5,6 +5,7 @@ import 'package:blue_business/core/navigation/router_config/router.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/textfield/textfield.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'view_model.dart';
 
@@ -34,41 +35,60 @@ class GetPumpPriceStationsView extends StatelessWidget {
                 ),
                 10.verticalGap,
                 Expanded(
-                    child: model.pageState == FetchState.loading
-                        ? Center(
-                            child: CircularProgressIndicator(
-                              color: AppColors.pumpPricebodyText,
-                              strokeWidth: 1.2,
-                            ),
-                          )
-                        : ListView.separated(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16.w, vertical: 12.h),
-                            itemBuilder: (ctxt, i) => Container(
-                              decoration: BoxDecoration(),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    model.stations[i].name,
-                                    style: context.textTheme.bodyLarge,
-                                  ),
-                                  2.verticalGap,
-                                  Text(
-                                    model.stations[i].address,
-                                    style: context.textTheme.bodyMedium,
-                                  ),
-                                ],
-                              ),
-                            ).onTap(() {
-                              onSelected(model.stations[i]);
-                            }),
-                            separatorBuilder: (ctxt, i) => 16.verticalGap,
-                            itemCount: model.stations.length,
-                          ))
+                    child: PagedListView<int, FillingStation>.separated(
+                  pagingController: model.stationController,
+                  builderDelegate: PagedChildBuilderDelegate(
+                    firstPageProgressIndicatorBuilder: (ctx) => Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.pumpPricebodyText,
+                        strokeWidth: 1.2,
+                      ),
+                    ),
+                    itemBuilder: (context, item, index) =>
+                        stationItem(context, item).onTap(() {
+                      onSelected(item);
+                    }),
+                  ),
+                  separatorBuilder: (context, index) => 16.verticalGap,
+                )
+                    // child: model.pageState == FetchState.loading
+                    //     ? Center(
+                    //         child: CircularProgressIndicator(
+                    //           color: AppColors.pumpPricebodyText,
+                    //           strokeWidth: 1.2,
+                    //         ),
+                    //       )
+                    //     : ListView.separated(
+                    //         padding: EdgeInsets.symmetric(
+                    //             horizontal: 16.w, vertical: 12.h),
+                    //         itemBuilder: (ctxt, i) => ,
+                    //         separatorBuilder: (ctxt, i) => 16.verticalGap,
+                    //         itemCount: model.stations.length,
+                    //       )
+                    )
               ],
             ),
           );
         });
+  }
+
+  Container stationItem(BuildContext context, FillingStation item) {
+    return Container(
+      decoration: BoxDecoration(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            item.name,
+            style: context.textTheme.bodyLarge,
+          ),
+          2.verticalGap,
+          Text(
+            item.address,
+            style: context.textTheme.bodyMedium,
+          ),
+        ],
+      ),
+    );
   }
 }

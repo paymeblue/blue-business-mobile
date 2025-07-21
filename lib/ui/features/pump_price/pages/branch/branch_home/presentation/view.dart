@@ -14,6 +14,7 @@ import 'package:blue_business/ui/features/pump_price/pages/branch/branch_home/wi
 import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/textfield/textfield.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'view_model.dart';
 
@@ -35,7 +36,7 @@ class PumpPriceBranchView extends StatelessWidget {
               child: Column(
                 children: [
                   titleRow(context, model),
-                  if (model.stations.isNotEmpty) ...[
+                  if ((model.stationController.itemList ?? []).isNotEmpty) ...[
                     14.verticalGap,
                     PumpPriceTextField.plaintext(
                       hint: 'Search for branch',
@@ -48,49 +49,46 @@ class PumpPriceBranchView extends StatelessWidget {
                   ],
                   26.verticalGap,
                   Expanded(
-                      child: model.pageState == FetchState.loading
-                          ? Center(
-                              child: CircularProgressIndicator(
-                                strokeWidth: 1.2,
-                                color: AppColors.pumpPricebodyText,
-                              ),
-                            )
-                          : model.stations.isEmpty
-                              ? emptyState(context, model)
-                              : RefreshIndicator(
-                                  onRefresh: () => model.getBranches(),
-                                  child: ListView.separated(
-                                    itemBuilder: (ctx, i) {
-                                      return PumpPriceBranchContainer(
-                                        station: model.stations[i],
-                                        onDelete: (value) {
-                                          model.deleteBranch(value);
-                                        },
-                                        onEdit: (value) {
-                                          locator<AppRouter>()
-                                              .push<bool>(
-                                            AddPumpPriceBranchRoute(
-                                                args:
-                                                    AddPumpPriceBranchViewArgs(
-                                              station: value,
-                                            )),
-                                          )
-                                              .then((v) {
-                                            if (v == true) {
-                                              PumpPriceToast.success(
-                                                  message: 'Changes saved!');
+                    child: PagedListView<int, FillingStation>.separated(
+                      pagingController: model.stationController,
+                      builderDelegate: PagedChildBuilderDelegate(
+                        firstPageProgressIndicatorBuilder: (context) => Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 1.2,
+                            color: AppColors.pumpPricebodyText,
+                          ),
+                        ),
+                        noItemsFoundIndicatorBuilder: (context) =>
+                            emptyState(context, model),
+                        itemBuilder: (context, item, index) {
+                          return PumpPriceBranchContainer(
+                            station: item,
+                            onDelete: (value) {
+                              model.deleteBranch(value);
+                            },
+                            onEdit: (value) {
+                              locator<AppRouter>()
+                                  .push<bool>(
+                                AddPumpPriceBranchRoute(
+                                    args: AddPumpPriceBranchViewArgs(
+                                  station: value,
+                                )),
+                              )
+                                  .then((v) {
+                                if (v == true) {
+                                  PumpPriceToast.success(
+                                      message: 'Changes saved!');
 
-                                              model.getBranches();
-                                            }
-                                          });
-                                        },
-                                      );
-                                    },
-                                    separatorBuilder: (ctx, i) =>
-                                        20.verticalGap,
-                                    itemCount: model.stations.length,
-                                  ),
-                                ))
+                                  model.getBranches();
+                                }
+                              });
+                            },
+                          );
+                        },
+                      ),
+                      separatorBuilder: (ctx, i) => 20.verticalGap,
+                    ),
+                  )
                 ],
               ),
             ),

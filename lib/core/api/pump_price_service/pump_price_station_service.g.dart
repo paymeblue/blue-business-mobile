@@ -22,9 +22,18 @@ class _PumpPriceStationService implements PumpPriceStationService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<GetFillingStationsResponse> getBranches() async {
+  Future<GetFillingStationsResponse> getBranches({
+    String? query,
+    required int page,
+    required int limit,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'query': query,
+      r'page': page,
+      r'limit': limit,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<GetFillingStationsResponse>(Options(
@@ -34,7 +43,7 @@ class _PumpPriceStationService implements PumpPriceStationService {
     )
         .compose(
           _dio.options,
-          '/filling-stations',
+          '/filling-stations/business/search',
           queryParameters: queryParameters,
           data: _data,
         )

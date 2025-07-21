@@ -13,8 +13,12 @@ abstract class PumpPriceStationService {
       DioConfig.dio(locator<AppStateValues>().accessToken),
       baseUrl: 'https://blue-backend-v2.onrender.com/api/v2');
 
-  @GET('/filling-stations')
-  Future<GetFillingStationsResponse> getBranches();
+  @GET('/filling-stations/business/search')
+  Future<GetFillingStationsResponse> getBranches({
+    @Query('query') String? query,
+    @Query('page') required int page,
+    @Query('limit') required int limit,
+  });
 
   @POST('/filling-stations')
   Future<CreatePumpPriceBranchResponse> createBranch({

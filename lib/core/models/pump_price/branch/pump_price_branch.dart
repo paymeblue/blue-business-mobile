@@ -7,7 +7,6 @@ part 'pump_price_branch.g.dart';
 class CreatePumpPriceBranchRequest with _$CreatePumpPriceBranchRequest {
   const factory CreatePumpPriceBranchRequest({
     required String name,
-    required int businessId,
     required String address,
     required double fuelPrice,
     required double latitude,
