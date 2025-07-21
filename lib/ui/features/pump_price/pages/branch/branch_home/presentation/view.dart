@@ -35,15 +35,17 @@ class PumpPriceBranchView extends StatelessWidget {
               child: Column(
                 children: [
                   titleRow(context, model),
-                  14.verticalGap,
-                  PumpPriceTextField.plaintext(
-                    hint: 'Search for branch',
-                    leading: Padding(
-                      padding: EdgeInsets.only(left: 15.w),
-                      child: AppAssets.images.pumpPrice.svg.search.svg(),
-                    ),
-                    backgroundColor: AppColors.white,
-                  ),
+                  if (model.stations.isNotEmpty) ...[
+                    14.verticalGap,
+                    PumpPriceTextField.plaintext(
+                      hint: 'Search for branch',
+                      leading: Padding(
+                        padding: EdgeInsets.only(left: 15.w),
+                        child: AppAssets.images.pumpPrice.svg.search.svg(),
+                      ),
+                      backgroundColor: AppColors.white,
+                    )
+                  ],
                   26.verticalGap,
                   Expanded(
                       child: model.pageState == FetchState.loading
@@ -53,48 +55,90 @@ class PumpPriceBranchView extends StatelessWidget {
                                 color: AppColors.pumpPricebodyText,
                               ),
                             )
-                          : RefreshIndicator(
-                              onRefresh: () => model.getBranches(),
-                              child: ListView.separated(
-                                itemBuilder: (ctx, i) {
-                                  return PumpPriceBranchContainer(
-                                    station: model.stations[i],
-                                    onDelete: (value) {
-                                      final temp = [...model.stations];
-                                      temp.remove(model.stations[i]);
+                          : model.stations.isEmpty
+                              ? emptyState(context, model)
+                              : RefreshIndicator(
+                                  onRefresh: () => model.getBranches(),
+                                  child: ListView.separated(
+                                    itemBuilder: (ctx, i) {
+                                      return PumpPriceBranchContainer(
+                                        station: model.stations[i],
+                                        onDelete: (value) {
+                                          model.deleteBranch(value);
+                                        },
+                                        onEdit: (value) {
+                                          locator<AppRouter>()
+                                              .push<bool>(
+                                            AddPumpPriceBranchRoute(
+                                                args:
+                                                    AddPumpPriceBranchViewArgs(
+                                              station: value,
+                                            )),
+                                          )
+                                              .then((v) {
+                                            if (v == true) {
+                                              PumpPriceToast.success(
+                                                  message: 'Changes saved!');
 
-                                      model.stations = temp;
-                                      unawaited(model.deleteBranch(value));
+                                              model.getBranches();
+                                            }
+                                          });
+                                        },
+                                      );
                                     },
-                                    onEdit: (value) {
-                                      locator<AppRouter>()
-                                          .push<bool>(
-                                        AddPumpPriceBranchRoute(
-                                            args: AddPumpPriceBranchViewArgs(
-                                          station: value,
-                                        )),
-                                      )
-                                          .then((v) {
-                                        if (v == true) {
-                                          PumpPriceToast.success(
-                                              message: 'Changes saved!');
-
-                                          model.getBranches();
-                                        }
-                                      });
-                                    },
-                                  );
-                                },
-                                separatorBuilder: (ctx, i) => 20.verticalGap,
-                                itemCount: model.stations.length,
-                              ),
-                            ))
+                                    separatorBuilder: (ctx, i) =>
+                                        20.verticalGap,
+                                    itemCount: model.stations.length,
+                                  ),
+                                ))
                 ],
               ),
             ),
           ),
         );
       },
+    );
+  }
+
+  Widget emptyState(BuildContext context, PumpPriceBranchViewModel model) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        AppAssets.images.pumpPrice.svg.branchEmpty.svg(),
+        10.verticalGap,
+        Text(
+          'No branches yet',
+          style: context.textTheme.titleSmall,
+        ),
+        2.verticalGap,
+        SizedBox(
+          width: context.getWidth(.65),
+          child: Text(
+            'Once you start adding fuel station branches, they’ll show up here for you to manage.',
+            style: context.textTheme.bodyMedium,
+            textAlign: TextAlign.center,
+          ),
+        ),
+        24.verticalGap,
+        SizedBox(
+          width: context.getWidth(.75),
+          child: PumpPriceButton.primary(
+            title: 'Add new branch',
+            onTap: () {
+              locator<AppRouter>()
+                  .push<bool>(
+                AddPumpPriceBranchRoute(args: AddPumpPriceBranchViewArgs()),
+              )
+                  .then((v) {
+                if (v == true) {
+                  PumpPriceToast.success(message: 'Branch added!');
+                  model.getBranches();
+                }
+              });
+            },
+          ),
+        )
+      ],
     );
   }
 
@@ -108,50 +152,52 @@ class PumpPriceBranchView extends StatelessWidget {
             style: context.textTheme.titleMedium,
           ),
         ),
-        8.horizontalGap,
-        GestureDetector(
-          onTap: () {
-            locator<AppRouter>()
-                .push<bool>(
-              AddPumpPriceBranchRoute(args: AddPumpPriceBranchViewArgs()),
-            )
-                .then((v) {
-              if (v == true) {
-                PumpPriceToast.success(message: 'Branch added!');
-                model.getBranches();
-              }
-            });
-          },
-          child: DecoratedBox(
-            decoration: BoxDecoration(),
-            child: Row(
-              children: [
-                Container(
-                  height: 15.dm,
-                  width: 15.dm,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        color: AppColors.pumpPriceprimary, width: .8.dm),
+        if (model.stations.isNotEmpty) ...[
+          8.horizontalGap,
+          GestureDetector(
+            onTap: () {
+              locator<AppRouter>()
+                  .push<bool>(
+                AddPumpPriceBranchRoute(args: AddPumpPriceBranchViewArgs()),
+              )
+                  .then((v) {
+                if (v == true) {
+                  PumpPriceToast.success(message: 'Branch added!');
+                  model.getBranches();
+                }
+              });
+            },
+            child: DecoratedBox(
+              decoration: BoxDecoration(),
+              child: Row(
+                children: [
+                  Container(
+                    height: 15.dm,
+                    width: 15.dm,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                          color: AppColors.pumpPriceprimary, width: .8.dm),
+                    ),
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.add_rounded,
+                      size: 12.sp,
+                      color: AppColors.pumpPriceprimary,
+                    ),
                   ),
-                  alignment: Alignment.center,
-                  child: Icon(
-                    Icons.add_rounded,
-                    size: 12.sp,
-                    color: AppColors.pumpPriceprimary,
-                  ),
-                ),
-                4.horizontalGap,
-                Text(
-                  'Add new branch',
-                  style: context.textTheme.bodyMedium!.copyWith(
-                    color: AppColors.pumpPriceprimary,
-                  ),
-                )
-              ],
+                  4.horizontalGap,
+                  Text(
+                    'Add new branch',
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      color: AppColors.pumpPriceprimary,
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        )
+          )
+        ]
       ],
     );
   }

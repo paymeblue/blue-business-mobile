@@ -17,13 +17,6 @@ class PumpPriceBranchViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  List<FillingStation> _allStations = [];
-  List<FillingStation> get allStations => _allStations;
-  set allStations(List<FillingStation> s) {
-    _allStations = s;
-    notifyListeners();
-  }
-
   FetchState _pageState = FetchState.idle;
   FetchState get pageState => _pageState;
   set pageState(FetchState s) {
@@ -41,7 +34,6 @@ class PumpPriceBranchViewModel extends BaseViewModel {
     if (resp.status == 'success') {
       pageState = FetchState.success;
       stations = resp.data;
-      allStations = stations;
     } else {
       pageState = FetchState.error;
       PumpPriceToast.error(message: resp.message);
@@ -49,6 +41,7 @@ class PumpPriceBranchViewModel extends BaseViewModel {
   }
 
   deleteBranch(FillingStation station) async {
+    pageState = FetchState.loading;
     final resp = await PumpPriceStationService()
         .deleteBranch(branchId: station.branchId)
         .onError((e, s) {
@@ -57,10 +50,11 @@ class PumpPriceBranchViewModel extends BaseViewModel {
     });
 
     if (resp.status != 'success') {
+      pageState = FetchState.error;
       PumpPriceToast.error(message: resp.message);
-      stations = allStations;
     } else {
-      allStations = stations;
+      getBranches();
+      PumpPriceToast.success(message: 'Branch deleted');
     }
   }
 }

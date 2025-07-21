@@ -96,6 +96,8 @@ extension StringEx on String? {
 
     return selectedCountry.dialCode + number;
   }
+
+  String? get orNull => orEmpty.isEmpty ? null : this;
 }
 
 extension PxToLineHeight on num {

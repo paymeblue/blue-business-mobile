@@ -11,6 +11,7 @@ import 'package:blue_business/ui/features/pump_price/widgets/buttons/app_buttons
 import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/textfield/textfield.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'view_model.dart';
 
@@ -22,7 +23,7 @@ class PumpPriceAttendantView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<PumpPriceAttendantViewModel>(
       model: PumpPriceAttendantViewModel(),
-      onModelReady: (model) => model.init(context),
+      onModelReady: (model) => model.init(),
       builder: (context, model, _) {
         return SafeArea(
           child: Scaffold(
@@ -31,25 +32,75 @@ class PumpPriceAttendantView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 children: [
-                  titleRow(context),
-                  14.verticalGap,
-                  PumpPriceTextField.plaintext(
-                    hint: 'Search for attendant',
-                    leading: Padding(
-                      padding: EdgeInsets.only(left: 15.w),
-                      child: AppAssets.images.pumpPrice.svg.search.svg(),
-                    ),
-                    backgroundColor: AppColors.white,
-                  ),
+                  titleRow(context, model),
+                  if ((model.staffPagingController.itemList ?? [])
+                      .isNotEmpty) ...[
+                    14.verticalGap,
+                    PumpPriceTextField.plaintext(
+                      hint: 'Search for attendant',
+                      leading: Padding(
+                        padding: EdgeInsets.only(left: 15.w),
+                        child: AppAssets.images.pumpPrice.svg.search.svg(),
+                      ),
+                      controller: model.search,
+                      backgroundColor: AppColors.white,
+                      onChanged: model.onSearchChanged,
+                    )
+                  ],
                   26.verticalGap,
                   Expanded(
-                      child: ListView.separated(
-                    itemBuilder: (ctx, i) {
-                      return PumpPriceAttendantContainer();
-                    },
-                    separatorBuilder: (ctx, i) => 20.verticalGap,
-                    itemCount: 2,
-                  ))
+                    child: model.pageState == FetchState.loading
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.pumpPricebodyText,
+                              strokeWidth: 1.2,
+                            ),
+                          )
+                        : RefreshIndicator(
+                            onRefresh: () async =>
+                                model.staffPagingController.refresh(),
+                            child: PagedListView<int, Staff>.separated(
+                              pagingController: model.staffPagingController,
+                              builderDelegate: PagedChildBuilderDelegate(
+                                firstPageProgressIndicatorBuilder: (context) =>
+                                    Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.pumpPricebodyText,
+                                    strokeWidth: 1.2,
+                                  ),
+                                ),
+                                noItemsFoundIndicatorBuilder: (context) =>
+                                    emptyState(context),
+                                itemBuilder: (ctx, item, i) {
+                                  return PumpPriceAttendantContainer(
+                                    staff: item,
+                                    onDelete: (value) {
+                                      model.deleteStaff(value);
+                                    },
+                                    onEdit: (value) {
+                                      locator<AppRouter>()
+                                          .push<bool>(AddPumpPriceAttendantRoute(
+                                              args:
+                                                  AddPumpPriceAttendantViewArgs(
+                                                      attendant: item)))
+                                          .then(
+                                        (v) {
+                                          if (v == true) {
+                                            model.staffPagingController
+                                                .refresh();
+                                            PumpPriceToast.success(
+                                                message: 'Changes saved!');
+                                          }
+                                        },
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                              separatorBuilder: (ctx, i) => 20.verticalGap,
+                            ),
+                          ),
+                  ),
                 ],
               ),
             ),
@@ -59,7 +110,47 @@ class PumpPriceAttendantView extends StatelessWidget {
     );
   }
 
-  Widget titleRow(BuildContext context) {
+  Widget emptyState(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        AppAssets.images.pumpPrice.svg.attendantEmpty.svg(),
+        10.verticalGap,
+        Text(
+          'No attendants yet',
+          style: context.textTheme.titleSmall,
+        ),
+        2.verticalGap,
+        SizedBox(
+          width: context.getWidth(.65),
+          child: Text(
+            'Once you start adding fuel attendants, they’ll show up here for you to manage.',
+            style: context.textTheme.bodyMedium,
+            textAlign: TextAlign.center,
+          ),
+        ),
+        24.verticalGap,
+        SizedBox(
+          width: context.getWidth(.75),
+          child: PumpPriceButton.primary(
+            title: 'Add attendant',
+            onTap: () {
+              locator<AppRouter>()
+                  .push<bool>(AddPumpPriceAttendantRoute(
+                      args: AddPumpPriceAttendantViewArgs()))
+                  .then((v) {
+                if (v == true) {
+                  PumpPriceToast.success(message: 'Attendant added!');
+                }
+              });
+            },
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget titleRow(BuildContext context, PumpPriceAttendantViewModel model) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -70,47 +161,49 @@ class PumpPriceAttendantView extends StatelessWidget {
           ),
         ),
         8.horizontalGap,
-        GestureDetector(
-          onTap: () {
-            locator<AppRouter>()
-                .push<bool>(AddPumpPriceAttendantRoute(
-                    args: AddPumpPriceAttendantViewArgs()))
-                .then((v) {
-              if (v == true) {
-                PumpPriceToast.success(message: 'Attendant added!');
-              }
-            });
-          },
-          child: DecoratedBox(
-            decoration: BoxDecoration(),
-            child: Row(
-              children: [
-                Container(
-                  height: 15.dm,
-                  width: 15.dm,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        color: AppColors.pumpPriceprimary, width: .8.dm),
+        if ((model.staffPagingController.itemList ?? []).isNotEmpty)
+          GestureDetector(
+            onTap: () {
+              locator<AppRouter>()
+                  .push<bool>(AddPumpPriceAttendantRoute(
+                      args: AddPumpPriceAttendantViewArgs()))
+                  .then((v) {
+                if (v == true) {
+                  PumpPriceToast.success(message: 'Attendant added!');
+                  model.staffPagingController.refresh();
+                }
+              });
+            },
+            child: DecoratedBox(
+              decoration: BoxDecoration(),
+              child: Row(
+                children: [
+                  Container(
+                    height: 15.dm,
+                    width: 15.dm,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                          color: AppColors.pumpPriceprimary, width: .8.dm),
+                    ),
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.add_rounded,
+                      size: 12.sp,
+                      color: AppColors.pumpPriceprimary,
+                    ),
                   ),
-                  alignment: Alignment.center,
-                  child: Icon(
-                    Icons.add_rounded,
-                    size: 12.sp,
-                    color: AppColors.pumpPriceprimary,
-                  ),
-                ),
-                4.horizontalGap,
-                Text(
-                  'Add new attendant',
-                  style: context.textTheme.bodyMedium!.copyWith(
-                    color: AppColors.pumpPriceprimary,
-                  ),
-                )
-              ],
+                  4.horizontalGap,
+                  Text(
+                    'Add new attendant',
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      color: AppColors.pumpPriceprimary,
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        )
+          )
       ],
     );
   }
@@ -119,7 +212,14 @@ class PumpPriceAttendantView extends StatelessWidget {
 class PumpPriceAttendantContainer extends StatelessWidget {
   const PumpPriceAttendantContainer({
     super.key,
+    required this.staff,
+    required this.onDelete,
+    required this.onEdit,
   });
+
+  final Staff staff;
+  final ValueChanged<Staff> onDelete;
+  final ValueChanged<Staff> onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -163,18 +263,21 @@ class PumpPriceAttendantContainer extends StatelessWidget {
   Widget nameAndBranch(BuildContext context) {
     return Row(
       children: [
-        PumpPriceAvatar(radius: 21.r),
+        PumpPriceAvatar(
+          radius: 21.r,
+          imageUrl: staff.displayPicture.orNull,
+        ),
         10.horizontalGap,
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Yakubu Danladi',
+                staff.name,
                 style: context.textTheme.bodyLarge,
               ),
               Text(
-                'NNPC Limited Mega Gas Station',
+                staff.branchName ?? '',
                 style: context.textTheme.bodyMedium!.copyWith(
                   fontSize: 12.sp,
                   height: 100.percentToLineHeight(12),
@@ -199,14 +302,7 @@ class PumpPriceAttendantContainer extends StatelessWidget {
           child: PumpPriceButton.primary(
             title: 'Edit details',
             onTap: () {
-              locator<AppRouter>()
-                  .push<bool>(AddPumpPriceAttendantRoute(
-                      args: AddPumpPriceAttendantViewArgs()))
-                  .then((v) {
-                if (v == true) {
-                  PumpPriceToast.success(message: 'Changes saved!');
-                }
-              });
+              onEdit(staff);
             },
           ),
         ),
@@ -218,7 +314,7 @@ class PumpPriceAttendantContainer extends StatelessWidget {
             onTap: () async {
               final delete = await showDelete(context);
               if (delete) {
-                PumpPriceToast.success(message: 'Attendant deleted');
+                onDelete(staff);
               }
             },
           ),
