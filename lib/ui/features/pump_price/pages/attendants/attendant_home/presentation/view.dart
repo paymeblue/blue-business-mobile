@@ -6,7 +6,6 @@ import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/pump_price/pages/attendants/add_attendant/presentation/view.dart';
 import 'package:blue_business/ui/features/pump_price/pages/attendants/attendant_home/widgets/delete_attendant.dart';
-import 'package:blue_business/ui/features/pump_price/widgets/avatar/avatar.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 import 'package:blue_business/ui/features/pump_price/widgets/textfield/textfield.dart';
@@ -263,11 +262,11 @@ class PumpPriceAttendantContainer extends StatelessWidget {
   Widget nameAndBranch(BuildContext context) {
     return Row(
       children: [
-        PumpPriceAvatar(
-          radius: 21.r,
-          imageUrl: staff.displayPicture.orNull,
-        ),
-        10.horizontalGap,
+        // PumpPriceAvatar(
+        //   radius: 21.r,
+        //   imageUrl: staff.displayPicture.orNull,
+        // ),
+        // 10.horizontalGap,
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

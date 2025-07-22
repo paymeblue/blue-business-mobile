@@ -154,6 +154,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
         phone.text.isNotEmpty &&
         station != null &&
         passwordValidationText == null &&
+        confirmPassword.text.isNotEmpty &&
         confirmPasswordValidationText == null;
   }
 
