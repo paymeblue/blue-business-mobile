@@ -56,7 +56,7 @@ class BlueDialog {
                       Flexible(
                         child: GestureDetector(
                           onTap: () {
-                            locator<AppRouter>().maybePop;
+                            locator<AppRouter>().maybePop();
                           },
                           child: Container(
                               height: 35,
@@ -74,7 +74,7 @@ class BlueDialog {
                       Flexible(
                         child: GestureDetector(
                           onTap: () {
-                            locator<AppRouter>().maybePop;
+                            locator<AppRouter>().maybePop();
                             onDelete();
                           },
                           child: Container(
@@ -163,7 +163,7 @@ class BlueDialog {
                                   setState(() {
                                     selectedReason = reasons[i];
                                   });
-                                  locator<AppRouter>().maybePop;
+                                  locator<AppRouter>().maybePop();
                                 },
                                 child: DecoratedBox(
                                   decoration: const BoxDecoration(),
@@ -176,7 +176,7 @@ class BlueDialog {
                                           setState(() {
                                             selectedReason = val;
                                           });
-                                          locator<AppRouter>().maybePop;
+                                          locator<AppRouter>().maybePop();
                                         },
                                       ),
                                       Expanded(
@@ -254,7 +254,7 @@ class BlueDialog {
                         Flexible(
                           child: GestureDetector(
                             onTap: () {
-                              locator<AppRouter>().maybePop;
+                              locator<AppRouter>().maybePop();
                             },
                             child: Container(
                                 height: 35,
@@ -273,7 +273,7 @@ class BlueDialog {
                           child: GestureDetector(
                             onTap: () {
                               if (deleteString == "delete") {
-                                locator<AppRouter>().maybePop;
+                                locator<AppRouter>().maybePop();
                                 onDelete();
                               }
                             },

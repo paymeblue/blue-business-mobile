@@ -127,7 +127,7 @@ _$EditFillingStationDataImpl _$$EditFillingStationDataImplFromJson(
     _$EditFillingStationDataImpl(
       id: json['id'] as String,
       branchId: json['branchId'] as String,
-      fuelPrice: (json['fuelPrice'] as num).toDouble(),
+      fuelPrice: json['fuelPrice'] as String,
       opening: json['opening'] as String,
       closing: json['closing'] as String,
       longitude: json['longitude'] as String,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:blue_business/core/api/pump_price_service/pump_price_station_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
@@ -190,6 +192,7 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
     final resp = await PumpPriceStationService()
         .editBranch(request: request, branchId: station!.id)
         .onError((e, s) {
+      log(s.toString());
       return EditPumpPriceBranchResponse(
         message: AppErrorHandler.getErrorMessage(e),
       );
