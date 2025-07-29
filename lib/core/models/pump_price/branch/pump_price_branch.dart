@@ -83,7 +83,7 @@ class EditFillingStationData with _$EditFillingStationData {
   const factory EditFillingStationData({
     required String id,
     required String branchId,
-    required String fuelPrice,
+    required double fuelPrice,
     required String opening,
     required String closing,
     required String longitude,

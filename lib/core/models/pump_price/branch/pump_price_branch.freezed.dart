@@ -1382,7 +1382,7 @@ EditFillingStationData _$EditFillingStationDataFromJson(
 mixin _$EditFillingStationData {
   String get id => throw _privateConstructorUsedError;
   String get branchId => throw _privateConstructorUsedError;
-  String get fuelPrice => throw _privateConstructorUsedError;
+  double get fuelPrice => throw _privateConstructorUsedError;
   String get opening => throw _privateConstructorUsedError;
   String get closing => throw _privateConstructorUsedError;
   String get longitude => throw _privateConstructorUsedError;
@@ -1411,7 +1411,7 @@ abstract class $EditFillingStationDataCopyWith<$Res> {
   $Res call(
       {String id,
       String branchId,
-      String fuelPrice,
+      double fuelPrice,
       String opening,
       String closing,
       String longitude,
@@ -1462,7 +1462,7 @@ class _$EditFillingStationDataCopyWithImpl<$Res,
       fuelPrice: null == fuelPrice
           ? _value.fuelPrice
           : fuelPrice // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       opening: null == opening
           ? _value.opening
           : opening // ignore: cast_nullable_to_non_nullable
@@ -1511,7 +1511,7 @@ abstract class _$$EditFillingStationDataImplCopyWith<$Res>
   $Res call(
       {String id,
       String branchId,
-      String fuelPrice,
+      double fuelPrice,
       String opening,
       String closing,
       String longitude,
@@ -1561,7 +1561,7 @@ class __$$EditFillingStationDataImplCopyWithImpl<$Res>
       fuelPrice: null == fuelPrice
           ? _value.fuelPrice
           : fuelPrice // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       opening: null == opening
           ? _value.opening
           : opening // ignore: cast_nullable_to_non_nullable
@@ -1622,7 +1622,7 @@ class _$EditFillingStationDataImpl implements _EditFillingStationData {
   @override
   final String branchId;
   @override
-  final String fuelPrice;
+  final double fuelPrice;
   @override
   final String opening;
   @override
@@ -1696,7 +1696,7 @@ abstract class _EditFillingStationData implements EditFillingStationData {
   const factory _EditFillingStationData(
       {required final String id,
       required final String branchId,
-      required final String fuelPrice,
+      required final double fuelPrice,
       required final String opening,
       required final String closing,
       required final String longitude,
@@ -1714,7 +1714,7 @@ abstract class _EditFillingStationData implements EditFillingStationData {
   @override
   String get branchId;
   @override
-  String get fuelPrice;
+  double get fuelPrice;
   @override
   String get opening;
   @override
