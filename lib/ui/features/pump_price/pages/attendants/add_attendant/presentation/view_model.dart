@@ -114,7 +114,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
       if (v.orEmpty.length < 9) {
         passwordValidationText = 'Password must be at least 9 characters';
       } else if (!RegExp((r'[a-zA-Z]+?').toString()).hasMatch(v.orEmpty)) {
-        passwordValidationText = 'Password must contain a leteer';
+        passwordValidationText = 'Password must contain a letter';
       } else if (!RegExp((r'[0-9]+?').toString()).hasMatch(v.orEmpty)) {
         passwordValidationText = 'Password must contain a number';
       } else if (!RegExp((r"[.,_@\\+$!#%^&*\-=?:;']+?").toString())
