@@ -214,8 +214,9 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
       final opening =
           '${openingTime!.hour.toString().padLeft(2, '0')}:${openingTime!.minute.toString().padLeft(2, '0')}:00';
       return station != null &&
-          (double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")) !=
-                  double.parse(station!.fuelPrice) ||
+          (price.text.isNotEmpty &&
+                  double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")) !=
+                      double.parse(station!.fuelPrice) ||
               formattedAddress != station!.address ||
               name.text != station!.name ||
               station!.closing != closing ||
