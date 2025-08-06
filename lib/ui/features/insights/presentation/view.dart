@@ -32,7 +32,7 @@ class _InsightsViewState extends State<InsightsView> {
               "Insights",
               style: AppTextStyles.subHeader.copyWith(fontSize: 20.sp),
             ),
-            onBackTap: () => model.goBack(context),
+            onBackTap: model.goBack,
           ),
           body: Container(
             padding: EdgeInsets.only(bottom: 20.h, top: 10.h),

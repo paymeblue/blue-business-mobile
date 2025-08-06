@@ -253,6 +253,7 @@ class _BranchService implements BranchService {
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
+      r'branch_id': id,
       r'page': page,
       r'limit': limit,
       r'role': role,
@@ -267,7 +268,7 @@ class _BranchService implements BranchService {
     )
         .compose(
           _dio.options,
-          '/branches/${id}/staff',
+          '/staffs',
           queryParameters: queryParameters,
           data: _data,
         )

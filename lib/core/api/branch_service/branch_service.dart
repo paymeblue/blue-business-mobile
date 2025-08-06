@@ -57,9 +57,9 @@ abstract class BranchService {
     @Query("payment_method") String? method,
   });
 
-  @GET("/branches/{id}/staff")
+  @GET("/staffs")
   Future<GetStaffResponse> getBranchStaff({
-    @Path("id") required int id,
+    @Query("branch_id") required int id,
     @Query("page") required int page,
     @Query("limit") required int limit,
     @Query("role") String? role,

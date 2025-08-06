@@ -65,8 +65,8 @@ class InsightsViewModel extends BaseViewModel {
     }
   }
 
-  goBack(BuildContext context) {
-    locator<AppRouter>().maybePop();
+  goBack() {
+    locator<AppRouter>().replaceAll([HomeRoute()]);
   }
 
   List<String> types = ["Weekly", "Monthly", "Yearly"];
