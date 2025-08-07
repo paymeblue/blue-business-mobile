@@ -177,7 +177,7 @@ class _BlueBranchDropdownState extends State<_BlueBranchDropdown> {
             onChanged: widget.onChanged,
             onSearchChanged: onSearchChanged,
             searchController: widget.searchController,
-            searchHint: "Search Categories",
+            searchHint: "Search Branches",
           ),
         ],
       ),
@@ -186,7 +186,7 @@ class _BlueBranchDropdownState extends State<_BlueBranchDropdown> {
 
   Widget textFieldHeader() {
     return Text(
-      "Business category",
+      "Set branch",
       style: AppTextStyles.subHeader.copyWith(color: AppColors.textColor),
     );
   }

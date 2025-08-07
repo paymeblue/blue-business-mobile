@@ -76,6 +76,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
 
     if (response.status == "success") {
       branchSetState = FetchState.success;
+      branch = response.data;
     } else {
       branchSetState = FetchState.error;
     }

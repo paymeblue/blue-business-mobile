@@ -130,6 +130,9 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
           controller: model.nameController,
         ),
         12.verticalGap,
+        // model.role?.name.toLowerCase() == 'fuel_attendant'
+        //     ? SizedBox.shrink()
+        //     :
         model.roleState == FetchState.loading
             ? BlueLoadingTile.withoutImage(title: "Set role")
             : BlueDropdown.show(

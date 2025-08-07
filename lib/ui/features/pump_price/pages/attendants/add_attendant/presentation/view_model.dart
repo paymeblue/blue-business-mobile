@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:blue_business/core/api/pump_price_service/pump_price_attendant_service.dart';
@@ -32,6 +33,8 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     name.text = attendant!.name;
     phone.text = attendant!.phone.substring(attendant!.phone.length - 10);
     branch = attendant!.branchName;
+
+    log(attendant.toString());
   }
 
   String? _path;
