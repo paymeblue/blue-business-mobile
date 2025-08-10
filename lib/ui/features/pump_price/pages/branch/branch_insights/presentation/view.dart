@@ -116,7 +116,7 @@ class _PumpPriceBranchInsightsViewState
         AppAssets.images.pumpPrice.svg.attendantEmpty.svg(),
         10.verticalGap,
         Text(
-          'No attendants yet',
+          'No transactions yet',
           style: context.textTheme.titleSmall,
         ),
       ],
