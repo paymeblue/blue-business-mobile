@@ -19,7 +19,7 @@ class PumpPriceToast {
       ),
       dismissOtherToast: true,
       duration: const Duration(seconds: 7),
-      position: ToastPosition.bottom,
+      position: ToastPosition.top,
     );
   }
 
@@ -50,7 +50,7 @@ class PumpPriceToast {
       ),
       dismissOtherToast: true,
       duration: const Duration(seconds: 7),
-      position: ToastPosition.bottom,
+      position: ToastPosition.top,
     );
   }
 }
