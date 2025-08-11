@@ -18,7 +18,7 @@ class PumpPriceToast {
         iconAlignment: IconAlignment.left,
       ),
       dismissOtherToast: true,
-      duration: const Duration(seconds: 7),
+      duration: const Duration(seconds: 6),
       position: ToastPosition.top,
     );
   }
@@ -49,7 +49,7 @@ class PumpPriceToast {
         iconAlignment: IconAlignment.left,
       ),
       dismissOtherToast: true,
-      duration: const Duration(seconds: 7),
+      duration: const Duration(seconds: 6),
       position: ToastPosition.top,
     );
   }
