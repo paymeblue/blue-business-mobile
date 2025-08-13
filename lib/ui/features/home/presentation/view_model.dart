@@ -370,7 +370,7 @@ class HomeViewModel extends BaseViewModel {
     dynamic extra;
     if (mode == "payment") {
       extra = PaymentDetail.fromJson(response.data);
-      locator<AppRouter>().push(PaymentDetailsRoute(detail: extra));
+      locator<AppRouter>().push(PaymentDetailsRoute(detail: extra, type: type));
     } else if (mode == "airtime") {
       extra = AirtimeDetails.fromJson(response.data);
       locator<AppRouter>().push(AirtimeDetailsRoute(detail: extra));
