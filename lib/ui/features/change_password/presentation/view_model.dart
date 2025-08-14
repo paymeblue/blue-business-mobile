@@ -89,6 +89,9 @@ class ChangePasswordViewModel extends BaseViewModel {
       }
       AppNotification.success(message: resp.message);
       formKey.currentState!.reset();
+      passwordController.clear();
+      confirmPasswordController.clear();
+      newPasswordController.clear();
     } else {
       AppNotification.error(message: resp.message);
     }
