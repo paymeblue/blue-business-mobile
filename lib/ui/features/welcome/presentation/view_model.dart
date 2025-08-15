@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'package:blue_business/core/config/module/base_view_model.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WelcomeViewModel extends BaseViewModel {
@@ -46,7 +45,7 @@ class WelcomeViewModel extends BaseViewModel {
   }
 
   goToLogin(BuildContext context) {
-    context.push(RoutePaths.login);
+    locator<AppRouter>().push(LoginRoute());
   }
 
   launchTerms() async {
@@ -64,6 +63,6 @@ class WelcomeViewModel extends BaseViewModel {
   }
 
   goToSignup(BuildContext context) {
-    context.push(RoutePaths.initiateSignup);
+    locator<AppRouter>().push(InitiateSignupRoute());
   }
 }

@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/profile_service/profile_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
+import 'package:blue_business/core/config/timed_refresh.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/login/data/login_data.dart';
 import 'package:blue_business/core/models/login/request/login_request.dart';
@@ -11,7 +13,7 @@ import 'package:blue_business/core/models/login/response/login_response.dart';
 import 'package:blue_business/core/models/notification/get/response/get_notification_response.dart';
 import 'package:blue_business/core/models/token/token.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/biometics.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -21,13 +23,15 @@ import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class LoginViewModel extends BaseViewModel {
   late Size size;
+  VoidCallback? onSuccess;
 
-  init(BuildContext context) {
+  init(BuildContext context, VoidCallback? callback) {
     size = context.mediaQuery.size;
+
+    onSuccess = callback;
 
     setSelectedCountry();
     getDataFromStorage();
@@ -46,11 +50,12 @@ class LoginViewModel extends BaseViewModel {
 
   goBack() async {
     await StorageHelpers.setVal(StorageKeys.skipWelcomeKey, false.toString());
-    if (globalContext!.canPop()) {
-      globalContext!.pop();
-    } else {
-      globalContext!.pushReplacement(RoutePaths.welcome);
-    }
+
+    globalContext!.router.maybePop().then((v) {
+      if (!v) {
+        globalContext!.router.replace(WelcomeRoute());
+      }
+    });
   }
 
   showNotification() {
@@ -251,7 +256,8 @@ class LoginViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context, LoginData user) {
-    context.go(RoutePaths.home);
+    RefreshTimer().resetTimer();
+    onSuccess ?? locator<AppRouter>().replaceAll([HomeRoute()]);
   }
 
   deleteStorageItems() async {
@@ -262,7 +268,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   goToRecoverPassword(BuildContext context) {
-    context.push<bool>(RoutePaths.initiateResetPassword).then((val) {
+    locator<AppRouter>().push<bool>(InitiatePasswordResetRoute()).then((val) {
       if (val == true) {
         AppNotification.success(message: "Password reset successfully");
       }
@@ -270,7 +276,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   goToenterRecoveryCode(BuildContext context) {
-    context.push<bool>(RoutePaths.initiateResetPhone).then((val) {
+    locator<AppRouter>().push<bool>(InitiatePhoneResetRoute()).then((val) {
       if (val == true) {
         AppNotification.success(message: "Phone number reset successfully");
       }
@@ -278,6 +284,6 @@ class LoginViewModel extends BaseViewModel {
   }
 
   goToSignup(BuildContext context) {
-    context.pushReplacement(RoutePaths.initiateSignup);
+    locator<AppRouter>().replace(InitiateSignupRoute());
   }
 }

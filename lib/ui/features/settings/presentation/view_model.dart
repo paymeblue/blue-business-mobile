@@ -21,10 +21,9 @@ import 'package:blue_business/core/models/settings_section/settings_section.dart
 import 'package:blue_business/core/models/upload_avatar/response/upload_avatar_response.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/response/withdrawal_account_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/bottom_sheet.dart';
@@ -33,7 +32,6 @@ import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsViewModel extends BaseViewModel {
@@ -115,7 +113,7 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToChangePassword(BuildContext context) {
-    context.push(RoutePaths.changePassword);
+    locator<AppRouter>().push(ChangePasswordRoute());
   }
 
   denyBiometrics() async {
@@ -143,7 +141,7 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToChangePin(BuildContext context) {
-    context.push(RoutePaths.changePin);
+    locator<AppRouter>().push(ChangePinRoute());
   }
 
   List<SettingsSection> sections(BuildContext context) => [
@@ -219,8 +217,6 @@ class SettingsViewModel extends BaseViewModel {
     if (resp.status == "success") {
       if (context.mounted) {
         await logout(context);
-
-        if (context.mounted) context.go(RoutePaths.welcome);
       }
       StorageHelpers.deleteAll();
       StorageValues.deleteLoginValues();
@@ -246,12 +242,7 @@ class SettingsViewModel extends BaseViewModel {
   logout(BuildContext context, [bool logout = false]) async {
     AppLoader.start();
 
-    if (context.mounted) {
-      context.go(RoutePaths.login);
-    }
-    locator<AppStateValues>().notificationState =
-        NotificationState.logoutSuccess;
-    RefreshTimer().cancelTimer();
+    RefreshTimer.logout();
 
     AppLoader.stop();
   }
@@ -440,7 +431,7 @@ class SettingsViewModel extends BaseViewModel {
     if (resp.status == 'success') {
       final data = resp.data;
       if (context.mounted) {
-        context.push(RoutePaths.settingsToBusinessFees, extra: data);
+        locator<AppRouter>().push(BusinessFeesRoute(data: data!));
       }
     } else {
       AppNotification.error(message: resp.message);
@@ -481,15 +472,15 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToManageBeneficiaries(BuildContext context) {
-    context.push(RoutePaths.beneficiary);
+    locator<AppRouter>().push(ManageBeneficiariesRoute());
   }
 
   goToBranchManagementHome(BuildContext context) {
-    context.push(RoutePaths.settingsToBranches);
+    locator<AppRouter>().push(BranchHomeRoute());
   }
 
   goToStaffManagementHome(BuildContext context) {
-    context.push(RoutePaths.settingsToStaff);
+    locator<AppRouter>().push(StaffHomeRoute());
   }
 
   goToBlueWeb() async {
@@ -527,18 +518,18 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   goToPaymentLinkHistory(BuildContext context) {
-    context.push(RoutePaths.paymentLinkHistory);
+    locator<AppRouter>().push(PaymentLinkHistoryRoute());
   }
 
   goToPersonalInfo(BuildContext context) {
-    context.push(RoutePaths.personalInfo);
+    locator<AppRouter>().push(PersonalInfoRoute());
   }
 
   goToWithdrawalBank(BuildContext context) {
-    context.push(RoutePaths.withdrawalInfo);
+    locator<AppRouter>().push(AddWithdrawalDetailsRoute());
   }
 
   goToAccountRecovery(BuildContext context) {
-    context.push(RoutePaths.accountRecovery);
+    locator<AppRouter>().push(AccountRecoveryRoute());
   }
 }

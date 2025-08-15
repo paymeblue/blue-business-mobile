@@ -1,8 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/models/login/data/login_data.dart';
 import 'package:blue_business/core/models/topup_account/topup_account.dart';
 import 'package:blue_business/core/models/wallet/wallet.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/data/withdrawal_account.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class AppStateValues extends ChangeNotifier {
   String _fcmToken = "";
   String _narration = "";
   String _recoveryCode = "";
-  String _path = RoutePaths.home;
+  PageRouteInfo _path = HomeRoute();
   String _kycLevel = "basic";
   bool _hasSavedBeneficiary = true;
   bool _showLiveChat = false;
@@ -28,7 +29,6 @@ class AppStateValues extends ChangeNotifier {
   Wallet? _wallet;
   TopupAccount? _account;
   WithdrawalAccount? _withdrawalAccount;
-  Object? _extra;
   bool _isAutowithdrawalEnabled = false;
 
   String get refreshToken => _refreshToken;
@@ -40,7 +40,7 @@ class AppStateValues extends ChangeNotifier {
   bool get notificationStatus => _notificationStatus;
   bool get isTestApp => _isTestApp;
   List<String> get lockedFeatures => _lockedFeatures;
-  String get resetPath => _path;
+  PageRouteInfo get resetPath => _path;
   int get unreadCount => _count;
   bool get hasNewMessage => _newMessage;
   bool get showLiveChat => _showLiveChat;
@@ -53,7 +53,6 @@ class AppStateValues extends ChangeNotifier {
   Wallet? get wallet => _wallet;
   TopupAccount? get account => _account;
   WithdrawalAccount? get withdrawalAccount => _withdrawalAccount;
-  Object? get extra => _extra;
 
   bool get isAutoWithdrawalEnabled => _isAutowithdrawalEnabled;
 
@@ -109,7 +108,7 @@ class AppStateValues extends ChangeNotifier {
     notifyListeners();
   }
 
-  set resetPath(String path) {
+  set resetPath(PageRouteInfo path) {
     _path = path;
     notifyListeners();
   }
@@ -169,11 +168,6 @@ class AppStateValues extends ChangeNotifier {
     notifyListeners();
   }
 
-  set extra(Object? e) {
-    _extra = e;
-    notifyListeners();
-  }
-
   clear() {
     accessToken = "";
     refreshToken = "";
@@ -182,7 +176,7 @@ class AppStateValues extends ChangeNotifier {
     hasSavedBeneficiary = true;
     hasNetwork = true;
     notificationStatus = false;
-    resetPath = RoutePaths.home;
+    resetPath = HomeRoute();
     unreadCount = 0;
     hasNewMessage = false;
     hasClosedAddressBanner = false;
@@ -195,7 +189,6 @@ class AppStateValues extends ChangeNotifier {
     wallet = null;
     account = null;
     withdrawalAccount = null;
-    extra = null;
   }
 }
 

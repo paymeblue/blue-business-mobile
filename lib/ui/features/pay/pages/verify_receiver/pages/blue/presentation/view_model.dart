@@ -7,7 +7,8 @@ import 'package:blue_business/core/models/recently_paid/response/recently_paid_r
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/verify/request/verified_receiver_request.dart';
 import 'package:blue_business/core/models/transaction/verify/response/verified_receiver_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
@@ -15,7 +16,6 @@ import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/pay/pages/confirm_payment/presentation/view.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class BluePaymentViewModel extends BaseViewModel {
@@ -171,7 +171,7 @@ class BluePaymentViewModel extends BaseViewModel {
           receiver: resp.data,
           transactionId: data.transactionId,
         );
-        context.push(RoutePaths.confirmTransaction, extra: args);
+        locator<AppRouter>().push(ConfirmTransactionRoute(args: args));
       }
     } else {
       AppNotification.error(message: resp.message);

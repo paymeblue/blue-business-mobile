@@ -6,6 +6,8 @@ import 'package:blue_business/core/models/beneficiary/electricity/electricity_be
 import 'package:blue_business/core/models/beneficiary/payment/blue_beneficiary.dart';
 import 'package:blue_business/core/models/beneficiary/payment/get/response/get_beneficiary_response.dart';
 import 'package:blue_business/core/models/beneficiary/payment/set/response/set_beneficiary_response.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
@@ -13,7 +15,6 @@ import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/dialogs.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class ManageBeneficiariesViewModel extends BaseViewModel {
@@ -30,7 +31,7 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    locator<AppRouter>().maybePop();
   }
 
   onFilterChanged(String? v) {
@@ -62,7 +63,7 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  FetchState _getLocalBeneficiaryState = FetchState.complete;
+  FetchState _getLocalBeneficiaryState = FetchState.success;
   FetchState get getLocalBeneficiaryState => _getLocalBeneficiaryState;
   set getLocalBeneficiaryState(FetchState v) {
     _getLocalBeneficiaryState = v;

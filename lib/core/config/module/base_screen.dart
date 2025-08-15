@@ -1,7 +1,9 @@
+import 'dart:developer';
+
 import 'package:blue_business/core/config/timed_refresh.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/connection.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class BaseView<T extends ChangeNotifier> extends StatefulWidget {
@@ -56,16 +58,16 @@ class _BaseViewState<T extends ChangeNotifier> extends State<BaseView<T>> {
       value: model,
       child: GestureDetector(
         onTap: () {
-          GoRouterState state = GoRouterState.of(context);
           FocusManager.instance.primaryFocus?.unfocus();
 
-          if (state.matchedLocation.contains("/dash")) {
+          log('_______-------------TAPPING-------------_______${context.widget.toString()}');
+          if (locator<AppStateValues>().accessToken.isNotEmpty) {
             RefreshTimer().resetTimer();
           }
         },
         onPanDown: (details) {
-          GoRouterState state = GoRouterState.of(context);
-          if (state.matchedLocation.contains("/dash")) {
+          log('_______-------------PAN DOWN-------------_______${context.widget.toString()}');
+          if (locator<AppRouter>().guards.contains(AuthGuards.logout())) {
             RefreshTimer().resetTimer();
           }
         },

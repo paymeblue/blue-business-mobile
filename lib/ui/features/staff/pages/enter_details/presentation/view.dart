@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -19,6 +20,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class EnterStaffDetailsView extends StatefulWidget {
   final Staff? staff;
   const EnterStaffDetailsView({super.key, this.staff});
@@ -128,6 +130,9 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
           controller: model.nameController,
         ),
         12.verticalGap,
+        // model.role?.name.toLowerCase() == 'fuel_attendant'
+        //     ? SizedBox.shrink()
+        //     :
         model.roleState == FetchState.loading
             ? BlueLoadingTile.withoutImage(title: "Set role")
             : BlueDropdown.show(

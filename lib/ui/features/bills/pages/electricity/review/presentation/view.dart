@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class ReviewElectricityView extends StatelessWidget {
   final ConfirmPowerArgs args;
   const ReviewElectricityView({super.key, required this.args});

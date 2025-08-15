@@ -5,14 +5,14 @@ import 'package:blue_business/core/models/business_category/response/business_ca
 import 'package:blue_business/core/models/create_business_profile/request/create_business_profile_request.dart';
 import 'package:blue_business/core/models/create_business_profile/response/create_business_profile_response.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class AddBusinessDetailsViewModel extends BaseViewModel {
   late Size size;
@@ -26,7 +26,7 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop(data);
+    locator<AppRouter>().maybePop(data);
   }
 
   late SignupData data;
@@ -45,7 +45,7 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  FetchState _categoryFetchState = FetchState.complete;
+  FetchState _categoryFetchState = FetchState.success;
   FetchState get categoryFetchState => _categoryFetchState;
   set categoryFetchState(FetchState s) {
     _categoryFetchState = s;
@@ -67,7 +67,7 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
 
     if (response.status == "success") {
       categories = response.data ?? [];
-      categoryFetchState = FetchState.complete;
+      categoryFetchState = FetchState.success;
     } else {
       AppNotification.error(message: response.message);
       categoryFetchState = FetchState.error;
@@ -134,6 +134,6 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.pushReplacement(RoutePaths.shareholders, extra: data);
+    locator<AppRouter>().replace(SelectShareholderRoute(data: data));
   }
 }

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class ResetPhoneView extends StatelessWidget {
   final int id;
   const ResetPhoneView({super.key, required this.id});

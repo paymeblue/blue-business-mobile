@@ -5,21 +5,18 @@ import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/connection.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SplashViewModel extends BaseViewModel {
   late Size size;
 
   init(BuildContext context) async {
-    size = MediaQuery.sizeOf(globalContext!);
+    size = MediaQuery.sizeOf(context);
 
     ConnectionHelper.initialiseNetworkCheck(context);
 
@@ -29,14 +26,14 @@ class SplashViewModel extends BaseViewModel {
 
     if (StorageValues.username.isNotEmpty) {
       if (StorageValues.skipWelcome == "true") {
-        if (context.mounted) context.go(RoutePaths.login);
+        if (context.mounted) locator<AppRouter>().replace(LoginRoute());
       } else {
         await StorageHelpers.setVal(
             StorageKeys.skipWelcomeKey, true.toString());
-        if (context.mounted) context.go(RoutePaths.welcome);
+        if (context.mounted) locator<AppRouter>().replace(WelcomeRoute());
       }
     } else {
-      if (context.mounted) context.go(RoutePaths.welcome);
+      if (context.mounted) locator<AppRouter>().replace(WelcomeRoute());
     }
   }
 
@@ -57,7 +54,7 @@ class SplashViewModel extends BaseViewModel {
   void _showUpdateDialog(
       BuildContext context, bool forceUpdate, String minimumVersion) {
     showDialog(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       barrierDismissible: !forceUpdate,
       builder: (ctx) => Theme(
         data: Theme.of(ctx).copyWith(
@@ -82,7 +79,7 @@ class SplashViewModel extends BaseViewModel {
           actions: [
             if (!forceUpdate)
               TextButton(
-                onPressed: () => ctx.pop(), // Dismiss dialog
+                onPressed: () => Navigator.of(ctx).pop(), // Dismiss dialog
                 child: Text(
                   'Later',
                   style: AppTextStyles.smallButtonText.copyWith(
@@ -93,7 +90,7 @@ class SplashViewModel extends BaseViewModel {
               ),
             TextButton(
               onPressed: () {
-                if (!forceUpdate) ctx.pop();
+                if (!forceUpdate) Navigator.of(ctx).pop();
                 _redirectToAppStore();
               },
               child: Text(

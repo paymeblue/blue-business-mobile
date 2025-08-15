@@ -70,7 +70,8 @@ dependencies:
   json_annotation: ^4.8.1
   
   #NAVIGATION
-  go_router: ^14.8.1
+  # go_router: ^14.8.1
+  auto_route: ^9.3.0+1
 
   #LOGGING
   logger: 1.4.0
@@ -105,6 +106,7 @@ dev_dependencies:
   freezed: ^2.4.6
   json_serializable: ^6.7.1
   retrofit_generator: ^8.0.6
+  auto_route_generator: ^9.0.0
 
 flutter_icons:
   ios: true
@@ -130,6 +132,7 @@ flutter_gen:
       class_name: AppColors
     inputs:
       - assets/color/colors.xml
+      - assets/color/pump_price/colors.xml
   integrations:
     flutter_svg: true
 
@@ -165,10 +168,60 @@ flutter:
           weight: 300
           style: italic
 
+    - family: Neue Montreal
+      fonts:
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-Bold.otf
+          weight: 600
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-BoldItalic.otf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-MediumItalic.otf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-Regular.otf
+          weight: 400
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-Italic.otf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-Light.otf
+          weight: 300
+        - asset: assets/fonts/Neue Montreal/NeueMontreal-LightItalic.otf
+          weight: 300
+          style: italic
+    
+    - family: Figtree
+      fonts:
+        - asset: assets/fonts/Figtree/Figtree-Bold.ttf
+          weight: 600
+        - asset: assets/fonts/Figtree/Figtree-BoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Figtree/Figtree-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Figtree/Figtree-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Figtree/Figtree-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Figtree/Figtree-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Figtree/Figtree-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Figtree/Figtree-LightItalic.ttf
+          weight: 300
+          style: italic
+
   assets:
     - assets/images/
     - assets/images/logos/
     - assets/images/icons/
     - assets/images/navbar_icons/active/
     - assets/images/navbar_icons/inactive/
+    - assets/images/pump_price/
+    - assets/images/pump_price/svg/
+    - assets/images/pump_price/svg/active/
+    - assets/images/pump_price/svg/inactive/
     - shorebird.yaml

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
@@ -22,6 +23,7 @@ class PaymentSuccessViewArgs {
   final PayData data;
 }
 
+@RoutePage()
 class PaymentSuccessView extends StatelessWidget {
   final PaymentSuccessViewArgs args;
   const PaymentSuccessView({super.key, required this.args});

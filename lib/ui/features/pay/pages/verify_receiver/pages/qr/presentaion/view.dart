@@ -1,16 +1,19 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/error/presentation/view.dart';
 import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
 import 'package:blue_business/ui/widgets/overlays/qr_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class QrPaymentView extends StatelessWidget {
   final InitiateTransactionData data;
   const QrPaymentView({super.key, required this.data});
@@ -24,7 +27,7 @@ class QrPaymentView extends StatelessWidget {
         return Scaffold(
           appBar: BlueAppBar.primary(
             onBackTap: () {
-              context.pop();
+              locator<AppRouter>().maybePop();
             },
             icon: Icons.arrow_back_ios_new,
           ),

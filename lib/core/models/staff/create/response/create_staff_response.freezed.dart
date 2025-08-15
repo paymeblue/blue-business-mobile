@@ -21,7 +21,7 @@ CreateStaffResponse _$CreateStaffResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CreateStaffResponse {
   String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
 
   /// Serializes this CreateStaffResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $CreateStaffResponseCopyWith<$Res> {
           CreateStaffResponse value, $Res Function(CreateStaffResponse) then) =
       _$CreateStaffResponseCopyWithImpl<$Res, CreateStaffResponse>;
   @useResult
-  $Res call({String status, String? message});
+  $Res call({String status, String message});
 }
 
 /// @nodoc
@@ -58,17 +58,17 @@ class _$CreateStaffResponseCopyWithImpl<$Res, $Val extends CreateStaffResponse>
   @override
   $Res call({
     Object? status = null,
-    Object? message = freezed,
+    Object? message = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      message: freezed == message
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -81,7 +81,7 @@ abstract class _$$CreateStaffResponseImplCopyWith<$Res>
       __$$CreateStaffResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? message});
+  $Res call({String status, String message});
 }
 
 /// @nodoc
@@ -98,17 +98,17 @@ class __$$CreateStaffResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? message = freezed,
+    Object? message = null,
   }) {
     return _then(_$CreateStaffResponseImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      message: freezed == message
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -116,7 +116,7 @@ class __$$CreateStaffResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CreateStaffResponseImpl implements _CreateStaffResponse {
-  const _$CreateStaffResponseImpl({this.status = "fail", this.message});
+  const _$CreateStaffResponseImpl({this.status = "fail", this.message = ""});
 
   factory _$CreateStaffResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateStaffResponseImplFromJson(json);
@@ -125,7 +125,8 @@ class _$CreateStaffResponseImpl implements _CreateStaffResponse {
   @JsonKey()
   final String status;
   @override
-  final String? message;
+  @JsonKey()
+  final String message;
 
   @override
   String toString() {
@@ -164,7 +165,7 @@ class _$CreateStaffResponseImpl implements _CreateStaffResponse {
 
 abstract class _CreateStaffResponse implements CreateStaffResponse {
   const factory _CreateStaffResponse(
-      {final String status, final String? message}) = _$CreateStaffResponseImpl;
+      {final String status, final String message}) = _$CreateStaffResponseImpl;
 
   factory _CreateStaffResponse.fromJson(Map<String, dynamic> json) =
       _$CreateStaffResponseImpl.fromJson;
@@ -172,7 +173,7 @@ abstract class _CreateStaffResponse implements CreateStaffResponse {
   @override
   String get status;
   @override
-  String? get message;
+  String get message;
 
   /// Create a copy of CreateStaffResponse
   /// with the given fields replaced by the non-null parameter values.

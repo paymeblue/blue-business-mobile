@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/signup/pages/pin/presentation/view_model.dart';
@@ -9,8 +12,8 @@ import 'package:blue_business/ui/widgets/buttons/app_buttons.dart';
 import 'package:blue_business/ui/widgets/textfield/num_pad.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
+@RoutePage()
 class CreatePinView extends StatelessWidget {
   const CreatePinView({super.key, required this.data});
 
@@ -29,7 +32,7 @@ class CreatePinView extends StatelessWidget {
                 model.tempPin = "";
                 model.isConfirm = false;
               } else {
-                context.pop(data);
+                locator<AppRouter>().maybePop();
               }
             },
           ),

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/features/account_recovery/widgets/account_recovery_section_container.dart';
@@ -5,6 +6,7 @@ import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
 import 'view_model.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class AccountRecoveryView extends StatefulWidget {
   final String? type;
   const AccountRecoveryView({super.key, this.type});

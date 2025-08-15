@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
@@ -11,14 +12,17 @@ import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+  const LoginView({super.key, this.onSuccess});
+
+  final VoidCallback? onSuccess;
 
   @override
   Widget build(BuildContext context) {
     return BaseView<LoginViewModel>(
       model: LoginViewModel(),
-      onModelReady: (model) => model.init(context),
+      onModelReady: (model) => model.init(context, onSuccess),
       builder: (context, model, _) {
         return Scaffold(
           appBar: BlueAppBar.primary(

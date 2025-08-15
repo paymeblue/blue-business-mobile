@@ -1,9 +1,8 @@
 import 'package:blue_business/core/config/module/base_view_model.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 
 import 'package:blue_business/core/utils/extensions.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class WalletViewModel extends BaseViewModel {
   late Size size;
@@ -13,18 +12,18 @@ class WalletViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    locator<AppRouter>().maybePop();
   }
 
   goToInitiatePayment(BuildContext context) {
-    context.push(RoutePaths.initiateTransaction);
+    locator<AppRouter>().push(InitiateTransactionRoute());
   }
 
   goToBills(BuildContext context) {
-    context.push(RoutePaths.bills);
+    locator<AppRouter>().push(BillsRoute());
   }
 
   goToWithdrawalMethod(BuildContext context) {
-    context.push(RoutePaths.withdrawalMethod);
+    locator<AppRouter>().push(WithdrawalMethodRoute());
   }
 }

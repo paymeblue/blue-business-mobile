@@ -10,7 +10,7 @@ import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/payment_option/payment_option.dart';
 import 'package:blue_business/core/models/push_payment_request/push_payment.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -22,7 +22,6 @@ import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:salesiq_mobilisten/salesiq_mobilisten.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -33,7 +32,7 @@ class BlueBottomSheet {
   static Future biometrics(
       {required VoidCallback onContinue, required VoidCallback onCancel}) {
     return showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       isDismissible: false,
       backgroundColor: Colors.transparent,
@@ -78,7 +77,7 @@ class BlueBottomSheet {
                     child: AppButton.primary(
                       title: "Yes, enable",
                       onTap: () {
-                        context.pop();
+                        locator<AppRouter>().maybePop();
                         onContinue();
                       },
                     ),
@@ -104,7 +103,7 @@ class BlueBottomSheet {
 
   static Future topup() {
     return showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,
@@ -198,7 +197,7 @@ class BlueBottomSheet {
               AppButton.primary(
                 title: "Close",
                 onTap: () {
-                  context.pop();
+                  locator<AppRouter>().maybePop();
                 },
               )
             ],
@@ -259,45 +258,6 @@ class BlueBottomSheet {
       );
     }
 
-    // Widget statusDropdown(
-    //     BuildContext context, void Function(String?)? onChanged) {
-    //   return Container(
-    //     margin: const EdgeInsets.only(top: 10, bottom: 10),
-    //     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-    //     width: context.mediaQuery.size.width,
-    //     decoration: BoxDecoration(
-    //       color: AppColors.grey,
-    //       borderRadius: BorderRadius.circular(5),
-    //     ),
-    //     child: DropdownButton<String>(
-    //       hint: Text(
-    //         status.isEmpty ? "--Select a status--" : status,
-    //         style: status.isNotEmpty
-    //             ? AppTextStyles.textField
-    //             : AppTextStyles.subText
-    //                 .copyWith(color: AppColors.textColor.withOpacityValue(.5)),
-    //       ),
-    //       underline: const SizedBox(),
-    //       icon: const Icon(Icons.keyboard_arrow_down_rounded),
-    //       style: TextStyle(
-    //           fontSize: 13.sp,
-    //           // fontWeight: FontWeight.w300,
-    //           color: Theme.of(context).highlightColor.withOpacityValue(.8)),
-    //       items: statuses
-    //           .map((q) => DropdownMenuItem<String>(
-    //                 value: q,
-    //                 child: Text(
-    //                   q,
-    //                   style: AppTextStyles.textField,
-    //                 ),
-    //               ))
-    //           .toList(),
-    //       isExpanded: true,
-    //       onChanged: onChanged,
-    //     ),
-    //   );
-    // }
-
     Widget textFieldHeader(String text) {
       return Align(
         alignment: Alignment.centerLeft,
@@ -350,7 +310,7 @@ class BlueBottomSheet {
     }
 
     return showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,
@@ -408,7 +368,7 @@ class BlueBottomSheet {
                       selectedStatus(status);
                       selectedDate(date);
                       refresh();
-                      context.pop();
+                      locator<AppRouter>().maybePop();
                     },
                   ),
                   4.verticalGap,
@@ -419,7 +379,7 @@ class BlueBottomSheet {
                       selectedDate("");
                       selectedStatus("");
                       refresh();
-                      context.pop();
+                      locator<AppRouter>().maybePop();
                     },
                   ),
                 ],
@@ -482,7 +442,7 @@ class BlueBottomSheet {
     }
 
     return showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,
@@ -510,7 +470,7 @@ class BlueBottomSheet {
                 "Call us on 09075561565",
                 () {
                   openDialer();
-                  context.pop();
+                  locator<AppRouter>().maybePop();
                 },
               ),
               4.verticalGap,
@@ -518,7 +478,7 @@ class BlueBottomSheet {
                 "Contact us via email",
                 () {
                   openMail();
-                  context.pop();
+                  locator<AppRouter>().maybePop();
                 },
               ),
               if (locator<AppStateValues>().showLiveChat) ...[
@@ -527,7 +487,7 @@ class BlueBottomSheet {
                   "Chat with us Live",
                   () {
                     ZohoSalesIQ.openNewChat();
-                    context.pop();
+                    locator<AppRouter>().maybePop();
                   },
                 ),
               ]
@@ -594,7 +554,7 @@ class BlueBottomSheet {
         onTap: () {
           setState(() {
             mode = e.mode;
-            context.pop();
+            locator<AppRouter>().maybePop();
           });
         },
         child: Container(
@@ -625,7 +585,7 @@ class BlueBottomSheet {
     }
 
     await showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       isDismissible: true,
@@ -681,7 +641,7 @@ class BlueBottomSheet {
   static contact(TextEditingController controller,
       {required VoidCallback onConfirm}) {
     return showModalBottomSheet(
-        context: locator<NavigationService>().navigatorKey.currentContext!,
+        context: locator<AppRouter>().navigatorKey.currentContext!,
         backgroundColor: Colors.transparent,
         builder: (context) {
           return StatefulBuilder(builder: (context, setState) {
@@ -723,7 +683,7 @@ class BlueBottomSheet {
                         title: "Start chat",
                         isEnabled: controller.text.isNotEmpty,
                         onTap: () {
-                          context.pop();
+                          locator<AppRouter>().maybePop();
                           onConfirm();
                         },
                       ),
@@ -755,7 +715,7 @@ class BlueBottomSheet {
           children: [
             GestureDetector(
               onTap: () {
-                context.pop();
+                locator<AppRouter>().maybePop();
               },
               child: Container(
                 height: 34.h,
@@ -833,7 +793,7 @@ class BlueBottomSheet {
     }
 
     return showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       isDismissible: false,
@@ -905,7 +865,7 @@ class BlueBottomSheet {
           children: [
             GestureDetector(
               onTap: () {
-                context.pop();
+                locator<AppRouter>().maybePop();
                 passwordController.clear();
               },
               child: Container(
@@ -945,7 +905,7 @@ class BlueBottomSheet {
     }
 
     return showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       isDismissible: false,
@@ -1033,7 +993,7 @@ class BlueBottomSheet {
                 passwordController.clear();
                 question = "";
                 answerController.clear();
-                context.pop();
+                locator<AppRouter>().maybePop();
               },
               child: Container(
                 height: 34.h,
@@ -1127,7 +1087,7 @@ class BlueBottomSheet {
     }
 
     await showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       isDismissible: false,
@@ -1211,7 +1171,7 @@ class BlueBottomSheet {
 
     NumberFormat format = NumberFormat("#,##0.00");
     await showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,
@@ -1283,7 +1243,7 @@ class BlueBottomSheet {
                     title: "Make payment",
                     onTap: () {
                       res = true;
-                      context.pop();
+                      locator<AppRouter>().maybePop();
                     },
                   )
                 ],
@@ -1398,7 +1358,7 @@ class BlueBottomSheet {
                       child: GestureDetector(
                         onTap: () {
                           onBeneficiaryChanged(beneficiary);
-                          context.pop();
+                          locator<AppRouter>().maybePop();
                         },
                         child: DecoratedBox(
                           decoration: const BoxDecoration(),
@@ -1470,7 +1430,7 @@ class BlueBottomSheet {
     }
 
     await showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,

@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -17,7 +20,6 @@ import 'package:blue_business/ui/widgets/paging/no_items.dart';
 import 'package:blue_business/ui/widgets/steppers/filter_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -25,6 +27,7 @@ import 'package:shimmer/shimmer.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class BranchInsightsView extends StatefulWidget {
   final Branch branch;
   const BranchInsightsView({super.key, required this.branch});
@@ -44,7 +47,7 @@ class _BranchInsightsViewState extends State<BranchInsightsView> {
             appBar: BlueAppBar.primary(
                 icon: Icons.arrow_back_ios_new,
                 onBackTap: () {
-                  context.pop();
+                  locator<AppRouter>().maybePop();
                 },
                 title: Column(
                   mainAxisSize: MainAxisSize.min,

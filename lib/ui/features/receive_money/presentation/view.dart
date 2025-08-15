@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:barcode/barcode.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
@@ -20,6 +21,7 @@ import 'package:shimmer/shimmer.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class ReceiveMoneyView extends StatefulWidget {
   const ReceiveMoneyView({super.key});
 

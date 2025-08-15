@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -12,6 +13,7 @@ import 'package:intl/intl.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class ReviewCableView extends StatelessWidget {
   final VerifyCableData data;
   const ReviewCableView({super.key, required this.data});

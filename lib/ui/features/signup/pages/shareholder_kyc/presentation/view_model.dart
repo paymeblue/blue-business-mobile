@@ -4,16 +4,13 @@ import 'package:blue_business/core/models/shareholders/add/request/add_sharehold
 import 'package:blue_business/core/models/shareholders/create/request/create_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/response/create_shareholders_response.dart';
 import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
-import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/models/signup/response/signup_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
-import 'package:blue_business/ui/features/signup/pages/shareholder_kyc/presentation/view.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class SignupBusinessKycViewModel extends BaseViewModel {
   late Size size;
@@ -35,7 +32,7 @@ class SignupBusinessKycViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.push<SignupData>(RoutePaths.createPin, extra: data).then(
+    locator<AppRouter>().push<SignupData>(CreatePinRoute(data: data)).then(
       (val) {
         if (val != null) {
           data = val;
@@ -45,7 +42,7 @@ class SignupBusinessKycViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop(data);
+    locator<AppRouter>().maybePop(data);
   }
 
   bool isActive() {

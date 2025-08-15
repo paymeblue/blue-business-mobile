@@ -7,14 +7,14 @@ import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/branches/create/response/create_branch_response.dart';
 import 'package:blue_business/core/models/branches/details/response/get_branch_response.dart';
 import 'package:blue_business/core/models/branches/get/response/get_branches_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/dialogs.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class BranchHomeViewModel extends BaseViewModel {
@@ -139,26 +139,12 @@ class BranchHomeViewModel extends BaseViewModel {
   }
 
   goToBranchInsights(BuildContext context, Branch branch) {
-    GoRouterState state = GoRouterState.of(context);
-
-    context.push<bool>(
-      state.matchedLocation.startsWith(RoutePaths.home)
-          ? RoutePaths.homeToBranchInsights
-          : RoutePaths.settingsToBranchInsights,
-      extra: branch,
-    );
+    locator<AppRouter>().push<bool>(BranchInsightsRoute(branch: branch));
   }
 
   goToAddBranch(BuildContext context, [Branch? data]) {
-    GoRouterState state = GoRouterState.of(context);
-
-    context
-        .push<bool>(
-      state.matchedLocation.startsWith(RoutePaths.home)
-          ? RoutePaths.homeToBranchesToDetails
-          : RoutePaths.settingsToBranchesToDetails,
-      extra: data,
-    )
+    locator<AppRouter>()
+        .push<bool>(EnterBranchDetailsRoute(branch: data))
         .then((val) {
       if (val == true) {
         branchPagingController.refresh();

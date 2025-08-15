@@ -2,13 +2,12 @@ import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/delete_account/get_reasons/reason/reason.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class BlueDialog {
   BlueDialog._();
@@ -21,7 +20,7 @@ class BlueDialog {
     Color? confirmColor,
   }) {
     return showDialog(
-        context: locator<NavigationService>().navigatorKey.currentContext!,
+        context: locator<AppRouter>().navigatorKey.currentContext!,
         barrierDismissible: false,
         builder: (context) {
           return Dialog(
@@ -57,7 +56,7 @@ class BlueDialog {
                       Flexible(
                         child: GestureDetector(
                           onTap: () {
-                            context.pop();
+                            locator<AppRouter>().maybePop();
                           },
                           child: Container(
                               height: 35,
@@ -75,7 +74,7 @@ class BlueDialog {
                       Flexible(
                         child: GestureDetector(
                           onTap: () {
-                            context.pop();
+                            locator<AppRouter>().maybePop();
                             onDelete();
                           },
                           child: Container(
@@ -104,7 +103,7 @@ class BlueDialog {
   static Future<Reason?> reason({required List<Reason> reasons}) async {
     Reason? selectedReason;
     await showDialog(
-        context: locator<NavigationService>().navigatorKey.currentContext!,
+        context: locator<AppRouter>().navigatorKey.currentContext!,
         builder: (context) {
           return Dialog(
             child: StatefulBuilder(builder: (context, setState) {
@@ -164,7 +163,7 @@ class BlueDialog {
                                   setState(() {
                                     selectedReason = reasons[i];
                                   });
-                                  context.pop();
+                                  locator<AppRouter>().maybePop();
                                 },
                                 child: DecoratedBox(
                                   decoration: const BoxDecoration(),
@@ -177,7 +176,7 @@ class BlueDialog {
                                           setState(() {
                                             selectedReason = val;
                                           });
-                                          context.pop();
+                                          locator<AppRouter>().maybePop();
                                         },
                                       ),
                                       Expanded(
@@ -204,7 +203,7 @@ class BlueDialog {
   static deleteAccount({required VoidCallback onDelete}) {
     String deleteString = "";
     showDialog(
-        context: locator<NavigationService>().navigatorKey.currentContext!,
+        context: locator<AppRouter>().navigatorKey.currentContext!,
         barrierDismissible: false,
         builder: (context) {
           return Dialog(
@@ -255,7 +254,7 @@ class BlueDialog {
                         Flexible(
                           child: GestureDetector(
                             onTap: () {
-                              context.pop();
+                              locator<AppRouter>().maybePop();
                             },
                             child: Container(
                                 height: 35,
@@ -274,7 +273,7 @@ class BlueDialog {
                           child: GestureDetector(
                             onTap: () {
                               if (deleteString == "delete") {
-                                context.pop();
+                                locator<AppRouter>().maybePop();
                                 onDelete();
                               }
                             },

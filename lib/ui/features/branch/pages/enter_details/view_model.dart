@@ -7,6 +7,7 @@ import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/branches/create/data/create_branch_request.dart';
 import 'package:blue_business/core/models/branches/create/response/create_branch_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -18,7 +19,6 @@ import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:blue_business/ui/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -56,7 +56,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context, [bool refresh = false]) {
-    context.pop(refresh);
+    locator<AppRouter>().maybePop(refresh);
   }
 
   List<String> sizes = ["1 - 9", "10 - 49", "50 - 249", "> 250"];
@@ -272,7 +272,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
                   top: 12.h,
                   child: GestureDetector(
                     onTap: () {
-                      ctx.pop();
+                      Navigator.of(ctx).pop();
                       if (context.mounted && closePage) goBack(context, true);
                     },
                     child: Container(

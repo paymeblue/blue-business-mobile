@@ -10,12 +10,12 @@ _$CreateStaffResponseImpl _$$CreateStaffResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateStaffResponseImpl(
       status: json['status'] as String? ?? "fail",
-      message: json['message'] as String?,
+      message: json['message'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$CreateStaffResponseImplToJson(
         _$CreateStaffResponseImpl instance) =>
     <String, dynamic>{
       'status': instance.status,
-      if (instance.message case final value?) 'message': value,
+      'message': instance.message,
     };

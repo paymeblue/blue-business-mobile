@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class InsightsView extends StatefulWidget {
   const InsightsView({super.key});
 
@@ -30,7 +32,7 @@ class _InsightsViewState extends State<InsightsView> {
               "Insights",
               style: AppTextStyles.subHeader.copyWith(fontSize: 20.sp),
             ),
-            onBackTap: () => model.goBack(context),
+            onBackTap: model.goBack,
           ),
           body: Container(
             padding: EdgeInsets.only(bottom: 20.h, top: 10.h),

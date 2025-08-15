@@ -10,7 +10,7 @@ _$ReceiptDataImpl _$$ReceiptDataImplFromJson(Map<String, dynamic> json) =>
     _$ReceiptDataImpl(
       id: (json['id'] as num).toInt(),
       amount: json['amount'] as String,
-      orderReference: json['order_reference'] as String,
+      orderReference: json['order_reference'] as String? ?? "",
       receiverName: json['receiver_name'] as String,
       receiverWallet: json['receiver_wallet'] as String,
       paymentMode: json['payment_mode'] as String,

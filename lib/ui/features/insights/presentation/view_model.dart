@@ -23,13 +23,14 @@ import 'package:blue_business/core/models/staff/get/response/get_staff_response.
 import 'package:blue_business/core/models/staff_roles/get/item/staff_role.dart';
 import 'package:blue_business/core/models/staff_roles/get/response/staff_role_response.dart';
 import 'package:blue_business/core/models/tab_item/tab_item.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class InsightsViewModel extends BaseViewModel {
@@ -64,8 +65,8 @@ class InsightsViewModel extends BaseViewModel {
     }
   }
 
-  goBack(BuildContext context) {
-    context.pop();
+  goBack() {
+    locator<AppRouter>().replaceAll([HomeRoute()]);
   }
 
   List<String> types = ["Weekly", "Monthly", "Yearly"];
@@ -233,7 +234,7 @@ class InsightsViewModel extends BaseViewModel {
     gettingSalesData = false;
   }
 
-  FetchState _salesState = FetchState.complete;
+  FetchState _salesState = FetchState.success;
   FetchState get salesState => _salesState;
   set salesState(FetchState value) {
     _salesState = value;
@@ -284,7 +285,7 @@ class InsightsViewModel extends BaseViewModel {
             .toList();
       }
 
-      salesState = FetchState.complete;
+      salesState = FetchState.success;
     } else {
       AppNotification.error(message: response.message);
 
@@ -550,7 +551,7 @@ class InsightsViewModel extends BaseViewModel {
     }
   }
 
-  FetchState _roleState = FetchState.complete;
+  FetchState _roleState = FetchState.success;
   FetchState get roleState => _roleState;
   set roleState(FetchState value) {
     _roleState = value;
@@ -587,7 +588,7 @@ class InsightsViewModel extends BaseViewModel {
 
     if (response.status == "success") {
       roles = response.data!;
-      roleState = FetchState.complete;
+      roleState = FetchState.success;
     } else {
       roleState = FetchState.error;
       AppNotification.error(message: response.message);

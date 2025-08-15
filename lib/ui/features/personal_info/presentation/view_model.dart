@@ -5,16 +5,14 @@ import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/upload_avatar/response/upload_avatar_response.dart';
-import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 
 import 'package:blue_business/core/utils/app_loader.dart';
-import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class PersonalInfoViewModel extends BaseViewModel {
   late Size size;
@@ -26,7 +24,7 @@ class PersonalInfoViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    locator<AppRouter>().maybePop();
   }
 
   String _path = "";

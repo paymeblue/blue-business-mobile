@@ -11,7 +11,8 @@ import 'package:blue_business/core/models/bills/electricity/verify/request/verif
 import 'package:blue_business/core/models/bills/electricity/verify/response/verify_electricity_response.dart';
 import 'package:blue_business/core/models/bills/get_providers/providers/providers.dart';
 import 'package:blue_business/core/models/bills/get_providers/response/get_providers_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -19,7 +20,6 @@ import 'package:blue_business/ui/features/bills/pages/electricity/pin/presentati
 import 'package:blue_business/ui/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class InitiateElectricityViewModel extends BaseViewModel {
   late Size size;
@@ -31,7 +31,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    locator<AppRouter>().maybePop();
   }
 
   TextEditingController searchController = TextEditingController();
@@ -62,7 +62,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
     selectedMeterType = item;
   }
 
-  FetchState _providersState = FetchState.complete;
+  FetchState _providersState = FetchState.success;
   FetchState get providersState => _providersState;
   set providersState(FetchState s) {
     _providersState = s;
@@ -129,7 +129,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
 
     if (resp.status == "success") {
       providers = resp.data ?? [];
-      providersState = FetchState.complete;
+      providersState = FetchState.success;
     } else {
       AppNotification.error(message: resp.message);
       providersState = FetchState.error;
@@ -195,7 +195,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  FetchState _getLocalBeneficiaryState = FetchState.complete;
+  FetchState _getLocalBeneficiaryState = FetchState.success;
   FetchState get getLocalBeneficiaryState => _getLocalBeneficiaryState;
   set getLocalBeneficiaryState(FetchState v) {
     _getLocalBeneficiaryState = v;
@@ -265,9 +265,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
     double amount = double.parse(amountController.text
         .replaceAll(nairaSymbol(), "")
         .replaceAll(",", ""));
-    context.push(
-      RoutePaths.reviewPower,
-      extra: ConfirmPowerArgs(amount: amount, data: data!),
-    );
+    locator<AppRouter>().push(ReviewElectricityRoute(
+        args: ConfirmPowerArgs(amount: amount, data: data!)));
   }
 }

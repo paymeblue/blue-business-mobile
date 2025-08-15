@@ -5,13 +5,13 @@ import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/forgot/password/verify/request/verify_forgot_password_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
 import 'package:blue_business/core/models/signup/response/signup_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class VerifyPasswordOtpViewModel extends BaseViewModel {
   late Size size;
@@ -135,10 +135,10 @@ class VerifyPasswordOtpViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.pushReplacement(RoutePaths.resetPassword, extra: phone);
+    locator<AppRouter>().replace(ResetPasswordRoute(phone: phone));
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    locator<AppRouter>().maybePop();
   }
 }

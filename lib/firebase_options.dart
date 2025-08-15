@@ -67,4 +67,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'blue-business-24696.firebasestorage.app',
     iosBundleId: 'com.example.blueBusiness',
   );
+
 }

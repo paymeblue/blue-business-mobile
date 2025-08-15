@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -15,7 +17,6 @@ import 'package:blue_business/ui/widgets/modals/info_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class ConfirmTransactionViewArgs {
   final PaymentMode mode;
@@ -32,6 +33,7 @@ class ConfirmTransactionViewArgs {
             (receiver != null && transactionId != null));
 }
 
+@RoutePage()
 class ConfirmTransactionView extends StatelessWidget {
   const ConfirmTransactionView({super.key, required this.args});
 
@@ -45,7 +47,7 @@ class ConfirmTransactionView extends StatelessWidget {
         builder: (context, model, _) {
           return Scaffold(
             appBar: BlueAppBar.primary(
-              onBackTap: () => context.pop(),
+              onBackTap: () => locator<AppRouter>().maybePop(),
               icon: Icons.arrow_back_ios,
             ),
             body: Padding(

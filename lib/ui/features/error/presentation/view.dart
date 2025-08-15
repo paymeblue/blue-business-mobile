@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -8,9 +9,10 @@ import 'package:flutter/material.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class ErrorRouteView extends StatefulWidget {
   final String? message;
-  final String? newRoute;
+  final PageRouteInfo? newRoute;
   const ErrorRouteView({super.key, required this.message, this.newRoute});
 
   @override

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
@@ -18,6 +19,7 @@ import 'package:shimmer/shimmer.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class EnterBranchDetailsView extends StatelessWidget {
   final Branch? branch;
   const EnterBranchDetailsView({super.key, this.branch});

@@ -1,35 +1,104 @@
-import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
-import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/enums.dart';
+import 'package:blue_business/core/config/timed_refresh.dart';
+import 'package:blue_business/core/models/places/places_response.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class ResponseHandlers {
   static Response handleDioResponse(Response<dynamic> response) {
-    if (response.statusCode == 401 ||
-        response.data["message"]
-            .toString()
-            .toLowerCase()
-            .contains("session expired") ||
-        response.data["message"]
-            .toString()
-            .toLowerCase()
-            .contains("login again")) {
+    var result = response;
+    final data = response.data;
+
+    final isSessionExpired = data is Map<String, dynamic> &&
+        (data["message"]
+                ?.toString()
+                .toLowerCase()
+                .contains("session expired") ??
+            false ||
+                (data["message"]
+                        ?.toString()
+                        .toLowerCase()
+                        .contains("login again") ??
+                    false));
+
+    if (result.statusCode == 401 || isSessionExpired) {
       _logout();
+    } else if (response.statusCode == 200 || response.statusCode == 201) {
+      if (response is! Map) {
+        if (response.data is! Map) {
+          final data = {
+            'status': 'success',
+            'message': response.statusMessage,
+            'data': response.data,
+          };
+          result = Response(
+            requestOptions: response.requestOptions,
+            data: data,
+            statusCode: response.statusCode,
+            statusMessage: response.statusMessage,
+            isRedirect: response.isRedirect,
+            redirects: response.redirects,
+            extra: response.extra,
+            headers: response.headers,
+          );
+        } else if ((response.data as Map)['status'] == null &&
+            (response.data as Map)['message'] == null) {
+          final data = {
+            'status': 'success',
+            'message': 'Successful',
+            'data': response.data,
+          };
+          result = Response(
+            requestOptions: response.requestOptions,
+            data: data,
+            statusCode: response.statusCode,
+            statusMessage: response.statusMessage,
+            isRedirect: response.isRedirect,
+            redirects: response.redirects,
+            extra: response.extra,
+            headers: response.headers,
+          );
+        }
+      } else {
+        if (response is Map && (response as Map)['error'] != null) {
+          final data = {
+            'status': 'fail',
+            'message': (response as Map)['message'],
+            'data': null,
+          };
+          result = Response(
+            requestOptions: response.requestOptions,
+            data: data,
+            statusCode: response.statusCode,
+            statusMessage: response.statusMessage,
+            isRedirect: response.isRedirect,
+            redirects: response.redirects,
+            extra: response.extra,
+            headers: response.headers,
+          );
+        } else if (response is Map) {
+          final data = {
+            'status': 'succeess',
+            'message': (result as Map)['message'],
+            'data': response,
+          };
+          result = Response(
+            requestOptions: response.requestOptions,
+            data: data,
+            statusCode: response.statusCode,
+            statusMessage: response.statusMessage,
+            isRedirect: response.isRedirect,
+            redirects: response.redirects,
+            extra: response.extra,
+            headers: response.headers,
+          );
+        } else if (response is! Map) {}
+      }
     }
-    return response;
+
+    logFormattedJson(result.data);
+    return result;
   }
 
   static _logout() {
-    BuildContext context =
-        locator<NavigationService>().navigatorKey.currentContext!;
-    if (context.mounted) {
-      locator<AppStateValues>().notificationState = NotificationState.error;
-
-      context.go(RoutePaths.login);
-    }
+    RefreshTimer.logout();
   }
 }

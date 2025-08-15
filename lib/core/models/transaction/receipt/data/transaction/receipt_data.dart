@@ -8,7 +8,7 @@ class ReceiptData with _$ReceiptData {
   const factory ReceiptData({
     required int id,
     required String amount,
-    required String orderReference,
+    @Default("") String orderReference,
     required String receiverName,
     required String receiverWallet,
     required String paymentMode,

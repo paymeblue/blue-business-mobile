@@ -1,16 +1,11 @@
 import 'package:blue_business/core/api/profile_service/profile_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/auto_withdrawal/auto_withdrawal.dart';
-import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
-import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/enums.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
-
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class WithdrawalMethodViewModel extends BaseViewModel {
   late Size size;
@@ -22,11 +17,7 @@ class WithdrawalMethodViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    if (context.canPop()) {
-      context.pop();
-    } else {
-      context.go(RoutePaths.wallet);
-    }
+    locator<AppRouter>().maybePop();
   }
 
   bool _isEnabled = false;
@@ -57,7 +48,7 @@ class WithdrawalMethodViewModel extends BaseViewModel {
   }
 
   goToInitiateWithdrawal(BuildContext context) {
-    context.pushReplacement(RoutePaths.initiateTransaction,
-        extra: PaymentMode.withdrawal);
+    locator<AppRouter>()
+        .replace(InitiateTransactionRoute(mode: PaymentMode.withdrawal));
   }
 }

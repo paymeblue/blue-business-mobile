@@ -1,8 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/appbar/blue_app_bar.dart';
@@ -11,13 +14,13 @@ import 'package:blue_business/ui/widgets/paging/error.dart';
 import 'package:blue_business/ui/widgets/textfield/blue_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class BranchHomeView extends StatelessWidget {
   const BranchHomeView({super.key});
 
@@ -31,7 +34,7 @@ class BranchHomeView extends StatelessWidget {
           appBar: BlueAppBar.primary(
             icon: Icons.arrow_back_ios_new,
             onBackTap: () {
-              context.pop();
+              locator<AppRouter>().maybePop();
             },
           ),
           body: Padding(

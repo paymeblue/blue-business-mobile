@@ -6,7 +6,7 @@ import 'package:blue_business/core/models/complete_registration/request/complete
 import 'package:blue_business/core/models/complete_registration/response/complete_registration_response.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -14,7 +14,6 @@ import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class CreatePinViewModel extends BaseViewModel {
   late Size size;
@@ -107,6 +106,6 @@ class CreatePinViewModel extends BaseViewModel {
   }
 
   goToNext(BuildContext context) {
-    context.go(RoutePaths.login);
+    locator<AppRouter>().replaceAll([LoginRoute()]);
   }
 }

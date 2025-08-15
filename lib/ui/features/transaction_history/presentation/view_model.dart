@@ -3,24 +3,16 @@ import 'dart:developer';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
-import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
-import 'package:blue_business/core/models/transaction_detail/cable/cable_details.dart';
-import 'package:blue_business/core/models/transaction_detail/data/data_details.dart';
-import 'package:blue_business/core/models/transaction_detail/payment/payment_detail.dart';
-import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
 import 'package:blue_business/core/models/transaction_detail/response/transaction_detail_response.dart';
 import 'package:blue_business/core/models/transaction_history/response/transaction_history_response.dart';
 import 'package:blue_business/core/models/transaction_history/transaction_history.dart';
-import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class TransactionHistoryViewModel extends BaseViewModel {
@@ -45,7 +37,7 @@ class TransactionHistoryViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    locator<AppRouter>().maybePop();
   }
 
   int limit = 50;
@@ -174,7 +166,7 @@ class TransactionHistoryViewModel extends BaseViewModel {
 
   Future<String?> pickDate() async {
     DateTime? selectedDate = await showDatePicker(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: locator<AppRouter>().navigatorKey.currentContext!,
       initialDate: date.isNotEmpty ? DateTime.parse(date) : DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
@@ -259,17 +251,22 @@ class TransactionHistoryViewModel extends BaseViewModel {
     dynamic extra;
     if (mode == "payment") {
       extra = PaymentDetail.fromJson(response.data);
+      locator<AppRouter>().push(PaymentDetailsRoute(detail: extra, type: type));
     } else if (mode == "airtime") {
       extra = AirtimeDetails.fromJson(response.data);
+      locator<AppRouter>().push(AirtimeDetailsRoute(detail: extra));
     } else if (mode == "power") {
       extra = PowerDetails.fromJson(response.data);
+      locator<AppRouter>().push(PowerDetailsRoute(detail: extra));
     } else if (mode == "data") {
       extra = DataDetails.fromJson(response.data);
+      locator<AppRouter>().push(DataDetailsRoute(detail: extra));
     } else if (mode == "tv") {
       extra = CableDetails.fromJson(response.data);
+      locator<AppRouter>().push(CableDetailsRoute(detail: extra));
     }
 
-    context.push(RoutePaths.transactionDetails(method: mode), extra: extra);
+    return;
   }
 
   String getService(String mode) {

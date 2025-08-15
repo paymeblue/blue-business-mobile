@@ -57,14 +57,14 @@ class BranchInsightsViewModel extends BaseViewModel {
     getAnalyticsData();
   }
 
-  FetchState _lineState = FetchState.complete;
+  FetchState _lineState = FetchState.success;
   FetchState get lineState => _lineState;
   set lineState(FetchState value) {
     _lineState = value;
     notifyListeners();
   }
 
-  FetchState _salesState = FetchState.complete;
+  FetchState _salesState = FetchState.success;
   FetchState get salesState => _salesState;
   set salesState(FetchState value) {
     _salesState = value;
@@ -172,7 +172,7 @@ class BranchInsightsViewModel extends BaseViewModel {
       }
       log(response.data.toString());
 
-      lineState = FetchState.complete;
+      lineState = FetchState.success;
     } else {
       AppNotification.error(message: response.message);
 
@@ -199,7 +199,7 @@ class BranchInsightsViewModel extends BaseViewModel {
       AppNotification.error(message: response.message);
     }
 
-    salesState = FetchState.complete;
+    salesState = FetchState.success;
   }
 
   calculateBranchIncrease(BranchAnalyticsData data) {
@@ -257,7 +257,7 @@ class BranchInsightsViewModel extends BaseViewModel {
     }
   }
 
-  FetchState _roleState = FetchState.complete;
+  FetchState _roleState = FetchState.success;
   FetchState get roleState => _roleState;
   set roleState(FetchState value) {
     _roleState = value;
@@ -294,7 +294,7 @@ class BranchInsightsViewModel extends BaseViewModel {
 
     if (response.status == "success") {
       roles = response.data!;
-      roleState = FetchState.complete;
+      roleState = FetchState.success;
     } else {
       roleState = FetchState.error;
       AppNotification.error(message: response.message);

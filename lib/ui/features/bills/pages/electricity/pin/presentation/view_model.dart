@@ -8,7 +8,7 @@ import 'package:blue_business/core/models/bills/electricity/vend/response/vend_e
 import 'package:blue_business/core/models/bills/electricity/verify/data/verify_electricity_data.dart';
 import 'package:blue_business/core/models/security_question/get/response/get_question_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/biometics.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -16,7 +16,6 @@ import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class ConfirmElectricityPinViewModel extends BaseViewModel {
   late Size size;
@@ -42,7 +41,7 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    locator<AppRouter>().maybePop();
   }
 
   onButtonTap(
@@ -70,13 +69,12 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
       if (StorageValues.pin.isEmpty) {
         savePin();
       }
-      if (context.mounted) {
-        context.push(RoutePaths.powerSuccess, extra: response.data!);
-      }
+
+      locator<AppRouter>()
+          .replaceAll([VendElectricitySuccessRoute(data: response.data!)]);
     } else {
-      if (context.mounted) {
-        context.push(RoutePaths.walletPaymentFailure, extra: response.message!);
-      }
+      locator<AppRouter>()
+          .push(TransactionErrorRoute(error: response.message!));
     }
 
     AppLoader.stop();
@@ -112,8 +110,8 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
             )));
 
     if (context.mounted) {
-      context
-          .push<bool>(RoutePaths.initiateResetPin, extra: resp.data)
+      locator<AppRouter>()
+          .push<bool>(InitiatePinResetRoute(securityQuestion: resp.data))
           .then((val) {
         if (val == true) {
           AppNotification.success(message: resp.message);

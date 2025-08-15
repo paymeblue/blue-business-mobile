@@ -24,7 +24,7 @@ import 'package:blue_business/core/models/transaction_history/transaction_histor
 import 'package:blue_business/core/models/transaction_option/transaction_option.dart';
 import 'package:blue_business/core/models/wallet/response/wallet_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
@@ -34,7 +34,6 @@ import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:blue_business/ui/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class HomeViewModel extends BaseViewModel {
@@ -94,14 +93,14 @@ class HomeViewModel extends BaseViewModel {
     getBusinessData();
   }
 
-  FetchState _walletState = FetchState.complete;
+  FetchState _walletState = FetchState.success;
   FetchState get walletState => _walletState;
   set walletState(FetchState s) {
     _walletState = s;
     notifyListeners();
   }
 
-  FetchState _businessDataState = FetchState.complete;
+  FetchState _businessDataState = FetchState.success;
   FetchState get businessDataState => _businessDataState;
   set businessDataState(FetchState s) {
     _businessDataState = s;
@@ -130,7 +129,7 @@ class HomeViewModel extends BaseViewModel {
             )));
 
     if (resp.status == "success") {
-      walletState = FetchState.complete;
+      walletState = FetchState.success;
       locator<AppStateValues>().wallet = resp.data;
     } else {
       walletState = FetchState.error;
@@ -152,14 +151,14 @@ class HomeViewModel extends BaseViewModel {
             )));
 
     if (resp.status == "success") {
-      businessDataState = FetchState.complete;
+      businessDataState = FetchState.success;
       businessDash = resp.data;
     } else {
       businessDataState = FetchState.error;
     }
   }
 
-  FetchState _analyticsState = FetchState.complete;
+  FetchState _analyticsState = FetchState.success;
   FetchState get analyticsState => _analyticsState;
   set analyticsState(FetchState s) {
     _analyticsState = s;
@@ -223,7 +222,7 @@ class HomeViewModel extends BaseViewModel {
             )));
 
     if (response.status == "success") {
-      analyticsState = FetchState.complete;
+      analyticsState = FetchState.success;
       analyticsData = response.data;
       calculateIncrease();
     } else {
@@ -371,17 +370,20 @@ class HomeViewModel extends BaseViewModel {
     dynamic extra;
     if (mode == "payment") {
       extra = PaymentDetail.fromJson(response.data);
+      locator<AppRouter>().push(PaymentDetailsRoute(detail: extra, type: type));
     } else if (mode == "airtime") {
       extra = AirtimeDetails.fromJson(response.data);
+      locator<AppRouter>().push(AirtimeDetailsRoute(detail: extra));
     } else if (mode == "power") {
       extra = PowerDetails.fromJson(response.data);
+      locator<AppRouter>().push(PowerDetailsRoute(detail: extra));
     } else if (mode == "data") {
       extra = DataDetails.fromJson(response.data);
+      locator<AppRouter>().push(DataDetailsRoute(detail: extra));
     } else if (mode == "tv") {
       extra = CableDetails.fromJson(response.data);
+      locator<AppRouter>().push(CableDetailsRoute(detail: extra));
     }
-
-    context.push(RoutePaths.transactionDetails(method: mode), extra: extra);
   }
 
   String getService(String mode) {
@@ -398,23 +400,23 @@ class HomeViewModel extends BaseViewModel {
   }
 
   goToBranchManagementHome(BuildContext context) {
-    context.push(RoutePaths.homeToBranches);
+    locator<AppRouter>().push(BranchHomeRoute());
   }
 
   goToStaffManagementHome(BuildContext context) {
-    context.push(RoutePaths.homeToStaff);
+    locator<AppRouter>().push(StaffHomeRoute());
   }
 
   void goToReceiveMoney(BuildContext context) {
-    context.push(RoutePaths.receive);
+    locator<AppRouter>().push(ReceiveMoneyRoute());
   }
 
   goToTransactionHistory(BuildContext context) {
-    context.push(RoutePaths.transactionHistory);
+    locator<AppRouter>().push(TransactionHistoryRoute());
   }
 
   goToWallet(BuildContext context) {
-    context.push<bool>(RoutePaths.wallet).then((val) {
+    locator<AppRouter>().push<bool>(WalletRoute()).then((val) {
       if (val == true) {
         getWalletBalance();
         transactionController.refresh();

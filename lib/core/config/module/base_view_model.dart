@@ -1,11 +1,11 @@
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 
 import 'package:flutter/material.dart';
 
 class BaseViewModel extends ChangeNotifier {
   BuildContext? get globalContext =>
-      locator<NavigationService>().navigatorKey.currentContext;
+      locator<AppRouter>().navigatorKey.currentContext;
   bool disposed = false;
 
   @override

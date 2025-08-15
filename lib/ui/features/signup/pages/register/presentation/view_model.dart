@@ -2,17 +2,14 @@ import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
-import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/models/signup/request/signup_request.dart';
 import 'package:blue_business/core/models/signup/response/signup_response.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
-import 'package:blue_business/ui/features/signup/pages/otp/presentation/view.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class InitiateSignupViewModel extends BaseViewModel {
   late Size size;
@@ -76,7 +73,7 @@ class InitiateSignupViewModel extends BaseViewModel {
   }
 
   goToLogin(BuildContext context) {
-    context.push(RoutePaths.login);
+    locator<AppRouter>().push(LoginRoute());
   }
 
   onChanged(String? c) {
@@ -116,13 +113,13 @@ class InitiateSignupViewModel extends BaseViewModel {
     String phone = phoneController.text.validPhone(selectedCountry);
     VerifySignupOtpArgs args = VerifySignupOtpArgs(phone: phone);
     if (data.level == 1) {
-      context.push(RoutePaths.verifySignupOtp, extra: args);
+      locator<AppRouter>().push(VerifySignupOtpRoute(args: args));
     } else {
-      context.push(RoutePaths.signup, extra: data);
+      locator<AppRouter>().push(SignupProgressRoute(data: data));
     }
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    locator<AppRouter>().maybePop();
   }
 }

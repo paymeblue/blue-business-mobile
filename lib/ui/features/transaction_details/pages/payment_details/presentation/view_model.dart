@@ -5,14 +5,13 @@ import 'package:blue_business/core/api/transaction_service/transaction_service.d
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/transaction/receipt/data/transaction/receipt_data.dart';
 import 'package:blue_business/core/models/transaction/receipt/response/transaction/receipt_response.dart';
-import 'package:blue_business/core/models/transaction_detail/payment/payment_detail.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:blue_business/ui/widgets/modals/toast.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -31,7 +30,7 @@ class PaymentDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    locator<AppRouter>().maybePop();
   }
 
   getTransactionReceipt(PaymentDetail data) async {

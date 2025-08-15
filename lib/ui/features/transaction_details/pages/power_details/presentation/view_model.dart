@@ -3,13 +3,14 @@ import 'dart:typed_data';
 
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/transaction_detail/power/power_details.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:blue_business/ui/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -21,7 +22,7 @@ class PowerDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    locator<AppRouter>().maybePop();
   }
 
   ScreenshotController screenshotController = ScreenshotController();

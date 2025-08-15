@@ -1,14 +1,17 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
+import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/buttons/app_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 import 'view_model.dart';
 
+@RoutePage()
 class TransactionErrorView extends StatefulWidget {
   final String error;
   const TransactionErrorView({super.key, required this.error});
@@ -54,7 +57,7 @@ class _TransactionErrorViewState extends State<TransactionErrorView> {
                   AppButton.primary(
                       title: "Close",
                       onTap: () {
-                        context.pop();
+                        locator<AppRouter>().maybePop();
                       })
                 ],
               ),

@@ -11,7 +11,7 @@ import 'package:blue_business/core/models/transaction/pay/response/pay_response.
 import 'package:blue_business/core/models/transaction/pay/withdraw/request/withdraw_request.dart';
 import 'package:blue_business/core/models/transaction/verify/receiver/verified_receiver.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/routing/routes.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
 import 'package:blue_business/core/utils/biometics.dart';
 import 'package:blue_business/core/utils/constants.dart';
@@ -23,7 +23,6 @@ import 'package:blue_business/ui/features/pay/pages/success/presentation/view.da
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:blue_business/ui/widgets/modals/toast.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class CompletePaymentViewModel extends BaseViewModel {
   late Size size;
@@ -94,20 +93,19 @@ class CompletePaymentViewModel extends BaseViewModel {
       if (StorageValues.enableBiometrics == "true") {
         savePin();
       }
-      if (context.mounted) {
-        PaymentSuccessViewArgs extra =
-            PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
 
-        context.push(RoutePaths.walletPaymentSuccess, extra: extra);
-      }
+      PaymentSuccessViewArgs extra =
+          PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
+
+      locator<AppRouter>().replaceAll([PaymentSuccessRoute(args: extra)]);
     } else {
       if (context.mounted) {
-        context.popUntilPath(RoutePaths.home);
-        context.push(
-          RoutePaths.walletPaymentFailure,
-          extra: resp.message ??
-              "Something went wrong when trying to process this transaction",
-        );
+        locator<AppRouter>().replaceAll([
+          HomeRoute(),
+          TransactionErrorRoute(
+              error: resp.message ??
+                  "Something went wrong when trying to process this transaction"),
+        ]);
       }
     }
     AppLoader.stop();
@@ -167,20 +165,20 @@ class CompletePaymentViewModel extends BaseViewModel {
         savePin();
       }
       if (context.mounted) {
-        context.popUntilPath(RoutePaths.home, true);
         PaymentSuccessViewArgs extra =
             PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
 
-        context.push(RoutePaths.walletPaymentSuccess, extra: extra);
+        locator<AppRouter>()
+            .replaceAll([HomeRoute(), PaymentSuccessRoute(args: extra)]);
       }
     } else {
       if (context.mounted) {
-        context.popUntilPath(RoutePaths.home);
-        context.push(
-          RoutePaths.walletPaymentFailure,
-          extra: resp.message ??
-              "Something went wrong when trying to process this transaction",
-        );
+        locator<AppRouter>().replaceAll([
+          HomeRoute(),
+          TransactionErrorRoute(
+              error: resp.message ??
+                  "Something went wrong when trying to process this transaction")
+        ]);
       }
     }
 
@@ -206,8 +204,8 @@ class CompletePaymentViewModel extends BaseViewModel {
             )));
 
     if (context.mounted) {
-      context
-          .push<bool>(RoutePaths.initiateResetPin, extra: resp.data)
+      locator<AppRouter>()
+          .push<bool>(InitiatePinResetRoute(securityQuestion: resp.data))
           .then((val) {
         if (val == true) {
           AppNotification.success(message: resp.message);

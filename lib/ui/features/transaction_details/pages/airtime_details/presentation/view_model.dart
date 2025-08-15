@@ -2,13 +2,12 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:blue_business/core/config/module/base_view_model.dart';
-import 'package:blue_business/core/models/transaction_detail/airtime/airtime_details.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
+import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
 import 'package:blue_business/ui/widgets/modals/toast.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -20,7 +19,7 @@ class AirtimeDetailsViewModel extends BaseViewModel {
   }
 
   goBack(BuildContext context) {
-    context.pop();
+    locator<AppRouter>().maybePop();
   }
 
   ScreenshotController screenshotController = ScreenshotController();

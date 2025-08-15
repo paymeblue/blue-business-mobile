@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/config/module/base_screen.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
@@ -18,6 +19,7 @@ class ShareholderKycViewArgs {
   final Shareholders? shareholder;
 }
 
+@RoutePage()
 class ShareholderKycView extends StatelessWidget {
   const ShareholderKycView({super.key, required this.args});
 

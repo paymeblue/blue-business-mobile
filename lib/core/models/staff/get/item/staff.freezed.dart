@@ -27,7 +27,6 @@ mixin _$Staff {
   String get phone => throw _privateConstructorUsedError;
   String? get displayPicture => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
-  String? get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this Staff to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,8 +49,7 @@ abstract class $StaffCopyWith<$Res> {
       int? branchId,
       String phone,
       String? displayPicture,
-      String role,
-      String? createdAt});
+      String role});
 }
 
 /// @nodoc
@@ -76,7 +74,6 @@ class _$StaffCopyWithImpl<$Res, $Val extends Staff>
     Object? phone = null,
     Object? displayPicture = freezed,
     Object? role = null,
-    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -107,10 +104,6 @@ class _$StaffCopyWithImpl<$Res, $Val extends Staff>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
@@ -129,8 +122,7 @@ abstract class _$$StaffImplCopyWith<$Res> implements $StaffCopyWith<$Res> {
       int? branchId,
       String phone,
       String? displayPicture,
-      String role,
-      String? createdAt});
+      String role});
 }
 
 /// @nodoc
@@ -153,7 +145,6 @@ class __$$StaffImplCopyWithImpl<$Res>
     Object? phone = null,
     Object? displayPicture = freezed,
     Object? role = null,
-    Object? createdAt = freezed,
   }) {
     return _then(_$StaffImpl(
       id: null == id
@@ -184,10 +175,6 @@ class __$$StaffImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -202,8 +189,7 @@ class _$StaffImpl implements _Staff {
       this.branchId,
       required this.phone,
       this.displayPicture,
-      this.role = 'cashier',
-      this.createdAt});
+      this.role = 'cashier'});
 
   factory _$StaffImpl.fromJson(Map<String, dynamic> json) =>
       _$$StaffImplFromJson(json);
@@ -223,12 +209,10 @@ class _$StaffImpl implements _Staff {
   @override
   @JsonKey()
   final String role;
-  @override
-  final String? createdAt;
 
   @override
   String toString() {
-    return 'Staff(id: $id, name: $name, branchName: $branchName, branchId: $branchId, phone: $phone, displayPicture: $displayPicture, role: $role, createdAt: $createdAt)';
+    return 'Staff(id: $id, name: $name, branchName: $branchName, branchId: $branchId, phone: $phone, displayPicture: $displayPicture, role: $role)';
   }
 
   @override
@@ -245,15 +229,13 @@ class _$StaffImpl implements _Staff {
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.displayPicture, displayPicture) ||
                 other.displayPicture == displayPicture) &&
-            (identical(other.role, role) || other.role == role) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, branchName, branchId,
-      phone, displayPicture, role, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, branchName, branchId, phone, displayPicture, role);
 
   /// Create a copy of Staff
   /// with the given fields replaced by the non-null parameter values.
@@ -279,8 +261,7 @@ abstract class _Staff implements Staff {
       final int? branchId,
       required final String phone,
       final String? displayPicture,
-      final String role,
-      final String? createdAt}) = _$StaffImpl;
+      final String role}) = _$StaffImpl;
 
   factory _Staff.fromJson(Map<String, dynamic> json) = _$StaffImpl.fromJson;
 
@@ -298,8 +279,6 @@ abstract class _Staff implements Staff {
   String? get displayPicture;
   @override
   String get role;
-  @override
-  String? get createdAt;
 
   /// Create a copy of Staff
   /// with the given fields replaced by the non-null parameter values.

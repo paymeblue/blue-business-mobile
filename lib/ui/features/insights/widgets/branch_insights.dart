@@ -4,8 +4,6 @@ import 'package:blue_business/core/gen/colors.gen.dart';
 import 'package:blue_business/core/models/branches/branch.dart';
 import 'package:blue_business/core/models/popup/popup.dart';
 import 'package:blue_business/core/models/staff/get/item/staff.dart';
-import 'package:blue_business/core/navigation/injection/locator.dart';
-import 'package:blue_business/core/navigation/injection/navigation_service.dart';
 import 'package:blue_business/core/utils/app_text_styles.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -85,7 +83,7 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
   Widget branchSelect(InsightsViewModel model) {
     return InkWell(
       onTap: () async {
-        model.branch = await onTap(model);
+        model.branch = await onTap(context, model);
       },
       splashColor: AppColors.primary.withOpacityValue(.15),
       child: Container(
@@ -141,10 +139,10 @@ class _BranchInsightsPageState extends State<BranchInsightsPage> {
     );
   }
 
-  Future<Branch?> onTap(InsightsViewModel model) async {
+  Future<Branch?> onTap(BuildContext context, InsightsViewModel model) async {
     Branch? val = model.branch;
     await showModalBottomSheet(
-      context: locator<NavigationService>().navigatorKey.currentContext!,
+      context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       useSafeArea: true,

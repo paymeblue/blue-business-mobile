@@ -227,7 +227,7 @@ class _$ReceiptDataImpl implements _ReceiptData {
   const _$ReceiptDataImpl(
       {required this.id,
       required this.amount,
-      required this.orderReference,
+      this.orderReference = "",
       required this.receiverName,
       required this.receiverWallet,
       required this.paymentMode,
@@ -244,6 +244,7 @@ class _$ReceiptDataImpl implements _ReceiptData {
   @override
   final String amount;
   @override
+  @JsonKey()
   final String orderReference;
   @override
   final String receiverName;
@@ -325,7 +326,7 @@ abstract class _ReceiptData implements ReceiptData {
   const factory _ReceiptData(
       {required final int id,
       required final String amount,
-      required final String orderReference,
+      final String orderReference,
       required final String receiverName,
       required final String receiverWallet,
       required final String paymentMode,
