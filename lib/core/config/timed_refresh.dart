@@ -73,8 +73,8 @@ class RefreshTimer {
     if (locator<AppStateValues>().notificationState == null) {
       locator<AppStateValues>().notificationState = NotificationState.error;
     }
-    locator<AppStateValues>().clear();
     locator<AppRouter>().replaceAll([WelcomeRoute(), LoginRoute()]);
+    locator<AppStateValues>().clear();
 
     cancelTimer();
   }
