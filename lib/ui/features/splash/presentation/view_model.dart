@@ -58,7 +58,7 @@ class SplashViewModel extends BaseViewModel {
       barrierDismissible: !forceUpdate,
       builder: (ctx) => Theme(
         data: Theme.of(ctx).copyWith(
-          dialogTheme: DialogTheme(
+          dialogTheme: DialogThemeData(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),

@@ -108,7 +108,7 @@ class WithdrawalMethodView extends StatelessWidget {
                               width: 30.w,
                               child: Switch.adaptive(
                                 value: model.isEnabled,
-                                activeColor: AppColors.primary,
+                                activeTrackColor: AppColors.primary,
                                 inactiveTrackColor:
                                     AppColors.brightBlue.withOpacityValue(.5),
                                 onChanged: (v) {

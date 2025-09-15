@@ -108,9 +108,9 @@ class BlueDialog {
           return Dialog(
             child: StatefulBuilder(builder: (context, setState) {
               return Container(
-                height: 350,
-                width: 290,
-                padding: const EdgeInsets.only(top: 16),
+                height: 350.h,
+                width: 300.w,
+                padding: EdgeInsets.only(top: 16.h),
                 decoration: BoxDecoration(
                     color: AppColors.white,
                     borderRadius: BorderRadius.circular(5)),
@@ -154,42 +154,32 @@ class BlueDialog {
                     ),
                     const SizedBox(height: 16),
                     Expanded(
-                        child: ListView.builder(
-                            itemCount: reasons.length,
-                            itemBuilder: (contexxt, i) {
+                      child: RadioGroup(
+                        groupValue: selectedReason,
+                        onChanged: (val) {
+                          setState(() {
+                            selectedReason = val;
+                          });
+                          locator<AppRouter>().maybePop();
+                        },
+                        child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: List.generate(reasons.length, (i) {
                               Reason r = reasons[i];
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedReason = reasons[i];
-                                  });
-                                  locator<AppRouter>().maybePop();
-                                },
-                                child: DecoratedBox(
-                                  decoration: const BoxDecoration(),
-                                  child: Row(
-                                    children: [
-                                      Radio(
-                                        value: reasons[i],
-                                        groupValue: selectedReason,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            selectedReason = val;
-                                          });
-                                          locator<AppRouter>().maybePop();
-                                        },
-                                      ),
-                                      Expanded(
-                                          child: Text(
-                                        r.content,
-                                        style: AppTextStyles.smallText.copyWith(
-                                            color: AppColors.textColor),
-                                      ))
-                                    ],
-                                  ),
+                              return RadioListTile(
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 8.w),
+                                value: r,
+                                activeColor: AppColors.primary,
+                                title: Text(
+                                  r.content,
+                                  style: AppTextStyles.smallText
+                                      .copyWith(color: AppColors.textColor),
                                 ),
                               );
-                            }))
+                            })),
+                      ),
+                    )
                   ],
                 ),
               );
