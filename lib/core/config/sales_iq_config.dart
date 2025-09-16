@@ -3,11 +3,10 @@ import 'dart:io' as io;
 
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
-import 'package:salesiq_mobilisten/launcher.dart';
 import 'package:salesiq_mobilisten/salesiq_mobilisten.dart';
 
 class SalesIqConfig {
-  init() {
+  void init() {
     late String appKey;
     late String accessKey;
     if (io.Platform.isIOS) {
@@ -22,12 +21,14 @@ class SalesIqConfig {
           '77ayVZ7LnzAqPASFqfWP1TAt3ZTp1sKsrdTT6iDxcBDQfzaKJML0OM3npWM0xMIG3MTxebaLV9ZECIWwhqcSiRNz1M7f81%2F0ENojpn8gNMqdgY1IljXYpbsja9toROon';
     }
 
-    ZohoSalesIQ.init(appKey, accessKey).then((_) {
-      ZohoSalesIQ.launcher.show(VisibilityMode.never);
-      locator<AppStateValues>().showLiveChat = true;
-    }).catchError((error) {
-      // initialization failed
-      log(error.toString());
-    });
+    ZohoSalesIQ.init(appKey, accessKey)
+        .then((_) {
+          ZohoSalesIQ.launcher.show(VisibilityMode.never);
+          locator<AppStateValues>().showLiveChat = true;
+        })
+        .catchError((error) {
+          // initialization failed
+          log(error.toString());
+        });
   }
 }

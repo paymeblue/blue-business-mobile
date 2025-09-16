@@ -21,7 +21,7 @@ class VerifyPhoneOtpViewModel extends BaseViewModel {
   late Size size;
   late SendNewPhoneData data;
 
-  init(BuildContext context, SendNewPhoneData d) {
+  void init(BuildContext context, SendNewPhoneData d) {
     size = context.mediaQuery.size;
     data = d;
     startCountdown();
@@ -41,11 +41,11 @@ class VerifyPhoneOtpViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onChanged(String v) {
+  void onChanged(String v) {
     canContinue = false;
   }
 
-  onSubmit(String otp) {
+  void onSubmit(String otp) {
     canContinue = true;
     pin = otp;
   }
@@ -71,7 +71,7 @@ class VerifyPhoneOtpViewModel extends BaseViewModel {
 
   late Timer timer;
 
-  startCountdown() {
+  void startCountdown() {
     timeLeft = 120;
     canResend = false;
     timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
@@ -84,26 +84,24 @@ class VerifyPhoneOtpViewModel extends BaseViewModel {
     });
   }
 
-  stopTimer() {
+  void stopTimer() {
     timer.cancel();
   }
 
-  resendOtp() async {
+  Future<void> resendOtp() async {
     AppLoader.start();
 
     SendNewPhoneResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .resendRecoveryOtp(phone: data.newPhone)
-            .onError((error, stackTrace) {
-      return SendNewPhoneResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "resend_recovery_otp",
-          "response_model": "SendNewPhoneResponse"
-        },
-      ));
-    });
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).resendRecoveryOtp(phone: data.newPhone).onError((error, stackTrace) {
+          return SendNewPhoneResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "resend_recovery_otp",
+              "response_model": "SendNewPhoneResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
@@ -115,26 +113,26 @@ class VerifyPhoneOtpViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  verifyOtp(BuildContext context) async {
+  Future<void> verifyOtp(BuildContext context) async {
     AppLoader.start();
 
-    VerifyNewPhoneRequest request =
-        VerifyNewPhoneRequest(reference: data.reference, otp: pin);
+    VerifyNewPhoneRequest request = VerifyNewPhoneRequest(
+      reference: data.reference,
+      otp: pin,
+    );
 
     VerifyNewPhoneResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .verifyRecoveryOtp(reguest: request)
-            .onError((error, stackTrace) {
-      return VerifyNewPhoneResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "verify_recovery_otp",
-          "request": request.toString(),
-          "response_model": "VerifyNewPhoneResponse"
-        },
-      ));
-    });
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).verifyRecoveryOtp(reguest: request).onError((error, stackTrace) {
+          return VerifyNewPhoneResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "verify_recovery_otp",
+              "request": request.toString(),
+              "response_model": "VerifyNewPhoneResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       StorageValues.username = "+${data.newPhone}";
@@ -145,11 +143,11 @@ class VerifyPhoneOtpViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  goToNext(BuildContext context) {
+  void goToNext(BuildContext context) {
     locator<AppRouter>().replaceAll([HomeRoute()]);
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 }

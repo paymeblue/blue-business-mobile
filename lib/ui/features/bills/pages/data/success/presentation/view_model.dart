@@ -20,11 +20,11 @@ import 'package:share_plus/share_plus.dart';
 class VendDataSuccessViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 
-  goToHome(BuildContext context) {
+  void goToHome(BuildContext context) {
     locator<AppRouter>().replaceAll([HomeRoute()]);
   }
 
@@ -35,24 +35,22 @@ class VendDataSuccessViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getTransactionDetails(VendDataData transaction) async {
+  Future<void> getTransactionDetails(VendDataData transaction) async {
     AppLoader.start();
 
     TransactionDetailResponse response = await TransactionService()
         .getTransactionDetails(
-      transactionReference: transaction.transactionId.toString(),
-      service: "data",
-    )
+          transactionReference: transaction.transactionId.toString(),
+          service: "data",
+        )
         .onError((error, stackTrace) {
-      return TransactionDetailResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "get_transaction_details",
-          "response_model": "TransactionDetailResponse"
-        },
-      ));
-    });
+          return TransactionDetailResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_transaction_details",
+              "response_model": "TransactionDetailResponse",
+            }),
+          );
+        });
 
     if (response.status == "success") {
       dataDetails = DataDetails.fromJson(response.data);
@@ -66,20 +64,26 @@ class VendDataSuccessViewModel extends BaseViewModel {
 
   ScreenshotController screenshotController = ScreenshotController();
 
-  downloadAndShareQr() async {
+  Future<void> downloadAndShareQr() async {
     Uint8List? img;
-    await screenshotController.capture().then((value) {
-      img = value;
-    }).catchError((onError) {
-      AppNotification.error(message: AppErrorHandler.getErrorMessage(onError));
-    });
+    await screenshotController
+        .capture()
+        .then((value) {
+          img = value;
+        })
+        .catchError((onError) {
+          AppNotification.error(
+            message: AppErrorHandler.getErrorMessage(onError),
+          );
+        });
     if (img != null) {
-      XFile image = XFile.fromData(img!,
-          name: "receipt_${dataDetails!.transactionId}", mimeType: "image/png");
+      XFile image = XFile.fromData(
+        img!,
+        name: "receipt_${dataDetails!.transactionId}",
+        mimeType: "image/png",
+      );
 
-      Share.shareXFiles(
-        [image],
-      ).then((value) {
+      Share.shareXFiles([image]).then((value) {
         if (Platform.isIOS && value.status == ShareResultStatus.success) {
           BlueToast.primaryWithcon("Receipt shared");
         }

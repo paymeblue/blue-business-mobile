@@ -20,7 +20,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 class ManageBeneficiariesViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
 
     beneficiaryController.addPageRequestListener((pageKey) {
@@ -30,11 +30,11 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
     getElectricityBeneficiariesFromLocal();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  onFilterChanged(String? v) {
+  void onFilterChanged(String? v) {
     if (v.orEmpty.isNotEmpty) {
       selectedType = v!;
     }
@@ -71,7 +71,7 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
   }
 
   final dbHelper = DatabaseHelper();
-  getElectricityBeneficiariesFromLocal() async {
+  Future<void> getElectricityBeneficiariesFromLocal() async {
     getLocalBeneficiaryState = FetchState.loading;
 
     try {
@@ -84,7 +84,7 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
     }
   }
 
-  onDeletelectricityBeneficiary(ElectricityBeneficiary beneficiary) {
+  void onDeletelectricityBeneficiary(ElectricityBeneficiary beneficiary) {
     BlueDialog.primary(
       title: "Delete beneficiary",
       subtitle:
@@ -95,7 +95,7 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
     );
   }
 
-  deleElectricityBeneficiary(int id) {
+  void deleElectricityBeneficiary(int id) {
     getLocalBeneficiaryState = FetchState.loading;
 
     try {
@@ -107,7 +107,7 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
     }
   }
 
-  onElectricitySearchChanged(String? v) {
+  void onElectricitySearchChanged(String? v) {
     if (searchTimer != null) {
       searchTimer!.cancel();
     }
@@ -117,9 +117,7 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
         electricityBeneficiaries = allElectricityBeneficiaries;
       } else {
         electricityBeneficiaries = allElectricityBeneficiaries
-            .where(
-              (b) => b.receiver.contains(v!),
-            )
+            .where((b) => b.receiver.contains(v!))
             .toList();
       }
     });
@@ -136,7 +134,7 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
 
   Timer? searchTimer;
 
-  onSearchChanged(String? v) {
+  void onSearchChanged(String? v) {
     query = v ?? "";
     if (searchTimer != null) {
       searchTimer!.cancel();
@@ -151,24 +149,18 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
       PagingController(firstPageKey: 1);
 
   int limit = 50;
-  getBeneficiaries(int page) async {
+  Future<void> getBeneficiaries(int page) async {
     try {
       GetBeneficiaryResponse resp = await TransactionService()
-          .searchBeneficiaries(
-        page,
-        limit,
-        query.isEmpty ? null : query,
-      )
+          .searchBeneficiaries(page, limit, query.isEmpty ? null : query)
           .onError((error, stackTrace) {
-        return GetBeneficiaryResponse(
-            message: AppErrorHandler.getErrorMessage(
-          error,
-          {
-            "request_name": "search_beneficiary",
-            "response_model": "GetBeneficiaryResponse"
-          },
-        ));
-      });
+            return GetBeneficiaryResponse(
+              message: AppErrorHandler.getErrorMessage(error, {
+                "request_name": "search_beneficiary",
+                "response_model": "GetBeneficiaryResponse",
+              }),
+            );
+          });
       if (resp.status == "success") {
         List<BlueBeneficiary> t = resp.data;
 
@@ -185,21 +177,19 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
     }
   }
 
-  deleteBeneficiary(int id) async {
+  Future<void> deleteBeneficiary(int id) async {
     AppLoader.start();
     try {
       SetBeneficiaryResponse resp = await TransactionService()
           .deleteBeneficiary(id)
           .onError((error, stackTrace) {
-        return SetBeneficiaryResponse(
-            message: AppErrorHandler.getErrorMessage(
-          error,
-          {
-            "request_name": "delete_beneficiary",
-            "response_model": "DeleteBeneficiaryResponse"
-          },
-        ));
-      });
+            return SetBeneficiaryResponse(
+              message: AppErrorHandler.getErrorMessage(error, {
+                "request_name": "delete_beneficiary",
+                "response_model": "DeleteBeneficiaryResponse",
+              }),
+            );
+          });
 
       if (resp.status == "success") {
         beneficiaryController.refresh();
@@ -207,13 +197,10 @@ class ManageBeneficiariesViewModel extends BaseViewModel {
         AppNotification.error(message: resp.message);
       }
     } catch (e) {
-      String err = AppErrorHandler.getErrorMessage(
-        e,
-        {
-          "request_name": "delete_beneficiary",
-          "response_model": "DeleteBeneficiaryResponse"
-        },
-      );
+      String err = AppErrorHandler.getErrorMessage(e, {
+        "request_name": "delete_beneficiary",
+        "response_model": "DeleteBeneficiaryResponse",
+      });
 
       AppNotification.error(message: err);
     }

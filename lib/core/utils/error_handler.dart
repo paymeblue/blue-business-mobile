@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 class AppErrorHandler {
   AppErrorHandler._();
 
-  static String getErrorMessage(error, [Map<String, dynamic>? params]) {
+  static String getErrorMessage(dynamic error, [Map<String, dynamic>? params]) {
     if (error.toString().toLowerCase().contains("session expired")) {
       logout();
       return error.toString();
@@ -30,14 +30,14 @@ class AppErrorHandler {
     }
   }
 
-  static recordErrorInFirebase(error, Map<String, dynamic>? parameters) async {
+  static Future<void> recordErrorInFirebase(
+    dynamic error,
+    Map<String, dynamic>? parameters,
+  ) async {
     Map<String, Object?> params;
 
     if (parameters == null) {
-      params = {
-        "mesage": error.toString(),
-        "type": errorType(error),
-      };
+      params = {"mesage": error.toString(), "type": errorType(error)};
     } else {
       params = {
         "mesage": error.toString(),
@@ -51,14 +51,14 @@ class AppErrorHandler {
     }
   }
 
-  static String errorType(error) {
+  static String errorType(dynamic error) {
     return error is TypeError
         ? "TypeError"
         : error is IndexError
-            ? "IndexError"
-            : error is RangeError
-                ? "RangeError"
-                : "Unknown";
+        ? "IndexError"
+        : error is RangeError
+        ? "RangeError"
+        : "Unknown";
   }
 
   static String getDioError(DioException error) {
@@ -81,7 +81,7 @@ class AppErrorHandler {
     }
   }
 
-  static logout() {
+  static void logout() {
     RefreshTimer.logout();
   }
 }

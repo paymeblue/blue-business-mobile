@@ -18,7 +18,7 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
 
     getBanks();
@@ -27,10 +27,11 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
     }
   }
 
-  setBankDetails() {
+  void setBankDetails() {
     selectedBank = BankItem(
-        id: locator<AppStateValues>().withdrawalAccount!.bankId,
-        name: locator<AppStateValues>().withdrawalAccount!.bankName);
+      id: locator<AppStateValues>().withdrawalAccount!.bankId,
+      name: locator<AppStateValues>().withdrawalAccount!.bankName,
+    );
 
     accountNumberController.text =
         locator<AppStateValues>().withdrawalAccount!.accountNumber;
@@ -53,7 +54,7 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
@@ -64,11 +65,11 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onAccountNumberChanged(String? v) {
+  void onAccountNumberChanged(String? v) {
     notifyListeners();
   }
 
-  onBankChanged(BankItem? item) {
+  void onBankChanged(BankItem? item) {
     selectedBank = item;
   }
 
@@ -91,15 +92,18 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
   TextEditingController accountNumberController = TextEditingController();
   TextEditingController accountNameController = TextEditingController();
 
-  getBanks() async {
+  Future<void> getBanks() async {
     loadingBanks = true;
-    BankResponse resp =
-        await TransactionService().getBanks().onError((error, stackTrace) {
+    BankResponse resp = await TransactionService().getBanks().onError((
+      error,
+      stackTrace,
+    ) {
       return BankResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {"request_name": "get_banks", "response_model": "BankResponse"},
-      ));
+        message: AppErrorHandler.getErrorMessage(error, {
+          "request_name": "get_banks",
+          "response_model": "BankResponse",
+        }),
+      );
     });
 
     if (resp.status == "success") {
@@ -117,24 +121,23 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  verifyAccount() async {
+  Future<void> verifyAccount() async {
     verifyingAccount = true;
     VerifyPayoutRequest request = VerifyPayoutRequest(
-        bankId: selectedBank!.id.toString(),
-        accountNumber: accountNumberController.text);
+      bankId: selectedBank!.id.toString(),
+      accountNumber: accountNumberController.text,
+    );
     VerifyPayoutResponse resp = await TransactionService()
         .verifyAccount(request)
         .onError((error, stackTrace) {
-      return VerifyPayoutResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "verify_account",
-          "request": request.toString(),
-          "response_model": "VerifyPayoutResponse"
-        },
-      ));
-    });
+          return VerifyPayoutResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "verify_account",
+              "request": request.toString(),
+              "response_model": "VerifyPayoutResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       accountNameController.text = resp.data!.accountName;
@@ -147,22 +150,20 @@ class AddWithdrawalDetailsViewModel extends BaseViewModel {
     verifyingAccount = false;
   }
 
-  setAccount() async {
+  Future<void> setAccount() async {
     AppLoader.start();
     SetPayoutRequest request = SetPayoutRequest(reference: reference);
     SetPayoutResponse resp = await TransactionService()
         .addPayout(request)
         .onError((error, stackTrace) {
-      return SetPayoutResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "add_payout",
-          "request": request.toString(),
-          "response_model": "SetPayoutResponse"
-        },
-      ));
-    });
+          return SetPayoutResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "add_payout",
+              "request": request.toString(),
+              "response_model": "SetPayoutResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       reference = "";

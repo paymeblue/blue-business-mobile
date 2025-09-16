@@ -22,7 +22,7 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
   late Size size;
   late String id;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
     useBiometrics = StorageValues.enableBiometrics == "true";
   }
@@ -41,48 +41,57 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  onButtonTap(
-      BuildContext context, VerifyElectricityData data, double amount) async {
+  Future<void> onButtonTap(
+    BuildContext context,
+    VerifyElectricityData data,
+    double amount,
+  ) async {
     AppLoader.start();
 
     VendElectricityRequest request = VendElectricityRequest(
-        transactionId: data.transactionId,
-        passcode: pin,
-        amount: amount.toString());
+      transactionId: data.transactionId,
+      passcode: pin,
+      amount: amount.toString(),
+    );
 
     VendElectricityResponse response = await BillsService()
         .vendElectricity(request)
-        .onError((error, stackTrace) => VendElectricityResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "vend_electricity",
-                "request": request.toString(),
-                "response_model": "VendElectricityResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => VendElectricityResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "vend_electricity",
+              "request": request.toString(),
+              "response_model": "VendElectricityResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       if (StorageValues.pin.isEmpty) {
         savePin();
       }
 
-      locator<AppRouter>()
-          .replaceAll([VendElectricitySuccessRoute(data: response.data!)]);
+      locator<AppRouter>().replaceAll([
+        VendElectricitySuccessRoute(data: response.data!),
+      ]);
     } else {
-      locator<AppRouter>()
-          .push(TransactionErrorRoute(error: response.message!));
+      locator<AppRouter>().push(
+        TransactionErrorRoute(error: response.message!),
+      );
     }
 
     AppLoader.stop();
   }
 
-  completeWithBiometrics(
-      BuildContext context, VerifyElectricityData data, double amount) async {
+  Future<void> completeWithBiometrics(
+    BuildContext context,
+    VerifyElectricityData data,
+    double amount,
+  ) async {
     bool canContinue = await Biometrics.biometrics();
     if (canContinue) {
       pin = StorageValues.pin;
@@ -92,33 +101,33 @@ class ConfirmElectricityPinViewModel extends BaseViewModel {
     }
   }
 
-  savePin() {
+  void savePin() {
     StorageValues.pin = pin;
     StorageHelpers.setVal(StorageKeys.pinKey, pin);
   }
 
-  getSecurityQuestion(BuildContext context) async {
+  Future<void> getSecurityQuestion(BuildContext context) async {
     AppLoader.start();
     GetQuestionResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .getSecurityQuestion(locator<AppStateValues>().currentUser!.phone)
-            .onError((error, stackTrace) => GetQuestionResponse(
-                    message: AppErrorHandler.getErrorMessage(
-                  error,
-                  {
-                    "request_name": "get_security_question",
-                    "response_model": "GetQuestionResponse"
-                  },
-                )));
+            .onError(
+              (error, stackTrace) => GetQuestionResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "get_security_question",
+                  "response_model": "GetQuestionResponse",
+                }),
+              ),
+            );
 
     if (context.mounted) {
       locator<AppRouter>()
           .push<bool>(InitiatePinResetRoute(securityQuestion: resp.data))
           .then((val) {
-        if (val == true) {
-          AppNotification.success(message: resp.message);
-        }
-      });
+            if (val == true) {
+              AppNotification.success(message: resp.message);
+            }
+          });
     }
     AppLoader.stop();
   }

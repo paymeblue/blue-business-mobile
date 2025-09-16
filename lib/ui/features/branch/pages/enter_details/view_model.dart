@@ -27,7 +27,7 @@ import 'package:shimmer/shimmer.dart';
 class EnterBranchDetailsViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context, Branch? branch) {
+  void init(BuildContext context, Branch? branch) {
     size = context.mediaQuery.size;
 
     if (branch != null) {
@@ -37,7 +37,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
 
   ScreenshotController screenshotController = ScreenshotController();
 
-  setInitialValues(Branch branch) {
+  void setInitialValues(Branch branch) {
     nameController.text = branch.name;
     locationController.text = branch.location;
     staffSize = branch.staffSize;
@@ -55,7 +55,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
         locationController.text.trimRight().isNotEmpty;
   }
 
-  goBack(BuildContext context, [bool refresh = false]) {
+  void goBack(BuildContext context, [bool refresh = false]) {
     locator<AppRouter>().maybePop(refresh);
   }
 
@@ -71,30 +71,30 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
   TextEditingController locationController = TextEditingController();
   TextEditingController nameController = TextEditingController();
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
-  createBranch(BuildContext context) async {
+  Future<void> createBranch(BuildContext context) async {
     AppLoader.start();
 
     CreateBranchRequest request = CreateBranchRequest(
-        name: nameController.text,
-        staffSize: staffSize!,
-        location: locationController.text);
+      name: nameController.text,
+      staffSize: staffSize!,
+      location: locationController.text,
+    );
 
-    CreateBranchResponse response =
-        await BranchService().createBranch(request: request).onError(
-              (error, stackTrace) => CreateBranchResponse(
-                  message: AppErrorHandler.getErrorMessage(
-                error,
-                {
-                  "request_name": "create_branch",
-                  "request": request.toString(),
-                  "response_model": "CreateBranchResponse"
-                },
-              )),
-            );
+    CreateBranchResponse response = await BranchService()
+        .createBranch(request: request)
+        .onError(
+          (error, stackTrace) => CreateBranchResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "create_branch",
+              "request": request.toString(),
+              "response_model": "CreateBranchResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       if (context.mounted) {
@@ -106,7 +106,11 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  showQRDialog(BuildContext context, Branch branch, [bool closePage = true]) {
+  Future showQRDialog(
+    BuildContext context,
+    Branch branch, [
+    bool closePage = true,
+  ]) {
     Shimmer qrImage() {
       return Shimmer.fromColors(
         loop: 2,
@@ -115,16 +119,14 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
         baseColor: AppColors.blue,
         highlightColor: AppColors.paleBlue,
         child: QrImageView(
-            data:
-                '${locator<AppStateValues>().wallet!.walletCode}__${branch.id}',
-            dataModuleStyle: const QrDataModuleStyle(
-              color: AppColors.primary,
-            ),
-            eyeStyle: const QrEyeStyle(
-              color: AppColors.primary,
-              eyeShape: QrEyeShape.square,
-            ),
-            size: 120),
+          data: '${locator<AppStateValues>().wallet!.walletCode}__${branch.id}',
+          dataModuleStyle: const QrDataModuleStyle(color: AppColors.primary),
+          eyeStyle: const QrEyeStyle(
+            color: AppColors.primary,
+            eyeShape: QrEyeShape.square,
+          ),
+          size: 120,
+        ),
       );
     }
 
@@ -215,7 +217,11 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                      top: 25.h, bottom: 12.h, left: 16.w, right: 16.w),
+                    top: 25.h,
+                    bottom: 12.h,
+                    left: 16.w,
+                    right: 16.w,
+                  ),
                   child: Column(
                     children: [
                       Text(
@@ -235,21 +241,21 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                            border: Border.all(
-                              color: AppColors.stroke,
-                            ),
+                            border: Border.all(color: AppColors.stroke),
                             borderRadius: BorderRadius.circular(8.r),
                           ),
                           width: context.getWidth(),
                           padding: EdgeInsets.only(
-                              top: 25.h, bottom: 12.h, left: 16.w, right: 16.w),
+                            top: 25.h,
+                            bottom: 12.h,
+                            left: 16.w,
+                            right: 16.w,
+                          ),
                           child: Column(
                             children: [
                               const Spacer(),
                               qrImageContainer(),
-                              const Spacer(
-                                flex: 3,
-                              ),
+                              const Spacer(flex: 3),
                               SizedBox(
                                 height: 40.h,
                                 width: context.getWidth(.5),
@@ -259,11 +265,11 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
                                     downloadAndShareQr();
                                   },
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -290,7 +296,7 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -299,18 +305,25 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
     );
   }
 
-  downloadAndShareQr() async {
+  Future<void> downloadAndShareQr() async {
     AppLoader.start();
     Uint8List? img;
-    await screenshotController.capture().then((value) {
-      img = value;
-    }).catchError((onError) {
-      AppNotification.error(message: AppErrorHandler.getErrorMessage(onError));
-    });
+    await screenshotController
+        .capture()
+        .then((value) {
+          img = value;
+        })
+        .catchError((onError) {
+          AppNotification.error(
+            message: AppErrorHandler.getErrorMessage(onError),
+          );
+        });
     if (img != null) {
-      XFile image = XFile.fromData(img!,
-          // name: "${locator<AppStateValues>().currentUser!.firstName}_qr",
-          mimeType: "image/png");
+      XFile image = XFile.fromData(
+        img!,
+        // name: "${locator<AppStateValues>().currentUser!.firstName}_qr",
+        mimeType: "image/png",
+      );
 
       Share.shareXFiles([image]).then((value) {
         if (value.status == ShareResultStatus.success) {
@@ -321,26 +334,25 @@ class EnterBranchDetailsViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  editBranch(BuildContext context, Branch branch) async {
+  Future<void> editBranch(BuildContext context, Branch branch) async {
     AppLoader.start();
 
     CreateBranchRequest request = CreateBranchRequest(
-        name: nameController.text,
-        staffSize: staffSize!,
-        location: locationController.text);
+      name: nameController.text,
+      staffSize: staffSize!,
+      location: locationController.text,
+    );
 
     CreateBranchResponse response = await BranchService()
         .editBranch(request: request, id: branch.id)
         .onError(
           (error, stackTrace) => CreateBranchResponse(
-              message: AppErrorHandler.getErrorMessage(
-            error,
-            {
+            message: AppErrorHandler.getErrorMessage(error, {
               "request_name": "edit_branch",
               "request": request.toString(),
-              "response_model": "CreateResponse"
-            },
-          )),
+              "response_model": "CreateResponse",
+            }),
+          ),
         );
 
     if (response.status == "success") {

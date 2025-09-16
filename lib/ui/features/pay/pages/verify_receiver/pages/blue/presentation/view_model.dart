@@ -22,7 +22,7 @@ class BluePaymentViewModel extends BaseViewModel {
   late Size size;
   late InitiateTransactionData data;
 
-  init(BuildContext context, InitiateTransactionData d) {
+  void init(BuildContext context, InitiateTransactionData d) {
     size = context.mediaQuery.size;
     data = d;
 
@@ -64,7 +64,7 @@ class BluePaymentViewModel extends BaseViewModel {
 
   Timer? searchTimer;
 
-  onSearchChanged(String? v) {
+  void onSearchChanged(String? v) {
     query = v ?? "";
     if (searchTimer != null) {
       searchTimer!.cancel();
@@ -79,24 +79,18 @@ class BluePaymentViewModel extends BaseViewModel {
       PagingController(firstPageKey: 1);
 
   int limit = 50;
-  getBeneficiaries(int page) async {
+  Future<void> getBeneficiaries(int page) async {
     try {
       GetBeneficiaryResponse resp = await TransactionService()
-          .searchBeneficiaries(
-        page,
-        limit,
-        query.isEmpty ? null : query,
-      )
+          .searchBeneficiaries(page, limit, query.isEmpty ? null : query)
           .onError((error, stackTrace) {
-        return GetBeneficiaryResponse(
-            message: AppErrorHandler.getErrorMessage(
-          error,
-          {
-            "request_name": "search_beneficiary",
-            "response_model": "GetBeneficiaryResponse"
-          },
-        ));
-      });
+            return GetBeneficiaryResponse(
+              message: AppErrorHandler.getErrorMessage(error, {
+                "request_name": "search_beneficiary",
+                "response_model": "GetBeneficiaryResponse",
+              }),
+            );
+          });
       if (resp.status == "success") {
         List<BlueBeneficiary> t = resp.data;
 
@@ -113,20 +107,18 @@ class BluePaymentViewModel extends BaseViewModel {
     }
   }
 
-  getRecentlyPaid() async {
+  Future<void> getRecentlyPaid() async {
     loading = true;
     RecentlyPaidResponse resp = await TransactionService()
         .getRecentlyPaid()
         .onError((error, stackTrace) {
-      return RecentlyPaidResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "get_recently_paid",
-          "response_model": "RecentlyPaidResponse"
-        },
-      ));
-    });
+          return RecentlyPaidResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_recently_paid",
+              "response_model": "RecentlyPaidResponse",
+            }),
+          );
+        });
     if (resp.status == "success") {
       recentlyPaidItems = resp.data ?? [];
     } else {
@@ -135,13 +127,14 @@ class BluePaymentViewModel extends BaseViewModel {
     loading = false;
   }
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
-  verify(BuildContext context) async {
-    String identifier = identifierController.text
-        .substring(identifierController.text.length - 10);
+  Future<void> verify(BuildContext context) async {
+    String identifier = identifierController.text.substring(
+      identifierController.text.length - 10,
+    );
 
     AppLoader.start();
 
@@ -153,16 +146,14 @@ class BluePaymentViewModel extends BaseViewModel {
     VerifiedReceiverResponse resp = await TransactionService()
         .verifyReceiver(request)
         .onError((error, stackTrace) {
-      return VerifiedReceiverResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "verify_receiver",
-          "request": request.toString(),
-          "response_model": "VerifiedReceiverResponse"
-        },
-      ));
-    });
+          return VerifiedReceiverResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "verify_receiver",
+              "request": request.toString(),
+              "response_model": "VerifiedReceiverResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       if (context.mounted) {
@@ -180,13 +171,13 @@ class BluePaymentViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  onTapRecentlyPaid(BlueBeneficiary item) {
+  void onTapRecentlyPaid(BlueBeneficiary item) {
     identifierController.text = item.identifier;
     name = item.name;
     notifyListeners();
   }
 
-  onTapBeneficiaryTile(BlueBeneficiary item) {
+  void onTapBeneficiaryTile(BlueBeneficiary item) {
     identifierController.text = item.identifier;
     name = item.name;
     notifyListeners();

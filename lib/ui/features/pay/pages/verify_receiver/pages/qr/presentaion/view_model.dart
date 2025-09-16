@@ -19,13 +19,13 @@ class QrPaymentViewModel extends BaseViewModel {
   late Size size;
   late InitiateTransactionData data;
 
-  init(BuildContext context, InitiateTransactionData d) {
+  void init(BuildContext context, InitiateTransactionData d) {
     size = context.mediaQuery.size;
     data = d;
     checkCameraStatus();
   }
 
-  checkCameraStatus() async {
+  Future<void> checkCameraStatus() async {
     canUseCamera = await Permission.camera.request().isGranted;
 
     if (!canUseCamera) {
@@ -35,8 +35,9 @@ class QrPaymentViewModel extends BaseViewModel {
           checkCameraStatus();
         } else {
           AppNotification.error(
-              message:
-                  "Please check that Blue Business can use your camera and try again");
+            message:
+                "Please check that Blue Business can use your camera and try again",
+          );
         }
       });
     }
@@ -54,7 +55,7 @@ class QrPaymentViewModel extends BaseViewModel {
     facing: CameraFacing.back,
   );
 
-  detect(BarcodeCapture capture, BuildContext context) {
+  void detect(BarcodeCapture capture, BuildContext context) {
     String val = capture.barcodes.first.rawValue!;
     mobileScannerController.stop();
 
@@ -69,7 +70,11 @@ class QrPaymentViewModel extends BaseViewModel {
     }
   }
 
-  verify(String identifier, BuildContext context, [int? branchId]) async {
+  Future<void> verify(
+    String identifier,
+    BuildContext context, [
+    int? branchId,
+  ]) async {
     AppLoader.start();
 
     VerifiedReceiverRequest request = VerifiedReceiverRequest(
@@ -81,16 +86,14 @@ class QrPaymentViewModel extends BaseViewModel {
     VerifiedReceiverResponse resp = await TransactionService()
         .verifyReceiver(request)
         .onError((error, stackTrace) {
-      return VerifiedReceiverResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "verify_receiver",
-          "request": request.toString(),
-          "response_model": "VerifiedReceiverResponse"
-        },
-      ));
-    });
+          return VerifiedReceiverResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "verify_receiver",
+              "request": request.toString(),
+              "response_model": "VerifiedReceiverResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       if (context.mounted) {

@@ -18,21 +18,27 @@ import 'package:flutter/material.dart';
 class ResetPhoneViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context, int i) {
+  void init(BuildContext context, int i) {
     size = context.mediaQuery.size;
     setSelectedCountry();
     id = i;
   }
 
-  setSelectedCountry() {
-    selectedCountry = countryCodes[countryCodes.indexOf(const CountryCode(
-        countryCode: "NG", name: "Nigeria", dialCode: "+234"))];
+  void setSelectedCountry() {
+    selectedCountry =
+        countryCodes[countryCodes.indexOf(
+          const CountryCode(
+            countryCode: "NG",
+            name: "Nigeria",
+            dialCode: "+234",
+          ),
+        )];
   }
 
   TextEditingController searchController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
@@ -43,31 +49,32 @@ class ResetPhoneViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
   late int id;
 
-  sendNewPhone(BuildContext context) async {
+  Future<void> sendNewPhone(BuildContext context) async {
     AppLoader.start();
 
     SendNewPhoneRequest request = SendNewPhoneRequest(
-        phone: phoneController.text.validPhone(selectedCountry),
-        userId: id.toString());
+      phone: phoneController.text.validPhone(selectedCountry),
+      userId: id.toString(),
+    );
 
     SendNewPhoneResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .updatePhone(request)
-            .onError((error, stackTrace) => SendNewPhoneResponse(
-                    message: AppErrorHandler.getErrorMessage(
-                  error,
-                  {
-                    "request_name": "update_phone",
-                    "request": request.toString(),
-                    "response_model": "SendNewPhoneResponse"
-                  },
-                )));
+            .onError(
+              (error, stackTrace) => SendNewPhoneResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "update_phone",
+                  "request": request.toString(),
+                  "response_model": "SendNewPhoneResponse",
+                }),
+              ),
+            );
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
@@ -78,7 +85,7 @@ class ResetPhoneViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  goToNext(BuildContext context, SendNewPhoneData data) {
+  void goToNext(BuildContext context, SendNewPhoneData data) {
     locator<AppRouter>().push(VerifyPhoneOtpRoute(data: data));
   }
 }

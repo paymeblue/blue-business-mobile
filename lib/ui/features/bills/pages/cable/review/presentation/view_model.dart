@@ -8,15 +8,15 @@ import 'package:flutter/material.dart';
 class ReviewCableViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  goToNext(BuildContext context, VerifyCableData data) {
+  void goToNext(BuildContext context, VerifyCableData data) {
     locator<AppRouter>().push(ConfirmCablePinRoute(data: data));
   }
 }

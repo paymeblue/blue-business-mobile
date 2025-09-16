@@ -40,13 +40,13 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 class HomeViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
 
     getDashData();
   }
 
-  getDashData() async {
+  Future<void> getDashData() async {
     unawaited(getProfile());
     getWalletBalance();
     getBusinessData();
@@ -57,7 +57,7 @@ class HomeViewModel extends BaseViewModel {
     });
   }
 
-  refreshDashData() async {
+  Future<void> refreshDashData() async {
     unawaited(getProfile());
     getWalletBalance();
     getBusinessData();
@@ -66,10 +66,10 @@ class HomeViewModel extends BaseViewModel {
     transactionController.refresh();
   }
 
-  copyWalletId() {
+  void copyWalletId() {
     Clipboard.setData(
-            ClipboardData(text: locator<AppStateValues>().wallet!.walletCode))
-        .then((value) {
+      ClipboardData(text: locator<AppStateValues>().wallet!.walletCode),
+    ).then((value) {
       BlueToast.primaryWithcon("Copied to clipboard");
     });
   }
@@ -81,7 +81,7 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onHideStateChanged(bool v) {
+  void onHideStateChanged(bool v) {
     hideBalance = v;
   }
 
@@ -90,7 +90,7 @@ class HomeViewModel extends BaseViewModel {
         (walletState == FetchState.error);
   }
 
-  refreshWalletContainer() {
+  void refreshWalletContainer() {
     getBusinessData();
   }
 
@@ -115,19 +115,17 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getWalletBalance() async {
+  Future<void> getWalletBalance() async {
     walletState = FetchState.loading;
 
-    WalletResponse resp = await DashService()
-        .getWalletDetails()
-        .onError((error, stackTrace) => WalletResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_wallet_details",
-                "response_model": "WalletResponse"
-              },
-            )));
+    WalletResponse resp = await DashService().getWalletDetails().onError(
+      (error, stackTrace) => WalletResponse(
+        message: AppErrorHandler.getErrorMessage(error, {
+          "request_name": "get_wallet_details",
+          "response_model": "WalletResponse",
+        }),
+      ),
+    );
 
     if (resp.status == "success") {
       walletState = FetchState.success;
@@ -137,19 +135,17 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  getBusinessData() async {
+  Future<void> getBusinessData() async {
     businessDataState = FetchState.loading;
 
-    BusinessDashResponse resp = await DashService()
-        .getDashDetails()
-        .onError((error, stackTrace) => BusinessDashResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_dash_details",
-                "response_model": "BusinessDashResponse"
-              },
-            )));
+    BusinessDashResponse resp = await DashService().getDashDetails().onError(
+      (error, stackTrace) => BusinessDashResponse(
+        message: AppErrorHandler.getErrorMessage(error, {
+          "request_name": "get_dash_details",
+          "response_model": "BusinessDashResponse",
+        }),
+      ),
+    );
 
     if (resp.status == "success") {
       businessDataState = FetchState.success;
@@ -187,14 +183,16 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getProfile() async {
+  Future<void> getProfile() async {
     GetProfileResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .getProfile()
-            .onError((e, stackTrace) {
-      log("The error is ${e.toString()}");
-      return GetProfileResponse(message: AppErrorHandler.getErrorMessage(e));
-    });
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).getProfile().onError((e, stackTrace) {
+          log("The error is ${e.toString()}");
+          return GetProfileResponse(
+            message: AppErrorHandler.getErrorMessage(e),
+          );
+        });
 
     // log("The error is ${resp.status == "success"}");
 
@@ -211,18 +209,18 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  getAnalytics() async {
+  Future<void> getAnalytics() async {
     analyticsState = FetchState.loading;
     AnalyticsResponse response = await InsightsService()
         .getAnalytics("weekly")
-        .onError((error, stackTrace) => AnalyticsResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_analytics",
-                "response_model": "AnalyticsResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => AnalyticsResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_analytics",
+              "response_model": "AnalyticsResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       analyticsState = FetchState.success;
@@ -234,14 +232,17 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  calculateIncrease() {
+  void calculateIncrease() {
     double currentMobile = double.parse(analyticsData?.mobile.current ?? "0.0");
-    double previousMobile =
-        double.parse(analyticsData?.mobile.previous ?? "0.0");
-    double currentDesktop =
-        double.parse(analyticsData?.desktop.current ?? "0.0");
-    double previousDesktop =
-        double.parse(analyticsData?.desktop.previous ?? "0.0");
+    double previousMobile = double.parse(
+      analyticsData?.mobile.previous ?? "0.0",
+    );
+    double currentDesktop = double.parse(
+      analyticsData?.desktop.current ?? "0.0",
+    );
+    double previousDesktop = double.parse(
+      analyticsData?.desktop.previous ?? "0.0",
+    );
 
     double mChange = currentMobile - previousMobile;
     double dChange = currentDesktop - previousDesktop;
@@ -272,10 +273,12 @@ class HomeViewModel extends BaseViewModel {
   PagingController<int, TransactionHistory> transactionController =
       PagingController<int, TransactionHistory>(firstPageKey: 1);
 
-  getTransactions(int page) async {
+  Future<void> getTransactions(int page) async {
     try {
-      TransactionResponse resp =
-          await TransactionService().getTransactions(page, limit);
+      TransactionResponse resp = await TransactionService().getTransactions(
+        page,
+        limit,
+      );
       if (resp.status == "success") {
         List<TransactionHistory> t = resp.data!.data;
 
@@ -289,77 +292,81 @@ class HomeViewModel extends BaseViewModel {
   }
 
   List<TransactionOption> transactionOptions(BuildContext context) => [
-        TransactionOption(
-          icon: Padding(
-            padding: const EdgeInsets.all(10),
-            child: AppAssets.images.icons.receive.svg(),
-          ),
-          title: "Receive",
-          onTap: () {
-            if (walletState == FetchState.loading &&
-                locator<AppStateValues>().wallet == null) {
-              BlueToast.primaryWithcon("Please wait...");
-            } else {
-              goToReceiveMoney(context);
-            }
-          },
-        ),
-        TransactionOption(
-          icon: Padding(
-            padding: const EdgeInsets.all(18),
-            child: AppAssets.images.icons.branches.svg(),
-          ),
-          title: "Branches",
-          onTap: () {
-            goToBranchManagementHome(context);
-          },
-        ),
-        TransactionOption(
-          icon: Padding(
-            padding: const EdgeInsets.all(18),
-            child: AppAssets.images.icons.staff.svg(),
-          ),
-          title: "Staff",
-          onTap: () {
-            goToStaffManagementHome(context);
-          },
-        ),
-        TransactionOption(
-          icon: Padding(
-            padding: const EdgeInsets.all(18),
-            child: AppAssets.images.icons.wallet.svg(),
-          ),
-          title: "Wallet",
-          onTap: () {
-            goToWallet(context);
-          },
-        )
-      ];
+    TransactionOption(
+      icon: Padding(
+        padding: const EdgeInsets.all(10),
+        child: AppAssets.images.icons.receive.svg(),
+      ),
+      title: "Receive",
+      onTap: () {
+        if (walletState == FetchState.loading &&
+            locator<AppStateValues>().wallet == null) {
+          BlueToast.primaryWithcon("Please wait...");
+        } else {
+          goToReceiveMoney(context);
+        }
+      },
+    ),
+    TransactionOption(
+      icon: Padding(
+        padding: const EdgeInsets.all(18),
+        child: AppAssets.images.icons.branches.svg(),
+      ),
+      title: "Branches",
+      onTap: () {
+        goToBranchManagementHome(context);
+      },
+    ),
+    TransactionOption(
+      icon: Padding(
+        padding: const EdgeInsets.all(18),
+        child: AppAssets.images.icons.staff.svg(),
+      ),
+      title: "Staff",
+      onTap: () {
+        goToStaffManagementHome(context);
+      },
+    ),
+    TransactionOption(
+      icon: Padding(
+        padding: const EdgeInsets.all(18),
+        child: AppAssets.images.icons.wallet.svg(),
+      ),
+      title: "Wallet",
+      onTap: () {
+        goToWallet(context);
+      },
+    ),
+  ];
 
-  getTransactionDetails(
-      TransactionHistory transaction, BuildContext context) async {
+  Future<void> getTransactionDetails(
+    TransactionHistory transaction,
+    BuildContext context,
+  ) async {
     AppLoader.start();
 
     TransactionDetailResponse response = await TransactionService()
         .getTransactionDetails(
-      transactionReference: transaction.transactionId.toString(),
-      service: getService(transaction.paymentMode),
-    )
+          transactionReference: transaction.transactionId.toString(),
+          service: getService(transaction.paymentMode),
+        )
         .onError((error, stackTrace) {
-      return TransactionDetailResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "get_transaction_details",
-          "response_model": "TransactionDetailResponse"
-        },
-      ));
-    });
+          return TransactionDetailResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_transaction_details",
+              "response_model": "TransactionDetailResponse",
+            }),
+          );
+        });
 
     if (response.status == "success") {
       if (context.mounted) {
-        handleDetailResponse(getService(transaction.paymentMode),
-            transaction.transactionType, response, context);
+        handleDetailResponse(
+          getService(transaction.paymentMode),
+          transaction.transactionType,
+          response,
+          context,
+        );
       }
     } else {
       AppNotification.error(message: response.message);
@@ -368,8 +375,12 @@ class HomeViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  handleDetailResponse(String mode, String type,
-      TransactionDetailResponse response, BuildContext context) {
+  void handleDetailResponse(
+    String mode,
+    String type,
+    TransactionDetailResponse response,
+    BuildContext context,
+  ) {
     dynamic extra;
     if (mode == "payment") {
       extra = PaymentDetail.fromJson(response.data);
@@ -402,11 +413,11 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  goToBranchManagementHome(BuildContext context) {
+  void goToBranchManagementHome(BuildContext context) {
     locator<AppRouter>().push(BranchHomeRoute());
   }
 
-  goToStaffManagementHome(BuildContext context) {
+  void goToStaffManagementHome(BuildContext context) {
     locator<AppRouter>().push(StaffHomeRoute());
   }
 
@@ -414,11 +425,11 @@ class HomeViewModel extends BaseViewModel {
     locator<AppRouter>().push(ReceiveMoneyRoute());
   }
 
-  goToTransactionHistory(BuildContext context) {
+  void goToTransactionHistory(BuildContext context) {
     locator<AppRouter>().push(TransactionHistoryRoute());
   }
 
-  goToWallet(BuildContext context) {
+  void goToWallet(BuildContext context) {
     locator<AppRouter>().push<bool>(WalletRoute()).then((val) {
       if (val == true) {
         getWalletBalance();

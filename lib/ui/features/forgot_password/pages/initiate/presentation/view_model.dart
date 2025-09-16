@@ -17,20 +17,26 @@ import 'package:flutter/material.dart';
 class InitiatePasswordResetViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
     setSelectedCountry();
   }
 
-  setSelectedCountry() {
-    selectedCountry = countryCodes[countryCodes.indexOf(const CountryCode(
-        countryCode: "NG", name: "Nigeria", dialCode: "+234"))];
+  void setSelectedCountry() {
+    selectedCountry =
+        countryCodes[countryCodes.indexOf(
+          const CountryCode(
+            countryCode: "NG",
+            name: "Nigeria",
+            dialCode: "+234",
+          ),
+        )];
   }
 
   TextEditingController searchController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
@@ -41,32 +47,36 @@ class InitiatePasswordResetViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  sendRecoveryPhone(BuildContext context) async {
+  Future<void> sendRecoveryPhone(BuildContext context) async {
     AppLoader.start();
 
     SendNewPhoneResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .forgotPassword(phoneController.text.validPhone(selectedCountry))
-            .onError((error, stackTrace) => SendNewPhoneResponse(
-                    message: AppErrorHandler.getErrorMessage(
-                  error,
-                  {
-                    "request_name": "forgot_[in_with_phone",
-                    "response_model": "ForgotPinResponse"
-                  },
-                )));
+            .onError(
+              (error, stackTrace) => SendNewPhoneResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "forgot_[in_with_phone",
+                  "response_model": "ForgotPinResponse",
+                }),
+              ),
+            );
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
 
       if (context.mounted) {
-        locator<AppRouter>().push(VerifyPasswordOtpRoute(
+        locator<AppRouter>().push(
+          VerifyPasswordOtpRoute(
             args: VerifySignupOtpArgs(
-                phone: phoneController.text.validPhone(selectedCountry))));
+              phone: phoneController.text.validPhone(selectedCountry),
+            ),
+          ),
+        );
       }
     } else {
       AppNotification.error(message: resp.message);

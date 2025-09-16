@@ -55,10 +55,7 @@ class Geometry with _$Geometry {
 
 @freezed
 class LatLng with _$LatLng {
-  const factory LatLng({
-    required double lat,
-    required double lng,
-  }) = _LatLng;
+  const factory LatLng({required double lat, required double lng}) = _LatLng;
 
   factory LatLng.fromJson(Map<String, dynamic> json) => _$LatLngFromJson(json);
 }
@@ -76,9 +73,7 @@ class Viewport with _$Viewport {
 
 @freezed
 class OpeningHours with _$OpeningHours {
-  const factory OpeningHours({
-    bool? openNow,
-  }) = _OpeningHours;
+  const factory OpeningHours({bool? openNow}) = _OpeningHours;
 
   factory OpeningHours.fromJson(Map<String, dynamic> json) =>
       _$OpeningHoursFromJson(json);
@@ -98,16 +93,14 @@ class Photo with _$Photo {
 
 @freezed
 class PlusCode with _$PlusCode {
-  const factory PlusCode({
-    String? compoundCode,
-    String? globalCode,
-  }) = _PlusCode;
+  const factory PlusCode({String? compoundCode, String? globalCode}) =
+      _PlusCode;
 
   factory PlusCode.fromJson(Map<String, dynamic> json) =>
       _$PlusCodeFromJson(json);
 }
 
-logFormattedJson(dynamic response, {String tag = 'JSON'}) {
+void logFormattedJson(dynamic response, {String tag = 'JSON'}) {
   try {
     dynamic parsed;
 

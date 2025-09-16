@@ -19,17 +19,17 @@ import 'package:flutter/material.dart';
 class InitiateDataViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
 
     getProviders();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
@@ -50,7 +50,7 @@ class InitiateDataViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onBillProviderChanged(BillProvider? item) {
+  void onBillProviderChanged(BillProvider? item) {
     selectedProvider = item;
 
     selectedPackage = null;
@@ -75,19 +75,19 @@ class InitiateDataViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getProviders() async {
+  Future<void> getProviders() async {
     providersState = FetchState.loading;
 
     GetProvidersResponse resp = await BillsService()
         .getProviders("data")
-        .onError((error, stackTrace) => GetProvidersResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_data_providers",
-                "response_model": "GetProvidersPhoneResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => GetProvidersResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_data_providers",
+              "response_model": "GetProvidersPhoneResponse",
+            }),
+          ),
+        );
 
     if (resp.status == "success") {
       providers = resp.data ?? [];
@@ -98,7 +98,7 @@ class InitiateDataViewModel extends BaseViewModel {
     }
   }
 
-  onBillPackageChanged(BillPackage? item) {
+  void onBillPackageChanged(BillPackage? item) {
     selectedPackage = item;
   }
 
@@ -116,20 +116,22 @@ class InitiateDataViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getPackages() async {
+  Future<void> getPackages() async {
     packagesState = FetchState.loading;
 
     GetPackagesResponse resp = await BillsService()
         .getPackages(
-            providerNAme: selectedProvider!.name.toLowerCase(), service: "data")
-        .onError((error, stackTrace) => GetPackagesResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_data_packages",
-                "response_model": "GetPackagesResponse"
-              },
-            )));
+          providerNAme: selectedProvider!.name.toLowerCase(),
+          service: "data",
+        )
+        .onError(
+          (error, stackTrace) => GetPackagesResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_data_packages",
+              "response_model": "GetPackagesResponse",
+            }),
+          ),
+        );
 
     if (resp.status == "success") {
       packages = resp.data ?? [];
@@ -151,7 +153,7 @@ class InitiateDataViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  verfyPackage(BuildContext context) async {
+  Future<void> verfyPackage(BuildContext context) async {
     AppLoader.start();
     VerifyDataRequest request = VerifyDataRequest(
       receiver: phoneController.text,
@@ -160,15 +162,15 @@ class InitiateDataViewModel extends BaseViewModel {
 
     VerifyDataResponse response = await BillsService()
         .verifyDataInfo(request)
-        .onError((error, stackTrace) => VerifyDataResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "verify_data_info",
-                "request": request.toString(),
-                "response_model": "VerifyDataResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => VerifyDataResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "verify_data_info",
+              "request": request.toString(),
+              "response_model": "VerifyDataResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       data = response.data;
@@ -179,7 +181,7 @@ class InitiateDataViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  goToNext(BuildContext context) {
+  void goToNext(BuildContext context) {
     locator<AppRouter>().push(ReviewDataRoute(data: data!));
   }
 }

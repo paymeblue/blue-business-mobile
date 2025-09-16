@@ -11,10 +11,10 @@ class ConnectionHelper {
   ConnectionHelper._();
   static late StreamSubscription<List<ConnectivityResult>> subscription;
 
-  static initialiseNetworkCheck(BuildContext ctx) {
-    subscription = Connectivity()
-        .onConnectivityChanged
-        .listen((List<ConnectivityResult> result) {
+  static void initialiseNetworkCheck(BuildContext ctx) {
+    subscription = Connectivity().onConnectivityChanged.listen((
+      List<ConnectivityResult> result,
+    ) {
       if (!result.contains(ConnectivityResult.none)) {
         if (ctx.mounted) {
           Provider.of<AppStateValues>(ctx, listen: false).hasNetwork = true;

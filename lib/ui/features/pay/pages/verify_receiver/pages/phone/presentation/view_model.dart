@@ -21,7 +21,7 @@ class PhonePaymentViewModel extends BaseViewModel {
   late Size size;
   late InitiateTransactionData data;
 
-  init(BuildContext context, InitiateTransactionData d) {
+  void init(BuildContext context, InitiateTransactionData d) {
     size = context.mediaQuery.size;
 
     data = d;
@@ -29,12 +29,18 @@ class PhonePaymentViewModel extends BaseViewModel {
     getAllContacts();
   }
 
-  setSelectedCountry() {
-    selectedCountry = countryCodes[countryCodes.indexOf(const CountryCode(
-        countryCode: "NG", name: "Nigeria", dialCode: "+234"))];
+  void setSelectedCountry() {
+    selectedCountry =
+        countryCodes[countryCodes.indexOf(
+          const CountryCode(
+            countryCode: "NG",
+            name: "Nigeria",
+            dialCode: "+234",
+          ),
+        )];
   }
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
@@ -112,7 +118,8 @@ class PhonePaymentViewModel extends BaseViewModel {
       if (val != null && val.isNotEmpty) {
         contacts = allContacts
             .where(
-                (v) => v.displayName.toLowerCase().contains(val.toLowerCase()))
+              (v) => v.displayName.toLowerCase().contains(val.toLowerCase()),
+            )
             .toList();
       } else {
         contacts = allContacts;
@@ -151,7 +158,7 @@ class PhonePaymentViewModel extends BaseViewModel {
   //   });
   // }
 
-  verify(BuildContext context) async {
+  Future<void> verify(BuildContext context) async {
     AppLoader.start();
 
     VerifiedReceiverRequest request = VerifiedReceiverRequest(
@@ -163,13 +170,14 @@ class PhonePaymentViewModel extends BaseViewModel {
     VerifiedReceiverResponse resp = await TransactionService()
         .verifyReceiver(request)
         .onError((error, stackTrace) {
-      return VerifiedReceiverResponse(
-          message: AppErrorHandler.getErrorMessage(error, {
-        "request_name": "verify_receiver",
-        "request": request.toString(),
-        "response_model": "VerifiedReceiverResponse"
-      }));
-    });
+          return VerifiedReceiverResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "verify_receiver",
+              "request": request.toString(),
+              "response_model": "VerifiedReceiverResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       if (context.mounted) {

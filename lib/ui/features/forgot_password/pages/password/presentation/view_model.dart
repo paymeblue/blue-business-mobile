@@ -16,12 +16,12 @@ class ResetPasswordViewModel extends BaseViewModel {
   late Size size;
   late String phone;
 
-  init(BuildContext context, String p) {
+  void init(BuildContext context, String p) {
     size = context.mediaQuery.size;
     phone = p;
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
@@ -33,23 +33,23 @@ class ResetPasswordViewModel extends BaseViewModel {
   RegExp special = RegExp((r"[.,_@\\+$!#%^&*\-=?:;']+?").toString());
 
   List<Map<String, dynamic>> conditions() => [
-        {
-          "isComplete": passwordController.text.length >= 9,
-          "condition": "Must contain 9 characters"
-        },
-        {
-          "isComplete": letters.hasMatch(passwordController.text),
-          "condition": "Must contain a letter"
-        },
-        {
-          "isComplete": special.hasMatch(passwordController.text),
-          "condition": "Must contain a symbol"
-        },
-        {
-          "isComplete": numbers.hasMatch(passwordController.text),
-          "condition": "Must contain a number"
-        },
-      ];
+    {
+      "isComplete": passwordController.text.length >= 9,
+      "condition": "Must contain 9 characters",
+    },
+    {
+      "isComplete": letters.hasMatch(passwordController.text),
+      "condition": "Must contain a letter",
+    },
+    {
+      "isComplete": special.hasMatch(passwordController.text),
+      "condition": "Must contain a symbol",
+    },
+    {
+      "isComplete": numbers.hasMatch(passwordController.text),
+      "condition": "Must contain a number",
+    },
+  ];
 
   bool isActive() {
     return numbers.hasMatch(passwordController.text) &&
@@ -59,11 +59,11 @@ class ResetPasswordViewModel extends BaseViewModel {
         passwordController.text == confirmPasswordController.text;
   }
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
-  resetPassword(BuildContext context) async {
+  Future<void> resetPassword(BuildContext context) async {
     AppLoader.start();
 
     ResetPasswordRequest request = ResetPasswordRequest(
@@ -74,15 +74,15 @@ class ResetPasswordViewModel extends BaseViewModel {
     SendNewPhoneResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .resetPassword(request)
-            .onError((error, stackTrace) => SendNewPhoneResponse(
-                    message: AppErrorHandler.getErrorMessage(
-                  error,
-                  {
-                    "request_name": "reset_password",
-                    "request": request.toString(),
-                    "response_model": "SendNewPhoneResponse"
-                  },
-                )));
+            .onError(
+              (error, stackTrace) => SendNewPhoneResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "reset_password",
+                  "request": request.toString(),
+                  "response_model": "SendNewPhoneResponse",
+                }),
+              ),
+            );
 
     if (resp.status == "success") {
       locator<AppRouter>().replaceAll([LoginRoute()]);

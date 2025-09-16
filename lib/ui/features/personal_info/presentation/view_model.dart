@@ -17,13 +17,13 @@ import 'package:file_picker/file_picker.dart';
 class PersonalInfoViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
 
     getSelectedCountry();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
@@ -36,12 +36,11 @@ class PersonalInfoViewModel extends BaseViewModel {
 
   late CountryCode selectedCountryCode;
 
-  getSelectedCountry() {
+  void getSelectedCountry() {
     for (var country in countryCodes) {
-      if (locator<AppStateValues>()
-          .currentUser!
-          .phone
-          .startsWith(country.dialCode.replaceFirst("+", ""))) {
+      if (locator<AppStateValues>().currentUser!.phone.startsWith(
+        country.dialCode.replaceFirst("+", ""),
+      )) {
         selectedCountryCode = country;
       }
     }
@@ -50,15 +49,18 @@ class PersonalInfoViewModel extends BaseViewModel {
   String phone() {
     String number = locator<AppStateValues>().currentUser!.phone;
     number = number.replaceFirst(
-        selectedCountryCode.dialCode.replaceFirst("+", ""), "");
+      selectedCountryCode.dialCode.replaceFirst("+", ""),
+      "",
+    );
 
     return number;
   }
 
-  pickImage() async {
+  Future<void> pickImage() async {
     try {
-      FilePickerResult? result =
-          await FilePicker.platform.pickFiles(type: FileType.image);
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+      );
 
       if (result != null) {
         String? p = result.files.single.path;
@@ -67,31 +69,28 @@ class PersonalInfoViewModel extends BaseViewModel {
         AppNotification.error(message: "No image selected");
       }
     } catch (e) {
-      AppNotification.error(
-        message: AppErrorHandler.getErrorMessage(e),
-      );
+      AppNotification.error(message: AppErrorHandler.getErrorMessage(e));
     }
   }
 
-  uploadImage() async {
+  Future<void> uploadImage() async {
     AppLoader.start();
 
     UploadAvatarResponse resp = await ProfileService()
         .uploadDisplayPicture(File(path))
-        .onError((error, stackTrace) => UploadAvatarResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "upload_display_picture",
-                "response_model": "UploadAvatarResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => UploadAvatarResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "upload_display_picture",
+              "response_model": "UploadAvatarResponse",
+            }),
+          ),
+        );
 
     if (resp.status == "success") {
-      locator<AppStateValues>().currentUser =
-          locator<AppStateValues>().currentUser!.copyWith(
-                displayPicture: resp.data!.displayPicture,
-              );
+      locator<AppStateValues>().currentUser = locator<AppStateValues>()
+          .currentUser!
+          .copyWith(displayPicture: resp.data!.displayPicture);
       notifyListeners();
 
       AppNotification.success(message: resp.message);

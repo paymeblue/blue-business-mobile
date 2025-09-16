@@ -16,7 +16,7 @@ class GetPumpPriceLocationsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onSearchChanged(String? v) {
+  void onSearchChanged(String? v) {
     if (searchTimer != null) {
       searchTimer!.cancel();
     }
@@ -33,15 +33,16 @@ class GetPumpPriceLocationsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  findLocations(String query) async {
+  Future<void> findLocations(String query) async {
     pageState = FetchState.loading;
     PlaceResponse resp = await PlacesService()
         .getPlaceSuggestions(
           query: query,
           key: 'AIzaSyCPDj8YSCdJ4TLkxEyCYG3cTLdvtbTMcYQ',
         )
-        .onError((e, stackTrace) =>
-            PlaceResponse(htmlAttributions: [], results: []));
+        .onError(
+          (e, stackTrace) => PlaceResponse(htmlAttributions: [], results: []),
+        );
 
     if (resp.results.isEmpty) {
       pageState = FetchState.success;

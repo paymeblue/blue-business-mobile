@@ -14,7 +14,7 @@ class RefreshTimer {
   static Timer? _logoutTimer;
   int _count = 0;
 
-  resetTimer() async {
+  Future<void> resetTimer() async {
     if (_logoutTimer != null) {
       _logoutTimer!.cancel();
     }
@@ -24,37 +24,33 @@ class RefreshTimer {
       logout();
     });
 
-    await _setupRefresh();
+    _setupRefresh();
   }
 
-  _setupRefresh() {
+  void _setupRefresh() {
     _refreshTimer ??= Timer(const Duration(seconds: 285), () async {
       await refreshToken();
     });
   }
 
-  refreshToken() async {
+  Future<void> refreshToken() async {
     log("REFRESHING********************************************************");
     RefreshTokenRequest request = RefreshTokenRequest(
       refreshToken: locator<AppStateValues>().refreshToken,
     );
     RefreshTokenResponse resp =
-        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
-            .refresh(request: request)
-            .onError(
-      (error, stackTrace) {
-        return RefreshTokenResponse(
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).refresh(request: request).onError((error, stackTrace) {
+          return RefreshTokenResponse(
             status: "fail",
-            message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "refresh_token",
-                "request": request.toString(),
-                "response_model": "RefreshTokenResponse"
-              },
-            ));
-      },
-    );
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "refresh_token",
+              "request": request.toString(),
+              "response_model": "RefreshTokenResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       locator<AppStateValues>().accessToken = resp.data!.accessToken;
@@ -72,7 +68,7 @@ class RefreshTimer {
     }
   }
 
-  static logout() async {
+  static Future<void> logout() async {
     if (locator<AppStateValues>().notificationState == null) {
       locator<AppStateValues>().notificationState = NotificationState.error;
     }
@@ -82,7 +78,7 @@ class RefreshTimer {
     cancelTimer();
   }
 
-  static cancelTimer() {
+  static void cancelTimer() {
     _refreshTimer?.cancel();
     _logoutTimer?.cancel();
   }

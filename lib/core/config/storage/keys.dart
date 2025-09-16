@@ -26,12 +26,13 @@ class StorageValues {
   static CountryCode? selectedCountryCode;
   static String skipWelcome = "";
 
-  static getLoginValues() async {
+  static Future<void> getLoginValues() async {
     name = await StorageHelpers.getVal(StorageKeys.nameKey);
     username = (await StorageHelpers.getVal(StorageKeys.usernameKey));
 
-    String countryCodeString =
-        await StorageHelpers.getVal(StorageKeys.selectedCountryCode);
+    String countryCodeString = await StorageHelpers.getVal(
+      StorageKeys.selectedCountryCode,
+    );
     if (countryCodeString.isNotEmpty) {
       selectedCountryCode = CountryCode.fromJson(jsonDecode(countryCodeString));
     }
@@ -40,14 +41,16 @@ class StorageValues {
 
     password = await StorageHelpers.getVal(StorageKeys.passwordKey);
     pin = await StorageHelpers.getVal(StorageKeys.pinKey);
-    enableBiometrics =
-        await StorageHelpers.getVal(StorageKeys.enableBiometricsKey);
+    enableBiometrics = await StorageHelpers.getVal(
+      StorageKeys.enableBiometricsKey,
+    );
 
-    hasRequestedBiometrics =
-        await StorageHelpers.getVal(StorageKeys.hasRequestedBiometricsKey);
+    hasRequestedBiometrics = await StorageHelpers.getVal(
+      StorageKeys.hasRequestedBiometricsKey,
+    );
   }
 
-  static deleteLoginValues() async {
+  static Future<void> deleteLoginValues() async {
     name = "";
     username = "";
     pin = "";

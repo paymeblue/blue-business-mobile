@@ -23,7 +23,7 @@ import 'package:share_plus/share_plus.dart';
 class PaymentLinkHistoryViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
 
     selectedStatus = statusList[0];
@@ -32,7 +32,7 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
     });
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
@@ -56,7 +56,7 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
     ];
   }
 
-  onStatusChanged(String v) {
+  void onStatusChanged(String v) {
     selectedStatus = v;
     paymentLinkController.refresh();
   }
@@ -78,8 +78,9 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
     DateTime currentDate = DateTime.parse(transaction.createdAt);
     DateTime? previousDate;
     if (i > 0) {
-      previousDate =
-          DateTime.parse(paymentLinkController.itemList![i - 1].createdAt);
+      previousDate = DateTime.parse(
+        paymentLinkController.itemList![i - 1].createdAt,
+      );
     }
 
     return previousDate == null ||
@@ -89,20 +90,18 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
   }
 
   int limit = 50;
-  getPaymentLinkHistory(int page) async {
+  Future<void> getPaymentLinkHistory(int page) async {
     try {
       PaymentLinkResponse resp = await TransactionService()
           .getPaymentLinkHistory(page, limit, getStatus(selectedStatus))
           .onError((error, stackTrace) {
-        return PaymentLinkResponse(
-            message: AppErrorHandler.getErrorMessage(
-          error,
-          {
-            "request_name": "get_payment_link_history",
-            "response_model": "PaymentLinkResponse"
-          },
-        ));
-      });
+            return PaymentLinkResponse(
+              message: AppErrorHandler.getErrorMessage(error, {
+                "request_name": "get_payment_link_history",
+                "response_model": "PaymentLinkResponse",
+              }),
+            );
+          });
 
       if (resp.status != "success") {
         paymentLinkController.error = resp.message;
@@ -134,21 +133,19 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getTransactionReceipt(PaymentLinkItem data) async {
+  Future<void> getTransactionReceipt(PaymentLinkItem data) async {
     AppLoader.start();
 
     PaymentLinkReceiptResponse resp = await TransactionService()
         .getPaymentLinkReceipt(data.transactionId.toString())
         .onError((error, stackTrace) {
-      return PaymentLinkReceiptResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "get_payment_link_receipt",
-          "response_model": "PaymentLinkReceiptResponse"
-        },
-      ));
-    });
+          return PaymentLinkReceiptResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_payment_link_receipt",
+              "response_model": "PaymentLinkReceiptResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       receipt = resp.data!;
@@ -168,20 +165,26 @@ class PaymentLinkHistoryViewModel extends BaseViewModel {
 
   ScreenshotController screenshotController = ScreenshotController();
 
-  downloadAndShareQr(PaymentLinkItem data) async {
+  Future<void> downloadAndShareQr(PaymentLinkItem data) async {
     Uint8List? img;
-    await screenshotController.capture().then((value) {
-      img = value;
-    }).catchError((onError) {
-      AppNotification.error(message: AppErrorHandler.getErrorMessage(onError));
-    });
+    await screenshotController
+        .capture()
+        .then((value) {
+          img = value;
+        })
+        .catchError((onError) {
+          AppNotification.error(
+            message: AppErrorHandler.getErrorMessage(onError),
+          );
+        });
     if (img != null) {
-      XFile image = XFile.fromData(img!,
-          name: "receipt_${data.transactionId}", mimeType: "image/png");
+      XFile image = XFile.fromData(
+        img!,
+        name: "receipt_${data.transactionId}",
+        mimeType: "image/png",
+      );
 
-      Share.shareXFiles(
-        [image],
-      ).then((value) {
+      Share.shareXFiles([image]).then((value) {
         if (Platform.isIOS && value.status == ShareResultStatus.success) {
           BlueToast.primaryWithcon("Receipt shared");
         }

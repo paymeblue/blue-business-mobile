@@ -8,15 +8,15 @@ import 'package:flutter/material.dart';
 class ReviewDataViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  goToNext(BuildContext context, VerifyDataData data) {
+  void goToNext(BuildContext context, VerifyDataData data) {
     locator<AppRouter>().push(ConfirmDataPinRoute(data: data));
   }
 }

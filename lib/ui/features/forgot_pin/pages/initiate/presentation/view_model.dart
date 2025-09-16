@@ -20,23 +20,29 @@ class InitiatePinResetViewModel extends BaseViewModel {
   late Size size;
   late GetQuestionData? question;
 
-  init(BuildContext context, GetQuestionData? q) {
+  void init(BuildContext context, GetQuestionData? q) {
     size = context.mediaQuery.size;
     setSelectedCountry();
 
     question = q;
   }
 
-  setSelectedCountry() {
-    selectedCountry = countryCodes[countryCodes.indexOf(const CountryCode(
-        countryCode: "NG", name: "Nigeria", dialCode: "+234"))];
+  void setSelectedCountry() {
+    selectedCountry =
+        countryCodes[countryCodes.indexOf(
+          const CountryCode(
+            countryCode: "NG",
+            name: "Nigeria",
+            dialCode: "+234",
+          ),
+        )];
   }
 
   TextEditingController searchController = TextEditingController();
   TextEditingController answerController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
@@ -54,35 +60,37 @@ class InitiatePinResetViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  sendRecoveryPhone(BuildContext context) async {
+  Future<void> sendRecoveryPhone(BuildContext context) async {
     AppLoader.start();
     late SendRecoverPinRequest request;
     if (useQuestion) {
       request = SendRecoverPinRequest(
-          validationMode: "security-answer",
-          securityAnswer: answerController.text);
+        validationMode: "security-answer",
+        securityAnswer: answerController.text,
+      );
     } else {
       request = SendRecoverPinRequest(
-          recoveryPhone: phoneController.text.validPhone(selectedCountry),
-          validationMode: "recovery-phone");
+        recoveryPhone: phoneController.text.validPhone(selectedCountry),
+        validationMode: "recovery-phone",
+      );
     }
 
     ForgotPinResponse resp =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .forgotPinWithPhone(request)
-            .onError((error, stackTrace) => ForgotPinResponse(
-                    message: AppErrorHandler.getErrorMessage(
-                  error,
-                  {
-                    "request_name": "forgot_[in_with_phone",
-                    "request": request.toString(),
-                    "response_model": "ForgotPinResponse"
-                  },
-                )));
+            .onError(
+              (error, stackTrace) => ForgotPinResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "forgot_[in_with_phone",
+                  "request": request.toString(),
+                  "response_model": "ForgotPinResponse",
+                }),
+              ),
+            );
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
@@ -91,8 +99,11 @@ class InitiatePinResetViewModel extends BaseViewModel {
         if (useQuestion) {
           locator<AppRouter>().push(ResetPinRoute(phone: resp.data!.phone));
         } else {
-          locator<AppRouter>().push(VerifyPinOtpRoute(
-              args: VerifySignupOtpArgs(phone: resp.data!.phone)));
+          locator<AppRouter>().push(
+            VerifyPinOtpRoute(
+              args: VerifySignupOtpArgs(phone: resp.data!.phone),
+            ),
+          );
         }
       }
     } else {

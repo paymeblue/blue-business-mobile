@@ -15,7 +15,7 @@ import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 
 class AddPumpPriceBranchViewModel extends BaseViewModel {
   FillingStation? station;
-  init(FillingStation? s) {
+  void init(FillingStation? s) {
     station = s;
 
     if (station != null) {
@@ -23,7 +23,7 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
     }
   }
 
-  setValues() {
+  void setValues() {
     name.text = station!.name;
     price.text =
         '${nairaSymbol()} ${double.parse(station!.fuelPrice).toStringAsFixed(2)}';
@@ -45,7 +45,7 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  showLocationsBottomSheet(BuildContext context) async {
+  Future<void> showLocationsBottomSheet(BuildContext context) async {
     FocusManager.instance.primaryFocus?.unfocus();
     await showModalBottomSheet(
       context: context,
@@ -93,8 +93,10 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  Future<TimeOfDay?> selectTime(BuildContext context,
-      [TimeOfDay? initialTime]) async {
+  Future<TimeOfDay?> selectTime(
+    BuildContext context, [
+    TimeOfDay? initialTime,
+  ]) async {
     final t = await showTimePicker(
       context: context,
       initialTime: initialTime ?? TimeOfDay.now(),
@@ -106,7 +108,7 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
   TextEditingController name = TextEditingController();
   TextEditingController price = TextEditingController();
 
-  addBranch() async {
+  Future<void> addBranch() async {
     final closing =
         '${closingTime!.hour.toString().padLeft(2, '0')}:${closingTime!.minute.toString().padLeft(2, '0')}';
     final opening =
@@ -126,10 +128,10 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
     final resp = await PumpPriceStationService()
         .createBranch(request: request)
         .onError((e, s) {
-      return CreatePumpPriceBranchResponse(
-        message: AppErrorHandler.getErrorMessage(e),
-      );
-    });
+          return CreatePumpPriceBranchResponse(
+            message: AppErrorHandler.getErrorMessage(e),
+          );
+        });
 
     if (resp.status == 'success') {
       buttonState = FetchState.success;
@@ -149,7 +151,7 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
         closingTime != null;
   }
 
-  editBranch() async {
+  Future<void> editBranch() async {
     final c =
         '${closingTime!.hour.toString().padLeft(2, '0')}:${closingTime!.minute.toString().padLeft(2, '0')}:00';
     final o =
@@ -175,14 +177,12 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
     if ((double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")) !=
         double.parse(station!.fuelPrice))) {
       request = request.copyWith(
-          fuelPrice:
-              double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")));
+        fuelPrice: double.parse(price.text.replaceAll(RegExp(r'[^\d.]'), "")),
+      );
     }
 
     if (formattedAddress != station!.address) {
-      request = request.copyWith(
-        address: formattedAddress,
-      );
+      request = request.copyWith(address: formattedAddress);
     }
 
     if (name.text != station!.name) {
@@ -192,11 +192,11 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
     final resp = await PumpPriceStationService()
         .editBranch(request: request, branchId: station!.id)
         .onError((e, s) {
-      log(s.toString());
-      return EditPumpPriceBranchResponse(
-        message: AppErrorHandler.getErrorMessage(e),
-      );
-    });
+          log(s.toString());
+          return EditPumpPriceBranchResponse(
+            message: AppErrorHandler.getErrorMessage(e),
+          );
+        });
 
     if (resp.status == 'success') {
       buttonState = FetchState.success;
@@ -225,7 +225,7 @@ class AddPumpPriceBranchViewModel extends BaseViewModel {
     return false;
   }
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 }

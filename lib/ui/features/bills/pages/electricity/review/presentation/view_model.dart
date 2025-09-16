@@ -9,16 +9,23 @@ import 'package:flutter/material.dart';
 class ReviewElectricityViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  goToNext(BuildContext context, VerifyElectricityData data, double amount) {
-    locator<AppRouter>().push(ConfirmElectricityPinRoute(
-        args: ConfirmPowerArgs(amount: amount, data: data)));
+  void goToNext(
+    BuildContext context,
+    VerifyElectricityData data,
+    double amount,
+  ) {
+    locator<AppRouter>().push(
+      ConfirmElectricityPinRoute(
+        args: ConfirmPowerArgs(amount: amount, data: data),
+      ),
+    );
   }
 }
