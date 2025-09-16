@@ -37,9 +37,7 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
       onModelReady: (model) => model.init(context, widget.staff),
       builder: (context, model, _) {
         return Scaffold(
-          appBar: BlueAppBar.primary(
-            onBackTap: () => model.goBack(context),
-          ),
+          appBar: BlueAppBar.primary(onBackTap: () => model.goBack(context)),
           body: Container(
             height: MediaQuery.sizeOf(context).height,
             width: double.infinity,
@@ -49,9 +47,7 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
               children: [
                 ...titleAndSubtitle(),
                 25.verticalGap,
-                Expanded(
-                  child: form(model),
-                ),
+                Expanded(child: form(model)),
                 AppButton.primary(
                   title: widget.staff == null ? "Grant access" : "Edit info",
                   isEnabled: model.isActive(widget.staff),
@@ -62,7 +58,7 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
                       model.editStaff(context, widget.staff!);
                     }
                   },
-                )
+                ),
               ],
             ),
           ),
@@ -82,15 +78,13 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            widget.staff!.name.nameCase,
-            style: AppTextStyles.smallHeader,
-          ),
+          Text(widget.staff!.name.nameCase, style: AppTextStyles.smallHeader),
           Text(
             widget.staff!.role.sentenceCase,
-            style: AppTextStyles.smallText
-                .copyWith(color: AppColors.bodyTextColor2),
-          )
+            style: AppTextStyles.smallText.copyWith(
+              color: AppColors.bodyTextColor2,
+            ),
+          ),
         ],
       ),
     );
@@ -107,10 +101,7 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
           ),
         ),
         10.horizontalGap,
-        Text(
-          "Profile picture",
-          style: AppTextStyles.subHeader,
-        )
+        Text("Profile picture", style: AppTextStyles.subHeader),
       ],
     );
   }
@@ -118,10 +109,7 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
   Widget form(EnterStaffDetailsViewModel model) {
     return ListView(
       children: [
-        if (widget.staff != null) ...[
-          staffTile(model),
-          12.verticalGap,
-        ],
+        if (widget.staff != null) ...[staffTile(model), 12.verticalGap],
         if (widget.staff == null) ...[avatarRow(model), 15.verticalGap],
         BlueTextField.plaintext(
           hint: "Sharon Tate",
@@ -146,7 +134,8 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
                 },
                 title: "Set role",
                 value: model.role?.name,
-                height: .25),
+                height: .25,
+              ),
         12.verticalGap,
         model.branchSetState == FetchState.loading
             ? BlueLoadingTile.withoutImage(title: "Set branch")
@@ -179,9 +168,10 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
         ...List.generate(
           model.conditions().length,
           (i) => PasswordCheckOption(
-              isComplete: model.conditions()[i]["isComplete"],
-              condition: model.conditions()[i]["condition"]),
-        )
+            isComplete: model.conditions()[i]["isComplete"],
+            condition: model.conditions()[i]["condition"],
+          ),
+        ),
       ],
     );
   }
@@ -189,46 +179,47 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
   Widget info(EnterStaffDetailsViewModel model) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12.56, horizontal: 18),
-      decoration: const BoxDecoration(
-        color: AppColors.info,
-      ),
+      decoration: const BoxDecoration(color: AppColors.info),
       child: Row(
         children: [
           AppAssets.images.icons.infoSquare.svg(),
-          const SizedBox(
-            width: 11,
-          ),
+          const SizedBox(width: 11),
           Expanded(
             child: RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                  text:
-                      "Select from pre-added branches. If none are displayed, ",
-                  style: AppTextStyles.subHeader.copyWith(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text:
+                        "Select from pre-added branches. If none are displayed, ",
+                    style: AppTextStyles.subHeader.copyWith(
                       color: AppColors.textColor,
                       fontWeight: FontWeight.w400,
-                      fontSize: 13.sp),
-                ),
-                TextSpan(
-                  text: "add branches",
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () async {
-                      await model.goToAddBranch(context);
-                    },
-                  style: AppTextStyles.subHeader.copyWith(
+                      fontSize: 13.sp,
+                    ),
+                  ),
+                  TextSpan(
+                    text: "add branches",
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () async {
+                        model.goToAddBranch(context);
+                      },
+                    style: AppTextStyles.subHeader.copyWith(
                       color: AppColors.blue,
                       fontWeight: FontWeight.w400,
                       decoration: TextDecoration.underline,
-                      fontSize: 13.sp),
-                ),
-                TextSpan(
-                  text: " to your account.",
-                  style: AppTextStyles.subHeader.copyWith(
+                      fontSize: 13.sp,
+                    ),
+                  ),
+                  TextSpan(
+                    text: " to your account.",
+                    style: AppTextStyles.subHeader.copyWith(
                       color: AppColors.textColor,
                       fontWeight: FontWeight.w400,
-                      fontSize: 13.sp),
-                ),
-              ]),
+                      fontSize: 13.sp,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -238,10 +229,7 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
 
   List<Widget> titleAndSubtitle() {
     return [
-      Text(
-        "Enter staff details",
-        style: AppTextStyles.header,
-      ),
+      Text("Enter staff details", style: AppTextStyles.header),
       8.verticalGap,
       SizedBox(
         width: 350,
@@ -250,7 +238,7 @@ class _EnterStaffDetailsViewState extends State<EnterStaffDetailsView> {
           style: AppTextStyles.subHeader,
           textAlign: TextAlign.start,
         ),
-      )
+      ),
     ];
   }
 }
