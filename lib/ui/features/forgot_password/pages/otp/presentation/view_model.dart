@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/forgot/password/verify/request/verify_forgot_password_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
@@ -8,6 +9,7 @@ import 'package:blue_business/core/models/signup/response/signup_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
@@ -87,16 +89,17 @@ class VerifyPasswordOtpViewModel extends BaseViewModel {
   resendOtp() async {
     AppLoader.start();
 
-    SignupResponse resp = await AuthService()
-        .resendSignupOtp(phone: phone)
-        .onError((error, stackTrace) => SignupResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "resend_signup_otp",
-                "response_model": "SignupResponse"
-              },
-            )));
+    SignupResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resendSignupOtp(phone: phone)
+            .onError((error, stackTrace) => SignupResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "resend_signup_otp",
+                    "response_model": "SignupResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
@@ -113,17 +116,18 @@ class VerifyPasswordOtpViewModel extends BaseViewModel {
     VerifyForgotPasswordRequest request =
         VerifyForgotPasswordRequest(otp: pin, phone: phone);
 
-    SendNewPhoneResponse resp = await AuthService()
-        .verifyForgotPasswordOtp(request: request)
-        .onError((error, stackTrace) => SendNewPhoneResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "verify_forgot_password",
-                "request": request.toString(),
-                "response_model": "SendNewPhoneResponse"
-              },
-            )));
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .verifyForgotPasswordOtp(request: request)
+            .onError((error, stackTrace) => SendNewPhoneResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "verify_forgot_password",
+                    "request": request.toString(),
+                    "response_model": "SendNewPhoneResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);

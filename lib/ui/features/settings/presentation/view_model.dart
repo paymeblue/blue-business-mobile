@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/profile_service/profile_service.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
@@ -175,7 +176,9 @@ class SettingsViewModel extends BaseViewModel {
     AppLoader.start();
 
     GetReasonResponse resp =
-        await AuthService().getReasons().onError((error, stackTrace) {
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getReasons()
+            .onError((error, stackTrace) {
       return GetReasonResponse(
           message: AppErrorHandler.getErrorMessage(
         error,
@@ -202,7 +205,9 @@ class SettingsViewModel extends BaseViewModel {
     DeleteRequest request = DeleteRequest(reasonId: reason.id.toString());
 
     DeleteResponse resp =
-        await AuthService().deleteAccount(request).onError((error, stackTrace) {
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .deleteAccount(request)
+            .onError((error, stackTrace) {
       return DeleteResponse(
           message: AppErrorHandler.getErrorMessage(
         error,

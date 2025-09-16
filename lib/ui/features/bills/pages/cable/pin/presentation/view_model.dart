@@ -1,5 +1,6 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/bills_service/bills_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
@@ -97,16 +98,17 @@ class ConfirmCablePinViewModel extends BaseViewModel {
 
   getSecurityQuestion(BuildContext context) async {
     AppLoader.start();
-    GetQuestionResponse resp = await AuthService()
-        .getSecurityQuestion(locator<AppStateValues>().currentUser!.phone)
-        .onError((error, stackTrace) => GetQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_security_question",
-                "response_model": "GetQuestionResponse"
-              },
-            )));
+    GetQuestionResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getSecurityQuestion(locator<AppStateValues>().currentUser!.phone)
+            .onError((error, stackTrace) => GetQuestionResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_security_question",
+                    "response_model": "GetQuestionResponse"
+                  },
+                )));
 
     if (context.mounted) {
       locator<AppRouter>()

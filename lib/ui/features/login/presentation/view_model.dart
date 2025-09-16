@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/profile_service/profile_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
@@ -147,9 +148,10 @@ class LoginViewModel extends BaseViewModel {
           : locator<AppStateValues>().fcmToken,
     );
 
-    LoginResponse resp = await AuthService()
-        .login(request: request)
-        .onError((error, stackTrace) {
+    LoginResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .login(request: request)
+            .onError((error, stackTrace) {
       return LoginResponse(
           message: AppErrorHandler.getErrorMessage(
         error,

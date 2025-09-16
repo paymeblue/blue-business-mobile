@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/models/refresh_token/request/refresh_token_request.dart';
 import 'package:blue_business/core/models/refresh_token/response/refresh_token_response.dart';
 import 'package:blue_business/core/navigation/router_config/router.dart';
@@ -38,7 +39,9 @@ class RefreshTimer {
       refreshToken: locator<AppStateValues>().refreshToken,
     );
     RefreshTokenResponse resp =
-        await AuthService().refresh(request: request).onError(
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .refresh(request: request)
+            .onError(
       (error, stackTrace) {
         return RefreshTokenResponse(
             status: "fail",

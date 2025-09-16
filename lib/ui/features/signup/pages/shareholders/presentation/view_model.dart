@@ -1,4 +1,5 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/shareholders/get/data/shareholders.dart';
 import 'package:blue_business/core/models/shareholders/get/response/get_shareholders_response.dart';
@@ -51,16 +52,17 @@ class ShareholderDetailsViewModel extends BaseViewModel {
 
   getShareholders() async {
     gettingShareholders = true;
-    GetShareholdersResponse response = await AuthService()
-        .getShareholders(userId: data.businessId!)
-        .onError((error, stackTrace) => GetShareholdersResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_shareholders",
-                "response_model": "GetshareholdersResponse"
-              },
-            )));
+    GetShareholdersResponse response =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getShareholders(userId: data.businessId!)
+            .onError((error, stackTrace) => GetShareholdersResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "get_shareholders",
+                    "response_model": "GetshareholdersResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       shareholders = response.data ?? [];

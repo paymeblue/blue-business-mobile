@@ -5,6 +5,7 @@ import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/dash_service/dash_service.dart';
 import 'package:blue_business/core/api/insights_service/insights_service.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/models/analytics/data/analytics_data.dart';
@@ -188,7 +189,9 @@ class HomeViewModel extends BaseViewModel {
 
   getProfile() async {
     GetProfileResponse resp =
-        await AuthService().getProfile().onError((e, stackTrace) {
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getProfile()
+            .onError((e, stackTrace) {
       log("The error is ${e.toString()}");
       return GetProfileResponse(message: AppErrorHandler.getErrorMessage(e));
     });

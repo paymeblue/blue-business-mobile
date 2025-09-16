@@ -1,5 +1,6 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/signup/request/signup_request.dart';
@@ -87,17 +88,18 @@ class InitiateSignupViewModel extends BaseViewModel {
         password: passwordController.text,
         confirmPassword: confirmPasswordController.text);
 
-    SignupResponse response = await AuthService()
-        .register(request: request)
-        .onError((error, stackTrace) => SignupResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "register",
-                "request": request.toString(),
-                "response_model": "SignupResponse"
-              },
-            )));
+    SignupResponse response =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .register(request: request)
+            .onError((error, stackTrace) => SignupResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "register",
+                    "request": request.toString(),
+                    "response_model": "SignupResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       formKey.currentState!.reset();

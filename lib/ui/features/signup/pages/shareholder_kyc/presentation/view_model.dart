@@ -1,4 +1,5 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/shareholders/add/request/add_shareholders_request.dart';
 import 'package:blue_business/core/models/shareholders/create/request/create_shareholders_request.dart';
@@ -59,17 +60,18 @@ class SignupBusinessKycViewModel extends BaseViewModel {
         shareholderId: shareholder!.id,
         userId: data.id);
 
-    SignupResponse response = await AuthService()
-        .addShareholderBvn(request: request)
-        .onError((error, stackTrace) => SignupResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "add_shareholder_bvn",
-                "request": request.toString(),
-                "response_model": "SignupResponse"
-              },
-            )));
+    SignupResponse response =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .addShareholderBvn(request: request)
+            .onError((error, stackTrace) => SignupResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "add_shareholder_bvn",
+                    "request": request.toString(),
+                    "response_model": "SignupResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       data = response.data!;
@@ -89,17 +91,18 @@ class SignupBusinessKycViewModel extends BaseViewModel {
         userId: data.id,
         name: "${firstNameController.text} ${lastNameController.text}");
 
-    CreateShareholdersResponse response = await AuthService()
-        .createShareholder(request: request)
-        .onError((error, stackTrace) => CreateShareholdersResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "create_shareholder",
-                "request": request.toString(),
-                "response_model": "CreateShareholdersResponse"
-              },
-            )));
+    CreateShareholdersResponse response =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .createShareholder(request: request)
+            .onError((error, stackTrace) => CreateShareholdersResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "create_shareholder",
+                    "request": request.toString(),
+                    "response_model": "CreateShareholdersResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       data = data.copyWith(businessKycCompleted: true);

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
 import 'package:blue_business/core/models/recover_phone/add/data/recover_phone_data.dart';
@@ -10,6 +11,7 @@ import 'package:blue_business/core/models/recover_phone/verify/response/verify_n
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
@@ -89,9 +91,10 @@ class VerifyPhoneOtpViewModel extends BaseViewModel {
   resendOtp() async {
     AppLoader.start();
 
-    SendNewPhoneResponse resp = await AuthService()
-        .resendRecoveryOtp(phone: data.newPhone)
-        .onError((error, stackTrace) {
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resendRecoveryOtp(phone: data.newPhone)
+            .onError((error, stackTrace) {
       return SendNewPhoneResponse(
           message: AppErrorHandler.getErrorMessage(
         error,
@@ -118,9 +121,10 @@ class VerifyPhoneOtpViewModel extends BaseViewModel {
     VerifyNewPhoneRequest request =
         VerifyNewPhoneRequest(reference: data.reference, otp: pin);
 
-    VerifyNewPhoneResponse resp = await AuthService()
-        .verifyRecoveryOtp(reguest: request)
-        .onError((error, stackTrace) {
+    VerifyNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .verifyRecoveryOtp(reguest: request)
+            .onError((error, stackTrace) {
       return VerifyNewPhoneResponse(
           message: AppErrorHandler.getErrorMessage(
         error,

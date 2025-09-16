@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/models/signup/response/signup_response.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
@@ -85,16 +87,17 @@ class VerifySignupOtpViewModel extends BaseViewModel {
 
   resendOtp() async {
     AppLoader.start();
-    SignupResponse response = await AuthService()
-        .resendSignupOtp(phone: phone)
-        .onError((error, stackTrace) => SignupResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "resend_signup_otp",
-                "response_model": "SignupResponse"
-              },
-            )));
+    SignupResponse response =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resendSignupOtp(phone: phone)
+            .onError((error, stackTrace) => SignupResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "resend_signup_otp",
+                    "response_model": "SignupResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       AppNotification.success(message: response.message);
@@ -107,16 +110,17 @@ class VerifySignupOtpViewModel extends BaseViewModel {
 
   verifyOtp(BuildContext context) async {
     AppLoader.start();
-    SignupResponse response = await AuthService()
-        .verifySignupOtp(phone: phone.replaceAll("+", ""), otp: pin)
-        .onError((error, stackTrace) => SignupResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "verify_signup_otp",
-                "response_model": "SignupResponse"
-              },
-            )));
+    SignupResponse response =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .verifySignupOtp(phone: phone.replaceAll("+", ""), otp: pin)
+            .onError((error, stackTrace) => SignupResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "verify_signup_otp",
+                    "response_model": "SignupResponse"
+                  },
+                )));
 
     if (response.status == "success") {
       if (context.mounted) goToNext(context, response.data!);

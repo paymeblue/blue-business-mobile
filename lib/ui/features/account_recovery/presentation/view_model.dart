@@ -1,5 +1,6 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
@@ -136,7 +137,9 @@ class AccountRecoveryViewModel extends BaseViewModel {
     AppLoader.start();
 
     GetRecoveryCodeResponse resp =
-        await AuthService().getRecoveryCode().onError((error, stackTrace) {
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getRecoveryCode()
+            .onError((error, stackTrace) {
       return GetRecoveryCodeResponse(
           message: AppErrorHandler.getErrorMessage(
         error,
@@ -166,9 +169,10 @@ class AccountRecoveryViewModel extends BaseViewModel {
         phone: phoneController.text.validPhone(selectedCountry),
         password: passwordController.text);
 
-    SetRecoveryPhoneResponse resp = await AuthService()
-        .updateRecoveryPhone(request)
-        .onError((error, stackTrace) {
+    SetRecoveryPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .updateRecoveryPhone(request)
+            .onError((error, stackTrace) {
       return SetRecoveryPhoneResponse(
           message: AppErrorHandler.getErrorMessage(
         error,
@@ -197,17 +201,18 @@ class AccountRecoveryViewModel extends BaseViewModel {
         answer: answerController.text,
         password: passwordController.text);
 
-    SendQuestionResponse resp = await AuthService()
-        .createSecurityQuestion(request)
-        .onError((error, stackTrace) => SendQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "creaye_security_question",
-                "request": request.toString(),
-                "response_model": "SendQuestionResponse"
-              },
-            )));
+    SendQuestionResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .createSecurityQuestion(request)
+            .onError((error, stackTrace) => SendQuestionResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "creaye_security_question",
+                    "request": request.toString(),
+                    "response_model": "SendQuestionResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       passwordController.clear();
@@ -225,7 +230,9 @@ class AccountRecoveryViewModel extends BaseViewModel {
     AppLoader.start();
 
     ResetRecoveryCodeResponse resp =
-        await AuthService().resetRecoveryCode().onError((error, stackTrace) {
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resetRecoveryCode()
+            .onError((error, stackTrace) {
       return ResetRecoveryCodeResponse(
           message: AppErrorHandler.getErrorMessage(
         error,

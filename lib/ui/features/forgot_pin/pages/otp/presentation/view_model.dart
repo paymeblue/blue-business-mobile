@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/forgot/pin/verify/request/verify_forgot_pin_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
@@ -86,16 +87,17 @@ class VerifyPinOtpViewModel extends BaseViewModel {
   resendOtp() async {
     AppLoader.start();
 
-    SendNewPhoneResponse resp = await AuthService()
-        .resendPinOtp(phone: phone)
-        .onError((error, stackTrace) => SendNewPhoneResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "forgot_pin_with_phone",
-                "response_model": "SendNewPhoneResponse"
-              },
-            )));
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resendPinOtp(phone: phone)
+            .onError((error, stackTrace) => SendNewPhoneResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "forgot_pin_with_phone",
+                    "response_model": "SendNewPhoneResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
@@ -111,17 +113,18 @@ class VerifyPinOtpViewModel extends BaseViewModel {
     VerifyForgotPinRequest request =
         VerifyForgotPinRequest(otp: pin, recoveryPhone: phone);
 
-    ResetPasswordResponse resp = await AuthService()
-        .verifyPinOtp(request: request)
-        .onError((error, stackTrace) => ResetPasswordResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "verify_otp",
-                "request": request.toString(),
-                "response_model": "ResetPasswordResponse"
-              },
-            )));
+    ResetPasswordResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .verifyPinOtp(request: request)
+            .onError((error, stackTrace) => ResetPasswordResponse(
+                    message: AppErrorHandler.getErrorMessage(
+                  error,
+                  {
+                    "request_name": "verify_otp",
+                    "request": request.toString(),
+                    "response_model": "ResetPasswordResponse"
+                  },
+                )));
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);

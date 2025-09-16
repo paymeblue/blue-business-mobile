@@ -1,4 +1,3 @@
-import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/models/business_category/response/business_category_response.dart';
 import 'package:blue_business/core/models/change_password/request/change_password_request.dart';
 import 'package:blue_business/core/models/change_password/response/change_password_response.dart';
@@ -41,19 +40,15 @@ import 'package:blue_business/core/models/shareholders/create/response/create_sh
 import 'package:blue_business/core/models/shareholders/get/response/get_shareholders_response.dart';
 import 'package:blue_business/core/models/signup/request/signup_request.dart';
 import 'package:blue_business/core/models/signup/response/signup_response.dart';
-import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'auth_service.g.dart';
 
-@RestApi()
+@RestApi(baseUrl: AppConstants.baseUrl)
 abstract class AuthService {
-  factory AuthService() => _AuthService(
-        DioConfig.dio(locator<AppStateValues>().accessToken),
-        baseUrl: AppConstants.baseUrl,
-      );
+  factory AuthService(Dio dio, {String? baseUrl}) = _AuthService;
 
   @POST("/onboard/signup")
   Future<SignupResponse> register({@Body() required SignupRequest request});
