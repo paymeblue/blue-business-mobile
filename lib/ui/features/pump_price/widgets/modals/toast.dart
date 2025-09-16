@@ -8,9 +8,7 @@ import 'package:oktoast/oktoast.dart';
 class PumpPriceToast {
   PumpPriceToast._();
 
-  static success({
-    required String message,
-  }) {
+  static void success({required String message}) {
     showToastWidget(
       _AppCustomIconToast(
         message: message,
@@ -23,9 +21,7 @@ class PumpPriceToast {
     );
   }
 
-  static error({
-    required String message,
-  }) {
+  static void error({required String message}) {
     showToastWidget(
       _AppCustomIconToast(
         message: message,
@@ -34,16 +30,15 @@ class PumpPriceToast {
           width: 22.dm,
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-              color: const Color(0xFFEF2A5A).withOpacityValue(.2),
-              shape: BoxShape.circle),
+            color: const Color(0xFFEF2A5A).withOpacityValue(.2),
+            shape: BoxShape.circle,
+          ),
           child: Container(
             decoration: const BoxDecoration(
-                color: Color(0xFFEF2A5A), shape: BoxShape.circle),
-            child: const Icon(
-              Icons.close,
-              color: AppColors.white,
-              size: 14,
+              color: Color(0xFFEF2A5A),
+              shape: BoxShape.circle,
             ),
+            child: const Icon(Icons.close, color: AppColors.white, size: 14),
           ),
         ),
         iconAlignment: IconAlignment.left,
@@ -111,11 +106,7 @@ class _$PumpPriceToast extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
-          height: 24.dm,
-          width: 24.dm,
-          child: icon,
-        ),
+        SizedBox(height: 24.dm, width: 24.dm, child: icon),
         8.horizontalGap,
         Flexible(child: textWidget(context)),
       ],
@@ -128,11 +119,7 @@ class _$PumpPriceToast extends StatelessWidget {
       children: [
         Flexible(child: textWidget(context)),
         8.horizontalGap,
-        SizedBox(
-          height: 24.dm,
-          width: 24.dm,
-          child: icon,
-        ),
+        SizedBox(height: 24.dm, width: 24.dm, child: icon),
       ],
     );
   }

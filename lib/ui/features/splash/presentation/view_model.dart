@@ -15,7 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 class SplashViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) async {
+  Future<void> init(BuildContext context) async {
     size = MediaQuery.sizeOf(context);
 
     ConnectionHelper.initialiseNetworkCheck(context);
@@ -29,7 +29,9 @@ class SplashViewModel extends BaseViewModel {
         if (context.mounted) locator<AppRouter>().replace(LoginRoute());
       } else {
         await StorageHelpers.setVal(
-            StorageKeys.skipWelcomeKey, true.toString());
+          StorageKeys.skipWelcomeKey,
+          true.toString(),
+        );
         if (context.mounted) locator<AppRouter>().replace(WelcomeRoute());
       }
     } else {
@@ -52,7 +54,10 @@ class SplashViewModel extends BaseViewModel {
   }
 
   void _showUpdateDialog(
-      BuildContext context, bool forceUpdate, String minimumVersion) {
+    BuildContext context,
+    bool forceUpdate,
+    String minimumVersion,
+  ) {
     showDialog(
       context: locator<AppRouter>().navigatorKey.currentContext!,
       barrierDismissible: !forceUpdate,

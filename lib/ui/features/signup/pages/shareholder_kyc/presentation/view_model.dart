@@ -18,7 +18,7 @@ class SignupBusinessKycViewModel extends BaseViewModel {
   late SignupData data;
   Shareholders? shareholder;
 
-  init(BuildContext context, ShareholderKycViewArgs args) {
+  void init(BuildContext context, ShareholderKycViewArgs args) {
     size = context.mediaQuery.size;
     data = args.data;
     shareholder = args.shareholder;
@@ -28,21 +28,21 @@ class SignupBusinessKycViewModel extends BaseViewModel {
   TextEditingController lastNameController = TextEditingController();
   TextEditingController bvnController = TextEditingController();
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
-  goToNext(BuildContext context) {
-    locator<AppRouter>().push<SignupData>(CreatePinRoute(data: data)).then(
-      (val) {
-        if (val != null) {
-          data = val;
-        }
-      },
-    );
+  void goToNext(BuildContext context) {
+    locator<AppRouter>().push<SignupData>(CreatePinRoute(data: data)).then((
+      val,
+    ) {
+      if (val != null) {
+        data = val;
+      }
+    });
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop(data);
   }
 
@@ -53,25 +53,26 @@ class SignupBusinessKycViewModel extends BaseViewModel {
         bvnController.text.trimRight().length >= 10;
   }
 
-  addShareholderBvn(BuildContext context) async {
+  Future<void> addShareholderBvn(BuildContext context) async {
     AppLoader.start();
     AddShareholdersRequest request = AddShareholdersRequest(
-        bvn: bvnController.text,
-        shareholderId: shareholder!.id,
-        userId: data.id);
+      bvn: bvnController.text,
+      shareholderId: shareholder!.id,
+      userId: data.id,
+    );
 
     SignupResponse response =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .addShareholderBvn(request: request)
-            .onError((error, stackTrace) => SignupResponse(
-                    message: AppErrorHandler.getErrorMessage(
-                  error,
-                  {
-                    "request_name": "add_shareholder_bvn",
-                    "request": request.toString(),
-                    "response_model": "SignupResponse"
-                  },
-                )));
+            .onError(
+              (error, stackTrace) => SignupResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "add_shareholder_bvn",
+                  "request": request.toString(),
+                  "response_model": "SignupResponse",
+                }),
+              ),
+            );
 
     if (response.status == "success") {
       data = response.data!;
@@ -83,26 +84,27 @@ class SignupBusinessKycViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  createShareholder(BuildContext context) async {
+  Future<void> createShareholder(BuildContext context) async {
     AppLoader.start();
     CreateShareholdersRequest request = CreateShareholdersRequest(
-        bvn: bvnController.text,
-        businessId: data.businessId!,
-        userId: data.id,
-        name: "${firstNameController.text} ${lastNameController.text}");
+      bvn: bvnController.text,
+      businessId: data.businessId!,
+      userId: data.id,
+      name: "${firstNameController.text} ${lastNameController.text}",
+    );
 
     CreateShareholdersResponse response =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .createShareholder(request: request)
-            .onError((error, stackTrace) => CreateShareholdersResponse(
-                    message: AppErrorHandler.getErrorMessage(
-                  error,
-                  {
-                    "request_name": "create_shareholder",
-                    "request": request.toString(),
-                    "response_model": "CreateShareholdersResponse"
-                  },
-                )));
+            .onError(
+              (error, stackTrace) => CreateShareholdersResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "create_shareholder",
+                  "request": request.toString(),
+                  "response_model": "CreateShareholdersResponse",
+                }),
+              ),
+            );
 
     if (response.status == "success") {
       data = data.copyWith(businessKycCompleted: true);

@@ -18,7 +18,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 class StaffHomeViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
 
     staffPagingController.addPageRequestListener((pageKey) {
@@ -43,7 +43,7 @@ class StaffHomeViewModel extends BaseViewModel {
   PagingController<int, Staff> staffPagingController =
       PagingController<int, Staff>(firstPageKey: 1);
 
-  onDeleteStaff(Staff staff) {
+  void onDeleteStaff(Staff staff) {
     BlueDialog.primary(
       title: "Deny Access",
       subtitle:
@@ -55,41 +55,38 @@ class StaffHomeViewModel extends BaseViewModel {
     );
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  goToAddStaff(BuildContext context, {Staff? staff}) {
-    locator<AppRouter>()
-        .push<bool>(
-      EnterStaffDetailsRoute(staff: staff),
-    )
-        .then((v) {
+  void goToAddStaff(BuildContext context, {Staff? staff}) {
+    locator<AppRouter>().push<bool>(EnterStaffDetailsRoute(staff: staff)).then((
+      v,
+    ) {
       if (v == true) staffPagingController.refresh();
     });
   }
 
   TextEditingController searchController = TextEditingController();
 
-  getStaff(int page) async {
+  Future<void> getStaff(int page) async {
     try {
       GetStaffResponse response = await StaffService()
           .getAllStaff(
             page: page,
             limit: 50,
-            search:
-                searchController.text.isEmpty ? null : searchController.text,
+            search: searchController.text.isEmpty
+                ? null
+                : searchController.text,
             role: role?.name,
           )
           .onError(
             (error, stackTrace) => GetStaffResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
+              message: AppErrorHandler.getErrorMessage(error, {
                 "request_name": "get_all_staff",
-                "response_model": "GetStaffResponse"
-              },
-            )),
+                "response_model": "GetStaffResponse",
+              }),
+            ),
           );
 
       if (response.status == "success") {
@@ -108,20 +105,19 @@ class StaffHomeViewModel extends BaseViewModel {
     }
   }
 
-  deleteStaff(Staff staff) async {
+  Future<void> deleteStaff(Staff staff) async {
     AppLoader.start();
 
-    CreateStaffResponse response =
-        await StaffService().deleteStaff(id: staff.id).onError(
-              (error, stackTrace) => CreateStaffResponse(
-                  message: AppErrorHandler.getErrorMessage(
-                error,
-                {
-                  "request_name": "delete_staff",
-                  "response_model": "CreateStaffResponse"
-                },
-              )),
-            );
+    CreateStaffResponse response = await StaffService()
+        .deleteStaff(id: staff.id)
+        .onError(
+          (error, stackTrace) => CreateStaffResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "delete_staff",
+              "response_model": "CreateStaffResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       staffPagingController.refresh();
@@ -152,19 +148,19 @@ class StaffHomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getRoles() async {
+  Future<void> getRoles() async {
     roleState = FetchState.loading;
 
     GetStaffRoleResponse response = await StaffService()
         .getStaffRoles()
-        .onError((error, stacjtrace) => GetStaffRoleResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_staff_rles",
-                "response_model": "GetStaffRoleResponse"
-              },
-            )));
+        .onError(
+          (error, stacjtrace) => GetStaffRoleResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_staff_rles",
+              "response_model": "GetStaffRoleResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       roles = response.data!;

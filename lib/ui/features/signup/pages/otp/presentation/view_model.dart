@@ -18,7 +18,7 @@ class VerifySignupOtpViewModel extends BaseViewModel {
   late Size size;
   late String phone;
 
-  init(BuildContext context, String p) {
+  void init(BuildContext context, String p) {
     size = context.mediaQuery.size;
     phone = p;
     startCountdown();
@@ -38,11 +38,11 @@ class VerifySignupOtpViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onChanged(String v) {
+  void onChanged(String v) {
     canContinue = false;
   }
 
-  onSubmit(String otp) {
+  void onSubmit(String otp) {
     canContinue = true;
     pin = otp;
   }
@@ -68,7 +68,7 @@ class VerifySignupOtpViewModel extends BaseViewModel {
 
   late Timer timer;
 
-  startCountdown() {
+  void startCountdown() {
     timeLeft = 120;
     canResend = false;
     timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
@@ -81,23 +81,23 @@ class VerifySignupOtpViewModel extends BaseViewModel {
     });
   }
 
-  stopTimer() {
+  void stopTimer() {
     timer.cancel();
   }
 
-  resendOtp() async {
+  Future<void> resendOtp() async {
     AppLoader.start();
     SignupResponse response =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .resendSignupOtp(phone: phone)
-            .onError((error, stackTrace) => SignupResponse(
-                    message: AppErrorHandler.getErrorMessage(
-                  error,
-                  {
-                    "request_name": "resend_signup_otp",
-                    "response_model": "SignupResponse"
-                  },
-                )));
+            .onError(
+              (error, stackTrace) => SignupResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "resend_signup_otp",
+                  "response_model": "SignupResponse",
+                }),
+              ),
+            );
 
     if (response.status == "success") {
       AppNotification.success(message: response.message);
@@ -108,19 +108,19 @@ class VerifySignupOtpViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  verifyOtp(BuildContext context) async {
+  Future<void> verifyOtp(BuildContext context) async {
     AppLoader.start();
     SignupResponse response =
         await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
             .verifySignupOtp(phone: phone.replaceAll("+", ""), otp: pin)
-            .onError((error, stackTrace) => SignupResponse(
-                    message: AppErrorHandler.getErrorMessage(
-                  error,
-                  {
-                    "request_name": "verify_signup_otp",
-                    "response_model": "SignupResponse"
-                  },
-                )));
+            .onError(
+              (error, stackTrace) => SignupResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "verify_signup_otp",
+                  "response_model": "SignupResponse",
+                }),
+              ),
+            );
 
     if (response.status == "success") {
       if (context.mounted) goToNext(context, response.data!);
@@ -130,11 +130,11 @@ class VerifySignupOtpViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  goToNext(BuildContext context, SignupData data) {
+  void goToNext(BuildContext context, SignupData data) {
     locator<AppRouter>().replace(SignupProgressRoute(data: data));
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 }

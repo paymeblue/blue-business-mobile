@@ -7,23 +7,23 @@ import 'package:blue_business/core/utils/extensions.dart';
 class WalletViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) async {
+  Future<void> init(BuildContext context) async {
     size = context.mediaQuery.size;
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  goToInitiatePayment(BuildContext context) {
+  void goToInitiatePayment(BuildContext context) {
     locator<AppRouter>().push(InitiateTransactionRoute());
   }
 
-  goToBills(BuildContext context) {
+  void goToBills(BuildContext context) {
     locator<AppRouter>().push(BillsRoute());
   }
 
-  goToWithdrawalMethod(BuildContext context) {
+  void goToWithdrawalMethod(BuildContext context) {
     locator<AppRouter>().push(WithdrawalMethodRoute());
   }
 }

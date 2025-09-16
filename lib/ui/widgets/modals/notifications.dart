@@ -13,7 +13,10 @@ class AppNotification {
 
   static BuildContext context =
       locator<AppRouter>().navigatorKey.currentContext!;
-  static success({required message}) {
+  static Future success({required String? message}) {
+    if (message == null) {
+      return Future.value();
+    }
     Flushbar flush = Flushbar(
       shouldIconPulse: true,
       isDismissible: true,
@@ -21,8 +24,10 @@ class AppNotification {
       mainButton: 0.horizontalGap,
       messageText: Text(
         message,
-        style: AppTextStyles.subText
-            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
+        style: AppTextStyles.subText.copyWith(
+          fontSize: 14.sp,
+          color: AppColors.textColor,
+        ),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 12),
       borderColor: const Color(0xFF2FB9AC),
@@ -31,13 +36,15 @@ class AppNotification {
       margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
       borderRadius: BorderRadius.circular(6),
       icon: Container(
-          height: 36.h,
-          width: 36.w,
-          padding: const EdgeInsets.all(4),
-          decoration: BoxDecoration(
-              color: const Color(0xFF2FB9AC).withOpacityValue(.2),
-              shape: BoxShape.circle),
-          child: AppAssets.images.icons.success.svg()),
+        height: 36.h,
+        width: 36.w,
+        padding: const EdgeInsets.all(4),
+        decoration: BoxDecoration(
+          color: const Color(0xFF2FB9AC).withOpacityValue(.2),
+          shape: BoxShape.circle,
+        ),
+        child: AppAssets.images.icons.success.svg(),
+      ),
       duration: const Duration(milliseconds: 6000),
       animationDuration: const Duration(milliseconds: 1000),
     );
@@ -45,15 +52,20 @@ class AppNotification {
     return flush.show(context);
   }
 
-  static error({required message}) {
+  static Future error({required String? message}) {
+    if (message == null) {
+      return Future.value();
+    }
     Flushbar flush = Flushbar(
       shouldIconPulse: true,
       isDismissible: true,
       mainButton: 0.horizontalGap,
       messageText: Text(
-        message ?? "Something went wrong. Please try again later.",
-        style: AppTextStyles.subText
-            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
+        message,
+        style: AppTextStyles.subText.copyWith(
+          fontSize: 14.sp,
+          color: AppColors.textColor,
+        ),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 12),
       borderColor: const Color(0xFFEF2A5A),
@@ -62,21 +74,21 @@ class AppNotification {
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
       borderRadius: BorderRadius.circular(6),
       icon: Container(
-          height: 36.h,
-          width: 36.w,
-          padding: const EdgeInsets.all(4),
-          decoration: BoxDecoration(
-              color: const Color(0xFFEF2A5A).withOpacityValue(.2),
-              shape: BoxShape.circle),
-          child: Container(
-            decoration: const BoxDecoration(
-                color: Color(0xFFEF2A5A), shape: BoxShape.circle),
-            child: const Icon(
-              Icons.close,
-              color: AppColors.white,
-              size: 20,
-            ),
-          )),
+        height: 36.h,
+        width: 36.w,
+        padding: const EdgeInsets.all(4),
+        decoration: BoxDecoration(
+          color: const Color(0xFFEF2A5A).withOpacityValue(.2),
+          shape: BoxShape.circle,
+        ),
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Color(0xFFEF2A5A),
+            shape: BoxShape.circle,
+          ),
+          child: const Icon(Icons.close, color: AppColors.white, size: 20),
+        ),
+      ),
       duration: const Duration(milliseconds: 6000),
       animationDuration: const Duration(milliseconds: 1000),
     );
@@ -84,15 +96,20 @@ class AppNotification {
     return flush.show(context);
   }
 
-  static warning({required message}) {
+  static Future warning({required String? message}) {
+    if (message == null) {
+      return Future.value();
+    }
     Flushbar flush = Flushbar(
       shouldIconPulse: true,
       isDismissible: true,
       mainButton: 0.horizontalGap,
       messageText: Text(
         message,
-        style: AppTextStyles.subText
-            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
+        style: AppTextStyles.subText.copyWith(
+          fontSize: 14.sp,
+          color: AppColors.textColor,
+        ),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 12),
       borderColor: const Color(0xFFFF9601),
@@ -112,7 +129,13 @@ class AppNotification {
     return flush.show(context);
   }
 
-  static notification({required title, required message}) {
+  static Future notification({
+    required String? title,
+    required String? message,
+  }) {
+    if (title == null || message == null) {
+      return Future.value();
+    }
     Flushbar flush = Flushbar(
       shouldIconPulse: true,
       isDismissible: true,
@@ -127,8 +150,10 @@ class AppNotification {
       ),
       messageText: Text(
         message,
-        style: AppTextStyles.subText
-            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
+        style: AppTextStyles.subText.copyWith(
+          fontSize: 14.sp,
+          color: AppColors.textColor,
+        ),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 6),
       borderColor: AppColors.midGrey,
@@ -148,7 +173,7 @@ class AppNotification {
     return flush.show(context);
   }
 
-  static message({required title, required message}) {
+  static Future message({required String title, required String message}) {
     Flushbar flush = Flushbar(
       shouldIconPulse: true,
       isDismissible: true,
@@ -163,8 +188,10 @@ class AppNotification {
       ),
       messageText: Text(
         message,
-        style: AppTextStyles.subText
-            .copyWith(fontSize: 14.sp, color: AppColors.textColor),
+        style: AppTextStyles.subText.copyWith(
+          fontSize: 14.sp,
+          color: AppColors.textColor,
+        ),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 21.5, vertical: 6),
       borderColor: AppColors.midGrey,

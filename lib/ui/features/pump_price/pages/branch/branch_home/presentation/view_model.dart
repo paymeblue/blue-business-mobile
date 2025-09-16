@@ -10,13 +10,13 @@ import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class PumpPriceBranchViewModel extends BaseViewModel {
-  init(BuildContext context) {
+  void init(BuildContext context) {
     stationController.addPageRequestListener(getBranches);
   }
 
   Timer? searchTimer;
 
-  onSearchChanged(String? v) {
+  void onSearchChanged(String? v) {
     if (searchTimer != null) {
       searchTimer!.cancel();
     }
@@ -38,14 +38,15 @@ class PumpPriceBranchViewModel extends BaseViewModel {
   PagingController<int, FillingStation> stationController =
       PagingController<int, FillingStation>(firstPageKey: 1);
 
-  getBranches(int page) async {
+  Future<void> getBranches(int page) async {
     try {
       final resp = await PumpPriceStationService()
           .getBranches(page: page, limit: 50, query: search.text.orNull)
           .onError((e, s) {
-        return GetFillingStationsResponse(
-            message: AppErrorHandler.getErrorMessage(e));
-      });
+            return GetFillingStationsResponse(
+              message: AppErrorHandler.getErrorMessage(e),
+            );
+          });
 
       if (resp.status == 'success') {
         if (resp.data.meta.total > 0) {
@@ -73,14 +74,15 @@ class PumpPriceBranchViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  deleteBranch(FillingStation station) async {
+  Future<void> deleteBranch(FillingStation station) async {
     pageState = FetchState.loading;
     final resp = await PumpPriceStationService()
         .deleteBranch(branchId: station.id)
         .onError((e, s) {
-      return CreatePumpPriceBranchResponse(
-          message: AppErrorHandler.getErrorMessage(e));
-    });
+          return CreatePumpPriceBranchResponse(
+            message: AppErrorHandler.getErrorMessage(e),
+          );
+        });
 
     if (resp.status != 'success') {
       pageState = FetchState.error;

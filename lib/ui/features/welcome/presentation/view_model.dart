@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 class WelcomeViewModel extends BaseViewModel {
   late Size size;
 
-  init() {
+  void init() {
     size = MediaQuery.sizeOf(globalContext!);
     changeText();
   }
@@ -34,7 +34,7 @@ class WelcomeViewModel extends BaseViewModel {
     "Automate and manage your day-to-day transactions with ease.",
   ];
 
-  changeText() {
+  void changeText() {
     Timer.periodic(const Duration(milliseconds: 3500), (timer) {
       if (index == onboardingText.length - 1) {
         index = 0;
@@ -44,25 +44,25 @@ class WelcomeViewModel extends BaseViewModel {
     });
   }
 
-  goToLogin(BuildContext context) {
+  void goToLogin(BuildContext context) {
     locator<AppRouter>().push(LoginRoute());
   }
 
-  launchTerms() async {
+  Future<void> launchTerms() async {
     await launchUrl(
       Uri.parse("https://paymeblue.com/terms-and-conditions"),
       mode: LaunchMode.inAppWebView,
     );
   }
 
-  launchPrivacy() async {
+  Future<void> launchPrivacy() async {
     await launchUrl(
       Uri.parse("https://paymeblue.com/privacy"),
       mode: LaunchMode.inAppWebView,
     );
   }
 
-  goToSignup(BuildContext context) {
+  void goToSignup(BuildContext context) {
     locator<AppRouter>().push(InitiateSignupRoute());
   }
 }

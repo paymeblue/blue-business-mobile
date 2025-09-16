@@ -9,44 +9,40 @@ class SignupProgressViewModel extends BaseViewModel {
   late Size size;
   late SignupData data;
 
-  init(BuildContext context, SignupData d) {
+  void init(BuildContext context, SignupData d) {
     size = context.mediaQuery.size;
     data = d;
     setProgress();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  goToNext(BuildContext context) {
+  void goToNext(BuildContext context) {
     if (progress == 1) {
       locator<AppRouter>()
           .push<SignupData>(AddBusinessDetailsRoute(data: data))
-          .then(
-            onSignupDataReturned,
-          );
+          .then(onSignupDataReturned);
     } else if (progress == 2) {
       locator<AppRouter>()
           .push<SignupData>(SelectShareholderRoute(data: data))
-          .then(
-            onSignupDataReturned,
-          );
+          .then(onSignupDataReturned);
     } else {
-      locator<AppRouter>().push<SignupData>(CreatePinRoute(data: data)).then(
-            onSignupDataReturned,
-          );
+      locator<AppRouter>()
+          .push<SignupData>(CreatePinRoute(data: data))
+          .then(onSignupDataReturned);
     }
   }
 
-  onSignupDataReturned(SignupData? val) {
+  void onSignupDataReturned(SignupData? val) {
     if (val != null) {
       data = val;
       setProgress();
     }
   }
 
-  setProgress() {
+  void setProgress() {
     if (data.businessProfileCompleted) {
       progress = 1;
     }
@@ -79,6 +75,6 @@ class SignupProgressViewModel extends BaseViewModel {
       "title": "KYC Verification",
       "subtitle":
           "Verify your identify as the owner/shareholder of the business.",
-    }
+    },
   ];
 }

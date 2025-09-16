@@ -18,7 +18,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 class TransactionHistoryViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
     selectedType = types[0];
 
@@ -36,13 +36,13 @@ class TransactionHistoryViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
   int limit = 50;
 
-  filterAction() {
+  void filterAction() {
     BlueBottomSheet.filter(
       alertTypes,
       statuses,
@@ -67,29 +67,27 @@ class TransactionHistoryViewModel extends BaseViewModel {
   PagingController<int, TransactionHistory> transactionController =
       PagingController<int, TransactionHistory>(firstPageKey: 1);
 
-  getTransactions(int page) async {
+  Future<void> getTransactions(int page) async {
     try {
       TransactionResponse resp = await TransactionService()
           .getTransactions(
-        page,
-        limit,
-        type: selectedType.toLowerCase() == "all"
-            ? null
-            : selectedType.toLowerCase(),
-        paymentMode: type.isEmpty ? null : getType(type),
-        date: date.isEmpty ? null : date,
-        status: status.isEmpty ? null : status.toLowerCase(),
-      )
+            page,
+            limit,
+            type: selectedType.toLowerCase() == "all"
+                ? null
+                : selectedType.toLowerCase(),
+            paymentMode: type.isEmpty ? null : getType(type),
+            date: date.isEmpty ? null : date,
+            status: status.isEmpty ? null : status.toLowerCase(),
+          )
           .onError((error, stackTrace) {
-        return TransactionResponse(
-            message: AppErrorHandler.getErrorMessage(
-          error,
-          {
-            "request_name": "get_transactions",
-            "response_model": "TransationResponse"
-          },
-        ));
-      });
+            return TransactionResponse(
+              message: AppErrorHandler.getErrorMessage(error, {
+                "request_name": "get_transactions",
+                "response_model": "TransationResponse",
+              }),
+            );
+          });
       if (resp.status == "success") {
         List<TransactionHistory> t = resp.data!.data;
 
@@ -111,8 +109,9 @@ class TransactionHistoryViewModel extends BaseViewModel {
     DateTime currentDate = DateTime.parse(transaction.createdAt);
     DateTime? previousDate;
     if (i > 0) {
-      previousDate =
-          DateTime.parse(transactionController.itemList![i - 1].createdAt);
+      previousDate = DateTime.parse(
+        transactionController.itemList![i - 1].createdAt,
+      );
     }
 
     return previousDate == null ||
@@ -121,7 +120,7 @@ class TransactionHistoryViewModel extends BaseViewModel {
         (previousDate.day != currentDate.day);
   }
 
-  onTypeChanged(String v) {
+  void onTypeChanged(String v) {
     selectedType = v;
     transactionController.refresh();
   }
@@ -141,14 +140,10 @@ class TransactionHistoryViewModel extends BaseViewModel {
     "Airtime",
     "Data",
     "Electricity",
-    "Cable TV"
+    "Cable TV",
   ];
 
-  List<String> statuses = [
-    "Successful",
-    "Pending",
-    "Failed",
-  ];
+  List<String> statuses = ["Successful", "Pending", "Failed"];
 
   String _transactiontype = "";
   String get type => _transactiontype;
@@ -174,22 +169,23 @@ class TransactionHistoryViewModel extends BaseViewModel {
       confirmText: "Select".toUpperCase(),
       builder: (context, child) {
         return Theme(
-            data: ThemeData(
-              colorScheme: ColorScheme(
-                brightness: Theme.of(context).brightness,
-                primary: AppColors.primary,
-                onPrimary: AppColors.white,
-                secondary: AppColors.brightBlue,
-                onSecondary: AppColors.white,
-                error: AppColors.error,
-                onError: AppColors.white,
-                // background: AppColors.white,
-                // onBackground: AppColors.primary,
-                surface: AppColors.grey,
-                onSurface: AppColors.primary,
-              ),
+          data: ThemeData(
+            colorScheme: ColorScheme(
+              brightness: Theme.of(context).brightness,
+              primary: AppColors.primary,
+              onPrimary: AppColors.white,
+              secondary: AppColors.brightBlue,
+              onSecondary: AppColors.white,
+              error: AppColors.error,
+              onError: AppColors.white,
+              // background: AppColors.white,
+              // onBackground: AppColors.primary,
+              surface: AppColors.grey,
+              onSurface: AppColors.primary,
             ),
-            child: child!);
+          ),
+          child: child!,
+        );
       },
     );
 
@@ -214,30 +210,34 @@ class TransactionHistoryViewModel extends BaseViewModel {
     }
   }
 
-  getTransactionDetails(
-      TransactionHistory transaction, BuildContext context) async {
+  Future<void> getTransactionDetails(
+    TransactionHistory transaction,
+    BuildContext context,
+  ) async {
     AppLoader.start();
 
     TransactionDetailResponse response = await TransactionService()
         .getTransactionDetails(
-      transactionReference: transaction.transactionId.toString(),
-      service: getService(transaction.paymentMode),
-    )
+          transactionReference: transaction.transactionId.toString(),
+          service: getService(transaction.paymentMode),
+        )
         .onError((error, stackTrace) {
-      return TransactionDetailResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "get_transaction_details",
-          "response_model": "TransactionDetailResponse"
-        },
-      ));
-    });
+          return TransactionDetailResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_transaction_details",
+              "response_model": "TransactionDetailResponse",
+            }),
+          );
+        });
 
     if (response.status == "success") {
       if (context.mounted) {
-        handleDetailResponse(getService(transaction.paymentMode),
-            transaction.transactionType, response, context);
+        handleDetailResponse(
+          getService(transaction.paymentMode),
+          transaction.transactionType,
+          response,
+          context,
+        );
       }
     } else {
       AppNotification.error(message: response.message);
@@ -246,8 +246,12 @@ class TransactionHistoryViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  handleDetailResponse(String mode, String type,
-      TransactionDetailResponse response, BuildContext context) {
+  void handleDetailResponse(
+    String mode,
+    String type,
+    TransactionDetailResponse response,
+    BuildContext context,
+  ) {
     dynamic extra;
     if (mode == "payment") {
       extra = PaymentDetail.fromJson(response.data);
