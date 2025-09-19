@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'payment_option.freezed.dart';
 
 @freezed
-class PaymentOption with _$PaymentOption {
+abstract class PaymentOption with _$PaymentOption {
   factory PaymentOption({
     required Widget icon,
     required String title,

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,132 +9,263 @@ part of 'tab_item.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$TabItem {
-  String get name => throw _privateConstructorUsedError;
 
-  /// Create a copy of TabItem
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TabItemCopyWith<TabItem> get copyWith => throw _privateConstructorUsedError;
+ String get name;
+/// Create a copy of TabItem
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TabItemCopyWith<TabItem> get copyWith => _$TabItemCopyWithImpl<TabItem>(this as TabItem, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TabItem&&(identical(other.name, name) || other.name == name));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,name);
+
+@override
+String toString() {
+  return 'TabItem(name: $name)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $TabItemCopyWith<$Res> {
-  factory $TabItemCopyWith(TabItem value, $Res Function(TabItem) then) =
-      _$TabItemCopyWithImpl<$Res, TabItem>;
-  @useResult
-  $Res call({String name});
-}
+abstract mixin class $TabItemCopyWith<$Res>  {
+  factory $TabItemCopyWith(TabItem value, $Res Function(TabItem) _then) = _$TabItemCopyWithImpl;
+@useResult
+$Res call({
+ String name
+});
 
+
+
+
+}
 /// @nodoc
-class _$TabItemCopyWithImpl<$Res, $Val extends TabItem>
+class _$TabItemCopyWithImpl<$Res>
     implements $TabItemCopyWith<$Res> {
-  _$TabItemCopyWithImpl(this._value, this._then);
+  _$TabItemCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TabItem _self;
+  final $Res Function(TabItem) _then;
 
-  /// Create a copy of TabItem
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of TabItem
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,}) {
+  return _then(_self.copyWith(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [TabItem].
+extension TabItemPatterns on TabItem {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TabItem value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TabItem() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TabItem value)  $default,){
+final _that = this;
+switch (_that) {
+case _TabItem():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TabItem value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TabItem() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TabItem() when $default != null:
+return $default(_that.name);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name)  $default,) {final _that = this;
+switch (_that) {
+case _TabItem():
+return $default(_that.name);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name)?  $default,) {final _that = this;
+switch (_that) {
+case _TabItem() when $default != null:
+return $default(_that.name);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$TabItemImplCopyWith<$Res> implements $TabItemCopyWith<$Res> {
-  factory _$$TabItemImplCopyWith(
-          _$TabItemImpl value, $Res Function(_$TabItemImpl) then) =
-      __$$TabItemImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String name});
+
+
+class _TabItem implements TabItem {
+   _TabItem({required this.name});
+  
+
+@override final  String name;
+
+/// Create a copy of TabItem
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TabItemCopyWith<_TabItem> get copyWith => __$TabItemCopyWithImpl<_TabItem>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TabItem&&(identical(other.name, name) || other.name == name));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,name);
+
+@override
+String toString() {
+  return 'TabItem(name: $name)';
+}
+
+
 }
 
 /// @nodoc
-class __$$TabItemImplCopyWithImpl<$Res>
-    extends _$TabItemCopyWithImpl<$Res, _$TabItemImpl>
-    implements _$$TabItemImplCopyWith<$Res> {
-  __$$TabItemImplCopyWithImpl(
-      _$TabItemImpl _value, $Res Function(_$TabItemImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$TabItemCopyWith<$Res> implements $TabItemCopyWith<$Res> {
+  factory _$TabItemCopyWith(_TabItem value, $Res Function(_TabItem) _then) = __$TabItemCopyWithImpl;
+@override @useResult
+$Res call({
+ String name
+});
 
-  /// Create a copy of TabItem
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-  }) {
-    return _then(_$TabItemImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$TabItemCopyWithImpl<$Res>
+    implements _$TabItemCopyWith<$Res> {
+  __$TabItemCopyWithImpl(this._self, this._then);
 
-class _$TabItemImpl implements _TabItem {
-  _$TabItemImpl({required this.name});
+  final _TabItem _self;
+  final $Res Function(_TabItem) _then;
 
-  @override
-  final String name;
-
-  @override
-  String toString() {
-    return 'TabItem(name: $name)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TabItemImpl &&
-            (identical(other.name, name) || other.name == name));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, name);
-
-  /// Create a copy of TabItem
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TabItemImplCopyWith<_$TabItemImpl> get copyWith =>
-      __$$TabItemImplCopyWithImpl<_$TabItemImpl>(this, _$identity);
+/// Create a copy of TabItem
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,}) {
+  return _then(_TabItem(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-abstract class _TabItem implements TabItem {
-  factory _TabItem({required final String name}) = _$TabItemImpl;
 
-  @override
-  String get name;
-
-  /// Create a copy of TabItem
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TabItemImplCopyWith<_$TabItemImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+// dart format on

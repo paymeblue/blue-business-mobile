@@ -4,7 +4,7 @@ part 'change_pin_request.freezed.dart';
 part 'change_pin_request.g.dart';
 
 @freezed
-class ChangePinRequest with _$ChangePinRequest {
+abstract class ChangePinRequest with _$ChangePinRequest {
   const factory ChangePinRequest({
     required String oldPin,
     required String newPin,
@@ -12,5 +12,5 @@ class ChangePinRequest with _$ChangePinRequest {
   }) = _ChangePinRequest;
 
   factory ChangePinRequest.fromJson(Map<String, dynamic> json) =>
-      _$ChangePinRequestImpl.fromJson(json);
+      _$ChangePinRequestFromJson(json);
 }

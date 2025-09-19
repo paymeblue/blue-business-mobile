@@ -5,7 +5,7 @@ part 'refresh_token_response.freezed.dart';
 part 'refresh_token_response.g.dart';
 
 @freezed
-class RefreshTokenResponse with _$RefreshTokenResponse {
+abstract class RefreshTokenResponse with _$RefreshTokenResponse {
   const factory RefreshTokenResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class RefreshTokenResponse with _$RefreshTokenResponse {
   }) = _RefreshTokenResponse;
 
   factory RefreshTokenResponse.fromJson(Map<String, dynamic> json) =>
-      _$RefreshTokenResponseImpl.fromJson(json);
+      _$RefreshTokenResponseFromJson(json);
 }

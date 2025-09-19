@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,189 +9,272 @@ part of 'complete_registration_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-CompleteRegistrationResponse _$CompleteRegistrationResponseFromJson(
-    Map<String, dynamic> json) {
-  return _CompleteRegistrationResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$CompleteRegistrationResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
+
+ String get status; String? get message;
+/// Create a copy of CompleteRegistrationResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CompleteRegistrationResponseCopyWith<CompleteRegistrationResponse> get copyWith => _$CompleteRegistrationResponseCopyWithImpl<CompleteRegistrationResponse>(this as CompleteRegistrationResponse, _$identity);
 
   /// Serializes this CompleteRegistrationResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of CompleteRegistrationResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CompleteRegistrationResponseCopyWith<CompleteRegistrationResponse>
-      get copyWith => throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompleteRegistrationResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message);
+
+@override
+String toString() {
+  return 'CompleteRegistrationResponse(status: $status, message: $message)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $CompleteRegistrationResponseCopyWith<$Res> {
-  factory $CompleteRegistrationResponseCopyWith(
-          CompleteRegistrationResponse value,
-          $Res Function(CompleteRegistrationResponse) then) =
-      _$CompleteRegistrationResponseCopyWithImpl<$Res,
-          CompleteRegistrationResponse>;
-  @useResult
-  $Res call({String status, String? message});
-}
+abstract mixin class $CompleteRegistrationResponseCopyWith<$Res>  {
+  factory $CompleteRegistrationResponseCopyWith(CompleteRegistrationResponse value, $Res Function(CompleteRegistrationResponse) _then) = _$CompleteRegistrationResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message
+});
 
+
+
+
+}
 /// @nodoc
-class _$CompleteRegistrationResponseCopyWithImpl<$Res,
-        $Val extends CompleteRegistrationResponse>
+class _$CompleteRegistrationResponseCopyWithImpl<$Res>
     implements $CompleteRegistrationResponseCopyWith<$Res> {
-  _$CompleteRegistrationResponseCopyWithImpl(this._value, this._then);
+  _$CompleteRegistrationResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final CompleteRegistrationResponse _self;
+  final $Res Function(CompleteRegistrationResponse) _then;
 
-  /// Create a copy of CompleteRegistrationResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of CompleteRegistrationResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$CompleteRegistrationResponseImplCopyWith<$Res>
-    implements $CompleteRegistrationResponseCopyWith<$Res> {
-  factory _$$CompleteRegistrationResponseImplCopyWith(
-          _$CompleteRegistrationResponseImpl value,
-          $Res Function(_$CompleteRegistrationResponseImpl) then) =
-      __$$CompleteRegistrationResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message});
 }
 
-/// @nodoc
-class __$$CompleteRegistrationResponseImplCopyWithImpl<$Res>
-    extends _$CompleteRegistrationResponseCopyWithImpl<$Res,
-        _$CompleteRegistrationResponseImpl>
-    implements _$$CompleteRegistrationResponseImplCopyWith<$Res> {
-  __$$CompleteRegistrationResponseImplCopyWithImpl(
-      _$CompleteRegistrationResponseImpl _value,
-      $Res Function(_$CompleteRegistrationResponseImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of CompleteRegistrationResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-  }) {
-    return _then(_$CompleteRegistrationResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [CompleteRegistrationResponse].
+extension CompleteRegistrationResponsePatterns on CompleteRegistrationResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CompleteRegistrationResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CompleteRegistrationResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CompleteRegistrationResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _CompleteRegistrationResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CompleteRegistrationResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CompleteRegistrationResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CompleteRegistrationResponse() when $default != null:
+return $default(_that.status,_that.message);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message)  $default,) {final _that = this;
+switch (_that) {
+case _CompleteRegistrationResponse():
+return $default(_that.status,_that.message);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message)?  $default,) {final _that = this;
+switch (_that) {
+case _CompleteRegistrationResponse() when $default != null:
+return $default(_that.status,_that.message);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CompleteRegistrationResponseImpl
-    implements _CompleteRegistrationResponse {
-  const _$CompleteRegistrationResponseImpl(
-      {this.status = "fail", this.message});
 
-  factory _$CompleteRegistrationResponseImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$CompleteRegistrationResponseImplFromJson(json);
+class _CompleteRegistrationResponse implements CompleteRegistrationResponse {
+  const _CompleteRegistrationResponse({this.status = "fail", this.message});
+  factory _CompleteRegistrationResponse.fromJson(Map<String, dynamic> json) => _$CompleteRegistrationResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
+@override@JsonKey() final  String status;
+@override final  String? message;
 
-  @override
-  String toString() {
-    return 'CompleteRegistrationResponse(status: $status, message: $message)';
-  }
+/// Create a copy of CompleteRegistrationResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CompleteRegistrationResponseCopyWith<_CompleteRegistrationResponse> get copyWith => __$CompleteRegistrationResponseCopyWithImpl<_CompleteRegistrationResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CompleteRegistrationResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message);
-
-  /// Create a copy of CompleteRegistrationResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CompleteRegistrationResponseImplCopyWith<
-          _$CompleteRegistrationResponseImpl>
-      get copyWith => __$$CompleteRegistrationResponseImplCopyWithImpl<
-          _$CompleteRegistrationResponseImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CompleteRegistrationResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$CompleteRegistrationResponseToJson(this, );
 }
 
-abstract class _CompleteRegistrationResponse
-    implements CompleteRegistrationResponse {
-  const factory _CompleteRegistrationResponse(
-      {final String status,
-      final String? message}) = _$CompleteRegistrationResponseImpl;
-
-  factory _CompleteRegistrationResponse.fromJson(Map<String, dynamic> json) =
-      _$CompleteRegistrationResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-
-  /// Create a copy of CompleteRegistrationResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CompleteRegistrationResponseImplCopyWith<
-          _$CompleteRegistrationResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompleteRegistrationResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message);
+
+@override
+String toString() {
+  return 'CompleteRegistrationResponse(status: $status, message: $message)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CompleteRegistrationResponseCopyWith<$Res> implements $CompleteRegistrationResponseCopyWith<$Res> {
+  factory _$CompleteRegistrationResponseCopyWith(_CompleteRegistrationResponse value, $Res Function(_CompleteRegistrationResponse) _then) = __$CompleteRegistrationResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message
+});
+
+
+
+
+}
+/// @nodoc
+class __$CompleteRegistrationResponseCopyWithImpl<$Res>
+    implements _$CompleteRegistrationResponseCopyWith<$Res> {
+  __$CompleteRegistrationResponseCopyWithImpl(this._self, this._then);
+
+  final _CompleteRegistrationResponse _self;
+  final $Res Function(_CompleteRegistrationResponse) _then;
+
+/// Create a copy of CompleteRegistrationResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,}) {
+  return _then(_CompleteRegistrationResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+// dart format on

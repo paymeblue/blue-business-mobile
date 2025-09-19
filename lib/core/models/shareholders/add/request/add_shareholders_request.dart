@@ -4,7 +4,7 @@ part 'add_shareholders_request.freezed.dart';
 part 'add_shareholders_request.g.dart';
 
 @freezed
-class AddShareholdersRequest with _$AddShareholdersRequest {
+abstract class AddShareholdersRequest with _$AddShareholdersRequest {
   const factory AddShareholdersRequest({
     required String bvn,
     required int shareholderId,
@@ -12,5 +12,5 @@ class AddShareholdersRequest with _$AddShareholdersRequest {
   }) = _AddShareholdersRequest;
 
   factory AddShareholdersRequest.fromJson(Map<String, dynamic> json) =>
-      _$AddShareholdersRequestImpl.fromJson(json);
+      _$AddShareholdersRequestFromJson(json);
 }

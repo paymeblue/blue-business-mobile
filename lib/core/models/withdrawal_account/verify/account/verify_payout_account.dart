@@ -4,7 +4,7 @@ part 'verify_payout_account.freezed.dart';
 part 'verify_payout_account.g.dart';
 
 @freezed
-class VerifyPayoutAccount with _$VerifyPayoutAccount {
+abstract class VerifyPayoutAccount with _$VerifyPayoutAccount {
   const factory VerifyPayoutAccount({
     required int id,
     required String reference,
@@ -16,5 +16,5 @@ class VerifyPayoutAccount with _$VerifyPayoutAccount {
   }) = _VerifyPayoutAccount;
 
   factory VerifyPayoutAccount.fromJson(Map<String, dynamic> json) =>
-      _$VerifyPayoutAccountImpl.fromJson(json);
+      _$VerifyPayoutAccountFromJson(json);
 }

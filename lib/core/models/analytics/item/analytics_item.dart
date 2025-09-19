@@ -4,7 +4,7 @@ part 'analytics_item.freezed.dart';
 part 'analytics_item.g.dart';
 
 @freezed
-class AnalyticsItem with _$AnalyticsItem {
+abstract class AnalyticsItem with _$AnalyticsItem {
   const factory AnalyticsItem({
     @Default("0.00") String total,
     @Default("0.00") String current,
@@ -12,5 +12,5 @@ class AnalyticsItem with _$AnalyticsItem {
   }) = _AnalyticsItem;
 
   factory AnalyticsItem.fromJson(Map<String, dynamic> json) =>
-      _$AnalyticsItemImpl.fromJson(json);
+      _$AnalyticsItemFromJson(json);
 }

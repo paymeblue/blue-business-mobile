@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,213 +9,299 @@ part of 'vend_cable_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-VendCableResponse _$VendCableResponseFromJson(Map<String, dynamic> json) {
-  return _VendCableResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$VendCableResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  VendCableData? get data => throw _privateConstructorUsedError;
+
+ String get status; String? get message; VendCableData? get data;
+/// Create a copy of VendCableResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VendCableResponseCopyWith<VendCableResponse> get copyWith => _$VendCableResponseCopyWithImpl<VendCableResponse>(this as VendCableResponse, _$identity);
 
   /// Serializes this VendCableResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of VendCableResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $VendCableResponseCopyWith<VendCableResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VendCableResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'VendCableResponse(status: $status, message: $message, data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $VendCableResponseCopyWith<$Res> {
-  factory $VendCableResponseCopyWith(
-          VendCableResponse value, $Res Function(VendCableResponse) then) =
-      _$VendCableResponseCopyWithImpl<$Res, VendCableResponse>;
-  @useResult
-  $Res call({String status, String? message, VendCableData? data});
+abstract mixin class $VendCableResponseCopyWith<$Res>  {
+  factory $VendCableResponseCopyWith(VendCableResponse value, $Res Function(VendCableResponse) _then) = _$VendCableResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, VendCableData? data
+});
 
-  $VendCableDataCopyWith<$Res>? get data;
+
+$VendCableDataCopyWith<$Res>? get data;
+
 }
-
 /// @nodoc
-class _$VendCableResponseCopyWithImpl<$Res, $Val extends VendCableResponse>
+class _$VendCableResponseCopyWithImpl<$Res>
     implements $VendCableResponseCopyWith<$Res> {
-  _$VendCableResponseCopyWithImpl(this._value, this._then);
+  _$VendCableResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final VendCableResponse _self;
+  final $Res Function(VendCableResponse) _then;
 
-  /// Create a copy of VendCableResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as VendCableData?,
-    ) as $Val);
+/// Create a copy of VendCableResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as VendCableData?,
+  ));
+}
+/// Create a copy of VendCableResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VendCableDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
   }
 
-  /// Create a copy of VendCableResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $VendCableDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $VendCableDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
-  }
+  return $VendCableDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$VendCableResponseImplCopyWith<$Res>
-    implements $VendCableResponseCopyWith<$Res> {
-  factory _$$VendCableResponseImplCopyWith(_$VendCableResponseImpl value,
-          $Res Function(_$VendCableResponseImpl) then) =
-      __$$VendCableResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message, VendCableData? data});
 
-  @override
-  $VendCableDataCopyWith<$Res>? get data;
+/// Adds pattern-matching-related methods to [VendCableResponse].
+extension VendCableResponsePatterns on VendCableResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VendCableResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VendCableResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VendCableResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _VendCableResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VendCableResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VendCableResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  VendCableData? data)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VendCableResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  VendCableData? data)  $default,) {final _that = this;
+switch (_that) {
+case _VendCableResponse():
+return $default(_that.status,_that.message,_that.data);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  VendCableData? data)?  $default,) {final _that = this;
+switch (_that) {
+case _VendCableResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$VendCableResponseImplCopyWithImpl<$Res>
-    extends _$VendCableResponseCopyWithImpl<$Res, _$VendCableResponseImpl>
-    implements _$$VendCableResponseImplCopyWith<$Res> {
-  __$$VendCableResponseImplCopyWithImpl(_$VendCableResponseImpl _value,
-      $Res Function(_$VendCableResponseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of VendCableResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_$VendCableResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as VendCableData?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$VendCableResponseImpl implements _VendCableResponse {
-  const _$VendCableResponseImpl(
-      {this.status = "fail", this.message, this.data});
 
-  factory _$VendCableResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$VendCableResponseImplFromJson(json);
+class _VendCableResponse implements VendCableResponse {
+  const _VendCableResponse({this.status = "fail", this.message, this.data});
+  factory _VendCableResponse.fromJson(Map<String, dynamic> json) => _$VendCableResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  @override
-  final VendCableData? data;
+@override@JsonKey() final  String status;
+@override final  String? message;
+@override final  VendCableData? data;
 
-  @override
-  String toString() {
-    return 'VendCableResponse(status: $status, message: $message, data: $data)';
-  }
+/// Create a copy of VendCableResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VendCableResponseCopyWith<_VendCableResponse> get copyWith => __$VendCableResponseCopyWithImpl<_VendCableResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$VendCableResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
-
-  /// Create a copy of VendCableResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$VendCableResponseImplCopyWith<_$VendCableResponseImpl> get copyWith =>
-      __$$VendCableResponseImplCopyWithImpl<_$VendCableResponseImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$VendCableResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$VendCableResponseToJson(this, );
 }
 
-abstract class _VendCableResponse implements VendCableResponse {
-  const factory _VendCableResponse(
-      {final String status,
-      final String? message,
-      final VendCableData? data}) = _$VendCableResponseImpl;
-
-  factory _VendCableResponse.fromJson(Map<String, dynamic> json) =
-      _$VendCableResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  VendCableData? get data;
-
-  /// Create a copy of VendCableResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VendCableResponseImplCopyWith<_$VendCableResponseImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VendCableResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'VendCableResponse(status: $status, message: $message, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VendCableResponseCopyWith<$Res> implements $VendCableResponseCopyWith<$Res> {
+  factory _$VendCableResponseCopyWith(_VendCableResponse value, $Res Function(_VendCableResponse) _then) = __$VendCableResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, VendCableData? data
+});
+
+
+@override $VendCableDataCopyWith<$Res>? get data;
+
+}
+/// @nodoc
+class __$VendCableResponseCopyWithImpl<$Res>
+    implements _$VendCableResponseCopyWith<$Res> {
+  __$VendCableResponseCopyWithImpl(this._self, this._then);
+
+  final _VendCableResponse _self;
+  final $Res Function(_VendCableResponse) _then;
+
+/// Create a copy of VendCableResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_VendCableResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as VendCableData?,
+  ));
+}
+
+/// Create a copy of VendCableResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VendCableDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
+  }
+
+  return $VendCableDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
+}
+
+// dart format on

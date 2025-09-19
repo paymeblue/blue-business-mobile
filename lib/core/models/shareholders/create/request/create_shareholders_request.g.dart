@@ -6,20 +6,20 @@ part of 'create_shareholders_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CreateShareholdersRequestImpl _$$CreateShareholdersRequestImplFromJson(
-        Map<String, dynamic> json) =>
-    _$CreateShareholdersRequestImpl(
-      name: json['name'] as String,
-      bvn: json['bvn'] as String,
-      businessId: (json['business_id'] as num).toInt(),
-      userId: (json['user_id'] as num).toInt(),
-    );
+_CreateShareholdersRequest _$CreateShareholdersRequestFromJson(
+  Map<String, dynamic> json,
+) => _CreateShareholdersRequest(
+  name: json['name'] as String,
+  bvn: json['bvn'] as String,
+  businessId: (json['business_id'] as num).toInt(),
+  userId: (json['user_id'] as num).toInt(),
+);
 
-Map<String, dynamic> _$$CreateShareholdersRequestImplToJson(
-        _$CreateShareholdersRequestImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'bvn': instance.bvn,
-      'business_id': instance.businessId,
-      'user_id': instance.userId,
-    };
+Map<String, dynamic> _$CreateShareholdersRequestToJson(
+  _CreateShareholdersRequest instance,
+) => <String, dynamic>{
+  'name': instance.name,
+  'bvn': instance.bvn,
+  'business_id': instance.businessId,
+  'user_id': instance.userId,
+};

@@ -6,16 +6,12 @@ part of 'create_staff_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CreateStaffResponseImpl _$$CreateStaffResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$CreateStaffResponseImpl(
+_CreateStaffResponse _$CreateStaffResponseFromJson(Map<String, dynamic> json) =>
+    _CreateStaffResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String? ?? "",
     );
 
-Map<String, dynamic> _$$CreateStaffResponseImplToJson(
-        _$CreateStaffResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-    };
+Map<String, dynamic> _$CreateStaffResponseToJson(
+  _CreateStaffResponse instance,
+) => <String, dynamic>{'status': instance.status, 'message': instance.message};

@@ -5,7 +5,7 @@ part 'set_payout_response.freezed.dart';
 part 'set_payout_response.g.dart';
 
 @freezed
-class SetPayoutResponse with _$SetPayoutResponse {
+abstract class SetPayoutResponse with _$SetPayoutResponse {
   const factory SetPayoutResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class SetPayoutResponse with _$SetPayoutResponse {
   }) = _SetPayoutResponse;
 
   factory SetPayoutResponse.fromJson(Map<String, dynamic> json) =>
-      _$SetPayoutResponseImpl.fromJson(json);
+      _$SetPayoutResponseFromJson(json);
 }

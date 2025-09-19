@@ -4,7 +4,7 @@ part 'push_pay_data.freezed.dart';
 part 'push_pay_data.g.dart';
 
 @freezed
-class PushPayData with _$PushPayData {
+abstract class PushPayData with _$PushPayData {
   const factory PushPayData({
     required int id,
     required String amount,
@@ -16,5 +16,5 @@ class PushPayData with _$PushPayData {
   }) = _PushPayData;
 
   factory PushPayData.fromJson(Map<String, dynamic> json) =>
-      _$PushPayDataImpl.fromJson(json);
+      _$PushPayDataFromJson(json);
 }

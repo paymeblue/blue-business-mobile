@@ -4,7 +4,7 @@ part 'receipt_data.freezed.dart';
 part 'receipt_data.g.dart';
 
 @freezed
-class ReceiptData with _$ReceiptData {
+abstract class ReceiptData with _$ReceiptData {
   const factory ReceiptData({
     required int id,
     required String amount,
@@ -19,5 +19,5 @@ class ReceiptData with _$ReceiptData {
   }) = _ReceiptData;
 
   factory ReceiptData.fromJson(Map<String, dynamic> json) =>
-      _$ReceiptDataImpl.fromJson(json);
+      _$ReceiptDataFromJson(json);
 }

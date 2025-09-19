@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,181 +9,272 @@ part of 'change_password_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ChangePasswordResponse _$ChangePasswordResponseFromJson(
-    Map<String, dynamic> json) {
-  return _ChangePasswordResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$ChangePasswordResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
+
+ String get status; String? get message;
+/// Create a copy of ChangePasswordResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ChangePasswordResponseCopyWith<ChangePasswordResponse> get copyWith => _$ChangePasswordResponseCopyWithImpl<ChangePasswordResponse>(this as ChangePasswordResponse, _$identity);
 
   /// Serializes this ChangePasswordResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of ChangePasswordResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ChangePasswordResponseCopyWith<ChangePasswordResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePasswordResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message);
+
+@override
+String toString() {
+  return 'ChangePasswordResponse(status: $status, message: $message)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ChangePasswordResponseCopyWith<$Res> {
-  factory $ChangePasswordResponseCopyWith(ChangePasswordResponse value,
-          $Res Function(ChangePasswordResponse) then) =
-      _$ChangePasswordResponseCopyWithImpl<$Res, ChangePasswordResponse>;
-  @useResult
-  $Res call({String status, String? message});
-}
+abstract mixin class $ChangePasswordResponseCopyWith<$Res>  {
+  factory $ChangePasswordResponseCopyWith(ChangePasswordResponse value, $Res Function(ChangePasswordResponse) _then) = _$ChangePasswordResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message
+});
 
+
+
+
+}
 /// @nodoc
-class _$ChangePasswordResponseCopyWithImpl<$Res,
-        $Val extends ChangePasswordResponse>
+class _$ChangePasswordResponseCopyWithImpl<$Res>
     implements $ChangePasswordResponseCopyWith<$Res> {
-  _$ChangePasswordResponseCopyWithImpl(this._value, this._then);
+  _$ChangePasswordResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ChangePasswordResponse _self;
+  final $Res Function(ChangePasswordResponse) _then;
 
-  /// Create a copy of ChangePasswordResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of ChangePasswordResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$ChangePasswordResponseImplCopyWith<$Res>
-    implements $ChangePasswordResponseCopyWith<$Res> {
-  factory _$$ChangePasswordResponseImplCopyWith(
-          _$ChangePasswordResponseImpl value,
-          $Res Function(_$ChangePasswordResponseImpl) then) =
-      __$$ChangePasswordResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message});
 }
 
-/// @nodoc
-class __$$ChangePasswordResponseImplCopyWithImpl<$Res>
-    extends _$ChangePasswordResponseCopyWithImpl<$Res,
-        _$ChangePasswordResponseImpl>
-    implements _$$ChangePasswordResponseImplCopyWith<$Res> {
-  __$$ChangePasswordResponseImplCopyWithImpl(
-      _$ChangePasswordResponseImpl _value,
-      $Res Function(_$ChangePasswordResponseImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of ChangePasswordResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-  }) {
-    return _then(_$ChangePasswordResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [ChangePasswordResponse].
+extension ChangePasswordResponsePatterns on ChangePasswordResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ChangePasswordResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ChangePasswordResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ChangePasswordResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _ChangePasswordResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ChangePasswordResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ChangePasswordResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ChangePasswordResponse() when $default != null:
+return $default(_that.status,_that.message);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message)  $default,) {final _that = this;
+switch (_that) {
+case _ChangePasswordResponse():
+return $default(_that.status,_that.message);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message)?  $default,) {final _that = this;
+switch (_that) {
+case _ChangePasswordResponse() when $default != null:
+return $default(_that.status,_that.message);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ChangePasswordResponseImpl implements _ChangePasswordResponse {
-  const _$ChangePasswordResponseImpl({this.status = "fail", this.message});
 
-  factory _$ChangePasswordResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChangePasswordResponseImplFromJson(json);
+class _ChangePasswordResponse implements ChangePasswordResponse {
+  const _ChangePasswordResponse({this.status = "fail", this.message});
+  factory _ChangePasswordResponse.fromJson(Map<String, dynamic> json) => _$ChangePasswordResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
+@override@JsonKey() final  String status;
+@override final  String? message;
 
-  @override
-  String toString() {
-    return 'ChangePasswordResponse(status: $status, message: $message)';
-  }
+/// Create a copy of ChangePasswordResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ChangePasswordResponseCopyWith<_ChangePasswordResponse> get copyWith => __$ChangePasswordResponseCopyWithImpl<_ChangePasswordResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChangePasswordResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message);
-
-  /// Create a copy of ChangePasswordResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChangePasswordResponseImplCopyWith<_$ChangePasswordResponseImpl>
-      get copyWith => __$$ChangePasswordResponseImplCopyWithImpl<
-          _$ChangePasswordResponseImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChangePasswordResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$ChangePasswordResponseToJson(this, );
 }
 
-abstract class _ChangePasswordResponse implements ChangePasswordResponse {
-  const factory _ChangePasswordResponse(
-      {final String status,
-      final String? message}) = _$ChangePasswordResponseImpl;
-
-  factory _ChangePasswordResponse.fromJson(Map<String, dynamic> json) =
-      _$ChangePasswordResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-
-  /// Create a copy of ChangePasswordResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChangePasswordResponseImplCopyWith<_$ChangePasswordResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangePasswordResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message);
+
+@override
+String toString() {
+  return 'ChangePasswordResponse(status: $status, message: $message)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ChangePasswordResponseCopyWith<$Res> implements $ChangePasswordResponseCopyWith<$Res> {
+  factory _$ChangePasswordResponseCopyWith(_ChangePasswordResponse value, $Res Function(_ChangePasswordResponse) _then) = __$ChangePasswordResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message
+});
+
+
+
+
+}
+/// @nodoc
+class __$ChangePasswordResponseCopyWithImpl<$Res>
+    implements _$ChangePasswordResponseCopyWith<$Res> {
+  __$ChangePasswordResponseCopyWithImpl(this._self, this._then);
+
+  final _ChangePasswordResponse _self;
+  final $Res Function(_ChangePasswordResponse) _then;
+
+/// Create a copy of ChangePasswordResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,}) {
+  return _then(_ChangePasswordResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+// dart format on

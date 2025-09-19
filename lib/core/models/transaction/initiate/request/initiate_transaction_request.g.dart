@@ -6,18 +6,18 @@ part of 'initiate_transaction_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InitiateTransactionRequestImpl _$$InitiateTransactionRequestImplFromJson(
-        Map<String, dynamic> json) =>
-    _$InitiateTransactionRequestImpl(
-      amount: json['amount'] as String,
-      narration: json['narration'] as String?,
-      paymentMode: json['payment_mode'] as String,
-    );
+_InitiateTransactionRequest _$InitiateTransactionRequestFromJson(
+  Map<String, dynamic> json,
+) => _InitiateTransactionRequest(
+  amount: json['amount'] as String,
+  narration: json['narration'] as String?,
+  paymentMode: json['payment_mode'] as String,
+);
 
-Map<String, dynamic> _$$InitiateTransactionRequestImplToJson(
-        _$InitiateTransactionRequestImpl instance) =>
-    <String, dynamic>{
-      'amount': instance.amount,
-      if (instance.narration case final value?) 'narration': value,
-      'payment_mode': instance.paymentMode,
-    };
+Map<String, dynamic> _$InitiateTransactionRequestToJson(
+  _InitiateTransactionRequest instance,
+) => <String, dynamic>{
+  'amount': instance.amount,
+  'narration': ?instance.narration,
+  'payment_mode': instance.paymentMode,
+};

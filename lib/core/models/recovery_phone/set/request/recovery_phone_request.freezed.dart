@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,182 +9,272 @@ part of 'recovery_phone_request.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-SetRecoveryPhoneRequest _$SetRecoveryPhoneRequestFromJson(
-    Map<String, dynamic> json) {
-  return _SetRecoveryPhoneRequest.fromJson(json);
-}
 
 /// @nodoc
 mixin _$SetRecoveryPhoneRequest {
-  String get phone => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
+
+ String get phone; String get password;
+/// Create a copy of SetRecoveryPhoneRequest
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SetRecoveryPhoneRequestCopyWith<SetRecoveryPhoneRequest> get copyWith => _$SetRecoveryPhoneRequestCopyWithImpl<SetRecoveryPhoneRequest>(this as SetRecoveryPhoneRequest, _$identity);
 
   /// Serializes this SetRecoveryPhoneRequest to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of SetRecoveryPhoneRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SetRecoveryPhoneRequestCopyWith<SetRecoveryPhoneRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SetRecoveryPhoneRequest&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.password, password) || other.password == password));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,phone,password);
+
+@override
+String toString() {
+  return 'SetRecoveryPhoneRequest(phone: $phone, password: $password)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SetRecoveryPhoneRequestCopyWith<$Res> {
-  factory $SetRecoveryPhoneRequestCopyWith(SetRecoveryPhoneRequest value,
-          $Res Function(SetRecoveryPhoneRequest) then) =
-      _$SetRecoveryPhoneRequestCopyWithImpl<$Res, SetRecoveryPhoneRequest>;
-  @useResult
-  $Res call({String phone, String password});
-}
+abstract mixin class $SetRecoveryPhoneRequestCopyWith<$Res>  {
+  factory $SetRecoveryPhoneRequestCopyWith(SetRecoveryPhoneRequest value, $Res Function(SetRecoveryPhoneRequest) _then) = _$SetRecoveryPhoneRequestCopyWithImpl;
+@useResult
+$Res call({
+ String phone, String password
+});
 
+
+
+
+}
 /// @nodoc
-class _$SetRecoveryPhoneRequestCopyWithImpl<$Res,
-        $Val extends SetRecoveryPhoneRequest>
+class _$SetRecoveryPhoneRequestCopyWithImpl<$Res>
     implements $SetRecoveryPhoneRequestCopyWith<$Res> {
-  _$SetRecoveryPhoneRequestCopyWithImpl(this._value, this._then);
+  _$SetRecoveryPhoneRequestCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SetRecoveryPhoneRequest _self;
+  final $Res Function(SetRecoveryPhoneRequest) _then;
 
-  /// Create a copy of SetRecoveryPhoneRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? phone = null,
-    Object? password = null,
-  }) {
-    return _then(_value.copyWith(
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of SetRecoveryPhoneRequest
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? phone = null,Object? password = null,}) {
+  return _then(_self.copyWith(
+phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$SetRecoveryPhoneRequestImplCopyWith<$Res>
-    implements $SetRecoveryPhoneRequestCopyWith<$Res> {
-  factory _$$SetRecoveryPhoneRequestImplCopyWith(
-          _$SetRecoveryPhoneRequestImpl value,
-          $Res Function(_$SetRecoveryPhoneRequestImpl) then) =
-      __$$SetRecoveryPhoneRequestImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String phone, String password});
 }
 
-/// @nodoc
-class __$$SetRecoveryPhoneRequestImplCopyWithImpl<$Res>
-    extends _$SetRecoveryPhoneRequestCopyWithImpl<$Res,
-        _$SetRecoveryPhoneRequestImpl>
-    implements _$$SetRecoveryPhoneRequestImplCopyWith<$Res> {
-  __$$SetRecoveryPhoneRequestImplCopyWithImpl(
-      _$SetRecoveryPhoneRequestImpl _value,
-      $Res Function(_$SetRecoveryPhoneRequestImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of SetRecoveryPhoneRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? phone = null,
-    Object? password = null,
-  }) {
-    return _then(_$SetRecoveryPhoneRequestImpl(
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [SetRecoveryPhoneRequest].
+extension SetRecoveryPhoneRequestPatterns on SetRecoveryPhoneRequest {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SetRecoveryPhoneRequest value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SetRecoveryPhoneRequest() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SetRecoveryPhoneRequest value)  $default,){
+final _that = this;
+switch (_that) {
+case _SetRecoveryPhoneRequest():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SetRecoveryPhoneRequest value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SetRecoveryPhoneRequest() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String phone,  String password)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SetRecoveryPhoneRequest() when $default != null:
+return $default(_that.phone,_that.password);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String phone,  String password)  $default,) {final _that = this;
+switch (_that) {
+case _SetRecoveryPhoneRequest():
+return $default(_that.phone,_that.password);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String phone,  String password)?  $default,) {final _that = this;
+switch (_that) {
+case _SetRecoveryPhoneRequest() when $default != null:
+return $default(_that.phone,_that.password);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SetRecoveryPhoneRequestImpl implements _SetRecoveryPhoneRequest {
-  const _$SetRecoveryPhoneRequestImpl(
-      {required this.phone, required this.password});
 
-  factory _$SetRecoveryPhoneRequestImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SetRecoveryPhoneRequestImplFromJson(json);
+class _SetRecoveryPhoneRequest implements SetRecoveryPhoneRequest {
+  const _SetRecoveryPhoneRequest({required this.phone, required this.password});
+  factory _SetRecoveryPhoneRequest.fromJson(Map<String, dynamic> json) => _$SetRecoveryPhoneRequestFromJson(json);
 
-  @override
-  final String phone;
-  @override
-  final String password;
+@override final  String phone;
+@override final  String password;
 
-  @override
-  String toString() {
-    return 'SetRecoveryPhoneRequest(phone: $phone, password: $password)';
-  }
+/// Create a copy of SetRecoveryPhoneRequest
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SetRecoveryPhoneRequestCopyWith<_SetRecoveryPhoneRequest> get copyWith => __$SetRecoveryPhoneRequestCopyWithImpl<_SetRecoveryPhoneRequest>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SetRecoveryPhoneRequestImpl &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.password, password) ||
-                other.password == password));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, phone, password);
-
-  /// Create a copy of SetRecoveryPhoneRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SetRecoveryPhoneRequestImplCopyWith<_$SetRecoveryPhoneRequestImpl>
-      get copyWith => __$$SetRecoveryPhoneRequestImplCopyWithImpl<
-          _$SetRecoveryPhoneRequestImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SetRecoveryPhoneRequestImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$SetRecoveryPhoneRequestToJson(this, );
 }
 
-abstract class _SetRecoveryPhoneRequest implements SetRecoveryPhoneRequest {
-  const factory _SetRecoveryPhoneRequest(
-      {required final String phone,
-      required final String password}) = _$SetRecoveryPhoneRequestImpl;
-
-  factory _SetRecoveryPhoneRequest.fromJson(Map<String, dynamic> json) =
-      _$SetRecoveryPhoneRequestImpl.fromJson;
-
-  @override
-  String get phone;
-  @override
-  String get password;
-
-  /// Create a copy of SetRecoveryPhoneRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SetRecoveryPhoneRequestImplCopyWith<_$SetRecoveryPhoneRequestImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetRecoveryPhoneRequest&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.password, password) || other.password == password));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,phone,password);
+
+@override
+String toString() {
+  return 'SetRecoveryPhoneRequest(phone: $phone, password: $password)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SetRecoveryPhoneRequestCopyWith<$Res> implements $SetRecoveryPhoneRequestCopyWith<$Res> {
+  factory _$SetRecoveryPhoneRequestCopyWith(_SetRecoveryPhoneRequest value, $Res Function(_SetRecoveryPhoneRequest) _then) = __$SetRecoveryPhoneRequestCopyWithImpl;
+@override @useResult
+$Res call({
+ String phone, String password
+});
+
+
+
+
+}
+/// @nodoc
+class __$SetRecoveryPhoneRequestCopyWithImpl<$Res>
+    implements _$SetRecoveryPhoneRequestCopyWith<$Res> {
+  __$SetRecoveryPhoneRequestCopyWithImpl(this._self, this._then);
+
+  final _SetRecoveryPhoneRequest _self;
+  final $Res Function(_SetRecoveryPhoneRequest) _then;
+
+/// Create a copy of SetRecoveryPhoneRequest
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? phone = null,Object? password = null,}) {
+  return _then(_SetRecoveryPhoneRequest(
+phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

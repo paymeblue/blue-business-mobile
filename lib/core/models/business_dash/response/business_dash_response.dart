@@ -5,7 +5,7 @@ part 'business_dash_response.freezed.dart';
 part 'business_dash_response.g.dart';
 
 @freezed
-class BusinessDashResponse with _$BusinessDashResponse {
+abstract class BusinessDashResponse with _$BusinessDashResponse {
   const factory BusinessDashResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class BusinessDashResponse with _$BusinessDashResponse {
   }) = _BusinessDashResponse;
 
   factory BusinessDashResponse.fromJson(Map<String, dynamic> json) =>
-      _$BusinessDashResponseImpl.fromJson(json);
+      _$BusinessDashResponseFromJson(json);
 }

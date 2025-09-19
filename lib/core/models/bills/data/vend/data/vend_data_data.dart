@@ -4,7 +4,7 @@ part 'vend_data_data.freezed.dart';
 part 'vend_data_data.g.dart';
 
 @freezed
-class VendDataData with _$VendDataData {
+abstract class VendDataData with _$VendDataData {
   const factory VendDataData({
     required String transactionId,
     required String receiver,
@@ -17,5 +17,5 @@ class VendDataData with _$VendDataData {
   }) = _VendDataData;
 
   factory VendDataData.fromJson(Map<String, dynamic> json) =>
-      _$VendDataDataImpl.fromJson(json);
+      _$VendDataDataFromJson(json);
 }

@@ -6,20 +6,20 @@ part of 'staff_role_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GetStaffRoleResponseImpl _$$GetStaffRoleResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GetStaffRoleResponseImpl(
-      status: json['status'] as String? ?? 'fail',
-      message: json['message'] as String?,
-      data: (json['data'] as List<dynamic>?)
-          ?.map((e) => StaffRole.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+_GetStaffRoleResponse _$GetStaffRoleResponseFromJson(
+  Map<String, dynamic> json,
+) => _GetStaffRoleResponse(
+  status: json['status'] as String? ?? 'fail',
+  message: json['message'] as String?,
+  data: (json['data'] as List<dynamic>?)
+      ?.map((e) => StaffRole.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);
 
-Map<String, dynamic> _$$GetStaffRoleResponseImplToJson(
-        _$GetStaffRoleResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
-    };
+Map<String, dynamic> _$GetStaffRoleResponseToJson(
+  _GetStaffRoleResponse instance,
+) => <String, dynamic>{
+  'status': instance.status,
+  'message': ?instance.message,
+  'data': ?instance.data,
+};

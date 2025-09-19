@@ -5,7 +5,7 @@ part 'wallet_response.freezed.dart';
 part 'wallet_response.g.dart';
 
 @freezed
-class WalletResponse with _$WalletResponse {
+abstract class WalletResponse with _$WalletResponse {
   const factory WalletResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class WalletResponse with _$WalletResponse {
   }) = _WalletResponse;
 
   factory WalletResponse.fromJson(Map<String, dynamic> json) =>
-      _$WalletResponseImpl.fromJson(json);
+      _$WalletResponseFromJson(json);
 }

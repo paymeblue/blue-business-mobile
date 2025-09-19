@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,212 +9,299 @@ part of 'receipt_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ReceiptResponse _$ReceiptResponseFromJson(Map<String, dynamic> json) {
-  return _ReceiptResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$ReceiptResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  ReceiptData? get data => throw _privateConstructorUsedError;
+
+ String get status; String? get message; ReceiptData? get data;
+/// Create a copy of ReceiptResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ReceiptResponseCopyWith<ReceiptResponse> get copyWith => _$ReceiptResponseCopyWithImpl<ReceiptResponse>(this as ReceiptResponse, _$identity);
 
   /// Serializes this ReceiptResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of ReceiptResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ReceiptResponseCopyWith<ReceiptResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReceiptResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'ReceiptResponse(status: $status, message: $message, data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ReceiptResponseCopyWith<$Res> {
-  factory $ReceiptResponseCopyWith(
-          ReceiptResponse value, $Res Function(ReceiptResponse) then) =
-      _$ReceiptResponseCopyWithImpl<$Res, ReceiptResponse>;
-  @useResult
-  $Res call({String status, String? message, ReceiptData? data});
+abstract mixin class $ReceiptResponseCopyWith<$Res>  {
+  factory $ReceiptResponseCopyWith(ReceiptResponse value, $Res Function(ReceiptResponse) _then) = _$ReceiptResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, ReceiptData? data
+});
 
-  $ReceiptDataCopyWith<$Res>? get data;
+
+$ReceiptDataCopyWith<$Res>? get data;
+
 }
-
 /// @nodoc
-class _$ReceiptResponseCopyWithImpl<$Res, $Val extends ReceiptResponse>
+class _$ReceiptResponseCopyWithImpl<$Res>
     implements $ReceiptResponseCopyWith<$Res> {
-  _$ReceiptResponseCopyWithImpl(this._value, this._then);
+  _$ReceiptResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ReceiptResponse _self;
+  final $Res Function(ReceiptResponse) _then;
 
-  /// Create a copy of ReceiptResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as ReceiptData?,
-    ) as $Val);
+/// Create a copy of ReceiptResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as ReceiptData?,
+  ));
+}
+/// Create a copy of ReceiptResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ReceiptDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
   }
 
-  /// Create a copy of ReceiptResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReceiptDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $ReceiptDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
-  }
+  return $ReceiptDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$ReceiptResponseImplCopyWith<$Res>
-    implements $ReceiptResponseCopyWith<$Res> {
-  factory _$$ReceiptResponseImplCopyWith(_$ReceiptResponseImpl value,
-          $Res Function(_$ReceiptResponseImpl) then) =
-      __$$ReceiptResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message, ReceiptData? data});
 
-  @override
-  $ReceiptDataCopyWith<$Res>? get data;
+/// Adds pattern-matching-related methods to [ReceiptResponse].
+extension ReceiptResponsePatterns on ReceiptResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ReceiptResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ReceiptResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ReceiptResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _ReceiptResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ReceiptResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ReceiptResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  ReceiptData? data)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ReceiptResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  ReceiptData? data)  $default,) {final _that = this;
+switch (_that) {
+case _ReceiptResponse():
+return $default(_that.status,_that.message,_that.data);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  ReceiptData? data)?  $default,) {final _that = this;
+switch (_that) {
+case _ReceiptResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$ReceiptResponseImplCopyWithImpl<$Res>
-    extends _$ReceiptResponseCopyWithImpl<$Res, _$ReceiptResponseImpl>
-    implements _$$ReceiptResponseImplCopyWith<$Res> {
-  __$$ReceiptResponseImplCopyWithImpl(
-      _$ReceiptResponseImpl _value, $Res Function(_$ReceiptResponseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ReceiptResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_$ReceiptResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as ReceiptData?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ReceiptResponseImpl implements _ReceiptResponse {
-  const _$ReceiptResponseImpl({this.status = "fail", this.message, this.data});
 
-  factory _$ReceiptResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ReceiptResponseImplFromJson(json);
+class _ReceiptResponse implements ReceiptResponse {
+  const _ReceiptResponse({this.status = "fail", this.message, this.data});
+  factory _ReceiptResponse.fromJson(Map<String, dynamic> json) => _$ReceiptResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  @override
-  final ReceiptData? data;
+@override@JsonKey() final  String status;
+@override final  String? message;
+@override final  ReceiptData? data;
 
-  @override
-  String toString() {
-    return 'ReceiptResponse(status: $status, message: $message, data: $data)';
-  }
+/// Create a copy of ReceiptResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ReceiptResponseCopyWith<_ReceiptResponse> get copyWith => __$ReceiptResponseCopyWithImpl<_ReceiptResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ReceiptResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
-
-  /// Create a copy of ReceiptResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ReceiptResponseImplCopyWith<_$ReceiptResponseImpl> get copyWith =>
-      __$$ReceiptResponseImplCopyWithImpl<_$ReceiptResponseImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ReceiptResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$ReceiptResponseToJson(this, );
 }
 
-abstract class _ReceiptResponse implements ReceiptResponse {
-  const factory _ReceiptResponse(
-      {final String status,
-      final String? message,
-      final ReceiptData? data}) = _$ReceiptResponseImpl;
-
-  factory _ReceiptResponse.fromJson(Map<String, dynamic> json) =
-      _$ReceiptResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  ReceiptData? get data;
-
-  /// Create a copy of ReceiptResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReceiptResponseImplCopyWith<_$ReceiptResponseImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReceiptResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'ReceiptResponse(status: $status, message: $message, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ReceiptResponseCopyWith<$Res> implements $ReceiptResponseCopyWith<$Res> {
+  factory _$ReceiptResponseCopyWith(_ReceiptResponse value, $Res Function(_ReceiptResponse) _then) = __$ReceiptResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, ReceiptData? data
+});
+
+
+@override $ReceiptDataCopyWith<$Res>? get data;
+
+}
+/// @nodoc
+class __$ReceiptResponseCopyWithImpl<$Res>
+    implements _$ReceiptResponseCopyWith<$Res> {
+  __$ReceiptResponseCopyWithImpl(this._self, this._then);
+
+  final _ReceiptResponse _self;
+  final $Res Function(_ReceiptResponse) _then;
+
+/// Create a copy of ReceiptResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_ReceiptResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as ReceiptData?,
+  ));
+}
+
+/// Create a copy of ReceiptResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ReceiptDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
+  }
+
+  return $ReceiptDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
+}
+
+// dart format on

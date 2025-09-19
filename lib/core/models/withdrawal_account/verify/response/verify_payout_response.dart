@@ -5,7 +5,7 @@ part 'verify_payout_response.freezed.dart';
 part 'verify_payout_response.g.dart';
 
 @freezed
-class VerifyPayoutResponse with _$VerifyPayoutResponse {
+abstract class VerifyPayoutResponse with _$VerifyPayoutResponse {
   const factory VerifyPayoutResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class VerifyPayoutResponse with _$VerifyPayoutResponse {
   }) = _VerifyPayoutResponse;
 
   factory VerifyPayoutResponse.fromJson(Map<String, dynamic> json) =>
-      _$VerifyPayoutResponseImpl.fromJson(json);
+      _$VerifyPayoutResponseFromJson(json);
 }

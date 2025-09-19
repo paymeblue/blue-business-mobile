@@ -4,7 +4,7 @@ part 'initiate_transaction_data.freezed.dart';
 part 'initiate_transaction_data.g.dart';
 
 @freezed
-class InitiateTransactionData with _$InitiateTransactionData {
+abstract class InitiateTransactionData with _$InitiateTransactionData {
   const factory InitiateTransactionData({
     required int id,
     required String transactionId,
@@ -14,5 +14,5 @@ class InitiateTransactionData with _$InitiateTransactionData {
   }) = _InitiateTransactionData;
 
   factory InitiateTransactionData.fromJson(Map<String, dynamic> json) =>
-      _$InitiateTransactionDataImpl.fromJson(json);
+      _$InitiateTransactionDataFromJson(json);
 }

@@ -4,7 +4,7 @@ part 'withdrawal_account.freezed.dart';
 part 'withdrawal_account.g.dart';
 
 @freezed
-class WithdrawalAccount with _$WithdrawalAccount {
+abstract class WithdrawalAccount with _$WithdrawalAccount {
   const factory WithdrawalAccount({
     required int id,
     required int bankId,
@@ -15,5 +15,5 @@ class WithdrawalAccount with _$WithdrawalAccount {
   }) = _WithdrawalAccount;
 
   factory WithdrawalAccount.fromJson(Map<String, dynamic> json) =>
-      _$WithdrawalAccountImpl.fromJson(json);
+      _$WithdrawalAccountFromJson(json);
 }

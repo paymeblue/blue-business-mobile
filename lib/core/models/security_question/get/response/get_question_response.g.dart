@@ -6,9 +6,8 @@ part of 'get_question_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GetQuestionResponseImpl _$$GetQuestionResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GetQuestionResponseImpl(
+_GetQuestionResponse _$GetQuestionResponseFromJson(Map<String, dynamic> json) =>
+    _GetQuestionResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
@@ -16,10 +15,10 @@ _$GetQuestionResponseImpl _$$GetQuestionResponseImplFromJson(
           : GetQuestionData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$GetQuestionResponseImplToJson(
-        _$GetQuestionResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
-    };
+Map<String, dynamic> _$GetQuestionResponseToJson(
+  _GetQuestionResponse instance,
+) => <String, dynamic>{
+  'status': instance.status,
+  'message': ?instance.message,
+  'data': ?instance.data,
+};

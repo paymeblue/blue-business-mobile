@@ -6,8 +6,8 @@ part of 'cable_details.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CableDetailsImpl _$$CableDetailsImplFromJson(Map<String, dynamic> json) =>
-    _$CableDetailsImpl(
+_CableDetails _$CableDetailsFromJson(Map<String, dynamic> json) =>
+    _CableDetails(
       id: (json['id'] as num?)?.toInt(),
       amount: json['amount'] as String,
       serviceCharge: json['service_charge'] as String,
@@ -23,9 +23,9 @@ _$CableDetailsImpl _$$CableDetailsImplFromJson(Map<String, dynamic> json) =>
       balanceAfter: json['balance_after'] as String? ?? "0.00",
     );
 
-Map<String, dynamic> _$$CableDetailsImplToJson(_$CableDetailsImpl instance) =>
+Map<String, dynamic> _$CableDetailsToJson(_CableDetails instance) =>
     <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
+      'id': ?instance.id,
       'amount': instance.amount,
       'service_charge': instance.serviceCharge,
       'receiver': instance.receiver,

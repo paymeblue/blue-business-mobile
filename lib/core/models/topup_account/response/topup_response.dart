@@ -5,7 +5,7 @@ part 'topup_response.freezed.dart';
 part 'topup_response.g.dart';
 
 @freezed
-class TopupResponse with _$TopupResponse {
+abstract class TopupResponse with _$TopupResponse {
   const factory TopupResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class TopupResponse with _$TopupResponse {
   }) = _TopupResponse;
 
   factory TopupResponse.fromJson(Map<String, dynamic> json) =>
-      _$TopupResponseImpl.fromJson(json);
+      _$TopupResponseFromJson(json);
 }

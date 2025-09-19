@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'settings_option.freezed.dart';
 
 @freezed
-class SettingsOption with _$SettingsOption {
+abstract class SettingsOption with _$SettingsOption {
   const factory SettingsOption({
     required Widget icon,
     required String title,

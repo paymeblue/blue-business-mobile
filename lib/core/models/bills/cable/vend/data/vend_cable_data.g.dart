@@ -6,8 +6,8 @@ part of 'vend_cable_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VendCableDataImpl _$$VendCableDataImplFromJson(Map<String, dynamic> json) =>
-    _$VendCableDataImpl(
+_VendCableData _$VendCableDataFromJson(Map<String, dynamic> json) =>
+    _VendCableData(
       transactionId: json['transaction_id'] as String,
       customerName: json['customer_name'] as String,
       customerInfo: json['customer_info'] as String,
@@ -21,7 +21,7 @@ _$VendCableDataImpl _$$VendCableDataImplFromJson(Map<String, dynamic> json) =>
       createdAt: json['created_at'] as String?,
     );
 
-Map<String, dynamic> _$$VendCableDataImplToJson(_$VendCableDataImpl instance) =>
+Map<String, dynamic> _$VendCableDataToJson(_VendCableData instance) =>
     <String, dynamic>{
       'transaction_id': instance.transactionId,
       'customer_name': instance.customerName,
@@ -33,5 +33,5 @@ Map<String, dynamic> _$$VendCableDataImplToJson(_$VendCableDataImpl instance) =>
       'amount': instance.amount,
       'service_charget': instance.serviceCharget,
       'status': instance.status,
-      if (instance.createdAt case final value?) 'created_at': value,
+      'createdAt': ?instance.createdAt,
     };

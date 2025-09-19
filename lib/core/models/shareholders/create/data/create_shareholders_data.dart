@@ -4,7 +4,7 @@ part 'create_shareholders_data.freezed.dart';
 part 'create_shareholders_data.g.dart';
 
 @freezed
-class CreateShareholdersData with _$CreateShareholdersData {
+abstract class CreateShareholdersData with _$CreateShareholdersData {
   const factory CreateShareholdersData({
     required String name,
     required String bvn,
@@ -14,5 +14,5 @@ class CreateShareholdersData with _$CreateShareholdersData {
   }) = _CreateShareholdersData;
 
   factory CreateShareholdersData.fromJson(Map<String, dynamic> json) =>
-      _$CreateShareholdersDataImpl.fromJson(json);
+      _$CreateShareholdersDataFromJson(json);
 }

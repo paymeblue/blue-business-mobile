@@ -5,12 +5,13 @@ part 'verified_receiver_response.freezed.dart';
 part 'verified_receiver_response.g.dart';
 
 @freezed
-class VerifiedReceiverResponse with _$VerifiedReceiverResponse {
-  const factory VerifiedReceiverResponse(
-      {@Default("fail") String status,
-      String? message,
-      VerifiedReceiver? data}) = _VerifiedReceiverResponse;
+abstract class VerifiedReceiverResponse with _$VerifiedReceiverResponse {
+  const factory VerifiedReceiverResponse({
+    @Default("fail") String status,
+    String? message,
+    VerifiedReceiver? data,
+  }) = _VerifiedReceiverResponse;
 
   factory VerifiedReceiverResponse.fromJson(Map<String, dynamic> json) =>
-      _$VerifiedReceiverResponseImpl.fromJson(json);
+      _$VerifiedReceiverResponseFromJson(json);
 }

@@ -4,7 +4,7 @@ part 'verified_receiver.freezed.dart';
 part 'verified_receiver.g.dart';
 
 @freezed
-class VerifiedReceiver with _$VerifiedReceiver {
+abstract class VerifiedReceiver with _$VerifiedReceiver {
   const factory VerifiedReceiver({
     required int id,
     int? userId,
@@ -16,7 +16,7 @@ class VerifiedReceiver with _$VerifiedReceiver {
   }) = _VerifiedReceiver;
 
   factory VerifiedReceiver.fromJson(Map<String, dynamic> json) =>
-      _$VerifiedReceiverImpl.fromJson(json);
+      _$VerifiedReceiverFromJson(json);
 }
 
 // {

@@ -6,15 +6,13 @@ part of 'verify_data_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VerifyDataRequestImpl _$$VerifyDataRequestImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VerifyDataRequestImpl(
+_VerifyDataRequest _$VerifyDataRequestFromJson(Map<String, dynamic> json) =>
+    _VerifyDataRequest(
       receiver: json['receiver'] as String,
       packageId: json['package_id'] as String,
     );
 
-Map<String, dynamic> _$$VerifyDataRequestImplToJson(
-        _$VerifyDataRequestImpl instance) =>
+Map<String, dynamic> _$VerifyDataRequestToJson(_VerifyDataRequest instance) =>
     <String, dynamic>{
       'receiver': instance.receiver,
       'package_id': instance.packageId,

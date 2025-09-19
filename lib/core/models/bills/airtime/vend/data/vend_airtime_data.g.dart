@@ -6,9 +6,8 @@ part of 'vend_airtime_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VendAirtimeDataImpl _$$VendAirtimeDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VendAirtimeDataImpl(
+_VendAirtimeData _$VendAirtimeDataFromJson(Map<String, dynamic> json) =>
+    _VendAirtimeData(
       transactionId: json['transaction_id'] as String,
       receiver: json['receiver'] as String,
       provider: json['provider'] as String,
@@ -18,8 +17,7 @@ _$VendAirtimeDataImpl _$$VendAirtimeDataImplFromJson(
       createdAt: json['created_at'] as String?,
     );
 
-Map<String, dynamic> _$$VendAirtimeDataImplToJson(
-        _$VendAirtimeDataImpl instance) =>
+Map<String, dynamic> _$VendAirtimeDataToJson(_VendAirtimeData instance) =>
     <String, dynamic>{
       'transaction_id': instance.transactionId,
       'receiver': instance.receiver,
@@ -27,5 +25,5 @@ Map<String, dynamic> _$$VendAirtimeDataImplToJson(
       'payment_reference': instance.paymentReference,
       'amount': instance.amount,
       'status': instance.status,
-      if (instance.createdAt case final value?) 'created_at': value,
+      'created_at': ?instance.createdAt,
     };

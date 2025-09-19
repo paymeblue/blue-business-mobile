@@ -5,7 +5,7 @@ part 'transaction_history_response.freezed.dart';
 part 'transaction_history_response.g.dart';
 
 @freezed
-class TransactionResponse with _$TransactionResponse {
+abstract class TransactionResponse with _$TransactionResponse {
   const factory TransactionResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class TransactionResponse with _$TransactionResponse {
   }) = _TransactionResponse;
 
   factory TransactionResponse.fromJson(Map<String, dynamic> json) =>
-      _$TransactionResponseImpl.fromJson(json);
+      _$TransactionResponseFromJson(json);
 }

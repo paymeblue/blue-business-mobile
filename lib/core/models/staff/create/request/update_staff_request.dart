@@ -4,7 +4,7 @@ part 'update_staff_request.freezed.dart';
 part 'update_staff_request.g.dart';
 
 @freezed
-class UpdateStaffRequest with _$UpdateStaffRequest {
+abstract class UpdateStaffRequest with _$UpdateStaffRequest {
   const factory UpdateStaffRequest({
     String? name,
     String? phone,
@@ -14,5 +14,5 @@ class UpdateStaffRequest with _$UpdateStaffRequest {
   }) = _UpdateStaffRequest;
 
   factory UpdateStaffRequest.fromJson(Map<String, dynamic> json) =>
-      _$UpdateStaffRequestImpl.fromJson(json);
+      _$UpdateStaffRequestFromJson(json);
 }

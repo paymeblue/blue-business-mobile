@@ -6,17 +6,15 @@ part of 'get_beneficiary_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GetBeneficiaryDataImpl _$$GetBeneficiaryDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GetBeneficiaryDataImpl(
+_GetBeneficiaryData _$GetBeneficiaryDataFromJson(Map<String, dynamic> json) =>
+    _GetBeneficiaryData(
       total: (json['total'] as num).toInt(),
       limit: (json['limit'] as num).toInt(),
       page: (json['page'] as num).toInt(),
       loadMore: json['load_more'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$GetBeneficiaryDataImplToJson(
-        _$GetBeneficiaryDataImpl instance) =>
+Map<String, dynamic> _$GetBeneficiaryDataToJson(_GetBeneficiaryData instance) =>
     <String, dynamic>{
       'total': instance.total,
       'limit': instance.limit,

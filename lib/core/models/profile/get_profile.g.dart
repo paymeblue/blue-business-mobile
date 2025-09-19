@@ -6,9 +6,8 @@ part of 'get_profile.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GetProfileResponseImpl _$$GetProfileResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GetProfileResponseImpl(
+_GetProfileResponse _$GetProfileResponseFromJson(Map<String, dynamic> json) =>
+    _GetProfileResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
@@ -16,16 +15,15 @@ _$GetProfileResponseImpl _$$GetProfileResponseImplFromJson(
           : GetProfileData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$GetProfileResponseImplToJson(
-        _$GetProfileResponseImpl instance) =>
+Map<String, dynamic> _$GetProfileResponseToJson(_GetProfileResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
+      'message': ?instance.message,
+      'data': ?instance.data,
     };
 
-_$GetProfileDataImpl _$$GetProfileDataImplFromJson(Map<String, dynamic> json) =>
-    _$GetProfileDataImpl(
+_GetProfileData _$GetProfileDataFromJson(Map<String, dynamic> json) =>
+    _GetProfileData(
       id: (json['id'] as num).toInt(),
       businessId: (json['business_id'] as num).toInt(),
       walletId: (json['wallet_id'] as num).toInt(),
@@ -46,16 +44,15 @@ _$GetProfileDataImpl _$$GetProfileDataImplFromJson(Map<String, dynamic> json) =>
       kyc: json['kyc'] as String? ?? "pro",
     );
 
-Map<String, dynamic> _$$GetProfileDataImplToJson(
-        _$GetProfileDataImpl instance) =>
+Map<String, dynamic> _$GetProfileDataToJson(_GetProfileData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'business_id': instance.businessId,
       'wallet_id': instance.walletId,
       'business_name': instance.businessName,
       'phone': instance.phone,
-      if (instance.displayPicture case final value?) 'display_picture': value,
-      if (instance.staffId case final value?) 'staff_id': value,
+      'display_picture': ?instance.displayPicture,
+      'staff_id': ?instance.staffId,
       'notification_status': instance.notificationStatus,
       'reset_credential_status': instance.resetCredentialStatus,
       'auto_withdrawal_enabled': instance.autoWithdrawalEnabled,

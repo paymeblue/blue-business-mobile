@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,355 +9,299 @@ part of 'create_business_profile_data.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-CreateBusinessProfileData _$CreateBusinessProfileDataFromJson(
-    Map<String, dynamic> json) {
-  return _CreateBusinessProfileData.fromJson(json);
-}
 
 /// @nodoc
 mixin _$CreateBusinessProfileData {
-  int get id => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  int get level => throw _privateConstructorUsedError;
-  int get businessId => throw _privateConstructorUsedError;
-  bool get businessProfileCompleted => throw _privateConstructorUsedError;
-  bool get businessDetailsCompleted => throw _privateConstructorUsedError;
-  bool get businessKycCompleted => throw _privateConstructorUsedError;
-  List<Shareholders> get shareholders => throw _privateConstructorUsedError;
-  String? get createdAt => throw _privateConstructorUsedError;
+
+ int get id; String get phone; int get level; int get businessId; bool get businessProfileCompleted; bool get businessDetailsCompleted; bool get businessKycCompleted; List<Shareholders> get shareholders; String? get createdAt;
+/// Create a copy of CreateBusinessProfileData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CreateBusinessProfileDataCopyWith<CreateBusinessProfileData> get copyWith => _$CreateBusinessProfileDataCopyWithImpl<CreateBusinessProfileData>(this as CreateBusinessProfileData, _$identity);
 
   /// Serializes this CreateBusinessProfileData to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of CreateBusinessProfileData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CreateBusinessProfileDataCopyWith<CreateBusinessProfileData> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateBusinessProfileData&&(identical(other.id, id) || other.id == id)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.level, level) || other.level == level)&&(identical(other.businessId, businessId) || other.businessId == businessId)&&(identical(other.businessProfileCompleted, businessProfileCompleted) || other.businessProfileCompleted == businessProfileCompleted)&&(identical(other.businessDetailsCompleted, businessDetailsCompleted) || other.businessDetailsCompleted == businessDetailsCompleted)&&(identical(other.businessKycCompleted, businessKycCompleted) || other.businessKycCompleted == businessKycCompleted)&&const DeepCollectionEquality().equals(other.shareholders, shareholders)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,phone,level,businessId,businessProfileCompleted,businessDetailsCompleted,businessKycCompleted,const DeepCollectionEquality().hash(shareholders),createdAt);
+
+@override
+String toString() {
+  return 'CreateBusinessProfileData(id: $id, phone: $phone, level: $level, businessId: $businessId, businessProfileCompleted: $businessProfileCompleted, businessDetailsCompleted: $businessDetailsCompleted, businessKycCompleted: $businessKycCompleted, shareholders: $shareholders, createdAt: $createdAt)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $CreateBusinessProfileDataCopyWith<$Res> {
-  factory $CreateBusinessProfileDataCopyWith(CreateBusinessProfileData value,
-          $Res Function(CreateBusinessProfileData) then) =
-      _$CreateBusinessProfileDataCopyWithImpl<$Res, CreateBusinessProfileData>;
-  @useResult
-  $Res call(
-      {int id,
-      String phone,
-      int level,
-      int businessId,
-      bool businessProfileCompleted,
-      bool businessDetailsCompleted,
-      bool businessKycCompleted,
-      List<Shareholders> shareholders,
-      String? createdAt});
-}
+abstract mixin class $CreateBusinessProfileDataCopyWith<$Res>  {
+  factory $CreateBusinessProfileDataCopyWith(CreateBusinessProfileData value, $Res Function(CreateBusinessProfileData) _then) = _$CreateBusinessProfileDataCopyWithImpl;
+@useResult
+$Res call({
+ int id, String phone, int level, int businessId, bool businessProfileCompleted, bool businessDetailsCompleted, bool businessKycCompleted, List<Shareholders> shareholders, String? createdAt
+});
 
+
+
+
+}
 /// @nodoc
-class _$CreateBusinessProfileDataCopyWithImpl<$Res,
-        $Val extends CreateBusinessProfileData>
+class _$CreateBusinessProfileDataCopyWithImpl<$Res>
     implements $CreateBusinessProfileDataCopyWith<$Res> {
-  _$CreateBusinessProfileDataCopyWithImpl(this._value, this._then);
+  _$CreateBusinessProfileDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final CreateBusinessProfileData _self;
+  final $Res Function(CreateBusinessProfileData) _then;
 
-  /// Create a copy of CreateBusinessProfileData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? phone = null,
-    Object? level = null,
-    Object? businessId = null,
-    Object? businessProfileCompleted = null,
-    Object? businessDetailsCompleted = null,
-    Object? businessKycCompleted = null,
-    Object? shareholders = null,
-    Object? createdAt = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      level: null == level
-          ? _value.level
-          : level // ignore: cast_nullable_to_non_nullable
-              as int,
-      businessId: null == businessId
-          ? _value.businessId
-          : businessId // ignore: cast_nullable_to_non_nullable
-              as int,
-      businessProfileCompleted: null == businessProfileCompleted
-          ? _value.businessProfileCompleted
-          : businessProfileCompleted // ignore: cast_nullable_to_non_nullable
-              as bool,
-      businessDetailsCompleted: null == businessDetailsCompleted
-          ? _value.businessDetailsCompleted
-          : businessDetailsCompleted // ignore: cast_nullable_to_non_nullable
-              as bool,
-      businessKycCompleted: null == businessKycCompleted
-          ? _value.businessKycCompleted
-          : businessKycCompleted // ignore: cast_nullable_to_non_nullable
-              as bool,
-      shareholders: null == shareholders
-          ? _value.shareholders
-          : shareholders // ignore: cast_nullable_to_non_nullable
-              as List<Shareholders>,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of CreateBusinessProfileData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? phone = null,Object? level = null,Object? businessId = null,Object? businessProfileCompleted = null,Object? businessDetailsCompleted = null,Object? businessKycCompleted = null,Object? shareholders = null,Object? createdAt = freezed,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as int,businessId: null == businessId ? _self.businessId : businessId // ignore: cast_nullable_to_non_nullable
+as int,businessProfileCompleted: null == businessProfileCompleted ? _self.businessProfileCompleted : businessProfileCompleted // ignore: cast_nullable_to_non_nullable
+as bool,businessDetailsCompleted: null == businessDetailsCompleted ? _self.businessDetailsCompleted : businessDetailsCompleted // ignore: cast_nullable_to_non_nullable
+as bool,businessKycCompleted: null == businessKycCompleted ? _self.businessKycCompleted : businessKycCompleted // ignore: cast_nullable_to_non_nullable
+as bool,shareholders: null == shareholders ? _self.shareholders : shareholders // ignore: cast_nullable_to_non_nullable
+as List<Shareholders>,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$CreateBusinessProfileDataImplCopyWith<$Res>
-    implements $CreateBusinessProfileDataCopyWith<$Res> {
-  factory _$$CreateBusinessProfileDataImplCopyWith(
-          _$CreateBusinessProfileDataImpl value,
-          $Res Function(_$CreateBusinessProfileDataImpl) then) =
-      __$$CreateBusinessProfileDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int id,
-      String phone,
-      int level,
-      int businessId,
-      bool businessProfileCompleted,
-      bool businessDetailsCompleted,
-      bool businessKycCompleted,
-      List<Shareholders> shareholders,
-      String? createdAt});
 }
 
-/// @nodoc
-class __$$CreateBusinessProfileDataImplCopyWithImpl<$Res>
-    extends _$CreateBusinessProfileDataCopyWithImpl<$Res,
-        _$CreateBusinessProfileDataImpl>
-    implements _$$CreateBusinessProfileDataImplCopyWith<$Res> {
-  __$$CreateBusinessProfileDataImplCopyWithImpl(
-      _$CreateBusinessProfileDataImpl _value,
-      $Res Function(_$CreateBusinessProfileDataImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of CreateBusinessProfileData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? phone = null,
-    Object? level = null,
-    Object? businessId = null,
-    Object? businessProfileCompleted = null,
-    Object? businessDetailsCompleted = null,
-    Object? businessKycCompleted = null,
-    Object? shareholders = null,
-    Object? createdAt = freezed,
-  }) {
-    return _then(_$CreateBusinessProfileDataImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      level: null == level
-          ? _value.level
-          : level // ignore: cast_nullable_to_non_nullable
-              as int,
-      businessId: null == businessId
-          ? _value.businessId
-          : businessId // ignore: cast_nullable_to_non_nullable
-              as int,
-      businessProfileCompleted: null == businessProfileCompleted
-          ? _value.businessProfileCompleted
-          : businessProfileCompleted // ignore: cast_nullable_to_non_nullable
-              as bool,
-      businessDetailsCompleted: null == businessDetailsCompleted
-          ? _value.businessDetailsCompleted
-          : businessDetailsCompleted // ignore: cast_nullable_to_non_nullable
-              as bool,
-      businessKycCompleted: null == businessKycCompleted
-          ? _value.businessKycCompleted
-          : businessKycCompleted // ignore: cast_nullable_to_non_nullable
-              as bool,
-      shareholders: null == shareholders
-          ? _value._shareholders
-          : shareholders // ignore: cast_nullable_to_non_nullable
-              as List<Shareholders>,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [CreateBusinessProfileData].
+extension CreateBusinessProfileDataPatterns on CreateBusinessProfileData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CreateBusinessProfileData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CreateBusinessProfileData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CreateBusinessProfileData value)  $default,){
+final _that = this;
+switch (_that) {
+case _CreateBusinessProfileData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CreateBusinessProfileData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CreateBusinessProfileData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String phone,  int level,  int businessId,  bool businessProfileCompleted,  bool businessDetailsCompleted,  bool businessKycCompleted,  List<Shareholders> shareholders,  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CreateBusinessProfileData() when $default != null:
+return $default(_that.id,_that.phone,_that.level,_that.businessId,_that.businessProfileCompleted,_that.businessDetailsCompleted,_that.businessKycCompleted,_that.shareholders,_that.createdAt);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String phone,  int level,  int businessId,  bool businessProfileCompleted,  bool businessDetailsCompleted,  bool businessKycCompleted,  List<Shareholders> shareholders,  String? createdAt)  $default,) {final _that = this;
+switch (_that) {
+case _CreateBusinessProfileData():
+return $default(_that.id,_that.phone,_that.level,_that.businessId,_that.businessProfileCompleted,_that.businessDetailsCompleted,_that.businessKycCompleted,_that.shareholders,_that.createdAt);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String phone,  int level,  int businessId,  bool businessProfileCompleted,  bool businessDetailsCompleted,  bool businessKycCompleted,  List<Shareholders> shareholders,  String? createdAt)?  $default,) {final _that = this;
+switch (_that) {
+case _CreateBusinessProfileData() when $default != null:
+return $default(_that.id,_that.phone,_that.level,_that.businessId,_that.businessProfileCompleted,_that.businessDetailsCompleted,_that.businessKycCompleted,_that.shareholders,_that.createdAt);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CreateBusinessProfileDataImpl implements _CreateBusinessProfileData {
-  const _$CreateBusinessProfileDataImpl(
-      {required this.id,
-      required this.phone,
-      required this.level,
-      required this.businessId,
-      this.businessProfileCompleted = false,
-      this.businessDetailsCompleted = false,
-      this.businessKycCompleted = false,
-      final List<Shareholders> shareholders = const [],
-      this.createdAt})
-      : _shareholders = shareholders;
 
-  factory _$CreateBusinessProfileDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CreateBusinessProfileDataImplFromJson(json);
+class _CreateBusinessProfileData implements CreateBusinessProfileData {
+  const _CreateBusinessProfileData({required this.id, required this.phone, required this.level, required this.businessId, this.businessProfileCompleted = false, this.businessDetailsCompleted = false, this.businessKycCompleted = false, final  List<Shareholders> shareholders = const [], this.createdAt}): _shareholders = shareholders;
+  factory _CreateBusinessProfileData.fromJson(Map<String, dynamic> json) => _$CreateBusinessProfileDataFromJson(json);
 
-  @override
-  final int id;
-  @override
-  final String phone;
-  @override
-  final int level;
-  @override
-  final int businessId;
-  @override
-  @JsonKey()
-  final bool businessProfileCompleted;
-  @override
-  @JsonKey()
-  final bool businessDetailsCompleted;
-  @override
-  @JsonKey()
-  final bool businessKycCompleted;
-  final List<Shareholders> _shareholders;
-  @override
-  @JsonKey()
-  List<Shareholders> get shareholders {
-    if (_shareholders is EqualUnmodifiableListView) return _shareholders;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_shareholders);
-  }
-
-  @override
-  final String? createdAt;
-
-  @override
-  String toString() {
-    return 'CreateBusinessProfileData(id: $id, phone: $phone, level: $level, businessId: $businessId, businessProfileCompleted: $businessProfileCompleted, businessDetailsCompleted: $businessDetailsCompleted, businessKycCompleted: $businessKycCompleted, shareholders: $shareholders, createdAt: $createdAt)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CreateBusinessProfileDataImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.level, level) || other.level == level) &&
-            (identical(other.businessId, businessId) ||
-                other.businessId == businessId) &&
-            (identical(
-                    other.businessProfileCompleted, businessProfileCompleted) ||
-                other.businessProfileCompleted == businessProfileCompleted) &&
-            (identical(
-                    other.businessDetailsCompleted, businessDetailsCompleted) ||
-                other.businessDetailsCompleted == businessDetailsCompleted) &&
-            (identical(other.businessKycCompleted, businessKycCompleted) ||
-                other.businessKycCompleted == businessKycCompleted) &&
-            const DeepCollectionEquality()
-                .equals(other._shareholders, _shareholders) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      phone,
-      level,
-      businessId,
-      businessProfileCompleted,
-      businessDetailsCompleted,
-      businessKycCompleted,
-      const DeepCollectionEquality().hash(_shareholders),
-      createdAt);
-
-  /// Create a copy of CreateBusinessProfileData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CreateBusinessProfileDataImplCopyWith<_$CreateBusinessProfileDataImpl>
-      get copyWith => __$$CreateBusinessProfileDataImplCopyWithImpl<
-          _$CreateBusinessProfileDataImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CreateBusinessProfileDataImplToJson(
-      this,
-    );
-  }
+@override final  int id;
+@override final  String phone;
+@override final  int level;
+@override final  int businessId;
+@override@JsonKey() final  bool businessProfileCompleted;
+@override@JsonKey() final  bool businessDetailsCompleted;
+@override@JsonKey() final  bool businessKycCompleted;
+ final  List<Shareholders> _shareholders;
+@override@JsonKey() List<Shareholders> get shareholders {
+  if (_shareholders is EqualUnmodifiableListView) return _shareholders;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_shareholders);
 }
 
-abstract class _CreateBusinessProfileData implements CreateBusinessProfileData {
-  const factory _CreateBusinessProfileData(
-      {required final int id,
-      required final String phone,
-      required final int level,
-      required final int businessId,
-      final bool businessProfileCompleted,
-      final bool businessDetailsCompleted,
-      final bool businessKycCompleted,
-      final List<Shareholders> shareholders,
-      final String? createdAt}) = _$CreateBusinessProfileDataImpl;
+@override final  String? createdAt;
 
-  factory _CreateBusinessProfileData.fromJson(Map<String, dynamic> json) =
-      _$CreateBusinessProfileDataImpl.fromJson;
+/// Create a copy of CreateBusinessProfileData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CreateBusinessProfileDataCopyWith<_CreateBusinessProfileData> get copyWith => __$CreateBusinessProfileDataCopyWithImpl<_CreateBusinessProfileData>(this, _$identity);
 
-  @override
-  int get id;
-  @override
-  String get phone;
-  @override
-  int get level;
-  @override
-  int get businessId;
-  @override
-  bool get businessProfileCompleted;
-  @override
-  bool get businessDetailsCompleted;
-  @override
-  bool get businessKycCompleted;
-  @override
-  List<Shareholders> get shareholders;
-  @override
-  String? get createdAt;
-
-  /// Create a copy of CreateBusinessProfileData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateBusinessProfileDataImplCopyWith<_$CreateBusinessProfileDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$CreateBusinessProfileDataToJson(this, );
 }
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateBusinessProfileData&&(identical(other.id, id) || other.id == id)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.level, level) || other.level == level)&&(identical(other.businessId, businessId) || other.businessId == businessId)&&(identical(other.businessProfileCompleted, businessProfileCompleted) || other.businessProfileCompleted == businessProfileCompleted)&&(identical(other.businessDetailsCompleted, businessDetailsCompleted) || other.businessDetailsCompleted == businessDetailsCompleted)&&(identical(other.businessKycCompleted, businessKycCompleted) || other.businessKycCompleted == businessKycCompleted)&&const DeepCollectionEquality().equals(other._shareholders, _shareholders)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,phone,level,businessId,businessProfileCompleted,businessDetailsCompleted,businessKycCompleted,const DeepCollectionEquality().hash(_shareholders),createdAt);
+
+@override
+String toString() {
+  return 'CreateBusinessProfileData(id: $id, phone: $phone, level: $level, businessId: $businessId, businessProfileCompleted: $businessProfileCompleted, businessDetailsCompleted: $businessDetailsCompleted, businessKycCompleted: $businessKycCompleted, shareholders: $shareholders, createdAt: $createdAt)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CreateBusinessProfileDataCopyWith<$Res> implements $CreateBusinessProfileDataCopyWith<$Res> {
+  factory _$CreateBusinessProfileDataCopyWith(_CreateBusinessProfileData value, $Res Function(_CreateBusinessProfileData) _then) = __$CreateBusinessProfileDataCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, String phone, int level, int businessId, bool businessProfileCompleted, bool businessDetailsCompleted, bool businessKycCompleted, List<Shareholders> shareholders, String? createdAt
+});
+
+
+
+
+}
+/// @nodoc
+class __$CreateBusinessProfileDataCopyWithImpl<$Res>
+    implements _$CreateBusinessProfileDataCopyWith<$Res> {
+  __$CreateBusinessProfileDataCopyWithImpl(this._self, this._then);
+
+  final _CreateBusinessProfileData _self;
+  final $Res Function(_CreateBusinessProfileData) _then;
+
+/// Create a copy of CreateBusinessProfileData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? phone = null,Object? level = null,Object? businessId = null,Object? businessProfileCompleted = null,Object? businessDetailsCompleted = null,Object? businessKycCompleted = null,Object? shareholders = null,Object? createdAt = freezed,}) {
+  return _then(_CreateBusinessProfileData(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as int,businessId: null == businessId ? _self.businessId : businessId // ignore: cast_nullable_to_non_nullable
+as int,businessProfileCompleted: null == businessProfileCompleted ? _self.businessProfileCompleted : businessProfileCompleted // ignore: cast_nullable_to_non_nullable
+as bool,businessDetailsCompleted: null == businessDetailsCompleted ? _self.businessDetailsCompleted : businessDetailsCompleted // ignore: cast_nullable_to_non_nullable
+as bool,businessKycCompleted: null == businessKycCompleted ? _self.businessKycCompleted : businessKycCompleted // ignore: cast_nullable_to_non_nullable
+as bool,shareholders: null == shareholders ? _self._shareholders : shareholders // ignore: cast_nullable_to_non_nullable
+as List<Shareholders>,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+// dart format on

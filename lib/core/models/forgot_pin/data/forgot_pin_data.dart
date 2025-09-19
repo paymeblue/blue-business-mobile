@@ -4,11 +4,9 @@ part 'forgot_pin_data.freezed.dart';
 part 'forgot_pin_data.g.dart';
 
 @freezed
-class ForgotPinData with _$ForgotPinData {
-  const factory ForgotPinData({
-    required String phone,
-  }) = _ForgotPinData;
+abstract class ForgotPinData with _$ForgotPinData {
+  const factory ForgotPinData({required String phone}) = _ForgotPinData;
 
   factory ForgotPinData.fromJson(Map<String, dynamic> json) =>
-      _$ForgotPinDataImpl.fromJson(json);
+      _$ForgotPinDataFromJson(json);
 }

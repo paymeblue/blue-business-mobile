@@ -6,16 +6,15 @@ part of 'recovery_code_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GetRecoveryCodeDataImpl _$$GetRecoveryCodeDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GetRecoveryCodeDataImpl(
+_GetRecoveryCodeData _$GetRecoveryCodeDataFromJson(Map<String, dynamic> json) =>
+    _GetRecoveryCodeData(
       businessId: (json['business_id'] as num).toInt(),
       recoveryCode: json['recovery_code'] as String,
     );
 
-Map<String, dynamic> _$$GetRecoveryCodeDataImplToJson(
-        _$GetRecoveryCodeDataImpl instance) =>
-    <String, dynamic>{
-      'business_id': instance.businessId,
-      'recovery_code': instance.recoveryCode,
-    };
+Map<String, dynamic> _$GetRecoveryCodeDataToJson(
+  _GetRecoveryCodeData instance,
+) => <String, dynamic>{
+  'business_id': instance.businessId,
+  'recovery_code': instance.recoveryCode,
+};

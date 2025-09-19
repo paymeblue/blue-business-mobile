@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,206 +9,275 @@ part of 'recover_phone_request.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-SendRecoverPinRequest _$SendRecoverPinRequestFromJson(
-    Map<String, dynamic> json) {
-  return _SendRecoverPinRequest.fromJson(json);
-}
 
 /// @nodoc
 mixin _$SendRecoverPinRequest {
-  String? get recoveryPhone => throw _privateConstructorUsedError;
-  String get validationMode => throw _privateConstructorUsedError;
-  String? get securityAnswer => throw _privateConstructorUsedError;
+
+ String? get recoveryPhone; String get validationMode; String? get securityAnswer;
+/// Create a copy of SendRecoverPinRequest
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SendRecoverPinRequestCopyWith<SendRecoverPinRequest> get copyWith => _$SendRecoverPinRequestCopyWithImpl<SendRecoverPinRequest>(this as SendRecoverPinRequest, _$identity);
 
   /// Serializes this SendRecoverPinRequest to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of SendRecoverPinRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SendRecoverPinRequestCopyWith<SendRecoverPinRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SendRecoverPinRequest&&(identical(other.recoveryPhone, recoveryPhone) || other.recoveryPhone == recoveryPhone)&&(identical(other.validationMode, validationMode) || other.validationMode == validationMode)&&(identical(other.securityAnswer, securityAnswer) || other.securityAnswer == securityAnswer));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,recoveryPhone,validationMode,securityAnswer);
+
+@override
+String toString() {
+  return 'SendRecoverPinRequest(recoveryPhone: $recoveryPhone, validationMode: $validationMode, securityAnswer: $securityAnswer)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SendRecoverPinRequestCopyWith<$Res> {
-  factory $SendRecoverPinRequestCopyWith(SendRecoverPinRequest value,
-          $Res Function(SendRecoverPinRequest) then) =
-      _$SendRecoverPinRequestCopyWithImpl<$Res, SendRecoverPinRequest>;
-  @useResult
-  $Res call(
-      {String? recoveryPhone, String validationMode, String? securityAnswer});
-}
+abstract mixin class $SendRecoverPinRequestCopyWith<$Res>  {
+  factory $SendRecoverPinRequestCopyWith(SendRecoverPinRequest value, $Res Function(SendRecoverPinRequest) _then) = _$SendRecoverPinRequestCopyWithImpl;
+@useResult
+$Res call({
+ String? recoveryPhone, String validationMode, String? securityAnswer
+});
 
+
+
+
+}
 /// @nodoc
-class _$SendRecoverPinRequestCopyWithImpl<$Res,
-        $Val extends SendRecoverPinRequest>
+class _$SendRecoverPinRequestCopyWithImpl<$Res>
     implements $SendRecoverPinRequestCopyWith<$Res> {
-  _$SendRecoverPinRequestCopyWithImpl(this._value, this._then);
+  _$SendRecoverPinRequestCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SendRecoverPinRequest _self;
+  final $Res Function(SendRecoverPinRequest) _then;
 
-  /// Create a copy of SendRecoverPinRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? recoveryPhone = freezed,
-    Object? validationMode = null,
-    Object? securityAnswer = freezed,
-  }) {
-    return _then(_value.copyWith(
-      recoveryPhone: freezed == recoveryPhone
-          ? _value.recoveryPhone
-          : recoveryPhone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      validationMode: null == validationMode
-          ? _value.validationMode
-          : validationMode // ignore: cast_nullable_to_non_nullable
-              as String,
-      securityAnswer: freezed == securityAnswer
-          ? _value.securityAnswer
-          : securityAnswer // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of SendRecoverPinRequest
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? recoveryPhone = freezed,Object? validationMode = null,Object? securityAnswer = freezed,}) {
+  return _then(_self.copyWith(
+recoveryPhone: freezed == recoveryPhone ? _self.recoveryPhone : recoveryPhone // ignore: cast_nullable_to_non_nullable
+as String?,validationMode: null == validationMode ? _self.validationMode : validationMode // ignore: cast_nullable_to_non_nullable
+as String,securityAnswer: freezed == securityAnswer ? _self.securityAnswer : securityAnswer // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$SendRecoverPinRequestImplCopyWith<$Res>
-    implements $SendRecoverPinRequestCopyWith<$Res> {
-  factory _$$SendRecoverPinRequestImplCopyWith(
-          _$SendRecoverPinRequestImpl value,
-          $Res Function(_$SendRecoverPinRequestImpl) then) =
-      __$$SendRecoverPinRequestImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String? recoveryPhone, String validationMode, String? securityAnswer});
 }
 
-/// @nodoc
-class __$$SendRecoverPinRequestImplCopyWithImpl<$Res>
-    extends _$SendRecoverPinRequestCopyWithImpl<$Res,
-        _$SendRecoverPinRequestImpl>
-    implements _$$SendRecoverPinRequestImplCopyWith<$Res> {
-  __$$SendRecoverPinRequestImplCopyWithImpl(_$SendRecoverPinRequestImpl _value,
-      $Res Function(_$SendRecoverPinRequestImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of SendRecoverPinRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? recoveryPhone = freezed,
-    Object? validationMode = null,
-    Object? securityAnswer = freezed,
-  }) {
-    return _then(_$SendRecoverPinRequestImpl(
-      recoveryPhone: freezed == recoveryPhone
-          ? _value.recoveryPhone
-          : recoveryPhone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      validationMode: null == validationMode
-          ? _value.validationMode
-          : validationMode // ignore: cast_nullable_to_non_nullable
-              as String,
-      securityAnswer: freezed == securityAnswer
-          ? _value.securityAnswer
-          : securityAnswer // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [SendRecoverPinRequest].
+extension SendRecoverPinRequestPatterns on SendRecoverPinRequest {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SendRecoverPinRequest value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SendRecoverPinRequest() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SendRecoverPinRequest value)  $default,){
+final _that = this;
+switch (_that) {
+case _SendRecoverPinRequest():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SendRecoverPinRequest value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SendRecoverPinRequest() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? recoveryPhone,  String validationMode,  String? securityAnswer)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SendRecoverPinRequest() when $default != null:
+return $default(_that.recoveryPhone,_that.validationMode,_that.securityAnswer);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? recoveryPhone,  String validationMode,  String? securityAnswer)  $default,) {final _that = this;
+switch (_that) {
+case _SendRecoverPinRequest():
+return $default(_that.recoveryPhone,_that.validationMode,_that.securityAnswer);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? recoveryPhone,  String validationMode,  String? securityAnswer)?  $default,) {final _that = this;
+switch (_that) {
+case _SendRecoverPinRequest() when $default != null:
+return $default(_that.recoveryPhone,_that.validationMode,_that.securityAnswer);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SendRecoverPinRequestImpl implements _SendRecoverPinRequest {
-  const _$SendRecoverPinRequestImpl(
-      {this.recoveryPhone,
-      this.validationMode = "recovery-phone",
-      this.securityAnswer});
 
-  factory _$SendRecoverPinRequestImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SendRecoverPinRequestImplFromJson(json);
+class _SendRecoverPinRequest implements SendRecoverPinRequest {
+  const _SendRecoverPinRequest({this.recoveryPhone, this.validationMode = "recovery-phone", this.securityAnswer});
+  factory _SendRecoverPinRequest.fromJson(Map<String, dynamic> json) => _$SendRecoverPinRequestFromJson(json);
 
-  @override
-  final String? recoveryPhone;
-  @override
-  @JsonKey()
-  final String validationMode;
-  @override
-  final String? securityAnswer;
+@override final  String? recoveryPhone;
+@override@JsonKey() final  String validationMode;
+@override final  String? securityAnswer;
 
-  @override
-  String toString() {
-    return 'SendRecoverPinRequest(recoveryPhone: $recoveryPhone, validationMode: $validationMode, securityAnswer: $securityAnswer)';
-  }
+/// Create a copy of SendRecoverPinRequest
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SendRecoverPinRequestCopyWith<_SendRecoverPinRequest> get copyWith => __$SendRecoverPinRequestCopyWithImpl<_SendRecoverPinRequest>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SendRecoverPinRequestImpl &&
-            (identical(other.recoveryPhone, recoveryPhone) ||
-                other.recoveryPhone == recoveryPhone) &&
-            (identical(other.validationMode, validationMode) ||
-                other.validationMode == validationMode) &&
-            (identical(other.securityAnswer, securityAnswer) ||
-                other.securityAnswer == securityAnswer));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, recoveryPhone, validationMode, securityAnswer);
-
-  /// Create a copy of SendRecoverPinRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SendRecoverPinRequestImplCopyWith<_$SendRecoverPinRequestImpl>
-      get copyWith => __$$SendRecoverPinRequestImplCopyWithImpl<
-          _$SendRecoverPinRequestImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SendRecoverPinRequestImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$SendRecoverPinRequestToJson(this, );
 }
 
-abstract class _SendRecoverPinRequest implements SendRecoverPinRequest {
-  const factory _SendRecoverPinRequest(
-      {final String? recoveryPhone,
-      final String validationMode,
-      final String? securityAnswer}) = _$SendRecoverPinRequestImpl;
-
-  factory _SendRecoverPinRequest.fromJson(Map<String, dynamic> json) =
-      _$SendRecoverPinRequestImpl.fromJson;
-
-  @override
-  String? get recoveryPhone;
-  @override
-  String get validationMode;
-  @override
-  String? get securityAnswer;
-
-  /// Create a copy of SendRecoverPinRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SendRecoverPinRequestImplCopyWith<_$SendRecoverPinRequestImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SendRecoverPinRequest&&(identical(other.recoveryPhone, recoveryPhone) || other.recoveryPhone == recoveryPhone)&&(identical(other.validationMode, validationMode) || other.validationMode == validationMode)&&(identical(other.securityAnswer, securityAnswer) || other.securityAnswer == securityAnswer));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,recoveryPhone,validationMode,securityAnswer);
+
+@override
+String toString() {
+  return 'SendRecoverPinRequest(recoveryPhone: $recoveryPhone, validationMode: $validationMode, securityAnswer: $securityAnswer)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SendRecoverPinRequestCopyWith<$Res> implements $SendRecoverPinRequestCopyWith<$Res> {
+  factory _$SendRecoverPinRequestCopyWith(_SendRecoverPinRequest value, $Res Function(_SendRecoverPinRequest) _then) = __$SendRecoverPinRequestCopyWithImpl;
+@override @useResult
+$Res call({
+ String? recoveryPhone, String validationMode, String? securityAnswer
+});
+
+
+
+
+}
+/// @nodoc
+class __$SendRecoverPinRequestCopyWithImpl<$Res>
+    implements _$SendRecoverPinRequestCopyWith<$Res> {
+  __$SendRecoverPinRequestCopyWithImpl(this._self, this._then);
+
+  final _SendRecoverPinRequest _self;
+  final $Res Function(_SendRecoverPinRequest) _then;
+
+/// Create a copy of SendRecoverPinRequest
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? recoveryPhone = freezed,Object? validationMode = null,Object? securityAnswer = freezed,}) {
+  return _then(_SendRecoverPinRequest(
+recoveryPhone: freezed == recoveryPhone ? _self.recoveryPhone : recoveryPhone // ignore: cast_nullable_to_non_nullable
+as String?,validationMode: null == validationMode ? _self.validationMode : validationMode // ignore: cast_nullable_to_non_nullable
+as String,securityAnswer: freezed == securityAnswer ? _self.securityAnswer : securityAnswer // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+// dart format on

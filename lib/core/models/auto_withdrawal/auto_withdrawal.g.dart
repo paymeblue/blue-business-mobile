@@ -6,28 +6,25 @@ part of 'auto_withdrawal.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AutoWithdrawalRequestImpl _$$AutoWithdrawalRequestImplFromJson(
-        Map<String, dynamic> json) =>
-    _$AutoWithdrawalRequestImpl(
-      autoWithdrawalEnabled: json['auto_withdrawal_enabled'] as bool,
-    );
+_AutoWithdrawalRequest _$AutoWithdrawalRequestFromJson(
+  Map<String, dynamic> json,
+) => _AutoWithdrawalRequest(
+  autoWithdrawalEnabled: json['auto_withdrawal_enabled'] as bool,
+);
 
-Map<String, dynamic> _$$AutoWithdrawalRequestImplToJson(
-        _$AutoWithdrawalRequestImpl instance) =>
-    <String, dynamic>{
-      'auto_withdrawal_enabled': instance.autoWithdrawalEnabled,
-    };
+Map<String, dynamic> _$AutoWithdrawalRequestToJson(
+  _AutoWithdrawalRequest instance,
+) => <String, dynamic>{
+  'auto_withdrawal_enabled': instance.autoWithdrawalEnabled,
+};
 
-_$AutoWithdrawalResponseImpl _$$AutoWithdrawalResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$AutoWithdrawalResponseImpl(
-      status: json['status'] as String? ?? 'fail',
-      message: json['message'] as String?,
-    );
+_AutoWithdrawalResponse _$AutoWithdrawalResponseFromJson(
+  Map<String, dynamic> json,
+) => _AutoWithdrawalResponse(
+  status: json['status'] as String? ?? 'fail',
+  message: json['message'] as String?,
+);
 
-Map<String, dynamic> _$$AutoWithdrawalResponseImplToJson(
-        _$AutoWithdrawalResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-    };
+Map<String, dynamic> _$AutoWithdrawalResponseToJson(
+  _AutoWithdrawalResponse instance,
+) => <String, dynamic>{'status': instance.status, 'message': ?instance.message};

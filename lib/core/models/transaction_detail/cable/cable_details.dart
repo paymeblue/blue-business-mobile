@@ -4,7 +4,7 @@ part 'cable_details.freezed.dart';
 part 'cable_details.g.dart';
 
 @freezed
-class CableDetails with _$CableDetails {
+abstract class CableDetails with _$CableDetails {
   const factory CableDetails({
     int? id,
     required String amount,
@@ -22,5 +22,5 @@ class CableDetails with _$CableDetails {
   }) = _CableDetails;
 
   factory CableDetails.fromJson(Map<String, dynamic> json) =>
-      _$CableDetailsImpl.fromJson(json);
+      _$CableDetailsFromJson(json);
 }

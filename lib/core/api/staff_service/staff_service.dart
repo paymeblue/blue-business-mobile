@@ -8,7 +8,6 @@ import 'package:blue_business/core/models/staff_roles/get/response/staff_role_re
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'staff_service.g.dart';
@@ -16,9 +15,9 @@ part 'staff_service.g.dart';
 @RestApi()
 abstract class StaffService {
   factory StaffService() => _StaffService(
-        DioConfig.dio(locator<AppStateValues>().accessToken),
-        baseUrl: AppConstants.baseUrl,
-      );
+    DioConfig.dio(locator<AppStateValues>().accessToken),
+    baseUrl: AppConstants.baseUrl,
+  );
 
   @GET("/staffs")
   Future<GetStaffResponse> getAllStaff({
@@ -46,9 +45,7 @@ abstract class StaffService {
   });
 
   @DELETE("/staff/{id}")
-  Future<CreateStaffResponse> deleteStaff({
-    @Path("id") required int id,
-  });
+  Future<CreateStaffResponse> deleteStaff({@Path("id") required int id});
 
   @GET("/roles")
   Future<GetStaffRoleResponse> getStaffRoles();

@@ -6,15 +6,12 @@ part of 'verified_receiver_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VerifiedReceiverDataImpl _$$VerifiedReceiverDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VerifiedReceiverDataImpl(
-      receiver:
-          VerifiedReceiver.fromJson(json['receiver'] as Map<String, dynamic>),
-    );
+_VerifiedReceiverData _$VerifiedReceiverDataFromJson(
+  Map<String, dynamic> json,
+) => _VerifiedReceiverData(
+  receiver: VerifiedReceiver.fromJson(json['receiver'] as Map<String, dynamic>),
+);
 
-Map<String, dynamic> _$$VerifiedReceiverDataImplToJson(
-        _$VerifiedReceiverDataImpl instance) =>
-    <String, dynamic>{
-      'receiver': instance.receiver,
-    };
+Map<String, dynamic> _$VerifiedReceiverDataToJson(
+  _VerifiedReceiverData instance,
+) => <String, dynamic>{'receiver': instance.receiver};

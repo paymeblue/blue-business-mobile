@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,281 +9,287 @@ part of 'staff.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Staff _$StaffFromJson(Map<String, dynamic> json) {
-  return _Staff.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Staff {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String? get branchName => throw _privateConstructorUsedError;
-  int? get branchId => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String? get displayPicture => throw _privateConstructorUsedError;
-  String get role => throw _privateConstructorUsedError;
+
+ int get id; String get name; String? get branchName; int? get branchId; String get phone; String? get displayPicture; String get role;
+/// Create a copy of Staff
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$StaffCopyWith<Staff> get copyWith => _$StaffCopyWithImpl<Staff>(this as Staff, _$identity);
 
   /// Serializes this Staff to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of Staff
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $StaffCopyWith<Staff> get copyWith => throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Staff&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.branchName, branchName) || other.branchName == branchName)&&(identical(other.branchId, branchId) || other.branchId == branchId)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.displayPicture, displayPicture) || other.displayPicture == displayPicture)&&(identical(other.role, role) || other.role == role));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name,branchName,branchId,phone,displayPicture,role);
+
+@override
+String toString() {
+  return 'Staff(id: $id, name: $name, branchName: $branchName, branchId: $branchId, phone: $phone, displayPicture: $displayPicture, role: $role)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $StaffCopyWith<$Res> {
-  factory $StaffCopyWith(Staff value, $Res Function(Staff) then) =
-      _$StaffCopyWithImpl<$Res, Staff>;
-  @useResult
-  $Res call(
-      {int id,
-      String name,
-      String? branchName,
-      int? branchId,
-      String phone,
-      String? displayPicture,
-      String role});
-}
+abstract mixin class $StaffCopyWith<$Res>  {
+  factory $StaffCopyWith(Staff value, $Res Function(Staff) _then) = _$StaffCopyWithImpl;
+@useResult
+$Res call({
+ int id, String name, String? branchName, int? branchId, String phone, String? displayPicture, String role
+});
 
+
+
+
+}
 /// @nodoc
-class _$StaffCopyWithImpl<$Res, $Val extends Staff>
+class _$StaffCopyWithImpl<$Res>
     implements $StaffCopyWith<$Res> {
-  _$StaffCopyWithImpl(this._value, this._then);
+  _$StaffCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Staff _self;
+  final $Res Function(Staff) _then;
 
-  /// Create a copy of Staff
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? branchName = freezed,
-    Object? branchId = freezed,
-    Object? phone = null,
-    Object? displayPicture = freezed,
-    Object? role = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      branchName: freezed == branchName
-          ? _value.branchName
-          : branchName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      branchId: freezed == branchId
-          ? _value.branchId
-          : branchId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      displayPicture: freezed == displayPicture
-          ? _value.displayPicture
-          : displayPicture // ignore: cast_nullable_to_non_nullable
-              as String?,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of Staff
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? branchName = freezed,Object? branchId = freezed,Object? phone = null,Object? displayPicture = freezed,Object? role = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,branchName: freezed == branchName ? _self.branchName : branchName // ignore: cast_nullable_to_non_nullable
+as String?,branchId: freezed == branchId ? _self.branchId : branchId // ignore: cast_nullable_to_non_nullable
+as int?,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,displayPicture: freezed == displayPicture ? _self.displayPicture : displayPicture // ignore: cast_nullable_to_non_nullable
+as String?,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$StaffImplCopyWith<$Res> implements $StaffCopyWith<$Res> {
-  factory _$$StaffImplCopyWith(
-          _$StaffImpl value, $Res Function(_$StaffImpl) then) =
-      __$$StaffImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int id,
-      String name,
-      String? branchName,
-      int? branchId,
-      String phone,
-      String? displayPicture,
-      String role});
 }
 
-/// @nodoc
-class __$$StaffImplCopyWithImpl<$Res>
-    extends _$StaffCopyWithImpl<$Res, _$StaffImpl>
-    implements _$$StaffImplCopyWith<$Res> {
-  __$$StaffImplCopyWithImpl(
-      _$StaffImpl _value, $Res Function(_$StaffImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of Staff
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? branchName = freezed,
-    Object? branchId = freezed,
-    Object? phone = null,
-    Object? displayPicture = freezed,
-    Object? role = null,
-  }) {
-    return _then(_$StaffImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      branchName: freezed == branchName
-          ? _value.branchName
-          : branchName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      branchId: freezed == branchId
-          ? _value.branchId
-          : branchId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      displayPicture: freezed == displayPicture
-          ? _value.displayPicture
-          : displayPicture // ignore: cast_nullable_to_non_nullable
-              as String?,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [Staff].
+extension StaffPatterns on Staff {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Staff value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Staff() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Staff value)  $default,){
+final _that = this;
+switch (_that) {
+case _Staff():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Staff value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Staff() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  String? branchName,  int? branchId,  String phone,  String? displayPicture,  String role)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Staff() when $default != null:
+return $default(_that.id,_that.name,_that.branchName,_that.branchId,_that.phone,_that.displayPicture,_that.role);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  String? branchName,  int? branchId,  String phone,  String? displayPicture,  String role)  $default,) {final _that = this;
+switch (_that) {
+case _Staff():
+return $default(_that.id,_that.name,_that.branchName,_that.branchId,_that.phone,_that.displayPicture,_that.role);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  String? branchName,  int? branchId,  String phone,  String? displayPicture,  String role)?  $default,) {final _that = this;
+switch (_that) {
+case _Staff() when $default != null:
+return $default(_that.id,_that.name,_that.branchName,_that.branchId,_that.phone,_that.displayPicture,_that.role);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$StaffImpl implements _Staff {
-  const _$StaffImpl(
-      {required this.id,
-      required this.name,
-      this.branchName,
-      this.branchId,
-      required this.phone,
-      this.displayPicture,
-      this.role = 'cashier'});
 
-  factory _$StaffImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StaffImplFromJson(json);
+class _Staff implements Staff {
+  const _Staff({required this.id, required this.name, this.branchName, this.branchId, required this.phone, this.displayPicture, this.role = 'cashier'});
+  factory _Staff.fromJson(Map<String, dynamic> json) => _$StaffFromJson(json);
 
-  @override
-  final int id;
-  @override
-  final String name;
-  @override
-  final String? branchName;
-  @override
-  final int? branchId;
-  @override
-  final String phone;
-  @override
-  final String? displayPicture;
-  @override
-  @JsonKey()
-  final String role;
+@override final  int id;
+@override final  String name;
+@override final  String? branchName;
+@override final  int? branchId;
+@override final  String phone;
+@override final  String? displayPicture;
+@override@JsonKey() final  String role;
 
-  @override
-  String toString() {
-    return 'Staff(id: $id, name: $name, branchName: $branchName, branchId: $branchId, phone: $phone, displayPicture: $displayPicture, role: $role)';
-  }
+/// Create a copy of Staff
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StaffCopyWith<_Staff> get copyWith => __$StaffCopyWithImpl<_Staff>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StaffImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.branchName, branchName) ||
-                other.branchName == branchName) &&
-            (identical(other.branchId, branchId) ||
-                other.branchId == branchId) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.displayPicture, displayPicture) ||
-                other.displayPicture == displayPicture) &&
-            (identical(other.role, role) || other.role == role));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, branchName, branchId, phone, displayPicture, role);
-
-  /// Create a copy of Staff
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$StaffImplCopyWith<_$StaffImpl> get copyWith =>
-      __$$StaffImplCopyWithImpl<_$StaffImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$StaffImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$StaffToJson(this, );
 }
 
-abstract class _Staff implements Staff {
-  const factory _Staff(
-      {required final int id,
-      required final String name,
-      final String? branchName,
-      final int? branchId,
-      required final String phone,
-      final String? displayPicture,
-      final String role}) = _$StaffImpl;
-
-  factory _Staff.fromJson(Map<String, dynamic> json) = _$StaffImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get name;
-  @override
-  String? get branchName;
-  @override
-  int? get branchId;
-  @override
-  String get phone;
-  @override
-  String? get displayPicture;
-  @override
-  String get role;
-
-  /// Create a copy of Staff
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StaffImplCopyWith<_$StaffImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Staff&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.branchName, branchName) || other.branchName == branchName)&&(identical(other.branchId, branchId) || other.branchId == branchId)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.displayPicture, displayPicture) || other.displayPicture == displayPicture)&&(identical(other.role, role) || other.role == role));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name,branchName,branchId,phone,displayPicture,role);
+
+@override
+String toString() {
+  return 'Staff(id: $id, name: $name, branchName: $branchName, branchId: $branchId, phone: $phone, displayPicture: $displayPicture, role: $role)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$StaffCopyWith<$Res> implements $StaffCopyWith<$Res> {
+  factory _$StaffCopyWith(_Staff value, $Res Function(_Staff) _then) = __$StaffCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, String name, String? branchName, int? branchId, String phone, String? displayPicture, String role
+});
+
+
+
+
+}
+/// @nodoc
+class __$StaffCopyWithImpl<$Res>
+    implements _$StaffCopyWith<$Res> {
+  __$StaffCopyWithImpl(this._self, this._then);
+
+  final _Staff _self;
+  final $Res Function(_Staff) _then;
+
+/// Create a copy of Staff
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? branchName = freezed,Object? branchId = freezed,Object? phone = null,Object? displayPicture = freezed,Object? role = null,}) {
+  return _then(_Staff(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,branchName: freezed == branchName ? _self.branchName : branchName // ignore: cast_nullable_to_non_nullable
+as String?,branchId: freezed == branchId ? _self.branchId : branchId // ignore: cast_nullable_to_non_nullable
+as int?,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,displayPicture: freezed == displayPicture ? _self.displayPicture : displayPicture // ignore: cast_nullable_to_non_nullable
+as String?,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

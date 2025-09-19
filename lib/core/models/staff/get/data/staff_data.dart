@@ -5,7 +5,7 @@ part 'staff_data.freezed.dart';
 part 'staff_data.g.dart';
 
 @freezed
-class GetStaffData with _$GetStaffData {
+abstract class GetStaffData with _$GetStaffData {
   const factory GetStaffData({
     required int total,
     required int limit,
@@ -16,5 +16,5 @@ class GetStaffData with _$GetStaffData {
   }) = _GetStaffData;
 
   factory GetStaffData.fromJson(Map<String, dynamic> json) =>
-      _$GetStaffDataImpl.fromJson(json);
+      _$GetStaffDataFromJson(json);
 }

@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'section_option.freezed.dart';
 
 @freezed
-class SectionOption with _$SectionOption {
+abstract class SectionOption with _$SectionOption {
   const factory SectionOption({
     required Widget icon,
     required String title,

@@ -5,7 +5,7 @@ part 'todo_response.freezed.dart';
 part 'todo_response.g.dart';
 
 @freezed
-class TodoResponse with _$TodoResponse {
+abstract class TodoResponse with _$TodoResponse {
   const factory TodoResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class TodoResponse with _$TodoResponse {
   }) = _TodoResponse;
 
   factory TodoResponse.fromJson(Map<String, dynamic> json) =>
-      _$TodoResponseImpl.fromJson(json);
+      _$TodoResponseFromJson(json);
 }

@@ -4,12 +4,12 @@ part 'yearly_line_chart_data.freezed.dart';
 part 'yearly_line_chart_data.g.dart';
 
 @freezed
-class YearlyLineChartData with _$YearlyLineChartData {
+abstract class YearlyLineChartData with _$YearlyLineChartData {
   const factory YearlyLineChartData({
     required String label,
     required double amount,
   }) = _YearlyLineChartData;
 
   factory YearlyLineChartData.fromJson(Map<String, dynamic> json) =>
-      _$YearlyLineChartDataImpl.fromJson(json);
+      _$YearlyLineChartDataFromJson(json);
 }

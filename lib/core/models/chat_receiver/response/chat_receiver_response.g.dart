@@ -6,20 +6,20 @@ part of 'chat_receiver_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatReceiverResponseImpl _$$ChatReceiverResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatReceiverResponseImpl(
-      status: json['status'] as String? ?? "fail",
-      message: json['message'] as String?,
-      data: json['data'] == null
-          ? null
-          : ChatResponseData.fromJson(json['data'] as Map<String, dynamic>),
-    );
+_ChatReceiverResponse _$ChatReceiverResponseFromJson(
+  Map<String, dynamic> json,
+) => _ChatReceiverResponse(
+  status: json['status'] as String? ?? "fail",
+  message: json['message'] as String?,
+  data: json['data'] == null
+      ? null
+      : ChatResponseData.fromJson(json['data'] as Map<String, dynamic>),
+);
 
-Map<String, dynamic> _$$ChatReceiverResponseImplToJson(
-        _$ChatReceiverResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
-    };
+Map<String, dynamic> _$ChatReceiverResponseToJson(
+  _ChatReceiverResponse instance,
+) => <String, dynamic>{
+  'status': instance.status,
+  'message': ?instance.message,
+  'data': ?instance.data,
+};

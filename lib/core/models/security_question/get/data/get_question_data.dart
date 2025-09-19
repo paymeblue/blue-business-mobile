@@ -4,7 +4,7 @@ part 'get_question_data.freezed.dart';
 part 'get_question_data.g.dart';
 
 @freezed
-class GetQuestionData with _$GetQuestionData {
+abstract class GetQuestionData with _$GetQuestionData {
   const factory GetQuestionData({
     required int id,
     required int userId,
@@ -13,5 +13,5 @@ class GetQuestionData with _$GetQuestionData {
   }) = _GetQuestionData;
 
   factory GetQuestionData.fromJson(Map<String, dynamic> json) =>
-      _$GetQuestionDataImpl.fromJson(json);
+      _$GetQuestionDataFromJson(json);
 }

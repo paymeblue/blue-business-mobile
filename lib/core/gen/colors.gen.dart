@@ -1,3 +1,4 @@
+// dart format width=80
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,7 +6,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
@@ -36,21 +37,18 @@ class AppColors {
   ///   700: #FF3432C1
   ///   800: #FF2C2ABA
   ///   900: #FF1E1CAE
-  static const MaterialColor blue = MaterialColor(
-    0xFF4341CD,
-    <int, Color>{
-      50: Color(0xFFE8E8F9),
-      100: Color(0xFFC7C6F0),
-      200: Color(0xFFA1A0E6),
-      300: Color(0xFF7B7ADC),
-      400: Color(0xFF5F5ED5),
-      500: Color(0xFF4341CD),
-      600: Color(0xFF3D3BC8),
-      700: Color(0xFF3432C1),
-      800: Color(0xFF2C2ABA),
-      900: Color(0xFF1E1CAE),
-    },
-  );
+  static const MaterialColor blue = MaterialColor(0xFF4341CD, <int, Color>{
+    50: Color(0xFFE8E8F9),
+    100: Color(0xFFC7C6F0),
+    200: Color(0xFFA1A0E6),
+    300: Color(0xFF7B7ADC),
+    400: Color(0xFF5F5ED5),
+    500: Color(0xFF4341CD),
+    600: Color(0xFF3D3BC8),
+    700: Color(0xFF3432C1),
+    800: Color(0xFF2C2ABA),
+    900: Color(0xFF1E1CAE),
+  });
 
   /// Color: #32374E
   static const Color bodyTextColor = Color(0xFF32374E);
@@ -78,21 +76,18 @@ class AppColors {
   ///   700: #FF028A42
   ///   800: #FF028039
   ///   900: #FF016E29
-  static const MaterialColor green = MaterialColor(
-    0xFF039C53,
-    <int, Color>{
-      50: Color(0xFFE1F3EA),
-      100: Color(0xFFB3E1CB),
-      200: Color(0xFF81CEA9),
-      300: Color(0xFF4FBA87),
-      400: Color(0xFF29AB6D),
-      500: Color(0xFF039C53),
-      600: Color(0xFF03944C),
-      700: Color(0xFF028A42),
-      800: Color(0xFF028039),
-      900: Color(0xFF016E29),
-    },
-  );
+  static const MaterialColor green = MaterialColor(0xFF039C53, <int, Color>{
+    50: Color(0xFFE1F3EA),
+    100: Color(0xFFB3E1CB),
+    200: Color(0xFF81CEA9),
+    300: Color(0xFF4FBA87),
+    400: Color(0xFF29AB6D),
+    500: Color(0xFF039C53),
+    600: Color(0xFF03944C),
+    700: Color(0xFF028A42),
+    800: Color(0xFF028039),
+    900: Color(0xFF016E29),
+  });
 
   /// Color: #F7F7FA
   static const Color grey = Color(0xFFF7F7FA);
@@ -156,21 +151,18 @@ class AppColors {
   ///   700: #FF1A1F39
   ///   800: #FF151931
   ///   900: #FF0C0F21
-  static const MaterialColor primary = MaterialColor(
-    0xFF232949,
-    <int, Color>{
-      50: Color(0xFFE5E5E9),
-      100: Color(0xFFBDBFC8),
-      200: Color(0xFF9194A4),
-      300: Color(0xFF656980),
-      400: Color(0xFF444964),
-      500: Color(0xFF232949),
-      600: Color(0xFF1F2442),
-      700: Color(0xFF1A1F39),
-      800: Color(0xFF151931),
-      900: Color(0xFF0C0F21),
-    },
-  );
+  static const MaterialColor primary = MaterialColor(0xFF232949, <int, Color>{
+    50: Color(0xFFE5E5E9),
+    100: Color(0xFFBDBFC8),
+    200: Color(0xFF9194A4),
+    300: Color(0xFF656980),
+    400: Color(0xFF444964),
+    500: Color(0xFF232949),
+    600: Color(0xFF1F2442),
+    700: Color(0xFF1A1F39),
+    800: Color(0xFF151931),
+    900: Color(0xFF0C0F21),
+  });
 
   /// Color: #EDFFFD
   static const Color proBg = Color(0xFFEDFFFD);
@@ -222,21 +214,19 @@ class AppColors {
   ///   700: #FF068C67
   ///   800: #FF04825D
   ///   900: #FF02704A
-  static const MaterialColor pumpPriceprimary = MaterialColor(
-    0xFF089E7A,
-    <int, Color>{
-      50: Color(0xFFE1F3EF),
-      100: Color(0xFFB5E2D7),
-      200: Color(0xFF84CFBD),
-      300: Color(0xFF52BBA2),
-      400: Color(0xFF2DAD8E),
-      500: Color(0xFF089E7A),
-      600: Color(0xFF079672),
-      700: Color(0xFF068C67),
-      800: Color(0xFF04825D),
-      900: Color(0xFF02704A),
-    },
-  );
+  static const MaterialColor pumpPriceprimary =
+      MaterialColor(0xFF089E7A, <int, Color>{
+        50: Color(0xFFE1F3EF),
+        100: Color(0xFFB5E2D7),
+        200: Color(0xFF84CFBD),
+        300: Color(0xFF52BBA2),
+        400: Color(0xFF2DAD8E),
+        500: Color(0xFF089E7A),
+        600: Color(0xFF079672),
+        700: Color(0xFF068C67),
+        800: Color(0xFF04825D),
+        900: Color(0xFF02704A),
+      });
 
   /// Color: #E02424
   static const Color pumpPricered = Color(0xFFE02424);
@@ -270,21 +260,18 @@ class AppColors {
   ///   700: #FF1A1F39
   ///   800: #FF151931
   ///   900: #FF0C0F21
-  static const MaterialColor textColor = MaterialColor(
-    0xFF232949,
-    <int, Color>{
-      50: Color(0xFFE5E5E9),
-      100: Color(0xFFBDBFC8),
-      200: Color(0xFF9194A4),
-      300: Color(0xFF656980),
-      400: Color(0xFF444964),
-      500: Color(0xFF232949),
-      600: Color(0xFF1F2442),
-      700: Color(0xFF1A1F39),
-      800: Color(0xFF151931),
-      900: Color(0xFF0C0F21),
-    },
-  );
+  static const MaterialColor textColor = MaterialColor(0xFF232949, <int, Color>{
+    50: Color(0xFFE5E5E9),
+    100: Color(0xFFBDBFC8),
+    200: Color(0xFF9194A4),
+    300: Color(0xFF656980),
+    400: Color(0xFF444964),
+    500: Color(0xFF232949),
+    600: Color(0xFF1F2442),
+    700: Color(0xFF1A1F39),
+    800: Color(0xFF151931),
+    900: Color(0xFF0C0F21),
+  });
 
   /// Color: #FF9601
   static const Color warning = Color(0xFFFF9601);
@@ -300,19 +287,16 @@ class AppColors {
   ///   700: #FFFFFFFF
   ///   800: #FFFFFFFF
   ///   900: #FFFFFFFF
-  static const MaterialColor white = MaterialColor(
-    0xFFFFFFFF,
-    <int, Color>{
-      50: Color(0xFFFFFFFF),
-      100: Color(0xFFFFFFFF),
-      200: Color(0xFFFFFFFF),
-      300: Color(0xFFFFFFFF),
-      400: Color(0xFFFFFFFF),
-      500: Color(0xFFFFFFFF),
-      600: Color(0xFFFFFFFF),
-      700: Color(0xFFFFFFFF),
-      800: Color(0xFFFFFFFF),
-      900: Color(0xFFFFFFFF),
-    },
-  );
+  static const MaterialColor white = MaterialColor(0xFFFFFFFF, <int, Color>{
+    50: Color(0xFFFFFFFF),
+    100: Color(0xFFFFFFFF),
+    200: Color(0xFFFFFFFF),
+    300: Color(0xFFFFFFFF),
+    400: Color(0xFFFFFFFF),
+    500: Color(0xFFFFFFFF),
+    600: Color(0xFFFFFFFF),
+    700: Color(0xFFFFFFFF),
+    800: Color(0xFFFFFFFF),
+    900: Color(0xFFFFFFFF),
+  });
 }

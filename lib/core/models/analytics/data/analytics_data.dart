@@ -5,12 +5,12 @@ part 'analytics_data.freezed.dart';
 part 'analytics_data.g.dart';
 
 @freezed
-class AnalyticsData with _$AnalyticsData {
+abstract class AnalyticsData with _$AnalyticsData {
   const factory AnalyticsData({
     required AnalyticsItem desktop,
     required AnalyticsItem mobile,
   }) = _AnalyticsData;
 
   factory AnalyticsData.fromJson(Map<String, dynamic> json) =>
-      _$AnalyticsDataImpl.fromJson(json);
+      _$AnalyticsDataFromJson(json);
 }

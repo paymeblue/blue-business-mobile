@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,333 +9,293 @@ part of 'receipt_record.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-PaymentLinkReceiptRecord _$PaymentLinkReceiptRecordFromJson(
-    Map<String, dynamic> json) {
-  return _PaymentLinkReceiptRecord.fromJson(json);
-}
 
 /// @nodoc
 mixin _$PaymentLinkReceiptRecord {
-  int get id => throw _privateConstructorUsedError;
-  String get transactionId => throw _privateConstructorUsedError;
-  String get amount => throw _privateConstructorUsedError;
-  String get receiverName => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  String? get senderName => throw _privateConstructorUsedError;
-  String? get narration => throw _privateConstructorUsedError;
+
+ int get id; String get transactionId; String get amount; String get receiverName; String get phone; String get createdAt; String get status; String? get senderName; String? get narration;
+/// Create a copy of PaymentLinkReceiptRecord
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PaymentLinkReceiptRecordCopyWith<PaymentLinkReceiptRecord> get copyWith => _$PaymentLinkReceiptRecordCopyWithImpl<PaymentLinkReceiptRecord>(this as PaymentLinkReceiptRecord, _$identity);
 
   /// Serializes this PaymentLinkReceiptRecord to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of PaymentLinkReceiptRecord
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PaymentLinkReceiptRecordCopyWith<PaymentLinkReceiptRecord> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaymentLinkReceiptRecord&&(identical(other.id, id) || other.id == id)&&(identical(other.transactionId, transactionId) || other.transactionId == transactionId)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.receiverName, receiverName) || other.receiverName == receiverName)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.status, status) || other.status == status)&&(identical(other.senderName, senderName) || other.senderName == senderName)&&(identical(other.narration, narration) || other.narration == narration));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,transactionId,amount,receiverName,phone,createdAt,status,senderName,narration);
+
+@override
+String toString() {
+  return 'PaymentLinkReceiptRecord(id: $id, transactionId: $transactionId, amount: $amount, receiverName: $receiverName, phone: $phone, createdAt: $createdAt, status: $status, senderName: $senderName, narration: $narration)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $PaymentLinkReceiptRecordCopyWith<$Res> {
-  factory $PaymentLinkReceiptRecordCopyWith(PaymentLinkReceiptRecord value,
-          $Res Function(PaymentLinkReceiptRecord) then) =
-      _$PaymentLinkReceiptRecordCopyWithImpl<$Res, PaymentLinkReceiptRecord>;
-  @useResult
-  $Res call(
-      {int id,
-      String transactionId,
-      String amount,
-      String receiverName,
-      String phone,
-      String createdAt,
-      String status,
-      String? senderName,
-      String? narration});
-}
+abstract mixin class $PaymentLinkReceiptRecordCopyWith<$Res>  {
+  factory $PaymentLinkReceiptRecordCopyWith(PaymentLinkReceiptRecord value, $Res Function(PaymentLinkReceiptRecord) _then) = _$PaymentLinkReceiptRecordCopyWithImpl;
+@useResult
+$Res call({
+ int id, String transactionId, String amount, String receiverName, String phone, String createdAt, String status, String? senderName, String? narration
+});
 
+
+
+
+}
 /// @nodoc
-class _$PaymentLinkReceiptRecordCopyWithImpl<$Res,
-        $Val extends PaymentLinkReceiptRecord>
+class _$PaymentLinkReceiptRecordCopyWithImpl<$Res>
     implements $PaymentLinkReceiptRecordCopyWith<$Res> {
-  _$PaymentLinkReceiptRecordCopyWithImpl(this._value, this._then);
+  _$PaymentLinkReceiptRecordCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PaymentLinkReceiptRecord _self;
+  final $Res Function(PaymentLinkReceiptRecord) _then;
 
-  /// Create a copy of PaymentLinkReceiptRecord
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? transactionId = null,
-    Object? amount = null,
-    Object? receiverName = null,
-    Object? phone = null,
-    Object? createdAt = null,
-    Object? status = null,
-    Object? senderName = freezed,
-    Object? narration = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      transactionId: null == transactionId
-          ? _value.transactionId
-          : transactionId // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      receiverName: null == receiverName
-          ? _value.receiverName
-          : receiverName // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      senderName: freezed == senderName
-          ? _value.senderName
-          : senderName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      narration: freezed == narration
-          ? _value.narration
-          : narration // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of PaymentLinkReceiptRecord
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? transactionId = null,Object? amount = null,Object? receiverName = null,Object? phone = null,Object? createdAt = null,Object? status = null,Object? senderName = freezed,Object? narration = freezed,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,transactionId: null == transactionId ? _self.transactionId : transactionId // ignore: cast_nullable_to_non_nullable
+as String,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as String,receiverName: null == receiverName ? _self.receiverName : receiverName // ignore: cast_nullable_to_non_nullable
+as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,senderName: freezed == senderName ? _self.senderName : senderName // ignore: cast_nullable_to_non_nullable
+as String?,narration: freezed == narration ? _self.narration : narration // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$PaymentLinkReceiptRecordImplCopyWith<$Res>
-    implements $PaymentLinkReceiptRecordCopyWith<$Res> {
-  factory _$$PaymentLinkReceiptRecordImplCopyWith(
-          _$PaymentLinkReceiptRecordImpl value,
-          $Res Function(_$PaymentLinkReceiptRecordImpl) then) =
-      __$$PaymentLinkReceiptRecordImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int id,
-      String transactionId,
-      String amount,
-      String receiverName,
-      String phone,
-      String createdAt,
-      String status,
-      String? senderName,
-      String? narration});
 }
 
-/// @nodoc
-class __$$PaymentLinkReceiptRecordImplCopyWithImpl<$Res>
-    extends _$PaymentLinkReceiptRecordCopyWithImpl<$Res,
-        _$PaymentLinkReceiptRecordImpl>
-    implements _$$PaymentLinkReceiptRecordImplCopyWith<$Res> {
-  __$$PaymentLinkReceiptRecordImplCopyWithImpl(
-      _$PaymentLinkReceiptRecordImpl _value,
-      $Res Function(_$PaymentLinkReceiptRecordImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of PaymentLinkReceiptRecord
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? transactionId = null,
-    Object? amount = null,
-    Object? receiverName = null,
-    Object? phone = null,
-    Object? createdAt = null,
-    Object? status = null,
-    Object? senderName = freezed,
-    Object? narration = freezed,
-  }) {
-    return _then(_$PaymentLinkReceiptRecordImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      transactionId: null == transactionId
-          ? _value.transactionId
-          : transactionId // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      receiverName: null == receiverName
-          ? _value.receiverName
-          : receiverName // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      senderName: freezed == senderName
-          ? _value.senderName
-          : senderName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      narration: freezed == narration
-          ? _value.narration
-          : narration // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [PaymentLinkReceiptRecord].
+extension PaymentLinkReceiptRecordPatterns on PaymentLinkReceiptRecord {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PaymentLinkReceiptRecord value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PaymentLinkReceiptRecord() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PaymentLinkReceiptRecord value)  $default,){
+final _that = this;
+switch (_that) {
+case _PaymentLinkReceiptRecord():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PaymentLinkReceiptRecord value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PaymentLinkReceiptRecord() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String transactionId,  String amount,  String receiverName,  String phone,  String createdAt,  String status,  String? senderName,  String? narration)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PaymentLinkReceiptRecord() when $default != null:
+return $default(_that.id,_that.transactionId,_that.amount,_that.receiverName,_that.phone,_that.createdAt,_that.status,_that.senderName,_that.narration);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String transactionId,  String amount,  String receiverName,  String phone,  String createdAt,  String status,  String? senderName,  String? narration)  $default,) {final _that = this;
+switch (_that) {
+case _PaymentLinkReceiptRecord():
+return $default(_that.id,_that.transactionId,_that.amount,_that.receiverName,_that.phone,_that.createdAt,_that.status,_that.senderName,_that.narration);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String transactionId,  String amount,  String receiverName,  String phone,  String createdAt,  String status,  String? senderName,  String? narration)?  $default,) {final _that = this;
+switch (_that) {
+case _PaymentLinkReceiptRecord() when $default != null:
+return $default(_that.id,_that.transactionId,_that.amount,_that.receiverName,_that.phone,_that.createdAt,_that.status,_that.senderName,_that.narration);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$PaymentLinkReceiptRecordImpl implements _PaymentLinkReceiptRecord {
-  const _$PaymentLinkReceiptRecordImpl(
-      {required this.id,
-      required this.transactionId,
-      required this.amount,
-      required this.receiverName,
-      required this.phone,
-      required this.createdAt,
-      this.status = "pending",
-      this.senderName,
-      this.narration});
 
-  factory _$PaymentLinkReceiptRecordImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PaymentLinkReceiptRecordImplFromJson(json);
+class _PaymentLinkReceiptRecord implements PaymentLinkReceiptRecord {
+  const _PaymentLinkReceiptRecord({required this.id, required this.transactionId, required this.amount, required this.receiverName, required this.phone, required this.createdAt, this.status = "pending", this.senderName, this.narration});
+  factory _PaymentLinkReceiptRecord.fromJson(Map<String, dynamic> json) => _$PaymentLinkReceiptRecordFromJson(json);
 
-  @override
-  final int id;
-  @override
-  final String transactionId;
-  @override
-  final String amount;
-  @override
-  final String receiverName;
-  @override
-  final String phone;
-  @override
-  final String createdAt;
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? senderName;
-  @override
-  final String? narration;
+@override final  int id;
+@override final  String transactionId;
+@override final  String amount;
+@override final  String receiverName;
+@override final  String phone;
+@override final  String createdAt;
+@override@JsonKey() final  String status;
+@override final  String? senderName;
+@override final  String? narration;
 
-  @override
-  String toString() {
-    return 'PaymentLinkReceiptRecord(id: $id, transactionId: $transactionId, amount: $amount, receiverName: $receiverName, phone: $phone, createdAt: $createdAt, status: $status, senderName: $senderName, narration: $narration)';
-  }
+/// Create a copy of PaymentLinkReceiptRecord
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PaymentLinkReceiptRecordCopyWith<_PaymentLinkReceiptRecord> get copyWith => __$PaymentLinkReceiptRecordCopyWithImpl<_PaymentLinkReceiptRecord>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PaymentLinkReceiptRecordImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.transactionId, transactionId) ||
-                other.transactionId == transactionId) &&
-            (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.receiverName, receiverName) ||
-                other.receiverName == receiverName) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.senderName, senderName) ||
-                other.senderName == senderName) &&
-            (identical(other.narration, narration) ||
-                other.narration == narration));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, transactionId, amount,
-      receiverName, phone, createdAt, status, senderName, narration);
-
-  /// Create a copy of PaymentLinkReceiptRecord
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PaymentLinkReceiptRecordImplCopyWith<_$PaymentLinkReceiptRecordImpl>
-      get copyWith => __$$PaymentLinkReceiptRecordImplCopyWithImpl<
-          _$PaymentLinkReceiptRecordImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PaymentLinkReceiptRecordImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$PaymentLinkReceiptRecordToJson(this, );
 }
 
-abstract class _PaymentLinkReceiptRecord implements PaymentLinkReceiptRecord {
-  const factory _PaymentLinkReceiptRecord(
-      {required final int id,
-      required final String transactionId,
-      required final String amount,
-      required final String receiverName,
-      required final String phone,
-      required final String createdAt,
-      final String status,
-      final String? senderName,
-      final String? narration}) = _$PaymentLinkReceiptRecordImpl;
-
-  factory _PaymentLinkReceiptRecord.fromJson(Map<String, dynamic> json) =
-      _$PaymentLinkReceiptRecordImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get transactionId;
-  @override
-  String get amount;
-  @override
-  String get receiverName;
-  @override
-  String get phone;
-  @override
-  String get createdAt;
-  @override
-  String get status;
-  @override
-  String? get senderName;
-  @override
-  String? get narration;
-
-  /// Create a copy of PaymentLinkReceiptRecord
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PaymentLinkReceiptRecordImplCopyWith<_$PaymentLinkReceiptRecordImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PaymentLinkReceiptRecord&&(identical(other.id, id) || other.id == id)&&(identical(other.transactionId, transactionId) || other.transactionId == transactionId)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.receiverName, receiverName) || other.receiverName == receiverName)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.status, status) || other.status == status)&&(identical(other.senderName, senderName) || other.senderName == senderName)&&(identical(other.narration, narration) || other.narration == narration));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,transactionId,amount,receiverName,phone,createdAt,status,senderName,narration);
+
+@override
+String toString() {
+  return 'PaymentLinkReceiptRecord(id: $id, transactionId: $transactionId, amount: $amount, receiverName: $receiverName, phone: $phone, createdAt: $createdAt, status: $status, senderName: $senderName, narration: $narration)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PaymentLinkReceiptRecordCopyWith<$Res> implements $PaymentLinkReceiptRecordCopyWith<$Res> {
+  factory _$PaymentLinkReceiptRecordCopyWith(_PaymentLinkReceiptRecord value, $Res Function(_PaymentLinkReceiptRecord) _then) = __$PaymentLinkReceiptRecordCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, String transactionId, String amount, String receiverName, String phone, String createdAt, String status, String? senderName, String? narration
+});
+
+
+
+
+}
+/// @nodoc
+class __$PaymentLinkReceiptRecordCopyWithImpl<$Res>
+    implements _$PaymentLinkReceiptRecordCopyWith<$Res> {
+  __$PaymentLinkReceiptRecordCopyWithImpl(this._self, this._then);
+
+  final _PaymentLinkReceiptRecord _self;
+  final $Res Function(_PaymentLinkReceiptRecord) _then;
+
+/// Create a copy of PaymentLinkReceiptRecord
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? transactionId = null,Object? amount = null,Object? receiverName = null,Object? phone = null,Object? createdAt = null,Object? status = null,Object? senderName = freezed,Object? narration = freezed,}) {
+  return _then(_PaymentLinkReceiptRecord(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,transactionId: null == transactionId ? _self.transactionId : transactionId // ignore: cast_nullable_to_non_nullable
+as String,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as String,receiverName: null == receiverName ? _self.receiverName : receiverName // ignore: cast_nullable_to_non_nullable
+as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,senderName: freezed == senderName ? _self.senderName : senderName // ignore: cast_nullable_to_non_nullable
+as String?,narration: freezed == narration ? _self.narration : narration // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+// dart format on

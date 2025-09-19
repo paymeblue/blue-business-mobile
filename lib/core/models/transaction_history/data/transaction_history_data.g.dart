@@ -6,22 +6,22 @@ part of 'transaction_history_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TransactionDataImpl _$$TransactionDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TransactionDataImpl(
+_TransactionData _$TransactionDataFromJson(Map<String, dynamic> json) =>
+    _TransactionData(
       total: (json['total'] as num).toInt(),
       limit: (json['limit'] as num).toInt(),
       page: (json['page'] as num).toInt(),
-      data: (json['data'] as List<dynamic>?)
+      data:
+          (json['data'] as List<dynamic>?)
               ?.map(
-                  (e) => TransactionHistory.fromJson(e as Map<String, dynamic>))
+                (e) => TransactionHistory.fromJson(e as Map<String, dynamic>),
+              )
               .toList() ??
           const [],
       loadMore: json['load_more'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$TransactionDataImplToJson(
-        _$TransactionDataImpl instance) =>
+Map<String, dynamic> _$TransactionDataToJson(_TransactionData instance) =>
     <String, dynamic>{
       'total': instance.total,
       'limit': instance.limit,

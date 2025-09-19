@@ -5,7 +5,7 @@ part 'get_branches_response.freezed.dart';
 part 'get_branches_response.g.dart';
 
 @freezed
-class GetBranchesResponse with _$GetBranchesResponse {
+abstract class GetBranchesResponse with _$GetBranchesResponse {
   const factory GetBranchesResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class GetBranchesResponse with _$GetBranchesResponse {
   }) = _GetBranchesResponse;
 
   factory GetBranchesResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetBranchesResponseImpl.fromJson(json);
+      _$GetBranchesResponseFromJson(json);
 }

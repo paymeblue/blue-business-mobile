@@ -4,7 +4,7 @@ part 'providers.freezed.dart';
 part 'providers.g.dart';
 
 @freezed
-class BillProvider with _$BillProvider {
+abstract class BillProvider with _$BillProvider {
   const factory BillProvider({
     required int id,
     required String name,
@@ -12,5 +12,5 @@ class BillProvider with _$BillProvider {
   }) = _BillProvider;
 
   factory BillProvider.fromJson(Map<String, dynamic> json) =>
-      _$BillProviderImpl.fromJson(json);
+      _$BillProviderFromJson(json);
 }

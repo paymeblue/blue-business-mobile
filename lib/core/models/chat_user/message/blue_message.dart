@@ -4,7 +4,7 @@ part 'blue_message.freezed.dart';
 part 'blue_message.g.dart';
 
 @freezed
-class BlueMessage with _$BlueMessage {
+abstract class BlueMessage with _$BlueMessage {
   const factory BlueMessage({
     required String message,
     required String senderId,
@@ -12,5 +12,5 @@ class BlueMessage with _$BlueMessage {
   }) = _BlueMessage;
 
   factory BlueMessage.fromJson(Map<String, dynamic> json) =>
-      _$BlueMessageImpl.fromJson(json);
+      _$BlueMessageFromJson(json);
 }

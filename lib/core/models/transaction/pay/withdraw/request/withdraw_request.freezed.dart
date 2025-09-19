@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,198 +9,275 @@ part of 'withdraw_request.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-WithdrawRequest _$WithdrawRequestFromJson(Map<String, dynamic> json) {
-  return _WithdrawRequest.fromJson(json);
-}
 
 /// @nodoc
 mixin _$WithdrawRequest {
-  String get amount => throw _privateConstructorUsedError;
-  String get paymentMode => throw _privateConstructorUsedError;
-  String get passcode => throw _privateConstructorUsedError;
+
+ String get amount; String get paymentMode; String get passcode;
+/// Create a copy of WithdrawRequest
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WithdrawRequestCopyWith<WithdrawRequest> get copyWith => _$WithdrawRequestCopyWithImpl<WithdrawRequest>(this as WithdrawRequest, _$identity);
 
   /// Serializes this WithdrawRequest to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of WithdrawRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $WithdrawRequestCopyWith<WithdrawRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WithdrawRequest&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.paymentMode, paymentMode) || other.paymentMode == paymentMode)&&(identical(other.passcode, passcode) || other.passcode == passcode));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,amount,paymentMode,passcode);
+
+@override
+String toString() {
+  return 'WithdrawRequest(amount: $amount, paymentMode: $paymentMode, passcode: $passcode)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $WithdrawRequestCopyWith<$Res> {
-  factory $WithdrawRequestCopyWith(
-          WithdrawRequest value, $Res Function(WithdrawRequest) then) =
-      _$WithdrawRequestCopyWithImpl<$Res, WithdrawRequest>;
-  @useResult
-  $Res call({String amount, String paymentMode, String passcode});
-}
+abstract mixin class $WithdrawRequestCopyWith<$Res>  {
+  factory $WithdrawRequestCopyWith(WithdrawRequest value, $Res Function(WithdrawRequest) _then) = _$WithdrawRequestCopyWithImpl;
+@useResult
+$Res call({
+ String amount, String paymentMode, String passcode
+});
 
+
+
+
+}
 /// @nodoc
-class _$WithdrawRequestCopyWithImpl<$Res, $Val extends WithdrawRequest>
+class _$WithdrawRequestCopyWithImpl<$Res>
     implements $WithdrawRequestCopyWith<$Res> {
-  _$WithdrawRequestCopyWithImpl(this._value, this._then);
+  _$WithdrawRequestCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final WithdrawRequest _self;
+  final $Res Function(WithdrawRequest) _then;
 
-  /// Create a copy of WithdrawRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? amount = null,
-    Object? paymentMode = null,
-    Object? passcode = null,
-  }) {
-    return _then(_value.copyWith(
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      paymentMode: null == paymentMode
-          ? _value.paymentMode
-          : paymentMode // ignore: cast_nullable_to_non_nullable
-              as String,
-      passcode: null == passcode
-          ? _value.passcode
-          : passcode // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of WithdrawRequest
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? amount = null,Object? paymentMode = null,Object? passcode = null,}) {
+  return _then(_self.copyWith(
+amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as String,paymentMode: null == paymentMode ? _self.paymentMode : paymentMode // ignore: cast_nullable_to_non_nullable
+as String,passcode: null == passcode ? _self.passcode : passcode // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$WithdrawRequestImplCopyWith<$Res>
-    implements $WithdrawRequestCopyWith<$Res> {
-  factory _$$WithdrawRequestImplCopyWith(_$WithdrawRequestImpl value,
-          $Res Function(_$WithdrawRequestImpl) then) =
-      __$$WithdrawRequestImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String amount, String paymentMode, String passcode});
 }
 
-/// @nodoc
-class __$$WithdrawRequestImplCopyWithImpl<$Res>
-    extends _$WithdrawRequestCopyWithImpl<$Res, _$WithdrawRequestImpl>
-    implements _$$WithdrawRequestImplCopyWith<$Res> {
-  __$$WithdrawRequestImplCopyWithImpl(
-      _$WithdrawRequestImpl _value, $Res Function(_$WithdrawRequestImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of WithdrawRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? amount = null,
-    Object? paymentMode = null,
-    Object? passcode = null,
-  }) {
-    return _then(_$WithdrawRequestImpl(
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      paymentMode: null == paymentMode
-          ? _value.paymentMode
-          : paymentMode // ignore: cast_nullable_to_non_nullable
-              as String,
-      passcode: null == passcode
-          ? _value.passcode
-          : passcode // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [WithdrawRequest].
+extension WithdrawRequestPatterns on WithdrawRequest {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _WithdrawRequest value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _WithdrawRequest() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _WithdrawRequest value)  $default,){
+final _that = this;
+switch (_that) {
+case _WithdrawRequest():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _WithdrawRequest value)?  $default,){
+final _that = this;
+switch (_that) {
+case _WithdrawRequest() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String amount,  String paymentMode,  String passcode)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _WithdrawRequest() when $default != null:
+return $default(_that.amount,_that.paymentMode,_that.passcode);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String amount,  String paymentMode,  String passcode)  $default,) {final _that = this;
+switch (_that) {
+case _WithdrawRequest():
+return $default(_that.amount,_that.paymentMode,_that.passcode);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String amount,  String paymentMode,  String passcode)?  $default,) {final _that = this;
+switch (_that) {
+case _WithdrawRequest() when $default != null:
+return $default(_that.amount,_that.paymentMode,_that.passcode);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$WithdrawRequestImpl implements _WithdrawRequest {
-  const _$WithdrawRequestImpl(
-      {required this.amount,
-      this.paymentMode = "withdrawal",
-      required this.passcode});
 
-  factory _$WithdrawRequestImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WithdrawRequestImplFromJson(json);
+class _WithdrawRequest implements WithdrawRequest {
+  const _WithdrawRequest({required this.amount, this.paymentMode = "withdrawal", required this.passcode});
+  factory _WithdrawRequest.fromJson(Map<String, dynamic> json) => _$WithdrawRequestFromJson(json);
 
-  @override
-  final String amount;
-  @override
-  @JsonKey()
-  final String paymentMode;
-  @override
-  final String passcode;
+@override final  String amount;
+@override@JsonKey() final  String paymentMode;
+@override final  String passcode;
 
-  @override
-  String toString() {
-    return 'WithdrawRequest(amount: $amount, paymentMode: $paymentMode, passcode: $passcode)';
-  }
+/// Create a copy of WithdrawRequest
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$WithdrawRequestCopyWith<_WithdrawRequest> get copyWith => __$WithdrawRequestCopyWithImpl<_WithdrawRequest>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$WithdrawRequestImpl &&
-            (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.paymentMode, paymentMode) ||
-                other.paymentMode == paymentMode) &&
-            (identical(other.passcode, passcode) ||
-                other.passcode == passcode));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, amount, paymentMode, passcode);
-
-  /// Create a copy of WithdrawRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$WithdrawRequestImplCopyWith<_$WithdrawRequestImpl> get copyWith =>
-      __$$WithdrawRequestImplCopyWithImpl<_$WithdrawRequestImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$WithdrawRequestImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$WithdrawRequestToJson(this, );
 }
 
-abstract class _WithdrawRequest implements WithdrawRequest {
-  const factory _WithdrawRequest(
-      {required final String amount,
-      final String paymentMode,
-      required final String passcode}) = _$WithdrawRequestImpl;
-
-  factory _WithdrawRequest.fromJson(Map<String, dynamic> json) =
-      _$WithdrawRequestImpl.fromJson;
-
-  @override
-  String get amount;
-  @override
-  String get paymentMode;
-  @override
-  String get passcode;
-
-  /// Create a copy of WithdrawRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WithdrawRequestImplCopyWith<_$WithdrawRequestImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WithdrawRequest&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.paymentMode, paymentMode) || other.paymentMode == paymentMode)&&(identical(other.passcode, passcode) || other.passcode == passcode));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,amount,paymentMode,passcode);
+
+@override
+String toString() {
+  return 'WithdrawRequest(amount: $amount, paymentMode: $paymentMode, passcode: $passcode)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$WithdrawRequestCopyWith<$Res> implements $WithdrawRequestCopyWith<$Res> {
+  factory _$WithdrawRequestCopyWith(_WithdrawRequest value, $Res Function(_WithdrawRequest) _then) = __$WithdrawRequestCopyWithImpl;
+@override @useResult
+$Res call({
+ String amount, String paymentMode, String passcode
+});
+
+
+
+
+}
+/// @nodoc
+class __$WithdrawRequestCopyWithImpl<$Res>
+    implements _$WithdrawRequestCopyWith<$Res> {
+  __$WithdrawRequestCopyWithImpl(this._self, this._then);
+
+  final _WithdrawRequest _self;
+  final $Res Function(_WithdrawRequest) _then;
+
+/// Create a copy of WithdrawRequest
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? amount = null,Object? paymentMode = null,Object? passcode = null,}) {
+  return _then(_WithdrawRequest(
+amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as String,paymentMode: null == paymentMode ? _self.paymentMode : paymentMode // ignore: cast_nullable_to_non_nullable
+as String,passcode: null == passcode ? _self.passcode : passcode // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

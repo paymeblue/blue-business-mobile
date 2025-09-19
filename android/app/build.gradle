@@ -52,7 +52,7 @@ android {
 
     defaultConfig {
         applicationId "com.roman_dev.blue_business"
-        minSdkVersion 23
+        minSdkVersion flutter.minSdkVersion
         multiDexEnabled true
         targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()

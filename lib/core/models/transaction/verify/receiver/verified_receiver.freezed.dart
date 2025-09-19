@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,284 +9,287 @@ part of 'verified_receiver.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-VerifiedReceiver _$VerifiedReceiverFromJson(Map<String, dynamic> json) {
-  return _VerifiedReceiver.fromJson(json);
-}
 
 /// @nodoc
 mixin _$VerifiedReceiver {
-  int get id => throw _privateConstructorUsedError;
-  int? get userId => throw _privateConstructorUsedError;
-  String? get walletCode => throw _privateConstructorUsedError;
-  String get receiverName => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get amount => throw _privateConstructorUsedError;
-  double get charge => throw _privateConstructorUsedError;
+
+ int get id; int? get userId; String? get walletCode; String get receiverName; String get phone; String get amount; double get charge;
+/// Create a copy of VerifiedReceiver
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VerifiedReceiverCopyWith<VerifiedReceiver> get copyWith => _$VerifiedReceiverCopyWithImpl<VerifiedReceiver>(this as VerifiedReceiver, _$identity);
 
   /// Serializes this VerifiedReceiver to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of VerifiedReceiver
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $VerifiedReceiverCopyWith<VerifiedReceiver> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifiedReceiver&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.walletCode, walletCode) || other.walletCode == walletCode)&&(identical(other.receiverName, receiverName) || other.receiverName == receiverName)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.charge, charge) || other.charge == charge));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,userId,walletCode,receiverName,phone,amount,charge);
+
+@override
+String toString() {
+  return 'VerifiedReceiver(id: $id, userId: $userId, walletCode: $walletCode, receiverName: $receiverName, phone: $phone, amount: $amount, charge: $charge)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $VerifiedReceiverCopyWith<$Res> {
-  factory $VerifiedReceiverCopyWith(
-          VerifiedReceiver value, $Res Function(VerifiedReceiver) then) =
-      _$VerifiedReceiverCopyWithImpl<$Res, VerifiedReceiver>;
-  @useResult
-  $Res call(
-      {int id,
-      int? userId,
-      String? walletCode,
-      String receiverName,
-      String phone,
-      String amount,
-      double charge});
-}
+abstract mixin class $VerifiedReceiverCopyWith<$Res>  {
+  factory $VerifiedReceiverCopyWith(VerifiedReceiver value, $Res Function(VerifiedReceiver) _then) = _$VerifiedReceiverCopyWithImpl;
+@useResult
+$Res call({
+ int id, int? userId, String? walletCode, String receiverName, String phone, String amount, double charge
+});
 
+
+
+
+}
 /// @nodoc
-class _$VerifiedReceiverCopyWithImpl<$Res, $Val extends VerifiedReceiver>
+class _$VerifiedReceiverCopyWithImpl<$Res>
     implements $VerifiedReceiverCopyWith<$Res> {
-  _$VerifiedReceiverCopyWithImpl(this._value, this._then);
+  _$VerifiedReceiverCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final VerifiedReceiver _self;
+  final $Res Function(VerifiedReceiver) _then;
 
-  /// Create a copy of VerifiedReceiver
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? userId = freezed,
-    Object? walletCode = freezed,
-    Object? receiverName = null,
-    Object? phone = null,
-    Object? amount = null,
-    Object? charge = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      walletCode: freezed == walletCode
-          ? _value.walletCode
-          : walletCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      receiverName: null == receiverName
-          ? _value.receiverName
-          : receiverName // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      charge: null == charge
-          ? _value.charge
-          : charge // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
-  }
+/// Create a copy of VerifiedReceiver
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? userId = freezed,Object? walletCode = freezed,Object? receiverName = null,Object? phone = null,Object? amount = null,Object? charge = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as int?,walletCode: freezed == walletCode ? _self.walletCode : walletCode // ignore: cast_nullable_to_non_nullable
+as String?,receiverName: null == receiverName ? _self.receiverName : receiverName // ignore: cast_nullable_to_non_nullable
+as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as String,charge: null == charge ? _self.charge : charge // ignore: cast_nullable_to_non_nullable
+as double,
+  ));
 }
 
-/// @nodoc
-abstract class _$$VerifiedReceiverImplCopyWith<$Res>
-    implements $VerifiedReceiverCopyWith<$Res> {
-  factory _$$VerifiedReceiverImplCopyWith(_$VerifiedReceiverImpl value,
-          $Res Function(_$VerifiedReceiverImpl) then) =
-      __$$VerifiedReceiverImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int id,
-      int? userId,
-      String? walletCode,
-      String receiverName,
-      String phone,
-      String amount,
-      double charge});
 }
 
-/// @nodoc
-class __$$VerifiedReceiverImplCopyWithImpl<$Res>
-    extends _$VerifiedReceiverCopyWithImpl<$Res, _$VerifiedReceiverImpl>
-    implements _$$VerifiedReceiverImplCopyWith<$Res> {
-  __$$VerifiedReceiverImplCopyWithImpl(_$VerifiedReceiverImpl _value,
-      $Res Function(_$VerifiedReceiverImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of VerifiedReceiver
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? userId = freezed,
-    Object? walletCode = freezed,
-    Object? receiverName = null,
-    Object? phone = null,
-    Object? amount = null,
-    Object? charge = null,
-  }) {
-    return _then(_$VerifiedReceiverImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      walletCode: freezed == walletCode
-          ? _value.walletCode
-          : walletCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      receiverName: null == receiverName
-          ? _value.receiverName
-          : receiverName // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      charge: null == charge
-          ? _value.charge
-          : charge // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
-  }
+/// Adds pattern-matching-related methods to [VerifiedReceiver].
+extension VerifiedReceiverPatterns on VerifiedReceiver {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VerifiedReceiver value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VerifiedReceiver() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VerifiedReceiver value)  $default,){
+final _that = this;
+switch (_that) {
+case _VerifiedReceiver():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VerifiedReceiver value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VerifiedReceiver() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int? userId,  String? walletCode,  String receiverName,  String phone,  String amount,  double charge)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VerifiedReceiver() when $default != null:
+return $default(_that.id,_that.userId,_that.walletCode,_that.receiverName,_that.phone,_that.amount,_that.charge);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int? userId,  String? walletCode,  String receiverName,  String phone,  String amount,  double charge)  $default,) {final _that = this;
+switch (_that) {
+case _VerifiedReceiver():
+return $default(_that.id,_that.userId,_that.walletCode,_that.receiverName,_that.phone,_that.amount,_that.charge);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int? userId,  String? walletCode,  String receiverName,  String phone,  String amount,  double charge)?  $default,) {final _that = this;
+switch (_that) {
+case _VerifiedReceiver() when $default != null:
+return $default(_that.id,_that.userId,_that.walletCode,_that.receiverName,_that.phone,_that.amount,_that.charge);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$VerifiedReceiverImpl implements _VerifiedReceiver {
-  const _$VerifiedReceiverImpl(
-      {required this.id,
-      this.userId,
-      this.walletCode,
-      required this.receiverName,
-      required this.phone,
-      required this.amount,
-      required this.charge});
 
-  factory _$VerifiedReceiverImpl.fromJson(Map<String, dynamic> json) =>
-      _$$VerifiedReceiverImplFromJson(json);
+class _VerifiedReceiver implements VerifiedReceiver {
+  const _VerifiedReceiver({required this.id, this.userId, this.walletCode, required this.receiverName, required this.phone, required this.amount, required this.charge});
+  factory _VerifiedReceiver.fromJson(Map<String, dynamic> json) => _$VerifiedReceiverFromJson(json);
 
-  @override
-  final int id;
-  @override
-  final int? userId;
-  @override
-  final String? walletCode;
-  @override
-  final String receiverName;
-  @override
-  final String phone;
-  @override
-  final String amount;
-  @override
-  final double charge;
+@override final  int id;
+@override final  int? userId;
+@override final  String? walletCode;
+@override final  String receiverName;
+@override final  String phone;
+@override final  String amount;
+@override final  double charge;
 
-  @override
-  String toString() {
-    return 'VerifiedReceiver(id: $id, userId: $userId, walletCode: $walletCode, receiverName: $receiverName, phone: $phone, amount: $amount, charge: $charge)';
-  }
+/// Create a copy of VerifiedReceiver
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VerifiedReceiverCopyWith<_VerifiedReceiver> get copyWith => __$VerifiedReceiverCopyWithImpl<_VerifiedReceiver>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$VerifiedReceiverImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.walletCode, walletCode) ||
-                other.walletCode == walletCode) &&
-            (identical(other.receiverName, receiverName) ||
-                other.receiverName == receiverName) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.charge, charge) || other.charge == charge));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, id, userId, walletCode, receiverName, phone, amount, charge);
-
-  /// Create a copy of VerifiedReceiver
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$VerifiedReceiverImplCopyWith<_$VerifiedReceiverImpl> get copyWith =>
-      __$$VerifiedReceiverImplCopyWithImpl<_$VerifiedReceiverImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$VerifiedReceiverImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$VerifiedReceiverToJson(this, );
 }
 
-abstract class _VerifiedReceiver implements VerifiedReceiver {
-  const factory _VerifiedReceiver(
-      {required final int id,
-      final int? userId,
-      final String? walletCode,
-      required final String receiverName,
-      required final String phone,
-      required final String amount,
-      required final double charge}) = _$VerifiedReceiverImpl;
-
-  factory _VerifiedReceiver.fromJson(Map<String, dynamic> json) =
-      _$VerifiedReceiverImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  int? get userId;
-  @override
-  String? get walletCode;
-  @override
-  String get receiverName;
-  @override
-  String get phone;
-  @override
-  String get amount;
-  @override
-  double get charge;
-
-  /// Create a copy of VerifiedReceiver
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VerifiedReceiverImplCopyWith<_$VerifiedReceiverImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VerifiedReceiver&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.walletCode, walletCode) || other.walletCode == walletCode)&&(identical(other.receiverName, receiverName) || other.receiverName == receiverName)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.charge, charge) || other.charge == charge));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,userId,walletCode,receiverName,phone,amount,charge);
+
+@override
+String toString() {
+  return 'VerifiedReceiver(id: $id, userId: $userId, walletCode: $walletCode, receiverName: $receiverName, phone: $phone, amount: $amount, charge: $charge)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VerifiedReceiverCopyWith<$Res> implements $VerifiedReceiverCopyWith<$Res> {
+  factory _$VerifiedReceiverCopyWith(_VerifiedReceiver value, $Res Function(_VerifiedReceiver) _then) = __$VerifiedReceiverCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, int? userId, String? walletCode, String receiverName, String phone, String amount, double charge
+});
+
+
+
+
+}
+/// @nodoc
+class __$VerifiedReceiverCopyWithImpl<$Res>
+    implements _$VerifiedReceiverCopyWith<$Res> {
+  __$VerifiedReceiverCopyWithImpl(this._self, this._then);
+
+  final _VerifiedReceiver _self;
+  final $Res Function(_VerifiedReceiver) _then;
+
+/// Create a copy of VerifiedReceiver
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? userId = freezed,Object? walletCode = freezed,Object? receiverName = null,Object? phone = null,Object? amount = null,Object? charge = null,}) {
+  return _then(_VerifiedReceiver(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as int?,walletCode: freezed == walletCode ? _self.walletCode : walletCode // ignore: cast_nullable_to_non_nullable
+as String?,receiverName: null == receiverName ? _self.receiverName : receiverName // ignore: cast_nullable_to_non_nullable
+as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as String,charge: null == charge ? _self.charge : charge // ignore: cast_nullable_to_non_nullable
+as double,
+  ));
+}
+
+
+}
+
+// dart format on

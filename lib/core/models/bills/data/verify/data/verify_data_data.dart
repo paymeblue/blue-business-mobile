@@ -4,7 +4,7 @@ part 'verify_data_data.freezed.dart';
 part 'verify_data_data.g.dart';
 
 @freezed
-class VerifyDataData with _$VerifyDataData {
+abstract class VerifyDataData with _$VerifyDataData {
   const factory VerifyDataData({
     required String transactionId,
     required String receiver,
@@ -16,5 +16,5 @@ class VerifyDataData with _$VerifyDataData {
   }) = _VerifyDataData;
 
   factory VerifyDataData.fromJson(Map<String, dynamic> json) =>
-      _$VerifyDataDataImpl.fromJson(json);
+      _$VerifyDataDataFromJson(json);
 }

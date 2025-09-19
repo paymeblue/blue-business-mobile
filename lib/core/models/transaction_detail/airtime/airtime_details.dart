@@ -4,7 +4,7 @@ part 'airtime_details.freezed.dart';
 part 'airtime_details.g.dart';
 
 @freezed
-class AirtimeDetails with _$AirtimeDetails {
+abstract class AirtimeDetails with _$AirtimeDetails {
   const factory AirtimeDetails({
     int? id,
     required String amount,
@@ -19,5 +19,5 @@ class AirtimeDetails with _$AirtimeDetails {
   }) = _AirtimeDetails;
 
   factory AirtimeDetails.fromJson(Map<String, dynamic> json) =>
-      _$AirtimeDetailsImpl.fromJson(json);
+      _$AirtimeDetailsFromJson(json);
 }

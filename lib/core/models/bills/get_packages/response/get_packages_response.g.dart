@@ -6,9 +6,8 @@ part of 'get_packages_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GetPackagesResponseImpl _$$GetPackagesResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GetPackagesResponseImpl(
+_GetPackagesResponse _$GetPackagesResponseFromJson(Map<String, dynamic> json) =>
+    _GetPackagesResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: (json['data'] as List<dynamic>?)
@@ -16,10 +15,10 @@ _$GetPackagesResponseImpl _$$GetPackagesResponseImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$GetPackagesResponseImplToJson(
-        _$GetPackagesResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
-    };
+Map<String, dynamic> _$GetPackagesResponseToJson(
+  _GetPackagesResponse instance,
+) => <String, dynamic>{
+  'status': instance.status,
+  'message': ?instance.message,
+  'data': ?instance.data,
+};

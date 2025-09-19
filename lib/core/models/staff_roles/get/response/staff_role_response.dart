@@ -5,7 +5,7 @@ part 'staff_role_response.freezed.dart';
 part 'staff_role_response.g.dart';
 
 @freezed
-class GetStaffRoleResponse with _$GetStaffRoleResponse {
+abstract class GetStaffRoleResponse with _$GetStaffRoleResponse {
   const factory GetStaffRoleResponse({
     @Default('fail') String status,
     String? message,
@@ -13,5 +13,5 @@ class GetStaffRoleResponse with _$GetStaffRoleResponse {
   }) = _GetStaffRoleResponse;
 
   factory GetStaffRoleResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetStaffRoleResponseImpl.fromJson(json);
+      _$GetStaffRoleResponseFromJson(json);
 }

@@ -4,12 +4,12 @@ part 'delete_response.freezed.dart';
 part 'delete_response.g.dart';
 
 @freezed
-class DeleteResponse with _$DeleteResponse {
+abstract class DeleteResponse with _$DeleteResponse {
   const factory DeleteResponse({
     @Default("fail") String status,
     String? message,
   }) = _DeleteResponse;
 
   factory DeleteResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteResponseImpl.fromJson(json);
+      _$DeleteResponseFromJson(json);
 }

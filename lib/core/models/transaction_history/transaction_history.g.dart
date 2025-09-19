@@ -6,9 +6,8 @@ part of 'transaction_history.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TransactionHistoryImpl _$$TransactionHistoryImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TransactionHistoryImpl(
+_TransactionHistory _$TransactionHistoryFromJson(Map<String, dynamic> json) =>
+    _TransactionHistory(
       transactionId: json['transaction_id'] as String,
       otherPartyName: json['other_party_name'] as String?,
       transactionAmount: json['transaction_amount'] as String,
@@ -19,11 +18,10 @@ _$TransactionHistoryImpl _$$TransactionHistoryImplFromJson(
       initials: json['initials'] as String? ?? "N/A",
     );
 
-Map<String, dynamic> _$$TransactionHistoryImplToJson(
-        _$TransactionHistoryImpl instance) =>
+Map<String, dynamic> _$TransactionHistoryToJson(_TransactionHistory instance) =>
     <String, dynamic>{
       'transaction_id': instance.transactionId,
-      if (instance.otherPartyName case final value?) 'other_party_name': value,
+      'other_party_name': ?instance.otherPartyName,
       'transaction_amount': instance.transactionAmount,
       'payment_mode': instance.paymentMode,
       'transaction_type': instance.transactionType,

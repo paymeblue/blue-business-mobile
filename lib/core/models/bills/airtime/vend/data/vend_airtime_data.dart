@@ -4,7 +4,7 @@ part 'vend_airtime_data.freezed.dart';
 part 'vend_airtime_data.g.dart';
 
 @freezed
-class VendAirtimeData with _$VendAirtimeData {
+abstract class VendAirtimeData with _$VendAirtimeData {
   const factory VendAirtimeData({
     required String transactionId,
     required String receiver,
@@ -16,5 +16,5 @@ class VendAirtimeData with _$VendAirtimeData {
   }) = _VendAirtimeData;
 
   factory VendAirtimeData.fromJson(Map<String, dynamic> json) =>
-      _$VendAirtimeDataImpl.fromJson(json);
+      _$VendAirtimeDataFromJson(json);
 }

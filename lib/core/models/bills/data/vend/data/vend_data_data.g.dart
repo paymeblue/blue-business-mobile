@@ -6,8 +6,8 @@ part of 'vend_data_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VendDataDataImpl _$$VendDataDataImplFromJson(Map<String, dynamic> json) =>
-    _$VendDataDataImpl(
+_VendDataData _$VendDataDataFromJson(Map<String, dynamic> json) =>
+    _VendDataData(
       transactionId: json['transaction_id'] as String,
       receiver: json['receiver'] as String,
       provider: json['provider'] as String,
@@ -18,7 +18,7 @@ _$VendDataDataImpl _$$VendDataDataImplFromJson(Map<String, dynamic> json) =>
       createdAt: json['created_at'] as String?,
     );
 
-Map<String, dynamic> _$$VendDataDataImplToJson(_$VendDataDataImpl instance) =>
+Map<String, dynamic> _$VendDataDataToJson(_VendDataData instance) =>
     <String, dynamic>{
       'transaction_id': instance.transactionId,
       'receiver': instance.receiver,
@@ -27,5 +27,5 @@ Map<String, dynamic> _$$VendDataDataImplToJson(_$VendDataDataImpl instance) =>
       'payment_reference': instance.paymentReference,
       'amount': instance.amount,
       'status': instance.status,
-      if (instance.createdAt case final value?) 'created_at': value,
+      'created_at': ?instance.createdAt,
     };

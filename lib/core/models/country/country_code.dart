@@ -4,7 +4,7 @@ part 'country_code.freezed.dart';
 part 'country_code.g.dart';
 
 @freezed
-class CountryCode with _$CountryCode {
+abstract class CountryCode with _$CountryCode {
   const factory CountryCode({
     required String countryCode,
     required String name,
@@ -12,5 +12,5 @@ class CountryCode with _$CountryCode {
   }) = _CountryCode;
 
   factory CountryCode.fromJson(Map<String, dynamic> json) =>
-      _$CountryCodeImpl.fromJson(json);
+      _$CountryCodeFromJson(json);
 }

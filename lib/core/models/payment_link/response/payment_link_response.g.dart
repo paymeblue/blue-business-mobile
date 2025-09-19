@@ -6,9 +6,8 @@ part of 'payment_link_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PaymentLinkResponseImpl _$$PaymentLinkResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PaymentLinkResponseImpl(
+_PaymentLinkResponse _$PaymentLinkResponseFromJson(Map<String, dynamic> json) =>
+    _PaymentLinkResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
@@ -16,10 +15,10 @@ _$PaymentLinkResponseImpl _$$PaymentLinkResponseImplFromJson(
           : PaymentLinkData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$PaymentLinkResponseImplToJson(
-        _$PaymentLinkResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
-    };
+Map<String, dynamic> _$PaymentLinkResponseToJson(
+  _PaymentLinkResponse instance,
+) => <String, dynamic>{
+  'status': instance.status,
+  'message': ?instance.message,
+  'data': ?instance.data,
+};

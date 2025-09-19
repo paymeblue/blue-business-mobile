@@ -6,8 +6,8 @@ part of 'airtime_details.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AirtimeDetailsImpl _$$AirtimeDetailsImplFromJson(Map<String, dynamic> json) =>
-    _$AirtimeDetailsImpl(
+_AirtimeDetails _$AirtimeDetailsFromJson(Map<String, dynamic> json) =>
+    _AirtimeDetails(
       id: (json['id'] as num?)?.toInt(),
       amount: json['amount'] as String,
       receiver: json['receiver'] as String,
@@ -20,10 +20,9 @@ _$AirtimeDetailsImpl _$$AirtimeDetailsImplFromJson(Map<String, dynamic> json) =>
       balanceAfter: json['balance_after'] as String? ?? "0.00",
     );
 
-Map<String, dynamic> _$$AirtimeDetailsImplToJson(
-        _$AirtimeDetailsImpl instance) =>
+Map<String, dynamic> _$AirtimeDetailsToJson(_AirtimeDetails instance) =>
     <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
+      'id': ?instance.id,
       'amount': instance.amount,
       'receiver': instance.receiver,
       'transaction_id': instance.transactionId,

@@ -4,7 +4,7 @@ part 'payment_detail.freezed.dart';
 part 'payment_detail.g.dart';
 
 @freezed
-class PaymentDetail with _$PaymentDetail {
+abstract class PaymentDetail with _$PaymentDetail {
   const factory PaymentDetail({
     String? id,
     required String amount,
@@ -22,5 +22,5 @@ class PaymentDetail with _$PaymentDetail {
   }) = _PaymentDetail;
 
   factory PaymentDetail.fromJson(Map<String, dynamic> json) =>
-      _$PaymentDetailImpl.fromJson(json);
+      _$PaymentDetailFromJson(json);
 }

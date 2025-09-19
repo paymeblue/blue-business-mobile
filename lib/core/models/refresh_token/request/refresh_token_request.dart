@@ -4,11 +4,10 @@ part 'refresh_token_request.freezed.dart';
 part 'refresh_token_request.g.dart';
 
 @freezed
-class RefreshTokenRequest with _$RefreshTokenRequest {
-  const factory RefreshTokenRequest({
-    required String refreshToken,
-  }) = _RefreshTokenRequest;
+abstract class RefreshTokenRequest with _$RefreshTokenRequest {
+  const factory RefreshTokenRequest({required String refreshToken}) =
+      _RefreshTokenRequest;
 
   factory RefreshTokenRequest.fromJson(Map<String, dynamic> json) =>
-      _$RefreshTokenRequestImpl.fromJson(json);
+      _$RefreshTokenRequestFromJson(json);
 }

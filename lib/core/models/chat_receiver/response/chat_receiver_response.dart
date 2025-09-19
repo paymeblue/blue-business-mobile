@@ -5,7 +5,7 @@ part 'chat_receiver_response.freezed.dart';
 part 'chat_receiver_response.g.dart';
 
 @freezed
-class ChatReceiverResponse with _$ChatReceiverResponse {
+abstract class ChatReceiverResponse with _$ChatReceiverResponse {
   const factory ChatReceiverResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class ChatReceiverResponse with _$ChatReceiverResponse {
   }) = _ChatReceiverResponse;
 
   factory ChatReceiverResponse.fromJson(Map<String, dynamic> json) =>
-      _$ChatReceiverResponseImpl.fromJson(json);
+      _$ChatReceiverResponseFromJson(json);
 }

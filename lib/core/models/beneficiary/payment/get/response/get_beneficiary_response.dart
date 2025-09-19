@@ -6,7 +6,7 @@ part 'get_beneficiary_response.freezed.dart';
 part 'get_beneficiary_response.g.dart';
 
 @freezed
-class GetBeneficiaryResponse with _$GetBeneficiaryResponse {
+abstract class GetBeneficiaryResponse with _$GetBeneficiaryResponse {
   const factory GetBeneficiaryResponse({
     @Default("fail") String status,
     String? message,
@@ -15,5 +15,5 @@ class GetBeneficiaryResponse with _$GetBeneficiaryResponse {
   }) = _GetBeneficiaryResponse;
 
   factory GetBeneficiaryResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetBeneficiaryResponseImpl.fromJson(json);
+      _$GetBeneficiaryResponseFromJson(json);
 }

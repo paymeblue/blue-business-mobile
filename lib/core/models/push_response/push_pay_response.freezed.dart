@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,212 +9,299 @@ part of 'push_pay_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-PushPayResponse _$PushPayResponseFromJson(Map<String, dynamic> json) {
-  return _PushPayResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$PushPayResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  PushPayData? get data => throw _privateConstructorUsedError;
+
+ String get status; String? get message; PushPayData? get data;
+/// Create a copy of PushPayResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PushPayResponseCopyWith<PushPayResponse> get copyWith => _$PushPayResponseCopyWithImpl<PushPayResponse>(this as PushPayResponse, _$identity);
 
   /// Serializes this PushPayResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of PushPayResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PushPayResponseCopyWith<PushPayResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushPayResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'PushPayResponse(status: $status, message: $message, data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $PushPayResponseCopyWith<$Res> {
-  factory $PushPayResponseCopyWith(
-          PushPayResponse value, $Res Function(PushPayResponse) then) =
-      _$PushPayResponseCopyWithImpl<$Res, PushPayResponse>;
-  @useResult
-  $Res call({String status, String? message, PushPayData? data});
+abstract mixin class $PushPayResponseCopyWith<$Res>  {
+  factory $PushPayResponseCopyWith(PushPayResponse value, $Res Function(PushPayResponse) _then) = _$PushPayResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, PushPayData? data
+});
 
-  $PushPayDataCopyWith<$Res>? get data;
+
+$PushPayDataCopyWith<$Res>? get data;
+
 }
-
 /// @nodoc
-class _$PushPayResponseCopyWithImpl<$Res, $Val extends PushPayResponse>
+class _$PushPayResponseCopyWithImpl<$Res>
     implements $PushPayResponseCopyWith<$Res> {
-  _$PushPayResponseCopyWithImpl(this._value, this._then);
+  _$PushPayResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PushPayResponse _self;
+  final $Res Function(PushPayResponse) _then;
 
-  /// Create a copy of PushPayResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as PushPayData?,
-    ) as $Val);
+/// Create a copy of PushPayResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as PushPayData?,
+  ));
+}
+/// Create a copy of PushPayResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PushPayDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
   }
 
-  /// Create a copy of PushPayResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PushPayDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $PushPayDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
-  }
+  return $PushPayDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$PushPayResponseImplCopyWith<$Res>
-    implements $PushPayResponseCopyWith<$Res> {
-  factory _$$PushPayResponseImplCopyWith(_$PushPayResponseImpl value,
-          $Res Function(_$PushPayResponseImpl) then) =
-      __$$PushPayResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message, PushPayData? data});
 
-  @override
-  $PushPayDataCopyWith<$Res>? get data;
+/// Adds pattern-matching-related methods to [PushPayResponse].
+extension PushPayResponsePatterns on PushPayResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PushPayResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PushPayResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PushPayResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _PushPayResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PushPayResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PushPayResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  PushPayData? data)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PushPayResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  PushPayData? data)  $default,) {final _that = this;
+switch (_that) {
+case _PushPayResponse():
+return $default(_that.status,_that.message,_that.data);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  PushPayData? data)?  $default,) {final _that = this;
+switch (_that) {
+case _PushPayResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$PushPayResponseImplCopyWithImpl<$Res>
-    extends _$PushPayResponseCopyWithImpl<$Res, _$PushPayResponseImpl>
-    implements _$$PushPayResponseImplCopyWith<$Res> {
-  __$$PushPayResponseImplCopyWithImpl(
-      _$PushPayResponseImpl _value, $Res Function(_$PushPayResponseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of PushPayResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_$PushPayResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as PushPayData?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$PushPayResponseImpl implements _PushPayResponse {
-  const _$PushPayResponseImpl({this.status = "fail", this.message, this.data});
 
-  factory _$PushPayResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PushPayResponseImplFromJson(json);
+class _PushPayResponse implements PushPayResponse {
+  const _PushPayResponse({this.status = "fail", this.message, this.data});
+  factory _PushPayResponse.fromJson(Map<String, dynamic> json) => _$PushPayResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  @override
-  final PushPayData? data;
+@override@JsonKey() final  String status;
+@override final  String? message;
+@override final  PushPayData? data;
 
-  @override
-  String toString() {
-    return 'PushPayResponse(status: $status, message: $message, data: $data)';
-  }
+/// Create a copy of PushPayResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PushPayResponseCopyWith<_PushPayResponse> get copyWith => __$PushPayResponseCopyWithImpl<_PushPayResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PushPayResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
-
-  /// Create a copy of PushPayResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PushPayResponseImplCopyWith<_$PushPayResponseImpl> get copyWith =>
-      __$$PushPayResponseImplCopyWithImpl<_$PushPayResponseImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PushPayResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$PushPayResponseToJson(this, );
 }
 
-abstract class _PushPayResponse implements PushPayResponse {
-  const factory _PushPayResponse(
-      {final String status,
-      final String? message,
-      final PushPayData? data}) = _$PushPayResponseImpl;
-
-  factory _PushPayResponse.fromJson(Map<String, dynamic> json) =
-      _$PushPayResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  PushPayData? get data;
-
-  /// Create a copy of PushPayResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PushPayResponseImplCopyWith<_$PushPayResponseImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushPayResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'PushPayResponse(status: $status, message: $message, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PushPayResponseCopyWith<$Res> implements $PushPayResponseCopyWith<$Res> {
+  factory _$PushPayResponseCopyWith(_PushPayResponse value, $Res Function(_PushPayResponse) _then) = __$PushPayResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, PushPayData? data
+});
+
+
+@override $PushPayDataCopyWith<$Res>? get data;
+
+}
+/// @nodoc
+class __$PushPayResponseCopyWithImpl<$Res>
+    implements _$PushPayResponseCopyWith<$Res> {
+  __$PushPayResponseCopyWithImpl(this._self, this._then);
+
+  final _PushPayResponse _self;
+  final $Res Function(_PushPayResponse) _then;
+
+/// Create a copy of PushPayResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_PushPayResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as PushPayData?,
+  ));
+}
+
+/// Create a copy of PushPayResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PushPayDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
+  }
+
+  return $PushPayDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
+}
+
+// dart format on

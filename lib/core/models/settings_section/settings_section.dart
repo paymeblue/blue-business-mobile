@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'settings_section.freezed.dart';
 
 @freezed
-class SettingsSection with _$SettingsSection {
+abstract class SettingsSection with _$SettingsSection {
   const factory SettingsSection({
     required String sectionTitle,
     required List<SettingsOption> options,

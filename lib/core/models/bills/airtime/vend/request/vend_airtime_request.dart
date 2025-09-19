@@ -4,7 +4,7 @@ part 'vend_airtime_request.freezed.dart';
 part 'vend_airtime_request.g.dart';
 
 @freezed
-class VendAirtimeRequest with _$VendAirtimeRequest {
+abstract class VendAirtimeRequest with _$VendAirtimeRequest {
   const factory VendAirtimeRequest({
     required String receiver,
     required String passcode,
@@ -13,5 +13,5 @@ class VendAirtimeRequest with _$VendAirtimeRequest {
   }) = _VendAirtimeRequest;
 
   factory VendAirtimeRequest.fromJson(Map<String, dynamic> json) =>
-      _$VendAirtimeRequestImpl.fromJson(json);
+      _$VendAirtimeRequestFromJson(json);
 }

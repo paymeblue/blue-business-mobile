@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,170 +9,269 @@ part of 'popup.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$PopupModel {
-  String get title => throw _privateConstructorUsedError;
-  Widget? get icon => throw _privateConstructorUsedError;
-  Function get onTap => throw _privateConstructorUsedError;
 
-  /// Create a copy of PopupModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PopupModelCopyWith<PopupModel> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get title; Widget? get icon; Function get onTap;
+/// Create a copy of PopupModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PopupModelCopyWith<PopupModel> get copyWith => _$PopupModelCopyWithImpl<PopupModel>(this as PopupModel, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PopupModel&&(identical(other.title, title) || other.title == title)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.onTap, onTap) || other.onTap == onTap));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,title,icon,onTap);
+
+@override
+String toString() {
+  return 'PopupModel(title: $title, icon: $icon, onTap: $onTap)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $PopupModelCopyWith<$Res> {
-  factory $PopupModelCopyWith(
-          PopupModel value, $Res Function(PopupModel) then) =
-      _$PopupModelCopyWithImpl<$Res, PopupModel>;
-  @useResult
-  $Res call({String title, Widget? icon, Function onTap});
-}
+abstract mixin class $PopupModelCopyWith<$Res>  {
+  factory $PopupModelCopyWith(PopupModel value, $Res Function(PopupModel) _then) = _$PopupModelCopyWithImpl;
+@useResult
+$Res call({
+ String title, Widget? icon, Function onTap
+});
 
+
+
+
+}
 /// @nodoc
-class _$PopupModelCopyWithImpl<$Res, $Val extends PopupModel>
+class _$PopupModelCopyWithImpl<$Res>
     implements $PopupModelCopyWith<$Res> {
-  _$PopupModelCopyWithImpl(this._value, this._then);
+  _$PopupModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PopupModel _self;
+  final $Res Function(PopupModel) _then;
 
-  /// Create a copy of PopupModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? title = null,
-    Object? icon = freezed,
-    Object? onTap = null,
-  }) {
-    return _then(_value.copyWith(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      icon: freezed == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as Widget?,
-      onTap: null == onTap
-          ? _value.onTap
-          : onTap // ignore: cast_nullable_to_non_nullable
-              as Function,
-    ) as $Val);
-  }
+/// Create a copy of PopupModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? icon = freezed,Object? onTap = null,}) {
+  return _then(_self.copyWith(
+title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,icon: freezed == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
+as Widget?,onTap: null == onTap ? _self.onTap : onTap // ignore: cast_nullable_to_non_nullable
+as Function,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [PopupModel].
+extension PopupModelPatterns on PopupModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PopupModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PopupModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PopupModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _PopupModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PopupModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PopupModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  Widget? icon,  Function onTap)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PopupModel() when $default != null:
+return $default(_that.title,_that.icon,_that.onTap);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  Widget? icon,  Function onTap)  $default,) {final _that = this;
+switch (_that) {
+case _PopupModel():
+return $default(_that.title,_that.icon,_that.onTap);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  Widget? icon,  Function onTap)?  $default,) {final _that = this;
+switch (_that) {
+case _PopupModel() when $default != null:
+return $default(_that.title,_that.icon,_that.onTap);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$PopupModelImplCopyWith<$Res>
-    implements $PopupModelCopyWith<$Res> {
-  factory _$$PopupModelImplCopyWith(
-          _$PopupModelImpl value, $Res Function(_$PopupModelImpl) then) =
-      __$$PopupModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String title, Widget? icon, Function onTap});
+
+
+class _PopupModel implements PopupModel {
+  const _PopupModel({required this.title, this.icon, required this.onTap});
+  
+
+@override final  String title;
+@override final  Widget? icon;
+@override final  Function onTap;
+
+/// Create a copy of PopupModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PopupModelCopyWith<_PopupModel> get copyWith => __$PopupModelCopyWithImpl<_PopupModel>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PopupModel&&(identical(other.title, title) || other.title == title)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.onTap, onTap) || other.onTap == onTap));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,title,icon,onTap);
+
+@override
+String toString() {
+  return 'PopupModel(title: $title, icon: $icon, onTap: $onTap)';
+}
+
+
 }
 
 /// @nodoc
-class __$$PopupModelImplCopyWithImpl<$Res>
-    extends _$PopupModelCopyWithImpl<$Res, _$PopupModelImpl>
-    implements _$$PopupModelImplCopyWith<$Res> {
-  __$$PopupModelImplCopyWithImpl(
-      _$PopupModelImpl _value, $Res Function(_$PopupModelImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$PopupModelCopyWith<$Res> implements $PopupModelCopyWith<$Res> {
+  factory _$PopupModelCopyWith(_PopupModel value, $Res Function(_PopupModel) _then) = __$PopupModelCopyWithImpl;
+@override @useResult
+$Res call({
+ String title, Widget? icon, Function onTap
+});
 
-  /// Create a copy of PopupModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? title = null,
-    Object? icon = freezed,
-    Object? onTap = null,
-  }) {
-    return _then(_$PopupModelImpl(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      icon: freezed == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as Widget?,
-      onTap: null == onTap
-          ? _value.onTap
-          : onTap // ignore: cast_nullable_to_non_nullable
-              as Function,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$PopupModelCopyWithImpl<$Res>
+    implements _$PopupModelCopyWith<$Res> {
+  __$PopupModelCopyWithImpl(this._self, this._then);
 
-class _$PopupModelImpl implements _PopupModel {
-  const _$PopupModelImpl({required this.title, this.icon, required this.onTap});
+  final _PopupModel _self;
+  final $Res Function(_PopupModel) _then;
 
-  @override
-  final String title;
-  @override
-  final Widget? icon;
-  @override
-  final Function onTap;
-
-  @override
-  String toString() {
-    return 'PopupModel(title: $title, icon: $icon, onTap: $onTap)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PopupModelImpl &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.icon, icon) || other.icon == icon) &&
-            (identical(other.onTap, onTap) || other.onTap == onTap));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, title, icon, onTap);
-
-  /// Create a copy of PopupModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PopupModelImplCopyWith<_$PopupModelImpl> get copyWith =>
-      __$$PopupModelImplCopyWithImpl<_$PopupModelImpl>(this, _$identity);
+/// Create a copy of PopupModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? icon = freezed,Object? onTap = null,}) {
+  return _then(_PopupModel(
+title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,icon: freezed == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
+as Widget?,onTap: null == onTap ? _self.onTap : onTap // ignore: cast_nullable_to_non_nullable
+as Function,
+  ));
 }
 
-abstract class _PopupModel implements PopupModel {
-  const factory _PopupModel(
-      {required final String title,
-      final Widget? icon,
-      required final Function onTap}) = _$PopupModelImpl;
 
-  @override
-  String get title;
-  @override
-  Widget? get icon;
-  @override
-  Function get onTap;
-
-  /// Create a copy of PopupModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PopupModelImplCopyWith<_$PopupModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+// dart format on

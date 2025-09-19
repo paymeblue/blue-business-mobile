@@ -7,7 +7,7 @@ part 'places_response.freezed.dart';
 part 'places_response.g.dart';
 
 @freezed
-class PlaceResponse with _$PlaceResponse {
+abstract class PlaceResponse with _$PlaceResponse {
   const factory PlaceResponse({
     required List<String> htmlAttributions,
     String? nextPageToken,
@@ -19,7 +19,7 @@ class PlaceResponse with _$PlaceResponse {
 }
 
 @freezed
-class PlaceResult with _$PlaceResult {
+abstract class PlaceResult with _$PlaceResult {
   const factory PlaceResult({
     required String businessStatus,
     required String formattedAddress,
@@ -43,7 +43,7 @@ class PlaceResult with _$PlaceResult {
 }
 
 @freezed
-class Geometry with _$Geometry {
+abstract class Geometry with _$Geometry {
   const factory Geometry({
     required LatLng location,
     required Viewport viewport,
@@ -54,14 +54,14 @@ class Geometry with _$Geometry {
 }
 
 @freezed
-class LatLng with _$LatLng {
+abstract class LatLng with _$LatLng {
   const factory LatLng({required double lat, required double lng}) = _LatLng;
 
   factory LatLng.fromJson(Map<String, dynamic> json) => _$LatLngFromJson(json);
 }
 
 @freezed
-class Viewport with _$Viewport {
+abstract class Viewport with _$Viewport {
   const factory Viewport({
     required LatLng northeast,
     required LatLng southwest,
@@ -72,7 +72,7 @@ class Viewport with _$Viewport {
 }
 
 @freezed
-class OpeningHours with _$OpeningHours {
+abstract class OpeningHours with _$OpeningHours {
   const factory OpeningHours({bool? openNow}) = _OpeningHours;
 
   factory OpeningHours.fromJson(Map<String, dynamic> json) =>
@@ -80,7 +80,7 @@ class OpeningHours with _$OpeningHours {
 }
 
 @freezed
-class Photo with _$Photo {
+abstract class Photo with _$Photo {
   const factory Photo({
     required int height,
     required int width,
@@ -92,7 +92,7 @@ class Photo with _$Photo {
 }
 
 @freezed
-class PlusCode with _$PlusCode {
+abstract class PlusCode with _$PlusCode {
   const factory PlusCode({String? compoundCode, String? globalCode}) =
       _PlusCode;
 

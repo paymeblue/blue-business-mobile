@@ -5,7 +5,7 @@ part 'transaction_history_data.freezed.dart';
 part 'transaction_history_data.g.dart';
 
 @freezed
-class TransactionData with _$TransactionData {
+abstract class TransactionData with _$TransactionData {
   const factory TransactionData({
     required int total,
     required int limit,
@@ -15,5 +15,5 @@ class TransactionData with _$TransactionData {
   }) = _TransactionData;
 
   factory TransactionData.fromJson(Map<String, dynamic> json) =>
-      _$TransactionDataImpl.fromJson(json);
+      _$TransactionDataFromJson(json);
 }

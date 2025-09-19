@@ -6,8 +6,8 @@ part of 'bank_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BankResponseImpl _$$BankResponseImplFromJson(Map<String, dynamic> json) =>
-    _$BankResponseImpl(
+_BankResponse _$BankResponseFromJson(Map<String, dynamic> json) =>
+    _BankResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: (json['data'] as List<dynamic>?)
@@ -15,9 +15,9 @@ _$BankResponseImpl _$$BankResponseImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$BankResponseImplToJson(_$BankResponseImpl instance) =>
+Map<String, dynamic> _$BankResponseToJson(_BankResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
+      'message': ?instance.message,
+      'data': ?instance.data,
     };

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,212 +9,299 @@ part of 'wallet_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-WalletResponse _$WalletResponseFromJson(Map<String, dynamic> json) {
-  return _WalletResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$WalletResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  Wallet? get data => throw _privateConstructorUsedError;
+
+ String get status; String? get message; Wallet? get data;
+/// Create a copy of WalletResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WalletResponseCopyWith<WalletResponse> get copyWith => _$WalletResponseCopyWithImpl<WalletResponse>(this as WalletResponse, _$identity);
 
   /// Serializes this WalletResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of WalletResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $WalletResponseCopyWith<WalletResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WalletResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'WalletResponse(status: $status, message: $message, data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $WalletResponseCopyWith<$Res> {
-  factory $WalletResponseCopyWith(
-          WalletResponse value, $Res Function(WalletResponse) then) =
-      _$WalletResponseCopyWithImpl<$Res, WalletResponse>;
-  @useResult
-  $Res call({String status, String? message, Wallet? data});
+abstract mixin class $WalletResponseCopyWith<$Res>  {
+  factory $WalletResponseCopyWith(WalletResponse value, $Res Function(WalletResponse) _then) = _$WalletResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, Wallet? data
+});
 
-  $WalletCopyWith<$Res>? get data;
+
+$WalletCopyWith<$Res>? get data;
+
 }
-
 /// @nodoc
-class _$WalletResponseCopyWithImpl<$Res, $Val extends WalletResponse>
+class _$WalletResponseCopyWithImpl<$Res>
     implements $WalletResponseCopyWith<$Res> {
-  _$WalletResponseCopyWithImpl(this._value, this._then);
+  _$WalletResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final WalletResponse _self;
+  final $Res Function(WalletResponse) _then;
 
-  /// Create a copy of WalletResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Wallet?,
-    ) as $Val);
+/// Create a copy of WalletResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as Wallet?,
+  ));
+}
+/// Create a copy of WalletResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WalletCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
   }
 
-  /// Create a copy of WalletResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $WalletCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $WalletCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
-  }
+  return $WalletCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$WalletResponseImplCopyWith<$Res>
-    implements $WalletResponseCopyWith<$Res> {
-  factory _$$WalletResponseImplCopyWith(_$WalletResponseImpl value,
-          $Res Function(_$WalletResponseImpl) then) =
-      __$$WalletResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message, Wallet? data});
 
-  @override
-  $WalletCopyWith<$Res>? get data;
+/// Adds pattern-matching-related methods to [WalletResponse].
+extension WalletResponsePatterns on WalletResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _WalletResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _WalletResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _WalletResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _WalletResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _WalletResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _WalletResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  Wallet? data)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _WalletResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  Wallet? data)  $default,) {final _that = this;
+switch (_that) {
+case _WalletResponse():
+return $default(_that.status,_that.message,_that.data);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  Wallet? data)?  $default,) {final _that = this;
+switch (_that) {
+case _WalletResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$WalletResponseImplCopyWithImpl<$Res>
-    extends _$WalletResponseCopyWithImpl<$Res, _$WalletResponseImpl>
-    implements _$$WalletResponseImplCopyWith<$Res> {
-  __$$WalletResponseImplCopyWithImpl(
-      _$WalletResponseImpl _value, $Res Function(_$WalletResponseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of WalletResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_$WalletResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Wallet?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$WalletResponseImpl implements _WalletResponse {
-  const _$WalletResponseImpl({this.status = "fail", this.message, this.data});
 
-  factory _$WalletResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WalletResponseImplFromJson(json);
+class _WalletResponse implements WalletResponse {
+  const _WalletResponse({this.status = "fail", this.message, this.data});
+  factory _WalletResponse.fromJson(Map<String, dynamic> json) => _$WalletResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  @override
-  final Wallet? data;
+@override@JsonKey() final  String status;
+@override final  String? message;
+@override final  Wallet? data;
 
-  @override
-  String toString() {
-    return 'WalletResponse(status: $status, message: $message, data: $data)';
-  }
+/// Create a copy of WalletResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$WalletResponseCopyWith<_WalletResponse> get copyWith => __$WalletResponseCopyWithImpl<_WalletResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$WalletResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
-
-  /// Create a copy of WalletResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$WalletResponseImplCopyWith<_$WalletResponseImpl> get copyWith =>
-      __$$WalletResponseImplCopyWithImpl<_$WalletResponseImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$WalletResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$WalletResponseToJson(this, );
 }
 
-abstract class _WalletResponse implements WalletResponse {
-  const factory _WalletResponse(
-      {final String status,
-      final String? message,
-      final Wallet? data}) = _$WalletResponseImpl;
-
-  factory _WalletResponse.fromJson(Map<String, dynamic> json) =
-      _$WalletResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  Wallet? get data;
-
-  /// Create a copy of WalletResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WalletResponseImplCopyWith<_$WalletResponseImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WalletResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'WalletResponse(status: $status, message: $message, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$WalletResponseCopyWith<$Res> implements $WalletResponseCopyWith<$Res> {
+  factory _$WalletResponseCopyWith(_WalletResponse value, $Res Function(_WalletResponse) _then) = __$WalletResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, Wallet? data
+});
+
+
+@override $WalletCopyWith<$Res>? get data;
+
+}
+/// @nodoc
+class __$WalletResponseCopyWithImpl<$Res>
+    implements _$WalletResponseCopyWith<$Res> {
+  __$WalletResponseCopyWithImpl(this._self, this._then);
+
+  final _WalletResponse _self;
+  final $Res Function(_WalletResponse) _then;
+
+/// Create a copy of WalletResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_WalletResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as Wallet?,
+  ));
+}
+
+/// Create a copy of WalletResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WalletCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
+  }
+
+  return $WalletCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
+}
+
+// dart format on

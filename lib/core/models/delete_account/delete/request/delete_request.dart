@@ -4,11 +4,9 @@ part 'delete_request.freezed.dart';
 part 'delete_request.g.dart';
 
 @freezed
-class DeleteRequest with _$DeleteRequest {
-  const factory DeleteRequest({
-    required String reasonId,
-  }) = _DeleteRequest;
+abstract class DeleteRequest with _$DeleteRequest {
+  const factory DeleteRequest({required String reasonId}) = _DeleteRequest;
 
   factory DeleteRequest.fromJson(Map<String, dynamic> json) =>
-      _$DeleteRequestImpl.fromJson(json);
+      _$DeleteRequestFromJson(json);
 }

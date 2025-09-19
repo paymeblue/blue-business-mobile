@@ -5,7 +5,7 @@ part 'get_branches_data.freezed.dart';
 part 'get_branches_data.g.dart';
 
 @freezed
-class GetBranchesData with _$GetBranchesData {
+abstract class GetBranchesData with _$GetBranchesData {
   const factory GetBranchesData({
     @Default(0) int total,
     @Default(1) int page,
@@ -16,5 +16,5 @@ class GetBranchesData with _$GetBranchesData {
   }) = _GetBranchesData;
 
   factory GetBranchesData.fromJson(Map<String, dynamic> json) =>
-      _$GetBranchesDataImpl.fromJson(json);
+      _$GetBranchesDataFromJson(json);
 }

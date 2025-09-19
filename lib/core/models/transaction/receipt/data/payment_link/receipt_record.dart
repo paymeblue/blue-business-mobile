@@ -4,7 +4,7 @@ part 'receipt_record.freezed.dart';
 part 'receipt_record.g.dart';
 
 @freezed
-class PaymentLinkReceiptRecord with _$PaymentLinkReceiptRecord {
+abstract class PaymentLinkReceiptRecord with _$PaymentLinkReceiptRecord {
   const factory PaymentLinkReceiptRecord({
     required int id,
     required String transactionId,
@@ -18,7 +18,7 @@ class PaymentLinkReceiptRecord with _$PaymentLinkReceiptRecord {
   }) = _PaymentLinkReceiptRecord;
 
   factory PaymentLinkReceiptRecord.fromJson(Map<String, dynamic> json) =>
-      _$PaymentLinkReceiptRecordImpl.fromJson(json);
+      _$PaymentLinkReceiptRecordFromJson(json);
 }
 
 // {

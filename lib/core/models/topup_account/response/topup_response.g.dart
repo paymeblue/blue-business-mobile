@@ -6,8 +6,8 @@ part of 'topup_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TopupResponseImpl _$$TopupResponseImplFromJson(Map<String, dynamic> json) =>
-    _$TopupResponseImpl(
+_TopupResponse _$TopupResponseFromJson(Map<String, dynamic> json) =>
+    _TopupResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
@@ -15,9 +15,9 @@ _$TopupResponseImpl _$$TopupResponseImplFromJson(Map<String, dynamic> json) =>
           : TopupAccount.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$TopupResponseImplToJson(_$TopupResponseImpl instance) =>
+Map<String, dynamic> _$TopupResponseToJson(_TopupResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
+      'message': ?instance.message,
+      'data': ?instance.data,
     };

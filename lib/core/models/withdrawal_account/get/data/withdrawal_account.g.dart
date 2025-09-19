@@ -6,9 +6,8 @@ part of 'withdrawal_account.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$WithdrawalAccountImpl _$$WithdrawalAccountImplFromJson(
-        Map<String, dynamic> json) =>
-    _$WithdrawalAccountImpl(
+_WithdrawalAccount _$WithdrawalAccountFromJson(Map<String, dynamic> json) =>
+    _WithdrawalAccount(
       id: (json['id'] as num).toInt(),
       bankId: (json['bank_id'] as num).toInt(),
       bankName: json['bank_name'] as String,
@@ -17,13 +16,12 @@ _$WithdrawalAccountImpl _$$WithdrawalAccountImplFromJson(
       createdAt: json['created_at'] as String?,
     );
 
-Map<String, dynamic> _$$WithdrawalAccountImplToJson(
-        _$WithdrawalAccountImpl instance) =>
+Map<String, dynamic> _$WithdrawalAccountToJson(_WithdrawalAccount instance) =>
     <String, dynamic>{
       'id': instance.id,
       'bank_id': instance.bankId,
       'bank_name': instance.bankName,
       'account_name': instance.accountName,
       'account_number': instance.accountNumber,
-      if (instance.createdAt case final value?) 'created_at': value,
+      'created_at': ?instance.createdAt,
     };

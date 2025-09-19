@@ -6,9 +6,8 @@ part of 'vend_data_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VendDataResponseImpl _$$VendDataResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VendDataResponseImpl(
+_VendDataResponse _$VendDataResponseFromJson(Map<String, dynamic> json) =>
+    _VendDataResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
@@ -16,10 +15,9 @@ _$VendDataResponseImpl _$$VendDataResponseImplFromJson(
           : VendDataData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$VendDataResponseImplToJson(
-        _$VendDataResponseImpl instance) =>
+Map<String, dynamic> _$VendDataResponseToJson(_VendDataResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
+      'message': ?instance.message,
+      'data': ?instance.data,
     };

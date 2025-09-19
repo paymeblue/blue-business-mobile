@@ -4,7 +4,7 @@ part 'vend_electricity_request.freezed.dart';
 part 'vend_electricity_request.g.dart';
 
 @freezed
-class VendElectricityRequest with _$VendElectricityRequest {
+abstract class VendElectricityRequest with _$VendElectricityRequest {
   const factory VendElectricityRequest({
     required String transactionId,
     required String passcode,
@@ -12,5 +12,5 @@ class VendElectricityRequest with _$VendElectricityRequest {
   }) = _VendElectricityRequest;
 
   factory VendElectricityRequest.fromJson(Map<String, dynamic> json) =>
-      _$VendElectricityRequestImpl.fromJson(json);
+      _$VendElectricityRequestFromJson(json);
 }

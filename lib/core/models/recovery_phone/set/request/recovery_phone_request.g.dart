@@ -6,16 +6,13 @@ part of 'recovery_phone_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SetRecoveryPhoneRequestImpl _$$SetRecoveryPhoneRequestImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SetRecoveryPhoneRequestImpl(
-      phone: json['phone'] as String,
-      password: json['password'] as String,
-    );
+_SetRecoveryPhoneRequest _$SetRecoveryPhoneRequestFromJson(
+  Map<String, dynamic> json,
+) => _SetRecoveryPhoneRequest(
+  phone: json['phone'] as String,
+  password: json['password'] as String,
+);
 
-Map<String, dynamic> _$$SetRecoveryPhoneRequestImplToJson(
-        _$SetRecoveryPhoneRequestImpl instance) =>
-    <String, dynamic>{
-      'phone': instance.phone,
-      'password': instance.password,
-    };
+Map<String, dynamic> _$SetRecoveryPhoneRequestToJson(
+  _SetRecoveryPhoneRequest instance,
+) => <String, dynamic>{'phone': instance.phone, 'password': instance.password};

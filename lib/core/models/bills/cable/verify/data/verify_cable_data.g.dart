@@ -6,9 +6,8 @@ part of 'verify_cable_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VerifyCableDataImpl _$$VerifyCableDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VerifyCableDataImpl(
+_VerifyCableData _$VerifyCableDataFromJson(Map<String, dynamic> json) =>
+    _VerifyCableData(
       transactionId: json['transaction_id'] as String,
       customerName: json['customer_name'] as String,
       customerInfo: json['customer_info'] as String,
@@ -21,8 +20,7 @@ _$VerifyCableDataImpl _$$VerifyCableDataImplFromJson(
       createdAt: json['created_at'] as String?,
     );
 
-Map<String, dynamic> _$$VerifyCableDataImplToJson(
-        _$VerifyCableDataImpl instance) =>
+Map<String, dynamic> _$VerifyCableDataToJson(_VerifyCableData instance) =>
     <String, dynamic>{
       'transaction_id': instance.transactionId,
       'customer_name': instance.customerName,
@@ -33,5 +31,5 @@ Map<String, dynamic> _$$VerifyCableDataImplToJson(
       'service_charge': instance.serviceCharge,
       'amount': instance.amount,
       'status': instance.status,
-      if (instance.createdAt case final value?) 'created_at': value,
+      'created_at': ?instance.createdAt,
     };

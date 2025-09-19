@@ -1,6 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
-
 import 'package:blue_business/core/api/pump_price_service/pump_price_attendant_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -199,7 +197,6 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     buttonState = FetchState.loading;
     CreateStaffResponse response = await PumpPriceAttendantService()
         .createAttendant(
-          image: path != null ? File(path!) : null,
           name: name.text,
           phone: phone.text.validPhone(
             CountryCode(countryCode: 'NG', name: 'Nigeria', dialCode: '+234'),

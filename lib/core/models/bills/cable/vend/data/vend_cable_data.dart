@@ -4,7 +4,7 @@ part 'vend_cable_data.freezed.dart';
 part 'vend_cable_data.g.dart';
 
 @freezed
-class VendCableData with _$VendCableData {
+abstract class VendCableData with _$VendCableData {
   const factory VendCableData({
     required String transactionId,
     required String customerName,
@@ -20,5 +20,5 @@ class VendCableData with _$VendCableData {
   }) = _VendCableData;
 
   factory VendCableData.fromJson(Map<String, dynamic> json) =>
-      _$VendCableDataImpl.fromJson(json);
+      _$VendCableDataFromJson(json);
 }

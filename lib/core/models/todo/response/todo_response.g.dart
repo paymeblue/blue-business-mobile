@@ -6,8 +6,8 @@ part of 'todo_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TodoResponseImpl _$$TodoResponseImplFromJson(Map<String, dynamic> json) =>
-    _$TodoResponseImpl(
+_TodoResponse _$TodoResponseFromJson(Map<String, dynamic> json) =>
+    _TodoResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: (json['data'] as List<dynamic>?)
@@ -15,9 +15,9 @@ _$TodoResponseImpl _$$TodoResponseImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$TodoResponseImplToJson(_$TodoResponseImpl instance) =>
+Map<String, dynamic> _$TodoResponseToJson(_TodoResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
+      'message': ?instance.message,
+      'data': ?instance.data,
     };

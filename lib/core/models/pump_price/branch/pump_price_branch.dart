@@ -4,7 +4,8 @@ part 'pump_price_branch.freezed.dart';
 part 'pump_price_branch.g.dart';
 
 @freezed
-class CreatePumpPriceBranchRequest with _$CreatePumpPriceBranchRequest {
+abstract class CreatePumpPriceBranchRequest
+    with _$CreatePumpPriceBranchRequest {
   const factory CreatePumpPriceBranchRequest({
     required String name,
     required String address,
@@ -16,11 +17,11 @@ class CreatePumpPriceBranchRequest with _$CreatePumpPriceBranchRequest {
   }) = _CreatePumpPriceBranchRequest;
 
   factory CreatePumpPriceBranchRequest.fromJson(Map<String, dynamic> json) =>
-      _$CreatePumpPriceBranchRequestImpl.fromJson(json);
+      _$CreatePumpPriceBranchRequestFromJson(json);
 }
 
 @freezed
-class EditPumpPriceBranchRequest with _$EditPumpPriceBranchRequest {
+abstract class EditPumpPriceBranchRequest with _$EditPumpPriceBranchRequest {
   const factory EditPumpPriceBranchRequest({
     String? name,
     String? address,
@@ -32,11 +33,12 @@ class EditPumpPriceBranchRequest with _$EditPumpPriceBranchRequest {
   }) = _EditPumpPriceBranchRequest;
 
   factory EditPumpPriceBranchRequest.fromJson(Map<String, dynamic> json) =>
-      _$EditPumpPriceBranchRequestImpl.fromJson(json);
+      _$EditPumpPriceBranchRequestFromJson(json);
 }
 
 @freezed
-class CreatePumpPriceBranchResponse with _$CreatePumpPriceBranchResponse {
+abstract class CreatePumpPriceBranchResponse
+    with _$CreatePumpPriceBranchResponse {
   const factory CreatePumpPriceBranchResponse({
     @Default('') String message,
     @Default('fail') String status,
@@ -44,11 +46,11 @@ class CreatePumpPriceBranchResponse with _$CreatePumpPriceBranchResponse {
   }) = _CreatePumpPriceBranchResponse;
 
   factory CreatePumpPriceBranchResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreatePumpPriceBranchResponseImpl.fromJson(json);
+      _$CreatePumpPriceBranchResponseFromJson(json);
 }
 
 @freezed
-class CreateFillingStationData with _$CreateFillingStationData {
+abstract class CreateFillingStationData with _$CreateFillingStationData {
   const factory CreateFillingStationData({
     required String id,
     required String branchId,
@@ -63,11 +65,11 @@ class CreateFillingStationData with _$CreateFillingStationData {
   }) = _CreateFillingStationData;
 
   factory CreateFillingStationData.fromJson(Map<String, dynamic> json) =>
-      _$CreateFillingStationDataImpl.fromJson(json);
+      _$CreateFillingStationDataFromJson(json);
 }
 
 @freezed
-class EditPumpPriceBranchResponse with _$EditPumpPriceBranchResponse {
+abstract class EditPumpPriceBranchResponse with _$EditPumpPriceBranchResponse {
   const factory EditPumpPriceBranchResponse({
     @Default('') String message,
     @Default('fail') String status,
@@ -75,11 +77,11 @@ class EditPumpPriceBranchResponse with _$EditPumpPriceBranchResponse {
   }) = _EditPumpPriceBranchResponse;
 
   factory EditPumpPriceBranchResponse.fromJson(Map<String, dynamic> json) =>
-      _$EditPumpPriceBranchResponseImpl.fromJson(json);
+      _$EditPumpPriceBranchResponseFromJson(json);
 }
 
 @freezed
-class EditFillingStationData with _$EditFillingStationData {
+abstract class EditFillingStationData with _$EditFillingStationData {
   const factory EditFillingStationData({
     required String id,
     required String branchId,
@@ -95,11 +97,11 @@ class EditFillingStationData with _$EditFillingStationData {
   }) = _EditFillingStationData;
 
   factory EditFillingStationData.fromJson(Map<String, dynamic> json) =>
-      _$EditFillingStationDataImpl.fromJson(json);
+      _$EditFillingStationDataFromJson(json);
 }
 
 @freezed
-class GetFillingStationsResponse with _$GetFillingStationsResponse {
+abstract class GetFillingStationsResponse with _$GetFillingStationsResponse {
   const factory GetFillingStationsResponse({
     @Default('') String message,
     @Default('fail') String status,
@@ -107,22 +109,22 @@ class GetFillingStationsResponse with _$GetFillingStationsResponse {
   }) = _GetFillingStationsResponse;
 
   factory GetFillingStationsResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetFillingStationsResponseImpl.fromJson(json);
+      _$GetFillingStationsResponseFromJson(json);
 }
 
 @freezed
-class GetFillingStationsData with _$GetFillingStationsData {
+abstract class GetFillingStationsData with _$GetFillingStationsData {
   const factory GetFillingStationsData({
     @Default(GetFillingStationsMeta()) GetFillingStationsMeta meta,
     @Default([]) List<FillingStation> data,
   }) = _GetFillingStationsData;
 
   factory GetFillingStationsData.fromJson(Map<String, dynamic> json) =>
-      _$GetFillingStationsDataImpl.fromJson(json);
+      _$GetFillingStationsDataFromJson(json);
 }
 
 @freezed
-class GetFillingStationsMeta with _$GetFillingStationsMeta {
+abstract class GetFillingStationsMeta with _$GetFillingStationsMeta {
   const factory GetFillingStationsMeta({
     @Default(0) int total,
     @Default(1) int page,
@@ -131,11 +133,11 @@ class GetFillingStationsMeta with _$GetFillingStationsMeta {
   }) = _GetFillingStationsMeta;
 
   factory GetFillingStationsMeta.fromJson(Map<String, dynamic> json) =>
-      _$GetFillingStationsMetaImpl.fromJson(json);
+      _$GetFillingStationsMetaFromJson(json);
 }
 
 @freezed
-class FillingStation with _$FillingStation {
+abstract class FillingStation with _$FillingStation {
   const factory FillingStation({
     required String id,
     required String branchId,
@@ -153,5 +155,5 @@ class FillingStation with _$FillingStation {
   }) = _FillingStation;
 
   factory FillingStation.fromJson(Map<String, dynamic> json) =>
-      _$FillingStationImpl.fromJson(json);
+      _$FillingStationFromJson(json);
 }

@@ -4,7 +4,7 @@ part 'verify_electricity_data.freezed.dart';
 part 'verify_electricity_data.g.dart';
 
 @freezed
-class VerifyElectricityData with _$VerifyElectricityData {
+abstract class VerifyElectricityData with _$VerifyElectricityData {
   const factory VerifyElectricityData({
     required String transactionId,
     required String customerName,
@@ -19,5 +19,5 @@ class VerifyElectricityData with _$VerifyElectricityData {
   }) = _VerifyElectricityData;
 
   factory VerifyElectricityData.fromJson(Map<String, dynamic> json) =>
-      _$VerifyElectricityDataImpl.fromJson(json);
+      _$VerifyElectricityDataFromJson(json);
 }

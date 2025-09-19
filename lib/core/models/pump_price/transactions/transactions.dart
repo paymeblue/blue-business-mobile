@@ -4,7 +4,7 @@ part 'transactions.freezed.dart';
 part 'transactions.g.dart';
 
 @freezed
-class PumpPriceInsightsResponse with _$PumpPriceInsightsResponse {
+abstract class PumpPriceInsightsResponse with _$PumpPriceInsightsResponse {
   const factory PumpPriceInsightsResponse({
     @Default('fail') String status,
     @Default('') String message,
@@ -15,11 +15,11 @@ class PumpPriceInsightsResponse with _$PumpPriceInsightsResponse {
   }) = _PumpPriceInsightsResponse;
 
   factory PumpPriceInsightsResponse.fromJson(Map<String, dynamic> json) =>
-      _$PumpPriceInsightsResponseImpl.fromJson(json);
+      _$PumpPriceInsightsResponseFromJson(json);
 }
 
 @freezed
-class LineChartData with _$LineChartData {
+abstract class LineChartData with _$LineChartData {
   const factory LineChartData({
     required String label,
     required double amount,
@@ -27,11 +27,11 @@ class LineChartData with _$LineChartData {
   }) = _LineChartData;
 
   factory LineChartData.fromJson(Map<String, dynamic> json) =>
-      _$LineChartDataImpl.fromJson(json);
+      _$LineChartDataFromJson(json);
 }
 
 @freezed
-class PumpPriceTransaction with _$PumpPriceTransaction {
+abstract class PumpPriceTransaction with _$PumpPriceTransaction {
   const factory PumpPriceTransaction({
     required String id,
     required String userId,
@@ -47,5 +47,5 @@ class PumpPriceTransaction with _$PumpPriceTransaction {
   }) = _PumpPriceTransaction;
 
   factory PumpPriceTransaction.fromJson(Map<String, dynamic> json) =>
-      _$PumpPriceTransactionImpl.fromJson(json);
+      _$PumpPriceTransactionFromJson(json);
 }

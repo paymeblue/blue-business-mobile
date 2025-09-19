@@ -4,7 +4,7 @@ part 'business_data.freezed.dart';
 part 'business_data.g.dart';
 
 @freezed
-class BusinessData with _$BusinessData {
+abstract class BusinessData with _$BusinessData {
   const factory BusinessData({
     required String name,
     required String cacNumber,
@@ -12,5 +12,5 @@ class BusinessData with _$BusinessData {
   }) = _BusinessData;
 
   factory BusinessData.fromJson(Map<String, dynamic> json) =>
-      _$BusinessDataImpl.fromJson(json);
+      _$BusinessDataFromJson(json);
 }

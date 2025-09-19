@@ -6,15 +6,11 @@ part of 'delete_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DeleteResponseImpl _$$DeleteResponseImplFromJson(Map<String, dynamic> json) =>
-    _$DeleteResponseImpl(
+_DeleteResponse _$DeleteResponseFromJson(Map<String, dynamic> json) =>
+    _DeleteResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$DeleteResponseImplToJson(
-        _$DeleteResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-    };
+Map<String, dynamic> _$DeleteResponseToJson(_DeleteResponse instance) =>
+    <String, dynamic>{'status': instance.status, 'message': ?instance.message};
