@@ -58,8 +58,13 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         ndk {
-            abiFilters "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
+            abiFilters "armeabi-v7a", "arm64-v8a"
         }
+    }
+
+    packagingOptions {
+        exclude "lib/x86/libimage_processing_util_jni.so"
+        exclude "lib/x86_64/libimage_processing_util_jni.so"
     }
 
     signingConfigs {
