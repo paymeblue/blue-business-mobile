@@ -16,8 +16,8 @@ _PumpPriceInsightsResponse _$PumpPriceInsightsResponseFromJson(
           ?.map((e) => LineChartData.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
-  totalTransactions: (json['total_transactions'] as num?)?.toInt() ?? 0,
-  totalRevenue: (json['total_revenue'] as num?)?.toDouble() ?? 0,
+  totalTransactions: (json['totalTransactions'] as num?)?.toInt() ?? 0,
+  totalRevenue: (json['totalRevenue'] as num?)?.toDouble() ?? 0,
   transactions:
       (json['transactions'] as List<dynamic>?)
           ?.map((e) => PumpPriceTransaction.fromJson(e as Map<String, dynamic>))
@@ -31,8 +31,8 @@ Map<String, dynamic> _$PumpPriceInsightsResponseToJson(
   'status': instance.status,
   'message': instance.message,
   'data': instance.data,
-  'total_transactions': instance.totalTransactions,
-  'total_revenue': instance.totalRevenue,
+  'totalTransactions': instance.totalTransactions,
+  'totalRevenue': instance.totalRevenue,
   'transactions': instance.transactions,
 };
 
@@ -54,30 +54,30 @@ _PumpPriceTransaction _$PumpPriceTransactionFromJson(
   Map<String, dynamic> json,
 ) => _PumpPriceTransaction(
   id: json['id'] as String,
-  userId: json['user_id'] as String,
-  userName: json['user_name'] as String? ?? '',
-  businessID: json['business_i_d'] as String?,
-  branchId: json['branch_id'] as String?,
-  fillingStationId: json['filling_station_id'] as String?,
+  userId: json['userId'] as String,
+  userName: json['userName'] as String? ?? '',
+  businessID: json['businessID'] as String?,
+  branchId: json['branchId'] as String?,
+  fillingStationId: json['fillingStationId'] as String?,
   amount: json['amount'] as String,
   litre: json['litre'] as String,
   status: json['status'] as String? ?? 'pending',
-  createdAt: json['created_at'] as String,
-  updatedAt: json['updated_at'] as String?,
+  createdAt: json['createdAt'] as String,
+  updatedAt: json['updatedAt'] as String?,
 );
 
 Map<String, dynamic> _$PumpPriceTransactionToJson(
   _PumpPriceTransaction instance,
 ) => <String, dynamic>{
   'id': instance.id,
-  'user_id': instance.userId,
-  'user_name': instance.userName,
-  'business_i_d': ?instance.businessID,
-  'branch_id': ?instance.branchId,
-  'filling_station_id': ?instance.fillingStationId,
+  'userId': instance.userId,
+  'userName': instance.userName,
+  'businessID': ?instance.businessID,
+  'branchId': ?instance.branchId,
+  'fillingStation_id': ?instance.fillingStationId,
   'amount': instance.amount,
   'litre': instance.litre,
   'status': instance.status,
-  'created_at': instance.createdAt,
-  'updated_at': ?instance.updatedAt,
+  'createdAt': instance.createdAt,
+  'updatedAt': ?instance.updatedAt,
 };

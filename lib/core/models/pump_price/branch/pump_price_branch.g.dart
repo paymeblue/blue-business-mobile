@@ -11,7 +11,7 @@ _CreatePumpPriceBranchRequest _$CreatePumpPriceBranchRequestFromJson(
 ) => _CreatePumpPriceBranchRequest(
   name: json['name'] as String,
   address: json['address'] as String,
-  fuelPrice: (json['fuel_price'] as num).toDouble(),
+  fuelPrice: (json['fuelPrice'] as num).toDouble(),
   latitude: (json['latitude'] as num).toDouble(),
   longitude: (json['longitude'] as num).toDouble(),
   opening: json['opening'] as String,
@@ -23,7 +23,7 @@ Map<String, dynamic> _$CreatePumpPriceBranchRequestToJson(
 ) => <String, dynamic>{
   'name': instance.name,
   'address': instance.address,
-  'fuel_price': instance.fuelPrice,
+  'fuelPrice': instance.fuelPrice,
   'latitude': instance.latitude,
   'longitude': instance.longitude,
   'opening': instance.opening,
@@ -35,7 +35,7 @@ _EditPumpPriceBranchRequest _$EditPumpPriceBranchRequestFromJson(
 ) => _EditPumpPriceBranchRequest(
   name: json['name'] as String?,
   address: json['address'] as String?,
-  fuelPrice: (json['fuel_price'] as num?)?.toDouble(),
+  fuelPrice: (json['fuelPrice'] as num?)?.toDouble(),
   latitude: (json['latitude'] as num?)?.toDouble(),
   longitude: (json['longitude'] as num?)?.toDouble(),
   opening: json['opening'] as String?,
@@ -47,7 +47,7 @@ Map<String, dynamic> _$EditPumpPriceBranchRequestToJson(
 ) => <String, dynamic>{
   'name': ?instance.name,
   'address': ?instance.address,
-  'fuel_price': ?instance.fuelPrice,
+  'fuelPrice': ?instance.fuelPrice,
   'latitude': ?instance.latitude,
   'longitude': ?instance.longitude,
   'opening': ?instance.opening,
@@ -76,30 +76,30 @@ _CreateFillingStationData _$CreateFillingStationDataFromJson(
   Map<String, dynamic> json,
 ) => _CreateFillingStationData(
   id: json['id'] as String,
-  branchId: json['branch_id'] as String,
-  fuelPrice: (json['fuel_price'] as num).toDouble(),
+  branchId: json['branchId'] as String,
+  fuelPrice: (json['fuelPrice'] as num).toDouble(),
   opening: json['opening'] as String,
   closing: json['closing'] as String,
   longitude: (json['longitude'] as num).toDouble(),
   latitude: (json['latitude'] as num).toDouble(),
   address: json['address'] as String,
-  createdAt: json['created_at'] as String?,
-  updatedAt: json['updated_at'] as String?,
+  createdAt: json['createdAt'] as String?,
+  updatedAt: json['updatedAt'] as String?,
 );
 
 Map<String, dynamic> _$CreateFillingStationDataToJson(
   _CreateFillingStationData instance,
 ) => <String, dynamic>{
   'id': instance.id,
-  'branch_id': instance.branchId,
-  'fuel_price': instance.fuelPrice,
+  'branchId': instance.branchId,
+  'fuelPrice': instance.fuelPrice,
   'opening': instance.opening,
   'closing': instance.closing,
   'longitude': instance.longitude,
   'latitude': instance.latitude,
   'address': instance.address,
-  'created_at': ?instance.createdAt,
-  'updated_at': ?instance.updatedAt,
+  'createdAt': ?instance.createdAt,
+  'updatedAt': ?instance.updatedAt,
 };
 
 _EditPumpPriceBranchResponse _$EditPumpPriceBranchResponseFromJson(
@@ -124,32 +124,32 @@ _EditFillingStationData _$EditFillingStationDataFromJson(
   Map<String, dynamic> json,
 ) => _EditFillingStationData(
   id: json['id'] as String,
-  branchId: json['branch_id'] as String,
-  fuelPrice: (json['fuel_price'] as num).toDouble(),
+  branchId: json['branchId'] as String,
+  fuelPrice: (json['fuelPrice'] as num).toDouble(),
   opening: json['opening'] as String,
   closing: json['closing'] as String,
   longitude: json['longitude'] as String,
   latitude: json['latitude'] as String,
   address: json['address'] as String,
-  createdAt: json['created_at'] as String?,
-  updatedAt: json['updated_at'] as String?,
-  deletedAt: json['deleted_at'] as String?,
+  createdAt: json['createdAt'] as String?,
+  updatedAt: json['updatedAt'] as String?,
+  deletedAt: json['deletedAt'] as String?,
 );
 
 Map<String, dynamic> _$EditFillingStationDataToJson(
   _EditFillingStationData instance,
 ) => <String, dynamic>{
   'id': instance.id,
-  'branch_id': instance.branchId,
-  'fuel_price': instance.fuelPrice,
+  'branchId': instance.branchId,
+  'fuelPrice': instance.fuelPrice,
   'opening': instance.opening,
   'closing': instance.closing,
   'longitude': instance.longitude,
   'latitude': instance.latitude,
   'address': instance.address,
-  'created_at': ?instance.createdAt,
-  'updated_at': ?instance.updatedAt,
-  'deleted_at': ?instance.deletedAt,
+  'createdAt': ?instance.createdAt,
+  'updatedAt': ?instance.updatedAt,
+  'deletedAt': ?instance.deletedAt,
 };
 
 _GetFillingStationsResponse _$GetFillingStationsResponseFromJson(
@@ -208,34 +208,33 @@ Map<String, dynamic> _$GetFillingStationsMetaToJson(
 _FillingStation _$FillingStationFromJson(Map<String, dynamic> json) =>
     _FillingStation(
       id: json['id'] as String,
-      branchId: json['branch_id'] as String,
+      branchId: json['branchId'] as String,
       name: json['name'] as String? ?? '',
-      fuelPrice: json['fuel_price'] as String,
+      fuelPrice: json['fuelPrice'] as String,
       opening: json['opening'] as String,
       closing: json['closing'] as String,
       longitude: json['longitude'] as String,
       latitude: json['latitude'] as String,
       address: json['address'] as String,
-      totalTransactions: (json['total_transactions'] as num?)?.toDouble() ?? 0,
-      percentageIncrease:
-          (json['percentage_increase'] as num?)?.toDouble() ?? 0,
-      createdAt: json['created_at'] as String?,
-      updatedAt: json['updated_at'] as String?,
+      totalTransactions: (json['totalTransactions'] as num?)?.toDouble() ?? 0,
+      percentageIncrease: (json['percentageIncrease'] as num?)?.toDouble() ?? 0,
+      createdAt: json['createdAt'] as String?,
+      updatedAt: json['updatedAt'] as String?,
     );
 
 Map<String, dynamic> _$FillingStationToJson(_FillingStation instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'branch_id': instance.branchId,
+      'branchId': instance.branchId,
       'name': instance.name,
-      'fuel_price': instance.fuelPrice,
+      'fuelPrice': instance.fuelPrice,
       'opening': instance.opening,
       'closing': instance.closing,
       'longitude': instance.longitude,
       'latitude': instance.latitude,
       'address': instance.address,
-      'total_transactions': instance.totalTransactions,
-      'percentage_increase': instance.percentageIncrease,
-      'created_at': ?instance.createdAt,
-      'updated_at': ?instance.updatedAt,
+      'totalTransactions': instance.totalTransactions,
+      'percentageIncrease': instance.percentageIncrease,
+      'createdAt': ?instance.createdAt,
+      'updatedAt': ?instance.updatedAt,
     };
