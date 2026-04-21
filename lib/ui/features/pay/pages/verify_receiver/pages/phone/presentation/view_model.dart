@@ -99,7 +99,7 @@ class PhonePaymentViewModel extends BaseViewModel {
                 phone = phone.substring(1);
               }
               phoneController.text = phone.replaceAll((RegExp(r'[^0-9]')), "");
-              recipientController.text = contact.displayName;
+              recipientController.text = contact.displayName ?? "";
               notifyListeners();
             },
           ),
@@ -118,7 +118,9 @@ class PhonePaymentViewModel extends BaseViewModel {
       if (val != null && val.isNotEmpty) {
         contacts = allContacts
             .where(
-              (v) => v.displayName.toLowerCase().contains(val.toLowerCase()),
+              (v) => (v.displayName ?? "").toLowerCase().contains(
+                val.toLowerCase(),
+              ),
             )
             .toList();
       } else {
@@ -134,11 +136,15 @@ class PhonePaymentViewModel extends BaseViewModel {
     try {
       var status = await Permission.contacts.status;
       if (status.isGranted) {
-        allContacts = await FlutterContacts.getContacts(withProperties: true);
+        allContacts = await FlutterContacts.getAll(
+          properties: {ContactProperty.phone},
+        );
       } else {
         await Permission.contacts.request().then((v) async {
           if (v.isGranted) {
-            allContacts = await FlutterContacts.getContacts();
+            allContacts = await FlutterContacts.getAll(
+              properties: {ContactProperty.phone},
+            );
           }
         });
       }

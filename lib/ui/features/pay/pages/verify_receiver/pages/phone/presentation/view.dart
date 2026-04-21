@@ -37,8 +37,12 @@ class PhonePaymentView extends StatelessWidget {
             icon: Icons.arrow_back_ios_new,
           ),
           body: Padding(
-            padding:
-                const EdgeInsets.only(left: 16, right: 16, bottom: 35, top: 8),
+            padding: const EdgeInsets.only(
+              left: 16,
+              right: 16,
+              bottom: 35,
+              top: 8,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -59,24 +63,28 @@ class PhonePaymentView extends StatelessWidget {
                       28.verticalGap,
                       Text(
                         "MY CONTACTS",
-                        style:
-                            AppTextStyles.subHeader.copyWith(fontSize: 15.sp),
+                        style: AppTextStyles.subHeader.copyWith(
+                          fontSize: 15.sp,
+                        ),
                       ),
                       BlueTextField.search(
-                          onSearchChanged: model.onSearchContactsChanged,
-                          hint: "Sesrch contacts"),
+                        onSearchChanged: model.onSearchContactsChanged,
+                        hint: "Sesrch contacts",
+                      ),
                       contactsListSection(model),
                     ],
                   ),
                 ),
                 4.verticalGap,
                 AppButton.primary(
-                    title: "Continue",
-                    isEnabled: model.phoneController.text.isNotEmpty &&
-                        model.recipientController.text.trimRight().isNotEmpty,
-                    onTap: () {
-                      model.verify(context);
-                    })
+                  title: "Continue",
+                  isEnabled:
+                      model.phoneController.text.isNotEmpty &&
+                      model.recipientController.text.trimRight().isNotEmpty,
+                  onTap: () {
+                    model.verify(context);
+                  },
+                ),
               ],
             ),
           ),
@@ -118,9 +126,7 @@ class PhonePaymentView extends StatelessWidget {
                 children: [
                   initialsWidget(model, i),
                   10.horizontalGap,
-                  Expanded(
-                    child: textColumn(model, i),
-                  ),
+                  Expanded(child: textColumn(model, i)),
                   10.horizontalGap,
                   popupButton(model, model.contacts[i]),
                 ],
@@ -136,17 +142,12 @@ class PhonePaymentView extends StatelessWidget {
 
   Widget popupButton(PhonePaymentViewModel model, Contact contact) {
     return PopupMenuButton(
-      icon: const Icon(
-        Icons.more_vert,
-        color: AppColors.textColor,
-      ),
+      icon: const Icon(Icons.more_vert, color: AppColors.textColor),
       padding: EdgeInsets.zero,
       offset: const Offset(0, 25),
       itemBuilder: (context) => model
           .popupItems(contact)
-          .map<PopupMenuItem>(
-            (e) => menuItem(e),
-          )
+          .map<PopupMenuItem>((e) => menuItem(e))
           .toList(),
     );
   }
@@ -163,10 +164,8 @@ class PhonePaymentView extends StatelessWidget {
             if (e.icon != null) ...[e.icon!, 8.horizontalGap],
             Text(
               e.title,
-              style: AppTextStyles.header.copyWith(
-                fontSize: 15.sp,
-              ),
-            )
+              style: AppTextStyles.header.copyWith(fontSize: 15.sp),
+            ),
           ],
         ),
       ),
@@ -179,10 +178,8 @@ class PhonePaymentView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          model.contacts[i].displayName,
-          style: AppTextStyles.header.copyWith(
-            fontSize: 16.sp,
-          ),
+          model.contacts[i].displayName ?? "",
+          style: AppTextStyles.header.copyWith(fontSize: 16.sp),
         ),
       ],
     );
@@ -190,22 +187,21 @@ class PhonePaymentView extends StatelessWidget {
 
   Container initialsWidget(PhonePaymentViewModel model, int i) {
     return Container(
-        height: 38.h,
-        width: 38.w,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors.brightBlue,
+      height: 38.h,
+      width: 38.w,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        color: AppColors.brightBlue,
+      ),
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(6),
+      child: FittedBox(
+        child: Text(
+          (model.contacts[i].displayName ?? "").initials,
+          style: AppTextStyles.header.copyWith(color: AppColors.white),
         ),
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(6),
-        child: FittedBox(
-          child: Text(
-            model.contacts[i].displayName.initials,
-            style: AppTextStyles.header.copyWith(
-              color: AppColors.white,
-            ),
-          ),
-        ));
+      ),
+    );
   }
 
   Widget phoneTextField(PhonePaymentViewModel model) {
@@ -223,10 +219,7 @@ class PhonePaymentView extends StatelessWidget {
 
   List<Widget> titleAndSubtitle() {
     return [
-      Text(
-        "Enter Recipient details",
-        style: AppTextStyles.header,
-      ),
+      Text("Enter Recipient details", style: AppTextStyles.header),
       8.verticalGap,
       SizedBox(
         width: 330.w,
@@ -235,7 +228,7 @@ class PhonePaymentView extends StatelessWidget {
           style: AppTextStyles.subHeader,
           textAlign: TextAlign.start,
         ),
-      )
+      ),
     ];
   }
 }
