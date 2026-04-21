@@ -32,113 +32,118 @@ class AddPumpPriceAttendantView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<AddPumpPriceAttendantViewModel>(
-        model: AddPumpPriceAttendantViewModel(),
-        onModelReady: (model) => model.init(args.attendant),
-        builder: (context, model, _) {
-          return Scaffold(
-            appBar: PumpPriceAppBar.primary(
-              onBackTap: () => locator<AppRouter>().back(),
+      model: AddPumpPriceAttendantViewModel(),
+      onModelReady: (model) => model.init(args.attendant),
+      builder: (context, model, _) {
+        return Scaffold(
+          appBar: PumpPriceAppBar.primary(
+            onBackTap: () => locator<AppRouter>().back(),
+          ),
+          body: Padding(
+            padding: EdgeInsets.only(
+              left: 20.w,
+              right: 20.w,
+              top: 24.h,
+              bottom: 35.h,
             ),
-            body: Padding(
-              padding: EdgeInsets.only(
-                  left: 20.w, right: 20.w, top: 24.h, bottom: 35.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  args.attendant != null
+                      ? 'Edit Attendant Details'
+                      : 'Add Fuel Attendant',
+                  style: context.textTheme.titleMedium,
+                ),
+                if (args.attendant == null) ...[
+                  6.verticalGap,
                   Text(
-                    args.attendant != null
-                        ? 'Edit Attendant Details'
-                        : 'Add Fuel Attendant',
-                    style: context.textTheme.titleMedium,
-                  ),
-                  if (args.attendant == null) ...[
-                    6.verticalGap,
-                    Text(
-                      'Please enter the following details below of the attendant you want to add to your business.',
-                      style: context.textTheme.bodyMedium!.copyWith(
-                        height: 18.toLineHeight(14),
-                      ),
-                    )
-                  ],
-                  18.verticalGap,
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        // if (args.attendant == null) ...[
-                        //   Align(
-                        //     alignment: Alignment.centerLeft,
-                        //     child: avatarRow(model),
-                        //   ),
-                        //   12.verticalGap
-                        // ] else
-                        6.verticalGap,
-                        PumpPriceTextField.plaintext(
-                          hint: 'Enter attendant name',
-                          title: 'Attendant\'s name',
-                          controller: model.name,
-                          onChanged: model.onChanged,
-                        ),
-                        12.verticalGap,
-                        ...selectableTextField(
-                          context,
-                          title: 'Branch',
-                          hint: 'Start typing',
-                          value: model.branch.orEmpty,
-                          onTap: () {
-                            model.showBranchesBottomSheet(context);
-                          },
-                        ),
-                        12.verticalGap,
-                        PumpPriceTextField.phone(
-                          context,
-                          country: CountryCode(
-                            countryCode: 'NG',
-                            name: 'Nigeria',
-                            dialCode: '+234',
-                          ),
-                          title: 'Phone number',
-                          hint: '000-000-0000',
-                          controller: model.phone,
-                          onChanged: model.onChanged,
-                        ),
-                        12.verticalGap,
-                        PumpPriceTextField.password(
-                          hint: 'Set password',
-                          title: 'Set password',
-                          controller: model.password,
-                          validationText: model.passwordValidationText,
-                          onChanged: model.onPasswordChanged,
-                        ),
-                        12.verticalGap,
-                        PumpPriceTextField.password(
-                          hint: 'Confirm password',
-                          title: 'Confirm password',
-                          controller: model.confirmPassword,
-                          validationText: model.confirmPasswordValidationText,
-                          onChanged: model.onConfirmPasswordChanged,
-                        ),
-                      ],
+                    'Please enter the following details below of the attendant you want to add to your business.',
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      height: 18.toLineHeight(14),
                     ),
                   ),
-                  PumpPriceButton.primary(
-                    title: args.attendant != null
-                        ? 'Save changes'
-                        : 'Add attendant',
-                    isEnabled: model.isActive() || model.isEditActive(),
-                    isLoading: model.buttonState == FetchState.loading,
-                    onTap: () {
-                      if (args.attendant != null) {
-                        model.editStaff();
-                      } else {
-                        model.createStaff();
-                      }
-                    },
-                  )
                 ],
-              ),
+                18.verticalGap,
+                Expanded(
+                  child: ListView(
+                    children: [
+                      // if (args.attendant == null) ...[
+                      //   Align(
+                      //     alignment: Alignment.centerLeft,
+                      //     child: avatarRow(model),
+                      //   ),
+                      //   12.verticalGap
+                      // ] else
+                      6.verticalGap,
+                      PumpPriceTextField.plaintext(
+                        hint: 'Enter attendant name',
+                        title: 'Attendant\'s name',
+                        controller: model.name,
+                        onChanged: model.onChanged,
+                      ),
+                      12.verticalGap,
+                      ...selectableTextField(
+                        context,
+                        title: 'Branch',
+                        hint: 'Start typing',
+                        value: model.branch.orEmpty,
+                        onTap: () {
+                          model.showBranchesBottomSheet(context);
+                        },
+                      ),
+                      12.verticalGap,
+                      PumpPriceTextField.phone(
+                        context,
+                        country: CountryCode(
+                          countryCode: 'NG',
+                          name: 'Nigeria',
+                          dialCode: '+234',
+                        ),
+                        title: 'Phone number',
+                        hint: '000-000-0000',
+                        controller: model.phone,
+                        onChanged: model.onChanged,
+                      ),
+                      12.verticalGap,
+                      PumpPriceTextField.password(
+                        hint: 'Set password',
+                        title: 'Set password',
+                        controller: model.password,
+                        validationText: model.passwordValidationText,
+                        onChanged: model.onPasswordChanged,
+                      ),
+                      12.verticalGap,
+                      PumpPriceTextField.password(
+                        hint: 'Confirm password',
+                        title: 'Confirm password',
+                        controller: model.confirmPassword,
+                        validationText: model.confirmPasswordValidationText,
+                        onChanged: model.onConfirmPasswordChanged,
+                      ),
+                    ],
+                  ),
+                ),
+                PumpPriceButton.primary(
+                  title: args.attendant != null
+                      ? 'Save changes'
+                      : 'Add attendant',
+                  isEnabled: model.isActive() || model.isEditActive(),
+                  isLoading: model.buttonState == FetchState.loading,
+                  onTap: () {
+                    if (args.attendant != null) {
+                      model.editStaff();
+                    } else {
+                      model.createStaff();
+                    }
+                  },
+                ),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 
   List<Widget> selectableTextField(
@@ -163,9 +168,7 @@ class AddPumpPriceAttendantView extends StatelessWidget {
         height: 50.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(
-            color: AppColors.pumpPricegreyBg,
-          ),
+          border: Border.all(color: AppColors.pumpPricegreyBg),
           color: AppColors.pumpPricegreyBg,
         ),
         padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
@@ -183,7 +186,7 @@ class AddPumpPriceAttendantView extends StatelessWidget {
               ),
             ),
             8.horizontalGap,
-            if (trailing != null) trailing,
+            ?trailing,
           ],
         ),
       ).onTap(onTap),
@@ -206,7 +209,7 @@ class AddPumpPriceAttendantView extends StatelessWidget {
             bottom: 0.h,
             right: 0.w,
             child: AppAssets.images.pumpPrice.svg.camera.svg(),
-          )
+          ),
         ],
       ),
     );
