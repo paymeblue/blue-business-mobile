@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,221 +9,299 @@ part of 'create_shareholders_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-CreateShareholdersResponse _$CreateShareholdersResponseFromJson(
-    Map<String, dynamic> json) {
-  return _CreateShareholdersResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$CreateShareholdersResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  CreateShareholdersData? get data => throw _privateConstructorUsedError;
+
+ String get status; String? get message; CreateShareholdersData? get data;
+/// Create a copy of CreateShareholdersResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CreateShareholdersResponseCopyWith<CreateShareholdersResponse> get copyWith => _$CreateShareholdersResponseCopyWithImpl<CreateShareholdersResponse>(this as CreateShareholdersResponse, _$identity);
 
   /// Serializes this CreateShareholdersResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of CreateShareholdersResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CreateShareholdersResponseCopyWith<CreateShareholdersResponse>
-      get copyWith => throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateShareholdersResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'CreateShareholdersResponse(status: $status, message: $message, data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $CreateShareholdersResponseCopyWith<$Res> {
-  factory $CreateShareholdersResponseCopyWith(CreateShareholdersResponse value,
-          $Res Function(CreateShareholdersResponse) then) =
-      _$CreateShareholdersResponseCopyWithImpl<$Res,
-          CreateShareholdersResponse>;
-  @useResult
-  $Res call({String status, String? message, CreateShareholdersData? data});
+abstract mixin class $CreateShareholdersResponseCopyWith<$Res>  {
+  factory $CreateShareholdersResponseCopyWith(CreateShareholdersResponse value, $Res Function(CreateShareholdersResponse) _then) = _$CreateShareholdersResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, CreateShareholdersData? data
+});
 
-  $CreateShareholdersDataCopyWith<$Res>? get data;
+
+$CreateShareholdersDataCopyWith<$Res>? get data;
+
 }
-
 /// @nodoc
-class _$CreateShareholdersResponseCopyWithImpl<$Res,
-        $Val extends CreateShareholdersResponse>
+class _$CreateShareholdersResponseCopyWithImpl<$Res>
     implements $CreateShareholdersResponseCopyWith<$Res> {
-  _$CreateShareholdersResponseCopyWithImpl(this._value, this._then);
+  _$CreateShareholdersResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final CreateShareholdersResponse _self;
+  final $Res Function(CreateShareholdersResponse) _then;
 
-  /// Create a copy of CreateShareholdersResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as CreateShareholdersData?,
-    ) as $Val);
+/// Create a copy of CreateShareholdersResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as CreateShareholdersData?,
+  ));
+}
+/// Create a copy of CreateShareholdersResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CreateShareholdersDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
   }
 
-  /// Create a copy of CreateShareholdersResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CreateShareholdersDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $CreateShareholdersDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
-  }
+  return $CreateShareholdersDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$CreateShareholdersResponseImplCopyWith<$Res>
-    implements $CreateShareholdersResponseCopyWith<$Res> {
-  factory _$$CreateShareholdersResponseImplCopyWith(
-          _$CreateShareholdersResponseImpl value,
-          $Res Function(_$CreateShareholdersResponseImpl) then) =
-      __$$CreateShareholdersResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message, CreateShareholdersData? data});
 
-  @override
-  $CreateShareholdersDataCopyWith<$Res>? get data;
+/// Adds pattern-matching-related methods to [CreateShareholdersResponse].
+extension CreateShareholdersResponsePatterns on CreateShareholdersResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CreateShareholdersResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CreateShareholdersResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CreateShareholdersResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _CreateShareholdersResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CreateShareholdersResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CreateShareholdersResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  CreateShareholdersData? data)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CreateShareholdersResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  CreateShareholdersData? data)  $default,) {final _that = this;
+switch (_that) {
+case _CreateShareholdersResponse():
+return $default(_that.status,_that.message,_that.data);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  CreateShareholdersData? data)?  $default,) {final _that = this;
+switch (_that) {
+case _CreateShareholdersResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$CreateShareholdersResponseImplCopyWithImpl<$Res>
-    extends _$CreateShareholdersResponseCopyWithImpl<$Res,
-        _$CreateShareholdersResponseImpl>
-    implements _$$CreateShareholdersResponseImplCopyWith<$Res> {
-  __$$CreateShareholdersResponseImplCopyWithImpl(
-      _$CreateShareholdersResponseImpl _value,
-      $Res Function(_$CreateShareholdersResponseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CreateShareholdersResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_$CreateShareholdersResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as CreateShareholdersData?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CreateShareholdersResponseImpl implements _CreateShareholdersResponse {
-  const _$CreateShareholdersResponseImpl(
-      {this.status = "fail", this.message, this.data});
 
-  factory _$CreateShareholdersResponseImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$CreateShareholdersResponseImplFromJson(json);
+class _CreateShareholdersResponse implements CreateShareholdersResponse {
+  const _CreateShareholdersResponse({this.status = "fail", this.message, this.data});
+  factory _CreateShareholdersResponse.fromJson(Map<String, dynamic> json) => _$CreateShareholdersResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  @override
-  final CreateShareholdersData? data;
+@override@JsonKey() final  String status;
+@override final  String? message;
+@override final  CreateShareholdersData? data;
 
-  @override
-  String toString() {
-    return 'CreateShareholdersResponse(status: $status, message: $message, data: $data)';
-  }
+/// Create a copy of CreateShareholdersResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CreateShareholdersResponseCopyWith<_CreateShareholdersResponse> get copyWith => __$CreateShareholdersResponseCopyWithImpl<_CreateShareholdersResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CreateShareholdersResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
-
-  /// Create a copy of CreateShareholdersResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CreateShareholdersResponseImplCopyWith<_$CreateShareholdersResponseImpl>
-      get copyWith => __$$CreateShareholdersResponseImplCopyWithImpl<
-          _$CreateShareholdersResponseImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CreateShareholdersResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$CreateShareholdersResponseToJson(this, );
 }
 
-abstract class _CreateShareholdersResponse
-    implements CreateShareholdersResponse {
-  const factory _CreateShareholdersResponse(
-      {final String status,
-      final String? message,
-      final CreateShareholdersData? data}) = _$CreateShareholdersResponseImpl;
-
-  factory _CreateShareholdersResponse.fromJson(Map<String, dynamic> json) =
-      _$CreateShareholdersResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  CreateShareholdersData? get data;
-
-  /// Create a copy of CreateShareholdersResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateShareholdersResponseImplCopyWith<_$CreateShareholdersResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateShareholdersResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'CreateShareholdersResponse(status: $status, message: $message, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CreateShareholdersResponseCopyWith<$Res> implements $CreateShareholdersResponseCopyWith<$Res> {
+  factory _$CreateShareholdersResponseCopyWith(_CreateShareholdersResponse value, $Res Function(_CreateShareholdersResponse) _then) = __$CreateShareholdersResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, CreateShareholdersData? data
+});
+
+
+@override $CreateShareholdersDataCopyWith<$Res>? get data;
+
+}
+/// @nodoc
+class __$CreateShareholdersResponseCopyWithImpl<$Res>
+    implements _$CreateShareholdersResponseCopyWith<$Res> {
+  __$CreateShareholdersResponseCopyWithImpl(this._self, this._then);
+
+  final _CreateShareholdersResponse _self;
+  final $Res Function(_CreateShareholdersResponse) _then;
+
+/// Create a copy of CreateShareholdersResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_CreateShareholdersResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as CreateShareholdersData?,
+  ));
+}
+
+/// Create a copy of CreateShareholdersResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CreateShareholdersDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
+  }
+
+  return $CreateShareholdersDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
+}
+
+// dart format on

@@ -5,7 +5,7 @@ part 'get_reason_response.freezed.dart';
 part 'get_reason_response.g.dart';
 
 @freezed
-class GetReasonResponse with _$GetReasonResponse {
+abstract class GetReasonResponse with _$GetReasonResponse {
   const factory GetReasonResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class GetReasonResponse with _$GetReasonResponse {
   }) = _GetReasonResponse;
 
   factory GetReasonResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetReasonResponseImpl.fromJson(json);
+      _$GetReasonResponseFromJson(json);
 }

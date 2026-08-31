@@ -6,8 +6,8 @@ part of 'verify_data_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VerifyDataDataImpl _$$VerifyDataDataImplFromJson(Map<String, dynamic> json) =>
-    _$VerifyDataDataImpl(
+_VerifyDataData _$VerifyDataDataFromJson(Map<String, dynamic> json) =>
+    _VerifyDataData(
       transactionId: json['transaction_id'] as String,
       receiver: json['receiver'] as String,
       provider: json['provider'] as String,
@@ -17,8 +17,7 @@ _$VerifyDataDataImpl _$$VerifyDataDataImplFromJson(Map<String, dynamic> json) =>
       createdAt: json['created_at'] as String?,
     );
 
-Map<String, dynamic> _$$VerifyDataDataImplToJson(
-        _$VerifyDataDataImpl instance) =>
+Map<String, dynamic> _$VerifyDataDataToJson(_VerifyDataData instance) =>
     <String, dynamic>{
       'transaction_id': instance.transactionId,
       'receiver': instance.receiver,
@@ -26,5 +25,5 @@ Map<String, dynamic> _$$VerifyDataDataImplToJson(
       'package': instance.package,
       'amount': instance.amount,
       'status': instance.status,
-      if (instance.createdAt case final value?) 'created_at': value,
+      'created_at': ?instance.createdAt,
     };

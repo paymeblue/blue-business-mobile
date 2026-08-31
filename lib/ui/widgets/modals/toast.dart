@@ -9,7 +9,7 @@ import 'package:oktoast/oktoast.dart';
 class BlueToast {
   BlueToast._();
 
-  static primaryWithoutIcon(
+  static void primaryWithoutIcon(
     String message, {
     IconAlignment iconAlignment = IconAlignment.left,
   }) {
@@ -25,7 +25,7 @@ class BlueToast {
     );
   }
 
-  static primaryWithcon(
+  static void primaryWithcon(
     String message, {
     IconAlignment iconAlignment = IconAlignment.left,
   }) {
@@ -41,7 +41,7 @@ class BlueToast {
     );
   }
 
-  static customIcon(
+  static void customIcon(
     String message,
     Widget icon, {
     IconAlignment iconAlignment = IconAlignment.left,
@@ -116,15 +116,12 @@ class _$AppToast extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 40.h,
-      padding: const EdgeInsets.symmetric(
-        horizontal: 24.0,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          color: AppColors.white,
-          border: Border.all(
-            color: AppColors.paleBlue,
-          )),
+        borderRadius: BorderRadius.circular(6),
+        color: AppColors.white,
+        border: Border.all(color: AppColors.paleBlue),
+      ),
       child: showIcon ? textWithIcon() : textWidget(),
     );
   }
@@ -141,9 +138,10 @@ class _$AppToast extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-            height: 24.h,
-            width: 24.w,
-            child: icon ?? AppAssets.images.logos.blueBgLogo.image()),
+          height: 24.h,
+          width: 24.w,
+          child: icon ?? AppAssets.images.logos.blueBgLogo.image(),
+        ),
         12.horizontalGap,
         textWidget(),
       ],
@@ -157,9 +155,10 @@ class _$AppToast extends StatelessWidget {
         textWidget(),
         12.horizontalGap,
         SizedBox(
-            height: 24.h,
-            width: 24.w,
-            child: icon ?? AppAssets.images.logos.blueBgLogo.image()),
+          height: 24.h,
+          width: 24.w,
+          child: icon ?? AppAssets.images.logos.blueBgLogo.image(),
+        ),
       ],
     );
   }

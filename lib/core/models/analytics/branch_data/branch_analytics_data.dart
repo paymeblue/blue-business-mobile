@@ -5,11 +5,10 @@ part 'branch_analytics_data.freezed.dart';
 part 'branch_analytics_data.g.dart';
 
 @freezed
-class BranchAnalyticsData with _$BranchAnalyticsData {
-  const factory BranchAnalyticsData({
-    required AnalyticsItem transaction,
-  }) = _BranchAnalyticsData;
+abstract class BranchAnalyticsData with _$BranchAnalyticsData {
+  const factory BranchAnalyticsData({required AnalyticsItem transaction}) =
+      _BranchAnalyticsData;
 
   factory BranchAnalyticsData.fromJson(Map<String, dynamic> json) =>
-      _$BranchAnalyticsDataImpl.fromJson(json);
+      _$BranchAnalyticsDataFromJson(json);
 }

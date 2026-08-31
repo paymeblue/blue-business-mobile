@@ -9,7 +9,6 @@ import 'package:blue_business/core/models/upload_avatar/response/upload_avatar_r
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/utils/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'profile_service.g.dart';
@@ -17,14 +16,15 @@ part 'profile_service.g.dart';
 @RestApi()
 abstract class ProfileService {
   factory ProfileService() => _ProfileService(
-        DioConfig.dio(locator<AppStateValues>().accessToken),
-        baseUrl: AppConstants.baseUrl,
-      );
+    DioConfig.dio(locator<AppStateValues>().accessToken),
+    baseUrl: AppConstants.baseUrl,
+  );
 
   @POST("/users/upload_image")
   @MultiPart()
   Future<UploadAvatarResponse> uploadDisplayPicture(
-      @Part(name: "display_picture", contentType: "image/png") File displayPic);
+    @Part(name: "display_picture", contentType: "image/png") File displayPic,
+  );
 
   @GET("/notifications")
   Future<GetNotificationResponse> getNotificationStatus();

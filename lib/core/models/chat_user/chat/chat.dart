@@ -4,7 +4,7 @@ part 'chat.freezed.dart';
 part 'chat.g.dart';
 
 @freezed
-class Chat with _$Chat {
+abstract class Chat with _$Chat {
   const factory Chat({
     required String channelId,
     required String sender,
@@ -18,5 +18,5 @@ class Chat with _$Chat {
     @Default(0) int unreadCount,
   }) = _Chat;
 
-  factory Chat.fromJson(Map<String, dynamic> json) => _$ChatImpl.fromJson(json);
+  factory Chat.fromJson(Map<String, dynamic> json) => _$ChatFromJson(json);
 }

@@ -5,7 +5,7 @@ part 'get_notification_response.freezed.dart';
 part 'get_notification_response.g.dart';
 
 @freezed
-class GetNotificationResponse with _$GetNotificationResponse {
+abstract class GetNotificationResponse with _$GetNotificationResponse {
   const factory GetNotificationResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class GetNotificationResponse with _$GetNotificationResponse {
   }) = _GetNotificationResponse;
 
   factory GetNotificationResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetNotificationResponseImpl.fromJson(json);
+      _$GetNotificationResponseFromJson(json);
 }

@@ -5,7 +5,7 @@ part 'analytics_response.freezed.dart';
 part 'analytics_response.g.dart';
 
 @freezed
-class AnalyticsResponse with _$AnalyticsResponse {
+abstract class AnalyticsResponse with _$AnalyticsResponse {
   const factory AnalyticsResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class AnalyticsResponse with _$AnalyticsResponse {
   }) = _AnalyticsResponse;
 
   factory AnalyticsResponse.fromJson(Map<String, dynamic> json) =>
-      _$AnalyticsResponseImpl.fromJson(json);
+      _$AnalyticsResponseFromJson(json);
 }

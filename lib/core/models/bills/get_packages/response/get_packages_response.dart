@@ -5,7 +5,7 @@ part 'get_packages_response.freezed.dart';
 part 'get_packages_response.g.dart';
 
 @freezed
-class GetPackagesResponse with _$GetPackagesResponse {
+abstract class GetPackagesResponse with _$GetPackagesResponse {
   const factory GetPackagesResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class GetPackagesResponse with _$GetPackagesResponse {
   }) = _GetPackagesResponse;
 
   factory GetPackagesResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetPackagesResponseImpl.fromJson(json);
+      _$GetPackagesResponseFromJson(json);
 }

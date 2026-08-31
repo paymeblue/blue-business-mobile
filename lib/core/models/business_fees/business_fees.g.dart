@@ -6,27 +6,26 @@ part of 'business_fees.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GetBusinessFeesResponseImpl _$$GetBusinessFeesResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GetBusinessFeesResponseImpl(
-      status: json['status'] as String? ?? 'fail',
-      message: json['message'] as String?,
-      data: json['data'] == null
-          ? null
-          : GetBusinessFeesData.fromJson(json['data'] as Map<String, dynamic>),
-    );
+_GetBusinessFeesResponse _$GetBusinessFeesResponseFromJson(
+  Map<String, dynamic> json,
+) => _GetBusinessFeesResponse(
+  status: json['status'] as String? ?? 'fail',
+  message: json['message'] as String?,
+  data: json['data'] == null
+      ? null
+      : GetBusinessFeesData.fromJson(json['data'] as Map<String, dynamic>),
+);
 
-Map<String, dynamic> _$$GetBusinessFeesResponseImplToJson(
-        _$GetBusinessFeesResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
-    };
+Map<String, dynamic> _$GetBusinessFeesResponseToJson(
+  _GetBusinessFeesResponse instance,
+) => <String, dynamic>{
+  'status': instance.status,
+  'message': ?instance.message,
+  'data': ?instance.data,
+};
 
-_$GetBusinessFeesDataImpl _$$GetBusinessFeesDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GetBusinessFeesDataImpl(
+_GetBusinessFeesData _$GetBusinessFeesDataFromJson(Map<String, dynamic> json) =>
+    _GetBusinessFeesData(
       id: (json['id'] as num).toInt(),
       businessId: (json['business_id'] as num).toInt(),
       withdrawal: (json['withdrawal'] as num?)?.toDouble() ?? 0,
@@ -37,15 +36,15 @@ _$GetBusinessFeesDataImpl _$$GetBusinessFeesDataImplFromJson(
       updatedAt: json['updated_at'] as String?,
     );
 
-Map<String, dynamic> _$$GetBusinessFeesDataImplToJson(
-        _$GetBusinessFeesDataImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'business_id': instance.businessId,
-      'withdrawal': instance.withdrawal,
-      'bill_payment': instance.billPayment,
-      'transfers': instance.transfers,
-      'blue_to_blue': instance.blueToBlue,
-      if (instance.createdAt case final value?) 'created_at': value,
-      if (instance.updatedAt case final value?) 'updated_at': value,
-    };
+Map<String, dynamic> _$GetBusinessFeesDataToJson(
+  _GetBusinessFeesData instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'business_id': instance.businessId,
+  'withdrawal': instance.withdrawal,
+  'bill_payment': instance.billPayment,
+  'transfers': instance.transfers,
+  'blue_to_blue': instance.blueToBlue,
+  'created_at': ?instance.createdAt,
+  'updated_at': ?instance.updatedAt,
+};

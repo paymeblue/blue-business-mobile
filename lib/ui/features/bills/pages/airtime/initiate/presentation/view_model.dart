@@ -13,20 +13,26 @@ import 'package:blue_business/ui/widgets/modals/notifications.dart';
 class InitiateAirtimeViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
 
     setSelectedCountry();
     getProviders();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  setSelectedCountry() {
-    selectedCountry = countryCodes[countryCodes.indexOf(const CountryCode(
-        countryCode: "NG", name: "Nigeria", dialCode: "+234"))];
+  void setSelectedCountry() {
+    selectedCountry =
+        countryCodes[countryCodes.indexOf(
+          const CountryCode(
+            countryCode: "NG",
+            name: "Nigeria",
+            dialCode: "+234",
+          ),
+        )];
   }
 
   late CountryCode _country;
@@ -36,13 +42,13 @@ class InitiateAirtimeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onCountryChanged(CountryCode? value) {
+  void onCountryChanged(CountryCode? value) {
     if (value != null) {
       selectedCountry = value;
     }
   }
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
@@ -57,7 +63,7 @@ class InitiateAirtimeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onBillProviderChanged(BillProvider? item) {
+  void onBillProviderChanged(BillProvider? item) {
     selectedProvider = item;
   }
 
@@ -75,19 +81,19 @@ class InitiateAirtimeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getProviders() async {
+  Future<void> getProviders() async {
     providersState = FetchState.loading;
 
     GetProvidersResponse resp = await BillsService()
         .getProviders("airtime")
-        .onError((error, stackTrace) => GetProvidersResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_airtime_providers",
-                "response_model": "GetProvidersResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => GetProvidersResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_airtime_providers",
+              "response_model": "GetProvidersResponse",
+            }),
+          ),
+        );
 
     if (resp.status == "success") {
       providersState = FetchState.success;
@@ -99,9 +105,9 @@ class InitiateAirtimeViewModel extends BaseViewModel {
   }
 
   bool isActive() {
-    double? amount = double.tryParse(amountController.text
-        .replaceAll(nairaSymbol(), "")
-        .replaceAll(",", ""));
+    double? amount = double.tryParse(
+      amountController.text.replaceAll(nairaSymbol(), "").replaceAll(",", ""),
+    );
 
     return phoneController.text.isNotEmpty &&
         phoneController.text.length >= 10 &&
@@ -110,15 +116,16 @@ class InitiateAirtimeViewModel extends BaseViewModel {
         amount >= 100;
   }
 
-  goToNext(BuildContext context) {
-    double? amount = double.tryParse(amountController.text
-        .replaceAll(nairaSymbol(), "")
-        .replaceAll(",", ""));
+  void goToNext(BuildContext context) {
+    double? amount = double.tryParse(
+      amountController.text.replaceAll(nairaSymbol(), "").replaceAll(",", ""),
+    );
 
     ReviewAirtimeData data = ReviewAirtimeData(
-        phone: phoneController.text.validPhone(selectedCountry),
-        amount: amount!,
-        provider: selectedProvider!);
+      phone: phoneController.text.validPhone(selectedCountry),
+      amount: amount!,
+      provider: selectedProvider!,
+    );
 
     locator<AppRouter>().push(ReviewAirtimeRoute(data: data));
   }

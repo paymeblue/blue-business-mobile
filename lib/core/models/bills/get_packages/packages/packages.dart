@@ -4,7 +4,7 @@ part 'packages.freezed.dart';
 part 'packages.g.dart';
 
 @freezed
-class BillPackage with _$BillPackage {
+abstract class BillPackage with _$BillPackage {
   const factory BillPackage({
     required int id,
     required String name,
@@ -12,5 +12,5 @@ class BillPackage with _$BillPackage {
   }) = _BillPackage;
 
   factory BillPackage.fromJson(Map<String, dynamic> json) =>
-      _$BillPackageImpl.fromJson(json);
+      _$BillPackageFromJson(json);
 }

@@ -4,7 +4,7 @@ part 'verify_cable_data.freezed.dart';
 part 'verify_cable_data.g.dart';
 
 @freezed
-class VerifyCableData with _$VerifyCableData {
+abstract class VerifyCableData with _$VerifyCableData {
   const factory VerifyCableData({
     required String transactionId,
     required String customerName,
@@ -19,5 +19,5 @@ class VerifyCableData with _$VerifyCableData {
   }) = _VerifyCableData;
 
   factory VerifyCableData.fromJson(Map<String, dynamic> json) =>
-      _$VerifyCableDataImpl.fromJson(json);
+      _$VerifyCableDataFromJson(json);
 }

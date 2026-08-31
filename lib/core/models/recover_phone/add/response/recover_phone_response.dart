@@ -5,7 +5,7 @@ part 'recover_phone_response.freezed.dart';
 part 'recover_phone_response.g.dart';
 
 @freezed
-class SendNewPhoneResponse with _$SendNewPhoneResponse {
+abstract class SendNewPhoneResponse with _$SendNewPhoneResponse {
   const factory SendNewPhoneResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class SendNewPhoneResponse with _$SendNewPhoneResponse {
   }) = _SendNewPhoneResponse;
 
   factory SendNewPhoneResponse.fromJson(Map<String, dynamic> json) =>
-      _$SendNewPhoneResponseImpl.fromJson(json);
+      _$SendNewPhoneResponseFromJson(json);
 }

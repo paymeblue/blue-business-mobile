@@ -5,7 +5,7 @@ part 'vend_cable_response.freezed.dart';
 part 'vend_cable_response.g.dart';
 
 @freezed
-class VendCableResponse with _$VendCableResponse {
+abstract class VendCableResponse with _$VendCableResponse {
   const factory VendCableResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class VendCableResponse with _$VendCableResponse {
   }) = _VendCableResponse;
 
   factory VendCableResponse.fromJson(Map<String, dynamic> json) =>
-      _$VendCableResponseImpl.fromJson(json);
+      _$VendCableResponseFromJson(json);
 }

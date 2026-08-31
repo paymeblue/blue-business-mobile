@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,252 +9,287 @@ part of 'transaction_history_data.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-TransactionData _$TransactionDataFromJson(Map<String, dynamic> json) {
-  return _TransactionData.fromJson(json);
-}
 
 /// @nodoc
 mixin _$TransactionData {
-  int get total => throw _privateConstructorUsedError;
-  int get limit => throw _privateConstructorUsedError;
-  int get page => throw _privateConstructorUsedError;
-  List<TransactionHistory> get data => throw _privateConstructorUsedError;
-  bool get loadMore => throw _privateConstructorUsedError;
+
+ int get total; int get limit; int get page; List<TransactionHistory> get data; bool get loadMore;
+/// Create a copy of TransactionData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TransactionDataCopyWith<TransactionData> get copyWith => _$TransactionDataCopyWithImpl<TransactionData>(this as TransactionData, _$identity);
 
   /// Serializes this TransactionData to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of TransactionData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TransactionDataCopyWith<TransactionData> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionData&&(identical(other.total, total) || other.total == total)&&(identical(other.limit, limit) || other.limit == limit)&&(identical(other.page, page) || other.page == page)&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.loadMore, loadMore) || other.loadMore == loadMore));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,total,limit,page,const DeepCollectionEquality().hash(data),loadMore);
+
+@override
+String toString() {
+  return 'TransactionData(total: $total, limit: $limit, page: $page, data: $data, loadMore: $loadMore)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $TransactionDataCopyWith<$Res> {
-  factory $TransactionDataCopyWith(
-          TransactionData value, $Res Function(TransactionData) then) =
-      _$TransactionDataCopyWithImpl<$Res, TransactionData>;
-  @useResult
-  $Res call(
-      {int total,
-      int limit,
-      int page,
-      List<TransactionHistory> data,
-      bool loadMore});
-}
+abstract mixin class $TransactionDataCopyWith<$Res>  {
+  factory $TransactionDataCopyWith(TransactionData value, $Res Function(TransactionData) _then) = _$TransactionDataCopyWithImpl;
+@useResult
+$Res call({
+ int total, int limit, int page, List<TransactionHistory> data, bool loadMore
+});
 
+
+
+
+}
 /// @nodoc
-class _$TransactionDataCopyWithImpl<$Res, $Val extends TransactionData>
+class _$TransactionDataCopyWithImpl<$Res>
     implements $TransactionDataCopyWith<$Res> {
-  _$TransactionDataCopyWithImpl(this._value, this._then);
+  _$TransactionDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TransactionData _self;
+  final $Res Function(TransactionData) _then;
 
-  /// Create a copy of TransactionData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? total = null,
-    Object? limit = null,
-    Object? page = null,
-    Object? data = null,
-    Object? loadMore = null,
-  }) {
-    return _then(_value.copyWith(
-      total: null == total
-          ? _value.total
-          : total // ignore: cast_nullable_to_non_nullable
-              as int,
-      limit: null == limit
-          ? _value.limit
-          : limit // ignore: cast_nullable_to_non_nullable
-              as int,
-      page: null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int,
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<TransactionHistory>,
-      loadMore: null == loadMore
-          ? _value.loadMore
-          : loadMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
+/// Create a copy of TransactionData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? total = null,Object? limit = null,Object? page = null,Object? data = null,Object? loadMore = null,}) {
+  return _then(_self.copyWith(
+total: null == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
+as int,limit: null == limit ? _self.limit : limit // ignore: cast_nullable_to_non_nullable
+as int,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as List<TransactionHistory>,loadMore: null == loadMore ? _self.loadMore : loadMore // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-/// @nodoc
-abstract class _$$TransactionDataImplCopyWith<$Res>
-    implements $TransactionDataCopyWith<$Res> {
-  factory _$$TransactionDataImplCopyWith(_$TransactionDataImpl value,
-          $Res Function(_$TransactionDataImpl) then) =
-      __$$TransactionDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int total,
-      int limit,
-      int page,
-      List<TransactionHistory> data,
-      bool loadMore});
 }
 
-/// @nodoc
-class __$$TransactionDataImplCopyWithImpl<$Res>
-    extends _$TransactionDataCopyWithImpl<$Res, _$TransactionDataImpl>
-    implements _$$TransactionDataImplCopyWith<$Res> {
-  __$$TransactionDataImplCopyWithImpl(
-      _$TransactionDataImpl _value, $Res Function(_$TransactionDataImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of TransactionData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? total = null,
-    Object? limit = null,
-    Object? page = null,
-    Object? data = null,
-    Object? loadMore = null,
-  }) {
-    return _then(_$TransactionDataImpl(
-      total: null == total
-          ? _value.total
-          : total // ignore: cast_nullable_to_non_nullable
-              as int,
-      limit: null == limit
-          ? _value.limit
-          : limit // ignore: cast_nullable_to_non_nullable
-              as int,
-      page: null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int,
-      data: null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<TransactionHistory>,
-      loadMore: null == loadMore
-          ? _value.loadMore
-          : loadMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
+/// Adds pattern-matching-related methods to [TransactionData].
+extension TransactionDataPatterns on TransactionData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TransactionData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TransactionData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TransactionData value)  $default,){
+final _that = this;
+switch (_that) {
+case _TransactionData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TransactionData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TransactionData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int total,  int limit,  int page,  List<TransactionHistory> data,  bool loadMore)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TransactionData() when $default != null:
+return $default(_that.total,_that.limit,_that.page,_that.data,_that.loadMore);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int total,  int limit,  int page,  List<TransactionHistory> data,  bool loadMore)  $default,) {final _that = this;
+switch (_that) {
+case _TransactionData():
+return $default(_that.total,_that.limit,_that.page,_that.data,_that.loadMore);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int total,  int limit,  int page,  List<TransactionHistory> data,  bool loadMore)?  $default,) {final _that = this;
+switch (_that) {
+case _TransactionData() when $default != null:
+return $default(_that.total,_that.limit,_that.page,_that.data,_that.loadMore);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TransactionDataImpl implements _TransactionData {
-  const _$TransactionDataImpl(
-      {required this.total,
-      required this.limit,
-      required this.page,
-      final List<TransactionHistory> data = const [],
-      this.loadMore = false})
-      : _data = data;
 
-  factory _$TransactionDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TransactionDataImplFromJson(json);
+class _TransactionData implements TransactionData {
+  const _TransactionData({required this.total, required this.limit, required this.page, final  List<TransactionHistory> data = const [], this.loadMore = false}): _data = data;
+  factory _TransactionData.fromJson(Map<String, dynamic> json) => _$TransactionDataFromJson(json);
 
-  @override
-  final int total;
-  @override
-  final int limit;
-  @override
-  final int page;
-  final List<TransactionHistory> _data;
-  @override
-  @JsonKey()
-  List<TransactionHistory> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
-  }
-
-  @override
-  @JsonKey()
-  final bool loadMore;
-
-  @override
-  String toString() {
-    return 'TransactionData(total: $total, limit: $limit, page: $page, data: $data, loadMore: $loadMore)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TransactionDataImpl &&
-            (identical(other.total, total) || other.total == total) &&
-            (identical(other.limit, limit) || other.limit == limit) &&
-            (identical(other.page, page) || other.page == page) &&
-            const DeepCollectionEquality().equals(other._data, _data) &&
-            (identical(other.loadMore, loadMore) ||
-                other.loadMore == loadMore));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, total, limit, page,
-      const DeepCollectionEquality().hash(_data), loadMore);
-
-  /// Create a copy of TransactionData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TransactionDataImplCopyWith<_$TransactionDataImpl> get copyWith =>
-      __$$TransactionDataImplCopyWithImpl<_$TransactionDataImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TransactionDataImplToJson(
-      this,
-    );
-  }
+@override final  int total;
+@override final  int limit;
+@override final  int page;
+ final  List<TransactionHistory> _data;
+@override@JsonKey() List<TransactionHistory> get data {
+  if (_data is EqualUnmodifiableListView) return _data;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_data);
 }
 
-abstract class _TransactionData implements TransactionData {
-  const factory _TransactionData(
-      {required final int total,
-      required final int limit,
-      required final int page,
-      final List<TransactionHistory> data,
-      final bool loadMore}) = _$TransactionDataImpl;
+@override@JsonKey() final  bool loadMore;
 
-  factory _TransactionData.fromJson(Map<String, dynamic> json) =
-      _$TransactionDataImpl.fromJson;
+/// Create a copy of TransactionData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TransactionDataCopyWith<_TransactionData> get copyWith => __$TransactionDataCopyWithImpl<_TransactionData>(this, _$identity);
 
-  @override
-  int get total;
-  @override
-  int get limit;
-  @override
-  int get page;
-  @override
-  List<TransactionHistory> get data;
-  @override
-  bool get loadMore;
-
-  /// Create a copy of TransactionData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransactionDataImplCopyWith<_$TransactionDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$TransactionDataToJson(this, );
 }
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TransactionData&&(identical(other.total, total) || other.total == total)&&(identical(other.limit, limit) || other.limit == limit)&&(identical(other.page, page) || other.page == page)&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.loadMore, loadMore) || other.loadMore == loadMore));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,total,limit,page,const DeepCollectionEquality().hash(_data),loadMore);
+
+@override
+String toString() {
+  return 'TransactionData(total: $total, limit: $limit, page: $page, data: $data, loadMore: $loadMore)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TransactionDataCopyWith<$Res> implements $TransactionDataCopyWith<$Res> {
+  factory _$TransactionDataCopyWith(_TransactionData value, $Res Function(_TransactionData) _then) = __$TransactionDataCopyWithImpl;
+@override @useResult
+$Res call({
+ int total, int limit, int page, List<TransactionHistory> data, bool loadMore
+});
+
+
+
+
+}
+/// @nodoc
+class __$TransactionDataCopyWithImpl<$Res>
+    implements _$TransactionDataCopyWith<$Res> {
+  __$TransactionDataCopyWithImpl(this._self, this._then);
+
+  final _TransactionData _self;
+  final $Res Function(_TransactionData) _then;
+
+/// Create a copy of TransactionData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? total = null,Object? limit = null,Object? page = null,Object? data = null,Object? loadMore = null,}) {
+  return _then(_TransactionData(
+total: null == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
+as int,limit: null == limit ? _self.limit : limit // ignore: cast_nullable_to_non_nullable
+as int,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int,data: null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
+as List<TransactionHistory>,loadMore: null == loadMore ? _self.loadMore : loadMore // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+// dart format on

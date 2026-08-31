@@ -5,7 +5,7 @@ part 'kyc_status_response.freezed.dart';
 part 'kyc_status_response.g.dart';
 
 @freezed
-class KycStatusResponse with _$KycStatusResponse {
+abstract class KycStatusResponse with _$KycStatusResponse {
   const factory KycStatusResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class KycStatusResponse with _$KycStatusResponse {
   }) = _KycStatusResponse;
 
   factory KycStatusResponse.fromJson(Map<String, dynamic> json) =>
-      _$KycStatusResponseImpl.fromJson(json);
+      _$KycStatusResponseFromJson(json);
 }

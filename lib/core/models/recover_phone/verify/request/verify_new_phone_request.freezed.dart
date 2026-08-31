@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,181 +9,272 @@ part of 'verify_new_phone_request.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-VerifyNewPhoneRequest _$VerifyNewPhoneRequestFromJson(
-    Map<String, dynamic> json) {
-  return _VerifyNewPhoneRequest.fromJson(json);
-}
 
 /// @nodoc
 mixin _$VerifyNewPhoneRequest {
-  String get otp => throw _privateConstructorUsedError;
-  String get reference => throw _privateConstructorUsedError;
+
+ String get otp; String get reference;
+/// Create a copy of VerifyNewPhoneRequest
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VerifyNewPhoneRequestCopyWith<VerifyNewPhoneRequest> get copyWith => _$VerifyNewPhoneRequestCopyWithImpl<VerifyNewPhoneRequest>(this as VerifyNewPhoneRequest, _$identity);
 
   /// Serializes this VerifyNewPhoneRequest to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of VerifyNewPhoneRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $VerifyNewPhoneRequestCopyWith<VerifyNewPhoneRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifyNewPhoneRequest&&(identical(other.otp, otp) || other.otp == otp)&&(identical(other.reference, reference) || other.reference == reference));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,otp,reference);
+
+@override
+String toString() {
+  return 'VerifyNewPhoneRequest(otp: $otp, reference: $reference)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $VerifyNewPhoneRequestCopyWith<$Res> {
-  factory $VerifyNewPhoneRequestCopyWith(VerifyNewPhoneRequest value,
-          $Res Function(VerifyNewPhoneRequest) then) =
-      _$VerifyNewPhoneRequestCopyWithImpl<$Res, VerifyNewPhoneRequest>;
-  @useResult
-  $Res call({String otp, String reference});
-}
+abstract mixin class $VerifyNewPhoneRequestCopyWith<$Res>  {
+  factory $VerifyNewPhoneRequestCopyWith(VerifyNewPhoneRequest value, $Res Function(VerifyNewPhoneRequest) _then) = _$VerifyNewPhoneRequestCopyWithImpl;
+@useResult
+$Res call({
+ String otp, String reference
+});
 
+
+
+
+}
 /// @nodoc
-class _$VerifyNewPhoneRequestCopyWithImpl<$Res,
-        $Val extends VerifyNewPhoneRequest>
+class _$VerifyNewPhoneRequestCopyWithImpl<$Res>
     implements $VerifyNewPhoneRequestCopyWith<$Res> {
-  _$VerifyNewPhoneRequestCopyWithImpl(this._value, this._then);
+  _$VerifyNewPhoneRequestCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final VerifyNewPhoneRequest _self;
+  final $Res Function(VerifyNewPhoneRequest) _then;
 
-  /// Create a copy of VerifyNewPhoneRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? otp = null,
-    Object? reference = null,
-  }) {
-    return _then(_value.copyWith(
-      otp: null == otp
-          ? _value.otp
-          : otp // ignore: cast_nullable_to_non_nullable
-              as String,
-      reference: null == reference
-          ? _value.reference
-          : reference // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of VerifyNewPhoneRequest
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? otp = null,Object? reference = null,}) {
+  return _then(_self.copyWith(
+otp: null == otp ? _self.otp : otp // ignore: cast_nullable_to_non_nullable
+as String,reference: null == reference ? _self.reference : reference // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$VerifyNewPhoneRequestImplCopyWith<$Res>
-    implements $VerifyNewPhoneRequestCopyWith<$Res> {
-  factory _$$VerifyNewPhoneRequestImplCopyWith(
-          _$VerifyNewPhoneRequestImpl value,
-          $Res Function(_$VerifyNewPhoneRequestImpl) then) =
-      __$$VerifyNewPhoneRequestImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String otp, String reference});
 }
 
-/// @nodoc
-class __$$VerifyNewPhoneRequestImplCopyWithImpl<$Res>
-    extends _$VerifyNewPhoneRequestCopyWithImpl<$Res,
-        _$VerifyNewPhoneRequestImpl>
-    implements _$$VerifyNewPhoneRequestImplCopyWith<$Res> {
-  __$$VerifyNewPhoneRequestImplCopyWithImpl(_$VerifyNewPhoneRequestImpl _value,
-      $Res Function(_$VerifyNewPhoneRequestImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of VerifyNewPhoneRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? otp = null,
-    Object? reference = null,
-  }) {
-    return _then(_$VerifyNewPhoneRequestImpl(
-      otp: null == otp
-          ? _value.otp
-          : otp // ignore: cast_nullable_to_non_nullable
-              as String,
-      reference: null == reference
-          ? _value.reference
-          : reference // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [VerifyNewPhoneRequest].
+extension VerifyNewPhoneRequestPatterns on VerifyNewPhoneRequest {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _VerifyNewPhoneRequest value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _VerifyNewPhoneRequest() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _VerifyNewPhoneRequest value)  $default,){
+final _that = this;
+switch (_that) {
+case _VerifyNewPhoneRequest():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _VerifyNewPhoneRequest value)?  $default,){
+final _that = this;
+switch (_that) {
+case _VerifyNewPhoneRequest() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String otp,  String reference)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _VerifyNewPhoneRequest() when $default != null:
+return $default(_that.otp,_that.reference);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String otp,  String reference)  $default,) {final _that = this;
+switch (_that) {
+case _VerifyNewPhoneRequest():
+return $default(_that.otp,_that.reference);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String otp,  String reference)?  $default,) {final _that = this;
+switch (_that) {
+case _VerifyNewPhoneRequest() when $default != null:
+return $default(_that.otp,_that.reference);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$VerifyNewPhoneRequestImpl implements _VerifyNewPhoneRequest {
-  const _$VerifyNewPhoneRequestImpl(
-      {required this.otp, required this.reference});
 
-  factory _$VerifyNewPhoneRequestImpl.fromJson(Map<String, dynamic> json) =>
-      _$$VerifyNewPhoneRequestImplFromJson(json);
+class _VerifyNewPhoneRequest implements VerifyNewPhoneRequest {
+  const _VerifyNewPhoneRequest({required this.otp, required this.reference});
+  factory _VerifyNewPhoneRequest.fromJson(Map<String, dynamic> json) => _$VerifyNewPhoneRequestFromJson(json);
 
-  @override
-  final String otp;
-  @override
-  final String reference;
+@override final  String otp;
+@override final  String reference;
 
-  @override
-  String toString() {
-    return 'VerifyNewPhoneRequest(otp: $otp, reference: $reference)';
-  }
+/// Create a copy of VerifyNewPhoneRequest
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$VerifyNewPhoneRequestCopyWith<_VerifyNewPhoneRequest> get copyWith => __$VerifyNewPhoneRequestCopyWithImpl<_VerifyNewPhoneRequest>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$VerifyNewPhoneRequestImpl &&
-            (identical(other.otp, otp) || other.otp == otp) &&
-            (identical(other.reference, reference) ||
-                other.reference == reference));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, otp, reference);
-
-  /// Create a copy of VerifyNewPhoneRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$VerifyNewPhoneRequestImplCopyWith<_$VerifyNewPhoneRequestImpl>
-      get copyWith => __$$VerifyNewPhoneRequestImplCopyWithImpl<
-          _$VerifyNewPhoneRequestImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$VerifyNewPhoneRequestImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$VerifyNewPhoneRequestToJson(this, );
 }
 
-abstract class _VerifyNewPhoneRequest implements VerifyNewPhoneRequest {
-  const factory _VerifyNewPhoneRequest(
-      {required final String otp,
-      required final String reference}) = _$VerifyNewPhoneRequestImpl;
-
-  factory _VerifyNewPhoneRequest.fromJson(Map<String, dynamic> json) =
-      _$VerifyNewPhoneRequestImpl.fromJson;
-
-  @override
-  String get otp;
-  @override
-  String get reference;
-
-  /// Create a copy of VerifyNewPhoneRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VerifyNewPhoneRequestImplCopyWith<_$VerifyNewPhoneRequestImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VerifyNewPhoneRequest&&(identical(other.otp, otp) || other.otp == otp)&&(identical(other.reference, reference) || other.reference == reference));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,otp,reference);
+
+@override
+String toString() {
+  return 'VerifyNewPhoneRequest(otp: $otp, reference: $reference)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$VerifyNewPhoneRequestCopyWith<$Res> implements $VerifyNewPhoneRequestCopyWith<$Res> {
+  factory _$VerifyNewPhoneRequestCopyWith(_VerifyNewPhoneRequest value, $Res Function(_VerifyNewPhoneRequest) _then) = __$VerifyNewPhoneRequestCopyWithImpl;
+@override @useResult
+$Res call({
+ String otp, String reference
+});
+
+
+
+
+}
+/// @nodoc
+class __$VerifyNewPhoneRequestCopyWithImpl<$Res>
+    implements _$VerifyNewPhoneRequestCopyWith<$Res> {
+  __$VerifyNewPhoneRequestCopyWithImpl(this._self, this._then);
+
+  final _VerifyNewPhoneRequest _self;
+  final $Res Function(_VerifyNewPhoneRequest) _then;
+
+/// Create a copy of VerifyNewPhoneRequest
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? otp = null,Object? reference = null,}) {
+  return _then(_VerifyNewPhoneRequest(
+otp: null == otp ? _self.otp : otp // ignore: cast_nullable_to_non_nullable
+as String,reference: null == reference ? _self.reference : reference // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

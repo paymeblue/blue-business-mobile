@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class TransactionErrorViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 }

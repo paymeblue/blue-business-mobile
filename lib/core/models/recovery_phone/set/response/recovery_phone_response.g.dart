@@ -6,16 +6,13 @@ part of 'recovery_phone_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SetRecoveryPhoneResponseImpl _$$SetRecoveryPhoneResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SetRecoveryPhoneResponseImpl(
-      status: json['status'] as String? ?? "fail",
-      message: json['message'] as String?,
-    );
+_SetRecoveryPhoneResponse _$SetRecoveryPhoneResponseFromJson(
+  Map<String, dynamic> json,
+) => _SetRecoveryPhoneResponse(
+  status: json['status'] as String? ?? "fail",
+  message: json['message'] as String?,
+);
 
-Map<String, dynamic> _$$SetRecoveryPhoneResponseImplToJson(
-        _$SetRecoveryPhoneResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-    };
+Map<String, dynamic> _$SetRecoveryPhoneResponseToJson(
+  _SetRecoveryPhoneResponse instance,
+) => <String, dynamic>{'status': instance.status, 'message': ?instance.message};

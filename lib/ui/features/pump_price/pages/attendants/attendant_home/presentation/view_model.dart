@@ -11,7 +11,7 @@ import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class PumpPriceAttendantViewModel extends BaseViewModel {
-  init() {
+  void init() {
     staffPagingController.addPageRequestListener((pageKey) {
       getStaff(pageKey);
     });
@@ -48,17 +48,14 @@ class PumpPriceAttendantViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getStaff(int page) async {
+  Future<void> getStaff(int page) async {
     try {
       GetStaffResponse response = await PumpPriceAttendantService()
-          .getttendants(
-            page: page,
-            limit: 50,
-            query: search.text.orNull,
-          )
+          .getttendants(page: page, limit: 50, query: search.text.orNull)
           .onError(
             (error, stackTrace) => GetStaffResponse(
-                message: AppErrorHandler.getErrorMessage(error)),
+              message: AppErrorHandler.getErrorMessage(error),
+            ),
           );
 
       if (response.status == "success") {
@@ -83,14 +80,16 @@ class PumpPriceAttendantViewModel extends BaseViewModel {
     }
   }
 
-  deleteStaff(Staff staff) async {
+  Future<void> deleteStaff(Staff staff) async {
     pageState = FetchState.loading;
 
-    CreateStaffResponse response =
-        await PumpPriceAttendantService().deleteAttendant(id: staff.id).onError(
-              (error, stackTrace) => CreateStaffResponse(
-                  message: AppErrorHandler.getErrorMessage(error)),
-            );
+    CreateStaffResponse response = await PumpPriceAttendantService()
+        .deleteAttendant(id: staff.id)
+        .onError(
+          (error, stackTrace) => CreateStaffResponse(
+            message: AppErrorHandler.getErrorMessage(error),
+          ),
+        );
 
     if (response.status == "success") {
       pageState = FetchState.success;

@@ -1,5 +1,6 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
 import 'package:blue_business/core/models/signup/request/signup_request.dart';
@@ -15,15 +16,21 @@ class InitiateSignupViewModel extends BaseViewModel {
   late Size size;
   final formKey = GlobalKey<FormState>();
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     setSelectedCountry();
 
     size = context.mediaQuery.size;
   }
 
-  setSelectedCountry() {
-    selectedCountry = countryCodes[countryCodes.indexOf(const CountryCode(
-        countryCode: "NG", name: "Nigeria", dialCode: "+234"))];
+  void setSelectedCountry() {
+    selectedCountry =
+        countryCodes[countryCodes.indexOf(
+          const CountryCode(
+            countryCode: "NG",
+            name: "Nigeria",
+            dialCode: "+234",
+          ),
+        )];
   }
 
   TextEditingController searchController = TextEditingController();
@@ -37,23 +44,23 @@ class InitiateSignupViewModel extends BaseViewModel {
   RegExp special = RegExp((r"[.,_@\\+$!#%^&*\-=?:;']+?").toString());
 
   List<Map<String, dynamic>> conditions() => [
-        {
-          "isComplete": passwordController.text.length >= 9,
-          "condition": "Must contain 9 characters"
-        },
-        {
-          "isComplete": letters.hasMatch(passwordController.text),
-          "condition": "Must contain a letter"
-        },
-        {
-          "isComplete": special.hasMatch(passwordController.text),
-          "condition": "Must contain a symbol"
-        },
-        {
-          "isComplete": numbers.hasMatch(passwordController.text),
-          "condition": "Must contain a number"
-        },
-      ];
+    {
+      "isComplete": passwordController.text.length >= 9,
+      "condition": "Must contain 9 characters",
+    },
+    {
+      "isComplete": letters.hasMatch(passwordController.text),
+      "condition": "Must contain a letter",
+    },
+    {
+      "isComplete": special.hasMatch(passwordController.text),
+      "condition": "Must contain a symbol",
+    },
+    {
+      "isComplete": numbers.hasMatch(passwordController.text),
+      "condition": "Must contain a number",
+    },
+  ];
 
   bool isActive() {
     return phoneController.text.isNotEmpty &&
@@ -72,32 +79,34 @@ class InitiateSignupViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goToLogin(BuildContext context) {
+  void goToLogin(BuildContext context) {
     locator<AppRouter>().push(LoginRoute());
   }
 
-  onChanged(String? c) {
+  void onChanged(String? c) {
     notifyListeners();
   }
 
-  register(BuildContext context) async {
+  Future<void> register(BuildContext context) async {
     AppLoader.start();
     SignupRequest request = SignupRequest(
-        phone: phoneController.text.validPhone(selectedCountry),
-        password: passwordController.text,
-        confirmPassword: confirmPasswordController.text);
+      phone: phoneController.text.validPhone(selectedCountry),
+      password: passwordController.text,
+      confirmPassword: confirmPasswordController.text,
+    );
 
-    SignupResponse response = await AuthService()
-        .register(request: request)
-        .onError((error, stackTrace) => SignupResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "register",
-                "request": request.toString(),
-                "response_model": "SignupResponse"
-              },
-            )));
+    SignupResponse response =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .register(request: request)
+            .onError(
+              (error, stackTrace) => SignupResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "register",
+                  "request": request.toString(),
+                  "response_model": "SignupResponse",
+                }),
+              ),
+            );
 
     if (response.status == "success") {
       formKey.currentState!.reset();
@@ -109,7 +118,7 @@ class InitiateSignupViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  goToNext(BuildContext context, SignupData data) {
+  void goToNext(BuildContext context, SignupData data) {
     String phone = phoneController.text.validPhone(selectedCountry);
     VerifySignupOtpArgs args = VerifySignupOtpArgs(phone: phone);
     if (data.level == 1) {
@@ -119,7 +128,7 @@ class InitiateSignupViewModel extends BaseViewModel {
     }
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 }

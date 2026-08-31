@@ -1,4 +1,5 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
@@ -19,7 +20,7 @@ class CreatePinViewModel extends BaseViewModel {
   late Size size;
   late SignupData data;
 
-  init(BuildContext context, SignupData d) {
+  void init(BuildContext context, SignupData d) {
     size = context.mediaQuery.size;
 
     data = d;
@@ -51,7 +52,7 @@ class CreatePinViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  setPinAndNext(BuildContext context) {
+  void setPinAndNext(BuildContext context) {
     if (isConfirm) {
       if (pin == tempPin) {
         confirmPin = tempPin;
@@ -66,23 +67,26 @@ class CreatePinViewModel extends BaseViewModel {
     }
   }
 
-  completeRegistration(BuildContext context) async {
+  Future<void> completeRegistration(BuildContext context) async {
     AppLoader.start();
 
-    CompleteRegistrationRequest request =
-        CompleteRegistrationRequest(pin: pin, userId: data.id);
+    CompleteRegistrationRequest request = CompleteRegistrationRequest(
+      pin: pin,
+      userId: data.id,
+    );
 
-    CompleteRegistrationResponse response = await AuthService()
-        .completeRegistration(request: request)
-        .onError((error, stackTrace) => CompleteRegistrationResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "complete_registration",
-                "request": request.toString(),
-                "response_model": "CompleteRegistrationResponse"
-              },
-            )));
+    CompleteRegistrationResponse response =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .completeRegistration(request: request)
+            .onError(
+              (error, stackTrace) => CompleteRegistrationResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "complete_registration",
+                  "request": request.toString(),
+                  "response_model": "CompleteRegistrationResponse",
+                }),
+              ),
+            );
 
     if (response.status == "success") {
       reconcileStoredData();
@@ -96,7 +100,7 @@ class CreatePinViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  reconcileStoredData() async {
+  Future<void> reconcileStoredData() async {
     StorageValues.deleteLoginValues();
     await StorageHelpers.deleteAll();
     StorageValues.pin = pin;
@@ -105,7 +109,7 @@ class CreatePinViewModel extends BaseViewModel {
         NotificationState.signupSuccess;
   }
 
-  goToNext(BuildContext context) {
+  void goToNext(BuildContext context) {
     locator<AppRouter>().replaceAll([LoginRoute()]);
   }
 }

@@ -5,7 +5,7 @@ part 'recovery_code_response.freezed.dart';
 part 'recovery_code_response.g.dart';
 
 @freezed
-class GetRecoveryCodeResponse with _$GetRecoveryCodeResponse {
+abstract class GetRecoveryCodeResponse with _$GetRecoveryCodeResponse {
   const factory GetRecoveryCodeResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class GetRecoveryCodeResponse with _$GetRecoveryCodeResponse {
   }) = _GetRecoveryCodeResponse;
 
   factory GetRecoveryCodeResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetRecoveryCodeResponseImpl.fromJson(json);
+      _$GetRecoveryCodeResponseFromJson(json);
 }

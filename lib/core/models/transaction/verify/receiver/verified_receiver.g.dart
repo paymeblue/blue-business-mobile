@@ -6,9 +6,8 @@ part of 'verified_receiver.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VerifiedReceiverImpl _$$VerifiedReceiverImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VerifiedReceiverImpl(
+_VerifiedReceiver _$VerifiedReceiverFromJson(Map<String, dynamic> json) =>
+    _VerifiedReceiver(
       id: (json['id'] as num).toInt(),
       userId: (json['user_id'] as num?)?.toInt(),
       walletCode: json['wallet_code'] as String?,
@@ -18,12 +17,11 @@ _$VerifiedReceiverImpl _$$VerifiedReceiverImplFromJson(
       charge: (json['charge'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$VerifiedReceiverImplToJson(
-        _$VerifiedReceiverImpl instance) =>
+Map<String, dynamic> _$VerifiedReceiverToJson(_VerifiedReceiver instance) =>
     <String, dynamic>{
       'id': instance.id,
-      if (instance.userId case final value?) 'user_id': value,
-      if (instance.walletCode case final value?) 'wallet_code': value,
+      'user_id': ?instance.userId,
+      'wallet_code': ?instance.walletCode,
       'receiver_name': instance.receiverName,
       'phone': instance.phone,
       'amount': instance.amount,

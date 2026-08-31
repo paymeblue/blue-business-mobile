@@ -12,7 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class BlueDialog {
   BlueDialog._();
 
-  static primary({
+  static Future primary({
     required String title,
     required String subtitle,
     required VoidCallback onDelete,
@@ -20,55 +20,63 @@ class BlueDialog {
     Color? confirmColor,
   }) {
     return showDialog(
-        context: locator<AppRouter>().navigatorKey.currentContext!,
-        barrierDismissible: false,
-        builder: (context) {
-          return Dialog(
-            child: Container(
-              height: 150.h,
-              width: 273.w,
-              padding: const EdgeInsets.only(top: 16),
-              decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(5)),
-              child: Column(
-                children: [
-                  Text(
-                    title,
-                    style: AppTextStyles.subHeader.copyWith(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.error),
+      context: locator<AppRouter>().navigatorKey.currentContext!,
+      barrierDismissible: false,
+      builder: (context) {
+        return Dialog(
+          child: Container(
+            height: 150.h,
+            width: 273.w,
+            padding: const EdgeInsets.only(top: 16),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  title,
+                  style: AppTextStyles.subHeader.copyWith(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.error,
                   ),
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: Text(
-                      subtitle,
-                      textAlign: TextAlign.center,
-                      style: AppTextStyles.subText.copyWith(
-                          fontSize: 13.sp, fontWeight: FontWeight.w400),
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Text(
+                    subtitle,
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.subText.copyWith(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  Expanded(
-                    child: Row(children: [
+                ),
+                const SizedBox(height: 16),
+                Expanded(
+                  child: Row(
+                    children: [
                       Flexible(
                         child: GestureDetector(
                           onTap: () {
                             locator<AppRouter>().maybePop();
                           },
                           child: Container(
-                              height: 35,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: AppColors.bgGrey),
-                                  borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(5))),
-                              child: Text(
-                                "Cancel",
-                                style: AppTextStyles.largeButtonText,
-                              )),
+                            height: 35,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: AppColors.bgGrey),
+                              borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(5),
+                              ),
+                            ),
+                            child: Text(
+                              "Cancel",
+                              style: AppTextStyles.largeButtonText,
+                            ),
+                          ),
                         ),
                       ),
                       Flexible(
@@ -78,42 +86,50 @@ class BlueDialog {
                             onDelete();
                           },
                           child: Container(
-                              height: 35,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: AppColors.bgGrey),
-                                  borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(5))),
-                              child: Text(
-                                confirmText,
-                                style: AppTextStyles.largeButtonText.copyWith(
-                                    color: confirmColor ?? AppColors.error),
-                              )),
+                            height: 35,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: AppColors.bgGrey),
+                              borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(5),
+                              ),
+                            ),
+                            child: Text(
+                              confirmText,
+                              style: AppTextStyles.largeButtonText.copyWith(
+                                color: confirmColor ?? AppColors.error,
+                              ),
+                            ),
+                          ),
                         ),
-                      )
-                    ]),
-                  )
-                ],
-              ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 
   static Future<Reason?> reason({required List<Reason> reasons}) async {
     Reason? selectedReason;
     await showDialog(
-        context: locator<AppRouter>().navigatorKey.currentContext!,
-        builder: (context) {
-          return Dialog(
-            child: StatefulBuilder(builder: (context, setState) {
+      context: locator<AppRouter>().navigatorKey.currentContext!,
+      builder: (context) {
+        return Dialog(
+          child: StatefulBuilder(
+            builder: (context, setState) {
               return Container(
                 height: 350.h,
                 width: 300.w,
                 padding: EdgeInsets.only(top: 16.h),
                 decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(5)),
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(5),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -128,28 +144,27 @@ class BlueDialog {
                       ),
                       child: AppAssets.images.icons.delete.svg(),
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
                         "Delete Account",
                         style: AppTextStyles.subHeader.copyWith(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.textColor),
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textColor,
+                        ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 4,
-                    ),
+                    const SizedBox(height: 4),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
                         "Please select a reason for deleting your account and leaving us",
                         style: AppTextStyles.subText.copyWith(
-                            fontSize: 13.sp, fontWeight: FontWeight.w400),
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -163,56 +178,64 @@ class BlueDialog {
                           locator<AppRouter>().maybePop();
                         },
                         child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: List.generate(reasons.length, (i) {
-                              Reason r = reasons[i];
-                              return RadioListTile(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 8.w),
-                                value: r,
-                                activeColor: AppColors.primary,
-                                title: Text(
-                                  r.content,
-                                  style: AppTextStyles.smallText
-                                      .copyWith(color: AppColors.textColor),
+                          mainAxisSize: MainAxisSize.min,
+                          children: List.generate(reasons.length, (i) {
+                            Reason r = reasons[i];
+                            return RadioListTile(
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 8.w,
+                              ),
+                              value: r,
+                              activeColor: AppColors.primary,
+                              title: Text(
+                                r.content,
+                                style: AppTextStyles.smallText.copyWith(
+                                  color: AppColors.textColor,
                                 ),
-                              );
-                            })),
+                              ),
+                            );
+                          }),
+                        ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               );
-            }),
-          );
-        });
+            },
+          ),
+        );
+      },
+    );
 
     return selectedReason;
   }
 
-  static deleteAccount({required VoidCallback onDelete}) {
+  static void deleteAccount({required VoidCallback onDelete}) {
     String deleteString = "";
     showDialog(
-        context: locator<AppRouter>().navigatorKey.currentContext!,
-        barrierDismissible: false,
-        builder: (context) {
-          return Dialog(
-            child: StatefulBuilder(builder: (context, setState) {
+      context: locator<AppRouter>().navigatorKey.currentContext!,
+      barrierDismissible: false,
+      builder: (context) {
+        return Dialog(
+          child: StatefulBuilder(
+            builder: (context, setState) {
               return Container(
                 height: 230,
                 width: 320,
                 padding: const EdgeInsets.only(top: 16),
                 decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(5)),
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(5),
+                ),
                 child: Column(
                   children: [
                     Text(
                       "Confirm Deactivation",
                       style: AppTextStyles.subHeader.copyWith(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.error),
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.error,
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Padding(
@@ -221,7 +244,9 @@ class BlueDialog {
                         "Type \"delete\" to confirm your exit",
                         textAlign: TextAlign.center,
                         style: AppTextStyles.subText.copyWith(
-                            fontSize: 13.sp, fontWeight: FontWeight.w400),
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -236,60 +261,69 @@ class BlueDialog {
                         },
                       ),
                     ),
-                    const SizedBox(
-                      height: 18,
-                    ),
+                    const SizedBox(height: 18),
                     Expanded(
-                      child: Row(children: [
-                        Flexible(
-                          child: GestureDetector(
-                            onTap: () {
-                              locator<AppRouter>().maybePop();
-                            },
-                            child: Container(
+                      child: Row(
+                        children: [
+                          Flexible(
+                            child: GestureDetector(
+                              onTap: () {
+                                locator<AppRouter>().maybePop();
+                              },
+                              child: Container(
                                 height: 35,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                    border: Border.all(color: AppColors.bgGrey),
-                                    borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(5))),
+                                  border: Border.all(color: AppColors.bgGrey),
+                                  borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(5),
+                                  ),
+                                ),
                                 child: Text(
                                   "Cancel",
                                   style: AppTextStyles.largeButtonText,
-                                )),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        Flexible(
-                          child: GestureDetector(
-                            onTap: () {
-                              if (deleteString == "delete") {
-                                locator<AppRouter>().maybePop();
-                                onDelete();
-                              }
-                            },
-                            child: Container(
+                          Flexible(
+                            child: GestureDetector(
+                              onTap: () {
+                                if (deleteString == "delete") {
+                                  locator<AppRouter>().maybePop();
+                                  onDelete();
+                                }
+                              },
+                              child: Container(
                                 height: 35,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                    border: Border.all(color: AppColors.bgGrey),
-                                    borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(5))),
+                                  border: Border.all(color: AppColors.bgGrey),
+                                  borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(5),
+                                  ),
+                                ),
                                 child: Text(
                                   "Confirm",
                                   style: AppTextStyles.largeButtonText.copyWith(
-                                      color: deleteString == "delete"
-                                          ? AppColors.error
-                                          : AppColors.bgGrey),
-                                )),
+                                    color: deleteString == "delete"
+                                        ? AppColors.error
+                                        : AppColors.bgGrey,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
-                        )
-                      ]),
-                    )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               );
-            }),
-          );
-        });
+            },
+          ),
+        );
+      },
+    );
   }
 }

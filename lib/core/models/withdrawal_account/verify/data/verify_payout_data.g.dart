@@ -6,17 +6,15 @@ part of 'verify_payout_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VerifyPayoutDataImpl _$$VerifyPayoutDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VerifyPayoutDataImpl(
+_VerifyPayoutData _$VerifyPayoutDataFromJson(Map<String, dynamic> json) =>
+    _VerifyPayoutData(
       id: (json['id'] as num).toInt(),
       reference: json['reference'] as String,
       accountNumber: json['account_number'] as String,
       accountName: json['account_name'] as String,
     );
 
-Map<String, dynamic> _$$VerifyPayoutDataImplToJson(
-        _$VerifyPayoutDataImpl instance) =>
+Map<String, dynamic> _$VerifyPayoutDataToJson(_VerifyPayoutData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'reference': instance.reference,

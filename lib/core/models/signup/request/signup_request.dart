@@ -4,7 +4,7 @@ part 'signup_request.freezed.dart';
 part 'signup_request.g.dart';
 
 @freezed
-class SignupRequest with _$SignupRequest {
+abstract class SignupRequest with _$SignupRequest {
   const factory SignupRequest({
     required String phone,
     required String password,
@@ -12,5 +12,5 @@ class SignupRequest with _$SignupRequest {
   }) = _SignupRequest;
 
   factory SignupRequest.fromJson(Map<String, dynamic> json) =>
-      _$SignupRequestImpl.fromJson(json);
+      _$SignupRequestFromJson(json);
 }

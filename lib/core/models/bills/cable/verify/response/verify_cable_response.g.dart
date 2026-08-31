@@ -6,9 +6,8 @@ part of 'verify_cable_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VerifyCableResponseImpl _$$VerifyCableResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VerifyCableResponseImpl(
+_VerifyCableResponse _$VerifyCableResponseFromJson(Map<String, dynamic> json) =>
+    _VerifyCableResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
@@ -16,10 +15,10 @@ _$VerifyCableResponseImpl _$$VerifyCableResponseImplFromJson(
           : VerifyCableData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$VerifyCableResponseImplToJson(
-        _$VerifyCableResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
-    };
+Map<String, dynamic> _$VerifyCableResponseToJson(
+  _VerifyCableResponse instance,
+) => <String, dynamic>{
+  'status': instance.status,
+  'message': ?instance.message,
+  'data': ?instance.data,
+};

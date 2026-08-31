@@ -6,13 +6,13 @@ part of 'credit_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CreditRequestImpl _$$CreditRequestImplFromJson(Map<String, dynamic> json) =>
-    _$CreditRequestImpl(
+_CreditRequest _$CreditRequestFromJson(Map<String, dynamic> json) =>
+    _CreditRequest(
       transactionId: json['transaction_id'] as String,
       passcode: json['passcode'] as String,
     );
 
-Map<String, dynamic> _$$CreditRequestImplToJson(_$CreditRequestImpl instance) =>
+Map<String, dynamic> _$CreditRequestToJson(_CreditRequest instance) =>
     <String, dynamic>{
       'transaction_id': instance.transactionId,
       'passcode': instance.passcode,

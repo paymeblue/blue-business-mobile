@@ -5,11 +5,10 @@ part 'verified_receiver_data.freezed.dart';
 part 'verified_receiver_data.g.dart';
 
 @freezed
-class VerifiedReceiverData with _$VerifiedReceiverData {
-  const factory VerifiedReceiverData({
-    required VerifiedReceiver receiver,
-  }) = _VerifiedReceiverData;
+abstract class VerifiedReceiverData with _$VerifiedReceiverData {
+  const factory VerifiedReceiverData({required VerifiedReceiver receiver}) =
+      _VerifiedReceiverData;
 
   factory VerifiedReceiverData.fromJson(Map<String, dynamic> json) =>
-      _$VerifiedReceiverDataImpl.fromJson(json);
+      _$VerifiedReceiverDataFromJson(json);
 }

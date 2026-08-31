@@ -25,7 +25,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 class EnterStaffDetailsViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context, Staff? staff) async {
+  Future<void> init(BuildContext context, Staff? staff) async {
     size = context.mediaQuery.size;
 
     setSelectedCountry();
@@ -39,7 +39,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     }
   }
 
-  setStaff(Staff staff) async {
+  Future<void> setStaff(Staff staff) async {
     nameController.text = staff.name;
     phoneController.text = staff.phone
         .replaceFirst(selectedCountry.dialCode, "")
@@ -51,7 +51,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     }
   }
 
-  setRole(Staff staff) {
+  void setRole(Staff staff) {
     for (StaffRole r in roles) {
       if (r.name.toLowerCase() == staff.role.toLowerCase()) {
         role = r.copyWith(name: r.name.sentenceCase);
@@ -59,20 +59,19 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     }
   }
 
-  getBranchById(int id) async {
+  Future<void> getBranchById(int id) async {
     branchSetState = FetchState.loading;
 
-    GetBranchResponse response =
-        await BranchService().getBranchById(id: id).onError(
-              (error, stackTrace) => GetBranchResponse(
-                  message: AppErrorHandler.getErrorMessage(
-                error,
-                {
-                  "request_name": "get_branch_by_id",
-                  "response_model": "GetBranchResponse"
-                },
-              )),
-            );
+    GetBranchResponse response = await BranchService()
+        .getBranchById(id: id)
+        .onError(
+          (error, stackTrace) => GetBranchResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_branch_by_id",
+              "response_model": "GetBranchResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       branchSetState = FetchState.success;
@@ -84,11 +83,11 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     branch = response.data;
   }
 
-  goBack(BuildContext context, [bool refresh = false]) {
+  void goBack(BuildContext context, [bool refresh = false]) {
     locator<AppRouter>().maybePop(refresh);
   }
 
-  goToAddBranch(BuildContext context) {
+  void goToAddBranch(BuildContext context) {
     locator<AppRouter>().push(EnterBranchDetailsRoute()).then((val) {
       branchPagingController.refresh();
     });
@@ -101,10 +100,11 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  pickImage() async {
+  Future<void> pickImage() async {
     try {
-      FilePickerResult? result =
-          await FilePicker.platform.pickFiles(type: FileType.image);
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+      );
 
       if (result != null) {
         String? p = result.files.single.path;
@@ -114,9 +114,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
         AppNotification.error(message: "No image selected");
       }
     } catch (e) {
-      AppNotification.error(
-        message: AppErrorHandler.getErrorMessage(e),
-      );
+      AppNotification.error(message: AppErrorHandler.getErrorMessage(e));
     }
   }
 
@@ -132,18 +130,24 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
   TextEditingController passwordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
 
-  setSelectedCountry() {
-    selectedCountry = countryCodes[countryCodes.indexOf(const CountryCode(
-        countryCode: "NG", name: "Nigeria", dialCode: "+234"))];
+  void setSelectedCountry() {
+    selectedCountry =
+        countryCodes[countryCodes.indexOf(
+          const CountryCode(
+            countryCode: "NG",
+            name: "Nigeria",
+            dialCode: "+234",
+          ),
+        )];
   }
 
-  onCountryChanged(CountryCode? value) {
+  void onCountryChanged(CountryCode? value) {
     if (value != null) {
       selectedCountry = value;
     }
   }
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
@@ -152,23 +156,23 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
   RegExp special = RegExp((r"[.,_@\\+$!#%^&*\-=?:;']+?").toString());
 
   List<Map<String, dynamic>> conditions() => [
-        {
-          "isComplete": passwordController.text.length >= 9,
-          "condition": "Must contain 9 characters"
-        },
-        {
-          "isComplete": letters.hasMatch(passwordController.text),
-          "condition": "Must contain a letter"
-        },
-        {
-          "isComplete": special.hasMatch(passwordController.text),
-          "condition": "Must contain a symbol"
-        },
-        {
-          "isComplete": numbers.hasMatch(passwordController.text),
-          "condition": "Must contain a number"
-        },
-      ];
+    {
+      "isComplete": passwordController.text.length >= 9,
+      "condition": "Must contain 9 characters",
+    },
+    {
+      "isComplete": letters.hasMatch(passwordController.text),
+      "condition": "Must contain a letter",
+    },
+    {
+      "isComplete": special.hasMatch(passwordController.text),
+      "condition": "Must contain a symbol",
+    },
+    {
+      "isComplete": numbers.hasMatch(passwordController.text),
+      "condition": "Must contain a number",
+    },
+  ];
 
   bool isActive(Staff? staff) {
     return staff == null && canCreate() || staff != null && canEdit(staff);
@@ -209,7 +213,7 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
         passwordController.text.length >= 9;
   }
 
-  confirmAccess(BuildContext context) {
+  void confirmAccess(BuildContext context) {
     BlueDialog.primary(
       title: "Staff Access",
       subtitle:
@@ -239,24 +243,23 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
   PagingController<int, Branch> branchPagingController =
       PagingController<int, Branch>(firstPageKey: 1);
 
-  getBranches(int page) async {
+  Future<void> getBranches(int page) async {
     try {
       GetBranchesResponse response = await BranchService()
           .getAllBranches(
             page: page,
             limit: 50,
-            search:
-                searchController.text.isEmpty ? null : searchController.text,
+            search: searchController.text.isEmpty
+                ? null
+                : searchController.text,
           )
           .onError(
             (error, stackTrace) => GetBranchesResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
+              message: AppErrorHandler.getErrorMessage(error, {
                 "request_name": "get_all_branches",
-                "response_model": "GetBranchesResponse"
-              },
-            )),
+                "response_model": "GetBranchesResponse",
+              }),
+            ),
           );
 
       if (response.status == "success") {
@@ -275,28 +278,26 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     }
   }
 
-  createStaff(BuildContext context) async {
+  Future<void> createStaff(BuildContext context) async {
     AppLoader.start();
 
     CreateStaffResponse response = await StaffService()
         .createStaff(
-      image: path != null ? File(path!) : null,
-      name: nameController.text,
-      phone: phoneController.text.validPhone(selectedCountry),
-      branchId: branch!.id,
-      role: role!.name.toLowerCase(),
-      password: passwordController.text,
-    )
+          image: path != null ? File(path!) : null,
+          name: nameController.text,
+          phone: phoneController.text.validPhone(selectedCountry),
+          branchId: branch!.id,
+          role: role!.name.toLowerCase(),
+          password: passwordController.text,
+        )
         .onError((error, stacktrace) {
-      return CreateStaffResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "create_staff",
-          "response_model": "CreateStaffResponse"
-        },
-      ));
-    });
+          return CreateStaffResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "create_staff",
+              "response_model": "CreateStaffResponse",
+            }),
+          );
+        });
 
     if (response.status == "success") {
       if (context.mounted) goBack(context, true);
@@ -307,14 +308,15 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  editStaff(BuildContext context, Staff staff) async {
+  Future<void> editStaff(BuildContext context, Staff staff) async {
     AppLoader.start();
 
     UpdateStaffRequest request = UpdateStaffRequest(
       name: nameController.text.toLowerCase() != staff.name.toLowerCase()
           ? nameController.text
           : null,
-      phone: phoneController.text !=
+      phone:
+          phoneController.text !=
               staff.phone
                   .replaceFirst(selectedCountry.dialCode, "")
                   .replaceFirst("+", "")
@@ -324,22 +326,21 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
       role: role?.name.toLowerCase() != staff.role.toLowerCase()
           ? role?.name.toLowerCase()
           : null,
-      password:
-          passwordController.text.isEmpty ? null : passwordController.text,
+      password: passwordController.text.isEmpty
+          ? null
+          : passwordController.text,
     );
 
     CreateStaffResponse response = await StaffService()
-        .editStaff(
-      id: staff.id,
-      request: request,
-    )
+        .editStaff(id: staff.id, request: request)
         .onError((error, stacktrace) {
-      return CreateStaffResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {"request_name": "edit_staff", "response_model": "CreateStaffResponse"},
-      ));
-    });
+          return CreateStaffResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "edit_staff",
+              "response_model": "CreateStaffResponse",
+            }),
+          );
+        });
 
     if (response.status == "success") {
       if (context.mounted) goBack(context, true);
@@ -364,19 +365,19 @@ class EnterStaffDetailsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getRoles() async {
+  Future<void> getRoles() async {
     roleState = FetchState.loading;
 
     GetStaffRoleResponse response = await StaffService()
         .getStaffRoles()
-        .onError((error, stacjtrace) => GetStaffRoleResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_staff_role",
-                "response_model": "GetStaffRoleResponse"
-              },
-            )));
+        .onError(
+          (error, stacjtrace) => GetStaffRoleResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_staff_role",
+              "response_model": "GetStaffRoleResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       roles = response.data!;

@@ -5,7 +5,7 @@ part 'payment_link_data.freezed.dart';
 part 'payment_link_data.g.dart';
 
 @freezed
-class PaymentLinkData with _$PaymentLinkData {
+abstract class PaymentLinkData with _$PaymentLinkData {
   const factory PaymentLinkData({
     required String total,
     required int limit,
@@ -15,5 +15,5 @@ class PaymentLinkData with _$PaymentLinkData {
   }) = _PaymentLinkData;
 
   factory PaymentLinkData.fromJson(Map<String, dynamic> json) =>
-      _$PaymentLinkDataImpl.fromJson(json);
+      _$PaymentLinkDataFromJson(json);
 }

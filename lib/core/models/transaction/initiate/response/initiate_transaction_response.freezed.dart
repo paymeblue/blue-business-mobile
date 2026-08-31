@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,223 +9,299 @@ part of 'initiate_transaction_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-InitiateTransactionResponse _$InitiateTransactionResponseFromJson(
-    Map<String, dynamic> json) {
-  return _InitiateTransactionResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$InitiateTransactionResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  InitiateTransactionData? get data => throw _privateConstructorUsedError;
+
+ String get status; String? get message; InitiateTransactionData? get data;
+/// Create a copy of InitiateTransactionResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$InitiateTransactionResponseCopyWith<InitiateTransactionResponse> get copyWith => _$InitiateTransactionResponseCopyWithImpl<InitiateTransactionResponse>(this as InitiateTransactionResponse, _$identity);
 
   /// Serializes this InitiateTransactionResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of InitiateTransactionResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $InitiateTransactionResponseCopyWith<InitiateTransactionResponse>
-      get copyWith => throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InitiateTransactionResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'InitiateTransactionResponse(status: $status, message: $message, data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $InitiateTransactionResponseCopyWith<$Res> {
-  factory $InitiateTransactionResponseCopyWith(
-          InitiateTransactionResponse value,
-          $Res Function(InitiateTransactionResponse) then) =
-      _$InitiateTransactionResponseCopyWithImpl<$Res,
-          InitiateTransactionResponse>;
-  @useResult
-  $Res call({String status, String? message, InitiateTransactionData? data});
+abstract mixin class $InitiateTransactionResponseCopyWith<$Res>  {
+  factory $InitiateTransactionResponseCopyWith(InitiateTransactionResponse value, $Res Function(InitiateTransactionResponse) _then) = _$InitiateTransactionResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, InitiateTransactionData? data
+});
 
-  $InitiateTransactionDataCopyWith<$Res>? get data;
+
+$InitiateTransactionDataCopyWith<$Res>? get data;
+
 }
-
 /// @nodoc
-class _$InitiateTransactionResponseCopyWithImpl<$Res,
-        $Val extends InitiateTransactionResponse>
+class _$InitiateTransactionResponseCopyWithImpl<$Res>
     implements $InitiateTransactionResponseCopyWith<$Res> {
-  _$InitiateTransactionResponseCopyWithImpl(this._value, this._then);
+  _$InitiateTransactionResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final InitiateTransactionResponse _self;
+  final $Res Function(InitiateTransactionResponse) _then;
 
-  /// Create a copy of InitiateTransactionResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as InitiateTransactionData?,
-    ) as $Val);
+/// Create a copy of InitiateTransactionResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as InitiateTransactionData?,
+  ));
+}
+/// Create a copy of InitiateTransactionResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$InitiateTransactionDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
   }
 
-  /// Create a copy of InitiateTransactionResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $InitiateTransactionDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $InitiateTransactionDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
-  }
+  return $InitiateTransactionDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$InitiateTransactionResponseImplCopyWith<$Res>
-    implements $InitiateTransactionResponseCopyWith<$Res> {
-  factory _$$InitiateTransactionResponseImplCopyWith(
-          _$InitiateTransactionResponseImpl value,
-          $Res Function(_$InitiateTransactionResponseImpl) then) =
-      __$$InitiateTransactionResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message, InitiateTransactionData? data});
 
-  @override
-  $InitiateTransactionDataCopyWith<$Res>? get data;
+/// Adds pattern-matching-related methods to [InitiateTransactionResponse].
+extension InitiateTransactionResponsePatterns on InitiateTransactionResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _InitiateTransactionResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _InitiateTransactionResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _InitiateTransactionResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _InitiateTransactionResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _InitiateTransactionResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _InitiateTransactionResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  InitiateTransactionData? data)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _InitiateTransactionResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  InitiateTransactionData? data)  $default,) {final _that = this;
+switch (_that) {
+case _InitiateTransactionResponse():
+return $default(_that.status,_that.message,_that.data);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  InitiateTransactionData? data)?  $default,) {final _that = this;
+switch (_that) {
+case _InitiateTransactionResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$InitiateTransactionResponseImplCopyWithImpl<$Res>
-    extends _$InitiateTransactionResponseCopyWithImpl<$Res,
-        _$InitiateTransactionResponseImpl>
-    implements _$$InitiateTransactionResponseImplCopyWith<$Res> {
-  __$$InitiateTransactionResponseImplCopyWithImpl(
-      _$InitiateTransactionResponseImpl _value,
-      $Res Function(_$InitiateTransactionResponseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InitiateTransactionResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_$InitiateTransactionResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as InitiateTransactionData?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$InitiateTransactionResponseImpl
-    implements _InitiateTransactionResponse {
-  const _$InitiateTransactionResponseImpl(
-      {this.status = "fail", this.message, this.data});
 
-  factory _$InitiateTransactionResponseImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$InitiateTransactionResponseImplFromJson(json);
+class _InitiateTransactionResponse implements InitiateTransactionResponse {
+  const _InitiateTransactionResponse({this.status = "fail", this.message, this.data});
+  factory _InitiateTransactionResponse.fromJson(Map<String, dynamic> json) => _$InitiateTransactionResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  @override
-  final InitiateTransactionData? data;
+@override@JsonKey() final  String status;
+@override final  String? message;
+@override final  InitiateTransactionData? data;
 
-  @override
-  String toString() {
-    return 'InitiateTransactionResponse(status: $status, message: $message, data: $data)';
-  }
+/// Create a copy of InitiateTransactionResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$InitiateTransactionResponseCopyWith<_InitiateTransactionResponse> get copyWith => __$InitiateTransactionResponseCopyWithImpl<_InitiateTransactionResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InitiateTransactionResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
-
-  /// Create a copy of InitiateTransactionResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InitiateTransactionResponseImplCopyWith<_$InitiateTransactionResponseImpl>
-      get copyWith => __$$InitiateTransactionResponseImplCopyWithImpl<
-          _$InitiateTransactionResponseImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InitiateTransactionResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$InitiateTransactionResponseToJson(this, );
 }
 
-abstract class _InitiateTransactionResponse
-    implements InitiateTransactionResponse {
-  const factory _InitiateTransactionResponse(
-      {final String status,
-      final String? message,
-      final InitiateTransactionData? data}) = _$InitiateTransactionResponseImpl;
-
-  factory _InitiateTransactionResponse.fromJson(Map<String, dynamic> json) =
-      _$InitiateTransactionResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  InitiateTransactionData? get data;
-
-  /// Create a copy of InitiateTransactionResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InitiateTransactionResponseImplCopyWith<_$InitiateTransactionResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InitiateTransactionResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'InitiateTransactionResponse(status: $status, message: $message, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$InitiateTransactionResponseCopyWith<$Res> implements $InitiateTransactionResponseCopyWith<$Res> {
+  factory _$InitiateTransactionResponseCopyWith(_InitiateTransactionResponse value, $Res Function(_InitiateTransactionResponse) _then) = __$InitiateTransactionResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, InitiateTransactionData? data
+});
+
+
+@override $InitiateTransactionDataCopyWith<$Res>? get data;
+
+}
+/// @nodoc
+class __$InitiateTransactionResponseCopyWithImpl<$Res>
+    implements _$InitiateTransactionResponseCopyWith<$Res> {
+  __$InitiateTransactionResponseCopyWithImpl(this._self, this._then);
+
+  final _InitiateTransactionResponse _self;
+  final $Res Function(_InitiateTransactionResponse) _then;
+
+/// Create a copy of InitiateTransactionResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_InitiateTransactionResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as InitiateTransactionData?,
+  ));
+}
+
+/// Create a copy of InitiateTransactionResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$InitiateTransactionDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
+  }
+
+  return $InitiateTransactionDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
+}
+
+// dart format on

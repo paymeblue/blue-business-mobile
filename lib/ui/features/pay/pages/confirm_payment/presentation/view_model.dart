@@ -7,13 +7,14 @@ import 'package:blue_business/ui/widgets/modals/notifications.dart';
 class ConfirmTransactionViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context, ConfirmTransactionViewArgs args) {
+  void init(BuildContext context, ConfirmTransactionViewArgs args) {
     size = context.mediaQuery.size;
 
     if (args.mode != PaymentMode.withdrawal) {
       if (args.receiver!.walletCode == null) {
         AppNotification.warning(
-            message: "You're about to send money to a non-blue user");
+          message: "You're about to send money to a non-blue user",
+        );
       }
     }
   }
@@ -25,7 +26,7 @@ class ConfirmTransactionViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goToNext(BuildContext context, ConfirmTransactionViewArgs args) {
+  void goToNext(BuildContext context, ConfirmTransactionViewArgs args) {
     locator<AppStateValues>().hasSavedBeneficiary = !saveBeneficiary;
     locator<AppRouter>().push(CompletePaymentRoute(args: args));
   }

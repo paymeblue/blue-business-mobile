@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,160 +9,269 @@ part of 'get_notification_data.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-GetNotificationData _$GetNotificationDataFromJson(Map<String, dynamic> json) {
-  return _GetNotificationData.fromJson(json);
-}
 
 /// @nodoc
 mixin _$GetNotificationData {
-  bool get notificationStatus => throw _privateConstructorUsedError;
+
+ bool get notificationStatus;
+/// Create a copy of GetNotificationData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GetNotificationDataCopyWith<GetNotificationData> get copyWith => _$GetNotificationDataCopyWithImpl<GetNotificationData>(this as GetNotificationData, _$identity);
 
   /// Serializes this GetNotificationData to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of GetNotificationData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $GetNotificationDataCopyWith<GetNotificationData> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetNotificationData&&(identical(other.notificationStatus, notificationStatus) || other.notificationStatus == notificationStatus));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,notificationStatus);
+
+@override
+String toString() {
+  return 'GetNotificationData(notificationStatus: $notificationStatus)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $GetNotificationDataCopyWith<$Res> {
-  factory $GetNotificationDataCopyWith(
-          GetNotificationData value, $Res Function(GetNotificationData) then) =
-      _$GetNotificationDataCopyWithImpl<$Res, GetNotificationData>;
-  @useResult
-  $Res call({bool notificationStatus});
-}
+abstract mixin class $GetNotificationDataCopyWith<$Res>  {
+  factory $GetNotificationDataCopyWith(GetNotificationData value, $Res Function(GetNotificationData) _then) = _$GetNotificationDataCopyWithImpl;
+@useResult
+$Res call({
+ bool notificationStatus
+});
 
+
+
+
+}
 /// @nodoc
-class _$GetNotificationDataCopyWithImpl<$Res, $Val extends GetNotificationData>
+class _$GetNotificationDataCopyWithImpl<$Res>
     implements $GetNotificationDataCopyWith<$Res> {
-  _$GetNotificationDataCopyWithImpl(this._value, this._then);
+  _$GetNotificationDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final GetNotificationData _self;
+  final $Res Function(GetNotificationData) _then;
 
-  /// Create a copy of GetNotificationData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? notificationStatus = null,
-  }) {
-    return _then(_value.copyWith(
-      notificationStatus: null == notificationStatus
-          ? _value.notificationStatus
-          : notificationStatus // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
+/// Create a copy of GetNotificationData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? notificationStatus = null,}) {
+  return _then(_self.copyWith(
+notificationStatus: null == notificationStatus ? _self.notificationStatus : notificationStatus // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-/// @nodoc
-abstract class _$$GetNotificationDataImplCopyWith<$Res>
-    implements $GetNotificationDataCopyWith<$Res> {
-  factory _$$GetNotificationDataImplCopyWith(_$GetNotificationDataImpl value,
-          $Res Function(_$GetNotificationDataImpl) then) =
-      __$$GetNotificationDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool notificationStatus});
 }
 
-/// @nodoc
-class __$$GetNotificationDataImplCopyWithImpl<$Res>
-    extends _$GetNotificationDataCopyWithImpl<$Res, _$GetNotificationDataImpl>
-    implements _$$GetNotificationDataImplCopyWith<$Res> {
-  __$$GetNotificationDataImplCopyWithImpl(_$GetNotificationDataImpl _value,
-      $Res Function(_$GetNotificationDataImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of GetNotificationData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? notificationStatus = null,
-  }) {
-    return _then(_$GetNotificationDataImpl(
-      notificationStatus: null == notificationStatus
-          ? _value.notificationStatus
-          : notificationStatus // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
+/// Adds pattern-matching-related methods to [GetNotificationData].
+extension GetNotificationDataPatterns on GetNotificationData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _GetNotificationData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _GetNotificationData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _GetNotificationData value)  $default,){
+final _that = this;
+switch (_that) {
+case _GetNotificationData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _GetNotificationData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _GetNotificationData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool notificationStatus)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _GetNotificationData() when $default != null:
+return $default(_that.notificationStatus);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool notificationStatus)  $default,) {final _that = this;
+switch (_that) {
+case _GetNotificationData():
+return $default(_that.notificationStatus);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool notificationStatus)?  $default,) {final _that = this;
+switch (_that) {
+case _GetNotificationData() when $default != null:
+return $default(_that.notificationStatus);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$GetNotificationDataImpl implements _GetNotificationData {
-  const _$GetNotificationDataImpl({this.notificationStatus = false});
 
-  factory _$GetNotificationDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GetNotificationDataImplFromJson(json);
+class _GetNotificationData implements GetNotificationData {
+  const _GetNotificationData({this.notificationStatus = false});
+  factory _GetNotificationData.fromJson(Map<String, dynamic> json) => _$GetNotificationDataFromJson(json);
 
-  @override
-  @JsonKey()
-  final bool notificationStatus;
+@override@JsonKey() final  bool notificationStatus;
 
-  @override
-  String toString() {
-    return 'GetNotificationData(notificationStatus: $notificationStatus)';
-  }
+/// Create a copy of GetNotificationData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GetNotificationDataCopyWith<_GetNotificationData> get copyWith => __$GetNotificationDataCopyWithImpl<_GetNotificationData>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetNotificationDataImpl &&
-            (identical(other.notificationStatus, notificationStatus) ||
-                other.notificationStatus == notificationStatus));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, notificationStatus);
-
-  /// Create a copy of GetNotificationData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetNotificationDataImplCopyWith<_$GetNotificationDataImpl> get copyWith =>
-      __$$GetNotificationDataImplCopyWithImpl<_$GetNotificationDataImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$GetNotificationDataImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$GetNotificationDataToJson(this, );
 }
 
-abstract class _GetNotificationData implements GetNotificationData {
-  const factory _GetNotificationData({final bool notificationStatus}) =
-      _$GetNotificationDataImpl;
-
-  factory _GetNotificationData.fromJson(Map<String, dynamic> json) =
-      _$GetNotificationDataImpl.fromJson;
-
-  @override
-  bool get notificationStatus;
-
-  /// Create a copy of GetNotificationData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GetNotificationDataImplCopyWith<_$GetNotificationDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetNotificationData&&(identical(other.notificationStatus, notificationStatus) || other.notificationStatus == notificationStatus));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,notificationStatus);
+
+@override
+String toString() {
+  return 'GetNotificationData(notificationStatus: $notificationStatus)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$GetNotificationDataCopyWith<$Res> implements $GetNotificationDataCopyWith<$Res> {
+  factory _$GetNotificationDataCopyWith(_GetNotificationData value, $Res Function(_GetNotificationData) _then) = __$GetNotificationDataCopyWithImpl;
+@override @useResult
+$Res call({
+ bool notificationStatus
+});
+
+
+
+
+}
+/// @nodoc
+class __$GetNotificationDataCopyWithImpl<$Res>
+    implements _$GetNotificationDataCopyWith<$Res> {
+  __$GetNotificationDataCopyWithImpl(this._self, this._then);
+
+  final _GetNotificationData _self;
+  final $Res Function(_GetNotificationData) _then;
+
+/// Create a copy of GetNotificationData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? notificationStatus = null,}) {
+  return _then(_GetNotificationData(
+notificationStatus: null == notificationStatus ? _self.notificationStatus : notificationStatus // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+// dart format on

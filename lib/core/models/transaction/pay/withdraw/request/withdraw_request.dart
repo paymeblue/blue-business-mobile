@@ -4,7 +4,7 @@ part 'withdraw_request.freezed.dart';
 part 'withdraw_request.g.dart';
 
 @freezed
-class WithdrawRequest with _$WithdrawRequest {
+abstract class WithdrawRequest with _$WithdrawRequest {
   const factory WithdrawRequest({
     required String amount,
     @Default("withdrawal") String paymentMode,
@@ -12,5 +12,5 @@ class WithdrawRequest with _$WithdrawRequest {
   }) = _WithdrawRequest;
 
   factory WithdrawRequest.fromJson(Map<String, dynamic> json) =>
-      _$WithdrawRequestImpl.fromJson(json);
+      _$WithdrawRequestFromJson(json);
 }

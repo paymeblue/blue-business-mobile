@@ -4,7 +4,7 @@ part 'initiate_transaction_request.freezed.dart';
 part 'initiate_transaction_request.g.dart';
 
 @freezed
-class InitiateTransactionRequest with _$InitiateTransactionRequest {
+abstract class InitiateTransactionRequest with _$InitiateTransactionRequest {
   const factory InitiateTransactionRequest({
     required String amount,
     String? narration,
@@ -12,5 +12,5 @@ class InitiateTransactionRequest with _$InitiateTransactionRequest {
   }) = _InitiateTransactionRequest;
 
   factory InitiateTransactionRequest.fromJson(Map<String, dynamic> json) =>
-      _$InitiateTransactionRequestImpl.fromJson(json);
+      _$InitiateTransactionRequestFromJson(json);
 }

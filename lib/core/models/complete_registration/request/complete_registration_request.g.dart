@@ -6,16 +6,13 @@ part of 'complete_registration_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CompleteRegistrationRequestImpl _$$CompleteRegistrationRequestImplFromJson(
-        Map<String, dynamic> json) =>
-    _$CompleteRegistrationRequestImpl(
-      userId: (json['user_id'] as num).toInt(),
-      pin: json['pin'] as String,
-    );
+_CompleteRegistrationRequest _$CompleteRegistrationRequestFromJson(
+  Map<String, dynamic> json,
+) => _CompleteRegistrationRequest(
+  userId: (json['user_id'] as num).toInt(),
+  pin: json['pin'] as String,
+);
 
-Map<String, dynamic> _$$CompleteRegistrationRequestImplToJson(
-        _$CompleteRegistrationRequestImpl instance) =>
-    <String, dynamic>{
-      'user_id': instance.userId,
-      'pin': instance.pin,
-    };
+Map<String, dynamic> _$CompleteRegistrationRequestToJson(
+  _CompleteRegistrationRequest instance,
+) => <String, dynamic>{'user_id': instance.userId, 'pin': instance.pin};

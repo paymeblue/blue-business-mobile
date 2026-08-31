@@ -7,7 +7,7 @@ import 'package:overlay_kit/overlay_kit.dart';
 class AppLoader {
   AppLoader._();
 
-  static start() {
+  static dynamic start() {
     return OverlayLoadingProgress.start(
       barrierColor: Colors.black.withOpacityValue(.2),
       barrierDismissible: true,
@@ -15,7 +15,7 @@ class AppLoader {
     );
   }
 
-  static stop() {
+  static dynamic stop() {
     return OverlayLoadingProgress.stop();
   }
 }
@@ -30,13 +30,15 @@ class AnimatedLoader extends StatefulWidget {
 class _AnimatedLoaderState extends State<AnimatedLoader>
     with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
-      vsync: this, duration: const Duration(milliseconds: 1500))
-    ..repeat(reverse: true);
+    vsync: this,
+    duration: const Duration(milliseconds: 1500),
+  )..repeat(reverse: true);
 
   late final Animation<double> animation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.linear,
-      reverseCurve: Curves.bounceOut);
+    parent: _controller,
+    curve: Curves.linear,
+    reverseCurve: Curves.bounceOut,
+  );
 
   @override
   void dispose() {
@@ -49,10 +51,7 @@ class _AnimatedLoaderState extends State<AnimatedLoader>
     return Center(
       child: RotationTransition(
         turns: animation,
-        child: AppAssets.images.loader.svg(
-          height: 100.h,
-          width: 100.w,
-        ),
+        child: AppAssets.images.loader.svg(height: 100.h, width: 100.w),
       ),
     );
   }

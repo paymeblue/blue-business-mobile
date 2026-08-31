@@ -4,7 +4,7 @@ part 'receipt_record.freezed.dart';
 part 'receipt_record.g.dart';
 
 @freezed
-class ReceiptRecord with _$ReceiptRecord {
+abstract class ReceiptRecord with _$ReceiptRecord {
   const factory ReceiptRecord({
     required int id,
     required String amount,
@@ -19,7 +19,7 @@ class ReceiptRecord with _$ReceiptRecord {
   }) = _ReceiptRecord;
 
   factory ReceiptRecord.fromJson(Map<String, dynamic> json) =>
-      _$ReceiptRecordImpl.fromJson(json);
+      _$ReceiptRecordFromJson(json);
 }
 
 // {

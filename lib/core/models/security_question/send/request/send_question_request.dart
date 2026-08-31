@@ -4,12 +4,12 @@ part 'send_question_request.freezed.dart';
 part 'send_question_request.g.dart';
 
 @freezed
-class SendQuestionRequest with _$SendQuestionRequest {
+abstract class SendQuestionRequest with _$SendQuestionRequest {
   const factory SendQuestionRequest({
     required String phone,
     required String answer,
   }) = _SendQuestionRequest;
 
   factory SendQuestionRequest.fromJson(Map<String, dynamic> json) =>
-      _$SendQuestionRequestImpl.fromJson(json);
+      _$SendQuestionRequestFromJson(json);
 }

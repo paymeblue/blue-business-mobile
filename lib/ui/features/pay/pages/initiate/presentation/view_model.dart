@@ -1,26 +1,21 @@
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
-import 'package:blue_business/core/models/transaction/initiate/data/initiate_transaction_data.dart';
 import 'package:blue_business/core/models/transaction/initiate/request/initiate_transaction_request.dart';
 import 'package:blue_business/core/models/transaction/initiate/response/initiate_transaction_response.dart';
 import 'package:blue_business/core/models/withdrawal_account/get/response/withdrawal_account_response.dart';
-import 'package:blue_business/core/navigation/injection/locator.dart';
+import 'package:blue_business/core/navigation/router_config/router.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
-import 'package:blue_business/core/utils/constants.dart';
-import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
-import 'package:blue_business/ui/features/pay/pages/confirm_payment/presentation/view.dart';
 import 'package:blue_business/ui/widgets/modals/bottom_sheet.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
-import 'package:flutter/material.dart';
 
 class InitiateTransactionViewModel extends BaseViewModel {
   late Size size;
   PaymentMode? paymentMode;
 
-  init(BuildContext context, PaymentMode? p) {
+  void init(BuildContext context, PaymentMode? p) {
     size = context.mediaQuery.size;
 
     paymentMode = p;
@@ -29,19 +24,20 @@ class InitiateTransactionViewModel extends BaseViewModel {
   TextEditingController amountController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
   bool isActive() {
-    int? amountInKobo =
-        int.tryParse(amountController.text.replaceAll(RegExp(r'[^0-9]'), ""));
+    int? amountInKobo = int.tryParse(
+      amountController.text.replaceAll(RegExp(r'[^0-9]'), ""),
+    );
     return amountController.text.isNotEmpty &&
         amountInKobo != null &&
         amountInKobo >= 20000;
   }
 
-  onButtonTap(BuildContext context) {
+  void onButtonTap(BuildContext context) {
     if (paymentMode == PaymentMode.withdrawal) {
       if (locator<AppStateValues>().withdrawalAccount == null) {
         getWithdrawalAccount(context);
@@ -49,20 +45,19 @@ class InitiateTransactionViewModel extends BaseViewModel {
         goToConfirm(context);
       }
     } else {
-      BlueBottomSheet.paymentMethod(amountController.text).then(
-        (value) {
-          if (value != null) {
-            paymentMode = value;
-            if (context.mounted) initiateTransaction(context);
-          }
-        },
-      );
+      BlueBottomSheet.paymentMethod(amountController.text).then((value) {
+        if (value != null) {
+          paymentMode = value;
+          if (context.mounted) initiateTransaction(context);
+        }
+      });
     }
   }
 
-  initiateTransaction(BuildContext context) async {
-    int? amountInKobo =
-        int.tryParse(amountController.text.replaceAll(RegExp(r'[^0-9]'), ""));
+  Future<void> initiateTransaction(BuildContext context) async {
+    int? amountInKobo = int.tryParse(
+      amountController.text.replaceAll(RegExp(r'[^0-9]'), ""),
+    );
     AppLoader.start();
 
     InitiateTransactionRequest request = InitiateTransactionRequest(
@@ -73,8 +68,8 @@ class InitiateTransactionViewModel extends BaseViewModel {
       paymentMode: paymentMode!.key,
     );
 
-    InitiateTransactionResponse resp =
-        await TransactionService().initiateTransaction(request);
+    InitiateTransactionResponse resp = await TransactionService()
+        .initiateTransaction(request);
     if (resp.status != "success") {
       AppNotification.error(message: resp.message);
     }
@@ -89,21 +84,19 @@ class InitiateTransactionViewModel extends BaseViewModel {
     }
   }
 
-  getWithdrawalAccount(BuildContext context) async {
+  Future<void> getWithdrawalAccount(BuildContext context) async {
     AppLoader.start();
 
     WithdrawalAccountResponse resp = await TransactionService()
         .getWithdrawalAccount()
         .onError((error, stackTrace) {
-      return WithdrawalAccountResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "get_withdrawal_account",
-          "response_model": "WithdrawalAccountResponse"
-        },
-      ));
-    });
+          return WithdrawalAccountResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_withdrawal_account",
+              "response_model": "WithdrawalAccountResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       if (resp.data != null) {
@@ -111,8 +104,9 @@ class InitiateTransactionViewModel extends BaseViewModel {
         if (context.mounted) goToConfirm(context);
       } else {
         AppNotification.error(
-            message:
-                "You do not have a payout account setup. Please go to Settings > Withdrawal Account to set one up.");
+          message:
+              "You do not have a payout account setup. Please go to Settings > Withdrawal Account to set one up.",
+        );
       }
     } else {
       AppNotification.error(message: resp.message);
@@ -120,9 +114,10 @@ class InitiateTransactionViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  goToConfirm(BuildContext context) {
-    int? amountInKobo =
-        int.tryParse(amountController.text.replaceAll(RegExp(r'[^0-9]'), ""));
+  void goToConfirm(BuildContext context) {
+    int? amountInKobo = int.tryParse(
+      amountController.text.replaceAll(RegExp(r'[^0-9]'), ""),
+    );
     ConfirmTransactionViewArgs args = ConfirmTransactionViewArgs(
       mode: paymentMode!,
       amount: amountInKobo,
@@ -131,13 +126,15 @@ class InitiateTransactionViewModel extends BaseViewModel {
     locator<AppRouter>().push(ConfirmTransactionRoute(args: args));
   }
 
-  goToVerify(BuildContext context, InitiateTransactionData data) {
-    VerifyReceiverArgs args =
-        VerifyReceiverArgs(data: data, mode: paymentMode!);
+  void goToVerify(BuildContext context, InitiateTransactionData data) {
+    VerifyReceiverArgs args = VerifyReceiverArgs(
+      data: data,
+      mode: paymentMode!,
+    );
     locator<AppRouter>().push(receiverRoute(args));
   }
 
-  receiverRoute(VerifyReceiverArgs args) {
+  PageRouteInfo receiverRoute(VerifyReceiverArgs args) {
     if (args.mode == PaymentMode.phone) {
       return PhonePaymentRoute(data: args.data);
     } else if (args.mode == PaymentMode.qr) {

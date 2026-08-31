@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,213 +9,299 @@ part of 'get_question_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-GetQuestionResponse _$GetQuestionResponseFromJson(Map<String, dynamic> json) {
-  return _GetQuestionResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$GetQuestionResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  GetQuestionData? get data => throw _privateConstructorUsedError;
+
+ String get status; String? get message; GetQuestionData? get data;
+/// Create a copy of GetQuestionResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GetQuestionResponseCopyWith<GetQuestionResponse> get copyWith => _$GetQuestionResponseCopyWithImpl<GetQuestionResponse>(this as GetQuestionResponse, _$identity);
 
   /// Serializes this GetQuestionResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of GetQuestionResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $GetQuestionResponseCopyWith<GetQuestionResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetQuestionResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'GetQuestionResponse(status: $status, message: $message, data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $GetQuestionResponseCopyWith<$Res> {
-  factory $GetQuestionResponseCopyWith(
-          GetQuestionResponse value, $Res Function(GetQuestionResponse) then) =
-      _$GetQuestionResponseCopyWithImpl<$Res, GetQuestionResponse>;
-  @useResult
-  $Res call({String status, String? message, GetQuestionData? data});
+abstract mixin class $GetQuestionResponseCopyWith<$Res>  {
+  factory $GetQuestionResponseCopyWith(GetQuestionResponse value, $Res Function(GetQuestionResponse) _then) = _$GetQuestionResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, GetQuestionData? data
+});
 
-  $GetQuestionDataCopyWith<$Res>? get data;
+
+$GetQuestionDataCopyWith<$Res>? get data;
+
 }
-
 /// @nodoc
-class _$GetQuestionResponseCopyWithImpl<$Res, $Val extends GetQuestionResponse>
+class _$GetQuestionResponseCopyWithImpl<$Res>
     implements $GetQuestionResponseCopyWith<$Res> {
-  _$GetQuestionResponseCopyWithImpl(this._value, this._then);
+  _$GetQuestionResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final GetQuestionResponse _self;
+  final $Res Function(GetQuestionResponse) _then;
 
-  /// Create a copy of GetQuestionResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as GetQuestionData?,
-    ) as $Val);
+/// Create a copy of GetQuestionResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as GetQuestionData?,
+  ));
+}
+/// Create a copy of GetQuestionResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GetQuestionDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
   }
 
-  /// Create a copy of GetQuestionResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $GetQuestionDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $GetQuestionDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
-  }
+  return $GetQuestionDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$GetQuestionResponseImplCopyWith<$Res>
-    implements $GetQuestionResponseCopyWith<$Res> {
-  factory _$$GetQuestionResponseImplCopyWith(_$GetQuestionResponseImpl value,
-          $Res Function(_$GetQuestionResponseImpl) then) =
-      __$$GetQuestionResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message, GetQuestionData? data});
 
-  @override
-  $GetQuestionDataCopyWith<$Res>? get data;
+/// Adds pattern-matching-related methods to [GetQuestionResponse].
+extension GetQuestionResponsePatterns on GetQuestionResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _GetQuestionResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _GetQuestionResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _GetQuestionResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _GetQuestionResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _GetQuestionResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _GetQuestionResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  GetQuestionData? data)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _GetQuestionResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  GetQuestionData? data)  $default,) {final _that = this;
+switch (_that) {
+case _GetQuestionResponse():
+return $default(_that.status,_that.message,_that.data);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  GetQuestionData? data)?  $default,) {final _that = this;
+switch (_that) {
+case _GetQuestionResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$GetQuestionResponseImplCopyWithImpl<$Res>
-    extends _$GetQuestionResponseCopyWithImpl<$Res, _$GetQuestionResponseImpl>
-    implements _$$GetQuestionResponseImplCopyWith<$Res> {
-  __$$GetQuestionResponseImplCopyWithImpl(_$GetQuestionResponseImpl _value,
-      $Res Function(_$GetQuestionResponseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of GetQuestionResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_$GetQuestionResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as GetQuestionData?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$GetQuestionResponseImpl implements _GetQuestionResponse {
-  const _$GetQuestionResponseImpl(
-      {this.status = "fail", this.message, this.data});
 
-  factory _$GetQuestionResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GetQuestionResponseImplFromJson(json);
+class _GetQuestionResponse implements GetQuestionResponse {
+  const _GetQuestionResponse({this.status = "fail", this.message, this.data});
+  factory _GetQuestionResponse.fromJson(Map<String, dynamic> json) => _$GetQuestionResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  @override
-  final GetQuestionData? data;
+@override@JsonKey() final  String status;
+@override final  String? message;
+@override final  GetQuestionData? data;
 
-  @override
-  String toString() {
-    return 'GetQuestionResponse(status: $status, message: $message, data: $data)';
-  }
+/// Create a copy of GetQuestionResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GetQuestionResponseCopyWith<_GetQuestionResponse> get copyWith => __$GetQuestionResponseCopyWithImpl<_GetQuestionResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetQuestionResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
-
-  /// Create a copy of GetQuestionResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetQuestionResponseImplCopyWith<_$GetQuestionResponseImpl> get copyWith =>
-      __$$GetQuestionResponseImplCopyWithImpl<_$GetQuestionResponseImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$GetQuestionResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$GetQuestionResponseToJson(this, );
 }
 
-abstract class _GetQuestionResponse implements GetQuestionResponse {
-  const factory _GetQuestionResponse(
-      {final String status,
-      final String? message,
-      final GetQuestionData? data}) = _$GetQuestionResponseImpl;
-
-  factory _GetQuestionResponse.fromJson(Map<String, dynamic> json) =
-      _$GetQuestionResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  GetQuestionData? get data;
-
-  /// Create a copy of GetQuestionResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GetQuestionResponseImplCopyWith<_$GetQuestionResponseImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetQuestionResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'GetQuestionResponse(status: $status, message: $message, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$GetQuestionResponseCopyWith<$Res> implements $GetQuestionResponseCopyWith<$Res> {
+  factory _$GetQuestionResponseCopyWith(_GetQuestionResponse value, $Res Function(_GetQuestionResponse) _then) = __$GetQuestionResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, GetQuestionData? data
+});
+
+
+@override $GetQuestionDataCopyWith<$Res>? get data;
+
+}
+/// @nodoc
+class __$GetQuestionResponseCopyWithImpl<$Res>
+    implements _$GetQuestionResponseCopyWith<$Res> {
+  __$GetQuestionResponseCopyWithImpl(this._self, this._then);
+
+  final _GetQuestionResponse _self;
+  final $Res Function(_GetQuestionResponse) _then;
+
+/// Create a copy of GetQuestionResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_GetQuestionResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as GetQuestionData?,
+  ));
+}
+
+/// Create a copy of GetQuestionResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GetQuestionDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
+  }
+
+  return $GetQuestionDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
+}
+
+// dart format on

@@ -4,7 +4,7 @@ part 'push_payment.freezed.dart';
 part 'push_payment.g.dart';
 
 @freezed
-class PushPayment with _$PushPayment {
+abstract class PushPayment with _$PushPayment {
   const factory PushPayment({
     required String businessName,
     required String lga,
@@ -15,5 +15,5 @@ class PushPayment with _$PushPayment {
   }) = _PushPayment;
 
   factory PushPayment.fromJson(Map<String, dynamic> json) =>
-      _$PushPaymentImpl.fromJson(json);
+      _$PushPaymentFromJson(json);
 }

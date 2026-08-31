@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,211 +9,299 @@ part of 'topup_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-TopupResponse _$TopupResponseFromJson(Map<String, dynamic> json) {
-  return _TopupResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$TopupResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  TopupAccount? get data => throw _privateConstructorUsedError;
+
+ String get status; String? get message; TopupAccount? get data;
+/// Create a copy of TopupResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TopupResponseCopyWith<TopupResponse> get copyWith => _$TopupResponseCopyWithImpl<TopupResponse>(this as TopupResponse, _$identity);
 
   /// Serializes this TopupResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of TopupResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TopupResponseCopyWith<TopupResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TopupResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'TopupResponse(status: $status, message: $message, data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $TopupResponseCopyWith<$Res> {
-  factory $TopupResponseCopyWith(
-          TopupResponse value, $Res Function(TopupResponse) then) =
-      _$TopupResponseCopyWithImpl<$Res, TopupResponse>;
-  @useResult
-  $Res call({String status, String? message, TopupAccount? data});
+abstract mixin class $TopupResponseCopyWith<$Res>  {
+  factory $TopupResponseCopyWith(TopupResponse value, $Res Function(TopupResponse) _then) = _$TopupResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, TopupAccount? data
+});
 
-  $TopupAccountCopyWith<$Res>? get data;
+
+$TopupAccountCopyWith<$Res>? get data;
+
 }
-
 /// @nodoc
-class _$TopupResponseCopyWithImpl<$Res, $Val extends TopupResponse>
+class _$TopupResponseCopyWithImpl<$Res>
     implements $TopupResponseCopyWith<$Res> {
-  _$TopupResponseCopyWithImpl(this._value, this._then);
+  _$TopupResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TopupResponse _self;
+  final $Res Function(TopupResponse) _then;
 
-  /// Create a copy of TopupResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as TopupAccount?,
-    ) as $Val);
+/// Create a copy of TopupResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as TopupAccount?,
+  ));
+}
+/// Create a copy of TopupResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TopupAccountCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
   }
 
-  /// Create a copy of TopupResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $TopupAccountCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $TopupAccountCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
-  }
+  return $TopupAccountCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$TopupResponseImplCopyWith<$Res>
-    implements $TopupResponseCopyWith<$Res> {
-  factory _$$TopupResponseImplCopyWith(
-          _$TopupResponseImpl value, $Res Function(_$TopupResponseImpl) then) =
-      __$$TopupResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message, TopupAccount? data});
 
-  @override
-  $TopupAccountCopyWith<$Res>? get data;
+/// Adds pattern-matching-related methods to [TopupResponse].
+extension TopupResponsePatterns on TopupResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TopupResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TopupResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TopupResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _TopupResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TopupResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TopupResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  TopupAccount? data)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TopupResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  TopupAccount? data)  $default,) {final _that = this;
+switch (_that) {
+case _TopupResponse():
+return $default(_that.status,_that.message,_that.data);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  TopupAccount? data)?  $default,) {final _that = this;
+switch (_that) {
+case _TopupResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$TopupResponseImplCopyWithImpl<$Res>
-    extends _$TopupResponseCopyWithImpl<$Res, _$TopupResponseImpl>
-    implements _$$TopupResponseImplCopyWith<$Res> {
-  __$$TopupResponseImplCopyWithImpl(
-      _$TopupResponseImpl _value, $Res Function(_$TopupResponseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TopupResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_$TopupResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as TopupAccount?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TopupResponseImpl implements _TopupResponse {
-  const _$TopupResponseImpl({this.status = "fail", this.message, this.data});
 
-  factory _$TopupResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TopupResponseImplFromJson(json);
+class _TopupResponse implements TopupResponse {
+  const _TopupResponse({this.status = "fail", this.message, this.data});
+  factory _TopupResponse.fromJson(Map<String, dynamic> json) => _$TopupResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  @override
-  final TopupAccount? data;
+@override@JsonKey() final  String status;
+@override final  String? message;
+@override final  TopupAccount? data;
 
-  @override
-  String toString() {
-    return 'TopupResponse(status: $status, message: $message, data: $data)';
-  }
+/// Create a copy of TopupResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TopupResponseCopyWith<_TopupResponse> get copyWith => __$TopupResponseCopyWithImpl<_TopupResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TopupResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
-
-  /// Create a copy of TopupResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TopupResponseImplCopyWith<_$TopupResponseImpl> get copyWith =>
-      __$$TopupResponseImplCopyWithImpl<_$TopupResponseImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TopupResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$TopupResponseToJson(this, );
 }
 
-abstract class _TopupResponse implements TopupResponse {
-  const factory _TopupResponse(
-      {final String status,
-      final String? message,
-      final TopupAccount? data}) = _$TopupResponseImpl;
-
-  factory _TopupResponse.fromJson(Map<String, dynamic> json) =
-      _$TopupResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  TopupAccount? get data;
-
-  /// Create a copy of TopupResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TopupResponseImplCopyWith<_$TopupResponseImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TopupResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'TopupResponse(status: $status, message: $message, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TopupResponseCopyWith<$Res> implements $TopupResponseCopyWith<$Res> {
+  factory _$TopupResponseCopyWith(_TopupResponse value, $Res Function(_TopupResponse) _then) = __$TopupResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, TopupAccount? data
+});
+
+
+@override $TopupAccountCopyWith<$Res>? get data;
+
+}
+/// @nodoc
+class __$TopupResponseCopyWithImpl<$Res>
+    implements _$TopupResponseCopyWith<$Res> {
+  __$TopupResponseCopyWithImpl(this._self, this._then);
+
+  final _TopupResponse _self;
+  final $Res Function(_TopupResponse) _then;
+
+/// Create a copy of TopupResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_TopupResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as TopupAccount?,
+  ));
+}
+
+/// Create a copy of TopupResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TopupAccountCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
+  }
+
+  return $TopupAccountCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
+}
+
+// dart format on

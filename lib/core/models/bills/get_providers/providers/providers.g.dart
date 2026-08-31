@@ -6,16 +6,16 @@ part of 'providers.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BillProviderImpl _$$BillProviderImplFromJson(Map<String, dynamic> json) =>
-    _$BillProviderImpl(
+_BillProvider _$BillProviderFromJson(Map<String, dynamic> json) =>
+    _BillProvider(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       image: json['image'] as String?,
     );
 
-Map<String, dynamic> _$$BillProviderImplToJson(_$BillProviderImpl instance) =>
+Map<String, dynamic> _$BillProviderToJson(_BillProvider instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      if (instance.image case final value?) 'image': value,
+      'image': ?instance.image,
     };

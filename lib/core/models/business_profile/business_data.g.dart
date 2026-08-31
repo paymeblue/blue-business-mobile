@@ -6,14 +6,14 @@ part of 'business_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BusinessDataImpl _$$BusinessDataImplFromJson(Map<String, dynamic> json) =>
-    _$BusinessDataImpl(
+_BusinessData _$BusinessDataFromJson(Map<String, dynamic> json) =>
+    _BusinessData(
       name: json['name'] as String,
       cacNumber: json['cac_number'] as String,
       category: json['category'] as String,
     );
 
-Map<String, dynamic> _$$BusinessDataImplToJson(_$BusinessDataImpl instance) =>
+Map<String, dynamic> _$BusinessDataToJson(_BusinessData instance) =>
     <String, dynamic>{
       'name': instance.name,
       'cac_number': instance.cacNumber,

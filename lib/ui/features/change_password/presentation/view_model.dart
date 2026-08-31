@@ -1,4 +1,5 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
@@ -7,6 +8,7 @@ import 'package:blue_business/core/models/change_password/response/change_passwo
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
@@ -16,7 +18,7 @@ class ChangePasswordViewModel extends BaseViewModel {
   late Size size;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 
@@ -29,23 +31,23 @@ class ChangePasswordViewModel extends BaseViewModel {
   RegExp special = RegExp((r"[.,_@\\+$!#%^&*\-=?:;']+?").toString());
 
   List<Map<String, dynamic>> conditions() => [
-        {
-          "isComplete": newPasswordController.text.length >= 9,
-          "condition": "Must contain 9 characters"
-        },
-        {
-          "isComplete": letters.hasMatch(newPasswordController.text),
-          "condition": "Must contain a letter"
-        },
-        {
-          "isComplete": special.hasMatch(newPasswordController.text),
-          "condition": "Must contain a symbol"
-        },
-        {
-          "isComplete": numbers.hasMatch(newPasswordController.text),
-          "condition": "Must contain a number"
-        },
-      ];
+    {
+      "isComplete": newPasswordController.text.length >= 9,
+      "condition": "Must contain 9 characters",
+    },
+    {
+      "isComplete": letters.hasMatch(newPasswordController.text),
+      "condition": "Must contain a letter",
+    },
+    {
+      "isComplete": special.hasMatch(newPasswordController.text),
+      "condition": "Must contain a symbol",
+    },
+    {
+      "isComplete": numbers.hasMatch(newPasswordController.text),
+      "condition": "Must contain a number",
+    },
+  ];
 
   bool isActive() {
     return numbers.hasMatch(newPasswordController.text) &&
@@ -56,11 +58,11 @@ class ChangePasswordViewModel extends BaseViewModel {
         passwordController.text.isNotEmpty;
   }
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
-  changePassword(BuildContext context) async {
+  Future<void> changePassword(BuildContext context) async {
     AppLoader.start();
 
     ChangePasswordRequest request = ChangePasswordRequest(
@@ -69,19 +71,18 @@ class ChangePasswordViewModel extends BaseViewModel {
       passwordConfirmation: confirmPasswordController.text,
     );
 
-    ChangePasswordResponse resp = await AuthService()
-        .changePassword(request)
-        .onError((error, stackTrace) {
-      return ChangePasswordResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "change_password",
-          "request": request.toString(),
-          "response_model": "ChangePasswordResponse"
-        },
-      ));
-    });
+    ChangePasswordResponse resp =
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).changePassword(request).onError((error, stackTrace) {
+          return ChangePasswordResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "change_password",
+              "request": request.toString(),
+              "response_model": "ChangePasswordResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       if (StorageValues.password.isNotEmpty) {
@@ -99,14 +100,16 @@ class ChangePasswordViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  saveInStorage() async {
+  Future<void> saveInStorage() async {
     StorageValues.password = newPasswordController.text;
 
     await StorageHelpers.setVal(
-        StorageKeys.passwordKey, newPasswordController.text);
+      StorageKeys.passwordKey,
+      newPasswordController.text,
+    );
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 }

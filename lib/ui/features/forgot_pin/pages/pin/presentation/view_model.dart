@@ -1,4 +1,5 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
@@ -18,7 +19,7 @@ class ResetPinViewModel extends BaseViewModel {
   late Size size;
   late String phone;
 
-  init(BuildContext context, String p) {
+  void init(BuildContext context, String p) {
     size = context.mediaQuery.size;
 
     phone = p;
@@ -50,7 +51,7 @@ class ResetPinViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  setPinAndNext(BuildContext context) {
+  void setPinAndNext(BuildContext context) {
     if (isConfirm) {
       if (pin == tempPin) {
         confirmPin = tempPin;
@@ -65,21 +66,22 @@ class ResetPinViewModel extends BaseViewModel {
     }
   }
 
-  resetPin(BuildContext context) async {
+  Future<void> resetPin(BuildContext context) async {
     AppLoader.start();
 
     ResetPinRequest request = ResetPinRequest(newPin: pin);
-    SendQuestionResponse resp = await AuthService()
-        .resetPin(request)
-        .onError((error, stackTrace) => SendQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "reset_pin",
-                "request": request.toString(),
-                "response_model": "SendQuestionResponse"
-              },
-            )));
+    SendQuestionResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resetPin(request)
+            .onError(
+              (error, stackTrace) => SendQuestionResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "reset_pin",
+                  "request": request.toString(),
+                  "response_model": "SendQuestionResponse",
+                }),
+              ),
+            );
 
     if (resp.status == "success") {
       if (context.mounted) {
@@ -93,7 +95,7 @@ class ResetPinViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  reconcileStoredData() async {
+  Future<void> reconcileStoredData() async {
     StorageValues.deleteLoginValues();
     await StorageHelpers.deleteAll();
     StorageValues.pin = pin;

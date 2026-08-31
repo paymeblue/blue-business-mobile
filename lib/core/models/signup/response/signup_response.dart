@@ -5,7 +5,7 @@ part 'signup_response.freezed.dart';
 part 'signup_response.g.dart';
 
 @freezed
-class SignupResponse with _$SignupResponse {
+abstract class SignupResponse with _$SignupResponse {
   const factory SignupResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class SignupResponse with _$SignupResponse {
   }) = _SignupResponse;
 
   factory SignupResponse.fromJson(Map<String, dynamic> json) =>
-      _$SignupResponseImpl.fromJson(json);
+      _$SignupResponseFromJson(json);
 }

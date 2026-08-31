@@ -4,7 +4,7 @@ part 'business_dash_data.freezed.dart';
 part 'business_dash_data.g.dart';
 
 @freezed
-class BusinessDashData with _$BusinessDashData {
+abstract class BusinessDashData with _$BusinessDashData {
   const factory BusinessDashData({
     @Default(0) int totalBranches,
     @Default(0) int totalStaff,
@@ -13,5 +13,5 @@ class BusinessDashData with _$BusinessDashData {
   }) = _BusinessDashData;
 
   factory BusinessDashData.fromJson(Map<String, dynamic> json) =>
-      _$BusinessDashDataImpl.fromJson(json);
+      _$BusinessDashDataFromJson(json);
 }

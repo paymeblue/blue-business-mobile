@@ -8,13 +8,13 @@ import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class GetPumpPriceStationsViewModel extends BaseViewModel {
-  init() {
+  void init() {
     stationController.addPageRequestListener(getBranches);
   }
 
   Timer? searchTimer;
 
-  onSearchChanged(String? v) {
+  void onSearchChanged(String? v) {
     if (searchTimer != null) {
       searchTimer!.cancel();
     }
@@ -29,14 +29,15 @@ class GetPumpPriceStationsViewModel extends BaseViewModel {
   PagingController<int, FillingStation> stationController =
       PagingController<int, FillingStation>(firstPageKey: 1);
 
-  getBranches(int page) async {
+  Future<void> getBranches(int page) async {
     try {
       final resp = await PumpPriceStationService()
           .getBranches(page: page, limit: 50)
           .onError((e, s) {
-        return GetFillingStationsResponse(
-            message: AppErrorHandler.getErrorMessage(e));
-      });
+            return GetFillingStationsResponse(
+              message: AppErrorHandler.getErrorMessage(e),
+            );
+          });
 
       if (resp.status == 'success') {
         if (resp.data.meta.page == resp.data.meta.pages) {

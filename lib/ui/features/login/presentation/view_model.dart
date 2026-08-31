@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/profile_service/profile_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
@@ -28,7 +29,7 @@ class LoginViewModel extends BaseViewModel {
   late Size size;
   VoidCallback? onSuccess;
 
-  init(BuildContext context, VoidCallback? callback) {
+  void init(BuildContext context, VoidCallback? callback) {
     size = context.mediaQuery.size;
 
     onSuccess = callback;
@@ -48,7 +49,7 @@ class LoginViewModel extends BaseViewModel {
     });
   }
 
-  goBack() async {
+  Future<void> goBack() async {
     await StorageHelpers.setVal(StorageKeys.skipWelcomeKey, false.toString());
 
     globalContext!.router.maybePop().then((v) {
@@ -58,29 +59,38 @@ class LoginViewModel extends BaseViewModel {
     });
   }
 
-  showNotification() {
+  void showNotification() {
     switch (locator<AppStateValues>().notificationState!) {
       case NotificationState.logoutSuccess:
         AppNotification.success(
-            message: "You have been logged out successfully. See you soon");
+          message: "You have been logged out successfully. See you soon",
+        );
       case NotificationState.error:
         AppNotification.error(message: "Session timed out. Please login again");
       case NotificationState.warning:
         AppNotification.warning(
-            message: "Session timed out due toinactivity. Please login again");
+          message: "Session timed out due toinactivity. Please login again",
+        );
       case NotificationState.signupSuccess:
         AppNotification.success(
-            message: "You have successfully signed up. Login to continue.");
+          message: "You have successfully signed up. Login to continue.",
+        );
     }
     locator<AppStateValues>().notificationState = null;
   }
 
-  setSelectedCountry() {
-    selectedCountry = countryCodes[countryCodes.indexOf(const CountryCode(
-        countryCode: "NG", name: "Nigeria", dialCode: "+234"))];
+  void setSelectedCountry() {
+    selectedCountry =
+        countryCodes[countryCodes.indexOf(
+          const CountryCode(
+            countryCode: "NG",
+            name: "Nigeria",
+            dialCode: "+234",
+          ),
+        )];
   }
 
-  onCountryChanged(CountryCode? value) {
+  void onCountryChanged(CountryCode? value) {
     if (value != null) selectedCountry = value;
   }
 
@@ -98,13 +108,13 @@ class LoginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getDataFromStorage() {
+  void getDataFromStorage() {
     phoneController.text = StorageValues.username.validPhone(selectedCountry);
 
     useBiometrics = StorageValues.enableBiometrics == "true";
   }
 
-  setNameInStorage(String name, String phone) async {
+  Future<void> setNameInStorage(String name, String phone) async {
     await StorageHelpers.setVal(StorageKeys.nameKey, name);
     await StorageHelpers.setVal(StorageKeys.usernameKey, phone);
 
@@ -112,7 +122,7 @@ class LoginViewModel extends BaseViewModel {
     StorageValues.username = phone;
   }
 
-  completeWithBiometrics(BuildContext context) async {
+  Future<void> completeWithBiometrics(BuildContext context) async {
     bool canContinue = await Biometrics.biometrics();
     if (canContinue) {
       passwordController.text = StorageValues.password;
@@ -131,11 +141,11 @@ class LoginViewModel extends BaseViewModel {
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
-  login(BuildContext context) async {
+  Future<void> login(BuildContext context) async {
     AppLoader.start();
     String p = phoneController.text.validPhone(selectedCountry);
 
@@ -147,19 +157,18 @@ class LoginViewModel extends BaseViewModel {
           : locator<AppStateValues>().fcmToken,
     );
 
-    LoginResponse resp = await AuthService()
-        .login(request: request)
-        .onError((error, stackTrace) {
-      return LoginResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "login",
-          "request": request.toString(),
-          "response_model": "LoginResponse"
-        },
-      ));
-    });
+    LoginResponse resp =
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).login(request: request).onError((error, stackTrace) {
+          return LoginResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "login",
+              "request": request.toString(),
+              "response_model": "LoginResponse",
+            }),
+          );
+        });
 
     AppLoader.stop();
 
@@ -177,19 +186,17 @@ class LoginViewModel extends BaseViewModel {
     }
   }
 
-  getNotificationStatus() async {
+  Future<void> getNotificationStatus() async {
     GetNotificationResponse resp = await ProfileService()
         .getNotificationStatus()
         .onError((error, stackTrace) {
-      return GetNotificationResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "get_notification_status",
-          "response_model": "GetNotificationResponse",
-        },
-      ));
-    });
+          return GetNotificationResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_notification_status",
+              "response_model": "GetNotificationResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       locator<AppStateValues>().notificationStatus =
@@ -197,7 +204,7 @@ class LoginViewModel extends BaseViewModel {
     } else {}
   }
 
-  checkBiometric(BuildContext context, LoginData user) async {
+  Future<void> checkBiometric(BuildContext context, LoginData user) async {
     if (StorageValues.hasRequestedBiometrics != "true") {
       await BlueBottomSheet.biometrics(
         onContinue: () async {
@@ -223,13 +230,19 @@ class LoginViewModel extends BaseViewModel {
     }
   }
 
-  allowBiometrics() async {
+  Future<void> allowBiometrics() async {
     await StorageHelpers.setVal(
-        StorageKeys.hasRequestedBiometricsKey, true.toString());
+      StorageKeys.hasRequestedBiometricsKey,
+      true.toString(),
+    );
     await StorageHelpers.setVal(
-        StorageKeys.enableBiometricsKey, true.toString());
+      StorageKeys.enableBiometricsKey,
+      true.toString(),
+    );
     await StorageHelpers.setVal(
-        StorageKeys.passwordKey, passwordController.text);
+      StorageKeys.passwordKey,
+      passwordController.text,
+    );
 
     StorageValues.hasRequestedBiometrics = "true";
     StorageValues.enableBiometrics = "true";
@@ -238,11 +251,15 @@ class LoginViewModel extends BaseViewModel {
     useBiometrics = true;
   }
 
-  denyBiometrics() async {
+  Future<void> denyBiometrics() async {
     await StorageHelpers.setVal(
-        StorageKeys.hasRequestedBiometricsKey, true.toString());
+      StorageKeys.hasRequestedBiometricsKey,
+      true.toString(),
+    );
     await StorageHelpers.setVal(
-        StorageKeys.enableBiometricsKey, false.toString());
+      StorageKeys.enableBiometricsKey,
+      false.toString(),
+    );
 
     StorageValues.hasRequestedBiometrics = "true";
     StorageValues.enableBiometrics = "false";
@@ -250,24 +267,24 @@ class LoginViewModel extends BaseViewModel {
     useBiometrics = false;
   }
 
-  saveTokens(Token token) {
+  void saveTokens(Token token) {
     locator<AppStateValues>().accessToken = token.accessToken;
     locator<AppStateValues>().refreshToken = token.refreshToken;
   }
 
-  goToNext(BuildContext context, LoginData user) {
+  void goToNext(BuildContext context, LoginData user) {
     RefreshTimer().resetTimer();
     onSuccess ?? locator<AppRouter>().replaceAll([HomeRoute()]);
   }
 
-  deleteStorageItems() async {
+  Future<void> deleteStorageItems() async {
     StorageValues.deleteLoginValues();
     await StorageHelpers.deleteAll();
     phoneController.clear();
     useBiometrics = false;
   }
 
-  goToRecoverPassword(BuildContext context) {
+  void goToRecoverPassword(BuildContext context) {
     locator<AppRouter>().push<bool>(InitiatePasswordResetRoute()).then((val) {
       if (val == true) {
         AppNotification.success(message: "Password reset successfully");
@@ -275,7 +292,7 @@ class LoginViewModel extends BaseViewModel {
     });
   }
 
-  goToenterRecoveryCode(BuildContext context) {
+  void goToenterRecoveryCode(BuildContext context) {
     locator<AppRouter>().push<bool>(InitiatePhoneResetRoute()).then((val) {
       if (val == true) {
         AppNotification.success(message: "Phone number reset successfully");
@@ -283,7 +300,7 @@ class LoginViewModel extends BaseViewModel {
     });
   }
 
-  goToSignup(BuildContext context) {
+  void goToSignup(BuildContext context) {
     locator<AppRouter>().replace(InitiateSignupRoute());
   }
 }

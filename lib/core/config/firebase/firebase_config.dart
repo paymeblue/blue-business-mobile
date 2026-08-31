@@ -14,8 +14,10 @@ import 'package:provider/provider.dart';
 Future handleBackgroundMessages(RemoteMessage message) async {
   log(message.notification.toString());
   BuildContext context = locator<AppRouter>().navigatorKey.currentContext!;
-  AppStateValues stateValues =
-      Provider.of<AppStateValues>(context, listen: false);
+  AppStateValues stateValues = Provider.of<AppStateValues>(
+    context,
+    listen: false,
+  );
   Map<String, dynamic> data = message.data;
   if (data["type"] == "chat") {
     stateValues.hasNewMessage = true;
@@ -46,17 +48,17 @@ Future handleForegroundMessages(RemoteMessage message) async {
 class FirebaseConfig {
   FirebaseConfig._();
 
-  static _handleMessage(RemoteMessage? message) async {
+  static Future<void> _handleMessage(RemoteMessage? message) async {
     if (message == null) return;
   }
 
-  static initNotification() async {
+  static Future<void> initNotification() async {
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
-      alert: false,
-      sound: true,
-      badge: false,
-    );
+          alert: false,
+          sound: true,
+          badge: false,
+        );
 
     FirebaseMessaging.instance.getInitialMessage().then(_handleMessage);
     FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
@@ -64,10 +66,11 @@ class FirebaseConfig {
     FirebaseMessaging.onMessage.listen(handleForegroundMessages);
   }
 
-  static init() async {
+  static Future<void> init() async {
     AppStateValues stateValues = locator<AppStateValues>();
     await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
     try {

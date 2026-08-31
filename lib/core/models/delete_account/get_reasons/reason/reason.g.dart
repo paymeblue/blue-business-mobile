@@ -6,13 +6,12 @@ part of 'reason.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ReasonImpl _$$ReasonImplFromJson(Map<String, dynamic> json) => _$ReasonImpl(
-      id: (json['id'] as num).toInt(),
-      content: json['content'] as String,
-    );
+_Reason _$ReasonFromJson(Map<String, dynamic> json) => _Reason(
+  id: (json['id'] as num).toInt(),
+  content: json['content'] as String,
+);
 
-Map<String, dynamic> _$$ReasonImplToJson(_$ReasonImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'content': instance.content,
-    };
+Map<String, dynamic> _$ReasonToJson(_Reason instance) => <String, dynamic>{
+  'id': instance.id,
+  'content': instance.content,
+};

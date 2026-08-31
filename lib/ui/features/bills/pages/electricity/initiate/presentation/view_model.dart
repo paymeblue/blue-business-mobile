@@ -24,13 +24,13 @@ import 'package:flutter/material.dart';
 class InitiateElectricityViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
 
     getBeneficiariesFromLocal();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
@@ -39,7 +39,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
   TextEditingController amountController = TextEditingController();
   TextEditingController tagController = TextEditingController();
 
-  onBillProviderChanged(BillProvider? item) {
+  void onBillProviderChanged(BillProvider? item) {
     selectedProvider = item;
   }
 
@@ -58,7 +58,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onMeterTypeChanged(String? item) {
+  void onMeterTypeChanged(String? item) {
     selectedMeterType = item;
   }
 
@@ -76,7 +76,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onStateChanged(String? v) {
+  void onStateChanged(String? v) {
     state = v;
     selectedProvider = null;
     if (v == null || v.isEmpty) {
@@ -86,20 +86,21 @@ class InitiateElectricityViewModel extends BaseViewModel {
     }
   }
 
-  onBeneficiarySelected(ElectricityBeneficiary b) async {
+  Future<void> onBeneficiarySelected(ElectricityBeneficiary b) async {
     selectedBeneficiary = b;
     state = b.state;
     await getProviders();
-    selectedProvider = providers[providers.indexOf(
-      BillProvider(id: b.providerId, name: b.provider),
-    )];
+    selectedProvider =
+        providers[providers.indexOf(
+          BillProvider(id: b.providerId, name: b.provider),
+        )];
     selectedMeterType = b.meterType;
     meterNumberController.text = b.receiver;
 
     await verifyMeter();
   }
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
@@ -117,15 +118,18 @@ class InitiateElectricityViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getProviders() async {
+  Future<void> getProviders() async {
     providersState = FetchState.loading;
     if (state == "FCT(Abuja)") {
       state = "Abuja";
     }
     GetProvidersResponse resp = await BillsService()
         .getProviders("power", state!.toLowerCase())
-        .onError((error, stackTrace) => GetProvidersResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+        .onError(
+          (error, stackTrace) => GetProvidersResponse(
+            message: AppErrorHandler.getErrorMessage(error),
+          ),
+        );
 
     if (resp.status == "success") {
       providers = resp.data ?? [];
@@ -149,17 +153,21 @@ class InitiateElectricityViewModel extends BaseViewModel {
         meterNumberController.text.isNotEmpty;
   }
 
-  verifyMeter() async {
+  Future<void> verifyMeter() async {
     verifying = true;
     VerifyElectricityRequest request = VerifyElectricityRequest(
-        receiver: meterNumberController.text,
-        meterType: selectedMeterType!,
-        providerId: selectedProvider!.id.toString());
+      receiver: meterNumberController.text,
+      meterType: selectedMeterType!,
+      providerId: selectedProvider!.id.toString(),
+    );
 
     VerifyElectricityResponse response = await BillsService()
         .verifyMeter(request)
-        .onError((error, stackTrace) => VerifyElectricityResponse(
-            message: AppErrorHandler.getErrorMessage(error)));
+        .onError(
+          (error, stackTrace) => VerifyElectricityResponse(
+            message: AppErrorHandler.getErrorMessage(error),
+          ),
+        );
 
     if (response.status == "success") {
       data = response.data;
@@ -177,13 +185,14 @@ class InitiateElectricityViewModel extends BaseViewModel {
   }
 
   bool isActive() {
-    double? amount = double.tryParse(amountController.text
-        .replaceAll(nairaSymbol(), "")
-        .replaceAll(",", ""));
+    double? amount = double.tryParse(
+      amountController.text.replaceAll(nairaSymbol(), "").replaceAll(",", ""),
+    );
 
     double minimum = double.parse(
-        data?.minimumAmount.replaceAll(nairaSymbol(), "").replaceAll(",", "") ??
-            "0.0");
+      data?.minimumAmount.replaceAll(nairaSymbol(), "").replaceAll(",", "") ??
+          "0.0",
+    );
 
     return data != null && amount != null && amount >= minimum;
   }
@@ -205,7 +214,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
   TextEditingController search = TextEditingController();
 
   final dbHelper = DatabaseHelper();
-  getBeneficiariesFromLocal() async {
+  Future<void> getBeneficiariesFromLocal() async {
     getLocalBeneficiaryState = FetchState.loading;
 
     try {
@@ -218,7 +227,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
     }
   }
 
-  viewAll() async {
+  Future<void> viewAll() async {
     await BlueBottomSheet.electricityBeneficiary(
       allBeneficiaries: beneficiaries,
       selectedBeneficiary: selectedBeneficiary,
@@ -226,7 +235,7 @@ class InitiateElectricityViewModel extends BaseViewModel {
     );
   }
 
-  saveBeneficiaryToLocal() async {
+  Future<void> saveBeneficiaryToLocal() async {
     ElectricityBeneficiary beneficiary = ElectricityBeneficiary(
       receiver: data!.receiver,
       meterType: data!.meterType,
@@ -257,15 +266,18 @@ class InitiateElectricityViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goToNext(BuildContext context) {
+  void goToNext(BuildContext context) {
     if (saveBeneficiary) {
       saveBeneficiaryToLocal();
     }
 
-    double amount = double.parse(amountController.text
-        .replaceAll(nairaSymbol(), "")
-        .replaceAll(",", ""));
-    locator<AppRouter>().push(ReviewElectricityRoute(
-        args: ConfirmPowerArgs(amount: amount, data: data!)));
+    double amount = double.parse(
+      amountController.text.replaceAll(nairaSymbol(), "").replaceAll(",", ""),
+    );
+    locator<AppRouter>().push(
+      ReviewElectricityRoute(
+        args: ConfirmPowerArgs(amount: amount, data: data!),
+      ),
+    );
   }
 }

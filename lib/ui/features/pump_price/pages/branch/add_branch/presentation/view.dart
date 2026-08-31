@@ -30,84 +30,90 @@ class AddPumpPriceBranchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<AddPumpPriceBranchViewModel>(
-        model: AddPumpPriceBranchViewModel(),
-        onModelReady: (model) => model.init(args.station),
-        builder: (context, model, _) {
-          return Scaffold(
-            appBar: PumpPriceAppBar.primary(
-              onBackTap: () => locator<AppRouter>().back(),
+      model: AddPumpPriceBranchViewModel(),
+      onModelReady: (model) => model.init(args.station),
+      builder: (context, model, _) {
+        return Scaffold(
+          appBar: PumpPriceAppBar.primary(
+            onBackTap: () => locator<AppRouter>().back(),
+          ),
+          body: Padding(
+            padding: EdgeInsets.only(
+              left: 20.w,
+              right: 20.w,
+              top: 24.h,
+              bottom: 35.h,
             ),
-            body: Padding(
-              padding: EdgeInsets.only(
-                  left: 20.w, right: 20.w, top: 24.h, bottom: 35.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${args.station != null ? 'Edit' : 'Add'} Branch',
+                  style: context.textTheme.titleMedium,
+                ),
+                if (args.station == null) ...[
+                  6.verticalGap,
                   Text(
-                    '${args.station != null ? 'Edit' : 'Add'} Branch',
-                    style: context.textTheme.titleMedium,
-                  ),
-                  if (args.station == null) ...[
-                    6.verticalGap,
-                    Text(
-                      'Please enter the following details below to add a fuel station branch of your business. ',
-                      style: context.textTheme.bodyMedium!.copyWith(
-                        height: 18.toLineHeight(14),
-                      ),
-                    )
-                  ],
-                  18.verticalGap,
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        PumpPriceTextField.plaintext(
-                          hint: 'Enter branch name',
-                          title: 'Branch name',
-                          controller: model.name,
-                          onChanged: model.onChanged,
-                        ),
-                        12.verticalGap,
-                        ...selectableTextField(
-                          context,
-                          model,
-                          title: 'Location',
-                          hint: 'Start typing',
-                          value: (model.formattedAddress ??
-                                  model.address?.formattedAddress)
-                              .orEmpty,
-                          onTap: () {
-                            model.showLocationsBottomSheet(context);
-                          },
-                        ),
-                        12.verticalGap,
-                        tileRow(context, model),
-                        12.verticalGap,
-                        PumpPriceTextField.currency(
-                          hint: '${nairaSymbol()} 0.00',
-                          title: 'Fuel price (per litre)',
-                          controller: model.price,
-                          onChanged: model.onChanged,
-                        ),
-                      ],
+                    'Please enter the following details below to add a fuel station branch of your business. ',
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      height: 18.toLineHeight(14),
                     ),
                   ),
-                  PumpPriceButton.primary(
-                      title:
-                          args.station != null ? 'Save changes' : 'Add branch',
-                      isEnabled: model.isActive() || model.isEditActive(),
-                      isLoading: model.buttonState == FetchState.loading,
-                      onTap: () {
-                        if (args.station != null) {
-                          model.editBranch();
-                        } else {
-                          model.addBranch();
-                        }
-                      })
                 ],
-              ),
+                18.verticalGap,
+                Expanded(
+                  child: ListView(
+                    children: [
+                      PumpPriceTextField.plaintext(
+                        hint: 'Enter branch name',
+                        title: 'Branch name',
+                        controller: model.name,
+                        onChanged: model.onChanged,
+                      ),
+                      12.verticalGap,
+                      ...selectableTextField(
+                        context,
+                        model,
+                        title: 'Location',
+                        hint: 'Start typing',
+                        value:
+                            (model.formattedAddress ??
+                                    model.address?.formattedAddress)
+                                .orEmpty,
+                        onTap: () {
+                          model.showLocationsBottomSheet(context);
+                        },
+                      ),
+                      12.verticalGap,
+                      tileRow(context, model),
+                      12.verticalGap,
+                      PumpPriceTextField.currency(
+                        hint: '${nairaSymbol()} 0.00',
+                        title: 'Fuel price (per litre)',
+                        controller: model.price,
+                        onChanged: model.onChanged,
+                      ),
+                    ],
+                  ),
+                ),
+                PumpPriceButton.primary(
+                  title: args.station != null ? 'Save changes' : 'Add branch',
+                  isEnabled: model.isActive() || model.isEditActive(),
+                  isLoading: model.buttonState == FetchState.loading,
+                  onTap: () {
+                    if (args.station != null) {
+                      model.editBranch();
+                    } else {
+                      model.addBranch();
+                    }
+                  },
+                ),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 
   Row tileRow(BuildContext context, AddPumpPriceBranchViewModel model) {
@@ -128,8 +134,10 @@ class AddPumpPriceBranchView extends StatelessWidget {
                   ? ''
                   : '${model.openingTime!.hourOfPeriod.toString().padLeft(2, '0')} : ${model.openingTime!.minute.toString().padLeft(2, '0')}',
               onTap: () async {
-                model.openingTime =
-                    await model.selectTime(context, model.openingTime);
+                model.openingTime = await model.selectTime(
+                  context,
+                  model.openingTime,
+                );
               },
               trailing: Text(
                 model.openingTime == null
@@ -153,8 +161,10 @@ class AddPumpPriceBranchView extends StatelessWidget {
                   ? ''
                   : '${model.closingTime!.hourOfPeriod.toString().padLeft(2, '0')} : ${model.closingTime!.minute.toString().padLeft(2, '0')}',
               onTap: () async {
-                model.closingTime =
-                    await model.selectTime(context, model.closingTime);
+                model.closingTime = await model.selectTime(
+                  context,
+                  model.closingTime,
+                );
               },
               trailing: Text(
                 model.closingTime == null
@@ -192,9 +202,7 @@ class AddPumpPriceBranchView extends StatelessWidget {
         height: 50.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(
-            color: AppColors.pumpPricegreyBg,
-          ),
+          border: Border.all(color: AppColors.pumpPricegreyBg),
           color: AppColors.pumpPricegreyBg,
         ),
         padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
@@ -212,7 +220,7 @@ class AddPumpPriceBranchView extends StatelessWidget {
               ),
             ),
             8.horizontalGap,
-            if (trailing != null) trailing,
+            ?trailing,
           ],
         ),
       ).onTap(onTap),

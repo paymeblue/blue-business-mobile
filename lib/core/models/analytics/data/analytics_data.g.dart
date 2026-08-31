@@ -6,14 +6,11 @@ part of 'analytics_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AnalyticsDataImpl _$$AnalyticsDataImplFromJson(Map<String, dynamic> json) =>
-    _$AnalyticsDataImpl(
+_AnalyticsData _$AnalyticsDataFromJson(Map<String, dynamic> json) =>
+    _AnalyticsData(
       desktop: AnalyticsItem.fromJson(json['desktop'] as Map<String, dynamic>),
       mobile: AnalyticsItem.fromJson(json['mobile'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$AnalyticsDataImplToJson(_$AnalyticsDataImpl instance) =>
-    <String, dynamic>{
-      'desktop': instance.desktop,
-      'mobile': instance.mobile,
-    };
+Map<String, dynamic> _$AnalyticsDataToJson(_AnalyticsData instance) =>
+    <String, dynamic>{'desktop': instance.desktop, 'mobile': instance.mobile};

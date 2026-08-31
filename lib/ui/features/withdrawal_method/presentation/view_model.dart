@@ -10,13 +10,13 @@ import 'package:blue_business/ui/widgets/modals/notifications.dart';
 class WithdrawalMethodViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
 
     isEnabled = locator<AppStateValues>().isAutoWithdrawalEnabled;
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
@@ -27,17 +27,18 @@ class WithdrawalMethodViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onAutoWithdrawalChanged(bool val) async {
-    AutoWithdrawalRequest request =
-        AutoWithdrawalRequest(autoWithdrawalEnabled: val);
-
-    AutoWithdrawalResponse resp =
-        await ProfileService().toggleAutoWithdrawal(request: request).onError(
-      (error, stacktrace) {
-        return AutoWithdrawalResponse(
-            message: AppErrorHandler.getErrorMessage(error));
-      },
+  Future<void> onAutoWithdrawalChanged(bool val) async {
+    AutoWithdrawalRequest request = AutoWithdrawalRequest(
+      autoWithdrawalEnabled: val,
     );
+
+    AutoWithdrawalResponse resp = await ProfileService()
+        .toggleAutoWithdrawal(request: request)
+        .onError((error, stacktrace) {
+          return AutoWithdrawalResponse(
+            message: AppErrorHandler.getErrorMessage(error),
+          );
+        });
 
     if (resp.status != 'success') {
       AppNotification.error(message: resp.message);
@@ -47,8 +48,9 @@ class WithdrawalMethodViewModel extends BaseViewModel {
     }
   }
 
-  goToInitiateWithdrawal(BuildContext context) {
-    locator<AppRouter>()
-        .replace(InitiateTransactionRoute(mode: PaymentMode.withdrawal));
+  void goToInitiateWithdrawal(BuildContext context) {
+    locator<AppRouter>().replace(
+      InitiateTransactionRoute(mode: PaymentMode.withdrawal),
+    );
   }
 }

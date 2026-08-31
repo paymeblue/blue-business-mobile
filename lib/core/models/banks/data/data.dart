@@ -5,11 +5,9 @@ part 'data.freezed.dart';
 part 'data.g.dart';
 
 @freezed
-class BankData with _$BankData {
-  const factory BankData({
-    required List<BankItem> banks,
-  }) = _BankData;
+abstract class BankData with _$BankData {
+  const factory BankData({required List<BankItem> banks}) = _BankData;
 
   factory BankData.fromJson(Map<String, dynamic> json) =>
-      _$BankDataImpl.fromJson(json);
+      _$BankDataFromJson(json);
 }

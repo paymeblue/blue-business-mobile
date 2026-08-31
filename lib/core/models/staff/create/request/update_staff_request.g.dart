@@ -6,9 +6,8 @@ part of 'update_staff_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UpdateStaffRequestImpl _$$UpdateStaffRequestImplFromJson(
-        Map<String, dynamic> json) =>
-    _$UpdateStaffRequestImpl(
+_UpdateStaffRequest _$UpdateStaffRequestFromJson(Map<String, dynamic> json) =>
+    _UpdateStaffRequest(
       name: json['name'] as String?,
       phone: json['phone'] as String?,
       password: json['password'] as String?,
@@ -16,12 +15,11 @@ _$UpdateStaffRequestImpl _$$UpdateStaffRequestImplFromJson(
       branchId: (json['branch_id'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$UpdateStaffRequestImplToJson(
-        _$UpdateStaffRequestImpl instance) =>
+Map<String, dynamic> _$UpdateStaffRequestToJson(_UpdateStaffRequest instance) =>
     <String, dynamic>{
-      if (instance.name case final value?) 'name': value,
-      if (instance.phone case final value?) 'phone': value,
-      if (instance.password case final value?) 'password': value,
-      if (instance.role case final value?) 'role': value,
-      if (instance.branchId case final value?) 'branch_id': value,
+      'name': ?instance.name,
+      'phone': ?instance.phone,
+      'password': ?instance.password,
+      'role': ?instance.role,
+      'branch_id': ?instance.branchId,
     };

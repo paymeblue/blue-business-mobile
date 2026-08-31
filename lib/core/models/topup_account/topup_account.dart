@@ -4,7 +4,7 @@ part 'topup_account.freezed.dart';
 part 'topup_account.g.dart';
 
 @freezed
-class TopupAccount with _$TopupAccount {
+abstract class TopupAccount with _$TopupAccount {
   const factory TopupAccount({
     required int id,
     required String accountName,
@@ -13,5 +13,5 @@ class TopupAccount with _$TopupAccount {
   }) = _TopupAccount;
 
   factory TopupAccount.fromJson(Map<String, dynamic> json) =>
-      _$TopupAccountImpl.fromJson(json);
+      _$TopupAccountFromJson(json);
 }

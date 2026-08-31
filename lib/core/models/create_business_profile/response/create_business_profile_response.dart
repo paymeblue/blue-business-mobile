@@ -5,7 +5,8 @@ part 'create_business_profile_response.freezed.dart';
 part 'create_business_profile_response.g.dart';
 
 @freezed
-class CreateBusinessProfileResponse with _$CreateBusinessProfileResponse {
+abstract class CreateBusinessProfileResponse
+    with _$CreateBusinessProfileResponse {
   const factory CreateBusinessProfileResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +14,5 @@ class CreateBusinessProfileResponse with _$CreateBusinessProfileResponse {
   }) = _CreateBusinessProfileResponse;
 
   factory CreateBusinessProfileResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateBusinessProfileResponseImpl.fromJson(json);
+      _$CreateBusinessProfileResponseFromJson(json);
 }

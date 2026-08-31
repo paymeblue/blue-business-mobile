@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 class MissingRouteViewModel extends BaseViewModel {
   late Size size;
 
-  init() {
+  void init() {
     size = MediaQuery.sizeOf(globalContext!);
   }
 
-  close(PageRouteInfo? newRoute) {
+  void close(PageRouteInfo? newRoute) {
     globalContext!.maybePop().then((v) {
       if (!v) {
         globalContext!.router.replaceAll([newRoute ?? SplashRoute()]);

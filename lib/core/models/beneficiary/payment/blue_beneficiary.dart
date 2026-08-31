@@ -4,7 +4,7 @@ part 'blue_beneficiary.freezed.dart';
 part 'blue_beneficiary.g.dart';
 
 @freezed
-class BlueBeneficiary with _$BlueBeneficiary {
+abstract class BlueBeneficiary with _$BlueBeneficiary {
   const factory BlueBeneficiary({
     required int id,
     required String name,
@@ -12,5 +12,5 @@ class BlueBeneficiary with _$BlueBeneficiary {
   }) = _BlueBeneficiary;
 
   factory BlueBeneficiary.fromJson(Map<String, dynamic> json) =>
-      _$BlueBeneficiaryImpl.fromJson(json);
+      _$BlueBeneficiaryFromJson(json);
 }

@@ -168,7 +168,7 @@ class AppStateValues extends ChangeNotifier {
     notifyListeners();
   }
 
-  clear() {
+  void clear() {
     accessToken = "";
     refreshToken = "";
     narration = "";

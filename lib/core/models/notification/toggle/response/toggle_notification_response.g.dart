@@ -6,16 +6,13 @@ part of 'toggle_notification_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ToggleNotificationResponseImpl _$$ToggleNotificationResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ToggleNotificationResponseImpl(
-      status: json['status'] as String? ?? "fail",
-      message: json['message'] as String?,
-    );
+_ToggleNotificationResponse _$ToggleNotificationResponseFromJson(
+  Map<String, dynamic> json,
+) => _ToggleNotificationResponse(
+  status: json['status'] as String? ?? "fail",
+  message: json['message'] as String?,
+);
 
-Map<String, dynamic> _$$ToggleNotificationResponseImplToJson(
-        _$ToggleNotificationResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-    };
+Map<String, dynamic> _$ToggleNotificationResponseToJson(
+  _ToggleNotificationResponse instance,
+) => <String, dynamic>{'status': instance.status, 'message': ?instance.message};

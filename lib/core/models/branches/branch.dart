@@ -4,7 +4,7 @@ part 'branch.freezed.dart';
 part 'branch.g.dart';
 
 @freezed
-class Branch with _$Branch {
+abstract class Branch with _$Branch {
   const factory Branch({
     required int id,
     required String name,
@@ -15,6 +15,5 @@ class Branch with _$Branch {
     String? createdAt,
   }) = _Branch;
 
-  factory Branch.fromJson(Map<String, dynamic> json) =>
-      _$BranchImpl.fromJson(json);
+  factory Branch.fromJson(Map<String, dynamic> json) => _$BranchFromJson(json);
 }

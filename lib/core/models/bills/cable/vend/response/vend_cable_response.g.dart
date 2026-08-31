@@ -6,9 +6,8 @@ part of 'vend_cable_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VendCableResponseImpl _$$VendCableResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VendCableResponseImpl(
+_VendCableResponse _$VendCableResponseFromJson(Map<String, dynamic> json) =>
+    _VendCableResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
@@ -16,10 +15,9 @@ _$VendCableResponseImpl _$$VendCableResponseImplFromJson(
           : VendCableData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$VendCableResponseImplToJson(
-        _$VendCableResponseImpl instance) =>
+Map<String, dynamic> _$VendCableResponseToJson(_VendCableResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
+      'message': ?instance.message,
+      'data': ?instance.data,
     };

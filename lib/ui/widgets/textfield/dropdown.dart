@@ -45,10 +45,7 @@ class BlueDropdown {
     required ValueChanged<String?> onChanged,
     String? value,
   }) {
-    return _BlueMeterTypeDropdown(
-      onChanged: onChanged,
-      value: value,
-    );
+    return _BlueMeterTypeDropdown(onChanged: onChanged, value: value);
   }
 
   static Widget bank({
@@ -73,11 +70,12 @@ class BlueDropdown {
     required String title,
   }) {
     return _BlueBillProviderDropdown(
-        items: banks,
-        onChanged: onChanged,
-        value: value,
-        searchController: searchController,
-        title: title);
+      items: banks,
+      onChanged: onChanged,
+      value: value,
+      searchController: searchController,
+      title: title,
+    );
   }
 
   static Widget billPackages({
@@ -88,11 +86,12 @@ class BlueDropdown {
     required String title,
   }) {
     return _BlueBillPackageDropdown(
-        items: banks,
-        onChanged: onChanged,
-        value: value,
-        searchController: searchController,
-        title: title);
+      items: banks,
+      onChanged: onChanged,
+      value: value,
+      searchController: searchController,
+      title: title,
+    );
   }
 
   static Widget businessCategories({
@@ -210,7 +209,7 @@ class _BlueBranchDropdownState extends State<_BlueBranchDropdown> {
 
   Timer? searchTimer;
 
-  onSearchChanged(String? val) async {
+  Future<String?>? onSearchChanged(String? val) async {
     if (searchTimer != null) {
       searchTimer!.cancel();
     }
@@ -226,16 +225,18 @@ class _BlueBranchDropdownState extends State<_BlueBranchDropdown> {
       height: 50.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: AppColors.grey)),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: AppColors.grey),
+      ),
       child: Row(
         children: [
           Expanded(
             child: Text(
               widget.value?.name ?? "--Select from the options below--",
               style: widget.value == null
-                  ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
+                  ? AppTextStyles.textField.copyWith(
+                      color: AppColors.textColor.withOpacityValue(.3),
+                    )
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -244,7 +245,7 @@ class _BlueBranchDropdownState extends State<_BlueBranchDropdown> {
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
-          )
+          ),
         ],
       ),
     );
@@ -335,16 +336,18 @@ class _BlueBusinessCategoryDropdown extends StatelessWidget {
       height: 50.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: AppColors.grey)),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: AppColors.grey),
+      ),
       child: Row(
         children: [
           Expanded(
             child: Text(
               value?.title ?? "--Select from the options below--",
               style: value == null
-                  ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
+                  ? AppTextStyles.textField.copyWith(
+                      color: AppColors.textColor.withOpacityValue(.3),
+                    )
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -353,7 +356,7 @@ class _BlueBusinessCategoryDropdown extends StatelessWidget {
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
-          )
+          ),
         ],
       ),
     );
@@ -361,13 +364,14 @@ class _BlueBusinessCategoryDropdown extends StatelessWidget {
 }
 
 class _BlueStringDropdown extends StatelessWidget {
-  const _BlueStringDropdown(
-      {required this.items,
-      required this.onChanged,
-      this.value,
-      required this.searchController,
-      this.title,
-      this.height});
+  const _BlueStringDropdown({
+    required this.items,
+    required this.onChanged,
+    this.value,
+    required this.searchController,
+    this.title,
+    this.height,
+  });
 
   final List<String> items;
   final ValueChanged<String?> onChanged;
@@ -446,16 +450,18 @@ class _BlueStringDropdown extends StatelessWidget {
       height: 50.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: AppColors.grey)),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: AppColors.grey),
+      ),
       child: Row(
         children: [
           Expanded(
             child: Text(
               value ?? "--Select from the options below--",
               style: value == null
-                  ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
+                  ? AppTextStyles.textField.copyWith(
+                      color: AppColors.textColor.withOpacityValue(.3),
+                    )
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -464,7 +470,7 @@ class _BlueStringDropdown extends StatelessWidget {
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
-          )
+          ),
         ],
       ),
     );
@@ -491,7 +497,9 @@ class _BlueCountryDropdown extends StatelessWidget {
       width: 60.w,
       height: 25.h,
       decoration: BoxDecoration(
-          color: AppColors.grey, borderRadius: BorderRadius.circular(4)),
+        color: AppColors.grey,
+        borderRadius: BorderRadius.circular(4),
+      ),
       child: _$BlueDropdown<CountryCode>(
         items: items.map((e) => DropdownType(label: e.name, value: e)).toList(),
         selectedValue: value,
@@ -520,17 +528,9 @@ class _BlueCountryDropdown extends StatelessWidget {
             width: 20.w,
           ),
           10.horizontalGap,
-          Expanded(
-            child: Text(
-              item.name,
-              style: AppTextStyles.textField,
-            ),
-          ),
+          Expanded(child: Text(item.name, style: AppTextStyles.textField)),
           10.horizontalGap,
-          Text(
-            item.dialCode,
-            style: AppTextStyles.textField,
-          ),
+          Text(item.dialCode, style: AppTextStyles.textField),
         ],
       ),
     );
@@ -557,7 +557,9 @@ class _BlueCountryDropdown extends StatelessWidget {
       width: 45.w,
       margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
-          color: AppColors.white, borderRadius: BorderRadius.circular(4)),
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(4),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -571,7 +573,7 @@ class _BlueCountryDropdown extends StatelessWidget {
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
-          )
+          ),
         ],
       ),
     );
@@ -579,10 +581,7 @@ class _BlueCountryDropdown extends StatelessWidget {
 }
 
 class _BlueMeterTypeDropdown extends StatelessWidget {
-  const _BlueMeterTypeDropdown({
-    required this.onChanged,
-    this.value,
-  });
+  const _BlueMeterTypeDropdown({required this.onChanged, this.value});
 
   final ValueChanged<String?> onChanged;
   final String? value;
@@ -597,14 +596,12 @@ class _BlueMeterTypeDropdown extends StatelessWidget {
         children: [
           textFieldHeader(),
           _$BlueDropdown<String>(
-            items: ["prepaid", "postpaid"]
-                .map((e) => DropdownType(label: e, value: e))
-                .toList(),
+            items: [
+              "prepaid",
+              "postpaid",
+            ].map((e) => DropdownType(label: e, value: e)).toList(),
             height: .25,
-            title: Text(
-              "Select Meter type",
-              style: AppTextStyles.textField,
-            ),
+            title: Text("Select Meter type", style: AppTextStyles.textField),
             selectedValue: value,
             canSearch: false,
             selectedItemBuilder: selectedItem(),
@@ -662,8 +659,9 @@ class _BlueMeterTypeDropdown extends StatelessWidget {
       height: 50.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: AppColors.grey)),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: AppColors.grey),
+      ),
       child: Row(
         children: [
           Expanded(
@@ -672,8 +670,9 @@ class _BlueMeterTypeDropdown extends StatelessWidget {
                   ? "--Select Meter Type--"
                   : value![0].toUpperCase() + value!.substring(1),
               style: value == null
-                  ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
+                  ? AppTextStyles.textField.copyWith(
+                      color: AppColors.textColor.withOpacityValue(.3),
+                    )
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -682,7 +681,7 @@ class _BlueMeterTypeDropdown extends StatelessWidget {
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
-          )
+          ),
         ],
       ),
     );
@@ -742,12 +741,7 @@ class _BlueBankDropdown extends StatelessWidget {
       decoration: const BoxDecoration(),
       child: Row(
         children: [
-          Expanded(
-            child: Text(
-              item.name,
-              style: AppTextStyles.textField,
-            ),
-          ),
+          Expanded(child: Text(item.name, style: AppTextStyles.textField)),
         ],
       ),
     );
@@ -773,16 +767,18 @@ class _BlueBankDropdown extends StatelessWidget {
       height: 50.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: AppColors.grey)),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: AppColors.grey),
+      ),
       child: Row(
         children: [
           Expanded(
             child: Text(
               value?.name ?? "--Select a bank--",
               style: value == null
-                  ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
+                  ? AppTextStyles.textField.copyWith(
+                      color: AppColors.textColor.withOpacityValue(.3),
+                    )
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -791,7 +787,7 @@ class _BlueBankDropdown extends StatelessWidget {
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
-          )
+          ),
         ],
       ),
     );
@@ -834,10 +830,10 @@ class _BlueBillPackageDropdown extends StatelessWidget {
             height: items.isEmpty
                 ? .35
                 : items.length * .1 <= .25
-                    ? .25
-                    : items.length * .1 > 1
-                        ? null
-                        : items.length * .1,
+                ? .25
+                : items.length * .1 > 1
+                ? null
+                : items.length * .1,
             canSearch: false,
             selectedItemBuilder: selectedItem(),
             itemBuilder: itemBuilder,
@@ -862,23 +858,28 @@ class _BlueBillPackageDropdown extends StatelessWidget {
     NumberFormat format = NumberFormat("#,##0.00");
     return Container(
       // height: 60,
-      constraints: BoxConstraints(
-        minHeight: 55.h,
-      ),
+      constraints: BoxConstraints(minHeight: 55.h),
       decoration: const BoxDecoration(),
       child: RichText(
-        text: TextSpan(children: [
-          TextSpan(
-            text: "${item.name} - ",
-            style: AppTextStyles.subHeader
-                .copyWith(height: 1.2, fontWeight: FontWeight.w400),
-          ),
-          TextSpan(
-            text: "${nairaSymbol()}${format.format(double.parse(item.amount))}",
-            style: AppTextStyles.subHeader
-                .copyWith(height: 1.2, fontWeight: FontWeight.w500),
-          ),
-        ]),
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: "${item.name} - ",
+              style: AppTextStyles.subHeader.copyWith(
+                height: 1.2,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            TextSpan(
+              text:
+                  "${nairaSymbol()}${format.format(double.parse(item.amount))}",
+              style: AppTextStyles.subHeader.copyWith(
+                height: 1.2,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -903,16 +904,18 @@ class _BlueBillPackageDropdown extends StatelessWidget {
       height: 50.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: AppColors.grey)),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: AppColors.grey),
+      ),
       child: Row(
         children: [
           Expanded(
             child: Text(
               value?.name ?? "--Select a $title",
               style: value == null
-                  ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
+                  ? AppTextStyles.textField.copyWith(
+                      color: AppColors.textColor.withOpacityValue(.3),
+                    )
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -921,7 +924,7 @@ class _BlueBillPackageDropdown extends StatelessWidget {
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
-          )
+          ),
         ],
       ),
     );
@@ -964,10 +967,10 @@ class _BlueBillProviderDropdown extends StatelessWidget {
             height: items.isEmpty
                 ? .35
                 : items.length * .1 < .25
-                    ? .25
-                    : items.length * .1 > 1
-                        ? null
-                        : items.length * .1,
+                ? .25
+                : items.length * .1 > 1
+                ? null
+                : items.length * .1,
             canSearch: false,
             selectedItemBuilder: selectedItem(),
             itemBuilder: itemBuilder,
@@ -995,11 +998,8 @@ class _BlueBillProviderDropdown extends StatelessWidget {
       child: Row(
         children: [
           if (item.image != null) ...[
-            BlueAvatar(
-              radius: 19,
-              imageUrl: item.image,
-            ),
-            12.horizontalGap
+            BlueAvatar(radius: 19, imageUrl: item.image),
+            12.horizontalGap,
           ],
           Expanded(
             child: Text(
@@ -1032,16 +1032,18 @@ class _BlueBillProviderDropdown extends StatelessWidget {
       height: 50.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: AppColors.grey)),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: AppColors.grey),
+      ),
       child: Row(
         children: [
           Expanded(
             child: Text(
               value?.name ?? "--Select a $title",
               style: value == null
-                  ? AppTextStyles.textField
-                      .copyWith(color: AppColors.textColor.withOpacityValue(.3))
+                  ? AppTextStyles.textField.copyWith(
+                      color: AppColors.textColor.withOpacityValue(.3),
+                    )
                   : AppTextStyles.textField,
               overflow: TextOverflow.ellipsis,
             ),
@@ -1050,7 +1052,7 @@ class _BlueBillProviderDropdown extends StatelessWidget {
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: AppColors.textColor,
-          )
+          ),
         ],
       ),
     );
@@ -1110,22 +1112,26 @@ class _$BlueDropdownState<T> extends State<_$BlueDropdown<T>> {
       backgroundColor: Colors.transparent,
       useSafeArea: true,
       builder: (context) {
-        return StatefulBuilder(builder: (context, setState) {
-          return DraggableScrollableSheet(
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return DraggableScrollableSheet(
               minChildSize: .1,
               maxChildSize: .9,
-              initialChildSize: (widget.height ?? .4) +
+              initialChildSize:
+                  (widget.height ?? .4) +
                   (context.mediaQuery.viewInsets.bottom /
                       context.mediaQuery.size.height),
               expand: false,
               builder: (context, controller) {
                 return Container(
-                  height: context.mediaQuery.size.height / 2 +
+                  height:
+                      context.mediaQuery.size.height / 2 +
                       context.mediaQuery.viewInsets.bottom,
                   margin: EdgeInsets.only(
-                      left: 17,
-                      right: 17,
-                      bottom: 35 + context.mediaQuery.viewInsets.bottom),
+                    left: 17,
+                    right: 17,
+                    bottom: 35 + context.mediaQuery.viewInsets.bottom,
+                  ),
                   padding: const EdgeInsets.only(left: 17, right: 17, top: 15),
                   decoration: BoxDecoration(
                     color: AppColors.white,
@@ -1176,8 +1182,10 @@ class _$BlueDropdownState<T> extends State<_$BlueDropdown<T>> {
                     ],
                   ),
                 );
-              });
-        });
+              },
+            );
+          },
+        );
       },
     );
     return val;
@@ -1200,7 +1208,7 @@ class _$BlueDropdownState<T> extends State<_$BlueDropdown<T>> {
     );
   }
 
-  buildSearchList(String query) {
+  List<DropdownType> buildSearchList(String query) {
     List<DropdownType> t = [];
     if (query.isEmpty) {
       t = widget.items;
@@ -1265,21 +1273,25 @@ class _$BluePagedDropdownState<T> extends State<_$BluePagedDropdown<T>> {
       backgroundColor: Colors.transparent,
       useSafeArea: true,
       builder: (context) {
-        return StatefulBuilder(builder: (context, setState) {
-          return DraggableScrollableSheet(
-              initialChildSize: widget.height ??
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return DraggableScrollableSheet(
+              initialChildSize:
+                  widget.height ??
                   .4 +
                       (context.mediaQuery.viewInsets.bottom /
                           context.mediaQuery.size.height),
               expand: false,
               builder: (context, controller) {
                 return Container(
-                  height: context.mediaQuery.size.height / 2 +
+                  height:
+                      context.mediaQuery.size.height / 2 +
                       context.mediaQuery.viewInsets.bottom,
                   margin: EdgeInsets.only(
-                      left: 17,
-                      right: 17,
-                      bottom: 35 + context.mediaQuery.viewInsets.bottom),
+                    left: 17,
+                    right: 17,
+                    bottom: 35 + context.mediaQuery.viewInsets.bottom,
+                  ),
                   padding: const EdgeInsets.only(left: 17, right: 17, top: 15),
                   decoration: BoxDecoration(
                     color: AppColors.white,
@@ -1299,69 +1311,71 @@ class _$BluePagedDropdownState<T> extends State<_$BluePagedDropdown<T>> {
                         ),
                       Expanded(
                         child: PagedListView<int, T>.separated(
-                            pagingController: widget.controller,
-                            builderDelegate: PagedChildBuilderDelegate(
-                                noItemsFoundIndicatorBuilder: (context) =>
-                                    SizedBox(
-                                      width: context.mediaQuery.size.width,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          AppAssets.images.icons.error.image(),
-                                          12.verticalGap,
-                                          Text(
-                                            "Wow, such empty...",
-                                            style: AppTextStyles.header,
-                                          ),
-                                          8.verticalGap,
-                                          Text(
-                                            "Looks like nothing matches \"${widget.searchController?.text ?? ""}\"",
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                firstPageProgressIndicatorBuilder: (context) =>
-                                    Column(
-                                      children: List.generate(
-                                        4,
-                                        (index) => Column(
-                                          children: [
-                                            BlueLoadingTile.withoutImage(),
-                                            if (index < 3) 6.verticalGap,
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                firstPageErrorIndicatorBuilder: (ctx) => Column(
+                          pagingController: widget.controller,
+                          builderDelegate: PagedChildBuilderDelegate(
+                            noItemsFoundIndicatorBuilder: (context) => SizedBox(
+                              width: context.mediaQuery.size.width,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  AppAssets.images.icons.error.image(),
+                                  12.verticalGap,
+                                  Text(
+                                    "Wow, such empty...",
+                                    style: AppTextStyles.header,
+                                  ),
+                                  8.verticalGap,
+                                  Text(
+                                    "Looks like nothing matches \"${widget.searchController?.text ?? ""}\"",
+                                  ),
+                                ],
+                              ),
+                            ),
+                            firstPageProgressIndicatorBuilder: (context) =>
+                                Column(
+                                  children: List.generate(
+                                    4,
+                                    (index) => Column(
                                       children: [
-                                        PagingError.firstPage(
-                                          widget.controller.error.toString(),
-                                          widget.controller.refresh,
-                                        ),
+                                        BlueLoadingTile.withoutImage(),
+                                        if (index < 3) 6.verticalGap,
                                       ],
                                     ),
-                                newPageErrorIndicatorBuilder: (ctx) =>
-                                    PagingError.firstPage(
-                                      widget.controller.error.toString(),
-                                      widget.controller.refresh,
-                                    ),
-                                newPageProgressIndicatorBuilder: (context) =>
-                                    BlueLoadingTile.withImage(),
-                                itemBuilder: (ctx, item, i) => GestureDetector(
-                                      onTap: () {
-                                        val = item;
-                                        Navigator.pop(context);
-                                      },
-                                      child: widget.itemBuilder(item),
-                                    )),
-                            separatorBuilder: (ctx, i) => 6.verticalGap),
+                                  ),
+                                ),
+                            firstPageErrorIndicatorBuilder: (ctx) => Column(
+                              children: [
+                                PagingError.firstPage(
+                                  widget.controller.error.toString(),
+                                  widget.controller.refresh,
+                                ),
+                              ],
+                            ),
+                            newPageErrorIndicatorBuilder: (ctx) =>
+                                PagingError.firstPage(
+                                  widget.controller.error.toString(),
+                                  widget.controller.refresh,
+                                ),
+                            newPageProgressIndicatorBuilder: (context) =>
+                                BlueLoadingTile.withImage(),
+                            itemBuilder: (ctx, item, i) => GestureDetector(
+                              onTap: () {
+                                val = item;
+                                Navigator.pop(context);
+                              },
+                              child: widget.itemBuilder(item),
+                            ),
+                          ),
+                          separatorBuilder: (ctx, i) => 6.verticalGap,
+                        ),
                       ),
                     ],
                   ),
                 );
-              });
-        });
+              },
+            );
+          },
+        );
       },
     );
     return val;

@@ -21,11 +21,11 @@ import 'package:share_plus/share_plus.dart';
 class PaymentSuccessViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 
-  goToHome(BuildContext context) {
+  void goToHome(BuildContext context) {
     locator<AppRouter>().replaceAll([HomeRoute()]);
   }
 
@@ -36,18 +36,19 @@ class PaymentSuccessViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getTransactionReceipt(PayData data) async {
+  Future<void> getTransactionReceipt(PayData data) async {
     AppLoader.start();
 
     ReceiptResponse resp = await TransactionService()
         .getReceipt(data.transactionId)
         .onError((error, stackTrace) {
-      return ReceiptResponse(
-          message: AppErrorHandler.getErrorMessage(error, {
-        "request_name": "get_receipt",
-        "response_model": "ReceiptResponse"
-      }));
-    });
+          return ReceiptResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_receipt",
+              "response_model": "ReceiptResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       receipt = resp.data!;
@@ -63,20 +64,26 @@ class PaymentSuccessViewModel extends BaseViewModel {
 
   ScreenshotController screenshotController = ScreenshotController();
 
-  downloadAndShareQr(PayData data) async {
+  Future<void> downloadAndShareQr(PayData data) async {
     Uint8List? img;
-    await screenshotController.capture().then((value) {
-      img = value;
-    }).catchError((onError) {
-      AppNotification.error(message: AppErrorHandler.getErrorMessage(onError));
-    });
+    await screenshotController
+        .capture()
+        .then((value) {
+          img = value;
+        })
+        .catchError((onError) {
+          AppNotification.error(
+            message: AppErrorHandler.getErrorMessage(onError),
+          );
+        });
     if (img != null) {
-      XFile image = XFile.fromData(img!,
-          name: "receipt_${data.transactionId}", mimeType: "image/png");
+      XFile image = XFile.fromData(
+        img!,
+        name: "receipt_${data.transactionId}",
+        mimeType: "image/png",
+      );
 
-      Share.shareXFiles(
-        [image],
-      ).then((value) {
+      Share.shareXFiles([image]).then((value) {
         if (Platform.isIOS && value.status == ShareResultStatus.success) {
           BlueToast.primaryWithcon("Receipt shared");
         }

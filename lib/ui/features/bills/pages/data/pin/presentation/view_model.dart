@@ -1,5 +1,6 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/bills_service/bills_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
@@ -21,7 +22,7 @@ class ConfirmDataPinViewModel extends BaseViewModel {
   late Size size;
   late String id;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
     useBiometrics = StorageValues.enableBiometrics == "true";
   }
@@ -40,11 +41,11 @@ class ConfirmDataPinViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  onButtonTap(BuildContext context, VerifyDataData data) async {
+  Future<void> onButtonTap(BuildContext context, VerifyDataData data) async {
     AppLoader.start();
 
     VendDataRequest request = VendDataRequest(
@@ -54,32 +55,37 @@ class ConfirmDataPinViewModel extends BaseViewModel {
 
     VendDataResponse response = await BillsService()
         .vendData(request)
-        .onError((error, stackTrace) => VendDataResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "vend_data",
-                "request": request.toString(),
-                "response_model": "VendDataResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => VendDataResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "vend_data",
+              "request": request.toString(),
+              "response_model": "VendDataResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       if (StorageValues.pin.isEmpty) {
         savePin();
       }
 
-      locator<AppRouter>()
-          .replaceAll([VendDataSuccessRoute(data: response.data!)]);
+      locator<AppRouter>().replaceAll([
+        VendDataSuccessRoute(data: response.data!),
+      ]);
     } else {
-      locator<AppRouter>()
-          .push(TransactionErrorRoute(error: response.message!));
+      locator<AppRouter>().push(
+        TransactionErrorRoute(error: response.message!),
+      );
     }
 
     AppLoader.stop();
   }
 
-  completeWithBiometrics(BuildContext context, VerifyDataData data) async {
+  Future<void> completeWithBiometrics(
+    BuildContext context,
+    VerifyDataData data,
+  ) async {
     bool canContinue = await Biometrics.biometrics();
     if (canContinue) {
       pin = StorageValues.pin;
@@ -89,32 +95,33 @@ class ConfirmDataPinViewModel extends BaseViewModel {
     }
   }
 
-  savePin() {
+  void savePin() {
     StorageValues.pin = pin;
     StorageHelpers.setVal(StorageKeys.pinKey, pin);
   }
 
-  getSecurityQuestion(BuildContext context) async {
+  Future<void> getSecurityQuestion(BuildContext context) async {
     AppLoader.start();
-    GetQuestionResponse resp = await AuthService()
-        .getSecurityQuestion(locator<AppStateValues>().currentUser!.phone)
-        .onError((error, stackTrace) => GetQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_security_question",
-                "response_model": "GetQuestionResponse"
-              },
-            )));
+    GetQuestionResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getSecurityQuestion(locator<AppStateValues>().currentUser!.phone)
+            .onError(
+              (error, stackTrace) => GetQuestionResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "get_security_question",
+                  "response_model": "GetQuestionResponse",
+                }),
+              ),
+            );
 
     if (context.mounted) {
       locator<AppRouter>()
           .push<bool>(InitiatePinResetRoute(securityQuestion: resp.data))
           .then((val) {
-        if (val == true) {
-          AppNotification.success(message: resp.message);
-        }
-      });
+            if (val == true) {
+              AppNotification.success(message: resp.message);
+            }
+          });
     }
     AppLoader.stop();
   }

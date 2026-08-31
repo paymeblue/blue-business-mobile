@@ -14,30 +14,36 @@ import 'package:share_plus/share_plus.dart';
 class DataDetailsViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
   ScreenshotController screenshotController = ScreenshotController();
 
-  downloadAndShareQr(DataDetails data) async {
+  Future<void> downloadAndShareQr(DataDetails data) async {
     Uint8List? img;
-    await screenshotController.capture().then((value) {
-      img = value;
-    }).catchError((onError) {
-      AppNotification.error(message: AppErrorHandler.getErrorMessage(onError));
-    });
+    await screenshotController
+        .capture()
+        .then((value) {
+          img = value;
+        })
+        .catchError((onError) {
+          AppNotification.error(
+            message: AppErrorHandler.getErrorMessage(onError),
+          );
+        });
     if (img != null) {
-      XFile image = XFile.fromData(img!,
-          name: "receipt_${data.transactionId}", mimeType: "image/png");
+      XFile image = XFile.fromData(
+        img!,
+        name: "receipt_${data.transactionId}",
+        mimeType: "image/png",
+      );
 
-      Share.shareXFiles(
-        [image],
-      ).then((value) {
+      Share.shareXFiles([image]).then((value) {
         if (Platform.isIOS && value.status == ShareResultStatus.success) {
           BlueToast.primaryWithcon("Receipt shared");
         }

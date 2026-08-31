@@ -4,7 +4,7 @@ part 'staff.freezed.dart';
 part 'staff.g.dart';
 
 @freezed
-class Staff with _$Staff {
+abstract class Staff with _$Staff {
   const factory Staff({
     required int id,
     required String name,
@@ -15,6 +15,5 @@ class Staff with _$Staff {
     @Default('cashier') String role,
   }) = _Staff;
 
-  factory Staff.fromJson(Map<String, dynamic> json) =>
-      _$StaffImpl.fromJson(json);
+  factory Staff.fromJson(Map<String, dynamic> json) => _$StaffFromJson(json);
 }

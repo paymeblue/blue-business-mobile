@@ -18,17 +18,17 @@ import 'package:flutter/material.dart';
 class InitiateCableViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
 
     getProviders();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
 
     shouldVerify();
@@ -51,7 +51,7 @@ class InitiateCableViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onBillProviderChanged(BillProvider? item) {
+  void onBillProviderChanged(BillProvider? item) {
     selectedProvider = item;
 
     selectedPackage = null;
@@ -76,19 +76,19 @@ class InitiateCableViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getProviders() async {
+  Future<void> getProviders() async {
     providersState = FetchState.loading;
 
     GetProvidersResponse resp = await BillsService()
         .getProviders("tv")
-        .onError((error, stackTrace) => GetProvidersResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_tv_providers",
-                "response_model": "GetTvProvidersResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => GetProvidersResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_tv_providers",
+              "response_model": "GetTvProvidersResponse",
+            }),
+          ),
+        );
 
     if (resp.status == "success") {
       providersState = FetchState.success;
@@ -99,7 +99,7 @@ class InitiateCableViewModel extends BaseViewModel {
     }
   }
 
-  onBillPackageChanged(BillPackage? item) {
+  void onBillPackageChanged(BillPackage? item) {
     selectedPackage = item;
 
     shouldVerify();
@@ -119,20 +119,22 @@ class InitiateCableViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getPackages() async {
+  Future<void> getPackages() async {
     packagesState = FetchState.loading;
 
     GetPackagesResponse resp = await BillsService()
         .getPackages(
-            providerNAme: selectedProvider!.name.toLowerCase(), service: "tv")
-        .onError((error, stackTrace) => GetPackagesResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_tv_packages",
-                "response_model": "GetPackagesResponse"
-              },
-            )));
+          providerNAme: selectedProvider!.name.toLowerCase(),
+          service: "tv",
+        )
+        .onError(
+          (error, stackTrace) => GetPackagesResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_tv_packages",
+              "response_model": "GetPackagesResponse",
+            }),
+          ),
+        );
 
     if (resp.status == "success") {
       packagesState = FetchState.success;
@@ -161,7 +163,7 @@ class InitiateCableViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  verifyPackage() async {
+  Future<void> verifyPackage() async {
     verifying = true;
     VerifyCableRequest request = VerifyCableRequest(
       receiver: cardNumberController.text,
@@ -170,15 +172,15 @@ class InitiateCableViewModel extends BaseViewModel {
 
     VerifyCableResponse response = await BillsService()
         .verifyCableInfo(request)
-        .onError((error, stackTrace) => VerifyCableResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "verify_cable_info",
-                "request": request.toString(),
-                "response_model": "VerifyCableResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => VerifyCableResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "verify_cable_info",
+              "request": request.toString(),
+              "response_model": "VerifyCableResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       data = response.data;
@@ -188,7 +190,7 @@ class InitiateCableViewModel extends BaseViewModel {
     verifying = false;
   }
 
-  goToNext(BuildContext context) {
+  void goToNext(BuildContext context) {
     locator<AppRouter>().push(ReviewCableRoute(data: data!));
   }
 }

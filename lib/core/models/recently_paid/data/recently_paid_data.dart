@@ -5,11 +5,11 @@ part 'recently_paid_data.freezed.dart';
 part 'recently_paid_data.g.dart';
 
 @freezed
-class RecentlyPaidData with _$RecentlyPaidData {
+abstract class RecentlyPaidData with _$RecentlyPaidData {
   const factory RecentlyPaidData({
     required List<RecentlyPaidItem> beneficiaries,
   }) = _RecentlyPaidData;
 
   factory RecentlyPaidData.fromJson(Map<String, dynamic> json) =>
-      _$RecentlyPaidDataImpl.fromJson(json);
+      _$RecentlyPaidDataFromJson(json);
 }

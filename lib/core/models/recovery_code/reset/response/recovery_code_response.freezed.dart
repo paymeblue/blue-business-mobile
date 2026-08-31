@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,218 +9,299 @@ part of 'recovery_code_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ResetRecoveryCodeResponse _$ResetRecoveryCodeResponseFromJson(
-    Map<String, dynamic> json) {
-  return _ResetRecoveryCodeResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$ResetRecoveryCodeResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  ResetRecoveryCodeData? get data => throw _privateConstructorUsedError;
+
+ String get status; String? get message; ResetRecoveryCodeData? get data;
+/// Create a copy of ResetRecoveryCodeResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ResetRecoveryCodeResponseCopyWith<ResetRecoveryCodeResponse> get copyWith => _$ResetRecoveryCodeResponseCopyWithImpl<ResetRecoveryCodeResponse>(this as ResetRecoveryCodeResponse, _$identity);
 
   /// Serializes this ResetRecoveryCodeResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of ResetRecoveryCodeResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ResetRecoveryCodeResponseCopyWith<ResetRecoveryCodeResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResetRecoveryCodeResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'ResetRecoveryCodeResponse(status: $status, message: $message, data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ResetRecoveryCodeResponseCopyWith<$Res> {
-  factory $ResetRecoveryCodeResponseCopyWith(ResetRecoveryCodeResponse value,
-          $Res Function(ResetRecoveryCodeResponse) then) =
-      _$ResetRecoveryCodeResponseCopyWithImpl<$Res, ResetRecoveryCodeResponse>;
-  @useResult
-  $Res call({String status, String? message, ResetRecoveryCodeData? data});
+abstract mixin class $ResetRecoveryCodeResponseCopyWith<$Res>  {
+  factory $ResetRecoveryCodeResponseCopyWith(ResetRecoveryCodeResponse value, $Res Function(ResetRecoveryCodeResponse) _then) = _$ResetRecoveryCodeResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, ResetRecoveryCodeData? data
+});
 
-  $ResetRecoveryCodeDataCopyWith<$Res>? get data;
+
+$ResetRecoveryCodeDataCopyWith<$Res>? get data;
+
 }
-
 /// @nodoc
-class _$ResetRecoveryCodeResponseCopyWithImpl<$Res,
-        $Val extends ResetRecoveryCodeResponse>
+class _$ResetRecoveryCodeResponseCopyWithImpl<$Res>
     implements $ResetRecoveryCodeResponseCopyWith<$Res> {
-  _$ResetRecoveryCodeResponseCopyWithImpl(this._value, this._then);
+  _$ResetRecoveryCodeResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ResetRecoveryCodeResponse _self;
+  final $Res Function(ResetRecoveryCodeResponse) _then;
 
-  /// Create a copy of ResetRecoveryCodeResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as ResetRecoveryCodeData?,
-    ) as $Val);
+/// Create a copy of ResetRecoveryCodeResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as ResetRecoveryCodeData?,
+  ));
+}
+/// Create a copy of ResetRecoveryCodeResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResetRecoveryCodeDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
   }
 
-  /// Create a copy of ResetRecoveryCodeResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ResetRecoveryCodeDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $ResetRecoveryCodeDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
-  }
+  return $ResetRecoveryCodeDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$ResetRecoveryCodeResponseImplCopyWith<$Res>
-    implements $ResetRecoveryCodeResponseCopyWith<$Res> {
-  factory _$$ResetRecoveryCodeResponseImplCopyWith(
-          _$ResetRecoveryCodeResponseImpl value,
-          $Res Function(_$ResetRecoveryCodeResponseImpl) then) =
-      __$$ResetRecoveryCodeResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message, ResetRecoveryCodeData? data});
 
-  @override
-  $ResetRecoveryCodeDataCopyWith<$Res>? get data;
+/// Adds pattern-matching-related methods to [ResetRecoveryCodeResponse].
+extension ResetRecoveryCodeResponsePatterns on ResetRecoveryCodeResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ResetRecoveryCodeResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ResetRecoveryCodeResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ResetRecoveryCodeResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _ResetRecoveryCodeResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ResetRecoveryCodeResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ResetRecoveryCodeResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  ResetRecoveryCodeData? data)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ResetRecoveryCodeResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  ResetRecoveryCodeData? data)  $default,) {final _that = this;
+switch (_that) {
+case _ResetRecoveryCodeResponse():
+return $default(_that.status,_that.message,_that.data);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  ResetRecoveryCodeData? data)?  $default,) {final _that = this;
+switch (_that) {
+case _ResetRecoveryCodeResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$ResetRecoveryCodeResponseImplCopyWithImpl<$Res>
-    extends _$ResetRecoveryCodeResponseCopyWithImpl<$Res,
-        _$ResetRecoveryCodeResponseImpl>
-    implements _$$ResetRecoveryCodeResponseImplCopyWith<$Res> {
-  __$$ResetRecoveryCodeResponseImplCopyWithImpl(
-      _$ResetRecoveryCodeResponseImpl _value,
-      $Res Function(_$ResetRecoveryCodeResponseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ResetRecoveryCodeResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_$ResetRecoveryCodeResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as ResetRecoveryCodeData?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ResetRecoveryCodeResponseImpl implements _ResetRecoveryCodeResponse {
-  const _$ResetRecoveryCodeResponseImpl(
-      {this.status = "fail", this.message, this.data});
 
-  factory _$ResetRecoveryCodeResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ResetRecoveryCodeResponseImplFromJson(json);
+class _ResetRecoveryCodeResponse implements ResetRecoveryCodeResponse {
+  const _ResetRecoveryCodeResponse({this.status = "fail", this.message, this.data});
+  factory _ResetRecoveryCodeResponse.fromJson(Map<String, dynamic> json) => _$ResetRecoveryCodeResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  @override
-  final ResetRecoveryCodeData? data;
+@override@JsonKey() final  String status;
+@override final  String? message;
+@override final  ResetRecoveryCodeData? data;
 
-  @override
-  String toString() {
-    return 'ResetRecoveryCodeResponse(status: $status, message: $message, data: $data)';
-  }
+/// Create a copy of ResetRecoveryCodeResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ResetRecoveryCodeResponseCopyWith<_ResetRecoveryCodeResponse> get copyWith => __$ResetRecoveryCodeResponseCopyWithImpl<_ResetRecoveryCodeResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ResetRecoveryCodeResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
-
-  /// Create a copy of ResetRecoveryCodeResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ResetRecoveryCodeResponseImplCopyWith<_$ResetRecoveryCodeResponseImpl>
-      get copyWith => __$$ResetRecoveryCodeResponseImplCopyWithImpl<
-          _$ResetRecoveryCodeResponseImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ResetRecoveryCodeResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$ResetRecoveryCodeResponseToJson(this, );
 }
 
-abstract class _ResetRecoveryCodeResponse implements ResetRecoveryCodeResponse {
-  const factory _ResetRecoveryCodeResponse(
-      {final String status,
-      final String? message,
-      final ResetRecoveryCodeData? data}) = _$ResetRecoveryCodeResponseImpl;
-
-  factory _ResetRecoveryCodeResponse.fromJson(Map<String, dynamic> json) =
-      _$ResetRecoveryCodeResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  ResetRecoveryCodeData? get data;
-
-  /// Create a copy of ResetRecoveryCodeResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResetRecoveryCodeResponseImplCopyWith<_$ResetRecoveryCodeResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResetRecoveryCodeResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'ResetRecoveryCodeResponse(status: $status, message: $message, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ResetRecoveryCodeResponseCopyWith<$Res> implements $ResetRecoveryCodeResponseCopyWith<$Res> {
+  factory _$ResetRecoveryCodeResponseCopyWith(_ResetRecoveryCodeResponse value, $Res Function(_ResetRecoveryCodeResponse) _then) = __$ResetRecoveryCodeResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, ResetRecoveryCodeData? data
+});
+
+
+@override $ResetRecoveryCodeDataCopyWith<$Res>? get data;
+
+}
+/// @nodoc
+class __$ResetRecoveryCodeResponseCopyWithImpl<$Res>
+    implements _$ResetRecoveryCodeResponseCopyWith<$Res> {
+  __$ResetRecoveryCodeResponseCopyWithImpl(this._self, this._then);
+
+  final _ResetRecoveryCodeResponse _self;
+  final $Res Function(_ResetRecoveryCodeResponse) _then;
+
+/// Create a copy of ResetRecoveryCodeResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_ResetRecoveryCodeResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as ResetRecoveryCodeData?,
+  ));
+}
+
+/// Create a copy of ResetRecoveryCodeResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ResetRecoveryCodeDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
+  }
+
+  return $ResetRecoveryCodeDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
+}
+
+// dart format on

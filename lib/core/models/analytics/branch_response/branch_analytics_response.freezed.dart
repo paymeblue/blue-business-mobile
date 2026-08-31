@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,218 +9,299 @@ part of 'branch_analytics_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-BranchAnalyticsResponse _$BranchAnalyticsResponseFromJson(
-    Map<String, dynamic> json) {
-  return _BranchAnalyticsResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$BranchAnalyticsResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  BranchAnalyticsData? get data => throw _privateConstructorUsedError;
+
+ String get status; String? get message; BranchAnalyticsData? get data;
+/// Create a copy of BranchAnalyticsResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$BranchAnalyticsResponseCopyWith<BranchAnalyticsResponse> get copyWith => _$BranchAnalyticsResponseCopyWithImpl<BranchAnalyticsResponse>(this as BranchAnalyticsResponse, _$identity);
 
   /// Serializes this BranchAnalyticsResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of BranchAnalyticsResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $BranchAnalyticsResponseCopyWith<BranchAnalyticsResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BranchAnalyticsResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'BranchAnalyticsResponse(status: $status, message: $message, data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $BranchAnalyticsResponseCopyWith<$Res> {
-  factory $BranchAnalyticsResponseCopyWith(BranchAnalyticsResponse value,
-          $Res Function(BranchAnalyticsResponse) then) =
-      _$BranchAnalyticsResponseCopyWithImpl<$Res, BranchAnalyticsResponse>;
-  @useResult
-  $Res call({String status, String? message, BranchAnalyticsData? data});
+abstract mixin class $BranchAnalyticsResponseCopyWith<$Res>  {
+  factory $BranchAnalyticsResponseCopyWith(BranchAnalyticsResponse value, $Res Function(BranchAnalyticsResponse) _then) = _$BranchAnalyticsResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, BranchAnalyticsData? data
+});
 
-  $BranchAnalyticsDataCopyWith<$Res>? get data;
+
+$BranchAnalyticsDataCopyWith<$Res>? get data;
+
 }
-
 /// @nodoc
-class _$BranchAnalyticsResponseCopyWithImpl<$Res,
-        $Val extends BranchAnalyticsResponse>
+class _$BranchAnalyticsResponseCopyWithImpl<$Res>
     implements $BranchAnalyticsResponseCopyWith<$Res> {
-  _$BranchAnalyticsResponseCopyWithImpl(this._value, this._then);
+  _$BranchAnalyticsResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final BranchAnalyticsResponse _self;
+  final $Res Function(BranchAnalyticsResponse) _then;
 
-  /// Create a copy of BranchAnalyticsResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as BranchAnalyticsData?,
-    ) as $Val);
+/// Create a copy of BranchAnalyticsResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as BranchAnalyticsData?,
+  ));
+}
+/// Create a copy of BranchAnalyticsResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$BranchAnalyticsDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
   }
 
-  /// Create a copy of BranchAnalyticsResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $BranchAnalyticsDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $BranchAnalyticsDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
-  }
+  return $BranchAnalyticsDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$BranchAnalyticsResponseImplCopyWith<$Res>
-    implements $BranchAnalyticsResponseCopyWith<$Res> {
-  factory _$$BranchAnalyticsResponseImplCopyWith(
-          _$BranchAnalyticsResponseImpl value,
-          $Res Function(_$BranchAnalyticsResponseImpl) then) =
-      __$$BranchAnalyticsResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message, BranchAnalyticsData? data});
 
-  @override
-  $BranchAnalyticsDataCopyWith<$Res>? get data;
+/// Adds pattern-matching-related methods to [BranchAnalyticsResponse].
+extension BranchAnalyticsResponsePatterns on BranchAnalyticsResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _BranchAnalyticsResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _BranchAnalyticsResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _BranchAnalyticsResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _BranchAnalyticsResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _BranchAnalyticsResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _BranchAnalyticsResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  BranchAnalyticsData? data)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _BranchAnalyticsResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  BranchAnalyticsData? data)  $default,) {final _that = this;
+switch (_that) {
+case _BranchAnalyticsResponse():
+return $default(_that.status,_that.message,_that.data);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  BranchAnalyticsData? data)?  $default,) {final _that = this;
+switch (_that) {
+case _BranchAnalyticsResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$BranchAnalyticsResponseImplCopyWithImpl<$Res>
-    extends _$BranchAnalyticsResponseCopyWithImpl<$Res,
-        _$BranchAnalyticsResponseImpl>
-    implements _$$BranchAnalyticsResponseImplCopyWith<$Res> {
-  __$$BranchAnalyticsResponseImplCopyWithImpl(
-      _$BranchAnalyticsResponseImpl _value,
-      $Res Function(_$BranchAnalyticsResponseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of BranchAnalyticsResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_$BranchAnalyticsResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as BranchAnalyticsData?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$BranchAnalyticsResponseImpl implements _BranchAnalyticsResponse {
-  const _$BranchAnalyticsResponseImpl(
-      {this.status = "fail", this.message, this.data});
 
-  factory _$BranchAnalyticsResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BranchAnalyticsResponseImplFromJson(json);
+class _BranchAnalyticsResponse implements BranchAnalyticsResponse {
+  const _BranchAnalyticsResponse({this.status = "fail", this.message, this.data});
+  factory _BranchAnalyticsResponse.fromJson(Map<String, dynamic> json) => _$BranchAnalyticsResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  @override
-  final BranchAnalyticsData? data;
+@override@JsonKey() final  String status;
+@override final  String? message;
+@override final  BranchAnalyticsData? data;
 
-  @override
-  String toString() {
-    return 'BranchAnalyticsResponse(status: $status, message: $message, data: $data)';
-  }
+/// Create a copy of BranchAnalyticsResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$BranchAnalyticsResponseCopyWith<_BranchAnalyticsResponse> get copyWith => __$BranchAnalyticsResponseCopyWithImpl<_BranchAnalyticsResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BranchAnalyticsResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
-
-  /// Create a copy of BranchAnalyticsResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BranchAnalyticsResponseImplCopyWith<_$BranchAnalyticsResponseImpl>
-      get copyWith => __$$BranchAnalyticsResponseImplCopyWithImpl<
-          _$BranchAnalyticsResponseImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BranchAnalyticsResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$BranchAnalyticsResponseToJson(this, );
 }
 
-abstract class _BranchAnalyticsResponse implements BranchAnalyticsResponse {
-  const factory _BranchAnalyticsResponse(
-      {final String status,
-      final String? message,
-      final BranchAnalyticsData? data}) = _$BranchAnalyticsResponseImpl;
-
-  factory _BranchAnalyticsResponse.fromJson(Map<String, dynamic> json) =
-      _$BranchAnalyticsResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  BranchAnalyticsData? get data;
-
-  /// Create a copy of BranchAnalyticsResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BranchAnalyticsResponseImplCopyWith<_$BranchAnalyticsResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BranchAnalyticsResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'BranchAnalyticsResponse(status: $status, message: $message, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$BranchAnalyticsResponseCopyWith<$Res> implements $BranchAnalyticsResponseCopyWith<$Res> {
+  factory _$BranchAnalyticsResponseCopyWith(_BranchAnalyticsResponse value, $Res Function(_BranchAnalyticsResponse) _then) = __$BranchAnalyticsResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, BranchAnalyticsData? data
+});
+
+
+@override $BranchAnalyticsDataCopyWith<$Res>? get data;
+
+}
+/// @nodoc
+class __$BranchAnalyticsResponseCopyWithImpl<$Res>
+    implements _$BranchAnalyticsResponseCopyWith<$Res> {
+  __$BranchAnalyticsResponseCopyWithImpl(this._self, this._then);
+
+  final _BranchAnalyticsResponse _self;
+  final $Res Function(_BranchAnalyticsResponse) _then;
+
+/// Create a copy of BranchAnalyticsResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_BranchAnalyticsResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as BranchAnalyticsData?,
+  ));
+}
+
+/// Create a copy of BranchAnalyticsResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$BranchAnalyticsDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
+  }
+
+  return $BranchAnalyticsDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
+}
+
+// dart format on

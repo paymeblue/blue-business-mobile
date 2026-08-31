@@ -6,17 +6,15 @@ part of 'vend_airtime_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VendAirtimeRequestImpl _$$VendAirtimeRequestImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VendAirtimeRequestImpl(
+_VendAirtimeRequest _$VendAirtimeRequestFromJson(Map<String, dynamic> json) =>
+    _VendAirtimeRequest(
       receiver: json['receiver'] as String,
       passcode: json['passcode'] as String,
       amount: json['amount'] as String,
       providerId: json['provider_id'] as String,
     );
 
-Map<String, dynamic> _$$VendAirtimeRequestImplToJson(
-        _$VendAirtimeRequestImpl instance) =>
+Map<String, dynamic> _$VendAirtimeRequestToJson(_VendAirtimeRequest instance) =>
     <String, dynamic>{
       'receiver': instance.receiver,
       'passcode': instance.passcode,

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,194 +9,275 @@ part of 'blue_beneficiary.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-BlueBeneficiary _$BlueBeneficiaryFromJson(Map<String, dynamic> json) {
-  return _BlueBeneficiary.fromJson(json);
-}
 
 /// @nodoc
 mixin _$BlueBeneficiary {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get identifier => throw _privateConstructorUsedError;
+
+ int get id; String get name; String get identifier;
+/// Create a copy of BlueBeneficiary
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$BlueBeneficiaryCopyWith<BlueBeneficiary> get copyWith => _$BlueBeneficiaryCopyWithImpl<BlueBeneficiary>(this as BlueBeneficiary, _$identity);
 
   /// Serializes this BlueBeneficiary to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of BlueBeneficiary
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $BlueBeneficiaryCopyWith<BlueBeneficiary> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BlueBeneficiary&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.identifier, identifier) || other.identifier == identifier));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name,identifier);
+
+@override
+String toString() {
+  return 'BlueBeneficiary(id: $id, name: $name, identifier: $identifier)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $BlueBeneficiaryCopyWith<$Res> {
-  factory $BlueBeneficiaryCopyWith(
-          BlueBeneficiary value, $Res Function(BlueBeneficiary) then) =
-      _$BlueBeneficiaryCopyWithImpl<$Res, BlueBeneficiary>;
-  @useResult
-  $Res call({int id, String name, String identifier});
-}
+abstract mixin class $BlueBeneficiaryCopyWith<$Res>  {
+  factory $BlueBeneficiaryCopyWith(BlueBeneficiary value, $Res Function(BlueBeneficiary) _then) = _$BlueBeneficiaryCopyWithImpl;
+@useResult
+$Res call({
+ int id, String name, String identifier
+});
 
+
+
+
+}
 /// @nodoc
-class _$BlueBeneficiaryCopyWithImpl<$Res, $Val extends BlueBeneficiary>
+class _$BlueBeneficiaryCopyWithImpl<$Res>
     implements $BlueBeneficiaryCopyWith<$Res> {
-  _$BlueBeneficiaryCopyWithImpl(this._value, this._then);
+  _$BlueBeneficiaryCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final BlueBeneficiary _self;
+  final $Res Function(BlueBeneficiary) _then;
 
-  /// Create a copy of BlueBeneficiary
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? identifier = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      identifier: null == identifier
-          ? _value.identifier
-          : identifier // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of BlueBeneficiary
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? identifier = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,identifier: null == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$BlueBeneficiaryImplCopyWith<$Res>
-    implements $BlueBeneficiaryCopyWith<$Res> {
-  factory _$$BlueBeneficiaryImplCopyWith(_$BlueBeneficiaryImpl value,
-          $Res Function(_$BlueBeneficiaryImpl) then) =
-      __$$BlueBeneficiaryImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int id, String name, String identifier});
 }
 
-/// @nodoc
-class __$$BlueBeneficiaryImplCopyWithImpl<$Res>
-    extends _$BlueBeneficiaryCopyWithImpl<$Res, _$BlueBeneficiaryImpl>
-    implements _$$BlueBeneficiaryImplCopyWith<$Res> {
-  __$$BlueBeneficiaryImplCopyWithImpl(
-      _$BlueBeneficiaryImpl _value, $Res Function(_$BlueBeneficiaryImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of BlueBeneficiary
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? identifier = null,
-  }) {
-    return _then(_$BlueBeneficiaryImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      identifier: null == identifier
-          ? _value.identifier
-          : identifier // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [BlueBeneficiary].
+extension BlueBeneficiaryPatterns on BlueBeneficiary {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _BlueBeneficiary value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _BlueBeneficiary() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _BlueBeneficiary value)  $default,){
+final _that = this;
+switch (_that) {
+case _BlueBeneficiary():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _BlueBeneficiary value)?  $default,){
+final _that = this;
+switch (_that) {
+case _BlueBeneficiary() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  String identifier)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _BlueBeneficiary() when $default != null:
+return $default(_that.id,_that.name,_that.identifier);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  String identifier)  $default,) {final _that = this;
+switch (_that) {
+case _BlueBeneficiary():
+return $default(_that.id,_that.name,_that.identifier);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  String identifier)?  $default,) {final _that = this;
+switch (_that) {
+case _BlueBeneficiary() when $default != null:
+return $default(_that.id,_that.name,_that.identifier);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$BlueBeneficiaryImpl implements _BlueBeneficiary {
-  const _$BlueBeneficiaryImpl(
-      {required this.id, required this.name, required this.identifier});
 
-  factory _$BlueBeneficiaryImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BlueBeneficiaryImplFromJson(json);
+class _BlueBeneficiary implements BlueBeneficiary {
+  const _BlueBeneficiary({required this.id, required this.name, required this.identifier});
+  factory _BlueBeneficiary.fromJson(Map<String, dynamic> json) => _$BlueBeneficiaryFromJson(json);
 
-  @override
-  final int id;
-  @override
-  final String name;
-  @override
-  final String identifier;
+@override final  int id;
+@override final  String name;
+@override final  String identifier;
 
-  @override
-  String toString() {
-    return 'BlueBeneficiary(id: $id, name: $name, identifier: $identifier)';
-  }
+/// Create a copy of BlueBeneficiary
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$BlueBeneficiaryCopyWith<_BlueBeneficiary> get copyWith => __$BlueBeneficiaryCopyWithImpl<_BlueBeneficiary>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BlueBeneficiaryImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.identifier, identifier) ||
-                other.identifier == identifier));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, name, identifier);
-
-  /// Create a copy of BlueBeneficiary
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BlueBeneficiaryImplCopyWith<_$BlueBeneficiaryImpl> get copyWith =>
-      __$$BlueBeneficiaryImplCopyWithImpl<_$BlueBeneficiaryImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BlueBeneficiaryImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$BlueBeneficiaryToJson(this, );
 }
 
-abstract class _BlueBeneficiary implements BlueBeneficiary {
-  const factory _BlueBeneficiary(
-      {required final int id,
-      required final String name,
-      required final String identifier}) = _$BlueBeneficiaryImpl;
-
-  factory _BlueBeneficiary.fromJson(Map<String, dynamic> json) =
-      _$BlueBeneficiaryImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get name;
-  @override
-  String get identifier;
-
-  /// Create a copy of BlueBeneficiary
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BlueBeneficiaryImplCopyWith<_$BlueBeneficiaryImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BlueBeneficiary&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.identifier, identifier) || other.identifier == identifier));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name,identifier);
+
+@override
+String toString() {
+  return 'BlueBeneficiary(id: $id, name: $name, identifier: $identifier)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$BlueBeneficiaryCopyWith<$Res> implements $BlueBeneficiaryCopyWith<$Res> {
+  factory _$BlueBeneficiaryCopyWith(_BlueBeneficiary value, $Res Function(_BlueBeneficiary) _then) = __$BlueBeneficiaryCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, String name, String identifier
+});
+
+
+
+
+}
+/// @nodoc
+class __$BlueBeneficiaryCopyWithImpl<$Res>
+    implements _$BlueBeneficiaryCopyWith<$Res> {
+  __$BlueBeneficiaryCopyWithImpl(this._self, this._then);
+
+  final _BlueBeneficiary _self;
+  final $Res Function(_BlueBeneficiary) _then;
+
+/// Create a copy of BlueBeneficiary
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? identifier = null,}) {
+  return _then(_BlueBeneficiary(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,identifier: null == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

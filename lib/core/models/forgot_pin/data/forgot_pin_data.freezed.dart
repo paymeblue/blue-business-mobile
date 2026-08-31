@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,157 +9,269 @@ part of 'forgot_pin_data.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ForgotPinData _$ForgotPinDataFromJson(Map<String, dynamic> json) {
-  return _ForgotPinData.fromJson(json);
-}
 
 /// @nodoc
 mixin _$ForgotPinData {
-  String get phone => throw _privateConstructorUsedError;
+
+ String get phone;
+/// Create a copy of ForgotPinData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ForgotPinDataCopyWith<ForgotPinData> get copyWith => _$ForgotPinDataCopyWithImpl<ForgotPinData>(this as ForgotPinData, _$identity);
 
   /// Serializes this ForgotPinData to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of ForgotPinData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ForgotPinDataCopyWith<ForgotPinData> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPinData&&(identical(other.phone, phone) || other.phone == phone));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,phone);
+
+@override
+String toString() {
+  return 'ForgotPinData(phone: $phone)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ForgotPinDataCopyWith<$Res> {
-  factory $ForgotPinDataCopyWith(
-          ForgotPinData value, $Res Function(ForgotPinData) then) =
-      _$ForgotPinDataCopyWithImpl<$Res, ForgotPinData>;
-  @useResult
-  $Res call({String phone});
-}
+abstract mixin class $ForgotPinDataCopyWith<$Res>  {
+  factory $ForgotPinDataCopyWith(ForgotPinData value, $Res Function(ForgotPinData) _then) = _$ForgotPinDataCopyWithImpl;
+@useResult
+$Res call({
+ String phone
+});
 
+
+
+
+}
 /// @nodoc
-class _$ForgotPinDataCopyWithImpl<$Res, $Val extends ForgotPinData>
+class _$ForgotPinDataCopyWithImpl<$Res>
     implements $ForgotPinDataCopyWith<$Res> {
-  _$ForgotPinDataCopyWithImpl(this._value, this._then);
+  _$ForgotPinDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ForgotPinData _self;
+  final $Res Function(ForgotPinData) _then;
 
-  /// Create a copy of ForgotPinData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? phone = null,
-  }) {
-    return _then(_value.copyWith(
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of ForgotPinData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? phone = null,}) {
+  return _then(_self.copyWith(
+phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$ForgotPinDataImplCopyWith<$Res>
-    implements $ForgotPinDataCopyWith<$Res> {
-  factory _$$ForgotPinDataImplCopyWith(
-          _$ForgotPinDataImpl value, $Res Function(_$ForgotPinDataImpl) then) =
-      __$$ForgotPinDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String phone});
 }
 
-/// @nodoc
-class __$$ForgotPinDataImplCopyWithImpl<$Res>
-    extends _$ForgotPinDataCopyWithImpl<$Res, _$ForgotPinDataImpl>
-    implements _$$ForgotPinDataImplCopyWith<$Res> {
-  __$$ForgotPinDataImplCopyWithImpl(
-      _$ForgotPinDataImpl _value, $Res Function(_$ForgotPinDataImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of ForgotPinData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? phone = null,
-  }) {
-    return _then(_$ForgotPinDataImpl(
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [ForgotPinData].
+extension ForgotPinDataPatterns on ForgotPinData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ForgotPinData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ForgotPinData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ForgotPinData value)  $default,){
+final _that = this;
+switch (_that) {
+case _ForgotPinData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ForgotPinData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ForgotPinData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String phone)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ForgotPinData() when $default != null:
+return $default(_that.phone);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String phone)  $default,) {final _that = this;
+switch (_that) {
+case _ForgotPinData():
+return $default(_that.phone);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String phone)?  $default,) {final _that = this;
+switch (_that) {
+case _ForgotPinData() when $default != null:
+return $default(_that.phone);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ForgotPinDataImpl implements _ForgotPinData {
-  const _$ForgotPinDataImpl({required this.phone});
 
-  factory _$ForgotPinDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ForgotPinDataImplFromJson(json);
+class _ForgotPinData implements ForgotPinData {
+  const _ForgotPinData({required this.phone});
+  factory _ForgotPinData.fromJson(Map<String, dynamic> json) => _$ForgotPinDataFromJson(json);
 
-  @override
-  final String phone;
+@override final  String phone;
 
-  @override
-  String toString() {
-    return 'ForgotPinData(phone: $phone)';
-  }
+/// Create a copy of ForgotPinData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ForgotPinDataCopyWith<_ForgotPinData> get copyWith => __$ForgotPinDataCopyWithImpl<_ForgotPinData>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ForgotPinDataImpl &&
-            (identical(other.phone, phone) || other.phone == phone));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, phone);
-
-  /// Create a copy of ForgotPinData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ForgotPinDataImplCopyWith<_$ForgotPinDataImpl> get copyWith =>
-      __$$ForgotPinDataImplCopyWithImpl<_$ForgotPinDataImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ForgotPinDataImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$ForgotPinDataToJson(this, );
 }
 
-abstract class _ForgotPinData implements ForgotPinData {
-  const factory _ForgotPinData({required final String phone}) =
-      _$ForgotPinDataImpl;
-
-  factory _ForgotPinData.fromJson(Map<String, dynamic> json) =
-      _$ForgotPinDataImpl.fromJson;
-
-  @override
-  String get phone;
-
-  /// Create a copy of ForgotPinData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ForgotPinDataImplCopyWith<_$ForgotPinDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ForgotPinData&&(identical(other.phone, phone) || other.phone == phone));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,phone);
+
+@override
+String toString() {
+  return 'ForgotPinData(phone: $phone)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ForgotPinDataCopyWith<$Res> implements $ForgotPinDataCopyWith<$Res> {
+  factory _$ForgotPinDataCopyWith(_ForgotPinData value, $Res Function(_ForgotPinData) _then) = __$ForgotPinDataCopyWithImpl;
+@override @useResult
+$Res call({
+ String phone
+});
+
+
+
+
+}
+/// @nodoc
+class __$ForgotPinDataCopyWithImpl<$Res>
+    implements _$ForgotPinDataCopyWith<$Res> {
+  __$ForgotPinDataCopyWithImpl(this._self, this._then);
+
+  final _ForgotPinData _self;
+  final $Res Function(_ForgotPinData) _then;
+
+/// Create a copy of ForgotPinData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? phone = null,}) {
+  return _then(_ForgotPinData(
+phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

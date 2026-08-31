@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,256 +9,308 @@ part of 'get_beneficiary_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-GetBeneficiaryResponse _$GetBeneficiaryResponseFromJson(
-    Map<String, dynamic> json) {
-  return _GetBeneficiaryResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$GetBeneficiaryResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  List<BlueBeneficiary> get data => throw _privateConstructorUsedError;
-  GetBeneficiaryData? get paginationInfo => throw _privateConstructorUsedError;
+
+ String get status; String? get message; List<BlueBeneficiary> get data; GetBeneficiaryData? get paginationInfo;
+/// Create a copy of GetBeneficiaryResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GetBeneficiaryResponseCopyWith<GetBeneficiaryResponse> get copyWith => _$GetBeneficiaryResponseCopyWithImpl<GetBeneficiaryResponse>(this as GetBeneficiaryResponse, _$identity);
 
   /// Serializes this GetBeneficiaryResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of GetBeneficiaryResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $GetBeneficiaryResponseCopyWith<GetBeneficiaryResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetBeneficiaryResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.paginationInfo, paginationInfo) || other.paginationInfo == paginationInfo));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,const DeepCollectionEquality().hash(data),paginationInfo);
+
+@override
+String toString() {
+  return 'GetBeneficiaryResponse(status: $status, message: $message, data: $data, paginationInfo: $paginationInfo)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $GetBeneficiaryResponseCopyWith<$Res> {
-  factory $GetBeneficiaryResponseCopyWith(GetBeneficiaryResponse value,
-          $Res Function(GetBeneficiaryResponse) then) =
-      _$GetBeneficiaryResponseCopyWithImpl<$Res, GetBeneficiaryResponse>;
-  @useResult
-  $Res call(
-      {String status,
-      String? message,
-      List<BlueBeneficiary> data,
-      GetBeneficiaryData? paginationInfo});
+abstract mixin class $GetBeneficiaryResponseCopyWith<$Res>  {
+  factory $GetBeneficiaryResponseCopyWith(GetBeneficiaryResponse value, $Res Function(GetBeneficiaryResponse) _then) = _$GetBeneficiaryResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, List<BlueBeneficiary> data, GetBeneficiaryData? paginationInfo
+});
 
-  $GetBeneficiaryDataCopyWith<$Res>? get paginationInfo;
+
+$GetBeneficiaryDataCopyWith<$Res>? get paginationInfo;
+
 }
-
 /// @nodoc
-class _$GetBeneficiaryResponseCopyWithImpl<$Res,
-        $Val extends GetBeneficiaryResponse>
+class _$GetBeneficiaryResponseCopyWithImpl<$Res>
     implements $GetBeneficiaryResponseCopyWith<$Res> {
-  _$GetBeneficiaryResponseCopyWithImpl(this._value, this._then);
+  _$GetBeneficiaryResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final GetBeneficiaryResponse _self;
+  final $Res Function(GetBeneficiaryResponse) _then;
 
-  /// Create a copy of GetBeneficiaryResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = null,
-    Object? paginationInfo = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<BlueBeneficiary>,
-      paginationInfo: freezed == paginationInfo
-          ? _value.paginationInfo
-          : paginationInfo // ignore: cast_nullable_to_non_nullable
-              as GetBeneficiaryData?,
-    ) as $Val);
+/// Create a copy of GetBeneficiaryResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = null,Object? paginationInfo = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as List<BlueBeneficiary>,paginationInfo: freezed == paginationInfo ? _self.paginationInfo : paginationInfo // ignore: cast_nullable_to_non_nullable
+as GetBeneficiaryData?,
+  ));
+}
+/// Create a copy of GetBeneficiaryResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GetBeneficiaryDataCopyWith<$Res>? get paginationInfo {
+    if (_self.paginationInfo == null) {
+    return null;
   }
 
-  /// Create a copy of GetBeneficiaryResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $GetBeneficiaryDataCopyWith<$Res>? get paginationInfo {
-    if (_value.paginationInfo == null) {
-      return null;
-    }
-
-    return $GetBeneficiaryDataCopyWith<$Res>(_value.paginationInfo!, (value) {
-      return _then(_value.copyWith(paginationInfo: value) as $Val);
-    });
-  }
+  return $GetBeneficiaryDataCopyWith<$Res>(_self.paginationInfo!, (value) {
+    return _then(_self.copyWith(paginationInfo: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$GetBeneficiaryResponseImplCopyWith<$Res>
-    implements $GetBeneficiaryResponseCopyWith<$Res> {
-  factory _$$GetBeneficiaryResponseImplCopyWith(
-          _$GetBeneficiaryResponseImpl value,
-          $Res Function(_$GetBeneficiaryResponseImpl) then) =
-      __$$GetBeneficiaryResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String status,
-      String? message,
-      List<BlueBeneficiary> data,
-      GetBeneficiaryData? paginationInfo});
 
-  @override
-  $GetBeneficiaryDataCopyWith<$Res>? get paginationInfo;
+/// Adds pattern-matching-related methods to [GetBeneficiaryResponse].
+extension GetBeneficiaryResponsePatterns on GetBeneficiaryResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _GetBeneficiaryResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _GetBeneficiaryResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _GetBeneficiaryResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _GetBeneficiaryResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _GetBeneficiaryResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _GetBeneficiaryResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  List<BlueBeneficiary> data,  GetBeneficiaryData? paginationInfo)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _GetBeneficiaryResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data,_that.paginationInfo);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  List<BlueBeneficiary> data,  GetBeneficiaryData? paginationInfo)  $default,) {final _that = this;
+switch (_that) {
+case _GetBeneficiaryResponse():
+return $default(_that.status,_that.message,_that.data,_that.paginationInfo);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  List<BlueBeneficiary> data,  GetBeneficiaryData? paginationInfo)?  $default,) {final _that = this;
+switch (_that) {
+case _GetBeneficiaryResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data,_that.paginationInfo);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$GetBeneficiaryResponseImplCopyWithImpl<$Res>
-    extends _$GetBeneficiaryResponseCopyWithImpl<$Res,
-        _$GetBeneficiaryResponseImpl>
-    implements _$$GetBeneficiaryResponseImplCopyWith<$Res> {
-  __$$GetBeneficiaryResponseImplCopyWithImpl(
-      _$GetBeneficiaryResponseImpl _value,
-      $Res Function(_$GetBeneficiaryResponseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of GetBeneficiaryResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = null,
-    Object? paginationInfo = freezed,
-  }) {
-    return _then(_$GetBeneficiaryResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<BlueBeneficiary>,
-      paginationInfo: freezed == paginationInfo
-          ? _value.paginationInfo
-          : paginationInfo // ignore: cast_nullable_to_non_nullable
-              as GetBeneficiaryData?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$GetBeneficiaryResponseImpl implements _GetBeneficiaryResponse {
-  const _$GetBeneficiaryResponseImpl(
-      {this.status = "fail",
-      this.message,
-      final List<BlueBeneficiary> data = const [],
-      this.paginationInfo})
-      : _data = data;
 
-  factory _$GetBeneficiaryResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GetBeneficiaryResponseImplFromJson(json);
+class _GetBeneficiaryResponse implements GetBeneficiaryResponse {
+  const _GetBeneficiaryResponse({this.status = "fail", this.message, final  List<BlueBeneficiary> data = const [], this.paginationInfo}): _data = data;
+  factory _GetBeneficiaryResponse.fromJson(Map<String, dynamic> json) => _$GetBeneficiaryResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  final List<BlueBeneficiary> _data;
-  @override
-  @JsonKey()
-  List<BlueBeneficiary> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
-  }
-
-  @override
-  final GetBeneficiaryData? paginationInfo;
-
-  @override
-  String toString() {
-    return 'GetBeneficiaryResponse(status: $status, message: $message, data: $data, paginationInfo: $paginationInfo)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetBeneficiaryResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality().equals(other._data, _data) &&
-            (identical(other.paginationInfo, paginationInfo) ||
-                other.paginationInfo == paginationInfo));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message,
-      const DeepCollectionEquality().hash(_data), paginationInfo);
-
-  /// Create a copy of GetBeneficiaryResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetBeneficiaryResponseImplCopyWith<_$GetBeneficiaryResponseImpl>
-      get copyWith => __$$GetBeneficiaryResponseImplCopyWithImpl<
-          _$GetBeneficiaryResponseImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$GetBeneficiaryResponseImplToJson(
-      this,
-    );
-  }
+@override@JsonKey() final  String status;
+@override final  String? message;
+ final  List<BlueBeneficiary> _data;
+@override@JsonKey() List<BlueBeneficiary> get data {
+  if (_data is EqualUnmodifiableListView) return _data;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_data);
 }
 
-abstract class _GetBeneficiaryResponse implements GetBeneficiaryResponse {
-  const factory _GetBeneficiaryResponse(
-      {final String status,
-      final String? message,
-      final List<BlueBeneficiary> data,
-      final GetBeneficiaryData? paginationInfo}) = _$GetBeneficiaryResponseImpl;
+@override final  GetBeneficiaryData? paginationInfo;
 
-  factory _GetBeneficiaryResponse.fromJson(Map<String, dynamic> json) =
-      _$GetBeneficiaryResponseImpl.fromJson;
+/// Create a copy of GetBeneficiaryResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GetBeneficiaryResponseCopyWith<_GetBeneficiaryResponse> get copyWith => __$GetBeneficiaryResponseCopyWithImpl<_GetBeneficiaryResponse>(this, _$identity);
 
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  List<BlueBeneficiary> get data;
-  @override
-  GetBeneficiaryData? get paginationInfo;
-
-  /// Create a copy of GetBeneficiaryResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GetBeneficiaryResponseImplCopyWith<_$GetBeneficiaryResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$GetBeneficiaryResponseToJson(this, );
 }
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetBeneficiaryResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.paginationInfo, paginationInfo) || other.paginationInfo == paginationInfo));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,const DeepCollectionEquality().hash(_data),paginationInfo);
+
+@override
+String toString() {
+  return 'GetBeneficiaryResponse(status: $status, message: $message, data: $data, paginationInfo: $paginationInfo)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$GetBeneficiaryResponseCopyWith<$Res> implements $GetBeneficiaryResponseCopyWith<$Res> {
+  factory _$GetBeneficiaryResponseCopyWith(_GetBeneficiaryResponse value, $Res Function(_GetBeneficiaryResponse) _then) = __$GetBeneficiaryResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, List<BlueBeneficiary> data, GetBeneficiaryData? paginationInfo
+});
+
+
+@override $GetBeneficiaryDataCopyWith<$Res>? get paginationInfo;
+
+}
+/// @nodoc
+class __$GetBeneficiaryResponseCopyWithImpl<$Res>
+    implements _$GetBeneficiaryResponseCopyWith<$Res> {
+  __$GetBeneficiaryResponseCopyWithImpl(this._self, this._then);
+
+  final _GetBeneficiaryResponse _self;
+  final $Res Function(_GetBeneficiaryResponse) _then;
+
+/// Create a copy of GetBeneficiaryResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = null,Object? paginationInfo = freezed,}) {
+  return _then(_GetBeneficiaryResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
+as List<BlueBeneficiary>,paginationInfo: freezed == paginationInfo ? _self.paginationInfo : paginationInfo // ignore: cast_nullable_to_non_nullable
+as GetBeneficiaryData?,
+  ));
+}
+
+/// Create a copy of GetBeneficiaryResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GetBeneficiaryDataCopyWith<$Res>? get paginationInfo {
+    if (_self.paginationInfo == null) {
+    return null;
+  }
+
+  return $GetBeneficiaryDataCopyWith<$Res>(_self.paginationInfo!, (value) {
+    return _then(_self.copyWith(paginationInfo: value));
+  });
+}
+}
+
+// dart format on

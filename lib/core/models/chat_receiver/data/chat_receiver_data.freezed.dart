@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,247 +9,281 @@ part of 'chat_receiver_data.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ChatResponseData _$ChatResponseDataFromJson(Map<String, dynamic> json) {
-  return _ChatResponseData.fromJson(json);
-}
 
 /// @nodoc
 mixin _$ChatResponseData {
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
-  String? get displayPic => throw _privateConstructorUsedError;
-  String get walletCode => throw _privateConstructorUsedError;
-  String get fcmToken => throw _privateConstructorUsedError;
+
+ String get firstName; String get lastName; String? get displayPic; String get walletCode; String get fcmToken;
+/// Create a copy of ChatResponseData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ChatResponseDataCopyWith<ChatResponseData> get copyWith => _$ChatResponseDataCopyWithImpl<ChatResponseData>(this as ChatResponseData, _$identity);
 
   /// Serializes this ChatResponseData to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of ChatResponseData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ChatResponseDataCopyWith<ChatResponseData> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChatResponseData&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.displayPic, displayPic) || other.displayPic == displayPic)&&(identical(other.walletCode, walletCode) || other.walletCode == walletCode)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,firstName,lastName,displayPic,walletCode,fcmToken);
+
+@override
+String toString() {
+  return 'ChatResponseData(firstName: $firstName, lastName: $lastName, displayPic: $displayPic, walletCode: $walletCode, fcmToken: $fcmToken)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ChatResponseDataCopyWith<$Res> {
-  factory $ChatResponseDataCopyWith(
-          ChatResponseData value, $Res Function(ChatResponseData) then) =
-      _$ChatResponseDataCopyWithImpl<$Res, ChatResponseData>;
-  @useResult
-  $Res call(
-      {String firstName,
-      String lastName,
-      String? displayPic,
-      String walletCode,
-      String fcmToken});
-}
+abstract mixin class $ChatResponseDataCopyWith<$Res>  {
+  factory $ChatResponseDataCopyWith(ChatResponseData value, $Res Function(ChatResponseData) _then) = _$ChatResponseDataCopyWithImpl;
+@useResult
+$Res call({
+ String firstName, String lastName, String? displayPic, String walletCode, String fcmToken
+});
 
+
+
+
+}
 /// @nodoc
-class _$ChatResponseDataCopyWithImpl<$Res, $Val extends ChatResponseData>
+class _$ChatResponseDataCopyWithImpl<$Res>
     implements $ChatResponseDataCopyWith<$Res> {
-  _$ChatResponseDataCopyWithImpl(this._value, this._then);
+  _$ChatResponseDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ChatResponseData _self;
+  final $Res Function(ChatResponseData) _then;
 
-  /// Create a copy of ChatResponseData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? displayPic = freezed,
-    Object? walletCode = null,
-    Object? fcmToken = null,
-  }) {
-    return _then(_value.copyWith(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      displayPic: freezed == displayPic
-          ? _value.displayPic
-          : displayPic // ignore: cast_nullable_to_non_nullable
-              as String?,
-      walletCode: null == walletCode
-          ? _value.walletCode
-          : walletCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      fcmToken: null == fcmToken
-          ? _value.fcmToken
-          : fcmToken // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of ChatResponseData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? firstName = null,Object? lastName = null,Object? displayPic = freezed,Object? walletCode = null,Object? fcmToken = null,}) {
+  return _then(_self.copyWith(
+firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String,displayPic: freezed == displayPic ? _self.displayPic : displayPic // ignore: cast_nullable_to_non_nullable
+as String?,walletCode: null == walletCode ? _self.walletCode : walletCode // ignore: cast_nullable_to_non_nullable
+as String,fcmToken: null == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$ChatResponseDataImplCopyWith<$Res>
-    implements $ChatResponseDataCopyWith<$Res> {
-  factory _$$ChatResponseDataImplCopyWith(_$ChatResponseDataImpl value,
-          $Res Function(_$ChatResponseDataImpl) then) =
-      __$$ChatResponseDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String firstName,
-      String lastName,
-      String? displayPic,
-      String walletCode,
-      String fcmToken});
 }
 
-/// @nodoc
-class __$$ChatResponseDataImplCopyWithImpl<$Res>
-    extends _$ChatResponseDataCopyWithImpl<$Res, _$ChatResponseDataImpl>
-    implements _$$ChatResponseDataImplCopyWith<$Res> {
-  __$$ChatResponseDataImplCopyWithImpl(_$ChatResponseDataImpl _value,
-      $Res Function(_$ChatResponseDataImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of ChatResponseData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? displayPic = freezed,
-    Object? walletCode = null,
-    Object? fcmToken = null,
-  }) {
-    return _then(_$ChatResponseDataImpl(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      displayPic: freezed == displayPic
-          ? _value.displayPic
-          : displayPic // ignore: cast_nullable_to_non_nullable
-              as String?,
-      walletCode: null == walletCode
-          ? _value.walletCode
-          : walletCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      fcmToken: null == fcmToken
-          ? _value.fcmToken
-          : fcmToken // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [ChatResponseData].
+extension ChatResponseDataPatterns on ChatResponseData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ChatResponseData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ChatResponseData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ChatResponseData value)  $default,){
+final _that = this;
+switch (_that) {
+case _ChatResponseData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ChatResponseData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ChatResponseData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String? displayPic,  String walletCode,  String fcmToken)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ChatResponseData() when $default != null:
+return $default(_that.firstName,_that.lastName,_that.displayPic,_that.walletCode,_that.fcmToken);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String firstName,  String lastName,  String? displayPic,  String walletCode,  String fcmToken)  $default,) {final _that = this;
+switch (_that) {
+case _ChatResponseData():
+return $default(_that.firstName,_that.lastName,_that.displayPic,_that.walletCode,_that.fcmToken);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String firstName,  String lastName,  String? displayPic,  String walletCode,  String fcmToken)?  $default,) {final _that = this;
+switch (_that) {
+case _ChatResponseData() when $default != null:
+return $default(_that.firstName,_that.lastName,_that.displayPic,_that.walletCode,_that.fcmToken);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ChatResponseDataImpl implements _ChatResponseData {
-  const _$ChatResponseDataImpl(
-      {required this.firstName,
-      required this.lastName,
-      this.displayPic,
-      required this.walletCode,
-      required this.fcmToken});
 
-  factory _$ChatResponseDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChatResponseDataImplFromJson(json);
+class _ChatResponseData implements ChatResponseData {
+  const _ChatResponseData({required this.firstName, required this.lastName, this.displayPic, required this.walletCode, required this.fcmToken});
+  factory _ChatResponseData.fromJson(Map<String, dynamic> json) => _$ChatResponseDataFromJson(json);
 
-  @override
-  final String firstName;
-  @override
-  final String lastName;
-  @override
-  final String? displayPic;
-  @override
-  final String walletCode;
-  @override
-  final String fcmToken;
+@override final  String firstName;
+@override final  String lastName;
+@override final  String? displayPic;
+@override final  String walletCode;
+@override final  String fcmToken;
 
-  @override
-  String toString() {
-    return 'ChatResponseData(firstName: $firstName, lastName: $lastName, displayPic: $displayPic, walletCode: $walletCode, fcmToken: $fcmToken)';
-  }
+/// Create a copy of ChatResponseData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ChatResponseDataCopyWith<_ChatResponseData> get copyWith => __$ChatResponseDataCopyWithImpl<_ChatResponseData>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChatResponseDataImpl &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.displayPic, displayPic) ||
-                other.displayPic == displayPic) &&
-            (identical(other.walletCode, walletCode) ||
-                other.walletCode == walletCode) &&
-            (identical(other.fcmToken, fcmToken) ||
-                other.fcmToken == fcmToken));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, firstName, lastName, displayPic, walletCode, fcmToken);
-
-  /// Create a copy of ChatResponseData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChatResponseDataImplCopyWith<_$ChatResponseDataImpl> get copyWith =>
-      __$$ChatResponseDataImplCopyWithImpl<_$ChatResponseDataImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChatResponseDataImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$ChatResponseDataToJson(this, );
 }
 
-abstract class _ChatResponseData implements ChatResponseData {
-  const factory _ChatResponseData(
-      {required final String firstName,
-      required final String lastName,
-      final String? displayPic,
-      required final String walletCode,
-      required final String fcmToken}) = _$ChatResponseDataImpl;
-
-  factory _ChatResponseData.fromJson(Map<String, dynamic> json) =
-      _$ChatResponseDataImpl.fromJson;
-
-  @override
-  String get firstName;
-  @override
-  String get lastName;
-  @override
-  String? get displayPic;
-  @override
-  String get walletCode;
-  @override
-  String get fcmToken;
-
-  /// Create a copy of ChatResponseData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChatResponseDataImplCopyWith<_$ChatResponseDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChatResponseData&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.displayPic, displayPic) || other.displayPic == displayPic)&&(identical(other.walletCode, walletCode) || other.walletCode == walletCode)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,firstName,lastName,displayPic,walletCode,fcmToken);
+
+@override
+String toString() {
+  return 'ChatResponseData(firstName: $firstName, lastName: $lastName, displayPic: $displayPic, walletCode: $walletCode, fcmToken: $fcmToken)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ChatResponseDataCopyWith<$Res> implements $ChatResponseDataCopyWith<$Res> {
+  factory _$ChatResponseDataCopyWith(_ChatResponseData value, $Res Function(_ChatResponseData) _then) = __$ChatResponseDataCopyWithImpl;
+@override @useResult
+$Res call({
+ String firstName, String lastName, String? displayPic, String walletCode, String fcmToken
+});
+
+
+
+
+}
+/// @nodoc
+class __$ChatResponseDataCopyWithImpl<$Res>
+    implements _$ChatResponseDataCopyWith<$Res> {
+  __$ChatResponseDataCopyWithImpl(this._self, this._then);
+
+  final _ChatResponseData _self;
+  final $Res Function(_ChatResponseData) _then;
+
+/// Create a copy of ChatResponseData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? firstName = null,Object? lastName = null,Object? displayPic = freezed,Object? walletCode = null,Object? fcmToken = null,}) {
+  return _then(_ChatResponseData(
+firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String,displayPic: freezed == displayPic ? _self.displayPic : displayPic // ignore: cast_nullable_to_non_nullable
+as String?,walletCode: null == walletCode ? _self.walletCode : walletCode // ignore: cast_nullable_to_non_nullable
+as String,fcmToken: null == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

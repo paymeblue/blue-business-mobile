@@ -4,12 +4,12 @@ part 'change_pin_response.freezed.dart';
 part 'change_pin_response.g.dart';
 
 @freezed
-class ChangePinResponse with _$ChangePinResponse {
+abstract class ChangePinResponse with _$ChangePinResponse {
   const factory ChangePinResponse({
     @Default("fail") String status,
     String? message,
   }) = _ChangePinResponse;
 
   factory ChangePinResponse.fromJson(Map<String, dynamic> json) =>
-      _$ChangePinResponseImpl.fromJson(json);
+      _$ChangePinResponseFromJson(json);
 }

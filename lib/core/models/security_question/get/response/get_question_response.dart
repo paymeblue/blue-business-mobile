@@ -5,7 +5,7 @@ part 'get_question_response.freezed.dart';
 part 'get_question_response.g.dart';
 
 @freezed
-class GetQuestionResponse with _$GetQuestionResponse {
+abstract class GetQuestionResponse with _$GetQuestionResponse {
   const factory GetQuestionResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class GetQuestionResponse with _$GetQuestionResponse {
   }) = _GetQuestionResponse;
 
   factory GetQuestionResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetQuestionResponseImpl.fromJson(json);
+      _$GetQuestionResponseFromJson(json);
 }

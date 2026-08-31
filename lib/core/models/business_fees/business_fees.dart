@@ -4,7 +4,7 @@ part 'business_fees.freezed.dart';
 part 'business_fees.g.dart';
 
 @freezed
-class GetBusinessFeesResponse with _$GetBusinessFeesResponse {
+abstract class GetBusinessFeesResponse with _$GetBusinessFeesResponse {
   const factory GetBusinessFeesResponse({
     @Default('fail') String status,
     String? message,
@@ -12,11 +12,11 @@ class GetBusinessFeesResponse with _$GetBusinessFeesResponse {
   }) = _GetBusinessFeesResponse;
 
   factory GetBusinessFeesResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetBusinessFeesResponseImpl.fromJson(json);
+      _$GetBusinessFeesResponseFromJson(json);
 }
 
 @freezed
-class GetBusinessFeesData with _$GetBusinessFeesData {
+abstract class GetBusinessFeesData with _$GetBusinessFeesData {
   const factory GetBusinessFeesData({
     required int id,
     required int businessId,
@@ -29,5 +29,5 @@ class GetBusinessFeesData with _$GetBusinessFeesData {
   }) = _GetBusinessFeesData;
 
   factory GetBusinessFeesData.fromJson(Map<String, dynamic> json) =>
-      _$GetBusinessFeesDataImpl.fromJson(json);
+      _$GetBusinessFeesDataFromJson(json);
 }

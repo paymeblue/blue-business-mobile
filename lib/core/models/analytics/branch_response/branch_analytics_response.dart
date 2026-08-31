@@ -5,7 +5,7 @@ part 'branch_analytics_response.freezed.dart';
 part 'branch_analytics_response.g.dart';
 
 @freezed
-class BranchAnalyticsResponse with _$BranchAnalyticsResponse {
+abstract class BranchAnalyticsResponse with _$BranchAnalyticsResponse {
   const factory BranchAnalyticsResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class BranchAnalyticsResponse with _$BranchAnalyticsResponse {
   }) = _BranchAnalyticsResponse;
 
   factory BranchAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
-      _$BranchAnalyticsResponseImpl.fromJson(json);
+      _$BranchAnalyticsResponseFromJson(json);
 }

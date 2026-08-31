@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/forgot/pin/verify/request/verify_forgot_pin_request.dart';
 import 'package:blue_business/core/models/recover_phone/add/response/recover_phone_response.dart';
@@ -16,7 +17,7 @@ class VerifyPinOtpViewModel extends BaseViewModel {
   late Size size;
   late String phone;
 
-  init(BuildContext context, String p) {
+  void init(BuildContext context, String p) {
     size = context.mediaQuery.size;
     phone = p;
     startCountdown();
@@ -36,11 +37,11 @@ class VerifyPinOtpViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onChanged(String v) {
+  void onChanged(String v) {
     canContinue = false;
   }
 
-  onSubmit(String otp) {
+  void onSubmit(String otp) {
     canContinue = true;
     pin = otp;
   }
@@ -66,7 +67,7 @@ class VerifyPinOtpViewModel extends BaseViewModel {
 
   late Timer timer;
 
-  startCountdown() {
+  void startCountdown() {
     timeLeft = 120;
     canResend = false;
     timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
@@ -79,23 +80,24 @@ class VerifyPinOtpViewModel extends BaseViewModel {
     });
   }
 
-  stopTimer() {
+  void stopTimer() {
     timer.cancel();
   }
 
-  resendOtp() async {
+  Future<void> resendOtp() async {
     AppLoader.start();
 
-    SendNewPhoneResponse resp = await AuthService()
-        .resendPinOtp(phone: phone)
-        .onError((error, stackTrace) => SendNewPhoneResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "forgot_pin_with_phone",
-                "response_model": "SendNewPhoneResponse"
-              },
-            )));
+    SendNewPhoneResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .resendPinOtp(phone: phone)
+            .onError(
+              (error, stackTrace) => SendNewPhoneResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "forgot_pin_with_phone",
+                  "response_model": "SendNewPhoneResponse",
+                }),
+              ),
+            );
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
@@ -106,22 +108,25 @@ class VerifyPinOtpViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  verifyOtp(BuildContext context) async {
+  Future<void> verifyOtp(BuildContext context) async {
     AppLoader.start();
-    VerifyForgotPinRequest request =
-        VerifyForgotPinRequest(otp: pin, recoveryPhone: phone);
+    VerifyForgotPinRequest request = VerifyForgotPinRequest(
+      otp: pin,
+      recoveryPhone: phone,
+    );
 
-    ResetPasswordResponse resp = await AuthService()
-        .verifyPinOtp(request: request)
-        .onError((error, stackTrace) => ResetPasswordResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "verify_otp",
-                "request": request.toString(),
-                "response_model": "ResetPasswordResponse"
-              },
-            )));
+    ResetPasswordResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .verifyPinOtp(request: request)
+            .onError(
+              (error, stackTrace) => ResetPasswordResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "verify_otp",
+                  "request": request.toString(),
+                  "response_model": "ResetPasswordResponse",
+                }),
+              ),
+            );
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
@@ -132,11 +137,11 @@ class VerifyPinOtpViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  goToNext(BuildContext context) {
+  void goToNext(BuildContext context) {
     locator<AppRouter>().replace(ResetPinRoute(phone: phone));
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 }

@@ -6,8 +6,8 @@ part of 'power_details.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PowerDetailsImpl _$$PowerDetailsImplFromJson(Map<String, dynamic> json) =>
-    _$PowerDetailsImpl(
+_PowerDetails _$PowerDetailsFromJson(Map<String, dynamic> json) =>
+    _PowerDetails(
       id: (json['id'] as num?)?.toInt(),
       amount: json['amount'] as String,
       serviceCharge: json['service_charge'] as String,
@@ -23,9 +23,9 @@ _$PowerDetailsImpl _$$PowerDetailsImplFromJson(Map<String, dynamic> json) =>
       units: json['units'] as String? ?? "0.0",
     );
 
-Map<String, dynamic> _$$PowerDetailsImplToJson(_$PowerDetailsImpl instance) =>
+Map<String, dynamic> _$PowerDetailsToJson(_PowerDetails instance) =>
     <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
+      'id': ?instance.id,
       'amount': instance.amount,
       'service_charge': instance.serviceCharge,
       'transaction_id': instance.transactionId,
@@ -34,7 +34,7 @@ Map<String, dynamic> _$$PowerDetailsImplToJson(_$PowerDetailsImpl instance) =>
       'receiver': instance.receiver,
       'service': instance.service,
       'status': instance.status,
-      if (instance.token case final value?) 'token': value,
+      'token': ?instance.token,
       'balance_before': instance.balanceBefore,
       'balance_after': instance.balanceAfter,
       'units': instance.units,

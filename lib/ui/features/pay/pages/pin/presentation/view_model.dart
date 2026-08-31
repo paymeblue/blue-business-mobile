@@ -1,5 +1,6 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
@@ -27,7 +28,7 @@ import 'package:flutter/material.dart';
 class CompletePaymentViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
     useBiometrics = StorageValues.enableBiometrics == "true";
   }
@@ -46,8 +47,10 @@ class CompletePaymentViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  completeWithBiometrics(
-      BuildContext context, ConfirmTransactionViewArgs args) async {
+  Future<void> completeWithBiometrics(
+    BuildContext context,
+    ConfirmTransactionViewArgs args,
+  ) async {
     bool canContinue = await Biometrics.biometrics();
     if (canContinue) {
       pin = StorageValues.pin;
@@ -57,7 +60,7 @@ class CompletePaymentViewModel extends BaseViewModel {
     }
   }
 
-  onButtonTap(BuildContext context, ConfirmTransactionViewArgs args) {
+  void onButtonTap(BuildContext context, ConfirmTransactionViewArgs args) {
     if (args.mode == PaymentMode.withdrawal) {
       withdraw(context, args);
     } else {
@@ -65,24 +68,28 @@ class CompletePaymentViewModel extends BaseViewModel {
     }
   }
 
-  completeTransaction(
-      BuildContext context, ConfirmTransactionViewArgs args) async {
+  Future<void> completeTransaction(
+    BuildContext context,
+    ConfirmTransactionViewArgs args,
+  ) async {
     AppLoader.start();
 
-    CreditRequest request =
-        CreditRequest(transactionId: args.transactionId!, passcode: pin);
+    CreditRequest request = CreditRequest(
+      transactionId: args.transactionId!,
+      passcode: pin,
+    );
 
-    PayResponse resp =
-        await TransactionService().pay(request).onError((error, stackTrace) {
+    PayResponse resp = await TransactionService().pay(request).onError((
+      error,
+      stackTrace,
+    ) {
       return PayResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
+        message: AppErrorHandler.getErrorMessage(error, {
           "request_name": "pay",
           "request": request.toString(),
-          "response_model": "PayResponse"
-        },
-      ));
+          "response_model": "PayResponse",
+        }),
+      );
     });
 
     if (resp.status == "success") {
@@ -94,8 +101,10 @@ class CompletePaymentViewModel extends BaseViewModel {
         savePin();
       }
 
-      PaymentSuccessViewArgs extra =
-          PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
+      PaymentSuccessViewArgs extra = PaymentSuccessViewArgs(
+        mode: args.mode,
+        data: resp.data!,
+      );
 
       locator<AppRouter>().replaceAll([PaymentSuccessRoute(args: extra)]);
     } else {
@@ -103,61 +112,69 @@ class CompletePaymentViewModel extends BaseViewModel {
         locator<AppRouter>().replaceAll([
           HomeRoute(),
           TransactionErrorRoute(
-              error: resp.message ??
-                  "Something went wrong when trying to process this transaction"),
+            error:
+                resp.message ??
+                "Something went wrong when trying to process this transaction",
+          ),
         ]);
       }
     }
     AppLoader.stop();
   }
 
-  saveBeneficiary(VerifiedReceiver data) async {
-    SetBeneficiaryRequest request =
-        SetBeneficiaryRequest(identifier: data.walletCode!);
+  Future<void> saveBeneficiary(VerifiedReceiver data) async {
+    SetBeneficiaryRequest request = SetBeneficiaryRequest(
+      identifier: data.walletCode!,
+    );
 
     SetBeneficiaryResponse resp = await TransactionService()
         .addBeneficiary(request)
         .onError((error, stackTrace) {
-      return SetBeneficiaryResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "add_beneficiary",
-          "request": request.toString(),
-          "response_model": "SetBeneficiaryResponse"
-        },
-      ));
-    });
+          return SetBeneficiaryResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "add_beneficiary",
+              "request": request.toString(),
+              "response_model": "SetBeneficiaryResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
-      BlueToast.primaryWithoutIcon(resp.message ??
-          "This user has been successfully saved as a beneficiary.");
+      BlueToast.primaryWithoutIcon(
+        resp.message ??
+            "This user has been successfully saved as a beneficiary.",
+      );
     } else {
       BlueToast.primaryWithoutIcon(
-          resp.message ?? "An error occurred. Beneficiary could not be saved");
+        resp.message ?? "An error occurred. Beneficiary could not be saved",
+      );
     }
 
     locator<AppStateValues>().hasSavedBeneficiary = true;
   }
 
-  withdraw(BuildContext context, ConfirmTransactionViewArgs args) async {
+  Future<void> withdraw(
+    BuildContext context,
+    ConfirmTransactionViewArgs args,
+  ) async {
     AppLoader.start();
 
-    WithdrawRequest request =
-        WithdrawRequest(amount: (args.amount! / 100).toString(), passcode: pin);
+    WithdrawRequest request = WithdrawRequest(
+      amount: (args.amount! / 100).toString(),
+      passcode: pin,
+    );
 
-    PayResponse resp = await TransactionService()
-        .withdraw(request)
-        .onError((error, stackTrace) {
+    PayResponse resp = await TransactionService().withdraw(request).onError((
+      error,
+      stackTrace,
+    ) {
       return PayResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
+        message: AppErrorHandler.getErrorMessage(error, {
           "request_name": "withdraw",
           "request": request.toString(),
-          "response_model": "PayResponse"
-        },
-      ));
+          "response_model": "PayResponse",
+        }),
+      );
     });
 
     if (resp.status == "success") {
@@ -165,19 +182,25 @@ class CompletePaymentViewModel extends BaseViewModel {
         savePin();
       }
       if (context.mounted) {
-        PaymentSuccessViewArgs extra =
-            PaymentSuccessViewArgs(mode: args.mode, data: resp.data!);
+        PaymentSuccessViewArgs extra = PaymentSuccessViewArgs(
+          mode: args.mode,
+          data: resp.data!,
+        );
 
-        locator<AppRouter>()
-            .replaceAll([HomeRoute(), PaymentSuccessRoute(args: extra)]);
+        locator<AppRouter>().replaceAll([
+          HomeRoute(),
+          PaymentSuccessRoute(args: extra),
+        ]);
       }
     } else {
       if (context.mounted) {
         locator<AppRouter>().replaceAll([
           HomeRoute(),
           TransactionErrorRoute(
-              error: resp.message ??
-                  "Something went wrong when trying to process this transaction")
+            error:
+                resp.message ??
+                "Something went wrong when trying to process this transaction",
+          ),
         ]);
       }
     }
@@ -185,32 +208,33 @@ class CompletePaymentViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  savePin() {
+  void savePin() {
     StorageValues.pin = pin;
     StorageHelpers.setVal(StorageKeys.pinKey, pin);
   }
 
-  getSecurityQuestion(BuildContext context) async {
+  Future<void> getSecurityQuestion(BuildContext context) async {
     AppLoader.start();
-    GetQuestionResponse resp = await AuthService()
-        .getSecurityQuestion(locator<AppStateValues>().currentUser!.phone)
-        .onError((error, stackTrace) => GetQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_security_question",
-                "response_model": "GetQuestionResponse"
-              },
-            )));
+    GetQuestionResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .getSecurityQuestion(locator<AppStateValues>().currentUser!.phone)
+            .onError(
+              (error, stackTrace) => GetQuestionResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "get_security_question",
+                  "response_model": "GetQuestionResponse",
+                }),
+              ),
+            );
 
     if (context.mounted) {
       locator<AppRouter>()
           .push<bool>(InitiatePinResetRoute(securityQuestion: resp.data))
           .then((val) {
-        if (val == true) {
-          AppNotification.success(message: resp.message);
-        }
-      });
+            if (val == true) {
+              AppNotification.success(message: resp.message);
+            }
+          });
     }
     AppLoader.stop();
   }

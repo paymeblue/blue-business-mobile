@@ -7,16 +7,15 @@ class ResponseHandlers {
     var result = response;
     final data = response.data;
 
-    final isSessionExpired = data is Map<String, dynamic> &&
-        (data["message"]
-                ?.toString()
-                .toLowerCase()
-                .contains("session expired") ??
+    final isSessionExpired =
+        data is Map<String, dynamic> &&
+        (data["message"]?.toString().toLowerCase().contains(
+              "session expired",
+            ) ??
             false ||
-                (data["message"]
-                        ?.toString()
-                        .toLowerCase()
-                        .contains("login again") ??
+                (data["message"]?.toString().toLowerCase().contains(
+                      "login again",
+                    ) ??
                     false));
 
     if (result.statusCode == 401 || isSessionExpired) {
@@ -98,7 +97,7 @@ class ResponseHandlers {
     return result;
   }
 
-  static _logout() {
+  static void _logout() {
     RefreshTimer.logout();
   }
 }

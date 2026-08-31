@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,200 +9,275 @@ part of 'transaction_detail_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-TransactionDetailResponse _$TransactionDetailResponseFromJson(
-    Map<String, dynamic> json) {
-  return _TransactionDetailResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$TransactionDetailResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  dynamic get data => throw _privateConstructorUsedError;
+
+ String get status; String? get message; dynamic get data;
+/// Create a copy of TransactionDetailResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TransactionDetailResponseCopyWith<TransactionDetailResponse> get copyWith => _$TransactionDetailResponseCopyWithImpl<TransactionDetailResponse>(this as TransactionDetailResponse, _$identity);
 
   /// Serializes this TransactionDetailResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of TransactionDetailResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TransactionDetailResponseCopyWith<TransactionDetailResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionDetailResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.data, data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,const DeepCollectionEquality().hash(data));
+
+@override
+String toString() {
+  return 'TransactionDetailResponse(status: $status, message: $message, data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $TransactionDetailResponseCopyWith<$Res> {
-  factory $TransactionDetailResponseCopyWith(TransactionDetailResponse value,
-          $Res Function(TransactionDetailResponse) then) =
-      _$TransactionDetailResponseCopyWithImpl<$Res, TransactionDetailResponse>;
-  @useResult
-  $Res call({String status, String? message, dynamic data});
-}
+abstract mixin class $TransactionDetailResponseCopyWith<$Res>  {
+  factory $TransactionDetailResponseCopyWith(TransactionDetailResponse value, $Res Function(TransactionDetailResponse) _then) = _$TransactionDetailResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, dynamic data
+});
 
+
+
+
+}
 /// @nodoc
-class _$TransactionDetailResponseCopyWithImpl<$Res,
-        $Val extends TransactionDetailResponse>
+class _$TransactionDetailResponseCopyWithImpl<$Res>
     implements $TransactionDetailResponseCopyWith<$Res> {
-  _$TransactionDetailResponseCopyWithImpl(this._value, this._then);
+  _$TransactionDetailResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TransactionDetailResponse _self;
+  final $Res Function(TransactionDetailResponse) _then;
 
-  /// Create a copy of TransactionDetailResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-    ) as $Val);
-  }
+/// Create a copy of TransactionDetailResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as dynamic,
+  ));
 }
 
-/// @nodoc
-abstract class _$$TransactionDetailResponseImplCopyWith<$Res>
-    implements $TransactionDetailResponseCopyWith<$Res> {
-  factory _$$TransactionDetailResponseImplCopyWith(
-          _$TransactionDetailResponseImpl value,
-          $Res Function(_$TransactionDetailResponseImpl) then) =
-      __$$TransactionDetailResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message, dynamic data});
 }
 
-/// @nodoc
-class __$$TransactionDetailResponseImplCopyWithImpl<$Res>
-    extends _$TransactionDetailResponseCopyWithImpl<$Res,
-        _$TransactionDetailResponseImpl>
-    implements _$$TransactionDetailResponseImplCopyWith<$Res> {
-  __$$TransactionDetailResponseImplCopyWithImpl(
-      _$TransactionDetailResponseImpl _value,
-      $Res Function(_$TransactionDetailResponseImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of TransactionDetailResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_$TransactionDetailResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-    ));
-  }
+/// Adds pattern-matching-related methods to [TransactionDetailResponse].
+extension TransactionDetailResponsePatterns on TransactionDetailResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TransactionDetailResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TransactionDetailResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TransactionDetailResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _TransactionDetailResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TransactionDetailResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TransactionDetailResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  dynamic data)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TransactionDetailResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  dynamic data)  $default,) {final _that = this;
+switch (_that) {
+case _TransactionDetailResponse():
+return $default(_that.status,_that.message,_that.data);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  dynamic data)?  $default,) {final _that = this;
+switch (_that) {
+case _TransactionDetailResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TransactionDetailResponseImpl implements _TransactionDetailResponse {
-  const _$TransactionDetailResponseImpl(
-      {this.status = "fail", this.message, this.data});
 
-  factory _$TransactionDetailResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TransactionDetailResponseImplFromJson(json);
+class _TransactionDetailResponse implements TransactionDetailResponse {
+  const _TransactionDetailResponse({this.status = "fail", this.message, this.data});
+  factory _TransactionDetailResponse.fromJson(Map<String, dynamic> json) => _$TransactionDetailResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  @override
-  final dynamic data;
+@override@JsonKey() final  String status;
+@override final  String? message;
+@override final  dynamic data;
 
-  @override
-  String toString() {
-    return 'TransactionDetailResponse(status: $status, message: $message, data: $data)';
-  }
+/// Create a copy of TransactionDetailResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TransactionDetailResponseCopyWith<_TransactionDetailResponse> get copyWith => __$TransactionDetailResponseCopyWithImpl<_TransactionDetailResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TransactionDetailResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality().equals(other.data, data));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, status, message, const DeepCollectionEquality().hash(data));
-
-  /// Create a copy of TransactionDetailResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TransactionDetailResponseImplCopyWith<_$TransactionDetailResponseImpl>
-      get copyWith => __$$TransactionDetailResponseImplCopyWithImpl<
-          _$TransactionDetailResponseImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TransactionDetailResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$TransactionDetailResponseToJson(this, );
 }
 
-abstract class _TransactionDetailResponse implements TransactionDetailResponse {
-  const factory _TransactionDetailResponse(
-      {final String status,
-      final String? message,
-      final dynamic data}) = _$TransactionDetailResponseImpl;
-
-  factory _TransactionDetailResponse.fromJson(Map<String, dynamic> json) =
-      _$TransactionDetailResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  dynamic get data;
-
-  /// Create a copy of TransactionDetailResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransactionDetailResponseImplCopyWith<_$TransactionDetailResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TransactionDetailResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.data, data));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,const DeepCollectionEquality().hash(data));
+
+@override
+String toString() {
+  return 'TransactionDetailResponse(status: $status, message: $message, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TransactionDetailResponseCopyWith<$Res> implements $TransactionDetailResponseCopyWith<$Res> {
+  factory _$TransactionDetailResponseCopyWith(_TransactionDetailResponse value, $Res Function(_TransactionDetailResponse) _then) = __$TransactionDetailResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, dynamic data
+});
+
+
+
+
+}
+/// @nodoc
+class __$TransactionDetailResponseCopyWithImpl<$Res>
+    implements _$TransactionDetailResponseCopyWith<$Res> {
+  __$TransactionDetailResponseCopyWithImpl(this._self, this._then);
+
+  final _TransactionDetailResponse _self;
+  final $Res Function(_TransactionDetailResponse) _then;
+
+/// Create a copy of TransactionDetailResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_TransactionDetailResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as dynamic,
+  ));
+}
+
+
+}
+
+// dart format on

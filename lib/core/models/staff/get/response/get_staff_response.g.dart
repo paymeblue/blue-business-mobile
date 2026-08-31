@@ -6,9 +6,8 @@ part of 'get_staff_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GetStaffResponseImpl _$$GetStaffResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GetStaffResponseImpl(
+_GetStaffResponse _$GetStaffResponseFromJson(Map<String, dynamic> json) =>
+    _GetStaffResponse(
       status: json['status'] as String? ?? "fail",
       data: json['data'] == null
           ? null
@@ -16,10 +15,9 @@ _$GetStaffResponseImpl _$$GetStaffResponseImplFromJson(
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$GetStaffResponseImplToJson(
-        _$GetStaffResponseImpl instance) =>
+Map<String, dynamic> _$GetStaffResponseToJson(_GetStaffResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
-      if (instance.data case final value?) 'data': value,
-      if (instance.message case final value?) 'message': value,
+      'data': ?instance.data,
+      'message': ?instance.message,
     };

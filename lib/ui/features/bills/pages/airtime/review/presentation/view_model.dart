@@ -6,15 +6,15 @@ import 'package:blue_business/core/utils/extensions.dart';
 class ReviewAirtimeViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
-  goToNext(BuildContext context, ReviewAirtimeData data) {
+  void goToNext(BuildContext context, ReviewAirtimeData data) {
     locator<AppRouter>().push(ConfirmAirtimePinRoute(data: data));
   }
 }

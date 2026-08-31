@@ -6,12 +6,8 @@ part of 'forgot_pin_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ForgotPinDataImpl _$$ForgotPinDataImplFromJson(Map<String, dynamic> json) =>
-    _$ForgotPinDataImpl(
-      phone: json['phone'] as String,
-    );
+_ForgotPinData _$ForgotPinDataFromJson(Map<String, dynamic> json) =>
+    _ForgotPinData(phone: json['phone'] as String);
 
-Map<String, dynamic> _$$ForgotPinDataImplToJson(_$ForgotPinDataImpl instance) =>
-    <String, dynamic>{
-      'phone': instance.phone,
-    };
+Map<String, dynamic> _$ForgotPinDataToJson(_ForgotPinData instance) =>
+    <String, dynamic>{'phone': instance.phone};

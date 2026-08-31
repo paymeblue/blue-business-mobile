@@ -4,12 +4,10 @@ part 'line_chart_data.freezed.dart';
 part 'line_chart_data.g.dart';
 
 @freezed
-class LineInputData with _$LineInputData {
-  const factory LineInputData({
-    required String label,
-    required double amount,
-  }) = _LineInputData;
+abstract class LineInputData with _$LineInputData {
+  const factory LineInputData({required String label, required double amount}) =
+      _LineInputData;
 
   factory LineInputData.fromJson(Map<String, dynamic> json) =>
-      _$LineInputDataImpl.fromJson(json);
+      _$LineInputDataFromJson(json);
 }

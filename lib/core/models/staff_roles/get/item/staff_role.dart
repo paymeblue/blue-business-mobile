@@ -4,12 +4,9 @@ part 'staff_role.freezed.dart';
 part 'staff_role.g.dart';
 
 @freezed
-class StaffRole with _$StaffRole {
-  const factory StaffRole({
-    required int id,
-    required String name,
-  }) = _StaffRole;
+abstract class StaffRole with _$StaffRole {
+  const factory StaffRole({required int id, required String name}) = _StaffRole;
 
   factory StaffRole.fromJson(Map<String, dynamic> json) =>
-      _$StaffRoleImpl.fromJson(json);
+      _$StaffRoleFromJson(json);
 }

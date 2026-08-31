@@ -4,7 +4,7 @@ part 'recently_paid_item.freezed.dart';
 part 'recently_paid_item.g.dart';
 
 @freezed
-class RecentlyPaidItem with _$RecentlyPaidItem {
+abstract class RecentlyPaidItem with _$RecentlyPaidItem {
   const factory RecentlyPaidItem({
     required String uFirstName,
     required String uLastName,
@@ -13,5 +13,5 @@ class RecentlyPaidItem with _$RecentlyPaidItem {
   }) = _RecentlyPaidItem;
 
   factory RecentlyPaidItem.fromJson(Map<String, dynamic> json) =>
-      _$RecentlyPaidItemImpl.fromJson(json);
+      _$RecentlyPaidItemFromJson(json);
 }

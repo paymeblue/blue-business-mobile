@@ -6,20 +6,18 @@ part of 'get_question_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GetQuestionDataImpl _$$GetQuestionDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GetQuestionDataImpl(
+_GetQuestionData _$GetQuestionDataFromJson(Map<String, dynamic> json) =>
+    _GetQuestionData(
       id: (json['id'] as num).toInt(),
       userId: (json['user_id'] as num).toInt(),
       question: json['question'] as String,
       createdAt: json['created_at'] as String?,
     );
 
-Map<String, dynamic> _$$GetQuestionDataImplToJson(
-        _$GetQuestionDataImpl instance) =>
+Map<String, dynamic> _$GetQuestionDataToJson(_GetQuestionData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,
       'question': instance.question,
-      if (instance.createdAt case final value?) 'created_at': value,
+      'created_at': ?instance.createdAt,
     };

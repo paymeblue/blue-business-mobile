@@ -29,8 +29,10 @@ import 'package:url_launcher/url_launcher.dart';
 class BlueBottomSheet {
   BlueBottomSheet._();
 
-  static Future biometrics(
-      {required VoidCallback onContinue, required VoidCallback onCancel}) {
+  static Future biometrics({
+    required VoidCallback onContinue,
+    required VoidCallback onCancel,
+  }) {
     return showModalBottomSheet(
       context: locator<AppRouter>().navigatorKey.currentContext!,
       isScrollControlled: true,
@@ -41,11 +43,16 @@ class BlueBottomSheet {
         return Container(
           height: 310 + context.mediaQuery.viewInsets.bottom,
           margin: EdgeInsets.only(
-              left: 17,
-              right: 17,
-              bottom: 35 + context.mediaQuery.viewInsets.bottom),
-          padding:
-              const EdgeInsets.only(left: 38, right: 38, top: 40, bottom: 40),
+            left: 17,
+            right: 17,
+            bottom: 35 + context.mediaQuery.viewInsets.bottom,
+          ),
+          padding: const EdgeInsets.only(
+            left: 38,
+            right: 38,
+            top: 40,
+            bottom: 40,
+          ),
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(6),
@@ -56,9 +63,7 @@ class BlueBottomSheet {
               17.verticalGap,
               Text(
                 "Enable Face/Finger ID",
-                style: AppTextStyles.header.copyWith(
-                  fontSize: 20.sp,
-                ),
+                style: AppTextStyles.header.copyWith(fontSize: 20.sp),
               ),
               15.verticalGap,
               Padding(
@@ -91,7 +96,7 @@ class BlueBottomSheet {
                         onCancel();
                       },
                     ),
-                  )
+                  ),
                 ],
               ),
             ],
@@ -111,11 +116,16 @@ class BlueBottomSheet {
         return Container(
           height: 295 + context.mediaQuery.viewInsets.bottom,
           margin: EdgeInsets.only(
-              left: 17,
-              right: 17,
-              bottom: 35 + context.mediaQuery.viewInsets.bottom),
-          padding:
-              const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 30),
+            left: 17,
+            right: 17,
+            bottom: 35 + context.mediaQuery.viewInsets.bottom,
+          ),
+          padding: const EdgeInsets.only(
+            left: 20,
+            right: 20,
+            top: 30,
+            bottom: 30,
+          ),
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(10),
@@ -129,10 +139,11 @@ class BlueBottomSheet {
               23.verticalGap,
               InkWell(
                 onTap: () {
-                  Clipboard.setData(ClipboardData(
-                          text:
-                              locator<AppStateValues>().account!.accountNumber))
-                      .then((value) {
+                  Clipboard.setData(
+                    ClipboardData(
+                      text: locator<AppStateValues>().account!.accountNumber,
+                    ),
+                  ).then((value) {
                     BlueToast.primaryWithcon("Copied to clipboard");
                   });
                 },
@@ -165,16 +176,18 @@ class BlueBottomSheet {
                           children: [
                             Text(
                               locator<AppStateValues>().account!.bankName,
-                              style: AppTextStyles.header
-                                  .copyWith(fontSize: 15.sp),
+                              style: AppTextStyles.header.copyWith(
+                                fontSize: 15.sp,
+                              ),
                             ),
                             4.verticalGap,
                             Text(
                               locator<AppStateValues>().account!.accountNumber,
                               style: AppTextStyles.smallText.copyWith(
-                                  color: AppColors.bodyTextColor,
-                                  fontSize: 14.sp),
-                            )
+                                color: AppColors.bodyTextColor,
+                                fontSize: 14.sp,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -199,7 +212,7 @@ class BlueBottomSheet {
                 onTap: () {
                   locator<AppRouter>().maybePop();
                 },
-              )
+              ),
             ],
           ),
         );
@@ -207,7 +220,7 @@ class BlueBottomSheet {
     );
   }
 
-  static filter(
+  static Future filter(
     List<String> alertTypes,
     List<String> statuses,
     String type,
@@ -220,7 +233,9 @@ class BlueBottomSheet {
     required VoidCallback refresh,
   }) {
     Widget filterDropdown(
-        BuildContext context, void Function(String?)? onChanged) {
+      BuildContext context,
+      void Function(String?)? onChanged,
+    ) {
       return Container(
         margin: const EdgeInsets.only(top: 10, bottom: 10),
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
@@ -234,23 +249,24 @@ class BlueBottomSheet {
             type.isNotEmpty ? type : '--Select an alert type--',
             style: type.isNotEmpty
                 ? AppTextStyles.textField
-                : AppTextStyles.subText
-                    .copyWith(color: AppColors.textColor.withOpacityValue(.5)),
+                : AppTextStyles.subText.copyWith(
+                    color: AppColors.textColor.withOpacityValue(.5),
+                  ),
           ),
           underline: const SizedBox(),
           icon: const Icon(Icons.keyboard_arrow_down_rounded),
           style: TextStyle(
-              fontSize: 13.sp,
-              // fontWeight: FontWeight.w300,
-              color: Theme.of(context).highlightColor.withOpacityValue(.8)),
+            fontSize: 13.sp,
+            // fontWeight: FontWeight.w300,
+            color: Theme.of(context).highlightColor.withOpacityValue(.8),
+          ),
           items: alertTypes
-              .map((q) => DropdownMenuItem<String>(
-                    value: q,
-                    child: Text(
-                      q,
-                      style: AppTextStyles.textField,
-                    ),
-                  ))
+              .map(
+                (q) => DropdownMenuItem<String>(
+                  value: q,
+                  child: Text(q, style: AppTextStyles.textField),
+                ),
+              )
               .toList(),
           isExpanded: true,
           onChanged: onChanged,
@@ -275,12 +291,12 @@ class BlueBottomSheet {
           child: Container(
             height: 55.h,
             width: context.mediaQuery.size.width,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             margin: const EdgeInsets.only(top: 10),
             decoration: BoxDecoration(
-                color: AppColors.grey, borderRadius: BorderRadius.circular(5)),
+              color: AppColors.grey,
+              borderRadius: BorderRadius.circular(5),
+            ),
             alignment: Alignment.centerLeft,
             child: Row(
               children: [
@@ -295,7 +311,8 @@ class BlueBottomSheet {
                       ? Text(
                           "dd/mm/yyyy",
                           style: AppTextStyles.subText.copyWith(
-                              color: AppColors.textColor.withOpacityValue(.5)),
+                            color: AppColors.textColor.withOpacityValue(.5),
+                          ),
                         )
                       : Text(
                           "${DateTime.parse(date).day}/${DateTime.parse(date).month}/${DateTime.parse(date).year}",
@@ -315,78 +332,84 @@ class BlueBottomSheet {
       backgroundColor: Colors.transparent,
       useSafeArea: true,
       builder: (BuildContext context) {
-        return StatefulBuilder(builder: (context, setState) {
-          return GestureDetector(
-            onTap: () {
-              RefreshTimer().resetTimer();
-            },
-            onPanDown: (details) {
-              RefreshTimer().resetTimer();
-            },
-            child: Container(
-              height: 535.h,
-              margin: const EdgeInsets.only(left: 17, right: 17, bottom: 35),
-              padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 22, bottom: 22),
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(10),
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return GestureDetector(
+              onTap: () {
+                RefreshTimer().resetTimer();
+              },
+              onPanDown: (details) {
+                RefreshTimer().resetTimer();
+              },
+              child: Container(
+                height: 535.h,
+                margin: const EdgeInsets.only(left: 17, right: 17, bottom: 35),
+                padding: const EdgeInsets.only(
+                  left: 20,
+                  right: 20,
+                  top: 22,
+                  bottom: 22,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      "Filter Transactions",
+                      style: AppTextStyles.header.copyWith(fontSize: 18.sp),
+                    ),
+                    14.verticalGap,
+                    textFieldHeader("Alert type"),
+                    filterDropdown(context, (val) {
+                      setState(() {
+                        type = val ?? "";
+                      });
+                    }),
+                    // 12.verticalGap,
+                    // textFieldHeader("Transaction status"),
+                    // statusDropdown(context, (val) {
+                    //   setState(() {
+                    //     status = val ?? "";
+                    //   });
+                    // }),
+                    12.verticalGap,
+                    textFieldHeader("Date"),
+                    datePickerField(context, () async {
+                      String d = await pickDate() ?? "";
+                      setState(() {
+                        date = d;
+                      });
+                    }),
+                    const Spacer(),
+                    AppButton.primary(
+                      title: "Apply Filter",
+                      onTap: () {
+                        selectedType(type);
+                        selectedStatus(status);
+                        selectedDate(date);
+                        refresh();
+                        locator<AppRouter>().maybePop();
+                      },
+                    ),
+                    4.verticalGap,
+                    AppButton.ghostPrimary(
+                      title: "Clear Filters",
+                      onTap: () {
+                        selectedType("");
+                        selectedDate("");
+                        selectedStatus("");
+                        refresh();
+                        locator<AppRouter>().maybePop();
+                      },
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                children: [
-                  Text(
-                    "Filter Transactions",
-                    style: AppTextStyles.header.copyWith(fontSize: 18.sp),
-                  ),
-                  14.verticalGap,
-                  textFieldHeader("Alert type"),
-                  filterDropdown(context, (val) {
-                    setState(() {
-                      type = val ?? "";
-                    });
-                  }),
-                  // 12.verticalGap,
-                  // textFieldHeader("Transaction status"),
-                  // statusDropdown(context, (val) {
-                  //   setState(() {
-                  //     status = val ?? "";
-                  //   });
-                  // }),
-                  12.verticalGap,
-                  textFieldHeader("Date"),
-                  datePickerField(context, () async {
-                    String d = await pickDate() ?? "";
-                    setState(() {
-                      date = d;
-                    });
-                  }),
-                  const Spacer(),
-                  AppButton.primary(
-                    title: "Apply Filter",
-                    onTap: () {
-                      selectedType(type);
-                      selectedStatus(status);
-                      selectedDate(date);
-                      refresh();
-                      locator<AppRouter>().maybePop();
-                    },
-                  ),
-                  4.verticalGap,
-                  AppButton.ghostPrimary(
-                    title: "Clear Filters",
-                    onTap: () {
-                      selectedType("");
-                      selectedDate("");
-                      selectedStatus("");
-                      refresh();
-                      locator<AppRouter>().maybePop();
-                    },
-                  ),
-                ],
-              ),
-            ),
-          );
-        });
+            );
+          },
+        );
       },
     );
   }
@@ -405,17 +428,12 @@ class BlueBottomSheet {
             alignment: Alignment.center,
             child: Row(
               children: [
-                Expanded(
-                  child: Text(
-                    text,
-                    style: AppTextStyles.subHeader,
-                  ),
-                ),
+                Expanded(child: Text(text, style: AppTextStyles.subHeader)),
                 const Icon(
                   Icons.arrow_forward_ios_rounded,
                   color: AppColors.textColor,
                   size: 15,
-                )
+                ),
               ],
             ),
           ),
@@ -450,11 +468,16 @@ class BlueBottomSheet {
         return Container(
           height: 250 + context.mediaQuery.viewInsets.bottom,
           margin: EdgeInsets.only(
-              left: 17,
-              right: 17,
-              bottom: 35 + context.mediaQuery.viewInsets.bottom),
-          padding:
-              const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 15),
+            left: 17,
+            right: 17,
+            bottom: 35 + context.mediaQuery.viewInsets.bottom,
+          ),
+          padding: const EdgeInsets.only(
+            left: 20,
+            right: 20,
+            top: 30,
+            bottom: 15,
+          ),
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(10),
@@ -466,31 +489,22 @@ class BlueBottomSheet {
                 style: AppTextStyles.semiLargeHeader.copyWith(fontSize: 18.sp),
               ),
               12.verticalGap,
-              contactTile(
-                "Call us on 09075561565",
-                () {
-                  openDialer();
-                  locator<AppRouter>().maybePop();
-                },
-              ),
+              contactTile("Call us on 09075561565", () {
+                openDialer();
+                locator<AppRouter>().maybePop();
+              }),
               4.verticalGap,
-              contactTile(
-                "Contact us via email",
-                () {
-                  openMail();
-                  locator<AppRouter>().maybePop();
-                },
-              ),
+              contactTile("Contact us via email", () {
+                openMail();
+                locator<AppRouter>().maybePop();
+              }),
               if (locator<AppStateValues>().showLiveChat) ...[
                 4.verticalGap,
-                contactTile(
-                  "Chat with us Live",
-                  () {
-                    ZohoSalesIQ.openNewChat();
-                    locator<AppRouter>().maybePop();
-                  },
-                ),
-              ]
+                contactTile("Chat with us Live", () {
+                  ZohoSalesIQ.openNewChat();
+                  locator<AppRouter>().maybePop();
+                }),
+              ],
             ],
           ),
         );
@@ -534,22 +548,22 @@ class BlueBottomSheet {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            e.title,
-            style: AppTextStyles.header.copyWith(fontSize: 16.sp),
-          ),
+          Text(e.title, style: AppTextStyles.header.copyWith(fontSize: 16.sp)),
           Text(
             e.subtitle,
             style: AppTextStyles.smallText.copyWith(
               color: AppColors.bodyTextColor,
             ),
-          )
+          ),
         ],
       );
     }
 
     Widget methodButton(
-        PaymentOption e, Function(Function()) setState, BuildContext context) {
+      PaymentOption e,
+      Function(Function()) setState,
+      BuildContext context,
+    ) {
       return InkWell(
         onTap: () {
           setState(() {
@@ -563,21 +577,15 @@ class BlueBottomSheet {
           decoration: const BoxDecoration(),
           child: Row(
             children: [
-              SizedBox(
-                height: 38.h,
-                width: 38.w,
-                child: e.icon,
-              ),
+              SizedBox(height: 38.h, width: 38.w, child: e.icon),
               12.horizontalGap,
-              Expanded(
-                child: textColumn(e),
-              ),
+              Expanded(child: textColumn(e)),
               10.horizontalGap,
               Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: 16.sp,
                 color: AppColors.textColor,
-              )
+              ),
             ],
           ),
         ),
@@ -604,28 +612,35 @@ class BlueBottomSheet {
                 height: 290.h,
                 margin: const EdgeInsets.only(left: 17, right: 17, bottom: 35),
                 padding: const EdgeInsets.only(
-                    left: 20, right: 20, top: 20, bottom: 15),
+                  left: 20,
+                  right: 20,
+                  top: 20,
+                  bottom: 15,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
                   children: options
-                      .map((e) => Column(
-                            children: [
-                              if (e == options[0]) ...[
-                                Text(
-                                  "Send $amount via",
-                                  style: AppTextStyles.header
-                                      .copyWith(fontSize: 18.sp),
+                      .map(
+                        (e) => Column(
+                          children: [
+                            if (e == options[0]) ...[
+                              Text(
+                                "Send $amount via",
+                                style: AppTextStyles.header.copyWith(
+                                  fontSize: 18.sp,
                                 ),
-                                22.verticalGap,
-                              ],
-                              methodButton(e, setState, context),
-                              if (e != options[options.length - 1])
-                                20.verticalGap,
+                              ),
+                              22.verticalGap,
                             ],
-                          ))
+                            methodButton(e, setState, context),
+                            if (e != options[options.length - 1])
+                              20.verticalGap,
+                          ],
+                        ),
+                      )
                       .toList(),
                 ),
               ),
@@ -638,72 +653,84 @@ class BlueBottomSheet {
     return mode;
   }
 
-  static contact(TextEditingController controller,
-      {required VoidCallback onConfirm}) {
+  static Future contact(
+    TextEditingController controller, {
+    required VoidCallback onConfirm,
+  }) {
     return showModalBottomSheet(
-        context: locator<AppRouter>().navigatorKey.currentContext!,
-        backgroundColor: Colors.transparent,
-        builder: (context) {
-          return StatefulBuilder(builder: (context, setState) {
+      context: locator<AppRouter>().navigatorKey.currentContext!,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
             return Container(
-                height: 240 + context.mediaQuery.viewInsets.bottom,
-                margin: const EdgeInsets.only(left: 17, right: 17, bottom: 35),
-                padding: const EdgeInsets.only(
-                    left: 20, right: 20, top: 20, bottom: 15),
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Text(
-                        "New Contact",
-                        style: AppTextStyles.subHeader.copyWith(
-                            fontSize: 16.sp, fontWeight: FontWeight.w700),
+              height: 240 + context.mediaQuery.viewInsets.bottom,
+              margin: const EdgeInsets.only(left: 17, right: 17, bottom: 35),
+              padding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 20,
+                bottom: 15,
+              ),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Text(
+                      "New Contact",
+                      style: AppTextStyles.subHeader.copyWith(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    BlueTextField.plaintext(
-                      title: "Blue wallet ID/phone number",
-                      hint: "Wallet Id/Phone number",
-                      controller: controller,
-                      onChanged: (value) {
-                        setState(() {});
+                  ),
+                  const SizedBox(height: 20),
+                  BlueTextField.plaintext(
+                    title: "Blue wallet ID/phone number",
+                    hint: "Wallet Id/Phone number",
+                    controller: controller,
+                    onChanged: (value) {
+                      setState(() {});
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: AppButton.primary(
+                      title: "Start chat",
+                      isEnabled: controller.text.isNotEmpty,
+                      onTap: () {
+                        locator<AppRouter>().maybePop();
+                        onConfirm();
                       },
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Center(
-                      child: AppButton.primary(
-                        title: "Start chat",
-                        isEnabled: controller.text.isNotEmpty,
-                        onTap: () {
-                          locator<AppRouter>().maybePop();
-                          onConfirm();
-                        },
-                      ),
-                    ),
-                  ],
-                ));
-          });
-        });
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 
-  static recoveryCode({required Future<String?> Function() onTap}) {
+  static Future recoveryCode({required Future<String?> Function() onTap}) {
     String recoveryCode = locator<AppStateValues>().recoveryCode;
     Widget textFieldHeader() {
       return RichText(
-        text: TextSpan(children: [
-          TextSpan(
-            text: "Recovery code",
-            style: AppTextStyles.subHeader.copyWith(color: AppColors.textColor),
-          ),
-        ]),
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: "Recovery code",
+              style: AppTextStyles.subHeader.copyWith(
+                color: AppColors.textColor,
+              ),
+            ),
+          ],
+        ),
       );
     }
 
@@ -734,20 +761,19 @@ class BlueBottomSheet {
             Center(
               child: SizedBox(
                 width: 265.w,
-                child:
-                    Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-                  Text(
-                    "Recovery Code",
-                    style: AppTextStyles.header,
-                  ),
-                  Text(
-                    "To change your phone number, set a recovery code.",
-                    style: AppTextStyles.subHeader.copyWith(height: 1.1),
-                    textAlign: TextAlign.center,
-                  )
-                ]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text("Recovery Code", style: AppTextStyles.header),
+                    Text(
+                      "To change your phone number, set a recovery code.",
+                      style: AppTextStyles.subHeader.copyWith(height: 1.1),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-            )
+            ),
           ],
         ),
       );
@@ -778,10 +804,10 @@ class BlueBottomSheet {
                       ? locator<AppStateValues>().recoveryCode
                       : recoveryCode,
                   style: AppTextStyles.textField.copyWith(
-                      color: AppColors.textColor.withOpacityValue(
-                          locator<AppStateValues>().recoveryCode.isEmpty
-                              ? .3
-                              : 1)),
+                    color: AppColors.textColor.withOpacityValue(
+                      locator<AppStateValues>().recoveryCode.isEmpty ? .3 : 1,
+                    ),
+                  ),
                 ),
               ),
               10.horizontalGap,
@@ -808,12 +834,18 @@ class BlueBottomSheet {
                 RefreshTimer().resetTimer();
               },
               child: Container(
-                height: context.mediaQuery.size.height * .85 -
+                height:
+                    context.mediaQuery.size.height * .85 -
                     context.mediaQuery.viewInsets.bottom,
                 margin: EdgeInsets.only(
-                    bottom: 0 + context.mediaQuery.viewInsets.bottom),
+                  bottom: 0 + context.mediaQuery.viewInsets.bottom,
+                ),
                 padding: const EdgeInsets.only(
-                    left: 16, right: 16, top: 20, bottom: 15),
+                  left: 16,
+                  right: 16,
+                  top: 20,
+                  bottom: 15,
+                ),
                 decoration: const BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.only(
@@ -830,15 +862,17 @@ class BlueBottomSheet {
                     recoveryCodeContainer(),
                     15.verticalGap,
                     const InfoContainer(
-                        text: "Copy this recovery code and keep it safe"),
+                      text: "Copy this recovery code and keep it safe",
+                    ),
                     50.verticalGap,
                     AppButton.primary(
-                        title: "Generate new code",
-                        onTap: () async {
-                          recoveryCode = await onTap() ?? "";
-                          locator<AppStateValues>().recoveryCode = recoveryCode;
-                          setState(() {});
-                        }),
+                      title: "Generate new code",
+                      onTap: () async {
+                        recoveryCode = await onTap() ?? "";
+                        locator<AppStateValues>().recoveryCode = recoveryCode;
+                        setState(() {});
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -849,7 +883,7 @@ class BlueBottomSheet {
     );
   }
 
-  static recoveryPhone({
+  static Future recoveryPhone({
     required TextEditingController phoneController,
     required TextEditingController searchController,
     required TextEditingController passwordController,
@@ -885,20 +919,19 @@ class BlueBottomSheet {
             Center(
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 50),
-                child:
-                    Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-                  Text(
-                    "Recovery Phone",
-                    style: AppTextStyles.header,
-                  ),
-                  Text(
-                    "This phone number can be used to make sure when you want to reset your PIN.",
-                    style: AppTextStyles.subHeader.copyWith(height: 1.1),
-                    textAlign: TextAlign.center,
-                  )
-                ]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text("Recovery Phone", style: AppTextStyles.header),
+                    Text(
+                      "This phone number can be used to make sure when you want to reset your PIN.",
+                      style: AppTextStyles.subHeader.copyWith(height: 1.1),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-            )
+            ),
           ],
         ),
       );
@@ -920,12 +953,18 @@ class BlueBottomSheet {
                 RefreshTimer().resetTimer();
               },
               child: Container(
-                height: context.mediaQuery.size.height * .85 -
+                height:
+                    context.mediaQuery.size.height * .85 -
                     context.mediaQuery.viewInsets.bottom,
                 margin: EdgeInsets.only(
-                    bottom: 0 + context.mediaQuery.viewInsets.bottom),
+                  bottom: 0 + context.mediaQuery.viewInsets.bottom,
+                ),
                 padding: const EdgeInsets.only(
-                    left: 16, right: 16, top: 20, bottom: 15),
+                  left: 16,
+                  right: 16,
+                  top: 20,
+                  bottom: 15,
+                ),
                 decoration: const BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.only(
@@ -958,7 +997,8 @@ class BlueBottomSheet {
                     50.verticalGap,
                     AppButton.primary(
                       title: "Save changes",
-                      isEnabled: phoneController.text.isNotEmpty &&
+                      isEnabled:
+                          phoneController.text.isNotEmpty &&
                           passwordController.text.isNotEmpty,
                       onTap: () async {
                         await onTap();
@@ -975,7 +1015,7 @@ class BlueBottomSheet {
     );
   }
 
-  static securityQuestion({
+  static Future<void> securityQuestion({
     required List<String> questions,
     required String question,
     required TextEditingController answerController,
@@ -1012,20 +1052,19 @@ class BlueBottomSheet {
             Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
-                child:
-                    Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-                  Text(
-                    "Security Question",
-                    style: AppTextStyles.header,
-                  ),
-                  Text(
-                    "Set a security question to protect your blue account and reset PIN when necessary.",
-                    style: AppTextStyles.subHeader.copyWith(height: 1.1),
-                    textAlign: TextAlign.center,
-                  )
-                ]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text("Security Question", style: AppTextStyles.header),
+                    Text(
+                      "Set a security question to protect your blue account and reset PIN when necessary.",
+                      style: AppTextStyles.subHeader.copyWith(height: 1.1),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-            )
+            ),
           ],
         ),
       );
@@ -1038,7 +1077,9 @@ class BlueBottomSheet {
     }
 
     Widget questionDropdown(
-        BuildContext context, void Function(String?)? onChanged) {
+      BuildContext context,
+      void Function(String?)? onChanged,
+    ) {
       return Container(
         margin: const EdgeInsets.only(top: 10, bottom: 10),
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
@@ -1052,23 +1093,24 @@ class BlueBottomSheet {
             question.isNotEmpty ? question : '--Select a security question--',
             style: question.isNotEmpty
                 ? AppTextStyles.textField
-                : AppTextStyles.subText
-                    .copyWith(color: AppColors.textColor.withOpacityValue(.5)),
+                : AppTextStyles.subText.copyWith(
+                    color: AppColors.textColor.withOpacityValue(.5),
+                  ),
           ),
           underline: const SizedBox(),
           icon: const Icon(Icons.keyboard_arrow_down_rounded),
           style: TextStyle(
-              fontSize: 13.sp,
-              // fontWeight: FontWeight.w300,
-              color: Theme.of(context).highlightColor.withOpacityValue(.8)),
+            fontSize: 13.sp,
+            // fontWeight: FontWeight.w300,
+            color: Theme.of(context).highlightColor.withOpacityValue(.8),
+          ),
           items: questions
-              .map((q) => DropdownMenuItem<String>(
-                    value: q,
-                    child: Text(
-                      q,
-                      style: AppTextStyles.textField,
-                    ),
-                  ))
+              .map(
+                (q) => DropdownMenuItem<String>(
+                  value: q,
+                  child: Text(q, style: AppTextStyles.textField),
+                ),
+              )
               .toList(),
           isExpanded: true,
           onChanged: onChanged,
@@ -1102,12 +1144,18 @@ class BlueBottomSheet {
                 RefreshTimer().resetTimer();
               },
               child: Container(
-                height: context.mediaQuery.size.height * .85 -
+                height:
+                    context.mediaQuery.size.height * .85 -
                     context.mediaQuery.viewInsets.bottom,
                 margin: EdgeInsets.only(
-                    bottom: 0 + context.mediaQuery.viewInsets.bottom),
+                  bottom: 0 + context.mediaQuery.viewInsets.bottom,
+                ),
                 padding: const EdgeInsets.only(
-                    left: 16, right: 16, top: 20, bottom: 15),
+                  left: 16,
+                  right: 16,
+                  top: 20,
+                  bottom: 15,
+                ),
                 decoration: const BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.only(
@@ -1176,81 +1224,93 @@ class BlueBottomSheet {
       backgroundColor: Colors.transparent,
       useSafeArea: true,
       builder: (ctx) {
-        return StatefulBuilder(builder: (context, setState) {
-          return GestureDetector(
-            onTap: () {
-              RefreshTimer().resetTimer();
-            },
-            onPanDown: (details) {
-              RefreshTimer().resetTimer();
-            },
-            child: Container(
-              height: 270,
-              width: context.mediaQuery.size.width,
-              margin: EdgeInsets.only(
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return GestureDetector(
+              onTap: () {
+                RefreshTimer().resetTimer();
+              },
+              onPanDown: (details) {
+                RefreshTimer().resetTimer();
+              },
+              child: Container(
+                height: 270,
+                width: context.mediaQuery.size.width,
+                margin: EdgeInsets.only(
                   left: 17,
                   right: 17,
-                  bottom: context.mediaQuery.size.height - 305),
-              padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 20, bottom: 15),
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Text(
-                  //   "From semira yesufu @semiraventure.com",
-                  //   style: AppTextStyles.smallText.copyWith(
-                  //       color: AppColors.bodyTextColor,
-                  //       fontStyle: FontStyle.italic),
-                  // ),
-                  Text(
-                    "${payment.businessName} ${payment.lga} is requesting a payment",
-                    style: AppTextStyles.header
-                        .copyWith(fontSize: 18.sp, height: 1.4),
-                  ),
-                  20.verticalGap,
-                  Container(
-                    height: 75,
-                    width: context.mediaQuery.size.width,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: AppColors.inputField,
+                  bottom: context.mediaQuery.size.height - 305,
+                ),
+                padding: const EdgeInsets.only(
+                  left: 20,
+                  right: 20,
+                  top: 20,
+                  bottom: 15,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Text(
+                    //   "From semira yesufu @semiraventure.com",
+                    //   style: AppTextStyles.smallText.copyWith(
+                    //       color: AppColors.bodyTextColor,
+                    //       fontStyle: FontStyle.italic),
+                    // ),
+                    Text(
+                      "${payment.businessName} ${payment.lga} is requesting a payment",
+                      style: AppTextStyles.header.copyWith(
+                        fontSize: 18.sp,
+                        height: 1.4,
+                      ),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "${nairaSymbol()}${format.format(double.parse(payment.amount))}",
-                          style: AppTextStyles.midHeader.copyWith(
-                            height: 1.4,
+                    20.verticalGap,
+                    Container(
+                      height: 75,
+                      width: context.mediaQuery.size.width,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 12,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: AppColors.inputField,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${nairaSymbol()}${format.format(double.parse(payment.amount))}",
+                            style: AppTextStyles.midHeader.copyWith(
+                              height: 1.4,
+                            ),
                           ),
-                        ),
-                        Text(
-                          payment.dueDate,
-                          style: AppTextStyles.smallText
-                              .copyWith(color: AppColors.bodyTextColor2),
-                        ),
-                      ],
+                          Text(
+                            payment.dueDate,
+                            style: AppTextStyles.smallText.copyWith(
+                              color: AppColors.bodyTextColor2,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  const Spacer(),
-                  AppButton.primary(
-                    title: "Make payment",
-                    onTap: () {
-                      res = true;
-                      locator<AppRouter>().maybePop();
-                    },
-                  )
-                ],
+                    const Spacer(),
+                    AppButton.primary(
+                      title: "Make payment",
+                      onTap: () {
+                        res = true;
+                        locator<AppRouter>().maybePop();
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        });
+            );
+          },
+        );
       },
     );
 
@@ -1281,9 +1341,7 @@ class BlueBottomSheet {
         } else {
           setState(() {
             beneficiaries = allBeneficiaries
-                .where(
-                  (b) => b.receiver.contains(v!),
-                )
+                .where((b) => b.receiver.contains(v!))
                 .toList();
           });
         }
@@ -1294,10 +1352,7 @@ class BlueBottomSheet {
       return Column(
         children: [
           if (allBeneficiaries.isNotEmpty) ...[
-            Text(
-              "Select a beneficiary",
-              style: AppTextStyles.textField,
-            ),
+            Text("Select a beneficiary", style: AppTextStyles.textField),
             8.verticalGap,
             BlueTextField.search(
               controller: searchController,
@@ -1313,17 +1368,14 @@ class BlueBottomSheet {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  "No Beneficiaries found",
-                  style: AppTextStyles.midHeader,
-                ),
+                Text("No Beneficiaries found", style: AppTextStyles.midHeader),
                 Text(
                   "You can save frequently used meter numbers as beneficiaries for faster payments.",
                   style: AppTextStyles.smallText.copyWith(
                     color: AppColors.bodyTextColor2,
                   ),
                   textAlign: TextAlign.center,
-                )
+                ),
               ],
             ),
           ),
@@ -1334,10 +1386,7 @@ class BlueBottomSheet {
     Widget beneficiaryList(ScrollController controller, StateSetter setState) {
       return Column(
         children: [
-          Text(
-            "Select a beneficiary",
-            style: AppTextStyles.textField,
-          ),
+          Text("Select a beneficiary", style: AppTextStyles.textField),
           8.verticalGap,
           BlueTextField.search(
             controller: searchController,
@@ -1417,14 +1466,14 @@ class BlueBottomSheet {
                         Icons.check,
                         size: 16,
                         color: AppColors.primary,
-                      )
-                    ]
+                      ),
+                    ],
                   ],
                 );
               },
               separatorBuilder: (context, index) => 24.verticalGap,
             ),
-          )
+          ),
         ],
       );
     }
@@ -1435,34 +1484,39 @@ class BlueBottomSheet {
       backgroundColor: Colors.transparent,
       useSafeArea: true,
       builder: (context) {
-        return StatefulBuilder(builder: (context, setState) {
-          return DraggableScrollableSheet(
-            minChildSize: .1,
-            maxChildSize: .75,
-            initialChildSize: (height ?? .5) +
-                (context.mediaQuery.viewInsets.bottom /
-                    context.mediaQuery.size.height),
-            expand: false,
-            builder: (context, controller) {
-              return Container(
-                height: context.mediaQuery.size.height / 2 +
-                    context.mediaQuery.viewInsets.bottom,
-                margin: EdgeInsets.only(
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return DraggableScrollableSheet(
+              minChildSize: .1,
+              maxChildSize: .75,
+              initialChildSize:
+                  (height ?? .5) +
+                  (context.mediaQuery.viewInsets.bottom /
+                      context.mediaQuery.size.height),
+              expand: false,
+              builder: (context, controller) {
+                return Container(
+                  height:
+                      context.mediaQuery.size.height / 2 +
+                      context.mediaQuery.viewInsets.bottom,
+                  margin: EdgeInsets.only(
                     left: 17,
                     right: 17,
-                    bottom: 35 + context.mediaQuery.viewInsets.bottom),
-                padding: const EdgeInsets.only(left: 17, right: 17, top: 15),
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: beneficiaries.isEmpty
-                    ? emptyState(setState)
-                    : beneficiaryList(controller, setState),
-              );
-            },
-          );
-        });
+                    bottom: 35 + context.mediaQuery.viewInsets.bottom,
+                  ),
+                  padding: const EdgeInsets.only(left: 17, right: 17, top: 15),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: beneficiaries.isEmpty
+                      ? emptyState(setState)
+                      : beneficiaryList(controller, setState),
+                );
+              },
+            );
+          },
+        );
       },
     );
   }

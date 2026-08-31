@@ -4,7 +4,7 @@ part 'bank.freezed.dart';
 part 'bank.g.dart';
 
 @freezed
-class BankItem with _$BankItem {
+abstract class BankItem with _$BankItem {
   const factory BankItem({
     required int id,
     required String name,
@@ -12,5 +12,5 @@ class BankItem with _$BankItem {
   }) = _BankItem;
 
   factory BankItem.fromJson(Map<String, dynamic> json) =>
-      _$BankItemImpl.fromJson(json);
+      _$BankItemFromJson(json);
 }

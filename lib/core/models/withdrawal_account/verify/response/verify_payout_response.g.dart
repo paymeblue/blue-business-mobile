@@ -6,20 +6,20 @@ part of 'verify_payout_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VerifyPayoutResponseImpl _$$VerifyPayoutResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VerifyPayoutResponseImpl(
-      status: json['status'] as String? ?? "fail",
-      message: json['message'] as String?,
-      data: json['data'] == null
-          ? null
-          : VerifyPayoutData.fromJson(json['data'] as Map<String, dynamic>),
-    );
+_VerifyPayoutResponse _$VerifyPayoutResponseFromJson(
+  Map<String, dynamic> json,
+) => _VerifyPayoutResponse(
+  status: json['status'] as String? ?? "fail",
+  message: json['message'] as String?,
+  data: json['data'] == null
+      ? null
+      : VerifyPayoutData.fromJson(json['data'] as Map<String, dynamic>),
+);
 
-Map<String, dynamic> _$$VerifyPayoutResponseImplToJson(
-        _$VerifyPayoutResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
-    };
+Map<String, dynamic> _$VerifyPayoutResponseToJson(
+  _VerifyPayoutResponse instance,
+) => <String, dynamic>{
+  'status': instance.status,
+  'message': ?instance.message,
+  'data': ?instance.data,
+};

@@ -4,7 +4,7 @@ part 'get_profile.freezed.dart';
 part 'get_profile.g.dart';
 
 @freezed
-class GetProfileResponse with _$GetProfileResponse {
+abstract class GetProfileResponse with _$GetProfileResponse {
   const factory GetProfileResponse({
     @Default("fail") String status,
     String? message,
@@ -12,11 +12,11 @@ class GetProfileResponse with _$GetProfileResponse {
   }) = _GetProfileResponse;
 
   factory GetProfileResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetProfileResponseImpl.fromJson(json);
+      _$GetProfileResponseFromJson(json);
 }
 
 @freezed
-class GetProfileData with _$GetProfileData {
+abstract class GetProfileData with _$GetProfileData {
   const factory GetProfileData({
     required int id,
     required int businessId,
@@ -36,7 +36,7 @@ class GetProfileData with _$GetProfileData {
   }) = _GetProfileData;
 
   factory GetProfileData.fromJson(Map<String, dynamic> json) =>
-      _$GetProfileDataImpl.fromJson(json);
+      _$GetProfileDataFromJson(json);
 }
 
 /*

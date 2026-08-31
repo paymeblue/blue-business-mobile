@@ -6,14 +6,12 @@ part of 'data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BankDataImpl _$$BankDataImplFromJson(Map<String, dynamic> json) =>
-    _$BankDataImpl(
-      banks: (json['banks'] as List<dynamic>)
-          .map((e) => BankItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+_BankData _$BankDataFromJson(Map<String, dynamic> json) => _BankData(
+  banks: (json['banks'] as List<dynamic>)
+      .map((e) => BankItem.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);
 
-Map<String, dynamic> _$$BankDataImplToJson(_$BankDataImpl instance) =>
-    <String, dynamic>{
-      'banks': instance.banks,
-    };
+Map<String, dynamic> _$BankDataToJson(_BankData instance) => <String, dynamic>{
+  'banks': instance.banks,
+};

@@ -8,7 +8,7 @@ import 'package:blue_business/core/utils/extensions.dart';
 class AppsViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 
@@ -29,7 +29,7 @@ class AppsViewModel extends BaseViewModel {
     ];
   }
 
-  goToPumpPrice() {
+  void goToPumpPrice() {
     locator<AppRouter>().push(PumpPriceShellRoute());
   }
 }

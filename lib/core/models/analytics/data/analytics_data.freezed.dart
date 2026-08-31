@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,202 +9,308 @@ part of 'analytics_data.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-AnalyticsData _$AnalyticsDataFromJson(Map<String, dynamic> json) {
-  return _AnalyticsData.fromJson(json);
-}
 
 /// @nodoc
 mixin _$AnalyticsData {
-  AnalyticsItem get desktop => throw _privateConstructorUsedError;
-  AnalyticsItem get mobile => throw _privateConstructorUsedError;
+
+ AnalyticsItem get desktop; AnalyticsItem get mobile;
+/// Create a copy of AnalyticsData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AnalyticsDataCopyWith<AnalyticsData> get copyWith => _$AnalyticsDataCopyWithImpl<AnalyticsData>(this as AnalyticsData, _$identity);
 
   /// Serializes this AnalyticsData to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of AnalyticsData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $AnalyticsDataCopyWith<AnalyticsData> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AnalyticsData&&(identical(other.desktop, desktop) || other.desktop == desktop)&&(identical(other.mobile, mobile) || other.mobile == mobile));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,desktop,mobile);
+
+@override
+String toString() {
+  return 'AnalyticsData(desktop: $desktop, mobile: $mobile)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $AnalyticsDataCopyWith<$Res> {
-  factory $AnalyticsDataCopyWith(
-          AnalyticsData value, $Res Function(AnalyticsData) then) =
-      _$AnalyticsDataCopyWithImpl<$Res, AnalyticsData>;
-  @useResult
-  $Res call({AnalyticsItem desktop, AnalyticsItem mobile});
+abstract mixin class $AnalyticsDataCopyWith<$Res>  {
+  factory $AnalyticsDataCopyWith(AnalyticsData value, $Res Function(AnalyticsData) _then) = _$AnalyticsDataCopyWithImpl;
+@useResult
+$Res call({
+ AnalyticsItem desktop, AnalyticsItem mobile
+});
 
-  $AnalyticsItemCopyWith<$Res> get desktop;
-  $AnalyticsItemCopyWith<$Res> get mobile;
+
+$AnalyticsItemCopyWith<$Res> get desktop;$AnalyticsItemCopyWith<$Res> get mobile;
+
 }
-
 /// @nodoc
-class _$AnalyticsDataCopyWithImpl<$Res, $Val extends AnalyticsData>
+class _$AnalyticsDataCopyWithImpl<$Res>
     implements $AnalyticsDataCopyWith<$Res> {
-  _$AnalyticsDataCopyWithImpl(this._value, this._then);
+  _$AnalyticsDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final AnalyticsData _self;
+  final $Res Function(AnalyticsData) _then;
 
-  /// Create a copy of AnalyticsData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? desktop = null,
-    Object? mobile = null,
-  }) {
-    return _then(_value.copyWith(
-      desktop: null == desktop
-          ? _value.desktop
-          : desktop // ignore: cast_nullable_to_non_nullable
-              as AnalyticsItem,
-      mobile: null == mobile
-          ? _value.mobile
-          : mobile // ignore: cast_nullable_to_non_nullable
-              as AnalyticsItem,
-    ) as $Val);
-  }
-
-  /// Create a copy of AnalyticsData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AnalyticsItemCopyWith<$Res> get desktop {
-    return $AnalyticsItemCopyWith<$Res>(_value.desktop, (value) {
-      return _then(_value.copyWith(desktop: value) as $Val);
-    });
-  }
-
-  /// Create a copy of AnalyticsData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AnalyticsItemCopyWith<$Res> get mobile {
-    return $AnalyticsItemCopyWith<$Res>(_value.mobile, (value) {
-      return _then(_value.copyWith(mobile: value) as $Val);
-    });
-  }
+/// Create a copy of AnalyticsData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? desktop = null,Object? mobile = null,}) {
+  return _then(_self.copyWith(
+desktop: null == desktop ? _self.desktop : desktop // ignore: cast_nullable_to_non_nullable
+as AnalyticsItem,mobile: null == mobile ? _self.mobile : mobile // ignore: cast_nullable_to_non_nullable
+as AnalyticsItem,
+  ));
+}
+/// Create a copy of AnalyticsData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$AnalyticsItemCopyWith<$Res> get desktop {
+  
+  return $AnalyticsItemCopyWith<$Res>(_self.desktop, (value) {
+    return _then(_self.copyWith(desktop: value));
+  });
+}/// Create a copy of AnalyticsData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$AnalyticsItemCopyWith<$Res> get mobile {
+  
+  return $AnalyticsItemCopyWith<$Res>(_self.mobile, (value) {
+    return _then(_self.copyWith(mobile: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$AnalyticsDataImplCopyWith<$Res>
-    implements $AnalyticsDataCopyWith<$Res> {
-  factory _$$AnalyticsDataImplCopyWith(
-          _$AnalyticsDataImpl value, $Res Function(_$AnalyticsDataImpl) then) =
-      __$$AnalyticsDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({AnalyticsItem desktop, AnalyticsItem mobile});
 
-  @override
-  $AnalyticsItemCopyWith<$Res> get desktop;
-  @override
-  $AnalyticsItemCopyWith<$Res> get mobile;
+/// Adds pattern-matching-related methods to [AnalyticsData].
+extension AnalyticsDataPatterns on AnalyticsData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AnalyticsData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _AnalyticsData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AnalyticsData value)  $default,){
+final _that = this;
+switch (_that) {
+case _AnalyticsData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AnalyticsData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _AnalyticsData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AnalyticsItem desktop,  AnalyticsItem mobile)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _AnalyticsData() when $default != null:
+return $default(_that.desktop,_that.mobile);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AnalyticsItem desktop,  AnalyticsItem mobile)  $default,) {final _that = this;
+switch (_that) {
+case _AnalyticsData():
+return $default(_that.desktop,_that.mobile);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AnalyticsItem desktop,  AnalyticsItem mobile)?  $default,) {final _that = this;
+switch (_that) {
+case _AnalyticsData() when $default != null:
+return $default(_that.desktop,_that.mobile);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$AnalyticsDataImplCopyWithImpl<$Res>
-    extends _$AnalyticsDataCopyWithImpl<$Res, _$AnalyticsDataImpl>
-    implements _$$AnalyticsDataImplCopyWith<$Res> {
-  __$$AnalyticsDataImplCopyWithImpl(
-      _$AnalyticsDataImpl _value, $Res Function(_$AnalyticsDataImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AnalyticsData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? desktop = null,
-    Object? mobile = null,
-  }) {
-    return _then(_$AnalyticsDataImpl(
-      desktop: null == desktop
-          ? _value.desktop
-          : desktop // ignore: cast_nullable_to_non_nullable
-              as AnalyticsItem,
-      mobile: null == mobile
-          ? _value.mobile
-          : mobile // ignore: cast_nullable_to_non_nullable
-              as AnalyticsItem,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$AnalyticsDataImpl implements _AnalyticsData {
-  const _$AnalyticsDataImpl({required this.desktop, required this.mobile});
 
-  factory _$AnalyticsDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AnalyticsDataImplFromJson(json);
+class _AnalyticsData implements AnalyticsData {
+  const _AnalyticsData({required this.desktop, required this.mobile});
+  factory _AnalyticsData.fromJson(Map<String, dynamic> json) => _$AnalyticsDataFromJson(json);
 
-  @override
-  final AnalyticsItem desktop;
-  @override
-  final AnalyticsItem mobile;
+@override final  AnalyticsItem desktop;
+@override final  AnalyticsItem mobile;
 
-  @override
-  String toString() {
-    return 'AnalyticsData(desktop: $desktop, mobile: $mobile)';
-  }
+/// Create a copy of AnalyticsData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AnalyticsDataCopyWith<_AnalyticsData> get copyWith => __$AnalyticsDataCopyWithImpl<_AnalyticsData>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AnalyticsDataImpl &&
-            (identical(other.desktop, desktop) || other.desktop == desktop) &&
-            (identical(other.mobile, mobile) || other.mobile == mobile));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, desktop, mobile);
-
-  /// Create a copy of AnalyticsData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AnalyticsDataImplCopyWith<_$AnalyticsDataImpl> get copyWith =>
-      __$$AnalyticsDataImplCopyWithImpl<_$AnalyticsDataImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AnalyticsDataImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$AnalyticsDataToJson(this, );
 }
 
-abstract class _AnalyticsData implements AnalyticsData {
-  const factory _AnalyticsData(
-      {required final AnalyticsItem desktop,
-      required final AnalyticsItem mobile}) = _$AnalyticsDataImpl;
-
-  factory _AnalyticsData.fromJson(Map<String, dynamic> json) =
-      _$AnalyticsDataImpl.fromJson;
-
-  @override
-  AnalyticsItem get desktop;
-  @override
-  AnalyticsItem get mobile;
-
-  /// Create a copy of AnalyticsData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AnalyticsDataImplCopyWith<_$AnalyticsDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AnalyticsData&&(identical(other.desktop, desktop) || other.desktop == desktop)&&(identical(other.mobile, mobile) || other.mobile == mobile));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,desktop,mobile);
+
+@override
+String toString() {
+  return 'AnalyticsData(desktop: $desktop, mobile: $mobile)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$AnalyticsDataCopyWith<$Res> implements $AnalyticsDataCopyWith<$Res> {
+  factory _$AnalyticsDataCopyWith(_AnalyticsData value, $Res Function(_AnalyticsData) _then) = __$AnalyticsDataCopyWithImpl;
+@override @useResult
+$Res call({
+ AnalyticsItem desktop, AnalyticsItem mobile
+});
+
+
+@override $AnalyticsItemCopyWith<$Res> get desktop;@override $AnalyticsItemCopyWith<$Res> get mobile;
+
+}
+/// @nodoc
+class __$AnalyticsDataCopyWithImpl<$Res>
+    implements _$AnalyticsDataCopyWith<$Res> {
+  __$AnalyticsDataCopyWithImpl(this._self, this._then);
+
+  final _AnalyticsData _self;
+  final $Res Function(_AnalyticsData) _then;
+
+/// Create a copy of AnalyticsData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? desktop = null,Object? mobile = null,}) {
+  return _then(_AnalyticsData(
+desktop: null == desktop ? _self.desktop : desktop // ignore: cast_nullable_to_non_nullable
+as AnalyticsItem,mobile: null == mobile ? _self.mobile : mobile // ignore: cast_nullable_to_non_nullable
+as AnalyticsItem,
+  ));
+}
+
+/// Create a copy of AnalyticsData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$AnalyticsItemCopyWith<$Res> get desktop {
+  
+  return $AnalyticsItemCopyWith<$Res>(_self.desktop, (value) {
+    return _then(_self.copyWith(desktop: value));
+  });
+}/// Create a copy of AnalyticsData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$AnalyticsItemCopyWith<$Res> get mobile {
+  
+  return $AnalyticsItemCopyWith<$Res>(_self.mobile, (value) {
+    return _then(_self.copyWith(mobile: value));
+  });
+}
+}
+
+// dart format on

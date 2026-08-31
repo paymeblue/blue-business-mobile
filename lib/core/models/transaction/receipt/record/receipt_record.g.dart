@@ -6,8 +6,8 @@ part of 'receipt_record.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ReceiptRecordImpl _$$ReceiptRecordImplFromJson(Map<String, dynamic> json) =>
-    _$ReceiptRecordImpl(
+_ReceiptRecord _$ReceiptRecordFromJson(Map<String, dynamic> json) =>
+    _ReceiptRecord(
       id: (json['id'] as num).toInt(),
       amount: json['amount'] as String,
       orderReference: json['order_reference'] as String,
@@ -20,7 +20,7 @@ _$ReceiptRecordImpl _$$ReceiptRecordImplFromJson(Map<String, dynamic> json) =>
       narration: json['narration'] as String?,
     );
 
-Map<String, dynamic> _$$ReceiptRecordImplToJson(_$ReceiptRecordImpl instance) =>
+Map<String, dynamic> _$ReceiptRecordToJson(_ReceiptRecord instance) =>
     <String, dynamic>{
       'id': instance.id,
       'amount': instance.amount,
@@ -30,6 +30,6 @@ Map<String, dynamic> _$$ReceiptRecordImplToJson(_$ReceiptRecordImpl instance) =>
       'payment_mode': instance.paymentMode,
       'created_at': instance.createdAt,
       'status': instance.status,
-      if (instance.senderName case final value?) 'sender_name': value,
-      if (instance.narration case final value?) 'narration': value,
+      'sender_name': ?instance.senderName,
+      'narration': ?instance.narration,
     };

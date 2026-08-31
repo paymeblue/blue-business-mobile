@@ -1,4 +1,5 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/models/business_category/category/business_category.dart';
 import 'package:blue_business/core/models/business_category/response/business_category_response.dart';
@@ -8,6 +9,7 @@ import 'package:blue_business/core/models/signup/data/signup_data.dart';
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/enums.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
@@ -18,14 +20,14 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
   late Size size;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  init(BuildContext context, SignupData d) {
+  void init(BuildContext context, SignupData d) {
     size = context.mediaQuery.size;
     data = d;
 
     getBusinessCategories();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop(data);
   }
 
@@ -52,18 +54,19 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getBusinessCategories() async {
+  Future<void> getBusinessCategories() async {
     categoryFetchState = FetchState.loading;
-    BusinessCategoryResponse response = await AuthService()
-        .getCategories()
-        .onError((error, stackTrace) => BusinessCategoryResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_categories",
-                "response_model": "BusinessCategoryResponse"
-              },
-            )));
+    BusinessCategoryResponse response =
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).getCategories().onError(
+          (error, stackTrace) => BusinessCategoryResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_categories",
+              "response_model": "BusinessCategoryResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       categories = response.data ?? [];
@@ -78,7 +81,7 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
   TextEditingController cacController = TextEditingController();
   TextEditingController searchController = TextEditingController();
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
@@ -98,7 +101,7 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
         category != null;
   }
 
-  createBusinessProfile(BuildContext context) async {
+  Future<void> createBusinessProfile(BuildContext context) async {
     AppLoader.start();
     CreateBusinessProfileRequest request = CreateBusinessProfileRequest(
       userId: data.id,
@@ -108,22 +111,24 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
       staffSize: staffSize!,
     );
 
-    CreateBusinessProfileResponse response = await AuthService()
-        .createBusinessProfile(request: request)
-        .onError((error, stackTrace) => CreateBusinessProfileResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "create_business_profile",
-                "request": request.toString(),
-                "response_model": "CreateBusinessProfileResponse"
-              },
-            )));
+    CreateBusinessProfileResponse response =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .createBusinessProfile(request: request)
+            .onError(
+              (error, stackTrace) => CreateBusinessProfileResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "create_business_profile",
+                  "request": request.toString(),
+                  "response_model": "CreateBusinessProfileResponse",
+                }),
+              ),
+            );
 
     if (response.status == "success") {
       data = data.copyWith(
-          businessDetailsCompleted: true,
-          businessId: response.data!.businessId);
+        businessDetailsCompleted: true,
+        businessId: response.data!.businessId,
+      );
 
       if (context.mounted) goToNext(context);
     } else {
@@ -133,7 +138,7 @@ class AddBusinessDetailsViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  goToNext(BuildContext context) {
+  void goToNext(BuildContext context) {
     locator<AppRouter>().replace(SelectShareholderRoute(data: data));
   }
 }

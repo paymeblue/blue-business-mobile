@@ -36,7 +36,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 class InsightsViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) async {
+  Future<void> init(BuildContext context) async {
     size = context.mediaQuery.size;
 
     selectedType = types[0];
@@ -53,7 +53,7 @@ class InsightsViewModel extends BaseViewModel {
     await getAnalytics();
   }
 
-  getAnalytics() async {
+  Future<void> getAnalytics() async {
     if (currTab == 0) {
       log(currTab.toString());
       getSalesAnalytics();
@@ -65,7 +65,7 @@ class InsightsViewModel extends BaseViewModel {
     }
   }
 
-  goBack() {
+  void goBack() {
     locator<AppRouter>().replaceAll([HomeRoute()]);
   }
 
@@ -78,7 +78,7 @@ class InsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onTypeChanged(String t) {
+  void onTypeChanged(String t) {
     selectedType = t;
     getAnalytics();
   }
@@ -99,13 +99,9 @@ class InsightsViewModel extends BaseViewModel {
   }
 
   List<TabItem> tabs() => [
-        TabItem(
-          name: "General Insights",
-        ),
-        TabItem(
-          name: "Branch Insights",
-        ),
-      ];
+    TabItem(name: "General Insights"),
+    TabItem(name: "Branch Insights"),
+  ];
 
   List<LineInputData> _data = [];
   List<LineInputData> get inputData => _data;
@@ -156,20 +152,21 @@ class InsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getSpending() async {
+  Future<void> getSpending() async {
     SpendingAnalyticsResponse response = await InsightsService()
         .getSpending(selectedType.toLowerCase())
-        .onError((error, stackTrace) => SpendingAnalyticsResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_spending",
-                "response_model": "SpendingAnalyticsResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => SpendingAnalyticsResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_spending",
+              "response_model": "SpendingAnalyticsResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
-      totalSpending = double.parse(response.data!.mobileSum) +
+      totalSpending =
+          double.parse(response.data!.mobileSum) +
           double.parse(response.data!.desktopSum);
       if (totalSpending == 0) {
         pieValues[1] = .5;
@@ -183,25 +180,24 @@ class InsightsViewModel extends BaseViewModel {
     }
   }
 
-  getLineChartData() async {
+  Future<void> getLineChartData() async {
     gettingSalesData = true;
     SalesAnalyticsResponse response = await InsightsService()
-        .getSales(
-          selectedType.toLowerCase(),
-        )
-        .onError((error, stackTrace) => SalesAnalyticsResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_sales",
-                "response_model": "SalesAnalyticsResponse"
-              },
-            )));
+        .getSales(selectedType.toLowerCase())
+        .onError(
+          (error, stackTrace) => SalesAnalyticsResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_sales",
+              "response_model": "SalesAnalyticsResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       if (selectedType == types[0]) {
-        weeklyData =
-            response.data!.map((e) => WeeklyLineChartData.fromJson(e)).toList();
+        weeklyData = response.data!
+            .map((e) => WeeklyLineChartData.fromJson(e))
+            .toList();
         inputData = response.data!
             .map((e) => LineInputData.fromJson(e))
             .toList()
@@ -213,16 +209,21 @@ class InsightsViewModel extends BaseViewModel {
             .toList();
         inputData = response.data!
             .map(
-                (e) => LineInputData.fromJson(e).copyWith(label: e["label"][0]))
+              (e) => LineInputData.fromJson(e).copyWith(label: e["label"][0]),
+            )
             .toList()
             .reversed
             .toList();
       } else {
-        yearlyData =
-            response.data!.map((e) => YearlyLineChartData.fromJson(e)).toList();
+        yearlyData = response.data!
+            .map((e) => YearlyLineChartData.fromJson(e))
+            .toList();
         inputData = response.data!
-            .map((e) => LineInputData.fromJson(e)
-                .copyWith(label: "'${e["label"].toString().substring(2)}"))
+            .map(
+              (e) => LineInputData.fromJson(
+                e,
+              ).copyWith(label: "'${e["label"].toString().substring(2)}"),
+            )
             .toList()
             .reversed
             .toList();
@@ -241,24 +242,27 @@ class InsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getBranchLineChartData() async {
+  Future<void> getBranchLineChartData() async {
     salesState = FetchState.loading;
     SalesAnalyticsResponse response = await BranchService()
         .getBranchInsights(
-            branchId: branch!.id, timeInterval: selectedType.toLowerCase())
-        .onError((error, stackTrace) => SalesAnalyticsResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_branch_insights",
-                "response_model": "SalesAnalyticsResponse"
-              },
-            )));
+          branchId: branch!.id,
+          timeInterval: selectedType.toLowerCase(),
+        )
+        .onError(
+          (error, stackTrace) => SalesAnalyticsResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_branch_insights",
+              "response_model": "SalesAnalyticsResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       if (selectedType == types[0]) {
-        weeklyData =
-            response.data!.map((e) => WeeklyLineChartData.fromJson(e)).toList();
+        weeklyData = response.data!
+            .map((e) => WeeklyLineChartData.fromJson(e))
+            .toList();
         branchInputData = response.data!
             .map((e) => LineInputData.fromJson(e))
             .toList()
@@ -270,16 +274,21 @@ class InsightsViewModel extends BaseViewModel {
             .toList();
         branchInputData = response.data!
             .map(
-                (e) => LineInputData.fromJson(e).copyWith(label: e["label"][0]))
+              (e) => LineInputData.fromJson(e).copyWith(label: e["label"][0]),
+            )
             .toList()
             .reversed
             .toList();
       } else {
-        yearlyData =
-            response.data!.map((e) => YearlyLineChartData.fromJson(e)).toList();
+        yearlyData = response.data!
+            .map((e) => YearlyLineChartData.fromJson(e))
+            .toList();
         branchInputData = response.data!
-            .map((e) => LineInputData.fromJson(e)
-                .copyWith(label: "'${e["label"].toString().substring(2)}"))
+            .map(
+              (e) => LineInputData.fromJson(
+                e,
+              ).copyWith(label: "'${e["label"].toString().substring(2)}"),
+            )
             .toList()
             .reversed
             .toList();
@@ -342,18 +351,18 @@ class InsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getSalesAnalytics() async {
+  Future<void> getSalesAnalytics() async {
     salesLoading = true;
     AnalyticsResponse response = await InsightsService()
         .getAnalytics(selectedType.toLowerCase())
-        .onError((error, stackTrace) => AnalyticsResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_analytics",
-                "response_model": "AnalyticsResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => AnalyticsResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_analytics",
+              "response_model": "AnalyticsResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       salesData = response.data;
@@ -364,18 +373,18 @@ class InsightsViewModel extends BaseViewModel {
     salesLoading = false;
   }
 
-  getBranchSalesAnalytics() async {
+  Future<void> getBranchSalesAnalytics() async {
     salesLoading = true;
     BranchAnalyticsResponse response = await BranchService()
         .getAnalytics(id: branch!.id, type: selectedType.toLowerCase())
-        .onError((error, stackTrace) => BranchAnalyticsResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_analytics",
-                "response_model": "AnalyticsResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => BranchAnalyticsResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_analytics",
+              "response_model": "AnalyticsResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       branchSalesData = response.data!;
@@ -386,11 +395,13 @@ class InsightsViewModel extends BaseViewModel {
     salesLoading = false;
   }
 
-  calculateBranchIncrease() {
+  void calculateBranchIncrease() {
     double current = double.parse(
-        branchSalesData?.transaction.current.replaceAll(",", "") ?? "0.0");
+      branchSalesData?.transaction.current.replaceAll(",", "") ?? "0.0",
+    );
     double previous = double.parse(
-        branchSalesData?.transaction.previous.replaceAll(",", "") ?? "0.00");
+      branchSalesData?.transaction.previous.replaceAll(",", "") ?? "0.00",
+    );
     final change = current - previous;
 
     if (change == 0) {
@@ -404,7 +415,7 @@ class InsightsViewModel extends BaseViewModel {
     }
   }
 
-  calculateIncrease() {
+  void calculateIncrease() {
     log(salesData.toString());
     double currentMobile = double.parse(salesData?.mobile.current ?? "0.0");
     double previousMobile = double.parse(salesData?.mobile.previous ?? "0.0");
@@ -481,22 +492,17 @@ class InsightsViewModel extends BaseViewModel {
   PagingController<int, Staff> staffPagingController =
       PagingController<int, Staff>(firstPageKey: 1);
 
-  getBranches(int page) async {
+  Future<void> getBranches(int page) async {
     try {
       GetBranchesResponse response = await BranchService()
-          .getAllBranches(
-            page: page,
-            limit: 50,
-          )
+          .getAllBranches(page: page, limit: 50)
           .onError(
             (error, stackTrace) => GetBranchesResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
+              message: AppErrorHandler.getErrorMessage(error, {
                 "request_name": "get_all_branches",
-                "response_model": "GetBranchesResponse"
-              },
-            )),
+                "response_model": "GetBranchesResponse",
+              }),
+            ),
           );
 
       if (response.status == "success") {
@@ -515,7 +521,7 @@ class InsightsViewModel extends BaseViewModel {
     }
   }
 
-  getBranchStaff(int page) async {
+  Future<void> getBranchStaff(int page) async {
     try {
       GetStaffResponse response = await BranchService()
           .getBranchStaff(
@@ -526,13 +532,11 @@ class InsightsViewModel extends BaseViewModel {
           )
           .onError(
             (error, stackTrace) => GetStaffResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
+              message: AppErrorHandler.getErrorMessage(error, {
                 "request_name": "get_branch_staff",
-                "response_model": "GetStaffResponse"
-              },
-            )),
+                "response_model": "GetStaffResponse",
+              }),
+            ),
           );
 
       if (response.status == "success") {
@@ -572,19 +576,19 @@ class InsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getRoles() async {
+  Future<void> getRoles() async {
     roleState = FetchState.loading;
 
     GetStaffRoleResponse response = await StaffService()
         .getStaffRoles()
-        .onError((error, stacjtrace) => GetStaffRoleResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_staff_rles",
-                "response_model": "GetStaffRoleResponse"
-              },
-            )));
+        .onError(
+          (error, stacjtrace) => GetStaffRoleResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_staff_rles",
+              "response_model": "GetStaffRoleResponse",
+            }),
+          ),
+        );
 
     if (response.status == "success") {
       roles = response.data!;

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,285 +9,287 @@ part of 'push_pay_data.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-PushPayData _$PushPayDataFromJson(Map<String, dynamic> json) {
-  return _PushPayData.fromJson(json);
-}
 
 /// @nodoc
 mixin _$PushPayData {
-  int get id => throw _privateConstructorUsedError;
-  String get amount => throw _privateConstructorUsedError;
-  String get receiverName => throw _privateConstructorUsedError;
-  String get receiverWallet => throw _privateConstructorUsedError;
-  String get reference => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
+
+ int get id; String get amount; String get receiverName; String get receiverWallet; String get reference; String get status; String get createdAt;
+/// Create a copy of PushPayData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PushPayDataCopyWith<PushPayData> get copyWith => _$PushPayDataCopyWithImpl<PushPayData>(this as PushPayData, _$identity);
 
   /// Serializes this PushPayData to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of PushPayData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PushPayDataCopyWith<PushPayData> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushPayData&&(identical(other.id, id) || other.id == id)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.receiverName, receiverName) || other.receiverName == receiverName)&&(identical(other.receiverWallet, receiverWallet) || other.receiverWallet == receiverWallet)&&(identical(other.reference, reference) || other.reference == reference)&&(identical(other.status, status) || other.status == status)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,amount,receiverName,receiverWallet,reference,status,createdAt);
+
+@override
+String toString() {
+  return 'PushPayData(id: $id, amount: $amount, receiverName: $receiverName, receiverWallet: $receiverWallet, reference: $reference, status: $status, createdAt: $createdAt)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $PushPayDataCopyWith<$Res> {
-  factory $PushPayDataCopyWith(
-          PushPayData value, $Res Function(PushPayData) then) =
-      _$PushPayDataCopyWithImpl<$Res, PushPayData>;
-  @useResult
-  $Res call(
-      {int id,
-      String amount,
-      String receiverName,
-      String receiverWallet,
-      String reference,
-      String status,
-      String createdAt});
-}
+abstract mixin class $PushPayDataCopyWith<$Res>  {
+  factory $PushPayDataCopyWith(PushPayData value, $Res Function(PushPayData) _then) = _$PushPayDataCopyWithImpl;
+@useResult
+$Res call({
+ int id, String amount, String receiverName, String receiverWallet, String reference, String status, String createdAt
+});
 
+
+
+
+}
 /// @nodoc
-class _$PushPayDataCopyWithImpl<$Res, $Val extends PushPayData>
+class _$PushPayDataCopyWithImpl<$Res>
     implements $PushPayDataCopyWith<$Res> {
-  _$PushPayDataCopyWithImpl(this._value, this._then);
+  _$PushPayDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PushPayData _self;
+  final $Res Function(PushPayData) _then;
 
-  /// Create a copy of PushPayData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? amount = null,
-    Object? receiverName = null,
-    Object? receiverWallet = null,
-    Object? reference = null,
-    Object? status = null,
-    Object? createdAt = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      receiverName: null == receiverName
-          ? _value.receiverName
-          : receiverName // ignore: cast_nullable_to_non_nullable
-              as String,
-      receiverWallet: null == receiverWallet
-          ? _value.receiverWallet
-          : receiverWallet // ignore: cast_nullable_to_non_nullable
-              as String,
-      reference: null == reference
-          ? _value.reference
-          : reference // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of PushPayData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? amount = null,Object? receiverName = null,Object? receiverWallet = null,Object? reference = null,Object? status = null,Object? createdAt = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as String,receiverName: null == receiverName ? _self.receiverName : receiverName // ignore: cast_nullable_to_non_nullable
+as String,receiverWallet: null == receiverWallet ? _self.receiverWallet : receiverWallet // ignore: cast_nullable_to_non_nullable
+as String,reference: null == reference ? _self.reference : reference // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$PushPayDataImplCopyWith<$Res>
-    implements $PushPayDataCopyWith<$Res> {
-  factory _$$PushPayDataImplCopyWith(
-          _$PushPayDataImpl value, $Res Function(_$PushPayDataImpl) then) =
-      __$$PushPayDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int id,
-      String amount,
-      String receiverName,
-      String receiverWallet,
-      String reference,
-      String status,
-      String createdAt});
 }
 
-/// @nodoc
-class __$$PushPayDataImplCopyWithImpl<$Res>
-    extends _$PushPayDataCopyWithImpl<$Res, _$PushPayDataImpl>
-    implements _$$PushPayDataImplCopyWith<$Res> {
-  __$$PushPayDataImplCopyWithImpl(
-      _$PushPayDataImpl _value, $Res Function(_$PushPayDataImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of PushPayData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? amount = null,
-    Object? receiverName = null,
-    Object? receiverWallet = null,
-    Object? reference = null,
-    Object? status = null,
-    Object? createdAt = null,
-  }) {
-    return _then(_$PushPayDataImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      receiverName: null == receiverName
-          ? _value.receiverName
-          : receiverName // ignore: cast_nullable_to_non_nullable
-              as String,
-      receiverWallet: null == receiverWallet
-          ? _value.receiverWallet
-          : receiverWallet // ignore: cast_nullable_to_non_nullable
-              as String,
-      reference: null == reference
-          ? _value.reference
-          : reference // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [PushPayData].
+extension PushPayDataPatterns on PushPayData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PushPayData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PushPayData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PushPayData value)  $default,){
+final _that = this;
+switch (_that) {
+case _PushPayData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PushPayData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PushPayData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String amount,  String receiverName,  String receiverWallet,  String reference,  String status,  String createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PushPayData() when $default != null:
+return $default(_that.id,_that.amount,_that.receiverName,_that.receiverWallet,_that.reference,_that.status,_that.createdAt);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String amount,  String receiverName,  String receiverWallet,  String reference,  String status,  String createdAt)  $default,) {final _that = this;
+switch (_that) {
+case _PushPayData():
+return $default(_that.id,_that.amount,_that.receiverName,_that.receiverWallet,_that.reference,_that.status,_that.createdAt);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String amount,  String receiverName,  String receiverWallet,  String reference,  String status,  String createdAt)?  $default,) {final _that = this;
+switch (_that) {
+case _PushPayData() when $default != null:
+return $default(_that.id,_that.amount,_that.receiverName,_that.receiverWallet,_that.reference,_that.status,_that.createdAt);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$PushPayDataImpl implements _PushPayData {
-  const _$PushPayDataImpl(
-      {required this.id,
-      required this.amount,
-      required this.receiverName,
-      required this.receiverWallet,
-      required this.reference,
-      required this.status,
-      required this.createdAt});
 
-  factory _$PushPayDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PushPayDataImplFromJson(json);
+class _PushPayData implements PushPayData {
+  const _PushPayData({required this.id, required this.amount, required this.receiverName, required this.receiverWallet, required this.reference, required this.status, required this.createdAt});
+  factory _PushPayData.fromJson(Map<String, dynamic> json) => _$PushPayDataFromJson(json);
 
-  @override
-  final int id;
-  @override
-  final String amount;
-  @override
-  final String receiverName;
-  @override
-  final String receiverWallet;
-  @override
-  final String reference;
-  @override
-  final String status;
-  @override
-  final String createdAt;
+@override final  int id;
+@override final  String amount;
+@override final  String receiverName;
+@override final  String receiverWallet;
+@override final  String reference;
+@override final  String status;
+@override final  String createdAt;
 
-  @override
-  String toString() {
-    return 'PushPayData(id: $id, amount: $amount, receiverName: $receiverName, receiverWallet: $receiverWallet, reference: $reference, status: $status, createdAt: $createdAt)';
-  }
+/// Create a copy of PushPayData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PushPayDataCopyWith<_PushPayData> get copyWith => __$PushPayDataCopyWithImpl<_PushPayData>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PushPayDataImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.receiverName, receiverName) ||
-                other.receiverName == receiverName) &&
-            (identical(other.receiverWallet, receiverWallet) ||
-                other.receiverWallet == receiverWallet) &&
-            (identical(other.reference, reference) ||
-                other.reference == reference) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, amount, receiverName,
-      receiverWallet, reference, status, createdAt);
-
-  /// Create a copy of PushPayData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PushPayDataImplCopyWith<_$PushPayDataImpl> get copyWith =>
-      __$$PushPayDataImplCopyWithImpl<_$PushPayDataImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PushPayDataImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$PushPayDataToJson(this, );
 }
 
-abstract class _PushPayData implements PushPayData {
-  const factory _PushPayData(
-      {required final int id,
-      required final String amount,
-      required final String receiverName,
-      required final String receiverWallet,
-      required final String reference,
-      required final String status,
-      required final String createdAt}) = _$PushPayDataImpl;
-
-  factory _PushPayData.fromJson(Map<String, dynamic> json) =
-      _$PushPayDataImpl.fromJson;
-
-  @override
-  int get id;
-  @override
-  String get amount;
-  @override
-  String get receiverName;
-  @override
-  String get receiverWallet;
-  @override
-  String get reference;
-  @override
-  String get status;
-  @override
-  String get createdAt;
-
-  /// Create a copy of PushPayData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PushPayDataImplCopyWith<_$PushPayDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushPayData&&(identical(other.id, id) || other.id == id)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.receiverName, receiverName) || other.receiverName == receiverName)&&(identical(other.receiverWallet, receiverWallet) || other.receiverWallet == receiverWallet)&&(identical(other.reference, reference) || other.reference == reference)&&(identical(other.status, status) || other.status == status)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,amount,receiverName,receiverWallet,reference,status,createdAt);
+
+@override
+String toString() {
+  return 'PushPayData(id: $id, amount: $amount, receiverName: $receiverName, receiverWallet: $receiverWallet, reference: $reference, status: $status, createdAt: $createdAt)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PushPayDataCopyWith<$Res> implements $PushPayDataCopyWith<$Res> {
+  factory _$PushPayDataCopyWith(_PushPayData value, $Res Function(_PushPayData) _then) = __$PushPayDataCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, String amount, String receiverName, String receiverWallet, String reference, String status, String createdAt
+});
+
+
+
+
+}
+/// @nodoc
+class __$PushPayDataCopyWithImpl<$Res>
+    implements _$PushPayDataCopyWith<$Res> {
+  __$PushPayDataCopyWithImpl(this._self, this._then);
+
+  final _PushPayData _self;
+  final $Res Function(_PushPayData) _then;
+
+/// Create a copy of PushPayData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? amount = null,Object? receiverName = null,Object? receiverWallet = null,Object? reference = null,Object? status = null,Object? createdAt = null,}) {
+  return _then(_PushPayData(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as String,receiverName: null == receiverName ? _self.receiverName : receiverName // ignore: cast_nullable_to_non_nullable
+as String,receiverWallet: null == receiverWallet ? _self.receiverWallet : receiverWallet // ignore: cast_nullable_to_non_nullable
+as String,reference: null == reference ? _self.reference : reference // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

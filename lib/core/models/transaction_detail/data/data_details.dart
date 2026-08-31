@@ -4,7 +4,7 @@ part 'data_details.freezed.dart';
 part 'data_details.g.dart';
 
 @freezed
-class DataDetails with _$DataDetails {
+abstract class DataDetails with _$DataDetails {
   const factory DataDetails({
     int? id,
     required String amount,
@@ -21,5 +21,5 @@ class DataDetails with _$DataDetails {
   }) = _DataDetails;
 
   factory DataDetails.fromJson(Map<String, dynamic> json) =>
-      _$DataDetailsImpl.fromJson(json);
+      _$DataDetailsFromJson(json);
 }

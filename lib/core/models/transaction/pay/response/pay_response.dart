@@ -5,7 +5,7 @@ part 'pay_response.freezed.dart';
 part 'pay_response.g.dart';
 
 @freezed
-class PayResponse with _$PayResponse {
+abstract class PayResponse with _$PayResponse {
   const factory PayResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class PayResponse with _$PayResponse {
   }) = _PayResponse;
 
   factory PayResponse.fromJson(Map<String, dynamic> json) =>
-      _$PayResponseImpl.fromJson(json);
+      _$PayResponseFromJson(json);
 }

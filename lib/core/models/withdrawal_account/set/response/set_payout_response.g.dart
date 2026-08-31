@@ -6,9 +6,8 @@ part of 'set_payout_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SetPayoutResponseImpl _$$SetPayoutResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SetPayoutResponseImpl(
+_SetPayoutResponse _$SetPayoutResponseFromJson(Map<String, dynamic> json) =>
+    _SetPayoutResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: json['data'] == null
@@ -16,10 +15,9 @@ _$SetPayoutResponseImpl _$$SetPayoutResponseImplFromJson(
           : WithdrawalAccount.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$SetPayoutResponseImplToJson(
-        _$SetPayoutResponseImpl instance) =>
+Map<String, dynamic> _$SetPayoutResponseToJson(_SetPayoutResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
+      'message': ?instance.message,
+      'data': ?instance.data,
     };

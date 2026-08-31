@@ -4,12 +4,12 @@ part 'verify_new_phone_request.freezed.dart';
 part 'verify_new_phone_request.g.dart';
 
 @freezed
-class VerifyNewPhoneRequest with _$VerifyNewPhoneRequest {
+abstract class VerifyNewPhoneRequest with _$VerifyNewPhoneRequest {
   const factory VerifyNewPhoneRequest({
     required String otp,
     required String reference,
   }) = _VerifyNewPhoneRequest;
 
   factory VerifyNewPhoneRequest.fromJson(Map<String, dynamic> json) =>
-      _$VerifyNewPhoneRequestImpl.fromJson(json);
+      _$VerifyNewPhoneRequestFromJson(json);
 }

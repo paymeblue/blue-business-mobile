@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,213 +9,299 @@ part of 'payment_link_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-PaymentLinkResponse _$PaymentLinkResponseFromJson(Map<String, dynamic> json) {
-  return _PaymentLinkResponse.fromJson(json);
-}
 
 /// @nodoc
 mixin _$PaymentLinkResponse {
-  String get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  PaymentLinkData? get data => throw _privateConstructorUsedError;
+
+ String get status; String? get message; PaymentLinkData? get data;
+/// Create a copy of PaymentLinkResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PaymentLinkResponseCopyWith<PaymentLinkResponse> get copyWith => _$PaymentLinkResponseCopyWithImpl<PaymentLinkResponse>(this as PaymentLinkResponse, _$identity);
 
   /// Serializes this PaymentLinkResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of PaymentLinkResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PaymentLinkResponseCopyWith<PaymentLinkResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaymentLinkResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'PaymentLinkResponse(status: $status, message: $message, data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $PaymentLinkResponseCopyWith<$Res> {
-  factory $PaymentLinkResponseCopyWith(
-          PaymentLinkResponse value, $Res Function(PaymentLinkResponse) then) =
-      _$PaymentLinkResponseCopyWithImpl<$Res, PaymentLinkResponse>;
-  @useResult
-  $Res call({String status, String? message, PaymentLinkData? data});
+abstract mixin class $PaymentLinkResponseCopyWith<$Res>  {
+  factory $PaymentLinkResponseCopyWith(PaymentLinkResponse value, $Res Function(PaymentLinkResponse) _then) = _$PaymentLinkResponseCopyWithImpl;
+@useResult
+$Res call({
+ String status, String? message, PaymentLinkData? data
+});
 
-  $PaymentLinkDataCopyWith<$Res>? get data;
+
+$PaymentLinkDataCopyWith<$Res>? get data;
+
 }
-
 /// @nodoc
-class _$PaymentLinkResponseCopyWithImpl<$Res, $Val extends PaymentLinkResponse>
+class _$PaymentLinkResponseCopyWithImpl<$Res>
     implements $PaymentLinkResponseCopyWith<$Res> {
-  _$PaymentLinkResponseCopyWithImpl(this._value, this._then);
+  _$PaymentLinkResponseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PaymentLinkResponse _self;
+  final $Res Function(PaymentLinkResponse) _then;
 
-  /// Create a copy of PaymentLinkResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as PaymentLinkData?,
-    ) as $Val);
+/// Create a copy of PaymentLinkResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as PaymentLinkData?,
+  ));
+}
+/// Create a copy of PaymentLinkResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PaymentLinkDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
   }
 
-  /// Create a copy of PaymentLinkResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PaymentLinkDataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $PaymentLinkDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
-  }
+  return $PaymentLinkDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$PaymentLinkResponseImplCopyWith<$Res>
-    implements $PaymentLinkResponseCopyWith<$Res> {
-  factory _$$PaymentLinkResponseImplCopyWith(_$PaymentLinkResponseImpl value,
-          $Res Function(_$PaymentLinkResponseImpl) then) =
-      __$$PaymentLinkResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String status, String? message, PaymentLinkData? data});
 
-  @override
-  $PaymentLinkDataCopyWith<$Res>? get data;
+/// Adds pattern-matching-related methods to [PaymentLinkResponse].
+extension PaymentLinkResponsePatterns on PaymentLinkResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PaymentLinkResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PaymentLinkResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PaymentLinkResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _PaymentLinkResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PaymentLinkResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PaymentLinkResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String status,  String? message,  PaymentLinkData? data)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PaymentLinkResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String status,  String? message,  PaymentLinkData? data)  $default,) {final _that = this;
+switch (_that) {
+case _PaymentLinkResponse():
+return $default(_that.status,_that.message,_that.data);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String status,  String? message,  PaymentLinkData? data)?  $default,) {final _that = this;
+switch (_that) {
+case _PaymentLinkResponse() when $default != null:
+return $default(_that.status,_that.message,_that.data);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$PaymentLinkResponseImplCopyWithImpl<$Res>
-    extends _$PaymentLinkResponseCopyWithImpl<$Res, _$PaymentLinkResponseImpl>
-    implements _$$PaymentLinkResponseImplCopyWith<$Res> {
-  __$$PaymentLinkResponseImplCopyWithImpl(_$PaymentLinkResponseImpl _value,
-      $Res Function(_$PaymentLinkResponseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of PaymentLinkResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-    Object? data = freezed,
-  }) {
-    return _then(_$PaymentLinkResponseImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as PaymentLinkData?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$PaymentLinkResponseImpl implements _PaymentLinkResponse {
-  const _$PaymentLinkResponseImpl(
-      {this.status = "fail", this.message, this.data});
 
-  factory _$PaymentLinkResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PaymentLinkResponseImplFromJson(json);
+class _PaymentLinkResponse implements PaymentLinkResponse {
+  const _PaymentLinkResponse({this.status = "fail", this.message, this.data});
+  factory _PaymentLinkResponse.fromJson(Map<String, dynamic> json) => _$PaymentLinkResponseFromJson(json);
 
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  final String? message;
-  @override
-  final PaymentLinkData? data;
+@override@JsonKey() final  String status;
+@override final  String? message;
+@override final  PaymentLinkData? data;
 
-  @override
-  String toString() {
-    return 'PaymentLinkResponse(status: $status, message: $message, data: $data)';
-  }
+/// Create a copy of PaymentLinkResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PaymentLinkResponseCopyWith<_PaymentLinkResponse> get copyWith => __$PaymentLinkResponseCopyWithImpl<_PaymentLinkResponse>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PaymentLinkResponseImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
-
-  /// Create a copy of PaymentLinkResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PaymentLinkResponseImplCopyWith<_$PaymentLinkResponseImpl> get copyWith =>
-      __$$PaymentLinkResponseImplCopyWithImpl<_$PaymentLinkResponseImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PaymentLinkResponseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$PaymentLinkResponseToJson(this, );
 }
 
-abstract class _PaymentLinkResponse implements PaymentLinkResponse {
-  const factory _PaymentLinkResponse(
-      {final String status,
-      final String? message,
-      final PaymentLinkData? data}) = _$PaymentLinkResponseImpl;
-
-  factory _PaymentLinkResponse.fromJson(Map<String, dynamic> json) =
-      _$PaymentLinkResponseImpl.fromJson;
-
-  @override
-  String get status;
-  @override
-  String? get message;
-  @override
-  PaymentLinkData? get data;
-
-  /// Create a copy of PaymentLinkResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PaymentLinkResponseImplCopyWith<_$PaymentLinkResponseImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PaymentLinkResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.data, data) || other.data == data));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,status,message,data);
+
+@override
+String toString() {
+  return 'PaymentLinkResponse(status: $status, message: $message, data: $data)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PaymentLinkResponseCopyWith<$Res> implements $PaymentLinkResponseCopyWith<$Res> {
+  factory _$PaymentLinkResponseCopyWith(_PaymentLinkResponse value, $Res Function(_PaymentLinkResponse) _then) = __$PaymentLinkResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ String status, String? message, PaymentLinkData? data
+});
+
+
+@override $PaymentLinkDataCopyWith<$Res>? get data;
+
+}
+/// @nodoc
+class __$PaymentLinkResponseCopyWithImpl<$Res>
+    implements _$PaymentLinkResponseCopyWith<$Res> {
+  __$PaymentLinkResponseCopyWithImpl(this._self, this._then);
+
+  final _PaymentLinkResponse _self;
+  final $Res Function(_PaymentLinkResponse) _then;
+
+/// Create a copy of PaymentLinkResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? data = freezed,}) {
+  return _then(_PaymentLinkResponse(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as PaymentLinkData?,
+  ));
+}
+
+/// Create a copy of PaymentLinkResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PaymentLinkDataCopyWith<$Res>? get data {
+    if (_self.data == null) {
+    return null;
+  }
+
+  return $PaymentLinkDataCopyWith<$Res>(_self.data!, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
+}
+
+// dart format on

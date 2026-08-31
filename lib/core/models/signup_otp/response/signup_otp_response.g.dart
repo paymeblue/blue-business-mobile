@@ -6,16 +6,11 @@ part of 'signup_otp_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SignupOtpResponseImpl _$$SignupOtpResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SignupOtpResponseImpl(
+_SignupOtpResponse _$SignupOtpResponseFromJson(Map<String, dynamic> json) =>
+    _SignupOtpResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$SignupOtpResponseImplToJson(
-        _$SignupOtpResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-    };
+Map<String, dynamic> _$SignupOtpResponseToJson(_SignupOtpResponse instance) =>
+    <String, dynamic>{'status': instance.status, 'message': ?instance.message};

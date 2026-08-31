@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,178 +9,272 @@ part of 'refresh_token_data.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-RefreshTokenData _$RefreshTokenDataFromJson(Map<String, dynamic> json) {
-  return _RefreshTokenData.fromJson(json);
-}
 
 /// @nodoc
 mixin _$RefreshTokenData {
-  String get type => throw _privateConstructorUsedError;
-  String get accessToken => throw _privateConstructorUsedError;
+
+ String get type; String get accessToken;
+/// Create a copy of RefreshTokenData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$RefreshTokenDataCopyWith<RefreshTokenData> get copyWith => _$RefreshTokenDataCopyWithImpl<RefreshTokenData>(this as RefreshTokenData, _$identity);
 
   /// Serializes this RefreshTokenData to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of RefreshTokenData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $RefreshTokenDataCopyWith<RefreshTokenData> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RefreshTokenData&&(identical(other.type, type) || other.type == type)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,type,accessToken);
+
+@override
+String toString() {
+  return 'RefreshTokenData(type: $type, accessToken: $accessToken)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $RefreshTokenDataCopyWith<$Res> {
-  factory $RefreshTokenDataCopyWith(
-          RefreshTokenData value, $Res Function(RefreshTokenData) then) =
-      _$RefreshTokenDataCopyWithImpl<$Res, RefreshTokenData>;
-  @useResult
-  $Res call({String type, String accessToken});
-}
+abstract mixin class $RefreshTokenDataCopyWith<$Res>  {
+  factory $RefreshTokenDataCopyWith(RefreshTokenData value, $Res Function(RefreshTokenData) _then) = _$RefreshTokenDataCopyWithImpl;
+@useResult
+$Res call({
+ String type, String accessToken
+});
 
+
+
+
+}
 /// @nodoc
-class _$RefreshTokenDataCopyWithImpl<$Res, $Val extends RefreshTokenData>
+class _$RefreshTokenDataCopyWithImpl<$Res>
     implements $RefreshTokenDataCopyWith<$Res> {
-  _$RefreshTokenDataCopyWithImpl(this._value, this._then);
+  _$RefreshTokenDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final RefreshTokenData _self;
+  final $Res Function(RefreshTokenData) _then;
 
-  /// Create a copy of RefreshTokenData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-    Object? accessToken = null,
-  }) {
-    return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      accessToken: null == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of RefreshTokenData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? accessToken = null,}) {
+  return _then(_self.copyWith(
+type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$RefreshTokenDataImplCopyWith<$Res>
-    implements $RefreshTokenDataCopyWith<$Res> {
-  factory _$$RefreshTokenDataImplCopyWith(_$RefreshTokenDataImpl value,
-          $Res Function(_$RefreshTokenDataImpl) then) =
-      __$$RefreshTokenDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String type, String accessToken});
 }
 
-/// @nodoc
-class __$$RefreshTokenDataImplCopyWithImpl<$Res>
-    extends _$RefreshTokenDataCopyWithImpl<$Res, _$RefreshTokenDataImpl>
-    implements _$$RefreshTokenDataImplCopyWith<$Res> {
-  __$$RefreshTokenDataImplCopyWithImpl(_$RefreshTokenDataImpl _value,
-      $Res Function(_$RefreshTokenDataImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of RefreshTokenData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-    Object? accessToken = null,
-  }) {
-    return _then(_$RefreshTokenDataImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      accessToken: null == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [RefreshTokenData].
+extension RefreshTokenDataPatterns on RefreshTokenData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _RefreshTokenData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _RefreshTokenData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _RefreshTokenData value)  $default,){
+final _that = this;
+switch (_that) {
+case _RefreshTokenData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _RefreshTokenData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _RefreshTokenData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String type,  String accessToken)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _RefreshTokenData() when $default != null:
+return $default(_that.type,_that.accessToken);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String type,  String accessToken)  $default,) {final _that = this;
+switch (_that) {
+case _RefreshTokenData():
+return $default(_that.type,_that.accessToken);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String type,  String accessToken)?  $default,) {final _that = this;
+switch (_that) {
+case _RefreshTokenData() when $default != null:
+return $default(_that.type,_that.accessToken);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$RefreshTokenDataImpl implements _RefreshTokenData {
-  const _$RefreshTokenDataImpl(
-      {this.type = "Bearer", required this.accessToken});
 
-  factory _$RefreshTokenDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RefreshTokenDataImplFromJson(json);
+class _RefreshTokenData implements RefreshTokenData {
+  const _RefreshTokenData({this.type = "Bearer", required this.accessToken});
+  factory _RefreshTokenData.fromJson(Map<String, dynamic> json) => _$RefreshTokenDataFromJson(json);
 
-  @override
-  @JsonKey()
-  final String type;
-  @override
-  final String accessToken;
+@override@JsonKey() final  String type;
+@override final  String accessToken;
 
-  @override
-  String toString() {
-    return 'RefreshTokenData(type: $type, accessToken: $accessToken)';
-  }
+/// Create a copy of RefreshTokenData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$RefreshTokenDataCopyWith<_RefreshTokenData> get copyWith => __$RefreshTokenDataCopyWithImpl<_RefreshTokenData>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RefreshTokenDataImpl &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, type, accessToken);
-
-  /// Create a copy of RefreshTokenData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RefreshTokenDataImplCopyWith<_$RefreshTokenDataImpl> get copyWith =>
-      __$$RefreshTokenDataImplCopyWithImpl<_$RefreshTokenDataImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$RefreshTokenDataImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$RefreshTokenDataToJson(this, );
 }
 
-abstract class _RefreshTokenData implements RefreshTokenData {
-  const factory _RefreshTokenData(
-      {final String type,
-      required final String accessToken}) = _$RefreshTokenDataImpl;
-
-  factory _RefreshTokenData.fromJson(Map<String, dynamic> json) =
-      _$RefreshTokenDataImpl.fromJson;
-
-  @override
-  String get type;
-  @override
-  String get accessToken;
-
-  /// Create a copy of RefreshTokenData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RefreshTokenDataImplCopyWith<_$RefreshTokenDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RefreshTokenData&&(identical(other.type, type) || other.type == type)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,type,accessToken);
+
+@override
+String toString() {
+  return 'RefreshTokenData(type: $type, accessToken: $accessToken)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$RefreshTokenDataCopyWith<$Res> implements $RefreshTokenDataCopyWith<$Res> {
+  factory _$RefreshTokenDataCopyWith(_RefreshTokenData value, $Res Function(_RefreshTokenData) _then) = __$RefreshTokenDataCopyWithImpl;
+@override @useResult
+$Res call({
+ String type, String accessToken
+});
+
+
+
+
+}
+/// @nodoc
+class __$RefreshTokenDataCopyWithImpl<$Res>
+    implements _$RefreshTokenDataCopyWith<$Res> {
+  __$RefreshTokenDataCopyWithImpl(this._self, this._then);
+
+  final _RefreshTokenData _self;
+  final $Res Function(_RefreshTokenData) _then;
+
+/// Create a copy of RefreshTokenData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? type = null,Object? accessToken = null,}) {
+  return _then(_RefreshTokenData(
+type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

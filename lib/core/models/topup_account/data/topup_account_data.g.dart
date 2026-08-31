@@ -6,14 +6,10 @@ part of 'topup_account_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TopupAccountDataImpl _$$TopupAccountDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TopupAccountDataImpl(
+_TopupAccountData _$TopupAccountDataFromJson(Map<String, dynamic> json) =>
+    _TopupAccountData(
       account: TopupAccount.fromJson(json['account'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$TopupAccountDataImplToJson(
-        _$TopupAccountDataImpl instance) =>
-    <String, dynamic>{
-      'account': instance.account,
-    };
+Map<String, dynamic> _$TopupAccountDataToJson(_TopupAccountData instance) =>
+    <String, dynamic>{'account': instance.account};

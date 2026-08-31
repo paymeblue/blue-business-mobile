@@ -4,7 +4,7 @@ part 'chat_receiver_data.freezed.dart';
 part 'chat_receiver_data.g.dart';
 
 @freezed
-class ChatResponseData with _$ChatResponseData {
+abstract class ChatResponseData with _$ChatResponseData {
   const factory ChatResponseData({
     required String firstName,
     required String lastName,
@@ -14,5 +14,5 @@ class ChatResponseData with _$ChatResponseData {
   }) = _ChatResponseData;
 
   factory ChatResponseData.fromJson(Map<String, dynamic> json) =>
-      _$ChatResponseDataImpl.fromJson(json);
+      _$ChatResponseDataFromJson(json);
 }

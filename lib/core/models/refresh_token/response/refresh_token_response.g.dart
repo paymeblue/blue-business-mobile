@@ -6,20 +6,20 @@ part of 'refresh_token_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$RefreshTokenResponseImpl _$$RefreshTokenResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$RefreshTokenResponseImpl(
-      status: json['status'] as String? ?? "fail",
-      message: json['message'] as String?,
-      data: json['data'] == null
-          ? null
-          : RefreshTokenData.fromJson(json['data'] as Map<String, dynamic>),
-    );
+_RefreshTokenResponse _$RefreshTokenResponseFromJson(
+  Map<String, dynamic> json,
+) => _RefreshTokenResponse(
+  status: json['status'] as String? ?? "fail",
+  message: json['message'] as String?,
+  data: json['data'] == null
+      ? null
+      : RefreshTokenData.fromJson(json['data'] as Map<String, dynamic>),
+);
 
-Map<String, dynamic> _$$RefreshTokenResponseImplToJson(
-        _$RefreshTokenResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
-    };
+Map<String, dynamic> _$RefreshTokenResponseToJson(
+  _RefreshTokenResponse instance,
+) => <String, dynamic>{
+  'status': instance.status,
+  'message': ?instance.message,
+  'data': ?instance.data,
+};

@@ -1,4 +1,5 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
@@ -7,6 +8,7 @@ import 'package:blue_business/core/models/change_pin/response/change_pin_respons
 import 'package:blue_business/core/navigation/injection/locator.dart';
 import 'package:blue_business/core/navigation/router_config/router_config.dart';
 import 'package:blue_business/core/utils/app_loader.dart';
+import 'package:blue_business/core/utils/constants.dart';
 import 'package:blue_business/core/utils/error_handler.dart';
 import 'package:blue_business/core/utils/extensions.dart';
 import 'package:blue_business/ui/widgets/modals/notifications.dart';
@@ -15,11 +17,11 @@ import 'package:flutter/material.dart';
 class ChangePinViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 
-  goBaack(BuildContext context) {
+  void goBaack(BuildContext context) {
     if (newPin.isNotEmpty) {
       tempPin = newPin;
       newPin = "";
@@ -56,7 +58,7 @@ class ChangePinViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  setPinAndNext(BuildContext context) {
+  void setPinAndNext(BuildContext context) {
     if (pin.isEmpty) {
       pin = tempPin;
       tempPin = "";
@@ -77,24 +79,27 @@ class ChangePinViewModel extends BaseViewModel {
     }
   }
 
-  changePin(BuildContext context) async {
+  Future<void> changePin(BuildContext context) async {
     AppLoader.start();
 
-    ChangePinRequest request =
-        ChangePinRequest(confirmPin: confirmPin, oldPin: pin, newPin: newPin);
+    ChangePinRequest request = ChangePinRequest(
+      confirmPin: confirmPin,
+      oldPin: pin,
+      newPin: newPin,
+    );
 
     ChangePinResponse resp =
-        await AuthService().changePin(request).onError((error, stackTrace) {
-      return ChangePinResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "change_pin",
-          "request": request.toString(),
-          "response_model": "ChangePinResponse"
-        },
-      ));
-    });
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).changePin(request).onError((error, stackTrace) {
+          return ChangePinResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "change_pin",
+              "request": request.toString(),
+              "response_model": "ChangePinResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       if (StorageValues.pin.isNotEmpty) {
@@ -109,7 +114,7 @@ class ChangePinViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  saveInStorage() async {
+  Future<void> saveInStorage() async {
     StorageValues.password = newPin;
 
     await StorageHelpers.setVal(StorageKeys.passwordKey, newPin);

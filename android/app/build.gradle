@@ -2,7 +2,6 @@ plugins {
     id "com.android.application"
     // START: FlutterFire Configuration
     id "com.google.gms.google-services"
-    id 'com.google.firebase.crashlytics'
     // END: FlutterFire Configuration
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
@@ -34,12 +33,13 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.roman_dev.blue_business"
-    compileSdkVersion 35
+    compileSdkVersion 36
     ndkVersion flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
@@ -52,14 +52,19 @@ android {
 
     defaultConfig {
         applicationId "com.roman_dev.blue_business"
-        minSdkVersion 23
+        minSdkVersion flutter.minSdkVersion
         multiDexEnabled true
-        targetSdkVersion 35
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         ndk {
-            abiFilters "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
+            abiFilters "armeabi-v7a", "arm64-v8a"
         }
+    }
+
+    packagingOptions {
+        exclude "lib/x86/libimage_processing_util_jni.so"
+        exclude "lib/x86_64/libimage_processing_util_jni.so"
     }
 
     signingConfigs {
@@ -89,6 +94,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.window:window:1.0.0'
     implementation 'androidx.window:window-java:1.0.0'
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
-    implementation 'com.zoho.salesiq:mobilisten:8.0.2'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
+    implementation 'com.zoho.salesiq:mobilisten:8.0.5'
+    implementation 'androidx.camera:camera-core:1.5.0-beta01'
 }

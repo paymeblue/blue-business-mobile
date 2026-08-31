@@ -6,9 +6,8 @@ part of 'get_reason_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GetReasonResponseImpl _$$GetReasonResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GetReasonResponseImpl(
+_GetReasonResponse _$GetReasonResponseFromJson(Map<String, dynamic> json) =>
+    _GetReasonResponse(
       status: json['status'] as String? ?? "fail",
       message: json['message'] as String?,
       data: (json['data'] as List<dynamic>?)
@@ -16,10 +15,9 @@ _$GetReasonResponseImpl _$$GetReasonResponseImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$GetReasonResponseImplToJson(
-        _$GetReasonResponseImpl instance) =>
+Map<String, dynamic> _$GetReasonResponseToJson(_GetReasonResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-      if (instance.data case final value?) 'data': value,
+      'message': ?instance.message,
+      'data': ?instance.data,
     };

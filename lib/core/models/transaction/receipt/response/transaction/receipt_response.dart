@@ -5,7 +5,7 @@ part 'receipt_response.freezed.dart';
 part 'receipt_response.g.dart';
 
 @freezed
-class ReceiptResponse with _$ReceiptResponse {
+abstract class ReceiptResponse with _$ReceiptResponse {
   const factory ReceiptResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class ReceiptResponse with _$ReceiptResponse {
   }) = _ReceiptResponse;
 
   factory ReceiptResponse.fromJson(Map<String, dynamic> json) =>
-      _$ReceiptResponseImpl.fromJson(json);
+      _$ReceiptResponseFromJson(json);
 }

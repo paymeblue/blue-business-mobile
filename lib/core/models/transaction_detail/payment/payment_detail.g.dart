@@ -6,8 +6,8 @@ part of 'payment_detail.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PaymentDetailImpl _$$PaymentDetailImplFromJson(Map<String, dynamic> json) =>
-    _$PaymentDetailImpl(
+_PaymentDetail _$PaymentDetailFromJson(Map<String, dynamic> json) =>
+    _PaymentDetail(
       id: json['id'] as String?,
       amount: json['amount'] as String,
       receiver: json['receiver'] as String,
@@ -23,9 +23,9 @@ _$PaymentDetailImpl _$$PaymentDetailImplFromJson(Map<String, dynamic> json) =>
       balanceAfter: json['balance_after'] as String? ?? "0.00",
     );
 
-Map<String, dynamic> _$$PaymentDetailImplToJson(_$PaymentDetailImpl instance) =>
+Map<String, dynamic> _$PaymentDetailToJson(_PaymentDetail instance) =>
     <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
+      'id': ?instance.id,
       'amount': instance.amount,
       'receiver': instance.receiver,
       'details': instance.details,

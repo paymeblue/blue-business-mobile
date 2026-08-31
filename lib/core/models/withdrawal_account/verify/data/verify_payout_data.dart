@@ -4,7 +4,7 @@ part 'verify_payout_data.freezed.dart';
 part 'verify_payout_data.g.dart';
 
 @freezed
-class VerifyPayoutData with _$VerifyPayoutData {
+abstract class VerifyPayoutData with _$VerifyPayoutData {
   const factory VerifyPayoutData({
     required int id,
     required String reference,
@@ -13,5 +13,5 @@ class VerifyPayoutData with _$VerifyPayoutData {
   }) = _VerifyPayoutData;
 
   factory VerifyPayoutData.fromJson(Map<String, dynamic> json) =>
-      _$VerifyPayoutDataImpl.fromJson(json);
+      _$VerifyPayoutDataFromJson(json);
 }

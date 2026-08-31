@@ -1,6 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
-
 import 'package:blue_business/core/api/pump_price_service/pump_price_attendant_service.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/colors.gen.dart';
@@ -21,7 +19,7 @@ import 'package:flutter/material.dart';
 
 class AddPumpPriceAttendantViewModel extends BaseViewModel {
   Staff? attendant;
-  init(Staff? s) {
+  void init(Staff? s) {
     attendant = s;
 
     if (attendant != null) {
@@ -29,7 +27,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     }
   }
 
-  setAttendantValues() {
+  void setAttendantValues() {
     name.text = attendant!.name;
     phone.text = attendant!.phone.substring(attendant!.phone.length - 10);
     branch = attendant!.branchName;
@@ -44,10 +42,11 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  pickImage() async {
+  Future<void> pickImage() async {
     try {
-      FilePickerResult? result =
-          await FilePicker.platform.pickFiles(type: FileType.image);
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+      );
 
       if (result != null) {
         String? p = result.files.single.path;
@@ -57,9 +56,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
         PumpPriceToast.error(message: "No image selected");
       }
     } catch (e) {
-      PumpPriceToast.error(
-        message: AppErrorHandler.getErrorMessage(e),
-      );
+      PumpPriceToast.error(message: AppErrorHandler.getErrorMessage(e));
     }
   }
 
@@ -82,7 +79,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
   TextEditingController confirmPassword = TextEditingController();
   TextEditingController name = TextEditingController();
 
-  onChanged(String? v) {
+  void onChanged(String? v) {
     notifyListeners();
   }
 
@@ -100,7 +97,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onConfirmPasswordChanged(String? v) {
+  void onConfirmPasswordChanged(String? v) {
     if (v.orEmpty.isEmpty && attendant == null) {
       confirmPasswordValidationText = 'This field is required';
     } else if (v.orEmpty != password.text) {
@@ -110,7 +107,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     }
   }
 
-  onPasswordChanged(String? v) {
+  void onPasswordChanged(String? v) {
     if (v.orEmpty.isEmpty && attendant == null) {
       passwordValidationText = 'This field is required';
     } else if (v.orEmpty.isNotEmpty) {
@@ -120,8 +117,9 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
         passwordValidationText = 'Password must contain a letter';
       } else if (!RegExp((r'[0-9]+?').toString()).hasMatch(v.orEmpty)) {
         passwordValidationText = 'Password must contain a number';
-      } else if (!RegExp((r"[.,_@\\+$!#%^&*\-=?:;']+?").toString())
-          .hasMatch(v.orEmpty)) {
+      } else if (!RegExp(
+        (r"[.,_@\\+$!#%^&*\-=?:;']+?").toString(),
+      ).hasMatch(v.orEmpty)) {
         passwordValidationText = 'Password must contain a special character';
       } else {
         passwordValidationText = null;
@@ -131,7 +129,7 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     }
   }
 
-  showBranchesBottomSheet(BuildContext context) async {
+  Future<void> showBranchesBottomSheet(BuildContext context) async {
     FocusManager.instance.primaryFocus?.unfocus();
     await showModalBottomSheet(
       context: context,
@@ -165,16 +163,20 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     if (attendant != null) {
       return attendant != null &&
           (name.text != attendant!.name ||
-              phone.text.validPhone(CountryCode(
-                    countryCode: 'NG',
-                    name: 'Nigeria',
-                    dialCode: '+234',
-                  )) !=
-                  attendant!.phone.validPhone(CountryCode(
-                    countryCode: 'NG',
-                    name: 'Nigeria',
-                    dialCode: '+234',
-                  )) ||
+              phone.text.validPhone(
+                    CountryCode(
+                      countryCode: 'NG',
+                      name: 'Nigeria',
+                      dialCode: '+234',
+                    ),
+                  ) !=
+                  attendant!.phone.validPhone(
+                    CountryCode(
+                      countryCode: 'NG',
+                      name: 'Nigeria',
+                      dialCode: '+234',
+                    ),
+                  ) ||
               branch != attendant!.branchName ||
               (password.text.isNotEmpty &&
                   passwordValidationText == null &&
@@ -191,30 +193,25 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  createStaff() async {
+  Future<void> createStaff() async {
     buttonState = FetchState.loading;
     CreateStaffResponse response = await PumpPriceAttendantService()
         .createAttendant(
-      image: path != null ? File(path!) : null,
-      name: name.text,
-      phone: phone.text.validPhone(CountryCode(
-        countryCode: 'NG',
-        name: 'Nigeria',
-        dialCode: '+234',
-      )),
-      branchId: int.parse(station!.branchId),
-      password: password.text,
-    )
+          name: name.text,
+          phone: phone.text.validPhone(
+            CountryCode(countryCode: 'NG', name: 'Nigeria', dialCode: '+234'),
+          ),
+          branchId: int.parse(station!.branchId),
+          password: password.text,
+        )
         .onError((error, stacktrace) {
-      return CreateStaffResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "create_staff",
-          "response_model": "CreateStaffResponse"
-        },
-      ));
-    });
+          return CreateStaffResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "create_staff",
+              "response_model": "CreateStaffResponse",
+            }),
+          );
+        });
 
     if (response.status == "success") {
       buttonState = FetchState.success;
@@ -225,26 +222,21 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     }
   }
 
-  editStaff() async {
+  Future<void> editStaff() async {
     buttonState = FetchState.loading;
     UpdateStaffRequest request = UpdateStaffRequest();
 
-    if (phone.text.validPhone(CountryCode(
-          countryCode: 'NG',
-          name: 'Nigeria',
-          dialCode: '+234',
-        )) !=
-        attendant!.phone.validPhone(CountryCode(
-          countryCode: 'NG',
-          name: 'Nigeria',
-          dialCode: '+234',
-        ))) {
+    if (phone.text.validPhone(
+          CountryCode(countryCode: 'NG', name: 'Nigeria', dialCode: '+234'),
+        ) !=
+        attendant!.phone.validPhone(
+          CountryCode(countryCode: 'NG', name: 'Nigeria', dialCode: '+234'),
+        )) {
       request = request.copyWith(
-          phone: phone.text.validPhone(CountryCode(
-        countryCode: 'NG',
-        name: 'Nigeria',
-        dialCode: '+234',
-      )));
+        phone: phone.text.validPhone(
+          CountryCode(countryCode: 'NG', name: 'Nigeria', dialCode: '+234'),
+        ),
+      );
     }
 
     if (branch != attendant!.branchName) {
@@ -265,8 +257,10 @@ class AddPumpPriceAttendantViewModel extends BaseViewModel {
     final resp = await PumpPriceAttendantService()
         .editAttendant(id: attendant!.id, request: request)
         .onError((e, s) {
-      return CreateStaffResponse(message: AppErrorHandler.getErrorMessage(e));
-    });
+          return CreateStaffResponse(
+            message: AppErrorHandler.getErrorMessage(e),
+          );
+        });
 
     if (resp.status == 'success') {
       buttonState = FetchState.success;

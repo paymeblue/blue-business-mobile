@@ -5,7 +5,7 @@ part 'verify_cable_response.freezed.dart';
 part 'verify_cable_response.g.dart';
 
 @freezed
-class VerifyCableResponse with _$VerifyCableResponse {
+abstract class VerifyCableResponse with _$VerifyCableResponse {
   const factory VerifyCableResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class VerifyCableResponse with _$VerifyCableResponse {
   }) = _VerifyCableResponse;
 
   factory VerifyCableResponse.fromJson(Map<String, dynamic> json) =>
-      _$VerifyCableResponseImpl.fromJson(json);
+      _$VerifyCableResponseFromJson(json);
 }

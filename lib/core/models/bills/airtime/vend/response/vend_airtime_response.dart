@@ -5,7 +5,7 @@ part 'vend_airtime_response.freezed.dart';
 part 'vend_airtime_response.g.dart';
 
 @freezed
-class VendAirtimeResponse with _$VendAirtimeResponse {
+abstract class VendAirtimeResponse with _$VendAirtimeResponse {
   const factory VendAirtimeResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class VendAirtimeResponse with _$VendAirtimeResponse {
   }) = _VendAirtimeResponse;
 
   factory VendAirtimeResponse.fromJson(Map<String, dynamic> json) =>
-      _$VendAirtimeResponseImpl.fromJson(json);
+      _$VendAirtimeResponseFromJson(json);
 }

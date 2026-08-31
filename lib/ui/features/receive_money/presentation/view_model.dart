@@ -16,7 +16,7 @@ import 'package:share_plus/share_plus.dart';
 class ReceiveMoneyViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) async {
+  Future<void> init(BuildContext context) async {
     size = context.mediaQuery.size;
 
     if (locator<AppStateValues>().account == null) {
@@ -27,7 +27,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     }
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
@@ -40,19 +40,17 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getWalletBalance() async {
+  Future<void> getWalletBalance() async {
     walletState = FetchState.loading;
 
-    WalletResponse resp = await DashService()
-        .getWalletDetails()
-        .onError((error, stackTrace) => WalletResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_wallet_detail",
-                "response_model": "WalletResponse"
-              },
-            )));
+    WalletResponse resp = await DashService().getWalletDetails().onError(
+      (error, stackTrace) => WalletResponse(
+        message: AppErrorHandler.getErrorMessage(error, {
+          "request_name": "get_wallet_detail",
+          "response_model": "WalletResponse",
+        }),
+      ),
+    );
 
     if (resp.status == "success") {
       walletState = FetchState.success;
@@ -62,14 +60,19 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     }
   }
 
-  downloadAndShareQr() async {
+  Future<void> downloadAndShareQr() async {
     AppLoader.start();
     Uint8List? img;
-    await screenshotController.capture().then((value) {
-      img = value;
-    }).catchError((onError) {
-      AppNotification.error(message: AppErrorHandler.getErrorMessage(onError));
-    });
+    await screenshotController
+        .capture()
+        .then((value) {
+          img = value;
+        })
+        .catchError((onError) {
+          AppNotification.error(
+            message: AppErrorHandler.getErrorMessage(onError),
+          );
+        });
     if (img != null) {
       XFile image = XFile.fromData(
         img!,
@@ -93,19 +96,17 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getTopupAccount() async {
+  Future<void> getTopupAccount() async {
     accountState = FetchState.loading;
 
-    TopupResponse resp = await DashService()
-        .getWalletAccount()
-        .onError((error, stackTrace) => TopupResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "get_wallet_account",
-                "response_model": "TopupResponse"
-              },
-            )));
+    TopupResponse resp = await DashService().getWalletAccount().onError(
+      (error, stackTrace) => TopupResponse(
+        message: AppErrorHandler.getErrorMessage(error, {
+          "request_name": "get_wallet_account",
+          "response_model": "TopupResponse",
+        }),
+      ),
+    );
 
     if (resp.status == "success") {
       accountState = FetchState.success;
@@ -116,7 +117,7 @@ class ReceiveMoneyViewModel extends BaseViewModel {
     }
   }
 
-  copy(String v) {
+  void copy(String v) {
     Clipboard.setData(ClipboardData(text: v)).then((value) {
       BlueToast.primaryWithcon("Copied to clipboard");
     });

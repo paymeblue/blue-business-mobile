@@ -7,7 +7,7 @@ part 'login_data.freezed.dart';
 part 'login_data.g.dart';
 
 @freezed
-class LoginData with _$LoginData {
+abstract class LoginData with _$LoginData {
   const factory LoginData({
     required int id,
     required String phone,
@@ -21,5 +21,5 @@ class LoginData with _$LoginData {
   }) = _LoginData;
 
   factory LoginData.fromJson(Map<String, dynamic> json) =>
-      _$LoginDataImpl.fromJson(json);
+      _$LoginDataFromJson(json);
 }

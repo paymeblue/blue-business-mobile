@@ -6,14 +6,12 @@ part of 'upload_avatar_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UploadAvatarResponseDataImpl _$$UploadAvatarResponseDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$UploadAvatarResponseDataImpl(
-      user: UserImage.fromJson(json['user'] as Map<String, dynamic>),
-    );
+_UploadAvatarResponseData _$UploadAvatarResponseDataFromJson(
+  Map<String, dynamic> json,
+) => _UploadAvatarResponseData(
+  user: UserImage.fromJson(json['user'] as Map<String, dynamic>),
+);
 
-Map<String, dynamic> _$$UploadAvatarResponseDataImplToJson(
-        _$UploadAvatarResponseDataImpl instance) =>
-    <String, dynamic>{
-      'user': instance.user,
-    };
+Map<String, dynamic> _$UploadAvatarResponseDataToJson(
+  _UploadAvatarResponseData instance,
+) => <String, dynamic>{'user': instance.user};

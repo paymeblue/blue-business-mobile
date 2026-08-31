@@ -10,8 +10,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 enum PumpPriceTab { branch, attendant, logout }
 
 class PumpPriceNavBar extends StatelessWidget {
-  const PumpPriceNavBar(
-      {super.key, required this.onTap, this.currentIndex = 0});
+  const PumpPriceNavBar({
+    super.key,
+    required this.onTap,
+    this.currentIndex = 0,
+  });
 
   final Function(int index, {bool notify}) onTap;
   final int currentIndex;
@@ -20,8 +23,12 @@ class PumpPriceNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding:
-          EdgeInsets.only(left: 16.w, right: 16.w, bottom: 28.h, top: 10.h),
+      padding: EdgeInsets.only(
+        left: 16.w,
+        right: 16.w,
+        bottom: 28.h,
+        top: 10.h,
+      ),
       height: 90.h,
       decoration: BoxDecoration(
         boxShadow: kElevationToShadow[3],
@@ -29,43 +36,42 @@ class PumpPriceNavBar extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(
-          PumpPriceTab.values.length,
-          (i) {
-            PumpPriceTab t = PumpPriceTab.values[i];
-            return GestureDetector(
-              onTap: () {
-                if (t.index == PumpPriceTab.logout.index) {
-                  showLogout(context);
-                } else {
-                  onTap(t.index);
-                }
-              },
-              child: Column(
-                children: [
+        children: List.generate(PumpPriceTab.values.length, (i) {
+          PumpPriceTab t = PumpPriceTab.values[i];
+          return GestureDetector(
+            onTap: () {
+              if (t.index == PumpPriceTab.logout.index) {
+                showLogout(context);
+              } else {
+                onTap(t.index);
+              }
+            },
+            child: Column(
+              children: [
+                Container(
+                  height: 28,
+                  width: 28,
+                  alignment: Alignment.center,
+                  child: icon(t),
+                ),
+                if (i == currentIndex)
                   Container(
-                    height: 28,
-                    width: 28,
-                    alignment: Alignment.center,
-                    child: icon(t),
-                  ),
-                  if (i == currentIndex)
-                    Container(
-                      height: 4.dm,
-                      width: 4.dm,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: AppColors.primary),
+                    height: 4.dm,
+                    width: 4.dm,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.primary,
                     ),
-                ],
-              ),
-            );
-          },
-        ),
+                  ),
+              ],
+            ),
+          );
+        }),
       ),
     );
   }
 
-  showLogout(BuildContext context) {
+  void showLogout(BuildContext context) {
     FocusManager.instance.primaryFocus?.unfocus();
     showModalBottomSheet(
       context: context,

@@ -4,7 +4,7 @@ part 'create_shareholders_request.freezed.dart';
 part 'create_shareholders_request.g.dart';
 
 @freezed
-class CreateShareholdersRequest with _$CreateShareholdersRequest {
+abstract class CreateShareholdersRequest with _$CreateShareholdersRequest {
   const factory CreateShareholdersRequest({
     required String name,
     required String bvn,
@@ -13,5 +13,5 @@ class CreateShareholdersRequest with _$CreateShareholdersRequest {
   }) = _CreateShareholdersRequest;
 
   factory CreateShareholdersRequest.fromJson(Map<String, dynamic> json) =>
-      _$CreateShareholdersRequestImpl.fromJson(json);
+      _$CreateShareholdersRequestFromJson(json);
 }

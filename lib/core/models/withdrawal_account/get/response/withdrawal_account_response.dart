@@ -5,7 +5,7 @@ part 'withdrawal_account_response.freezed.dart';
 part 'withdrawal_account_response.g.dart';
 
 @freezed
-class WithdrawalAccountResponse with _$WithdrawalAccountResponse {
+abstract class WithdrawalAccountResponse with _$WithdrawalAccountResponse {
   const factory WithdrawalAccountResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class WithdrawalAccountResponse with _$WithdrawalAccountResponse {
   }) = _WithdrawalAccountResponse;
 
   factory WithdrawalAccountResponse.fromJson(Map<String, dynamic> json) =>
-      _$WithdrawalAccountResponseImpl.fromJson(json);
+      _$WithdrawalAccountResponseFromJson(json);
 }

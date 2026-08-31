@@ -6,16 +6,13 @@ part of 'verify_new_phone_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VerifyNewPhoneResponseImpl _$$VerifyNewPhoneResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VerifyNewPhoneResponseImpl(
-      status: json['status'] as String? ?? "fail",
-      message: json['message'] as String?,
-    );
+_VerifyNewPhoneResponse _$VerifyNewPhoneResponseFromJson(
+  Map<String, dynamic> json,
+) => _VerifyNewPhoneResponse(
+  status: json['status'] as String? ?? "fail",
+  message: json['message'] as String?,
+);
 
-Map<String, dynamic> _$$VerifyNewPhoneResponseImplToJson(
-        _$VerifyNewPhoneResponseImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      if (instance.message case final value?) 'message': value,
-    };
+Map<String, dynamic> _$VerifyNewPhoneResponseToJson(
+  _VerifyNewPhoneResponse instance,
+) => <String, dynamic>{'status': instance.status, 'message': ?instance.message};

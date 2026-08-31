@@ -5,7 +5,7 @@ part 'get_shareholders_response.freezed.dart';
 part 'get_shareholders_response.g.dart';
 
 @freezed
-class GetShareholdersResponse with _$GetShareholdersResponse {
+abstract class GetShareholdersResponse with _$GetShareholdersResponse {
   const factory GetShareholdersResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class GetShareholdersResponse with _$GetShareholdersResponse {
   }) = _GetShareholdersResponse;
 
   factory GetShareholdersResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetShareholdersResponseImpl.fromJson(json);
+      _$GetShareholdersResponseFromJson(json);
 }

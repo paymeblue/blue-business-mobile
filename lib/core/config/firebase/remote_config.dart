@@ -53,14 +53,16 @@ class RemoteConfigService {
         {"name": "Taraba", "alt_name": ""},
         {"name": "Yobe", "alt_name": ""},
         {"name": "Zamfara", "alt_name": ""},
-        {"name": "FCT(Abuja)", "alt_name": "Abuja"}
-      ]
+        {"name": "FCT(Abuja)", "alt_name": "Abuja"},
+      ],
     };
 
-    await remoteConfig.setConfigSettings(RemoteConfigSettings(
-      fetchTimeout: const Duration(seconds: 30),
-      minimumFetchInterval: const Duration(seconds: 0),
-    ));
+    await remoteConfig.setConfigSettings(
+      RemoteConfigSettings(
+        fetchTimeout: const Duration(seconds: 30),
+        minimumFetchInterval: const Duration(seconds: 0),
+      ),
+    );
 
     await remoteConfig.setDefaults({
       'minimum_version': '1.0.5',
@@ -79,12 +81,12 @@ class RemoteConfigService {
     return RemoteConfigService._(remoteConfig);
   }
 
-  isFromTestflight() async {
+  Future<void> isFromTestflight() async {
     Source installationSource = await StoreChecker.getSource;
 
     locator<AppStateValues>().isTestApp =
         (installationSource != Source.IS_INSTALLED_FROM_APP_STORE) &&
-            (installationSource != Source.IS_INSTALLED_FROM_PLAY_STORE);
+        (installationSource != Source.IS_INSTALLED_FROM_PLAY_STORE);
 
     locator<AppStateValues>().lockedFeatures =
         (jsonDecode(_remoteConfig.getString('locked_feature'))['features']

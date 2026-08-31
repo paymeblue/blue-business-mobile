@@ -4,7 +4,7 @@ part 'todo.freezed.dart';
 part 'todo.g.dart';
 
 @freezed
-class TodoOption with _$TodoOption {
+abstract class TodoOption with _$TodoOption {
   const factory TodoOption({
     required String title,
     @Default("incomplete") String status,
@@ -13,5 +13,5 @@ class TodoOption with _$TodoOption {
   }) = _TodoOption;
 
   factory TodoOption.fromJson(Map<String, dynamic> json) =>
-      _$TodoOptionImpl.fromJson(json);
+      _$TodoOptionFromJson(json);
 }

@@ -6,32 +6,32 @@ part of 'verify_electricity_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VerifyElectricityDataImpl _$$VerifyElectricityDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VerifyElectricityDataImpl(
-      transactionId: json['transaction_id'] as String,
-      customerName: json['customer_name'] as String,
-      customerInfo: json['customer_info'] as String,
-      receiver: json['receiver'] as String,
-      provider: json['provider'] as String,
-      meterType: json['meter_type'] as String,
-      serviceCharge: json['service_charge'] as String? ?? "100.00",
-      minimumAmount: json['minimum_amount'] as String? ?? "0.0",
-      status: json['status'] as String? ?? "pending",
-      createdAt: json['created_at'] as String?,
-    );
+_VerifyElectricityData _$VerifyElectricityDataFromJson(
+  Map<String, dynamic> json,
+) => _VerifyElectricityData(
+  transactionId: json['transaction_id'] as String,
+  customerName: json['customer_name'] as String,
+  customerInfo: json['customer_info'] as String,
+  receiver: json['receiver'] as String,
+  provider: json['provider'] as String,
+  meterType: json['meter_type'] as String,
+  serviceCharge: json['service_charge'] as String? ?? "100.00",
+  minimumAmount: json['minimum_amount'] as String? ?? "0.0",
+  status: json['status'] as String? ?? "pending",
+  createdAt: json['created_at'] as String?,
+);
 
-Map<String, dynamic> _$$VerifyElectricityDataImplToJson(
-        _$VerifyElectricityDataImpl instance) =>
-    <String, dynamic>{
-      'transaction_id': instance.transactionId,
-      'customer_name': instance.customerName,
-      'customer_info': instance.customerInfo,
-      'receiver': instance.receiver,
-      'provider': instance.provider,
-      'meter_type': instance.meterType,
-      'service_charge': instance.serviceCharge,
-      'minimum_amount': instance.minimumAmount,
-      'status': instance.status,
-      if (instance.createdAt case final value?) 'created_at': value,
-    };
+Map<String, dynamic> _$VerifyElectricityDataToJson(
+  _VerifyElectricityData instance,
+) => <String, dynamic>{
+  'transaction_id': instance.transactionId,
+  'customer_name': instance.customerName,
+  'customer_info': instance.customerInfo,
+  'receiver': instance.receiver,
+  'provider': instance.provider,
+  'meter_type': instance.meterType,
+  'service_charge': instance.serviceCharge,
+  'minimum_amount': instance.minimumAmount,
+  'status': instance.status,
+  'created_at': ?instance.createdAt,
+};

@@ -6,9 +6,8 @@ part of 'vend_electricity_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VendElectricityDataImpl _$$VendElectricityDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VendElectricityDataImpl(
+_VendElectricityData _$VendElectricityDataFromJson(Map<String, dynamic> json) =>
+    _VendElectricityData(
       transactionId: json['transaction_id'] as String,
       customerName: json['customer_name'] as String,
       customerInfo: json['customer_info'] as String,
@@ -23,19 +22,19 @@ _$VendElectricityDataImpl _$$VendElectricityDataImplFromJson(
       token: json['token'] as String?,
     );
 
-Map<String, dynamic> _$$VendElectricityDataImplToJson(
-        _$VendElectricityDataImpl instance) =>
-    <String, dynamic>{
-      'transaction_id': instance.transactionId,
-      'customer_name': instance.customerName,
-      'customer_info': instance.customerInfo,
-      'receiver': instance.receiver,
-      'provider': instance.provider,
-      'meter_type': instance.meterType,
-      'payment_reference': instance.paymentReference,
-      'amount': instance.amount,
-      'status': instance.status,
-      if (instance.createdAt case final value?) 'created_at': value,
-      if (instance.units case final value?) 'units': value,
-      if (instance.token case final value?) 'token': value,
-    };
+Map<String, dynamic> _$VendElectricityDataToJson(
+  _VendElectricityData instance,
+) => <String, dynamic>{
+  'transaction_id': instance.transactionId,
+  'customer_name': instance.customerName,
+  'customer_info': instance.customerInfo,
+  'receiver': instance.receiver,
+  'provider': instance.provider,
+  'meter_type': instance.meterType,
+  'payment_reference': instance.paymentReference,
+  'amount': instance.amount,
+  'status': instance.status,
+  'created_at': ?instance.createdAt,
+  'units': ?instance.units,
+  'token': ?instance.token,
+};

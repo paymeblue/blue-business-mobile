@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/api/profile_service/profile_service.dart';
 import 'package:blue_business/core/api/transaction_service/transaction_service.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/config/storage/functions.dart';
 import 'package:blue_business/core/config/storage/keys.dart';
@@ -37,7 +38,7 @@ import 'package:url_launcher/url_launcher.dart';
 class SettingsViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
 
     notificationStatus = locator<AppStateValues>().notificationStatus;
@@ -58,7 +59,7 @@ class SettingsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  setBiometricsValue(bool v) {
+  void setBiometricsValue(bool v) {
     if (v) {
       allowBiometrics();
     } else {
@@ -66,10 +67,11 @@ class SettingsViewModel extends BaseViewModel {
     }
   }
 
-  pickImage() async {
+  Future<void> pickImage() async {
     try {
-      FilePickerResult? result =
-          await FilePicker.platform.pickFiles(type: FileType.image);
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+      );
 
       if (result != null) {
         File file = File(result.files.single.path!);
@@ -82,29 +84,29 @@ class SettingsViewModel extends BaseViewModel {
     }
   }
 
-  uploadImage(File file) async {
+  Future<void> uploadImage(File file) async {
     AppLoader.start();
 
     UploadAvatarResponse resp = await ProfileService()
         .uploadDisplayPicture(file)
-        .onError((error, stackTrace) => UploadAvatarResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "upload_display_picture",
-                "response_model": "UploadAvatarResponse"
-              },
-            )));
+        .onError(
+          (error, stackTrace) => UploadAvatarResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "upload_display_picture",
+              "response_model": "UploadAvatarResponse",
+            }),
+          ),
+        );
 
     if (resp.status == "success") {
-      locator<AppStateValues>().currentUser =
-          locator<AppStateValues>().currentUser!.copyWith(
-                displayPicture: resp.data!.displayPicture,
-              );
+      locator<AppStateValues>().currentUser = locator<AppStateValues>()
+          .currentUser!
+          .copyWith(displayPicture: resp.data!.displayPicture);
       notifyListeners();
 
       AppNotification.success(
-          message: "Your profile picture has been updated and is loading.");
+        message: "Your profile picture has been updated and is loading.",
+      );
     } else {
       AppNotification.error(message: resp.message);
     }
@@ -112,15 +114,19 @@ class SettingsViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  goToChangePassword(BuildContext context) {
+  void goToChangePassword(BuildContext context) {
     locator<AppRouter>().push(ChangePasswordRoute());
   }
 
-  denyBiometrics() async {
+  Future<void> denyBiometrics() async {
     await StorageHelpers.setVal(
-        StorageKeys.hasRequestedBiometricsKey, true.toString());
+      StorageKeys.hasRequestedBiometricsKey,
+      true.toString(),
+    );
     await StorageHelpers.setVal(
-        StorageKeys.enableBiometricsKey, false.toString());
+      StorageKeys.enableBiometricsKey,
+      false.toString(),
+    );
 
     StorageValues.hasRequestedBiometrics = "true";
     StorageValues.enableBiometrics = "false";
@@ -128,11 +134,15 @@ class SettingsViewModel extends BaseViewModel {
     useBiometrics = false;
   }
 
-  allowBiometrics() async {
+  Future<void> allowBiometrics() async {
     await StorageHelpers.setVal(
-        StorageKeys.hasRequestedBiometricsKey, true.toString());
+      StorageKeys.hasRequestedBiometricsKey,
+      true.toString(),
+    );
     await StorageHelpers.setVal(
-        StorageKeys.enableBiometricsKey, true.toString());
+      StorageKeys.enableBiometricsKey,
+      true.toString(),
+    );
 
     StorageValues.hasRequestedBiometrics = "true";
     StorageValues.enableBiometrics = "true";
@@ -140,56 +150,61 @@ class SettingsViewModel extends BaseViewModel {
     useBiometrics = true;
   }
 
-  goToChangePin(BuildContext context) {
+  void goToChangePin(BuildContext context) {
     locator<AppRouter>().push(ChangePinRoute());
   }
 
   List<SettingsSection> sections(BuildContext context) => [
-        SettingsSection(
-          sectionTitle: "PROFILE SETTINGS",
-          options: profileOption(context),
-        ),
-        SettingsSection(
-          sectionTitle: "STAFF MANAGEMENT",
-          options: staffManagementOption(context),
-        ),
-        SettingsSection(
-          sectionTitle: "FINANCES AND CONTACT",
-          options: financeOption(context),
-        ),
-        SettingsSection(
-          sectionTitle: "SECURITY SETTINGS",
-          options: securityOption(context),
-        ),
-        SettingsSection(
-          sectionTitle: "HELP AND SUPPORT",
-          options: supportOptions(),
-        ),
-        SettingsSection(
-          sectionTitle: "DANGER ZONE!",
-          options: dangerOption(context),
-        )
-      ];
+    SettingsSection(
+      sectionTitle: "PROFILE SETTINGS",
+      options: profileOption(context),
+    ),
+    SettingsSection(
+      sectionTitle: "STAFF MANAGEMENT",
+      options: staffManagementOption(context),
+    ),
+    SettingsSection(
+      sectionTitle: "FINANCES AND CONTACT",
+      options: financeOption(context),
+    ),
+    SettingsSection(
+      sectionTitle: "SECURITY SETTINGS",
+      options: securityOption(context),
+    ),
+    SettingsSection(
+      sectionTitle: "HELP AND SUPPORT",
+      options: supportOptions(),
+    ),
+    SettingsSection(
+      sectionTitle: "DANGER ZONE!",
+      options: dangerOption(context),
+    ),
+  ];
 
-  getReasons(BuildContext context) async {
+  Future<void> getReasons(BuildContext context) async {
     AppLoader.start();
 
     GetReasonResponse resp =
-        await AuthService().getReasons().onError((error, stackTrace) {
-      return GetReasonResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {"request_name": "get_reasons", "response_model": "GetReasonResponse"},
-      ));
-    });
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).getReasons().onError((error, stackTrace) {
+          return GetReasonResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_reasons",
+              "response_model": "GetReasonResponse",
+            }),
+          );
+        });
 
     AppLoader.stop();
     if (resp.status == "success") {
       BlueDialog.reason(reasons: resp.data!).then((value) {
         if (value != null) {
-          BlueDialog.deleteAccount(onDelete: () {
-            deleteAccount(value, context);
-          });
+          BlueDialog.deleteAccount(
+            onDelete: () {
+              deleteAccount(value, context);
+            },
+          );
         }
       });
     } else {
@@ -197,22 +212,22 @@ class SettingsViewModel extends BaseViewModel {
     }
   }
 
-  deleteAccount(Reason reason, BuildContext context) async {
+  Future<void> deleteAccount(Reason reason, BuildContext context) async {
     AppLoader.start();
     DeleteRequest request = DeleteRequest(reasonId: reason.id.toString());
 
     DeleteResponse resp =
-        await AuthService().deleteAccount(request).onError((error, stackTrace) {
-      return DeleteResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "delete_account",
-          "request": request.toString(),
-          "response_model": "DeleteResponse"
-        },
-      ));
-    });
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).deleteAccount(request).onError((error, stackTrace) {
+          return DeleteResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "delete_account",
+              "request": request.toString(),
+              "response_model": "DeleteResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       if (context.mounted) {
@@ -228,7 +243,7 @@ class SettingsViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  startLogout(BuildContext context) async {
+  Future<void> startLogout(BuildContext context) async {
     BlueDialog.primary(
       title: "Logout",
       subtitle: "Are you sure you want to logout",
@@ -239,7 +254,7 @@ class SettingsViewModel extends BaseViewModel {
     );
   }
 
-  logout(BuildContext context, [bool logout = false]) async {
+  Future<void> logout(BuildContext context, [bool logout = false]) async {
     AppLoader.start();
 
     RefreshTimer.logout();
@@ -248,169 +263,171 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   List<SettingsOption> staffManagementOption(BuildContext context) => [
-        SettingsOption(
-          icon: AppAssets.images.icons.staffManagement.svg(),
-          title: "Manage business branch",
-          subtitle: "Track and monitor your business branches.",
-          onTap: () {
-            goToBranchManagementHome(context);
-          },
-        ),
-        SettingsOption(
-          icon: AppAssets.images.icons.staffManagement.svg(),
-          title: "Manage your team",
-          subtitle: "Invite staff, set roles and access",
-          onTap: () {
-            goToStaffManagementHome(context);
-          },
-        ),
-      ];
+    SettingsOption(
+      icon: AppAssets.images.icons.staffManagement.svg(),
+      title: "Manage business branch",
+      subtitle: "Track and monitor your business branches.",
+      onTap: () {
+        goToBranchManagementHome(context);
+      },
+    ),
+    SettingsOption(
+      icon: AppAssets.images.icons.staffManagement.svg(),
+      title: "Manage your team",
+      subtitle: "Invite staff, set roles and access",
+      onTap: () {
+        goToStaffManagementHome(context);
+      },
+    ),
+  ];
 
   List<SettingsOption> profileOption(BuildContext context) => [
-        SettingsOption(
-          icon: AppAssets.images.icons.editInfo.svg(),
-          title: "Personal details",
-          onTap: () {
-            goToPersonalInfo(context);
-          },
-        ),
-        SettingsOption(
-          icon: AppAssets.images.icons.recoverAccount.svg(),
-          title: "Account recovery",
-          subtitle: "Recovery your account anytime",
-          onTap: () {
-            goToAccountRecovery(context);
-          },
-        ),
-      ];
+    SettingsOption(
+      icon: AppAssets.images.icons.editInfo.svg(),
+      title: "Personal details",
+      onTap: () {
+        goToPersonalInfo(context);
+      },
+    ),
+    SettingsOption(
+      icon: AppAssets.images.icons.recoverAccount.svg(),
+      title: "Account recovery",
+      subtitle: "Recovery your account anytime",
+      onTap: () {
+        goToAccountRecovery(context);
+      },
+    ),
+  ];
 
   List<SettingsOption> financeOption(BuildContext context) => [
-        SettingsOption(
-          icon: AppAssets.images.icons.businessFees.svg(),
-          title: "Business fees & charges",
-          onTap: () {
-            getBusinessFees(context);
-          },
-        ),
-        SettingsOption(
-          icon: AppAssets.images.icons.virtualBank.svg(),
-          title: "Withdrawal bank",
-          subtitle: "Link your personal bank account to make easy withdrawals",
-          onTap: () {
-            if (locator<AppStateValues>().withdrawalAccount == null) {
-              getWithdrawalAccount(context);
-            } else {
-              goToWithdrawalBank(context);
-            }
-          },
-        ),
-        SettingsOption(
-          icon: AppAssets.images.icons.beneficiaries.svg(),
-          title: "Manage your beneficiaries",
-          onTap: () {
-            goToManageBeneficiaries(context);
-          },
-        ),
-        SettingsOption(
-          icon: AppAssets.images.icons.paymentLink.svg(),
-          title: "Payment link history",
-          onTap: () {
-            goToPaymentLinkHistory(context);
-          },
-        ),
-      ];
+    SettingsOption(
+      icon: AppAssets.images.icons.businessFees.svg(),
+      title: "Business fees & charges",
+      onTap: () {
+        getBusinessFees(context);
+      },
+    ),
+    SettingsOption(
+      icon: AppAssets.images.icons.virtualBank.svg(),
+      title: "Withdrawal bank",
+      subtitle: "Link your personal bank account to make easy withdrawals",
+      onTap: () {
+        if (locator<AppStateValues>().withdrawalAccount == null) {
+          getWithdrawalAccount(context);
+        } else {
+          goToWithdrawalBank(context);
+        }
+      },
+    ),
+    SettingsOption(
+      icon: AppAssets.images.icons.beneficiaries.svg(),
+      title: "Manage your beneficiaries",
+      onTap: () {
+        goToManageBeneficiaries(context);
+      },
+    ),
+    SettingsOption(
+      icon: AppAssets.images.icons.paymentLink.svg(),
+      title: "Payment link history",
+      onTap: () {
+        goToPaymentLinkHistory(context);
+      },
+    ),
+  ];
 
   List<SettingsOption> securityOption(BuildContext context) => [
-        SettingsOption(
-          icon: AppAssets.images.icons.notifications.svg(),
-          title: "Notifications",
-          subtitle: 'Enable or disable notifications',
-          trailing: SizedBox(
-            height: 20.h,
-            width: 36.w,
-            child: Transform.scale(
-              scale: .5,
-              child: CupertinoSwitch(
-                value: notificationStatus,
-                activeTrackColor: AppColors.primary,
-                inactiveTrackColor: AppColors.midGrey,
-                onChanged: toggleNotifications,
-              ),
-            ),
+    SettingsOption(
+      icon: AppAssets.images.icons.notifications.svg(),
+      title: "Notifications",
+      subtitle: 'Enable or disable notifications',
+      trailing: SizedBox(
+        height: 20.h,
+        width: 36.w,
+        child: Transform.scale(
+          scale: .5,
+          child: CupertinoSwitch(
+            value: notificationStatus,
+            activeTrackColor: AppColors.primary,
+            inactiveTrackColor: AppColors.midGrey,
+            onChanged: toggleNotifications,
           ),
         ),
-        SettingsOption(
-          icon: AppAssets.images.icons.biometrics.svg(),
-          title: "Biometrics",
-          subtitle: "Enable or disable biometrics",
-          trailing: SizedBox(
-            height: 20.h,
-            width: 36.w,
-            child: Transform.scale(
-              scale: .5,
-              child: CupertinoSwitch(
-                value: useBiometrics,
-                activeTrackColor: AppColors.primary,
-                inactiveTrackColor: AppColors.midGrey,
-                onChanged: setBiometricsValue,
-              ),
-            ),
+      ),
+    ),
+    SettingsOption(
+      icon: AppAssets.images.icons.biometrics.svg(),
+      title: "Biometrics",
+      subtitle: "Enable or disable biometrics",
+      trailing: SizedBox(
+        height: 20.h,
+        width: 36.w,
+        child: Transform.scale(
+          scale: .5,
+          child: CupertinoSwitch(
+            value: useBiometrics,
+            activeTrackColor: AppColors.primary,
+            inactiveTrackColor: AppColors.midGrey,
+            onChanged: setBiometricsValue,
           ),
         ),
-        SettingsOption(
-          icon: AppAssets.images.icons.pin.svg(),
-          title: "Change PIN",
-          onTap: () {
-            goToChangePin(context);
-          },
-        ),
-        SettingsOption(
-          icon: AppAssets.images.icons.password.svg(),
-          title: "Change password",
-          onTap: () {
-            goToChangePassword(context);
-          },
-        ),
-      ];
+      ),
+    ),
+    SettingsOption(
+      icon: AppAssets.images.icons.pin.svg(),
+      title: "Change PIN",
+      onTap: () {
+        goToChangePin(context);
+      },
+    ),
+    SettingsOption(
+      icon: AppAssets.images.icons.password.svg(),
+      title: "Change password",
+      onTap: () {
+        goToChangePassword(context);
+      },
+    ),
+  ];
 
   List<SettingsOption> supportOptions() => [
-        SettingsOption(
-          icon: AppAssets.images.icons.support.svg(),
-          title: "Contact support",
-          onTap: BlueBottomSheet.support,
+    SettingsOption(
+      icon: AppAssets.images.icons.support.svg(),
+      title: "Contact support",
+      onTap: BlueBottomSheet.support,
+    ),
+    SettingsOption(
+      icon: Container(
+        height: 38.h,
+        width: 38.w,
+        decoration: const BoxDecoration(
+          color: AppColors.midGrey,
+          shape: BoxShape.circle,
         ),
-        SettingsOption(
-          icon: Container(
-            height: 38.h,
-            width: 38.w,
-            decoration: const BoxDecoration(
-                color: AppColors.midGrey, shape: BoxShape.circle),
-            padding: const EdgeInsets.all(10.5),
-            child: AppAssets.images.logos.blueBgLogo.image(),
-          ),
-          title: "About Blue",
-          onTap: goToBlueWeb,
-        ),
-      ];
+        padding: const EdgeInsets.all(10.5),
+        child: AppAssets.images.logos.blueBgLogo.image(),
+      ),
+      title: "About Blue",
+      onTap: goToBlueWeb,
+    ),
+  ];
 
   List<SettingsOption> dangerOption(BuildContext context) => [
-        SettingsOption(
-          icon: Container(
-            height: 38.h,
-            width: 38.w,
-            decoration: BoxDecoration(
-              color: AppColors.error.withOpacityValue(.1),
-              shape: BoxShape.circle,
-            ),
-            padding: const EdgeInsets.all(10.5),
-            child: AppAssets.images.icons.delete.svg(),
-          ),
-          title: "Delete Account",
-          onTap: () {
-            getReasons(context);
-          },
+    SettingsOption(
+      icon: Container(
+        height: 38.h,
+        width: 38.w,
+        decoration: BoxDecoration(
+          color: AppColors.error.withOpacityValue(.1),
+          shape: BoxShape.circle,
         ),
-      ];
+        padding: const EdgeInsets.all(10.5),
+        child: AppAssets.images.icons.delete.svg(),
+      ),
+      title: "Delete Account",
+      onTap: () {
+        getReasons(context);
+      },
+    ),
+  ];
   bool _isChanging = false;
   bool get isChanging => _isChanging;
   set isChanging(bool v) {
@@ -418,15 +435,15 @@ class SettingsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getBusinessFees(BuildContext context) async {
+  Future<void> getBusinessFees(BuildContext context) async {
     AppLoader.start();
     GetBusinessFeesResponse resp = await ProfileService()
         .getBusinessFeesResponse()
         .onError((error, stackTrace) {
-      return GetBusinessFeesResponse(
-        message: AppErrorHandler.getErrorMessage(error),
-      );
-    });
+          return GetBusinessFeesResponse(
+            message: AppErrorHandler.getErrorMessage(error),
+          );
+        });
 
     if (resp.status == 'success') {
       final data = resp.data;
@@ -440,7 +457,7 @@ class SettingsViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  toggleNotifications(bool v) async {
+  Future<void> toggleNotifications(bool v) async {
     if (!isChanging) {
       isChanging = true;
       AppLoader.start();
@@ -448,15 +465,13 @@ class SettingsViewModel extends BaseViewModel {
       ToggleNotificationResponse resp = await ProfileService()
           .toggleNotificationStatus(status: v ? 1 : 0)
           .onError((error, stackTrace) {
-        return ToggleNotificationResponse(
-            message: AppErrorHandler.getErrorMessage(
-          error,
-          {
-            "request_name": "toggle_notifications",
-            "response_model": "NotificationResponse"
-          },
-        ));
-      });
+            return ToggleNotificationResponse(
+              message: AppErrorHandler.getErrorMessage(error, {
+                "request_name": "toggle_notifications",
+                "response_model": "NotificationResponse",
+              }),
+            );
+          });
 
       if (resp.status == "success") {
         notificationStatus = v;
@@ -471,19 +486,19 @@ class SettingsViewModel extends BaseViewModel {
     }
   }
 
-  goToManageBeneficiaries(BuildContext context) {
+  void goToManageBeneficiaries(BuildContext context) {
     locator<AppRouter>().push(ManageBeneficiariesRoute());
   }
 
-  goToBranchManagementHome(BuildContext context) {
+  void goToBranchManagementHome(BuildContext context) {
     locator<AppRouter>().push(BranchHomeRoute());
   }
 
-  goToStaffManagementHome(BuildContext context) {
+  void goToStaffManagementHome(BuildContext context) {
     locator<AppRouter>().push(StaffHomeRoute());
   }
 
-  goToBlueWeb() async {
+  Future<void> goToBlueWeb() async {
     Uri url = Uri.parse("https://paymeblue.com/business");
 
     await launchUrl(url, mode: LaunchMode.inAppWebView);
@@ -495,15 +510,13 @@ class SettingsViewModel extends BaseViewModel {
     WithdrawalAccountResponse resp = await TransactionService()
         .getWithdrawalAccount()
         .onError((error, stackTrace) {
-      return WithdrawalAccountResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "get_withdrawal_account",
-          "response_model": "WithdrawalResponse"
-        },
-      ));
-    });
+          return WithdrawalAccountResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_withdrawal_account",
+              "response_model": "WithdrawalResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       if (resp.data != null) {
@@ -517,19 +530,19 @@ class SettingsViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  goToPaymentLinkHistory(BuildContext context) {
+  void goToPaymentLinkHistory(BuildContext context) {
     locator<AppRouter>().push(PaymentLinkHistoryRoute());
   }
 
-  goToPersonalInfo(BuildContext context) {
+  void goToPersonalInfo(BuildContext context) {
     locator<AppRouter>().push(PersonalInfoRoute());
   }
 
-  goToWithdrawalBank(BuildContext context) {
+  void goToWithdrawalBank(BuildContext context) {
     locator<AppRouter>().push(AddWithdrawalDetailsRoute());
   }
 
-  goToAccountRecovery(BuildContext context) {
+  void goToAccountRecovery(BuildContext context) {
     locator<AppRouter>().push(AccountRecoveryRoute());
   }
 }

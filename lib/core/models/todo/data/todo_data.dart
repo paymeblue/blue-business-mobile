@@ -5,11 +5,9 @@ part 'todo_data.freezed.dart';
 part 'todo_data.g.dart';
 
 @freezed
-class TodoData with _$TodoData {
-  const factory TodoData({
-    required List<TodoOption> todos,
-  }) = _TodoData;
+abstract class TodoData with _$TodoData {
+  const factory TodoData({required List<TodoOption> todos}) = _TodoData;
 
   factory TodoData.fromJson(Map<String, dynamic> json) =>
-      _$TodoDataImpl.fromJson(json);
+      _$TodoDataFromJson(json);
 }

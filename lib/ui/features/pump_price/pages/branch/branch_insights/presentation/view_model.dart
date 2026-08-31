@@ -12,7 +12,7 @@ import 'package:blue_business/ui/features/pump_price/widgets/modals/toast.dart';
 class PumpPriceBranchInsightsViewModel extends BaseViewModel {
   late String branchId;
 
-  init(BuildContext context, String id) {
+  void init(BuildContext context, String id) {
     branchId = id;
     selectedType = types[0];
   }
@@ -28,7 +28,7 @@ class PumpPriceBranchInsightsViewModel extends BaseViewModel {
     getInsights();
   }
 
-  onTypeChanged(String t) {
+  void onTypeChanged(String t) {
     selectedType = t;
   }
 
@@ -60,15 +60,16 @@ class PumpPriceBranchInsightsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getInsights() async {
+  Future<void> getInsights() async {
     pageState = FetchState.loading;
     final resp = await PumpPriceStationService()
         .getInsights(id: branchId, period: selectedType.toLowerCase())
         .onError((e, s) {
-      log(s.toString());
-      return PumpPriceInsightsResponse(
-          message: AppErrorHandler.getErrorMessage(e));
-    });
+          log(s.toString());
+          return PumpPriceInsightsResponse(
+            message: AppErrorHandler.getErrorMessage(e),
+          );
+        });
 
     if (resp.status == 'success') {
       pageState = FetchState.success;

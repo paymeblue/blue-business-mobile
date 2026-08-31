@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,194 +9,275 @@ part of 'blue_message.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-BlueMessage _$BlueMessageFromJson(Map<String, dynamic> json) {
-  return _BlueMessage.fromJson(json);
-}
 
 /// @nodoc
 mixin _$BlueMessage {
-  String get message => throw _privateConstructorUsedError;
-  String get senderId => throw _privateConstructorUsedError;
-  String get timeStamp => throw _privateConstructorUsedError;
+
+ String get message; String get senderId; String get timeStamp;
+/// Create a copy of BlueMessage
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$BlueMessageCopyWith<BlueMessage> get copyWith => _$BlueMessageCopyWithImpl<BlueMessage>(this as BlueMessage, _$identity);
 
   /// Serializes this BlueMessage to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of BlueMessage
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $BlueMessageCopyWith<BlueMessage> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BlueMessage&&(identical(other.message, message) || other.message == message)&&(identical(other.senderId, senderId) || other.senderId == senderId)&&(identical(other.timeStamp, timeStamp) || other.timeStamp == timeStamp));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,message,senderId,timeStamp);
+
+@override
+String toString() {
+  return 'BlueMessage(message: $message, senderId: $senderId, timeStamp: $timeStamp)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $BlueMessageCopyWith<$Res> {
-  factory $BlueMessageCopyWith(
-          BlueMessage value, $Res Function(BlueMessage) then) =
-      _$BlueMessageCopyWithImpl<$Res, BlueMessage>;
-  @useResult
-  $Res call({String message, String senderId, String timeStamp});
-}
+abstract mixin class $BlueMessageCopyWith<$Res>  {
+  factory $BlueMessageCopyWith(BlueMessage value, $Res Function(BlueMessage) _then) = _$BlueMessageCopyWithImpl;
+@useResult
+$Res call({
+ String message, String senderId, String timeStamp
+});
 
+
+
+
+}
 /// @nodoc
-class _$BlueMessageCopyWithImpl<$Res, $Val extends BlueMessage>
+class _$BlueMessageCopyWithImpl<$Res>
     implements $BlueMessageCopyWith<$Res> {
-  _$BlueMessageCopyWithImpl(this._value, this._then);
+  _$BlueMessageCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final BlueMessage _self;
+  final $Res Function(BlueMessage) _then;
 
-  /// Create a copy of BlueMessage
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-    Object? senderId = null,
-    Object? timeStamp = null,
-  }) {
-    return _then(_value.copyWith(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      senderId: null == senderId
-          ? _value.senderId
-          : senderId // ignore: cast_nullable_to_non_nullable
-              as String,
-      timeStamp: null == timeStamp
-          ? _value.timeStamp
-          : timeStamp // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of BlueMessage
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? message = null,Object? senderId = null,Object? timeStamp = null,}) {
+  return _then(_self.copyWith(
+message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,senderId: null == senderId ? _self.senderId : senderId // ignore: cast_nullable_to_non_nullable
+as String,timeStamp: null == timeStamp ? _self.timeStamp : timeStamp // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$BlueMessageImplCopyWith<$Res>
-    implements $BlueMessageCopyWith<$Res> {
-  factory _$$BlueMessageImplCopyWith(
-          _$BlueMessageImpl value, $Res Function(_$BlueMessageImpl) then) =
-      __$$BlueMessageImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String message, String senderId, String timeStamp});
 }
 
-/// @nodoc
-class __$$BlueMessageImplCopyWithImpl<$Res>
-    extends _$BlueMessageCopyWithImpl<$Res, _$BlueMessageImpl>
-    implements _$$BlueMessageImplCopyWith<$Res> {
-  __$$BlueMessageImplCopyWithImpl(
-      _$BlueMessageImpl _value, $Res Function(_$BlueMessageImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of BlueMessage
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-    Object? senderId = null,
-    Object? timeStamp = null,
-  }) {
-    return _then(_$BlueMessageImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      senderId: null == senderId
-          ? _value.senderId
-          : senderId // ignore: cast_nullable_to_non_nullable
-              as String,
-      timeStamp: null == timeStamp
-          ? _value.timeStamp
-          : timeStamp // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [BlueMessage].
+extension BlueMessagePatterns on BlueMessage {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _BlueMessage value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _BlueMessage() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _BlueMessage value)  $default,){
+final _that = this;
+switch (_that) {
+case _BlueMessage():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _BlueMessage value)?  $default,){
+final _that = this;
+switch (_that) {
+case _BlueMessage() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String message,  String senderId,  String timeStamp)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _BlueMessage() when $default != null:
+return $default(_that.message,_that.senderId,_that.timeStamp);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String message,  String senderId,  String timeStamp)  $default,) {final _that = this;
+switch (_that) {
+case _BlueMessage():
+return $default(_that.message,_that.senderId,_that.timeStamp);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String message,  String senderId,  String timeStamp)?  $default,) {final _that = this;
+switch (_that) {
+case _BlueMessage() when $default != null:
+return $default(_that.message,_that.senderId,_that.timeStamp);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$BlueMessageImpl implements _BlueMessage {
-  const _$BlueMessageImpl(
-      {required this.message, required this.senderId, required this.timeStamp});
 
-  factory _$BlueMessageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BlueMessageImplFromJson(json);
+class _BlueMessage implements BlueMessage {
+  const _BlueMessage({required this.message, required this.senderId, required this.timeStamp});
+  factory _BlueMessage.fromJson(Map<String, dynamic> json) => _$BlueMessageFromJson(json);
 
-  @override
-  final String message;
-  @override
-  final String senderId;
-  @override
-  final String timeStamp;
+@override final  String message;
+@override final  String senderId;
+@override final  String timeStamp;
 
-  @override
-  String toString() {
-    return 'BlueMessage(message: $message, senderId: $senderId, timeStamp: $timeStamp)';
-  }
+/// Create a copy of BlueMessage
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$BlueMessageCopyWith<_BlueMessage> get copyWith => __$BlueMessageCopyWithImpl<_BlueMessage>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BlueMessageImpl &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.senderId, senderId) ||
-                other.senderId == senderId) &&
-            (identical(other.timeStamp, timeStamp) ||
-                other.timeStamp == timeStamp));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, message, senderId, timeStamp);
-
-  /// Create a copy of BlueMessage
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BlueMessageImplCopyWith<_$BlueMessageImpl> get copyWith =>
-      __$$BlueMessageImplCopyWithImpl<_$BlueMessageImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BlueMessageImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$BlueMessageToJson(this, );
 }
 
-abstract class _BlueMessage implements BlueMessage {
-  const factory _BlueMessage(
-      {required final String message,
-      required final String senderId,
-      required final String timeStamp}) = _$BlueMessageImpl;
-
-  factory _BlueMessage.fromJson(Map<String, dynamic> json) =
-      _$BlueMessageImpl.fromJson;
-
-  @override
-  String get message;
-  @override
-  String get senderId;
-  @override
-  String get timeStamp;
-
-  /// Create a copy of BlueMessage
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BlueMessageImplCopyWith<_$BlueMessageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BlueMessage&&(identical(other.message, message) || other.message == message)&&(identical(other.senderId, senderId) || other.senderId == senderId)&&(identical(other.timeStamp, timeStamp) || other.timeStamp == timeStamp));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,message,senderId,timeStamp);
+
+@override
+String toString() {
+  return 'BlueMessage(message: $message, senderId: $senderId, timeStamp: $timeStamp)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$BlueMessageCopyWith<$Res> implements $BlueMessageCopyWith<$Res> {
+  factory _$BlueMessageCopyWith(_BlueMessage value, $Res Function(_BlueMessage) _then) = __$BlueMessageCopyWithImpl;
+@override @useResult
+$Res call({
+ String message, String senderId, String timeStamp
+});
+
+
+
+
+}
+/// @nodoc
+class __$BlueMessageCopyWithImpl<$Res>
+    implements _$BlueMessageCopyWith<$Res> {
+  __$BlueMessageCopyWithImpl(this._self, this._then);
+
+  final _BlueMessage _self;
+  final $Res Function(_BlueMessage) _then;
+
+/// Create a copy of BlueMessage
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? message = null,Object? senderId = null,Object? timeStamp = null,}) {
+  return _then(_BlueMessage(
+message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,senderId: null == senderId ? _self.senderId : senderId // ignore: cast_nullable_to_non_nullable
+as String,timeStamp: null == timeStamp ? _self.timeStamp : timeStamp // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

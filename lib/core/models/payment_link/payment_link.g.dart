@@ -6,9 +6,8 @@ part of 'payment_link.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PaymentLinkItemImpl _$$PaymentLinkItemImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PaymentLinkItemImpl(
+_PaymentLinkItem _$PaymentLinkItemFromJson(Map<String, dynamic> json) =>
+    _PaymentLinkItem(
       id: (json['id'] as num).toInt(),
       transactionId: json['transaction_id'] as String,
       amount: json['amount'] as String,
@@ -19,8 +18,7 @@ _$PaymentLinkItemImpl _$$PaymentLinkItemImplFromJson(
       createdAt: json['created_at'] as String,
     );
 
-Map<String, dynamic> _$$PaymentLinkItemImplToJson(
-        _$PaymentLinkItemImpl instance) =>
+Map<String, dynamic> _$PaymentLinkItemToJson(_PaymentLinkItem instance) =>
     <String, dynamic>{
       'id': instance.id,
       'transaction_id': instance.transactionId,

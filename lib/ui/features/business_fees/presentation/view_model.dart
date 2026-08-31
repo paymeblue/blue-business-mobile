@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 class BusinessFeesViewModel extends BaseViewModel {
   late Size size;
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     size = context.mediaQuery.size;
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop().then((v) {
       if (!v && context.mounted) {
         locator<AppRouter>().replaceAll([SettingsRoute()]);

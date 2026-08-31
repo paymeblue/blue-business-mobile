@@ -4,7 +4,7 @@ part 'electricity_beneficiary.freezed.dart';
 part 'electricity_beneficiary.g.dart';
 
 @freezed
-class ElectricityBeneficiary with _$ElectricityBeneficiary {
+abstract class ElectricityBeneficiary with _$ElectricityBeneficiary {
   const factory ElectricityBeneficiary({
     int? id,
     required String receiver,
@@ -21,5 +21,5 @@ class ElectricityBeneficiary with _$ElectricityBeneficiary {
   }) = _ElectricityBeneficiary;
 
   factory ElectricityBeneficiary.fromJson(Map<String, dynamic> json) =>
-      _$ElectricityBeneficiaryImpl.fromJson(json);
+      _$ElectricityBeneficiaryFromJson(json);
 }

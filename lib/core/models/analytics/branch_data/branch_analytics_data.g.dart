@@ -6,15 +6,13 @@ part of 'branch_analytics_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BranchAnalyticsDataImpl _$$BranchAnalyticsDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$BranchAnalyticsDataImpl(
-      transaction:
-          AnalyticsItem.fromJson(json['transaction'] as Map<String, dynamic>),
+_BranchAnalyticsData _$BranchAnalyticsDataFromJson(Map<String, dynamic> json) =>
+    _BranchAnalyticsData(
+      transaction: AnalyticsItem.fromJson(
+        json['transaction'] as Map<String, dynamic>,
+      ),
     );
 
-Map<String, dynamic> _$$BranchAnalyticsDataImplToJson(
-        _$BranchAnalyticsDataImpl instance) =>
-    <String, dynamic>{
-      'transaction': instance.transaction,
-    };
+Map<String, dynamic> _$BranchAnalyticsDataToJson(
+  _BranchAnalyticsData instance,
+) => <String, dynamic>{'transaction': instance.transaction};

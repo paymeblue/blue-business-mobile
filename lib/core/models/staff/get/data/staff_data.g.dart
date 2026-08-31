@@ -6,12 +6,13 @@ part of 'staff_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GetStaffDataImpl _$$GetStaffDataImplFromJson(Map<String, dynamic> json) =>
-    _$GetStaffDataImpl(
+_GetStaffData _$GetStaffDataFromJson(Map<String, dynamic> json) =>
+    _GetStaffData(
       total: (json['total'] as num).toInt(),
       limit: (json['limit'] as num).toInt(),
       page: (json['page'] as num).toInt(),
-      data: (json['data'] as List<dynamic>?)
+      data:
+          (json['data'] as List<dynamic>?)
               ?.map((e) => Staff.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -19,12 +20,12 @@ _$GetStaffDataImpl _$$GetStaffDataImplFromJson(Map<String, dynamic> json) =>
       perPage: (json['per_page'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$GetStaffDataImplToJson(_$GetStaffDataImpl instance) =>
+Map<String, dynamic> _$GetStaffDataToJson(_GetStaffData instance) =>
     <String, dynamic>{
       'total': instance.total,
       'limit': instance.limit,
       'page': instance.page,
       'data': instance.data,
       'load_more': instance.loadMore,
-      if (instance.perPage case final value?) 'per_page': value,
+      'per_page': ?instance.perPage,
     };

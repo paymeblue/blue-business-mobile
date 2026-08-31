@@ -1,5 +1,6 @@
 import 'package:blue_business/core/api/auth_service/auth_service.dart';
 import 'package:blue_business/core/config/country_code.dart';
+import 'package:blue_business/core/config/dio_config.dart';
 import 'package:blue_business/core/config/module/base_view_model.dart';
 import 'package:blue_business/core/gen/assets.gen.dart';
 import 'package:blue_business/core/models/country/country_code.dart';
@@ -23,21 +24,27 @@ class AccountRecoveryViewModel extends BaseViewModel {
   late Size size;
   AppStateValues stateValues = locator<AppStateValues>();
 
-  init(BuildContext context, String? type) {
+  void init(BuildContext context, String? type) {
     size = context.mediaQuery.size;
 
     setSelectedCountry();
   }
 
-  setSelectedCountry() {
-    selectedCountry = countryCodes[countryCodes.indexOf(const CountryCode(
-        countryCode: "NG", name: "Nigeria", dialCode: "+234"))];
+  void setSelectedCountry() {
+    selectedCountry =
+        countryCodes[countryCodes.indexOf(
+          const CountryCode(
+            countryCode: "NG",
+            name: "Nigeria",
+            dialCode: "+234",
+          ),
+        )];
   }
 
   List<String> questions = [
     "What is your mother's maiden name?",
     "What street did you grow up on?",
-    "What is the name of you first pet?"
+    "What is the name of you first pet?",
   ];
 
   String _question = "";
@@ -48,71 +55,71 @@ class AccountRecoveryViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  goBack(BuildContext context) {
+  void goBack(BuildContext context) {
     locator<AppRouter>().maybePop();
   }
 
   List<SettingsSection> sections(BuildContext context) => [
-        SettingsSection(
-          sectionTitle: "CHANGE PHONE NUMBER",
-          options: resetPhoneOptions(context),
-        ),
-        SettingsSection(
-          sectionTitle: "RESET PIN",
-          options: resetPinOptions(context),
-        ),
-      ];
+    SettingsSection(
+      sectionTitle: "CHANGE PHONE NUMBER",
+      options: resetPhoneOptions(context),
+    ),
+    SettingsSection(
+      sectionTitle: "RESET PIN",
+      options: resetPinOptions(context),
+    ),
+  ];
 
   List<SettingsOption> resetPhoneOptions(BuildContext context) => [
-        SettingsOption(
-          icon: AppAssets.images.icons.recoveryCode.svg(),
-          title: "Recovery code",
-          onTap: () async {
-            if (locator<AppStateValues>().recoveryCode.isEmpty) {
-              getRecoveryCode();
-            } else {
-              await BlueBottomSheet.recoveryCode(onTap: regenerateRecoveryCode);
-            }
-          },
-          subtitle:
-              "Generate a set of recovery phrase just in case you lose your phone number",
-        ),
-      ];
+    SettingsOption(
+      icon: AppAssets.images.icons.recoveryCode.svg(),
+      title: "Recovery code",
+      onTap: () async {
+        if (locator<AppStateValues>().recoveryCode.isEmpty) {
+          getRecoveryCode();
+        } else {
+          await BlueBottomSheet.recoveryCode(onTap: regenerateRecoveryCode);
+        }
+      },
+      subtitle:
+          "Generate a set of recovery phrase just in case you lose your phone number",
+    ),
+  ];
 
   List<SettingsOption> resetPinOptions(BuildContext context) => [
-        SettingsOption(
-          icon: AppAssets.images.icons.securityQuestion.svg(),
-          title: "Security questions",
-          subtitle: "Set security questions to reset PIN",
-          onTap: () async {
-            await BlueBottomSheet.securityQuestion(
-              questions: questions,
-              question: question,
-              answerController: answerController,
-              passwordController: passwordController,
-              onTap: createSecurityQuestion,
-              selectedQuestion: (value) {
-                question = value;
-              },
-            );
+    SettingsOption(
+      icon: AppAssets.images.icons.securityQuestion.svg(),
+      title: "Security questions",
+      subtitle: "Set security questions to reset PIN",
+      onTap: () async {
+        await BlueBottomSheet.securityQuestion(
+          questions: questions,
+          question: question,
+          answerController: answerController,
+          passwordController: passwordController,
+          onTap: createSecurityQuestion,
+          selectedQuestion: (value) {
+            question = value;
           },
-        ),
-        SettingsOption(
-          icon: AppAssets.images.icons.recoveryPhone.svg(),
-          title: "Recovery phone",
-          subtitle: "We’ll use this number to recovery your account",
-          onTap: () async {
-            await BlueBottomSheet.recoveryPhone(
-              passwordController: passwordController,
-              onCountryChanged: onCountryChanged,
-              phoneController: phoneController,
-              searchController: searchController,
-              selectedCountry: selectedCountry,
-              onTap: updateRecoveryPhone,
-            );
-          },
-        ),
-      ];
+        );
+      },
+    ),
+    SettingsOption(
+      icon: AppAssets.images.icons.recoveryPhone.svg(),
+      title: "Recovery phone",
+      subtitle: "We’ll use this number to recovery your account",
+      onTap: () async {
+        await BlueBottomSheet.recoveryPhone(
+          passwordController: passwordController,
+          onCountryChanged: onCountryChanged,
+          phoneController: phoneController,
+          searchController: searchController,
+          selectedCountry: selectedCountry,
+          onTap: updateRecoveryPhone,
+        );
+      },
+    ),
+  ];
 
   TextEditingController phoneController = TextEditingController();
   TextEditingController searchController = TextEditingController();
@@ -126,33 +133,31 @@ class AccountRecoveryViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onCountryChanged(CountryCode? val) {
+  void onCountryChanged(CountryCode? val) {
     if (val != null) {
       selectedCountry = val;
     }
   }
 
-  getRecoveryCode() async {
+  Future<void> getRecoveryCode() async {
     AppLoader.start();
 
     GetRecoveryCodeResponse resp =
-        await AuthService().getRecoveryCode().onError((error, stackTrace) {
-      return GetRecoveryCodeResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "get_recovery_code",
-          "response_model": "GetRecoveryCodeResponse"
-        },
-      ));
-    });
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).getRecoveryCode().onError((error, stackTrace) {
+          return GetRecoveryCodeResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "get_recovery_code",
+              "response_model": "GetRecoveryCodeResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       AppLoader.stop();
       locator<AppStateValues>().recoveryCode = resp.data!.recoveryCode;
-      await BlueBottomSheet.recoveryCode(
-        onTap: regenerateRecoveryCode,
-      );
+      await BlueBottomSheet.recoveryCode(onTap: regenerateRecoveryCode);
     } else {
       AppLoader.stop();
       AppNotification.error(message: resp.message);
@@ -163,22 +168,22 @@ class AccountRecoveryViewModel extends BaseViewModel {
     AppLoader.start();
 
     SetRecoveryPhoneRequest request = SetRecoveryPhoneRequest(
-        phone: phoneController.text.validPhone(selectedCountry),
-        password: passwordController.text);
+      phone: phoneController.text.validPhone(selectedCountry),
+      password: passwordController.text,
+    );
 
-    SetRecoveryPhoneResponse resp = await AuthService()
-        .updateRecoveryPhone(request)
-        .onError((error, stackTrace) {
-      return SetRecoveryPhoneResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "update_recovery_phone",
-          "request": request.toString(),
-          "response_model": "GetRecoveryPhoneResponse"
-        },
-      ));
-    });
+    SetRecoveryPhoneResponse resp =
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).updateRecoveryPhone(request).onError((error, stackTrace) {
+          return SetRecoveryPhoneResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "update_recovery_phone",
+              "request": request.toString(),
+              "response_model": "GetRecoveryPhoneResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       AppNotification.success(message: resp.message);
@@ -190,24 +195,26 @@ class AccountRecoveryViewModel extends BaseViewModel {
     AppLoader.stop();
   }
 
-  createSecurityQuestion() async {
+  Future<void> createSecurityQuestion() async {
     AppLoader.start();
     CreateQuestionRequest request = CreateQuestionRequest(
-        question: question,
-        answer: answerController.text,
-        password: passwordController.text);
+      question: question,
+      answer: answerController.text,
+      password: passwordController.text,
+    );
 
-    SendQuestionResponse resp = await AuthService()
-        .createSecurityQuestion(request)
-        .onError((error, stackTrace) => SendQuestionResponse(
-                message: AppErrorHandler.getErrorMessage(
-              error,
-              {
-                "request_name": "creaye_security_question",
-                "request": request.toString(),
-                "response_model": "SendQuestionResponse"
-              },
-            )));
+    SendQuestionResponse resp =
+        await AuthService(DioConfig.dio(locator<AppStateValues>().accessToken))
+            .createSecurityQuestion(request)
+            .onError(
+              (error, stackTrace) => SendQuestionResponse(
+                message: AppErrorHandler.getErrorMessage(error, {
+                  "request_name": "creaye_security_question",
+                  "request": request.toString(),
+                  "response_model": "SendQuestionResponse",
+                }),
+              ),
+            );
 
     if (resp.status == "success") {
       passwordController.clear();
@@ -225,16 +232,16 @@ class AccountRecoveryViewModel extends BaseViewModel {
     AppLoader.start();
 
     ResetRecoveryCodeResponse resp =
-        await AuthService().resetRecoveryCode().onError((error, stackTrace) {
-      return ResetRecoveryCodeResponse(
-          message: AppErrorHandler.getErrorMessage(
-        error,
-        {
-          "request_name": "reset_recovery_code",
-          "response_model": "ResetRecoveryCodeResponse"
-        },
-      ));
-    });
+        await AuthService(
+          DioConfig.dio(locator<AppStateValues>().accessToken),
+        ).resetRecoveryCode().onError((error, stackTrace) {
+          return ResetRecoveryCodeResponse(
+            message: AppErrorHandler.getErrorMessage(error, {
+              "request_name": "reset_recovery_code",
+              "response_model": "ResetRecoveryCodeResponse",
+            }),
+          );
+        });
 
     if (resp.status == "success") {
       AppLoader.stop();

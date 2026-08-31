@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'review_airtime_data.freezed.dart';
 
 @freezed
-class ReviewAirtimeData with _$ReviewAirtimeData {
+abstract class ReviewAirtimeData with _$ReviewAirtimeData {
   const factory ReviewAirtimeData({
     required String phone,
     required double amount,

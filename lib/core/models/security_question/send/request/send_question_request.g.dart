@@ -6,16 +6,12 @@ part of 'send_question_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SendQuestionRequestImpl _$$SendQuestionRequestImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SendQuestionRequestImpl(
+_SendQuestionRequest _$SendQuestionRequestFromJson(Map<String, dynamic> json) =>
+    _SendQuestionRequest(
       phone: json['phone'] as String,
       answer: json['answer'] as String,
     );
 
-Map<String, dynamic> _$$SendQuestionRequestImplToJson(
-        _$SendQuestionRequestImpl instance) =>
-    <String, dynamic>{
-      'phone': instance.phone,
-      'answer': instance.answer,
-    };
+Map<String, dynamic> _$SendQuestionRequestToJson(
+  _SendQuestionRequest instance,
+) => <String, dynamic>{'phone': instance.phone, 'answer': instance.answer};

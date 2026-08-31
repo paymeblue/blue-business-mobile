@@ -5,7 +5,7 @@ part 'forgot_pin_response.freezed.dart';
 part 'forgot_pin_response.g.dart';
 
 @freezed
-class ForgotPinResponse with _$ForgotPinResponse {
+abstract class ForgotPinResponse with _$ForgotPinResponse {
   const factory ForgotPinResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class ForgotPinResponse with _$ForgotPinResponse {
   }) = _ForgotPinResponse;
 
   factory ForgotPinResponse.fromJson(Map<String, dynamic> json) =>
-      _$ForgotPinResponseImpl.fromJson(json);
+      _$ForgotPinResponseFromJson(json);
 }

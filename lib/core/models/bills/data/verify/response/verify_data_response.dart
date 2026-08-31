@@ -5,7 +5,7 @@ part 'verify_data_response.freezed.dart';
 part 'verify_data_response.g.dart';
 
 @freezed
-class VerifyDataResponse with _$VerifyDataResponse {
+abstract class VerifyDataResponse with _$VerifyDataResponse {
   const factory VerifyDataResponse({
     @Default("fail") String status,
     String? message,
@@ -13,5 +13,5 @@ class VerifyDataResponse with _$VerifyDataResponse {
   }) = _VerifyDataResponse;
 
   factory VerifyDataResponse.fromJson(Map<String, dynamic> json) =>
-      _$VerifyDataResponseImpl.fromJson(json);
+      _$VerifyDataResponseFromJson(json);
 }

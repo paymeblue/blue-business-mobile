@@ -4,7 +4,7 @@ part 'pay_data.freezed.dart';
 part 'pay_data.g.dart';
 
 @freezed
-class PayData with _$PayData {
+abstract class PayData with _$PayData {
   const factory PayData({
     required String transactionId,
     required String amount,
@@ -16,5 +16,5 @@ class PayData with _$PayData {
   }) = _PayData;
 
   factory PayData.fromJson(Map<String, dynamic> json) =>
-      _$PayDataImpl.fromJson(json);
+      _$PayDataFromJson(json);
 }

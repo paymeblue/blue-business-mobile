@@ -10,18 +10,18 @@ import 'package:intl/intl.dart';
 class BlueLineChart extends StatefulWidget {
   final List<LineInputData> inputData;
   final bool isMonthly;
-  const BlueLineChart(
-      {super.key, required this.inputData, this.isMonthly = false});
+  const BlueLineChart({
+    super.key,
+    required this.inputData,
+    this.isMonthly = false,
+  });
 
   @override
   State<BlueLineChart> createState() => _BlueLineChartState();
 }
 
 class _BlueLineChartState extends State<BlueLineChart> {
-  List<Color> gradientColors = [
-    AppColors.primary,
-    AppColors.white,
-  ];
+  List<Color> gradientColors = [AppColors.primary, AppColors.white];
 
   bool showAvg = false;
 
@@ -33,49 +33,39 @@ class _BlueLineChartState extends State<BlueLineChart> {
     getValues();
   }
 
-  getValues() {
+  void getValues() {
     values = widget.inputData.map((e) => e.amount).toList();
     values.sort();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 2.3,
-      child: LineChart(
-        mainData(),
-      ),
-    );
+    return AspectRatio(aspectRatio: 2.3, child: LineChart(mainData()));
   }
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    TextStyle style =
-        AppTextStyles.smallText.copyWith(color: const Color(0xFF615E83));
-    late Widget text = Text(
-        widget.inputData[value.toInt()].label[0].toUpperCase() +
-            widget.inputData[value.toInt()].label.substring(1),
-        style: style);
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: text,
+    TextStyle style = AppTextStyles.smallText.copyWith(
+      color: const Color(0xFF615E83),
     );
+    late Widget text = Text(
+      widget.inputData[value.toInt()].label[0].toUpperCase() +
+          widget.inputData[value.toInt()].label.substring(1),
+      style: style,
+    );
+
+    return SideTitleWidget(axisSide: meta.axisSide, child: text);
   }
 
   LineChartData mainData() {
     NumberFormat format = NumberFormat.compactCurrency(symbol: nairaSymbol());
     return LineChartData(
-      gridData: const FlGridData(
-        show: false,
-      ),
+      gridData: const FlGridData(show: false),
       titlesData: FlTitlesData(
         show: true,
         rightTitles: const AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
-        topTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
+        topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
@@ -84,13 +74,9 @@ class _BlueLineChartState extends State<BlueLineChart> {
             getTitlesWidget: bottomTitleWidgets,
           ),
         ),
-        leftTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
+        leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
       ),
-      borderData: FlBorderData(
-        show: false,
-      ),
+      borderData: FlBorderData(show: false),
       lineTouchData: LineTouchData(
         touchTooltipData: LineTouchTooltipData(
           tooltipBgColor: AppColors.textColor,
@@ -117,9 +103,7 @@ class _BlueLineChartState extends State<BlueLineChart> {
           isCurved: true,
           barWidth: 3,
           isStrokeCapRound: true,
-          dotData: const FlDotData(
-            show: false,
-          ),
+          dotData: const FlDotData(show: false),
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
